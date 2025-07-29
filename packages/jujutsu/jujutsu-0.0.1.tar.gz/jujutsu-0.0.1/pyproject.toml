@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jujutsu"
+version = "0.0.1"
+description = "Powerful CLI tool with multiple aliases (jujutsu/jutsu/jjz/jj2)"
+readme = "README.md"
+authors = [
+    {name = "dai-motoki", email = "kanri@kandaquantum.co.jp"}
+]
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/dai-motoki/jujutsu"
+Repository = "https://github.com/dai-motoki/jujutsu"
+
+[project.scripts]
+jujutsu = "jujutsu.cli:main"
+jutsu = "jujutsu.cli:main"
+jjz = "jujutsu.cli:main"
+jj2 = "jujutsu.cli:main" 
