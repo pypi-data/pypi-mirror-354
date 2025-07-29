@@ -1,0 +1,103 @@
+Metadata-Version: 2.4
+Name: rivia-cognito-authorizer
+Version: 1.1.0
+Summary: Cognito authorizer for fastapi based projects
+Author-email: Rivia Backend Team <backend@riviadev.com.br>
+License: MIT License
+        
+        Copyright (c) 2023 RiviaDev
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+Keywords: elasticsearch,cloud,query-builder,python
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: boto3>=1.36.17
+Requires-Dist: fastapi>=0.115.8
+Requires-Dist: pyjwt>=1.3.1
+Requires-Dist: requests>=2.32.3
+Requires-Dist: cryptography>=44.0.0
+Dynamic: license-file
+
+# Rivia Cognito FastAPI Authorizer
+
+Este projeto fornece uma implementação de um autorizador JWT usando o Amazon Cognito e FastAPI. Ele verifica tokens JWT para autenticação e autorização de usuários.
+
+## Requisitos
+
+Certifique-se de que as seguintes variáveis de ambiente estejam configuradas:
+
+- `REGION`: A região AWS onde seu User Pool do Cognito está localizado.
+- `COGNITO_USER_POOL_ID`: O ID do User Pool do Cognito.
+- `COGNITO_APP_CLIENT_ID`: O ID do cliente da aplicação do Cognito.
+
+## Instalação
+
+1. Clone o repositório:
+    ```bash
+    git clone <URL_DO_REPOSITORIO>
+    cd rivia-cognito-fastapi-authorizer
+    ```
+
+2. Instale as dependências:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+## Uso
+
+### Verificação de Token
+
+A função `verify_token` verifica a validade de um token JWT. Ela realiza várias verificações, incluindo a assinatura do token, a expiração e a audiência.
+
+Exemplo de uso:
+```python
+from fastapi import FastAPI, Depends
+from rivia-cognito-authorizer import verify_token
+
+app = FastAPI()
+
+@app.get("/secure-endpoint")
+async def secure_endpoint(token_payload: dict = Depends(verify_token)):
+    return {"message": "This is a secure endpoint", "user": token_payload}
+```
+
+### Verificação de Grupos
+
+A função `allowed_for_groups` cria uma dependência que verifica se o usuário pertence a um dos grupos especificados.
+
+Exemplo de uso:
+```python
+from fastapi import FastAPI, Depends
+from rivia-cognito-authorizer import allowed_for_groups
+
+app = FastAPI()
+
+@app.get("/admin-endpoint")
+async def admin_endpoint(token_payload: dict = Depends(allowed_for_groups(["admin"]))):
+    return {"message": "This is an admin endpoint", "user": token_payload}
+```
+
+## Licença
+
+Este projeto está licenciado sob a Licença Apache 2.0. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
