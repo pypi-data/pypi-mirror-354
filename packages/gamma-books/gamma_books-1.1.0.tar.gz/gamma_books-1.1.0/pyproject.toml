@@ -1,0 +1,11 @@
+ [build-system]
+build-backend='setuptools.build_meta'
+requires=['setuptools']
+
+[project]
+dependencies=['web3','numpy','eth-utils','matplotlib']
+name='gamma-books'
+version='1.1.0'
+
+[tool.setuptools]
+py-modules=['gamma_books']
