@@ -1,0 +1,104 @@
+[tool.poetry]
+name = "bids_explorer"
+version = "0.1.0"
+description = "A simple bids dataset explorer without being too strict"
+authors = ["Dr. Samuel Louviot <sam.louviot@gmail.com>"]
+license = "GPL-3.0-or-later"
+readme = "README.md"
+packages = [{include = "bids_explorer", from = "src"}]
+homepage = "https://sam54000.github.io/bids_explorer/bids_explorer.html"
+repository = "https://github.com/Sam54000/bids_explorer"
+documentation = "https://sam54000.github.io/bids_explorer/bids_explorer.html"
+keywords = ["bids", "neuroimaging", "eeg", "dataset", "explorer", "neuroscience"]
+classifiers = [
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Medical Science Apps.",
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Operating System :: OS Independent",
+  "Natural Language :: English"
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.1.0"
+numpy = "^1.26.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+mypy = "^1.15.0"
+pre-commit = "^4.1.0"
+pytest-cov = "^6.0.0"
+ruff = "^0.9.9"
+
+[tool.poetry.group.docs.dependencies]
+pdoc = "^15.0.1"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
+]
+testpaths = [
+  "tests"
+]
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.ruff]
+exclude = [
+  ".bzr",
+  ".direnv",
+  ".eggs",
+  ".git",
+  ".git-rewrite",
+  ".hg",
+  ".mypy_cache",
+  ".nox",
+  ".pants.d",
+  ".pytype",
+  ".ruff_cache",
+  ".svn",
+  ".tox",
+  ".venv",
+  "__pypackages__",
+  "_build",
+  "buck-out",
+  "build",
+  "dist",
+  "node_modules",
+  "venv"
+]
+line-length = 79
+indent-width = 4
+src = ["src"]
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["ANN", "D", "E", "F", "I"]
+ignore = [
+  "ANN101",  # self should not be annotated.
+  "ANN102"  # cls should not be annotated.
+]
+fixable = ["ALL"]
+unfixable = []
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = true
+docstring-code-line-length = 20
+
+[build-system]
+requires = ["poetry-core>=1.2.0"]
+build-backend = "poetry.core.masonry.api"
