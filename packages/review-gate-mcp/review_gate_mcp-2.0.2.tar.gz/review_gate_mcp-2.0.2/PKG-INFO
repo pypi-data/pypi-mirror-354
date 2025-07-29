@@ -1,0 +1,83 @@
+Metadata-Version: 2.4
+Name: review-gate-mcp
+Version: 2.0.2
+Summary: Modern MCP server for Review Gate - AI-powered code review and interaction tool
+Project-URL: Homepage, https://github.com/abhishekbhakat/Review-Gate
+Project-URL: Repository, https://github.com/abhishekbhakat/Review-Gate
+Project-URL: Issues, https://github.com/abhishekbhakat/Review-Gate/issues
+Project-URL: Documentation, https://github.com/abhishekbhakat/Review-Gate/blob/main/README.md
+Author-email: Lakshman Turlapati <lakshman@example.com>, Abhishek Bhakat <abhishek.bhakat@hotmail.com>
+License: MIT
+License-File: LICENSE
+Keywords: ai,code-review,llm,mcp
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.10
+Requires-Dist: mcp>=1.9.2
+Provides-Extra: all
+Requires-Dist: faster-whisper>=1.0.0; extra == 'all'
+Requires-Dist: pillow>=10.0.0; extra == 'all'
+Provides-Extra: dev
+Requires-Dist: mypy>=1.0.0; extra == 'dev'
+Requires-Dist: pre-commit>=3.0.0; extra == 'dev'
+Requires-Dist: pytest-asyncio>=0.21.0; extra == 'dev'
+Requires-Dist: pytest>=7.0.0; extra == 'dev'
+Requires-Dist: ruff>=0.1.0; extra == 'dev'
+Provides-Extra: image
+Requires-Dist: pillow>=10.0.0; extra == 'image'
+Provides-Extra: speech
+Requires-Dist: faster-whisper>=1.0.0; extra == 'speech'
+Description-Content-Type: text/markdown
+
+# Review Gate MCP Server 🚀
+
+A modern Model Context Protocol (MCP) server for AI-powered code review and interaction tools.
+
+## ✨ Features
+
+- **🔄 Interactive Review Chat**: Get real-time feedback from users through popup dialogs
+- **⚡ Quick Input**: Fast user input collection with customizable timeouts
+- **🎤 Speech-to-Text**: Convert audio to text using Whisper (disabled by default, requires configuration)
+- **🎯 MCP Client Integration**: Seamless integration with any MCP-compatible client
+
+## 🚀 Installation
+
+```bash
+uvx review-gate-mcp
+```
+
+## 🔧 Configuration
+
+Add to your MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "review-gate": {
+      "command": "uvx",
+      "args": ["review-gate-mcp"]
+    }
+  }
+}
+```
+
+## 🛠️ Available Tools
+
+- **`review_gate_chat`**: Interactive chat popup for user feedback and code reviews
+- **`quick_input`**: Quick user input with shorter timeout for fast interactions
+- **`speech_to_text`**: Convert audio files to text using Whisper (optional)
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+Original Review Gate concept by Lakshman Turlapati. Built with [Model Context Protocol](https://modelcontextprotocol.io/).
