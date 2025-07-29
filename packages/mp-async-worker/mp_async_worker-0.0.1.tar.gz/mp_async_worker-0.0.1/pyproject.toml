@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+
+[project]
+name = "mp_async_worker"
+version = "0.0.1"
+authors = [
+  { name="Jan Scheffczyk", email="" },
+]
+description = "A package that allows you to easily insulate batch processes to another process."
+readme = "README.md"
+requires-python = ">=3.5"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: POSIX :: Linux",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+dependencies = [
+"typing_extensions>=4.0 ; python_version < '3.10'",
+]
+
+[project.urls]
+Homepage = "https://github.com/Kn0rk/mp_async_worker"
+Issues = "https://github.com/Kn0rk/mp_async_worker/issues"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0",
+  "pytest-asyncio"
+]
+
+[tool.pytest.ini_options]
+    pythonpath= ["./src"]
+    testpaths = ["tests"]
+    asyncio_default_fixture_loop_scope = "session"

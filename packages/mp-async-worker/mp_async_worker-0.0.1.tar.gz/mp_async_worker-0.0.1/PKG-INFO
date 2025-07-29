@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: mp_async_worker
+Version: 0.0.1
+Summary: A package that allows you to easily insulate batch processes to another process.
+Project-URL: Homepage, https://github.com/Kn0rk/mp_async_worker
+Project-URL: Issues, https://github.com/Kn0rk/mp_async_worker/issues
+Author: Jan Scheffczyk
+License-Expression: MIT
+License-File: LICENCE
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.5
+Requires-Dist: typing-extensions>=4.0; python_version < '3.10'
+Provides-Extra: dev
+Requires-Dist: pytest-asyncio; extra == 'dev'
+Requires-Dist: pytest>=7.0; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# mp-async-worker
+
+mp-async-worker uses the async syntax to offload compute-intensive routines to a child process. This ensures that the main process remains responsive and is not blocked by long-running tasks. The library is designed around batch processing.
+
+# Install
+
+# Usage
+
+
+
+```
+```
