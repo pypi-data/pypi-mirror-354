@@ -1,0 +1,15 @@
+beautifulsoup4>=4.13.4
+chuk-mcp-runtime>=0.3
+pillow>=11.2.1
+pydantic>=2.11.5
+requests>=2.32.3
+click>=8.0.0
+
+[dev]
+pytest>=7.0
+pytest-cov>=4.0
+ruff>=0.1.0
+mypy>=1.0
+
+[real-device]
+fb-idb>=1.1.7
