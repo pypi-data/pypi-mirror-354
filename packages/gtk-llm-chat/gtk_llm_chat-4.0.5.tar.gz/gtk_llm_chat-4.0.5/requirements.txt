@@ -1,0 +1,17 @@
+pygobject
+markdown-it-py
+python-ulid
+llm
+llm-gemini
+llm-groq
+llm-grok
+llm-deepseek
+llm-perplexity
+llm-anthropic
+llm-openrouter
+watchdog
+pillow
+pyxdg; sys_platform == "linux"
+pystray-freedesktop>=0.19.6a1; sys_platform == "linux"
+pystray; sys_platform == "darwin"
+pystray; sys_platform == "win32"
