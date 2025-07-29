@@ -1,0 +1,43 @@
+Metadata-Version: 2.4
+Name: pyiceberg-hdfs-native
+Version: 0.1.1
+Summary: Provides a pyiceberg.io.FileIO implementation for hdfs-native client
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: hdfs-native>=0.11
+Requires-Dist: pyiceberg>=0.9
+
+# pyiceberg-hdfs-native
+
+Provides a `pyiceberg.io.FileIO` implementation that uses
+[`hdfs-native`](https://github.com/Kimahriman/hdfs-native) client.
+
+## How to use
+
+Install with uv:
+
+```bash
+uv tool install --with pyiceberg-hdfs-native pyiceberg
+```
+
+Configure pyiceberg:
+
+```bash
+  default:
+    uri: https://iceberg.example.com/
+    py-io-impl: pyiceberg_hdfs_native.HdfsFileIO
+```
+
+Configure hdfs-native:
+
+```bash
+export HADOOP_CONF_DIR=/opt/hadoop/conf
+```
+
+If using kerberos, run `kinit`.
+
+Now `files` command should work:
+
+```
+pyiceberg files db.table
+```
