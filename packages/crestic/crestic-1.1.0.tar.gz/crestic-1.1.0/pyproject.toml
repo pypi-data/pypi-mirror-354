@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=61.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crestic"
+version = "1.1.0"
+authors = [
+  {name = "Nils Werner", email = "nils.werner@gmail.com"}
+]
+description = "Configurable restic"
+license = "MIT"
+license-files = [ "LICENSE" ]
+readme = "README.md"
+classifiers = [
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Intended Audience :: End Users/Desktop",
+    "Natural Language :: English",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: POSIX",
+    "Operating System :: POSIX :: BSD",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: System :: Archiving :: Backup",
+]
+requires-python = ">=3.6"
+
+[project.urls]
+Homepage = "https://github.com/nils-werner/crestic/"
+CI = "https://app.circleci.com/pipelines/github/nils-werner/crestic"
+
+[project.scripts]
+crestic = "crestic:cli"
+
+[tool.setuptools]
+py-modules = ["crestic"]
+include-package-data = false
+
+[tool.pytest.ini_options]
+addopts = "--doctest-modules --cov-report term-missing --cov crestic -Werror"
+
+[dependency-groups]
+dev = [
+    "mypy>=0.971",
+    "pytest>=7.0.1",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.6.1",
+]

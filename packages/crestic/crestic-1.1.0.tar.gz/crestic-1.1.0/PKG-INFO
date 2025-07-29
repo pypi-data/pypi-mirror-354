@@ -1,0 +1,68 @@
+Metadata-Version: 2.4
+Name: crestic
+Version: 1.1.0
+Summary: Configurable restic
+Author-email: Nils Werner <nils.werner@gmail.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/nils-werner/crestic/
+Project-URL: CI, https://app.circleci.com/pipelines/github/nils-werner/crestic
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: POSIX :: BSD
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: System :: Archiving :: Backup
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+Crestic - configurable Restic
+=============================
+
+This is a slim configuration wrapper for [Restic](https://restic.readthedocs.io/), a pretty awesome backup tool.
+
+Why? [Because restic is unfortunately still missing config files](https://github.com/restic/restic/issues/16).
+
+Usage
+-----
+
+The goal of `crestic` is to make running `restic` easy, e.g. creating backups using
+
+```Shell
+crestic home backup
+```
+
+instead of running complex `restic` commands
+
+```Shell
+restic backup \
+    --repo sftp:your_server:my_computer.restic \
+    --password-file ~/.config/restic/password \
+    --exclude-file ~/.config/restic/excludes \
+    ~
+```
+
+To achieve this, this tool does not try to be clever, it simply maps any *commandline options* for `restic` to a *key in an config file*:
+
+```INI
+[home]
+repo: sftp:your_server:my_computer.restic
+password-file: ~/.config/restic/password
+
+[home.backup]
+exclude-file: ~/.config/restic/excludes
+_arguments: ~
+```
+
+More advanced usage examples can be found [in the docs](https://nils-werner.github.io/crestic/)
