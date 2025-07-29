@@ -1,0 +1,32 @@
+[project]
+name = "rasterioxyz"
+version = "0.1.1"
+description = "Package for tiling georeferenced Rasterio DatasetReader objects according to the XYZ tiles standard."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "rasterio>=1.4.3",
+]
+
+[project.urls]
+repository = "https://github.com/duncanmartyn/rasterioxyz"
+issues = "https://github.com/duncanmartyn/rasterioxyz/issues"
+changelog = "https://github.com/duncanmartyn/rasterioxyz/blob/main/CHANGELOG.md"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.15.0",
+    "pre-commit>=4.2.0",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
+    "requests>=2.32.3",
+]
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["S101"]
+
+[project.scripts]
+rasterioxyz = "rasterioxyz._cli:main"
