@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+*.ipynb_checkpoints
+ENV*
+
+# Build artifacts
+dist/
+build/
+builddir/
+
+# IDE and editor files
+.idea/
+*.swp
+.DS_Store
+
+# Development and testing
+htmlcov/
+.coverage
+*.coverage
+
+# Project-specific
+crystal_torture/devel
+crystal_torture/_tort*
+crystal_torture/todo
+tests/STRUCTURE_FILES/UNUSED
+check_run.py
+check_doping.py
+things_to_note
+
+# Documentation
+docs/build/
+
+# Legacy/generated files
+MANIFEST
+README.txt
+crystal_torture-*
+.zenodo.json
+
+# Paper artifacts  
+paper/apa.csl
+paper/joss-logo.png
+paper/latex.template
