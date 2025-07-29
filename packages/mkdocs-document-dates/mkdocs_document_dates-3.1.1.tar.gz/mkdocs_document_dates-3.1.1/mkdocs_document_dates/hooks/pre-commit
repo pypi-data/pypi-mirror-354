@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+
+import sys
+import logging
+
+try:
+    from mkdocs_document_dates.cache_manager import update_cache
+except ImportError:
+    sys.exit(0)
+
+if __name__ == "__main__":
+    try:
+        update_cache()
+    except Exception as e:
+        logging.error(f"Hook execution failed: {e}")
+        sys.exit(1)
