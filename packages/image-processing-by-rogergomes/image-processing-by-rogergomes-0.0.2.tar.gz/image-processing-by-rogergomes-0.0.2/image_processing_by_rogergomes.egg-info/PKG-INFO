@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: image-processing-by-rogergomes
+Version: 0.0.2
+Summary: primeiro-projeto
+Home-page: https://github.com/rogeropgomes/Challenges-Projects
+Author: Roger Gomes
+Author-email: roger.oapgcgs@gmail.com
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+# package_name
+
+Description. 
+The package package_name is used to:
+	Processing:
+		-Histogram matching 
+		-Structural Similarity
+	Utils:
+		-Read Image
+		-Save Image
+		-Plot Image
+		-Plot Result
+		-Plot Histogram
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install package_name
+
+```bash
+pip install package_name
+```
+
+## Usage
+
+```python
+from package_name.module1_name import file1_name
+file1_name.my_function()
+```
+
+## Author
+RogerGomes
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
