@@ -1,0 +1,63 @@
+Metadata-Version: 2.4
+Name: radis-app
+Version: 0.1.4
+Summary: A simple CLI app that prints personal info
+Author-email: Radiela Yorgova <you@example.com>
+License: PROPRIETARY SOFTWARE LICENSE AGREEMENT
+        
+        Copyright (c) 07.06.2025 [Radiela Yorgova]. All rights reserved.
+        
+        
+        This software and associated documentation files (collectively, the "Software") are proprietary
+        to [Radiela Yorgova] and are protected by copyright laws and international treaties.
+        
+        Permission is NOT granted to any person or organization to use, copy, modify, merge, publish,
+        distribute, sublicense, and/or sell copies of the Software.
+        
+        The Software may not be reproduced, distributed, or transmitted in any form or by any means,
+        including photocopying, recording, or other electronic or mechanical methods,
+        without the prior written permission of the copyright owner,
+        except in the case of brief quotations embodied in critical reviews
+        and certain other non-commercial uses permitted by copyright law.
+        
+        Unauthorized use of the Software is strictly prohibited and constitutes a violation of applicable laws.
+        Violators may be subject to civil and/or criminal penalties.
+        
+        This license does not convey any rights under any intellectual property or proprietary rights of the copyright holder,
+        whether by implication, estoppel, or otherwise.
+        
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+        
+        For inquiries or permission requests, please contact:
+        [Radiela Milkova Yorgova]
+        [your.email@example.com]
+        
+        END OF LICENSE
+License-File: LICENSE
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+# MyApp
+
+A simple command-line Python application that prints a description of a person.
+
+## 🧑 What It Does
+
+When you run the command:
+
+```bash
+myapp
+
+
+Use cd: + file path to go to a specific file directory
+
+Use pip install -e . from myApp directory to be able to run this program 
+with just the terminal command: myApp 
