@@ -1,0 +1,45 @@
+import logging
+
+from abc import ABC
+from typing import Optional, Union
+
+from .logger import Logger, LogWrapper
+
+
+class UtilityBase(ABC):
+    """Base class for the utility types."""
+
+    def __init__(
+            self, 
+            verbose: bool = False,
+            logger: Optional[Union[logging.Logger, Logger, LogWrapper]] = None,
+            log_level: Optional[int] = None
+        ):
+        """Initialize the UtilityBase.
+
+        Args:
+            verbose: If True, logs will be provided with the configured level.
+            logger: Optional logger instance. If not provided, a default logger is used.
+            log_level: Optional log level. If not provided, INFO level will be used for logging.
+        """
+        self.verbose = verbose
+        self.log_level = log_level or logging.INFO
+
+        if logger is None:
+            self.logger = logging.getLogger("null")
+            if not self.logger.handlers:
+                self.logger.addHandler(logging.NullHandler())
+        else:
+            if isinstance(logger, Logger) or isinstance(logger, LogWrapper):
+                self.logger = logger.get_logger()
+            else:
+                self.logger = logger
+
+    def _log(self, message: str) -> None:
+        """Log a message using the provided or null logger.
+
+        Args:
+            message: The message to log.
+        """
+        if self.verbose:
+            self.logger.log(self.log_level, message)
