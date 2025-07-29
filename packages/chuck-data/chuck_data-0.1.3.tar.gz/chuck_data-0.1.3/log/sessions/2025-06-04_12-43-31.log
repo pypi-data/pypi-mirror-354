@@ -1,0 +1,28 @@
+2025-06-04 12:43:31,263 - DEBUG - Logging initialized. Writing to /Users/johnrush/repos/clamp-internal/log/sessions/2025-06-04_12-43-31.log
+2025-06-04 12:43:31,264 - DEBUG - Loaded configuration from /Users/johnrush/.chuck_config.json
+2025-06-04 12:43:31,272 - DEBUG - Using selector: KqueueSelector
+2025-06-04 12:43:32,357 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/chuck_integration_test_1636.bronze.ecommerce_profiles
+2025-06-04 12:43:32,368 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:43:32,519 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/chuck_integration_test_1636.bronze.ecommerce_profiles HTTP/1.1" 200 None
+2025-06-04 12:43:32,521 - INFO - Applying tag 'given-name' to column 'first_name'
+2025-06-04 12:43:32,521 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-04 12:43:32,523 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:43:33,539 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-04 12:43:33,540 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f0417c-3278-1ae9-b21f-8810633856ac
+2025-06-04 12:43:33,541 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:43:33,848 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f0417c-3278-1ae9-b21f-8810633856ac HTTP/1.1" 200 None
+2025-06-04 12:43:33,848 - INFO - Applying tag 'email' to column 'email_address'
+2025-06-04 12:43:33,848 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-04 12:43:33,849 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:43:34,454 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-04 12:43:34,455 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f0417c-3343-11ad-b3e3-d6984a433c44
+2025-06-04 12:43:34,458 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:43:34,743 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f0417c-3343-11ad-b3e3-d6984a433c44 HTTP/1.1" 200 None
+2025-06-04 12:43:34,744 - INFO - Applying tag 'phone' to column 'phone_number'
+2025-06-04 12:43:34,745 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-04 12:43:34,746 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:43:35,360 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-04 12:43:35,360 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f0417c-33cd-1a11-85c2-fad1ec87054b
+2025-06-04 12:43:35,361 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:43:35,624 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f0417c-33cd-1a11-85c2-fad1ec87054b HTTP/1.1" 200 None
+2025-06-04 12:43:35,628 - DEBUG - Using selector: KqueueSelector

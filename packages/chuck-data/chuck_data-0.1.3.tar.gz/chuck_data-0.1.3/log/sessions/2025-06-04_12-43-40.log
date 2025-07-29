@@ -1,0 +1,8 @@
+2025-06-04 12:43:40,621 - DEBUG - Logging initialized. Writing to /Users/johnrush/repos/clamp-internal/log/sessions/2025-06-04_12-43-40.log
+2025-06-04 12:43:40,621 - DEBUG - Loaded configuration from /Users/johnrush/.chuck_config.json
+2025-06-04 12:43:40,628 - DEBUG - Using selector: KqueueSelector
+2025-06-04 12:43:41,709 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/chuck_integration_test_1636.bronze.nonexistent_table
+2025-06-04 12:43:41,724 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:43:41,859 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/chuck_integration_test_1636.bronze.nonexistent_table HTTP/1.1" 404 None
+2025-06-04 12:43:41,860 - DEBUG - HTTP error: 404 Client Error: Not Found for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/chuck_integration_test_1636.bronze.nonexistent_table, Response: {"error_code":"TABLE_DOES_NOT_EXIST","message":"Table 'chuck_integration_test_1636.bronze.nonexistent_table' does not exist.","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"RESOURCE_DOES_NOT_EXIST","domain":"unity-catalog.databricks.com","metadata":{"resourceType":"Table","resourceIdentifier":"chuck_integration_test_1636.bronze.nonexistent_table"}},{"@type":"type.googleapis.com/google.rpc.RequestInfo","request_id":"a6573f51-535d-46e7-b90e-803045e77c23","serving_data":""}]}
+2025-06-04 12:43:41,864 - DEBUG - Using selector: KqueueSelector

@@ -1,0 +1,14 @@
+2025-05-20 16:34:50,880 - INFO - Processing category: Authentication & Workspace
+2025-05-20 16:34:50,881 - INFO - Command list: ['select_workspace', 'set_token', 'status', 'amp_login', 'amp_logout']
+2025-05-20 16:34:50,881 - INFO - Processing category: Browsing Data
+2025-05-20 16:34:50,881 - INFO - Command list: ['catalogs', 'list_models', 'schemas', 'tables', 'show_table']
+2025-05-20 16:34:50,881 - INFO - Processing category: Resource Selection
+2025-05-20 16:34:50,881 - INFO - Command list: ['select_catalog', 'select_schema', 'select_model', 'select_warehouse']
+2025-05-20 16:34:50,881 - INFO - Processing category: Agent & AI Tools
+2025-05-20 16:34:50,881 - INFO - Command list: ['tag_pii', 'scan_pii']
+2025-05-20 16:34:50,881 - INFO - Processing category: Storage & Files
+2025-05-20 16:34:50,881 - INFO - Command list: ['volumes', 'create_volume']
+2025-05-20 16:34:50,881 - INFO - Processing category: Jobs & Integration
+2025-05-20 16:34:50,881 - INFO - Command list: ['launch_job', 'job_status', 'setup_stitch']
+2025-05-20 16:34:50,881 - INFO - Processing category: System
+2025-05-20 16:34:50,881 - INFO - Command list: ['help', 'debug', 'exit']

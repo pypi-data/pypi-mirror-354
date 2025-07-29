@@ -1,0 +1,11 @@
+2025-05-21 18:17:41,800 - INFO - ClampService executing: '/setup', args: (), interactive: 'None'
+2025-05-21 18:17:41,800 - WARNING - Command setup_wizard received None as interactive_input
+2025-05-21 18:17:41,801 - INFO - setup_wizard: handle_command called with interactive_input=None, kwargs={}
+2025-05-21 18:17:41,801 - INFO - Empty input detected, prompting user to enter a value
+2025-05-21 18:17:41,801 - WARNING - Unexpected step: 1. Attempting to recover...
+2025-05-21 18:17:42,365 - INFO - ClampService executing: 'setup_wizard', args: (), interactive: ''
+2025-05-21 18:17:42,365 - INFO - setup_wizard: handle_command called with interactive_input=, kwargs={}
+2025-05-21 18:17:42,365 - INFO - Empty input detected, prompting user to enter a value
+2025-05-21 18:17:43,984 - INFO - ClampService executing: 'setup_wizard', args: (), interactive: ''
+2025-05-21 18:17:43,984 - INFO - setup_wizard: handle_command called with interactive_input=, kwargs={}
+2025-05-21 18:17:43,984 - INFO - Empty input detected, prompting user to enter a value

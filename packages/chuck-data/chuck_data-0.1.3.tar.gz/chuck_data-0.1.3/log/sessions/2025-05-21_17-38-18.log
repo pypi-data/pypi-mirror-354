@@ -1,0 +1,34 @@
+2025-05-21 17:38:19,646 - INFO - ClampService executing: '/setup', args: (), interactive: 'None'
+2025-05-21 17:38:19,647 - INFO - WIZARD DEBUG - handle_command called with params:
+2025-05-21 17:38:19,648 - INFO -   - interactive_input: 'None'
+2025-05-21 17:38:19,648 - INFO -   - client: <src.clients.databricks.DatabricksAPIClient object at 0x105c0b230>
+2025-05-21 17:38:19,648 - INFO -   - kwargs: {}
+2025-05-21 17:38:19,648 - INFO - setup_wizard: handle_command called with interactive_input=None, kwargs={}
+2025-05-21 17:38:19,648 - INFO - Setting active context. Current command: /setup_wizard
+2025-05-21 17:38:19,648 - INFO - Interactive mode active: True
+2025-05-21 17:38:19,648 - INFO - Context data: {'current_step': 1}
+2025-05-21 17:38:19,650 - INFO - Updated step to 2, context data: {'current_step': 2}
+2025-05-21 17:38:23,870 - INFO - ClampService executing: 'setup_wizard', args: (), interactive: 'https://my-workspace.cloud.databricks.com'
+2025-05-21 17:38:23,871 - INFO - WIZARD DEBUG - handle_command called with params:
+2025-05-21 17:38:23,871 - INFO -   - interactive_input: 'https://my-workspace.cloud.databricks.com'
+2025-05-21 17:38:23,871 - INFO -   - client: <src.clients.databricks.DatabricksAPIClient object at 0x105c0b230>
+2025-05-21 17:38:23,871 - INFO -   - kwargs: {}
+2025-05-21 17:38:23,871 - INFO - setup_wizard: handle_command called with interactive_input=https://my-workspace.cloud.databricks.com, kwargs={}
+2025-05-21 17:38:23,872 - INFO - Current step: 2, context data: {'current_step': 2}
+2025-05-21 17:38:23,872 - INFO - Interactive input: 'https://my-workspace.cloud.databricks.com'
+2025-05-21 17:38:23,873 - WARNING - Ensuring interactive mode - before: True
+2025-05-21 17:38:23,873 - INFO - After setting context: interactive=True, current=/setup_wizard
+2025-05-21 17:38:23,873 - INFO - Context contains: {'current_step': 2}
+2025-05-21 17:38:30,734 - INFO - ClampService executing: 'setup_wizard', args: (), interactive: '1234'
+2025-05-21 17:38:30,736 - INFO - WIZARD DEBUG - handle_command called with params:
+2025-05-21 17:38:30,736 - INFO -   - interactive_input: '1234'
+2025-05-21 17:38:30,736 - INFO -   - client: <src.clients.databricks.DatabricksAPIClient object at 0x105c0b230>
+2025-05-21 17:38:30,736 - INFO -   - kwargs: {}
+2025-05-21 17:38:30,736 - INFO - setup_wizard: handle_command called with interactive_input=1234, kwargs={}
+2025-05-21 17:38:30,736 - INFO - Current step: 2, context data: {'current_step': 2, 'workspace_url': 'https://my-workspace.cloud.databricks.com'}
+2025-05-21 17:38:30,736 - INFO - Interactive input: '1234'
+2025-05-21 17:38:30,736 - WARNING - Ensuring interactive mode - before: True
+2025-05-21 17:38:30,737 - INFO - After setting context: interactive=True, current=/setup_wizard
+2025-05-21 17:38:30,737 - INFO - Context contains: {'current_step': 2, 'workspace_url': 'https://my-workspace.cloud.databricks.com'}
+2025-05-21 17:38:31,189 - ERROR - Connection error: HTTPSConnectionPool(host='my-workspace.cloud.databricks.com', port=443): Max retries exceeded with url: /api/2.0/preview/scim/v2/Me (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x105d9f620>: Failed to resolve 'my-workspace.cloud.databricks.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-05-21 17:38:31,190 - ERROR - Token validation failed: Connection error occurred: HTTPSConnectionPool(host='my-workspace.cloud.databricks.com', port=443): Max retries exceeded with url: /api/2.0/preview/scim/v2/Me (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x105d9f620>: Failed to resolve 'my-workspace.cloud.databricks.com' ([Errno 8] nodename nor servname provided, or not known)"))

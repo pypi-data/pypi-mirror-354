@@ -1,0 +1,420 @@
+2025-06-06 02:11:31,958 - DEBUG - Logging initialized. Writing to /Users/johnrush/repos/chuck-data/log/sessions/2025-06-06_02-11-31.log
+2025-06-06 02:11:31,963 - DEBUG - HTTP error: HTTP 401, Response: {"status":401,"message":"Unauthorized"}
+2025-06-06 02:11:31,967 - DEBUG - GET request to: https://test-workspace.cloud.databricks.com/test-endpoint
+2025-06-06 02:11:31,967 - DEBUG - Connection error: Connection failed
+2025-06-06 02:11:31,969 - DEBUG - GET request to: https://test-workspace.cloud.databricks.com/test-endpoint
+2025-06-06 02:11:31,969 - DEBUG - HTTP error: HTTP 404, Response: Not Found
+2025-06-06 02:11:31,971 - DEBUG - GET request to: https://test-workspace.cloud.databricks.com/test-endpoint
+2025-06-06 02:11:31,975 - DEBUG - POST request to: https://test-workspace.cloud.databricks.com/test-endpoint
+2025-06-06 02:11:31,975 - DEBUG - Connection error: Connection failed
+2025-06-06 02:11:31,977 - DEBUG - POST request to: https://test-workspace.cloud.databricks.com/test-endpoint
+2025-06-06 02:11:31,977 - DEBUG - HTTP error: HTTP 400, Response: Bad Request
+2025-06-06 02:11:31,979 - DEBUG - POST request to: https://test-workspace.cloud.databricks.com/test-endpoint
+2025-06-06 02:11:32,023 - ERROR - Error listing catalogs: Database connection failed
+2025-06-06 02:11:32,032 - ERROR - Error listing schemas: Network error
+2025-06-06 02:11:32,198 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpym4br4k2/test_config.json
+2025-06-06 02:11:32,199 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpym4br4k2/test_config.json
+2025-06-06 02:11:32,199 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpym4br4k2/test_config.json
+2025-06-06 02:11:32,200 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpym4br4k2/test_config.json
+2025-06-06 02:11:32,200 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpym4br4k2/test_config.json
+2025-06-06 02:11:32,200 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpym4br4k2/test_config.json
+2025-06-06 02:11:32,201 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpym4br4k2/test_config.json
+2025-06-06 02:11:32,201 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpym4br4k2/test_config.json
+2025-06-06 02:11:32,201 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpym4br4k2/test_config.json
+2025-06-06 02:11:32,202 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpym4br4k2/test_config.json
+2025-06-06 02:11:32,202 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpym4br4k2/test_config.json
+2025-06-06 02:11:32,202 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpym4br4k2/test_config.json
+2025-06-06 02:11:32,202 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpym4br4k2/test_config.json
+2025-06-06 02:11:32,203 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpym4br4k2/test_config.json
+2025-06-06 02:11:32,203 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpym4br4k2/test_config.json
+2025-06-06 02:11:32,206 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpdvffn7x8/test_config.json
+2025-06-06 02:11:32,206 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpdvffn7x8/test_config.json
+2025-06-06 02:11:32,209 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp1cknj_1c/test_config.json
+2025-06-06 02:11:32,209 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp1cknj_1c/test_config.json
+2025-06-06 02:11:32,212 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpec6fogl2/test_config.json
+2025-06-06 02:11:32,212 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpec6fogl2/test_config.json
+2025-06-06 02:11:32,212 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpec6fogl2/test_config.json
+2025-06-06 02:11:32,213 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpec6fogl2/test_config.json
+2025-06-06 02:11:32,213 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpec6fogl2/test_config.json
+2025-06-06 02:11:32,213 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpec6fogl2/test_config.json
+2025-06-06 02:11:32,218 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmprkok1px9/test_config.json
+2025-06-06 02:11:32,218 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmprkok1px9/test_config.json
+2025-06-06 02:11:32,218 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmprkok1px9/test_config.json
+2025-06-06 02:11:32,219 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmprkok1px9/test_config.json
+2025-06-06 02:11:32,219 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmprkok1px9/test_config.json
+2025-06-06 02:11:32,220 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmprkok1px9/test_config.json
+2025-06-06 02:11:32,220 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmprkok1px9/test_config.json
+2025-06-06 02:11:32,220 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmprkok1px9/test_config.json
+2025-06-06 02:11:32,220 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmprkok1px9/test_config.json
+2025-06-06 02:11:32,221 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmprkok1px9/test_config.json
+2025-06-06 02:11:32,221 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmprkok1px9/test_config.json
+2025-06-06 02:11:32,221 - DEBUG - Using workspace_url from environment variable CHUCK_WORKSPACE_URL
+2025-06-06 02:11:32,221 - DEBUG - Using active_model from environment variable CHUCK_ACTIVE_MODEL
+2025-06-06 02:11:32,221 - DEBUG - Using warehouse_id from environment variable CHUCK_WAREHOUSE_ID
+2025-06-06 02:11:32,221 - DEBUG - Using active_catalog from environment variable CHUCK_ACTIVE_CATALOG
+2025-06-06 02:11:32,221 - DEBUG - Using active_schema from environment variable CHUCK_ACTIVE_SCHEMA
+2025-06-06 02:11:32,221 - DEBUG - Using usage_tracking_consent from environment variable CHUCK_USAGE_TRACKING_CONSENT
+2025-06-06 02:11:32,222 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmprkok1px9/test_config.json
+2025-06-06 02:11:32,225 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpqsnje1_p/test_config.json
+2025-06-06 02:11:32,225 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpqsnje1_p/test_config.json
+2025-06-06 02:11:32,225 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpqsnje1_p/test_config.json
+2025-06-06 02:11:32,225 - WARNING - Invalid workspace_url provided, using default instead
+2025-06-06 02:11:32,225 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpqsnje1_p/test_config.json
+2025-06-06 02:11:32,226 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpqsnje1_p/test_config.json
+2025-06-06 02:11:32,226 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpqsnje1_p/test_config.json
+2025-06-06 02:11:32,226 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpqsnje1_p/test_config.json
+2025-06-06 02:11:32,226 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpqsnje1_p/test_config.json
+2025-06-06 02:11:32,229 - DEBUG - Using workspace_url from environment variable CHUCK_WORKSPACE_URL
+2025-06-06 02:11:32,229 - DEBUG - Using workspace_url from environment variable CHUCK_WORKSPACE_URL
+2025-06-06 02:11:32,230 - DEBUG - Using active_model from environment variable CHUCK_ACTIVE_MODEL
+2025-06-06 02:11:32,230 - DEBUG - Using amperity_token from environment variable CHUCK_AMPERITY_TOKEN
+2025-06-06 02:11:32,230 - DEBUG - Using databricks_token from environment variable CHUCK_DATABRICKS_TOKEN
+2025-06-06 02:11:32,231 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmphnrwcnxw/test_config.json
+2025-06-06 02:11:32,231 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmphnrwcnxw/test_config.json
+2025-06-06 02:11:32,234 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpq5sy0odc/test_config.json
+2025-06-06 02:11:32,259 - DEBUG - GET request to: https://adb-3856707039489412.12.azuredatabricks.net/test-endpoint
+2025-06-06 02:11:32,267 - DEBUG - GET request to: https://test-workspace.cloud.databricks.com/test-endpoint
+2025-06-06 02:11:32,267 - DEBUG - Connection error: Connection failed
+2025-06-06 02:11:32,269 - DEBUG - GET request to: https://test-workspace.cloud.databricks.com/test-endpoint
+2025-06-06 02:11:32,269 - DEBUG - HTTP error: HTTP 404, Response: Not Found
+2025-06-06 02:11:32,272 - WARNING - Model 'nonexistent-model' not found
+2025-06-06 02:11:32,275 - DEBUG - GET request to: https://test-workspace.cloud.databricks.com/test-endpoint
+2025-06-06 02:11:32,288 - DEBUG - POST request to: https://test-workspace.cloud.databricks.com/test-endpoint
+2025-06-06 02:11:32,288 - DEBUG - Connection error: Connection failed
+2025-06-06 02:11:32,290 - DEBUG - POST request to: https://test-workspace.cloud.databricks.com/test-endpoint
+2025-06-06 02:11:32,291 - DEBUG - HTTP error: HTTP 400, Response: Bad Request
+2025-06-06 02:11:32,293 - DEBUG - POST request to: https://test-workspace.cloud.databricks.com/test-endpoint
+2025-06-06 02:11:32,297 - DEBUG - File upload request to: https://test-workspace.cloud.databricks.com/api/2.0/fs/files/test/path.txt
+2025-06-06 02:11:32,301 - DEBUG - File upload request to: https://test-workspace.cloud.databricks.com/api/2.0/fs/files/test/path.txt
+2025-06-06 02:11:32,304 - DEBUG - Token validation failed: Token validation failed
+2025-06-06 02:11:32,321 - ERROR - Error listing catalogs: Random failure 3
+2025-06-06 02:11:32,329 - ERROR - Error listing catalogs: Random failure 6
+2025-06-06 02:11:32,337 - ERROR - Error listing catalogs: Random failure 9
+2025-06-06 02:11:33,403 - ERROR - Error displaying table: Console error
+2025-06-06 02:11:33,409 - ERROR - Error listing catalogs: 403 Forbidden: Insufficient permissions
+2025-06-06 02:11:33,412 - ERROR - Error listing catalogs: 401 Unauthorized: Invalid token
+2025-06-06 02:11:33,415 - ERROR - Error listing catalogs: Access denied to resource
+2025-06-06 02:11:33,423 - ERROR - Error listing catalogs: 'NoneType' object has no attribute 'get'
+2025-06-06 02:11:33,436 - ERROR - Error listing catalogs: 'str' object has no attribute 'get'
+2025-06-06 02:11:33,701 - ERROR - Error listing catalogs: Connection failed
+2025-06-06 02:11:33,704 - ERROR - Error listing catalogs: Request timed out
+2025-06-06 02:11:33,707 - ERROR - Error listing catalogs: 404 Not Found
+2025-06-06 02:11:33,794 - DEBUG - Saved configuration to /tmp/.test_chuck_integration_config.json
+2025-06-06 02:11:33,794 - DEBUG - Saved configuration to /tmp/.test_chuck_integration_config.json
+2025-06-06 02:11:33,797 - DEBUG - Saved configuration to /tmp/.test_chuck_integration_config.json
+2025-06-06 02:11:33,797 - DEBUG - Saved configuration to /tmp/.test_chuck_integration_config.json
+2025-06-06 02:11:33,800 - DEBUG - Saved configuration to /tmp/.test_chuck_integration_config.json
+2025-06-06 02:11:33,800 - DEBUG - Saved configuration to /tmp/.test_chuck_integration_config.json
+2025-06-06 02:11:33,837 - DEBUG - Sending metric: {"event": "USAGE", "prompt": "test prompt"}...
+2025-06-06 02:11:33,837 - DEBUG - Error sending metrics: Test exception
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/chuck-data/src/metrics_collector.py", line 123, in send_metric
+    return self._client.submit_metrics(payload, token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnrush/repos/chuck-data/tests/fixtures.py", line 60, in submit_metrics
+    raise Exception("Test exception")
+Exception: Test exception
+2025-06-06 02:11:33,840 - DEBUG - Sending metric: {"event": "USAGE", "prompt": "test prompt"}...
+2025-06-06 02:11:33,843 - DEBUG - Cannot send metrics - no authentication token available
+2025-06-06 02:11:33,845 - DEBUG - Sending metric: {"event": "USAGE", "prompt": "test prompt"}...
+2025-06-06 02:11:33,851 - DEBUG - Metrics tracking skipped - user has not provided consent
+2025-06-06 02:11:33,856 - ERROR - Connection error when getting model: Connection failed
+2025-06-06 02:11:33,858 - ERROR - Failed to get model: HTTP error occurred: 500 Internal Server Error
+2025-06-06 02:11:33,862 - ERROR - Connection error when listing models: Connection failed
+2025-06-06 02:11:33,865 - ERROR - Failed to list models: HTTP error occurred: 404 Not Found
+2025-06-06 02:11:33,944 - ERROR - Error executing handler for command 'test_command': Command failed
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/chuck-data/src/service.py", line 395, in execute_command
+    result: CommandResult = command_def.handler(
+                            ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+Exception: Command failed
+2025-06-06 02:11:34,215 - DEBUG - Executing SQL: SELECT * INVALID SQL
+2025-06-06 02:11:34,218 - DEBUG - Executing SQL: SELECT * INVALID SQL
+2025-06-06 02:11:34,221 - DEBUG - Executing SQL: SELECT * FROM table
+2025-06-06 02:11:34,224 - DEBUG - Executing SQL: SELECT * FROM table
+2025-06-06 02:11:34,227 - DEBUG - Executing SQL: SELECT * FROM table
+2025-06-06 02:11:34,229 - DEBUG - Executing SQL: SELECT * FROM table
+2025-06-06 02:11:34,240 - ERROR - Authentication state polling received 401
+2025-06-06 02:11:34,246 - ERROR - Error creating Stitch report: API Error
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/chuck-data/src/commands/add_stitch_report.py", line 62, in handle_command
+    result = client.create_stitch_notebook(table_path, custom_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnrush/repos/chuck-data/tests/fixtures.py", line 509, in create_stitch_notebook
+    raise self._create_stitch_notebook_error
+ValueError: API Error
+2025-06-06 02:11:34,256 - ERROR - Agent error: Agent error
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/chuck-data/src/commands/agent.py", line 79, in handle_command
+    agent = AgentManager(client, tool_output_callback=tool_output_callback)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+Exception: Agent error
+2025-06-06 02:11:34,260 - DEBUG - Sending metric: {"event": "USAGE", "configuration": {"workspace_url": "https://dbc-df998298-4c7e.cloud.databricks.co...
+2025-06-06 02:11:34,276 - DEBUG - Starting new HTTPS connection (1): chuck.amperity.com:443
+2025-06-06 02:11:34,417 - DEBUG - https://chuck.amperity.com:443 "POST /api/usage HTTP/1.1" 204 0
+2025-06-06 02:11:34,417 - DEBUG - Failed to send metrics: 204 - 
+2025-06-06 02:11:34,421 - DEBUG - Sending metric: {"event": "USAGE", "configuration": {"workspace_url": "https://dbc-df998298-4c7e.cloud.databricks.co...
+2025-06-06 02:11:34,425 - DEBUG - Starting new HTTPS connection (1): chuck.amperity.com:443
+2025-06-06 02:11:34,549 - DEBUG - https://chuck.amperity.com:443 "POST /api/usage HTTP/1.1" 204 0
+2025-06-06 02:11:34,550 - DEBUG - Failed to send metrics: 204 - 
+2025-06-06 02:11:34,566 - DEBUG - Sending metric: {"event": "USAGE", "configuration": {"workspace_url": "https://dbc-df998298-4c7e.cloud.databricks.co...
+2025-06-06 02:11:34,569 - DEBUG - Starting new HTTPS connection (1): chuck.amperity.com:443
+2025-06-06 02:11:34,694 - DEBUG - https://chuck.amperity.com:443 "POST /api/usage HTTP/1.1" 204 0
+2025-06-06 02:11:34,695 - DEBUG - Failed to send metrics: 204 - 
+2025-06-06 02:11:34,704 - DEBUG - Sending metric: {"event": "USAGE", "configuration": {"workspace_url": "https://dbc-df998298-4c7e.cloud.databricks.co...
+2025-06-06 02:11:34,707 - DEBUG - Starting new HTTPS connection (1): chuck.amperity.com:443
+2025-06-06 02:11:34,840 - DEBUG - https://chuck.amperity.com:443 "POST /api/usage HTTP/1.1" 204 0
+2025-06-06 02:11:34,841 - DEBUG - Failed to send metrics: 204 - 
+2025-06-06 02:11:34,849 - DEBUG - Sending metric: {"event": "USAGE", "configuration": {"workspace_url": "https://dbc-df998298-4c7e.cloud.databricks.co...
+2025-06-06 02:11:34,852 - DEBUG - Starting new HTTPS connection (1): chuck.amperity.com:443
+2025-06-06 02:11:34,974 - DEBUG - https://chuck.amperity.com:443 "POST /api/usage HTTP/1.1" 204 0
+2025-06-06 02:11:34,975 - DEBUG - Failed to send metrics: 204 - 
+2025-06-06 02:11:34,991 - INFO - Databricks token set successfully
+2025-06-06 02:11:34,993 - INFO - Databricks token cleared
+2025-06-06 02:11:34,993 - INFO - Amperity token cleared
+2025-06-06 02:11:34,995 - INFO - Amperity token cleared
+2025-06-06 02:11:34,997 - INFO - Databricks token cleared
+2025-06-06 02:11:34,999 - INFO - Amperity token cleared
+2025-06-06 02:11:35,017 - DEBUG - Bug report submitted successfully
+2025-06-06 02:11:35,073 - ERROR - Error submitting bug report: Network error
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/chuck-data/src/commands/bug.py", line 72, in handle_command
+    success, message = amperity_client.submit_bug_report(payload, amperity_token)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnrush/repos/chuck-data/tests/commands/test_bug.py", line 115, in submit_bug_report
+    raise Exception("Network error")
+Exception: Network error
+2025-06-06 02:11:35,077 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpywvtt6im.json
+2025-06-06 02:11:35,080 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpjgc3novo.json
+2025-06-06 02:11:35,095 - DEBUG - Bug report submitted successfully
+2025-06-06 02:11:35,098 - ERROR - Error saving config: [Errno 30] Read-only file system: '/invalid'
+2025-06-06 02:11:35,099 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpqthsxygo/test_config.json
+2025-06-06 02:11:35,102 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp5op5s239/test_config.json
+2025-06-06 02:11:35,102 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp5op5s239/test_config.json
+2025-06-06 02:11:35,107 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp468toav9/test_config.json
+2025-06-06 02:11:35,107 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp468toav9/test_config.json
+2025-06-06 02:11:35,111 - INFO - Cluster init script uploaded successfully to /Volumes/main/default/chuck/cluster_init-2025-06-02_14-30.sh
+2025-06-06 02:11:35,123 - DEBUG - Volume 'chuck' not found in main.default. Attempting to create.
+2025-06-06 02:11:35,123 - DEBUG - Volume 'chuck' created successfully.
+2025-06-06 02:11:35,124 - INFO - Cluster init script uploaded successfully to /Volumes/main/default/chuck/cluster_init-2025-06-02_14-30.sh
+2025-06-06 02:11:35,127 - DEBUG - Volume 'chuck' not found in main.default. Attempting to create.
+2025-06-06 02:11:35,128 - DEBUG - Volume 'chuck' created successfully.
+2025-06-06 02:11:35,128 - INFO - Cluster init script uploaded successfully to /Volumes/main/default/chuck/cluster_init-2025-06-02_14-30.sh
+2025-06-06 02:11:35,132 - DEBUG - Volume 'chuck' not found in main.default. Attempting to create.
+2025-06-06 02:11:35,135 - DEBUG - Volume 'chuck' not found in main.default. Attempting to create.
+2025-06-06 02:11:35,142 - INFO - Cluster init script uploaded successfully to /Volumes/test_catalog/test_schema/chuck/cluster_init-2025-12-31_23-59.sh
+2025-06-06 02:11:35,145 - ERROR - Error generating help: Test error
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/chuck-data/src/commands/help.py", line 27, in handle_command
+    user_commands = get_user_commands()
+                    ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+Exception: Test error
+2025-06-06 02:11:35,153 - ERROR - Failed to get job status for run '999999': Not Found
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/chuck-data/src/commands/jobs.py", line 67, in handle_job_status
+    data = client.get_job_run_status(run_id_str)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnrush/repos/chuck-data/tests/commands/test_jobs.py", line 119, in get_job_run_status
+    raise Exception("Not Found")
+Exception: Not Found
+2025-06-06 02:11:35,160 - ERROR - Failed to submit job: Bad Request
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/chuck-data/src/commands/jobs.py", line 32, in handle_launch_job
+    run_data = client.submit_job_run(
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnrush/repos/chuck-data/tests/commands/test_jobs.py", line 70, in submit_job_run
+    raise Exception("Bad Request")
+Exception: Bad Request
+2025-06-06 02:11:35,166 - ERROR - Failed to launch job, no run_id: {}
+2025-06-06 02:11:35,174 - ERROR - Error listing catalogs: API error
+2025-06-06 02:11:35,184 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp0198gtav/test_config.json
+2025-06-06 02:11:35,184 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp0198gtav/test_config.json
+2025-06-06 02:11:35,188 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpy_lodt6f/test_config.json
+2025-06-06 02:11:35,188 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpy_lodt6f/test_config.json
+2025-06-06 02:11:35,194 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpzcmke6ct/test_config.json
+2025-06-06 02:11:35,194 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpzcmke6ct/test_config.json
+2025-06-06 02:11:35,196 - ERROR - Failed to list models: API error
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/chuck-data/src/commands/list_models.py", line 31, in handle_command
+    models_list = list_models_api(client)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnrush/repos/chuck-data/src/models.py", line 19, in list_models
+    return client.list_models()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnrush/repos/chuck-data/tests/commands/test_list_models.py", line 112, in list_models
+    raise Exception("API error")
+Exception: API error
+2025-06-06 02:11:35,202 - ERROR - Error listing tables: API error
+2025-06-06 02:11:35,206 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp9vxzxecn/test_config.json
+2025-06-06 02:11:35,206 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp9vxzxecn/test_config.json
+2025-06-06 02:11:35,206 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp9vxzxecn/test_config.json
+2025-06-06 02:11:35,211 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpo88moop3/test_config.json
+2025-06-06 02:11:35,211 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpo88moop3/test_config.json
+2025-06-06 02:11:35,212 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpo88moop3/test_config.json
+2025-06-06 02:11:35,212 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpo88moop3/test_config.json
+2025-06-06 02:11:35,212 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpo88moop3/test_config.json
+2025-06-06 02:11:35,221 - ERROR - Failed to set model 'claude-v1': API error
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/chuck-data/src/commands/model_selection.py", line 28, in handle_command
+    models_list = list_models_api(client)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnrush/repos/chuck-data/src/models.py", line 19, in list_models
+    return client.list_models()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnrush/repos/chuck-data/tests/commands/test_model_selection.py", line 79, in list_models
+    raise Exception("API error")
+Exception: API error
+2025-06-06 02:11:35,224 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpdw8jinn7/test_config.json
+2025-06-06 02:11:35,224 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpdw8jinn7/test_config.json
+2025-06-06 02:11:35,227 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpqz5cezb4/test_config.json
+2025-06-06 02:11:35,228 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpqz5cezb4/test_config.json
+2025-06-06 02:11:35,230 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp2ims9lol/test_config.json
+2025-06-06 02:11:35,230 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp2ims9lol/test_config.json
+2025-06-06 02:11:35,236 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpikd37fqx/test_config.json
+2025-06-06 02:11:35,237 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpikd37fqx/test_config.json
+2025-06-06 02:11:35,246 - INFO - Starting PII Scan for 2 tables in test_cat.test_schema.
+2025-06-06 02:11:35,259 - ERROR - Bulk PII scan error: LLM client error
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/chuck-data/src/commands/scan_pii.py", line 46, in handle_command
+    llm_client = LLMClient()
+                 ^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+Exception: LLM client error
+2025-06-06 02:11:35,271 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp3mhj0ytm/test_config.json
+2025-06-06 02:11:35,272 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp3mhj0ytm/test_config.json
+2025-06-06 02:11:35,272 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp3mhj0ytm/test_config.json
+2025-06-06 02:11:35,273 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp3mhj0ytm/test_config.json
+2025-06-06 02:11:35,275 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpahgco775/test_config.json
+2025-06-06 02:11:35,275 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpahgco775/test_config.json
+2025-06-06 02:11:35,276 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpahgco775/test_config.json
+2025-06-06 02:11:35,276 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpahgco775/test_config.json
+2025-06-06 02:11:35,276 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpahgco775/test_config.json
+2025-06-06 02:11:35,279 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpai3vny_r/test_config.json
+2025-06-06 02:11:35,279 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpai3vny_r/test_config.json
+2025-06-06 02:11:35,279 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpai3vny_r/test_config.json
+2025-06-06 02:11:35,280 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpai3vny_r/test_config.json
+2025-06-06 02:11:35,280 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpai3vny_r/test_config.json
+2025-06-06 02:11:35,288 - DEBUG - Sending metric: {"event": "USAGE", "configuration": {"workspace_url": "https://dbc-df998298-4c7e.cloud.databricks.co...
+2025-06-06 02:11:35,292 - DEBUG - Starting new HTTPS connection (1): chuck.amperity.com:443
+2025-06-06 02:11:35,416 - DEBUG - https://chuck.amperity.com:443 "POST /api/usage HTTP/1.1" 204 0
+2025-06-06 02:11:35,417 - DEBUG - Failed to send metrics: 204 - 
+2025-06-06 02:11:35,422 - ERROR - Stitch setup error: LLM client error
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/chuck-data/src/commands/setup_stitch.py", line 111, in handle_command
+    return _phase_1_prepare_config(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnrush/repos/chuck-data/src/commands/setup_stitch.py", line 273, in _phase_1_prepare_config
+    llm_client = LLMClient()
+                 ^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+Exception: LLM client error
+2025-06-06 02:11:35,441 - DEBUG - GET request to: https://.cloud.databricks.com/api/2.0/preview/scim/v2/Me
+2025-06-06 02:11:35,442 - DEBUG - Connection error: URL has an invalid label.
+2025-06-06 02:11:35,442 - DEBUG - Token validation failed: Connection error occurred: URL has an invalid label.
+2025-06-06 02:11:35,447 - ERROR - Error validating token: Connection failed
+2025-06-06 02:11:35,457 - DEBUG - GET request to: https://invalid-workspace.nonexistent.com.cloud.databricks.com/api/2.0/preview/scim/v2/Me
+2025-06-06 02:11:35,460 - DEBUG - Starting new HTTPS connection (1): invalid-workspace.nonexistent.com.cloud.databricks.com:443
+2025-06-06 02:11:35,461 - DEBUG - Connection error: HTTPSConnectionPool(host='invalid-workspace.nonexistent.com.cloud.databricks.com', port=443): Max retries exceeded with url: /api/2.0/preview/scim/v2/Me (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10e3d7310>: Failed to resolve 'invalid-workspace.nonexistent.com.cloud.databricks.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-06-06 02:11:35,462 - DEBUG - Token validation failed: Connection error occurred: HTTPSConnectionPool(host='invalid-workspace.nonexistent.com.cloud.databricks.com', port=443): Max retries exceeded with url: /api/2.0/preview/scim/v2/Me (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10e3d7310>: Failed to resolve 'invalid-workspace.nonexistent.com.cloud.databricks.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-06-06 02:11:35,581 - DEBUG - GET request to: https://invalid.nonexistent.com.cloud.databricks.com/api/2.0/preview/scim/v2/Me
+2025-06-06 02:11:35,584 - DEBUG - Starting new HTTPS connection (1): invalid.nonexistent.com.cloud.databricks.com:443
+2025-06-06 02:11:35,586 - DEBUG - Connection error: HTTPSConnectionPool(host='invalid.nonexistent.com.cloud.databricks.com', port=443): Max retries exceeded with url: /api/2.0/preview/scim/v2/Me (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10e30b0d0>: Failed to resolve 'invalid.nonexistent.com.cloud.databricks.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-06-06 02:11:35,586 - DEBUG - Token validation failed: Connection error occurred: HTTPSConnectionPool(host='invalid.nonexistent.com.cloud.databricks.com', port=443): Max retries exceeded with url: /api/2.0/preview/scim/v2/Me (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10e30b0d0>: Failed to resolve 'invalid.nonexistent.com.cloud.databricks.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-06-06 02:11:35,588 - ERROR - Error validating token: Validation failed
+2025-06-06 02:11:35,727 - ERROR - Error validating token: Connection failed
+2025-06-06 02:11:35,765 - ERROR - Error validating token: Network error with secret details
+2025-06-06 02:11:35,816 - ERROR - Error validating token: Connection error: Failed to resolve 'workspace123.cloud.databricks.com'
+2025-06-06 02:11:35,838 - ERROR - Error fetching Amperity init script: API Error
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/chuck-data/src/commands/stitch_tools.py", line 179, in _helper_prepare_stitch_config
+    init_script_data = client.fetch_amperity_job_init(amperity_token)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+Exception: API Error
+2025-06-06 02:11:35,852 - DEBUG - Versioned cluster init script uploaded to /Volumes/test_catalog/test_schema/chuck/cluster_init-2025-06-02_14-30.sh
+2025-06-06 02:11:35,856 - DEBUG - Versioned cluster init script uploaded to /Volumes/test_catalog/test_schema/chuck/cluster_init-2025-06-02_14-30.sh
+2025-06-06 02:11:35,861 - DEBUG - Volume 'chuck' not found in test_catalog.test_schema. Attempting to create.
+2025-06-06 02:11:35,878 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpwc5aemyb/test_config.json
+2025-06-06 02:11:35,879 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpwc5aemyb/test_config.json
+2025-06-06 02:11:35,879 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpwc5aemyb/test_config.json
+2025-06-06 02:11:35,879 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpwc5aemyb/test_config.json
+2025-06-06 02:11:35,882 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp1d_j4j2v/test_config.json
+2025-06-06 02:11:35,882 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp1d_j4j2v/test_config.json
+2025-06-06 02:11:35,883 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp1d_j4j2v/test_config.json
+2025-06-06 02:11:35,883 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp1d_j4j2v/test_config.json
+2025-06-06 02:11:35,883 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp1d_j4j2v/test_config.json
+2025-06-06 02:11:35,883 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp1d_j4j2v/test_config.json
+2025-06-06 02:11:35,884 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp1d_j4j2v/test_config.json
+2025-06-06 02:11:35,884 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmp1d_j4j2v/test_config.json
+2025-06-06 02:11:35,886 - INFO - Applying tag 'email' to column 'email_col'
+2025-06-06 02:11:35,886 - INFO - Applying tag 'given-name' to column 'name_col'
+2025-06-06 02:11:35,888 - INFO - Applying tag 'phone' to column 'good_col'
+2025-06-06 02:11:35,890 - INFO - Applying tag 'email' to column 'email_col'
+2025-06-06 02:11:35,892 - INFO - Applying tag 'email' to column 'email_col'
+2025-06-06 02:11:35,893 - ERROR - Error applying tag to email_col: Connection error
+2025-06-06 02:11:35,898 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpvjea_mvp/test_config.json
+2025-06-06 02:11:35,898 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpvjea_mvp/test_config.json
+2025-06-06 02:11:35,901 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpnqjanbb1/test_config.json
+2025-06-06 02:11:35,903 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpzd_pvaph/test_config.json
+2025-06-06 02:11:35,903 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpzd_pvaph/test_config.json
+2025-06-06 02:11:35,906 - DEBUG - Saved configuration to /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpfunrzg4k/test_config.json
+2025-06-06 02:11:35,906 - DEBUG - Loaded configuration from /var/folders/3f/2n5sjdw50vj9gfnrxjbptj4c0000gn/T/tmpfunrzg4k/test_config.json
+2025-06-06 02:11:35,914 - ERROR - Failed to set workspace URL: Validation error
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/chuck-data/src/commands/workspace_selection.py", line 37, in handle_command
+    is_valid, error_message = validate_workspace_url(workspace_url)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.4_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+Exception: Validation error

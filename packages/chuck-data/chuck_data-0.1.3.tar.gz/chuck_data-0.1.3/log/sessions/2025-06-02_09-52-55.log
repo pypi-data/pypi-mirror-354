@@ -1,0 +1,1 @@
+2025-06-02 09:53:25,564 - ERROR - Auth start error: HTTPSConnectionPool(host='chuck-dev.amperity.top', port=443): Max retries exceeded with url: /api/auth/start (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x105b3b0e0>, 'Connection to chuck-dev.amperity.top timed out. (connect timeout=30)'))

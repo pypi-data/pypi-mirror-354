@@ -1,0 +1,15 @@
+2025-05-28 13:21:59,154 - INFO - Starting PII Scan for 3 tables in john_test.bronze.
+2025-05-28 13:23:09,721 - INFO - Executing agent tool 'list_tables' with handler: handle_command
+2025-05-28 13:23:17,684 - INFO - Executing agent tool 'tag_pii_columns' with handler: handle_command
+2025-05-28 13:23:17,826 - INFO - Applying tag 'email' to column 'email'
+2025-05-28 13:23:17,946 - ERROR - HTTP error: 400 Client Error: Bad Request for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements, Response: {"error_code":"INVALID_PARAMETER_VALUE","message":"The wait_timeout field must be 0 seconds (disables wait), or between 5 seconds and 50 seconds.","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","field_violations":[{"field":"wait_timeout","description":"The wait_timeout field must be 0 seconds (disables wait), or between 5 seconds and 50 seconds."}]},{"@type":"type.googleapis.com/google.rpc.RequestInfo","request_id":"21393f43-37b6-4ee0-bdcf-1108a7cae523","serving_data":""}]}
+2025-05-28 13:23:17,946 - ERROR - Error applying tag to email: HTTP error occurred: 400 Client Error: Bad Request for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements, Response: {"error_code":"INVALID_PARAMETER_VALUE","message":"The wait_timeout field must be 0 seconds (disables wait), or between 5 seconds and 50 seconds.","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","field_violations":[{"field":"wait_timeout","description":"The wait_timeout field must be 0 seconds (disables wait), or between 5 seconds and 50 seconds."}]},{"@type":"type.googleapis.com/google.rpc.RequestInfo","request_id":"21393f43-37b6-4ee0-bdcf-1108a7cae523","serving_data":""}]}
+2025-05-28 13:23:21,981 - INFO - Executing agent tool 'run_sql' with handler: handle_command
+2025-05-28 13:23:23,684 - ERROR - Tool 'run_sql' execution failed. Message: Query did not complete successfully. Final state: , Error: None
+2025-05-28 13:24:03,812 - INFO - Executing agent tool 'run_sql' with handler: handle_command
+2025-05-28 13:24:04,823 - ERROR - Tool 'run_sql' execution failed. Message: Query did not complete successfully. Final state: , Error: None
+2025-05-28 13:24:07,883 - INFO - Executing agent tool 'run_sql' with handler: handle_command
+2025-05-28 13:24:08,906 - ERROR - Tool 'run_sql' execution failed. Message: Query did not complete successfully. Final state: , Error: None
+2025-05-28 13:24:13,759 - INFO - Executing agent tool 'list_warehouses' with handler: handle_command
+2025-05-28 13:24:17,726 - INFO - Executing agent tool 'scan_schema_for_pii' with handler: handle_command
+2025-05-28 13:24:17,947 - INFO - Starting PII Scan for 3 tables in john_test.bronze.

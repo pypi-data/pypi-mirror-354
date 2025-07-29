@@ -1,0 +1,2 @@
+2025-05-29 21:27:42,750 - ERROR - HTTP error: 403 Client Error: Forbidden for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/preview/scim/v2/Me, Response: {"error_code":403,"message":"Invalid access token. [ReqId: d226a34b-8dab-4548-961b-d4b9db45fadc]"}
+2025-05-29 21:27:42,750 - ERROR - Token validation failed: HTTP error occurred: 403 Client Error: Forbidden for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/preview/scim/v2/Me, Response: {"error_code":403,"message":"Invalid access token. [ReqId: d226a34b-8dab-4548-961b-d4b9db45fadc]"}

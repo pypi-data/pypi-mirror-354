@@ -1,0 +1,26 @@
+2025-05-20 16:35:28,047 - INFO - Processing category: Authentication & Workspace
+2025-05-20 16:35:28,047 - INFO - Command list: ['select_workspace', 'set_token', 'status', 'amp_login', 'amp_logout']
+2025-05-20 16:35:28,047 - INFO - Formatted command: /select_workspace <url>        - Set the Databricks workspace URL
+2025-05-20 16:35:28,047 - INFO - Formatted command: /set_token <token>             - Save your Databricks API token to configuration
+2025-05-20 16:35:28,047 - INFO - Formatted command: /status                        - Show current status of workspace, catalog, schema, model, and API permissions
+2025-05-20 16:35:28,047 - INFO - Formatted command: /amp_login                     - Login to Amperity
+2025-05-20 16:35:28,047 - INFO - Formatted command: /amp_logout                    - Logout from Amperity
+2025-05-20 16:35:28,047 - INFO - Processing category: Browsing Data
+2025-05-20 16:35:28,047 - INFO - Command list: ['catalogs', 'list_models', 'schemas', 'tables', 'show_table']
+2025-05-20 16:35:28,047 - INFO - Formatted command: /models                        - List available language models in the Databricks workspace
+2025-05-20 16:35:28,047 - INFO - Processing category: Resource Selection
+2025-05-20 16:35:28,047 - INFO - Command list: ['select_catalog', 'select_schema', 'select_model', 'select_warehouse']
+2025-05-20 16:35:28,047 - INFO - Formatted command: /select_model <name>           - Set the active model for agent operations
+2025-05-20 16:35:28,048 - INFO - Processing category: Agent & AI Tools
+2025-05-20 16:35:28,048 - INFO - Command list: ['tag_pii', 'scan_pii']
+2025-05-20 16:35:28,048 - INFO - Processing category: Storage & Files
+2025-05-20 16:35:28,048 - INFO - Command list: ['volumes', 'create_volume']
+2025-05-20 16:35:28,048 - INFO - Formatted command: /create_volume <name>          - Create a new managed volume in the active catalog/schema
+2025-05-20 16:35:28,048 - INFO - Processing category: Jobs & Integration
+2025-05-20 16:35:28,048 - INFO - Command list: ['launch_job', 'job_status', 'setup_stitch']
+2025-05-20 16:35:28,048 - INFO - Formatted command: /launch_job <run_name>         - Launch a sample Databricks job
+2025-05-20 16:35:28,048 - INFO - Formatted command: /job_status <run_id>           - Check status of a job run
+2025-05-20 16:35:28,048 - INFO - Formatted command: /setup_stitch                  - Set up a Stitch integration by scanning for PII columns and creating a configuration file
+2025-05-20 16:35:28,048 - INFO - Processing category: System
+2025-05-20 16:35:28,048 - INFO - Command list: ['help', 'debug', 'exit']
+2025-05-20 16:35:28,048 - INFO - Formatted command: /help                          - Display help information about available commands

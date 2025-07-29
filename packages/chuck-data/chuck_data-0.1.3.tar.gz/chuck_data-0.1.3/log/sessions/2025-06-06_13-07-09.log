@@ -1,0 +1,13 @@
+2025-06-06 13:07:09,073 - DEBUG - Logging initialized. Writing to /Users/johnrush/repos/chuck-data/log/sessions/2025-06-06_13-07-09.log
+2025-06-06 13:07:09,074 - DEBUG - Loaded configuration from /Users/johnrush/.chuck_config.json
+2025-06-06 13:07:09,119 - DEBUG - Using selector: KqueueSelector
+2025-06-06 13:07:09,751 - ERROR - Agent error: No module named 'src.chuck_data.agent.llm'
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/chuck-data/src/chuck_data/commands/agent.py", line 72, in handle_command
+    from ..agent import AgentManager
+  File "/Users/johnrush/repos/chuck-data/src/chuck_data/agent/__init__.py", line 1, in <module>
+    from .manager import AgentManager
+  File "/Users/johnrush/repos/chuck-data/src/chuck_data/agent/manager.py", line 4, in <module>
+    from .llm.client import LLMClient
+ModuleNotFoundError: No module named 'src.chuck_data.agent.llm'
+2025-06-06 13:07:09,752 - DEBUG - Using selector: KqueueSelector

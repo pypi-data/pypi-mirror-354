@@ -1,0 +1,26 @@
+2025-05-27 11:34:14,765 - INFO - Starting PII Scan for 3 tables in chuck_integration_test_7600.bronze.
+2025-05-27 11:34:20,997 - INFO - Volume 'chuck' not found in chuck_integration_test_7600.bronze. Attempting to create.
+2025-05-27 11:34:21,394 - INFO - Volume 'chuck' created successfully.
+2025-05-27 11:34:21,936 - INFO - Stitch config written to /Volumes/chuck_integration_test_7600/bronze/chuck/stitch-2025-05-27_11-34.json
+2025-05-27 11:34:22,094 - ERROR - HTTP error: 401 Client Error: Unauthorized for url: https://chuck-dev.amperity.top/api/job/launch, Response: {"status":401,"message":"Invalid authentication: Failed to decode token string"}
+
+2025-05-27 11:34:22,094 - ERROR - Error fetching Amperity init script: HTTP error occurred: 401 Client Error: Unauthorized for url: https://chuck-dev.amperity.top/api/job/launch, Response: {"status":401,"message":"Invalid authentication: Failed to decode token string"}
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/clamp-internal/src/clients/databricks.py", line 711, in fetch_amperity_job_init
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://chuck-dev.amperity.top/api/job/launch
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/clamp-internal/src/commands/stitch_tools.py", line 130, in _helper_setup_stitch_logic
+    init_script_data = client.fetch_amperity_job_init(
+        "https://chuck-dev.amperity.top/api/job/launch", amperity_token
+    )
+  File "/Users/johnrush/repos/clamp-internal/src/clients/databricks.py", line 715, in fetch_amperity_job_init
+    raise ValueError(f"HTTP error occurred: {e}, Response: {response.text}")
+ValueError: HTTP error occurred: 401 Client Error: Unauthorized for url: https://chuck-dev.amperity.top/api/job/launch, Response: {"status":401,"message":"Invalid authentication: Failed to decode token string"}
+

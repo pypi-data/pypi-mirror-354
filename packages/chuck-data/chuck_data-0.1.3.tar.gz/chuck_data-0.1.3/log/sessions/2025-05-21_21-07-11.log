@@ -1,0 +1,121 @@
+2025-05-21 21:07:17,072 - INFO - ClampService executing: '/scan_pii', args: (), interactive: 'None'
+2025-05-21 21:09:16,723 - INFO - ClampService executing: '/', args: (), interactive: 'None'
+2025-05-21 21:09:20,072 - INFO - ClampService executing: '/tables', args: (), interactive: 'None'
+2025-05-21 21:09:24,285 - INFO - ClampService executing: '/schemas', args: (), interactive: 'None'
+2025-05-21 21:09:30,508 - INFO - ClampService executing: '/help', args: (), interactive: 'None'
+2025-05-21 21:09:36,591 - INFO - ClampService executing: '/models', args: (), interactive: 'None'
+2025-05-21 21:09:36,602 - ERROR - Connection error: HTTPSConnectionPool(host='workspace.databricks.com.cloud.databricks.com', port=443): Max retries exceeded with url: /api/2.0/serving-endpoints (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x1053eb620>: Failed to resolve 'workspace.databricks.com.cloud.databricks.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-05-21 21:09:36,602 - ERROR - Connection error when listing models: Connection error occurred: HTTPSConnectionPool(host='workspace.databricks.com.cloud.databricks.com', port=443): Max retries exceeded with url: /api/2.0/serving-endpoints (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x1053eb620>: Failed to resolve 'workspace.databricks.com.cloud.databricks.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-05-21 21:09:36,602 - ERROR - Failed to list models: Failed to connect to serving endpoint: Connection error occurred: HTTPSConnectionPool(host='workspace.databricks.com.cloud.databricks.com', port=443): Max retries exceeded with url: /api/2.0/serving-endpoints (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x1053eb620>: Failed to resolve 'workspace.databricks.com.cloud.databricks.com' ([Errno 8] nodename nor servname provided, or not known)"))
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 704, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x1053eb620>: Failed to resolve 'workspace.databricks.com.cloud.databricks.com' ([Errno 8] nodename nor servname provided, or not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='workspace.databricks.com.cloud.databricks.com', port=443): Max retries exceeded with url: /api/2.0/serving-endpoints (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x1053eb620>: Failed to resolve 'workspace.databricks.com.cloud.databricks.com' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/clamp-internal/src/clients/databricks.py", line 74, in get
+    response = requests.get(url, headers=self.headers)
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/requests/adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='workspace.databricks.com.cloud.databricks.com', port=443): Max retries exceeded with url: /api/2.0/serving-endpoints (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x1053eb620>: Failed to resolve 'workspace.databricks.com.cloud.databricks.com' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/clamp-internal/src/models.py", line 19, in list_models
+    return client.list_models()
+           ~~~~~~~~~~~~~~~~~~^^
+  File "/Users/johnrush/repos/clamp-internal/src/clients/databricks.py", line 393, in list_models
+    response = self.get("/api/2.0/serving-endpoints")
+  File "/Users/johnrush/repos/clamp-internal/src/clients/databricks.py", line 82, in get
+    raise ConnectionError(f"Connection error occurred: {e}")
+ConnectionError: Connection error occurred: HTTPSConnectionPool(host='workspace.databricks.com.cloud.databricks.com', port=443): Max retries exceeded with url: /api/2.0/serving-endpoints (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x1053eb620>: Failed to resolve 'workspace.databricks.com.cloud.databricks.com' ([Errno 8] nodename nor servname provided, or not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/clamp-internal/src/commands/models.py", line 20, in handle_command
+    models_list = list_models_api(client)
+  File "/Users/johnrush/repos/clamp-internal/src/models.py", line 25, in list_models
+    raise ConnectionError(f"Failed to connect to serving endpoint: {e}")
+ConnectionError: Failed to connect to serving endpoint: Connection error occurred: HTTPSConnectionPool(host='workspace.databricks.com.cloud.databricks.com', port=443): Max retries exceeded with url: /api/2.0/serving-endpoints (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x1053eb620>: Failed to resolve 'workspace.databricks.com.cloud.databricks.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-05-21 21:09:59,008 - INFO - ClampService executing: '/setup', args: (), interactive: 'None'
+2025-05-21 21:09:59,009 - INFO - setup_wizard: handle_command called with interactive_input=None, kwargs={}
+2025-05-21 21:09:59,009 - INFO - Empty input detected, prompting user to enter a value
+2025-05-21 21:09:59,009 - WARNING - Unexpected step: 1. Attempting to recover...
+2025-05-21 21:10:00,269 - INFO - ClampService executing: 'setup_wizard', args: (), interactive: 'https://dbc-df998298-4c7e.cloud.databricks.com'
+2025-05-21 21:10:00,269 - INFO - setup_wizard: handle_command called with interactive_input=https://dbc-df998298-4c7e.cloud.databricks.com, kwargs={}
+2025-05-21 21:10:15,681 - INFO - ClampService executing: 'setup_wizard', args: (), interactive: 'dapie35b35e614c50bb6cbade57844598d17'
+2025-05-21 21:10:15,682 - INFO - setup_wizard: handle_command called with interactive_input=dapie35b35e614c50bb6cbade57844598d17, kwargs={}
+2025-05-21 21:10:16,040 - INFO - Attempting to reinitialize DatabricksAPIClient...
+2025-05-21 21:10:16,040 - INFO - DatabricksAPIClient reinitialized successfully.
+2025-05-21 21:10:16,219 - INFO - Found 7 models
+2025-05-21 21:10:17,954 - INFO - ClampService executing: 'setup_wizard', args: (), interactive: '2'
+2025-05-21 21:10:17,954 - INFO - setup_wizard: handle_command called with interactive_input=2, kwargs={}
+2025-05-21 21:10:19,620 - INFO - ClampService executing: 'setup_wizard', args: (), interactive: 'yes'
+2025-05-21 21:10:19,620 - INFO - setup_wizard: handle_command called with interactive_input=yes, kwargs={}
+2025-05-21 21:10:22,417 - INFO - ClampService executing: '/models', args: (), interactive: 'None'
+2025-05-21 21:44:36,597 - INFO - ClampService executing: '/catalogs', args: (), interactive: 'None'

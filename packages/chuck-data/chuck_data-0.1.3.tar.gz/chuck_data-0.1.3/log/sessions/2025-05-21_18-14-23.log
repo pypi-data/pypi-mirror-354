@@ -1,0 +1,26 @@
+2025-05-21 18:14:26,469 - INFO - ClampService executing: '/setup', args: (), interactive: 'None'
+2025-05-21 18:14:26,470 - INFO - setup_wizard: handle_command called with interactive_input=None, kwargs={}
+2025-05-21 18:14:26,470 - INFO - Empty input detected, prompting user to enter a value
+2025-05-21 18:14:26,470 - WARNING - Unexpected step: 1. Attempting to recover...
+2025-05-21 18:14:30,917 - INFO - ClampService executing: 'setup_wizard', args: (), interactive: 'https://my-workspace.cloud.databricks.com'
+2025-05-21 18:14:30,918 - INFO - setup_wizard: handle_command called with interactive_input=https://my-workspace.cloud.databricks.com, kwargs={}
+2025-05-21 18:14:52,458 - INFO - ClampService executing: 'setup_wizard', args: (), interactive: 'dapie35b35e614c50bb6cbade57844598d17'
+2025-05-21 18:14:52,459 - INFO - setup_wizard: handle_command called with interactive_input=dapie35b35e614c50bb6cbade57844598d17, kwargs={}
+2025-05-21 18:14:52,616 - ERROR - Connection error: HTTPSConnectionPool(host='my-workspace.cloud.databricks.com', port=443): Max retries exceeded with url: /api/2.0/preview/scim/v2/Me (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x1101e7620>: Failed to resolve 'my-workspace.cloud.databricks.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-05-21 18:14:52,616 - ERROR - Token validation failed: Connection error occurred: HTTPSConnectionPool(host='my-workspace.cloud.databricks.com', port=443): Max retries exceeded with url: /api/2.0/preview/scim/v2/Me (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x1101e7620>: Failed to resolve 'my-workspace.cloud.databricks.com' ([Errno 8] nodename nor servname provided, or not known)"))
+2025-05-21 18:14:59,667 - INFO - ClampService executing: '/setup', args: (), interactive: 'None'
+2025-05-21 18:14:59,668 - INFO - setup_wizard: handle_command called with interactive_input=None, kwargs={}
+2025-05-21 18:14:59,668 - INFO - Empty input detected, prompting user to enter a value
+2025-05-21 18:14:59,668 - WARNING - Unexpected step: 1. Attempting to recover...
+2025-05-21 18:15:07,870 - INFO - ClampService executing: 'setup_wizard', args: (), interactive: 'https://dbc-df998298-4c7e.cloud.databricks.com'
+2025-05-21 18:15:07,871 - INFO - setup_wizard: handle_command called with interactive_input=https://dbc-df998298-4c7e.cloud.databricks.com, kwargs={}
+2025-05-21 18:15:11,440 - INFO - ClampService executing: 'setup_wizard', args: (), interactive: 'dapie35b35e614c50bb6cbade57844598d17'
+2025-05-21 18:15:11,440 - INFO - setup_wizard: handle_command called with interactive_input=dapie35b35e614c50bb6cbade57844598d17, kwargs={}
+2025-05-21 18:15:11,892 - INFO - Attempting to reinitialize DatabricksAPIClient...
+2025-05-21 18:15:11,893 - INFO - DatabricksAPIClient reinitialized successfully.
+2025-05-21 18:15:12,039 - INFO - Found 7 models
+2025-05-21 18:15:15,500 - INFO - ClampService executing: 'setup_wizard', args: (), interactive: '2'
+2025-05-21 18:15:15,500 - INFO - setup_wizard: handle_command called with interactive_input=2, kwargs={}
+2025-05-21 18:15:20,536 - INFO - ClampService executing: 'setup_wizard', args: (), interactive: 'yes'
+2025-05-21 18:15:20,537 - INFO - setup_wizard: handle_command called with interactive_input=yes, kwargs={}
+2025-05-21 18:15:24,137 - INFO - ClampService executing: '/help', args: (), interactive: 'None'

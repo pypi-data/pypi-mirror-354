@@ -1,0 +1,37 @@
+2025-05-30 14:31:58,384 - ERROR - Agent error: Error code: 400 - {'error_code': 'BAD_REQUEST', 'message': '{"message":"messages: text content blocks must be non-empty"}'}
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/clamp-internal/src/commands/agent.py", line 101, in handle_command
+    response = agent.process_query(query)
+  File "/Users/johnrush/repos/clamp-internal/src/agent/manager.py", line 276, in process_query
+    return self.process_with_tools(tools)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/johnrush/repos/clamp-internal/src/agent/manager.py", line 191, in process_with_tools
+    response = self.llm_client.chat(
+        messages=current_history,  # Use the modified temporary history for the call
+    ...<2 lines>...
+        stream=False,  # Important: No streaming within the loop
+    )
+  File "/Users/johnrush/repos/clamp-internal/src/llm/client.py", line 56, in chat
+    response = client.chat.completions.create(
+        model=model,
+    ...<3 lines>...
+        tool_choice=tool_choice,
+    )
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/openai/_utils/_utils.py", line 287, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 925, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<43 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1239, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1034, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error_code': 'BAD_REQUEST', 'message': '{"message":"messages: text content blocks must be non-empty"}'}

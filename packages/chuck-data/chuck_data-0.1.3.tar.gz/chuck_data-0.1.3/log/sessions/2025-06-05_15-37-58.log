@@ -1,0 +1,9 @@
+2025-06-05 15:37:58,537 - DEBUG - Logging initialized. Writing to /Users/johnrush/repos/chuck-data/log/sessions/2025-06-05_15-37-58.log
+2025-06-05 15:37:58,539 - DEBUG - Loaded configuration from /Users/johnrush/.chuck_config.json
+2025-06-05 15:37:58,556 - DEBUG - Using selector: KqueueSelector
+2025-06-05 15:38:00,453 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/warehouses/integratointests
+2025-06-05 15:38:00,465 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 15:38:00,781 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/warehouses/integratointests HTTP/1.1" 400 None
+2025-06-05 15:38:00,783 - DEBUG - HTTP error: 400 Client Error: Bad Request for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/warehouses/integratointests, Response: {"error_code":"INVALID_PARAMETER_VALUE","message":"integratointests is not a valid endpoint id.","details":[{"@type":"type.googleapis.com/google.rpc.RequestInfo","request_id":"d9b901cd-4e0e-4a0f-964e-9454e0ca28c1","serving_data":""}]}
+2025-06-05 15:38:00,788 - DEBUG - Using selector: KqueueSelector
+2025-06-05 23:09:23,238 - DEBUG - Using selector: KqueueSelector
