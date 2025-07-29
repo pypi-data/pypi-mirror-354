@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: CoreDataX
+Version: 0.9.0
+Summary: API for uploading data to the PSMA's CoreDataeXchange project.
+Project-URL: Homepage, https://coredatax.com
+Project-URL: Repository, https://github.com/CoreDataX/CoreDataX
+Project-URL: Contact, https://coredatax.com
+Author-email: George Slama <gslama@wat.midco.net>, Alfonso Martinez <Alfonso_VII@hotmail.com>
+License-Expression: MIT
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.8
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: requests
+Description-Content-Type: text/markdown
+
+API for uploading data to the PSMA's CoreDataeXchange project.
