@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: vibium
+Version: 0.0.1
+Summary: AI for UI automation
+Author-email: "Jason R. Huggins" <jrhuggins@gmail.com>
+License-Expression: MIT
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# Vibium
+
+A minimal AI interface for UI automation.
+
+## Installation
+
+```bash
+pip install vibium
+```
+
+## Usage
+
+```python
+from vibium import Vibium
+
+vibe = Vibium(device='iphone')
+vibe.do("open pinthing.com")
+vibe.check("do you see a clock?")
+vibe.check("does the time match the current time?")
+```
