@@ -1,0 +1,20 @@
+[build-system] 
+requires = ["setuptools>=61.0", "wheel"] 
+build-backend = "setuptools.build_meta"
+[project]
+name = "mcp-server-xigua"
+version = "0.1.0"
+description = "Add your description here西瓜老师"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dotenv>=0.9.9",
+    "mcp>=1.9.3",
+    "openai>=1.84.0",
+]
+[project.scripts] 
+mcp-server-xigua = "mcp_server_xigua:main" 
+[tool.setuptools] 
+package-dir = {"" = "src"} 
+[tool.setuptools.packages.find] 
+where = ["src"]
