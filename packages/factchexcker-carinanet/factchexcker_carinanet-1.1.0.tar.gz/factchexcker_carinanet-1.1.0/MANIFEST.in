@@ -1,0 +1,8 @@
+include README.md
+include pyproject.toml
+include setup.py
+recursive-include carinanet *.py
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude *.pt
+global-exclude *.pth 

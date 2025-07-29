@@ -1,0 +1,78 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "factchexcker-carinanet"
+version = "1.1.0"
+description = "Automatic detection of carina and ETT in chest X-rays using deep learning"
+readme = "README.md"
+authors = [
+    {name = "Xiaoman Zhang", email = "xiaomanzhang.zxm@gmail.com"},
+]
+maintainers = [
+    {name = "Xiaoman Zhang", email = "xiaomanzhang.zxm@gmail.com"},
+]
+keywords = ["medical", "ai", "chest-xray", "carina", "ett", "deep-learning", "computer-vision", "medical-imaging"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Healthcare Industry",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Topic :: Scientific/Engineering :: Image Processing",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "torch>=1.9.0",
+    "torchvision>=0.10.0",
+    "Pillow>=8.0.0",
+    "numpy>=1.19.0",
+    "requests>=2.25.0",
+    "tqdm>=4.60.0",
+    "kwcoco>=0.2.0",
+    "pandas>=1.3.0",
+    "scikit-image>=0.18.0",
+    "pycocotools>=2.0.0",
+    "huggingface_hub>=0.15.0",
+]
+
+[project.optional-dependencies]
+dev = ["wandb", "pytest", "black", "isort", "mypy"]
+
+[project.scripts]
+carinanet = "carinanet.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/rajpurkarlab/carinanet"
+Repository = "https://github.com/rajpurkarlab/carinanet"
+Issues = "https://github.com/rajpurkarlab/carinanet/issues"
+Documentation = "https://github.com/rajpurkarlab/carinanet#readme"
+
+[tool.setuptools]
+packages = ["carinanet", "carinanet.models", "carinanet.models.retinanet", "carinanet.core_utils"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+carinanet = ["models/*.pt", "models/*.pth"]
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true 
