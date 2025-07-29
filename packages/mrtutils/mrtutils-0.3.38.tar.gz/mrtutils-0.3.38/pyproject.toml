@@ -1,0 +1,65 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mrtutils"
+version = "0.3.38"
+description = "Utilities for MrT"
+readme = "README.rst"
+requires-python = ">=3.7"
+license = { text = "MIT" }
+authors = [
+    { name = "Jason Berger", email = "Berge472@gmail.com" },
+]
+
+# Dependencies:
+dependencies = [
+    "markdown",
+    "mako",
+    "pyyaml",
+    "polypacket",
+    "update_notipy",
+    "kconfiglib",
+    "gitpython",
+]
+
+[project.urls]
+homepage = "https://mrt.readthedocs.io/en/latest/index.html"
+repository = "https://mrt.readthedocs.io/en/latest/index.html"
+
+[project.scripts]
+mrt-config = "mrtutils.mrt_config:main"
+mrt-device = "mrtutils.mrt_device:main"
+mrt-ble = "mrtutils.mrt_ble:main"
+mrt-config-gui = "mrtutils.mrt_config_gui:main"
+mrt-doc = "mrtutils.mrt_doc:main"
+mrt-version = "mrtutils.mrt_version:main"
+mrt-gen = "mrtutils.mrt_gen:main"
+
+# Package configuration
+[tool.hatch.build.targets.wheel]
+packages = ["mrtutils"]
+
+# Include additional data files:
+[tool.hatch.build]
+include = [
+    "mrtutils/**/*",
+    "mrtutils/templates/**/*",
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+
+[project.entry-points."sphinx.extension"]
+register = "mrtutils.sphinx.registerDirective:RegisterDirective"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "sphinx>=4.0.0",
+]
