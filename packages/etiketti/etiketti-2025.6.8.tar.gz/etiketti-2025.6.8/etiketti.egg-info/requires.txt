@@ -1,0 +1,14 @@
+PyYAML>=6.0
+liitos>=2023.6.17
+navigaattori>=2023.6.18
+pikepdf>=6.2.8.post1
+
+[dev]
+black
+coverage
+hypothesis
+mypy
+pytest
+pytest-cov
+pytest-flake8
+ruff
