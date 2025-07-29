@@ -1,0 +1,47 @@
+Metadata-Version: 2.4
+Name: mcp-calculator-kel
+Version: 1.1.0
+Summary: a mcp calculator
+Requires-Python: >=3.12
+Requires-Dist: beautifulsoup4>=4.12.3
+Requires-Dist: build>=1.2.2.post1
+Requires-Dist: html2text>=2024.2.26
+Requires-Dist: mcp[cli]>=1.2.0
+Requires-Dist: requests>=2.32.3
+Requires-Dist: twine>=6.1.0
+Description-Content-Type: text/markdown
+
+## 计算器 MCP
+基于 Model Context Protocol (MCP) 的数值计算器，提供了简单的加减乘除、幂运算、平方根运算和整数阶乘运算。
+
+
+## 工具列表
+| name | description |
+| ----------- | ----------- |
+| add  | 执行浮点数加法运算 |
+| subtract | 执行浮点数减法运算 |
+| multiply | 执行浮点数乘法运算 |
+| divide|执行浮点数除法运算 Args: b: 除数（必须非零）|
+| power | 计算幂运算 |
+| sqrt | 计算平方根 |
+| factorial | 计算整数阶乘 |
+
+## inspector
+```
+npx @modelcontextprotocol/inspector uvx mcp_calculator_kel
+```
+
+## MCP 服务器配置
+```
+{
+    "mcpServers": {
+      "mcp_calculator_kel": {
+          "command": "uvx",
+          "args": [
+            "mcp-calculator"
+          ]
+        }
+    }
+}
+```
+
