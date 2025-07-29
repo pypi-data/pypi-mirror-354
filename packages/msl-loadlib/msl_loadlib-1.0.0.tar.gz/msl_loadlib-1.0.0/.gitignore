@@ -1,0 +1,32 @@
+# Global directories
+__pycache__/
+
+# Global files
+*.py[codz]
+
+# Root directories
+/.cache/
+/.idea/
+/.vscode/
+/.venv/
+/dist/
+/site/
+/venv/
+
+# Eclipse project files for Py4JWrapper
+py4jwrapper/bin/
+py4jwrapper/.classpath
+
+# Root files
+/uv.lock
+
+# Auto-generated during build
+/src/msl/loadlib/_version.py
+
+# Auto-generated during tests
+/tests/check_pythonw.txt
+/a_new_file.txt
+
+# Auto-generated when freezing the server
+file_version_info.txt
+server32.spec
