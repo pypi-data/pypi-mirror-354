@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8e0eae28-a14a-447c-8de3-e2ae6ae564e4" name="Changes" comment="updated docker files" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;leor-c&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/leor-c/FlashPOP.git&quot;,
+    &quot;accountId&quot;: &quot;1052c416-6541-4c49-90b2-2956f01d6def&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2uSDL7xi1hnykYJqKpMJlal0ED2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;X:/code-projects/FlashPOP&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="X:\code-projects\FlashPOP\tests" />
+      <recent name="X:\code-projects\FlashPOP\flash_pop" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.26775.22" />
+        <option value="bundled-python-sdk-9f73701ac511-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.26775.22" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8e0eae28-a14a-447c-8de3-e2ae6ae564e4" name="Changes" comment="" />
+      <created>1742233023127</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1742233023127</updated>
+      <workItem from="1742233024179" duration="51143000" />
+      <workItem from="1744206536438" duration="10405000" />
+      <workItem from="1749135246270" duration="910000" />
+      <workItem from="1749221819955" duration="32000" />
+      <workItem from="1749222313520" duration="24000" />
+      <workItem from="1749226415738" duration="3000" />
+      <workItem from="1749230575546" duration="1000" />
+    </task>
+    <task id="LOCAL-00001" summary="significantly improved implementation, fixed the numerical issues, now it is even better numerically than pytorch baseline.&#10;&#10;Implemented a test script.">
+      <option name="closed" value="true" />
+      <created>1742233159089</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1742233159089</updated>
+    </task>
+    <task id="LOCAL-00002" summary="improved, added a pytorch wrapper.">
+      <option name="closed" value="true" />
+      <created>1742291252033</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1742291252033</updated>
+    </task>
+    <task id="LOCAL-00003" summary="bug fix for sequences of length L s.t. L % BT != 0.&#10;general improvements">
+      <option name="closed" value="true" />
+      <created>1742375113901</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1742375113902</updated>
+    </task>
+    <task id="LOCAL-00004" summary="improved tests">
+      <option name="closed" value="true" />
+      <created>1742375969459</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1742375969459</updated>
+    </task>
+    <task id="LOCAL-00005" summary="finished implementing reference gradients + tests">
+      <option name="closed" value="true" />
+      <created>1742391659450</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1742391659450</updated>
+    </task>
+    <task id="LOCAL-00006" summary="buggy implementation">
+      <option name="closed" value="true" />
+      <created>1742480931027</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1742480931027</updated>
+    </task>
+    <task id="LOCAL-00007" summary="now the bwd pass seem to work, but not as fast as we'd like it to be... (~2-5x for our usual configs). &#10;For very long sequences (2**14) we do get 20x speedup fwd+bwd.">
+      <option name="closed" value="true" />
+      <created>1742498072544</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1742498072544</updated>
+    </task>
+    <task id="LOCAL-00008" summary="improved code clarity + refactored for reusability; implemented pop fwd + sanity check test">
+      <option name="closed" value="true" />
+      <created>1742659108833</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1742659108833</updated>
+    </task>
+    <task id="LOCAL-00009" summary="improved implementation so that POP will not copy and return the initial state.&#10;general improvements">
+      <option name="closed" value="true" />
+      <created>1742663450296</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1742663450296</updated>
+    </task>
+    <task id="LOCAL-00010" summary="refactored fused chunkwise retention and pop retention into modules">
+      <option name="closed" value="true" />
+      <created>1742720152890</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1742720152890</updated>
+    </task>
+    <task id="LOCAL-00011" summary="refactored the bwd of fused chunkwise retention to multiple macros for reuse in pop">
+      <option name="closed" value="true" />
+      <created>1742726854825</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1742726854825</updated>
+    </task>
+    <task id="LOCAL-00012" summary="improved code + bug fix;&#10;There's an issue of accuracy. During bwd pass the local state buffers must be set with the values stored in the shared buffer, otherwise the result is wrong, even though no other value is written to the local buffer. It could be that these registers are reallocated behind the scenes.&#10;Copying from shared buffers every iteration leads to worse accuracy. Is it possible to overcome this?">
+      <option name="closed" value="true" />
+      <created>1742733942235</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1742733942235</updated>
+    </task>
+    <task id="LOCAL-00013" summary="implemented POP fwd+bwd+tests; improved numerical stability of chunk retention, possibly at the expense of speed, but it's currently impossible to benchmark times due to a tilelang bug;">
+      <option name="closed" value="true" />
+      <created>1742814899047</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1742814899047</updated>
+    </task>
+    <task id="LOCAL-00014" summary="bug fix">
+      <option name="closed" value="true" />
+      <created>1742818472995</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1742818472996</updated>
+    </task>
+    <task id="LOCAL-00015" summary="bug fix, loss of precision at large batch sizes">
+      <option name="closed" value="true" />
+      <created>1742830121471</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1742830121471</updated>
+    </task>
+    <task id="LOCAL-00016" summary="making a python package">
+      <option name="closed" value="true" />
+      <created>1742833983629</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1742833983629</updated>
+    </task>
+    <task id="LOCAL-00017" summary="improved numerical precision of pop fwd&#10;added init file to test package&#10;improved pop test">
+      <option name="closed" value="true" />
+      <created>1742836552013</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1742836552013</updated>
+    </task>
+    <task id="LOCAL-00018" summary="added a license">
+      <option name="closed" value="true" />
+      <created>1742837900826</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1742837900826</updated>
+    </task>
+    <task id="LOCAL-00019" summary="updated docker files">
+      <option name="closed" value="true" />
+      <created>1742887962776</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1742887962776</updated>
+    </task>
+    <task id="LOCAL-00020" summary="updated docker files">
+      <option name="closed" value="true" />
+      <created>1742905812265</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1742905812265</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="significantly improved implementation, fixed the numerical issues, now it is even better numerically than pytorch baseline.&#10;&#10;Implemented a test script." />
+    <MESSAGE value="improved, added a pytorch wrapper." />
+    <MESSAGE value="bug fix for sequences of length L s.t. L % BT != 0.&#10;general improvements" />
+    <MESSAGE value="improved tests" />
+    <MESSAGE value="finished implementing reference gradients + tests" />
+    <MESSAGE value="buggy implementation" />
+    <MESSAGE value="now the bwd pass seem to work, but not as fast as we'd like it to be... (~2-5x for our usual configs). &#10;For very long sequences (2**14) we do get 20x speedup fwd+bwd." />
+    <MESSAGE value="improved code clarity + refactored for reusability; implemented pop fwd + sanity check test" />
+    <MESSAGE value="improved implementation so that POP will not copy and return the initial state.&#10;general improvements" />
+    <MESSAGE value="refactored fused chunkwise retention and pop retention into modules" />
+    <MESSAGE value="refactored the bwd of fused chunkwise retention to multiple macros for reuse in pop" />
+    <MESSAGE value="improved code + bug fix;&#10;There's an issue of accuracy. During bwd pass the local state buffers must be set with the values stored in the shared buffer, otherwise the result is wrong, even though no other value is written to the local buffer. It could be that these registers are reallocated behind the scenes.&#10;Copying from shared buffers every iteration leads to worse accuracy. Is it possible to overcome this?" />
+    <MESSAGE value="implemented POP fwd+bwd+tests; improved numerical stability of chunk retention, possibly at the expense of speed, but it's currently impossible to benchmark times due to a tilelang bug;" />
+    <MESSAGE value="bug fix" />
+    <MESSAGE value="bug fix, loss of precision at large batch sizes" />
+    <MESSAGE value="making a python package" />
+    <MESSAGE value="improved numerical precision of pop fwd&#10;added init file to test package&#10;improved pop test" />
+    <MESSAGE value="added a license" />
+    <MESSAGE value="updated docker files" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated docker files" />
+  </component>
+</project>
