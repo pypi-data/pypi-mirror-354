@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coupling Functions Module &mdash; pyVCHAM 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Diabatic Functions Module" href="diabfunct.html" />
+    <link rel="prev" title="Constants Module" href="constants.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> pyVCHAM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation Sections:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="constants.html">Constants Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="constants.html#id1">Constants Module</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Coupling Functions Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#coupling-calculations-module">Coupling Calculations Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variables">Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="diabfunct.html">Diabatic Functions Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="diabfunct.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diabfunct.html#variables">Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lvc.html">LVC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opt_diag.html">Optimization Diagonalization Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="symm_vcham.html">Symmetry VCHAM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utils Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#core-modules">Core Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#utility-modules">Utility Modules</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyVCHAM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">Modules</a></li>
+      <li class="breadcrumb-item active">Coupling Functions Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/couplingfunct.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-couplingfunct">
+<span id="coupling-functions-module"></span><h1>Coupling Functions Module<a class="headerlink" href="#module-couplingfunct" title="Permalink to this heading"></a></h1>
+<section id="coupling-calculations-module">
+<h2>Coupling Calculations Module<a class="headerlink" href="#coupling-calculations-module" title="Permalink to this heading"></a></h2>
+<p>This module contains functions for coupling calculations in vibrational coupling Hamiltonians.</p>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#couplingfunct.linear_coupling" title="couplingfunct.linear_coupling"><code class="xref py py-func docutils literal notranslate"><span class="pre">linear_coupling()</span></code></a>: Computes the linear coupling.</p></li>
+</ul>
+</section>
+<section id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">coupling_funct</span></code>: Dictionary of coupling functions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_var</span></code>: Dictionary of the number of variables for each function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">initial_guesses</span></code>: Dictionary of initial guesses for each potential type.</p></li>
+</ul>
+<dl class="py function">
+<dt class="sig sig-object py" id="couplingfunct.linear_coupling">
+<span class="sig-prename descclassname"><span class="pre">couplingfunct.</span></span><span class="sig-name descname"><span class="pre">linear_coupling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/couplingfunct.html#linear_coupling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#couplingfunct.linear_coupling" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the linear coupling function.</p>
+<dl class="simple">
+<dt>q<span class="classifier">tf.Tensor</span></dt><dd><p>Tensor of displacements with dtype tf.float32.</p>
+</dd>
+<dt>k1<span class="classifier">tf.Tensor or float</span></dt><dd><p>Tensor representing the coupling constant with dtype tf.float32.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>tf.Tensor</dt><dd><p>Tensor of linear coupling values with dtype tf.float32.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">linear_coupling</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">k1</span><span class="p">)</span>
+<span class="go">&lt;tf.Tensor: shape=(3,), dtype=float32, numpy=array([0.5, 1.0, 1.5], dtype=float32)&gt;</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>k1</strong> (<em>Tensor</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Tensor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="constants.html" class="btn btn-neutral float-left" title="Constants Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="diabfunct.html" class="btn btn-neutral float-right" title="Diabatic Functions Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

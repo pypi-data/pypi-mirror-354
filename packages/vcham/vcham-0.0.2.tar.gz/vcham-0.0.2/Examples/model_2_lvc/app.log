@@ -1,0 +1,139 @@
+2025-06-10 15:03:16,270 [INFO] root: Logging configuration successfully loaded.
+2025-06-10 15:03:53,702 [INFO] vcham.vcham_system: Total symmetry irrep: A'
+2025-06-10 15:03:53,704 [INFO] vcham.vcham_system: Symmetry matrix successfully created.
+2025-06-10 15:03:53,704 [INFO] vcham.vcham_system: Computed vertical energy shifts: [1.08275176e-11 5.65868614e+00]
+2025-06-10 15:03:55,151 [INFO] vcham.lvc: 
+
+----- Initializing LVC Hamiltonian Builder -----
+2025-06-10 15:03:55,151 [INFO] vcham.lvc: Normal mode: 0
+2025-06-10 15:03:55,168 [INFO] vcham.lvc: JT off-diagonal pairs: []
+2025-06-10 15:03:55,169 [INFO] vcham.lvc: n_var_list (non-JT): [3, 3]
+2025-06-10 15:03:55,172 [INFO] vcham.lvc: Total parameters to optimize: 6
+2025-06-10 15:03:55,173 [INFO] vcham.lvc: Optimizing mode 0...
+2025-06-10 15:03:56,048 [INFO] vcham.lvc: Step 0, Loss: 437.938171
+2025-06-10 15:03:56,092 [INFO] vcham.lvc: Step 100, Loss: 104.772614
+2025-06-10 15:03:56,121 [INFO] vcham.lvc: Step 200, Loss: 23.677525
+2025-06-10 15:03:56,150 [INFO] vcham.lvc: Step 300, Loss: 3.879044
+2025-06-10 15:03:56,180 [INFO] vcham.lvc: Step 400, Loss: 0.130279
+2025-06-10 15:03:56,212 [INFO] vcham.lvc: Step 500, Loss: 0.098261
+2025-06-10 15:03:56,245 [INFO] vcham.lvc: Step 600, Loss: 0.079562
+2025-06-10 15:03:56,277 [INFO] vcham.lvc: Step 700, Loss: 0.066586
+2025-06-10 15:03:56,309 [INFO] vcham.lvc: Step 800, Loss: 0.056806
+2025-06-10 15:03:56,342 [INFO] vcham.lvc: Step 900, Loss: 0.049139
+2025-06-10 15:03:56,373 [INFO] vcham.lvc: Step 1000, Loss: 0.042984
+2025-06-10 15:03:56,405 [INFO] vcham.lvc: Step 1100, Loss: 0.037962
+2025-06-10 15:03:56,436 [INFO] vcham.lvc: Step 1200, Loss: 0.033818
+2025-06-10 15:03:56,466 [INFO] vcham.lvc: Step 1300, Loss: 0.030365
+2025-06-10 15:03:56,496 [INFO] vcham.lvc: Step 1400, Loss: 0.027463
+2025-06-10 15:03:56,527 [INFO] vcham.lvc: Step 1500, Loss: 0.025006
+2025-06-10 15:03:56,558 [INFO] vcham.lvc: Step 1600, Loss: 0.022907
+2025-06-10 15:03:56,590 [INFO] vcham.lvc: Step 1700, Loss: 0.021100
+2025-06-10 15:03:56,623 [INFO] vcham.lvc: Step 1800, Loss: 0.019530
+2025-06-10 15:03:56,656 [INFO] vcham.lvc: Step 1900, Loss: 0.018154
+2025-06-10 15:03:56,691 [INFO] vcham.lvc: Step 2000, Loss: 0.016935
+2025-06-10 15:03:56,724 [INFO] vcham.lvc: Step 2100, Loss: 0.015847
+2025-06-10 15:03:56,756 [INFO] vcham.lvc: Step 2200, Loss: 0.014866
+2025-06-10 15:03:56,788 [INFO] vcham.lvc: Step 2300, Loss: 0.013974
+2025-06-10 15:03:56,820 [INFO] vcham.lvc: Step 2400, Loss: 0.013156
+2025-06-10 15:03:56,937 [INFO] vcham.lvc: Step 2500, Loss: 0.012403
+2025-06-10 15:03:56,969 [INFO] vcham.lvc: Step 2600, Loss: 0.011704
+2025-06-10 15:03:56,999 [INFO] vcham.lvc: Step 2700, Loss: 0.011053
+2025-06-10 15:03:57,029 [INFO] vcham.lvc: Step 2800, Loss: 0.010446
+2025-06-10 15:03:57,058 [INFO] vcham.lvc: Step 2900, Loss: 0.009877
+2025-06-10 15:03:57,088 [INFO] vcham.lvc: Step 3000, Loss: 0.009343
+2025-06-10 15:03:57,117 [INFO] vcham.lvc: Step 3100, Loss: 0.008843
+2025-06-10 15:03:57,148 [INFO] vcham.lvc: Step 3200, Loss: 0.008374
+2025-06-10 15:03:57,177 [INFO] vcham.lvc: Step 3300, Loss: 0.007934
+2025-06-10 15:03:57,207 [INFO] vcham.lvc: Step 3400, Loss: 0.007523
+2025-06-10 15:03:57,236 [INFO] vcham.lvc: Step 3500, Loss: 0.007138
+2025-06-10 15:03:57,265 [INFO] vcham.lvc: Step 3600, Loss: 0.006779
+2025-06-10 15:03:57,295 [INFO] vcham.lvc: Step 3700, Loss: 0.006444
+2025-06-10 15:03:57,324 [INFO] vcham.lvc: Step 3800, Loss: 0.006133
+2025-06-10 15:03:57,354 [INFO] vcham.lvc: Step 3900, Loss: 0.005844
+2025-06-10 15:03:57,383 [INFO] vcham.lvc: Step 4000, Loss: 0.005577
+2025-06-10 15:03:57,413 [INFO] vcham.lvc: Step 4100, Loss: 0.005329
+2025-06-10 15:03:57,446 [INFO] vcham.lvc: Step 4200, Loss: 0.005101
+2025-06-10 15:03:57,480 [INFO] vcham.lvc: Step 4300, Loss: 0.004892
+2025-06-10 15:03:57,512 [INFO] vcham.lvc: Step 4400, Loss: 0.004708
+2025-06-10 15:03:57,547 [INFO] vcham.lvc: Step 4500, Loss: 0.004522
+2025-06-10 15:03:57,580 [INFO] vcham.lvc: Step 4600, Loss: 0.004362
+2025-06-10 15:03:57,612 [INFO] vcham.lvc: Step 4700, Loss: 0.004214
+2025-06-10 15:03:57,643 [INFO] vcham.lvc: Step 4800, Loss: 0.004081
+2025-06-10 15:03:57,674 [INFO] vcham.lvc: Step 4900, Loss: 0.003958
+2025-06-10 15:03:57,706 [INFO] vcham.lvc: Step 5000, Loss: 0.003851
+2025-06-10 15:03:57,736 [INFO] vcham.lvc: Step 5100, Loss: 0.003749
+2025-06-10 15:03:57,765 [INFO] vcham.lvc: Step 5200, Loss: 0.003659
+2025-06-10 15:03:57,795 [INFO] vcham.lvc: Step 5300, Loss: 0.003579
+2025-06-10 15:03:57,824 [INFO] vcham.lvc: Step 5400, Loss: 0.003508
+2025-06-10 15:03:57,854 [INFO] vcham.lvc: Step 5500, Loss: 0.003444
+2025-06-10 15:03:57,882 [INFO] vcham.lvc: Step 5600, Loss: 0.003388
+2025-06-10 15:03:57,959 [INFO] vcham.lvc: Step 5700, Loss: 0.003335
+2025-06-10 15:03:57,997 [INFO] vcham.lvc: Step 5800, Loss: 0.003292
+2025-06-10 15:03:58,027 [INFO] vcham.lvc: Step 5900, Loss: 0.003253
+2025-06-10 15:03:58,056 [INFO] vcham.lvc: Step 6000, Loss: 0.003220
+2025-06-10 15:03:58,085 [INFO] vcham.lvc: Step 6100, Loss: 0.003190
+2025-06-10 15:03:58,114 [INFO] vcham.lvc: Step 6200, Loss: 0.003169
+2025-06-10 15:03:58,143 [INFO] vcham.lvc: Step 6300, Loss: 0.003144
+2025-06-10 15:03:58,172 [INFO] vcham.lvc: Step 6400, Loss: 0.003126
+2025-06-10 15:03:58,201 [INFO] vcham.lvc: Step 6500, Loss: 0.003114
+2025-06-10 15:03:58,230 [INFO] vcham.lvc: Step 6600, Loss: 0.003099
+2025-06-10 15:03:58,259 [INFO] vcham.lvc: Step 6700, Loss: 0.003092
+2025-06-10 15:03:58,288 [INFO] vcham.lvc: Step 6800, Loss: 0.003081
+2025-06-10 15:03:58,317 [INFO] vcham.lvc: Step 6900, Loss: 0.003075
+2025-06-10 15:03:58,496 [INFO] vcham.lvc: Final loss: 0.003072
+2025-06-10 15:03:58,496 [INFO] vcham.lvc: Optimization completed in 3.17 seconds.
+2025-06-10 15:04:11,979 [INFO] vcham.vcham_system: Reference geometry updated.
+2025-06-10 15:04:26,989 [INFO] vcham.vcham_system: Dipole matrix updated.
+2025-06-10 15:04:26,993 [INFO] vcham.utils: Warning: Overwriting existing file model_sigma_plus.json
+2025-06-10 15:04:26,994 [INFO] vcham.utils: Data successfully saved to model_sigma_plus.json
+2025-06-10 15:04:26,995 [INFO] vcham.utils: No interactions found.
+2025-06-10 15:04:26,995 [INFO] vcham.utils: MCTDH operator file successfully written to: model_sigma_plus.op
+2025-06-10 15:04:26,996 [INFO] vcham.utils: Units are in Bohr for the CM and degrees for the Euler Angles.
+2025-06-10 15:04:26,996 [INFO] vcham.utils: Initialized Molecule 0 with CM: [0. 0. 0.] and Euler angles (degrees) -  χ: 0.0, θ: 0.0, φ: 0.0
+2025-06-10 15:04:26,997 [INFO] vcham.utils: Units are in Bohr for the CM and degrees for the Euler Angles.
+2025-06-10 15:04:26,999 [INFO] vcham.utils: Initialized Molecule 1 with CM: [ 0.  0. 20.] and Euler angles (degrees) -  χ: 0.0, θ: 0.0, φ: 0.0
+2025-06-10 15:04:27,001 [INFO] vcham.utils: Reading 2 JSON files and merging them.
+2025-06-10 15:04:27,003 [INFO] vcham.utils: 
+Molecule 0 new geometry in the fixed lab frame: 
+[[ 0.   0.  -0.5]
+ [ 0.   0.   0.5]] 
+
+2025-06-10 15:04:27,004 [INFO] vcham.utils: 
+Molecule 1 new geometry in the fixed lab frame: 
+[[ 0.   0.  -0.5]
+ [ 0.   0.   0.5]] 
+
+2025-06-10 15:04:27,004 [INFO] vcham.utils: Calculating dipole interaction for pair Molecule0 - Molecule1
+
+2025-06-10 15:04:27,005 [INFO] vcham.utils: Warning: Overwriting existing file 2mol_model_sigma_plus.json
+2025-06-10 15:04:27,007 [INFO] vcham.utils: Data successfully saved to 2mol_model_sigma_plus.json
+2025-06-10 15:04:27,008 [INFO] vcham.utils: Interactions found!
+2025-06-10 15:04:27,009 [INFO] vcham.utils: Dipole interactions found!
+2025-06-10 15:04:27,009 [INFO] vcham.utils: MCTDH operator file successfully written to: 2mol_model_sigma_plus.op
+2025-06-10 15:05:21,790 [INFO] vcham.vcham_system: Dipole matrix updated.
+2025-06-10 15:05:21,793 [INFO] vcham.utils: Warning: Overwriting existing file model_pi.json
+2025-06-10 15:05:21,795 [INFO] vcham.utils: Data successfully saved to model_pi.json
+2025-06-10 15:05:21,796 [INFO] vcham.utils: No interactions found.
+2025-06-10 15:05:21,797 [INFO] vcham.utils: MCTDH operator file successfully written to: model_pi.op
+2025-06-10 15:05:21,798 [INFO] vcham.utils: Units are in Bohr for the CM and degrees for the Euler Angles.
+2025-06-10 15:05:21,798 [INFO] vcham.utils: Initialized Molecule 0 with CM: [0. 0. 0.] and Euler angles (degrees) -  χ: -0.7853981633974483, θ: 0.0, φ: 0.0
+2025-06-10 15:05:21,799 [INFO] vcham.utils: Units are in Bohr for the CM and degrees for the Euler Angles.
+2025-06-10 15:05:21,800 [INFO] vcham.utils: Initialized Molecule 1 with CM: [ 0.  0. 10.] and Euler angles (degrees) -  χ: 0.7853981633974483, θ: 0.0, φ: 0.0
+2025-06-10 15:05:21,801 [INFO] vcham.utils: Reading 2 JSON files and merging them.
+2025-06-10 15:05:21,802 [INFO] vcham.utils: 
+Molecule 0 new geometry in the fixed lab frame: 
+[[ 0.   0.  -0.5]
+ [ 0.   0.   0.5]] 
+
+2025-06-10 15:05:21,803 [INFO] vcham.utils: 
+Molecule 1 new geometry in the fixed lab frame: 
+[[ 0.   0.  -0.5]
+ [ 0.   0.   0.5]] 
+
+2025-06-10 15:05:21,803 [INFO] vcham.utils: Calculating dipole interaction for pair Molecule0 - Molecule1
+
+2025-06-10 15:05:21,804 [INFO] vcham.utils: Warning: Overwriting existing file 2mol_model_pi.json
+2025-06-10 15:05:21,805 [INFO] vcham.utils: Data successfully saved to 2mol_model_pi.json
+2025-06-10 15:05:21,807 [INFO] vcham.utils: Interactions found!
+2025-06-10 15:05:21,807 [INFO] vcham.utils: Dipole interactions found!
+2025-06-10 15:05:21,808 [INFO] vcham.utils: MCTDH operator file successfully written to: 2mol_model_pi.op

@@ -1,0 +1,746 @@
+2025-06-10 16:05:20,325 [INFO] root: Logging configuration successfully loaded.
+2025-06-10 16:05:23,519 [INFO] vcham.vcham_system: Total symmetry irrep: A1
+2025-06-10 16:05:23,521 [INFO] vcham.vcham_system: Symmetry matrix successfully created.
+2025-06-10 16:05:23,522 [INFO] vcham.vcham_system: Computed vertical energy shifts: [  0.     287.309  289.6914 290.3805 290.9194 291.0533 291.1681 291.6091
+ 291.8231]
+2025-06-10 16:05:23,635 [INFO] vcham.lvc: 
+
+----- Initializing LVC Hamiltonian Builder -----
+2025-06-10 16:05:23,636 [INFO] vcham.lvc: Normal mode: 0
+2025-06-10 16:05:23,648 [INFO] vcham.lvc: JT off-diagonal pairs: []
+2025-06-10 16:05:23,649 [INFO] vcham.lvc: n_var_list (non-JT): [2, 2, 2, 2, 2, 2, 2, 2, 2]
+2025-06-10 16:05:23,651 [INFO] vcham.lvc: Total parameters to optimize: 27
+2025-06-10 16:05:23,652 [INFO] vcham.lvc: Optimizing mode 0...
+2025-06-10 16:05:25,026 [INFO] vcham.lvc: Step 0, Loss: 0.002262
+2025-06-10 16:05:25,167 [INFO] vcham.lvc: Step 100, Loss: 0.001901
+2025-06-10 16:05:25,289 [INFO] vcham.lvc: Step 200, Loss: 0.001891
+2025-06-10 16:05:25,417 [INFO] vcham.lvc: Step 300, Loss: 0.001887
+2025-06-10 16:05:25,543 [INFO] vcham.lvc: Step 400, Loss: 0.001906
+2025-06-10 16:05:25,662 [INFO] vcham.lvc: Step 500, Loss: 0.001892
+2025-06-10 16:05:25,781 [INFO] vcham.lvc: Step 600, Loss: 0.002031
+2025-06-10 16:05:25,910 [INFO] vcham.lvc: Step 700, Loss: 0.001883
+2025-06-10 16:05:26,037 [INFO] vcham.lvc: Step 800, Loss: 0.001887
+2025-06-10 16:05:26,162 [INFO] vcham.lvc: Step 900, Loss: 0.001900
+2025-06-10 16:05:26,289 [INFO] vcham.lvc: Step 1000, Loss: 0.001904
+2025-06-10 16:05:26,437 [INFO] vcham.lvc: Step 1100, Loss: 0.001885
+2025-06-10 16:05:26,562 [INFO] vcham.lvc: Step 1200, Loss: 0.001908
+2025-06-10 16:05:26,687 [INFO] vcham.lvc: Step 1300, Loss: 0.001898
+2025-06-10 16:05:26,811 [INFO] vcham.lvc: Step 1400, Loss: 0.001885
+2025-06-10 16:05:26,935 [INFO] vcham.lvc: Step 1500, Loss: 0.001893
+2025-06-10 16:05:27,059 [INFO] vcham.lvc: Step 1600, Loss: 0.001884
+2025-06-10 16:05:27,255 [INFO] vcham.lvc: Step 1700, Loss: 0.001890
+2025-06-10 16:05:27,381 [INFO] vcham.lvc: Step 1800, Loss: 0.001894
+2025-06-10 16:05:27,508 [INFO] vcham.lvc: Step 1900, Loss: 0.001884
+2025-06-10 16:05:27,633 [INFO] vcham.lvc: Step 2000, Loss: 0.001883
+2025-06-10 16:05:27,757 [INFO] vcham.lvc: Step 2100, Loss: 0.001884
+2025-06-10 16:05:27,884 [INFO] vcham.lvc: Step 2200, Loss: 0.001886
+2025-06-10 16:05:28,010 [INFO] vcham.lvc: Step 2300, Loss: 0.001887
+2025-06-10 16:05:28,138 [INFO] vcham.lvc: Step 2400, Loss: 0.001898
+2025-06-10 16:05:28,267 [INFO] vcham.lvc: Step 2500, Loss: 0.001889
+2025-06-10 16:05:28,396 [INFO] vcham.lvc: Step 2600, Loss: 0.001885
+2025-06-10 16:05:28,521 [INFO] vcham.lvc: Step 2700, Loss: 0.001884
+2025-06-10 16:05:28,646 [INFO] vcham.lvc: Step 2800, Loss: 0.001885
+2025-06-10 16:05:28,770 [INFO] vcham.lvc: Step 2900, Loss: 0.001887
+2025-06-10 16:05:28,893 [INFO] vcham.lvc: Step 3000, Loss: 0.001887
+2025-06-10 16:05:29,019 [INFO] vcham.lvc: Step 3100, Loss: 0.001895
+2025-06-10 16:05:29,145 [INFO] vcham.lvc: Step 3200, Loss: 0.001885
+2025-06-10 16:05:29,272 [INFO] vcham.lvc: Step 3300, Loss: 0.001892
+2025-06-10 16:05:29,399 [INFO] vcham.lvc: Step 3400, Loss: 0.001885
+2025-06-10 16:05:29,524 [INFO] vcham.lvc: Step 3500, Loss: 0.001919
+2025-06-10 16:05:29,649 [INFO] vcham.lvc: Step 3600, Loss: 0.001896
+2025-06-10 16:05:29,775 [INFO] vcham.lvc: Step 3700, Loss: 0.001894
+2025-06-10 16:05:29,900 [INFO] vcham.lvc: Step 3800, Loss: 0.001887
+2025-06-10 16:05:30,026 [INFO] vcham.lvc: Step 3900, Loss: 0.001888
+2025-06-10 16:05:30,153 [INFO] vcham.lvc: Step 4000, Loss: 0.001885
+2025-06-10 16:05:30,281 [INFO] vcham.lvc: Step 4100, Loss: 0.001887
+2025-06-10 16:05:30,407 [INFO] vcham.lvc: Step 4200, Loss: 0.001886
+2025-06-10 16:05:30,534 [INFO] vcham.lvc: Step 4300, Loss: 0.001888
+2025-06-10 16:05:30,661 [INFO] vcham.lvc: Step 4400, Loss: 0.001889
+2025-06-10 16:05:30,812 [INFO] vcham.lvc: Step 4500, Loss: 0.001887
+2025-06-10 16:05:30,966 [INFO] vcham.lvc: Step 4600, Loss: 0.001915
+2025-06-10 16:05:31,086 [INFO] vcham.lvc: Step 4700, Loss: 0.001886
+2025-06-10 16:05:31,208 [INFO] vcham.lvc: Step 4800, Loss: 0.001901
+2025-06-10 16:05:31,331 [INFO] vcham.lvc: Step 4900, Loss: 0.001901
+2025-06-10 16:05:31,775 [INFO] vcham.lvc: Final loss: 0.001887
+2025-06-10 16:05:31,775 [INFO] vcham.lvc: Optimization completed in 7.80 seconds.
+2025-06-10 16:05:31,779 [INFO] vcham.lvc: 
+
+----- Initializing LVC Hamiltonian Builder -----
+2025-06-10 16:05:31,779 [INFO] vcham.lvc: Normal mode: 1
+2025-06-10 16:05:31,783 [INFO] vcham.lvc: JT off-diagonal pairs: []
+2025-06-10 16:05:31,784 [INFO] vcham.lvc: n_var_list (non-JT): [3, 3, 3, 3, 3, 3, 3, 3, 3]
+2025-06-10 16:05:31,785 [INFO] vcham.lvc: Total parameters to optimize: 27
+2025-06-10 16:05:31,786 [INFO] vcham.lvc: Optimizing mode 1...
+2025-06-10 16:05:32,686 [INFO] vcham.lvc: Step 0, Loss: 0.047879
+2025-06-10 16:05:32,796 [INFO] vcham.lvc: Step 100, Loss: 0.014053
+2025-06-10 16:05:32,898 [INFO] vcham.lvc: Step 200, Loss: 0.013925
+2025-06-10 16:05:32,998 [INFO] vcham.lvc: Step 300, Loss: 0.013784
+2025-06-10 16:05:33,093 [INFO] vcham.lvc: Step 400, Loss: 0.013637
+2025-06-10 16:05:33,188 [INFO] vcham.lvc: Step 500, Loss: 0.013487
+2025-06-10 16:05:33,284 [INFO] vcham.lvc: Step 600, Loss: 0.013337
+2025-06-10 16:05:33,379 [INFO] vcham.lvc: Step 700, Loss: 0.013187
+2025-06-10 16:05:33,474 [INFO] vcham.lvc: Step 800, Loss: 0.013039
+2025-06-10 16:05:33,571 [INFO] vcham.lvc: Step 900, Loss: 0.012894
+2025-06-10 16:05:33,673 [INFO] vcham.lvc: Step 1000, Loss: 0.012750
+2025-06-10 16:05:33,774 [INFO] vcham.lvc: Step 1100, Loss: 0.012611
+2025-06-10 16:05:33,870 [INFO] vcham.lvc: Step 1200, Loss: 0.012474
+2025-06-10 16:05:33,964 [INFO] vcham.lvc: Step 1300, Loss: 0.012353
+2025-06-10 16:05:34,058 [INFO] vcham.lvc: Step 1400, Loss: 0.012213
+2025-06-10 16:05:34,158 [INFO] vcham.lvc: Step 1500, Loss: 0.012087
+2025-06-10 16:05:34,260 [INFO] vcham.lvc: Step 1600, Loss: 0.011968
+2025-06-10 16:05:34,362 [INFO] vcham.lvc: Step 1700, Loss: 0.011850
+2025-06-10 16:05:34,463 [INFO] vcham.lvc: Step 1800, Loss: 0.011737
+2025-06-10 16:05:34,562 [INFO] vcham.lvc: Step 1900, Loss: 0.011624
+2025-06-10 16:05:34,687 [INFO] vcham.lvc: Step 2000, Loss: 0.011524
+2025-06-10 16:05:34,788 [INFO] vcham.lvc: Step 2100, Loss: 0.011423
+2025-06-10 16:05:34,884 [INFO] vcham.lvc: Step 2200, Loss: 0.011316
+2025-06-10 16:05:34,985 [INFO] vcham.lvc: Step 2300, Loss: 0.011216
+2025-06-10 16:05:35,086 [INFO] vcham.lvc: Step 2400, Loss: 0.011121
+2025-06-10 16:05:35,187 [INFO] vcham.lvc: Step 2500, Loss: 0.011031
+2025-06-10 16:05:35,287 [INFO] vcham.lvc: Step 2600, Loss: 0.010942
+2025-06-10 16:05:35,389 [INFO] vcham.lvc: Step 2700, Loss: 0.010856
+2025-06-10 16:05:35,487 [INFO] vcham.lvc: Step 2800, Loss: 0.010778
+2025-06-10 16:05:35,583 [INFO] vcham.lvc: Step 2900, Loss: 0.010691
+2025-06-10 16:05:35,684 [INFO] vcham.lvc: Step 3000, Loss: 0.010616
+2025-06-10 16:05:35,786 [INFO] vcham.lvc: Step 3100, Loss: 0.010537
+2025-06-10 16:05:35,885 [INFO] vcham.lvc: Step 3200, Loss: 0.010467
+2025-06-10 16:05:35,983 [INFO] vcham.lvc: Step 3300, Loss: 0.010398
+2025-06-10 16:05:36,083 [INFO] vcham.lvc: Step 3400, Loss: 0.010327
+2025-06-10 16:05:36,183 [INFO] vcham.lvc: Step 3500, Loss: 0.010254
+2025-06-10 16:05:36,279 [INFO] vcham.lvc: Step 3600, Loss: 0.010218
+2025-06-10 16:05:36,376 [INFO] vcham.lvc: Step 3700, Loss: 0.010137
+2025-06-10 16:05:36,477 [INFO] vcham.lvc: Step 3800, Loss: 0.010057
+2025-06-10 16:05:36,578 [INFO] vcham.lvc: Step 3900, Loss: 0.009996
+2025-06-10 16:05:36,678 [INFO] vcham.lvc: Step 4000, Loss: 0.009933
+2025-06-10 16:05:36,773 [INFO] vcham.lvc: Step 4100, Loss: 0.009872
+2025-06-10 16:05:36,869 [INFO] vcham.lvc: Step 4200, Loss: 0.009814
+2025-06-10 16:05:36,969 [INFO] vcham.lvc: Step 4300, Loss: 0.009756
+2025-06-10 16:05:37,071 [INFO] vcham.lvc: Step 4400, Loss: 0.009708
+2025-06-10 16:05:37,170 [INFO] vcham.lvc: Step 4500, Loss: 0.009648
+2025-06-10 16:05:37,266 [INFO] vcham.lvc: Step 4600, Loss: 0.009599
+2025-06-10 16:05:37,363 [INFO] vcham.lvc: Step 4700, Loss: 0.009550
+2025-06-10 16:05:37,464 [INFO] vcham.lvc: Step 4800, Loss: 0.009507
+2025-06-10 16:05:37,565 [INFO] vcham.lvc: Step 4900, Loss: 0.009455
+2025-06-10 16:05:37,961 [INFO] vcham.lvc: Final loss: 0.009422
+2025-06-10 16:05:37,962 [INFO] vcham.lvc: Optimization completed in 5.87 seconds.
+2025-06-10 16:05:37,964 [INFO] vcham.lvc: 
+
+----- Initializing LVC Hamiltonian Builder -----
+2025-06-10 16:05:37,965 [INFO] vcham.lvc: Normal mode: 2
+2025-06-10 16:05:37,971 [INFO] vcham.lvc: JT off-diagonal pairs: []
+2025-06-10 16:05:37,971 [INFO] vcham.lvc: n_var_list (non-JT): [2, 2, 2, 2, 2, 2, 2, 2, 2]
+2025-06-10 16:05:37,972 [INFO] vcham.lvc: Total parameters to optimize: 24
+2025-06-10 16:05:37,973 [INFO] vcham.lvc: Optimizing mode 2...
+2025-06-10 16:05:38,763 [INFO] vcham.lvc: Step 0, Loss: 0.040792
+2025-06-10 16:05:38,905 [INFO] vcham.lvc: Step 100, Loss: 0.007592
+2025-06-10 16:05:39,028 [INFO] vcham.lvc: Step 200, Loss: 0.007318
+2025-06-10 16:05:39,148 [INFO] vcham.lvc: Step 300, Loss: 0.006754
+2025-06-10 16:05:39,268 [INFO] vcham.lvc: Step 400, Loss: 0.006456
+2025-06-10 16:05:39,393 [INFO] vcham.lvc: Step 500, Loss: 0.006446
+2025-06-10 16:05:39,518 [INFO] vcham.lvc: Step 600, Loss: 0.006443
+2025-06-10 16:05:39,637 [INFO] vcham.lvc: Step 700, Loss: 0.006441
+2025-06-10 16:05:39,755 [INFO] vcham.lvc: Step 800, Loss: 0.006449
+2025-06-10 16:05:39,880 [INFO] vcham.lvc: Step 900, Loss: 0.006440
+2025-06-10 16:05:40,006 [INFO] vcham.lvc: Step 1000, Loss: 0.006440
+2025-06-10 16:05:40,128 [INFO] vcham.lvc: Step 1100, Loss: 0.006441
+2025-06-10 16:05:40,249 [INFO] vcham.lvc: Step 1200, Loss: 0.006442
+2025-06-10 16:05:40,373 [INFO] vcham.lvc: Step 1300, Loss: 0.006439
+2025-06-10 16:05:40,499 [INFO] vcham.lvc: Step 1400, Loss: 0.006440
+2025-06-10 16:05:40,618 [INFO] vcham.lvc: Step 1500, Loss: 0.006471
+2025-06-10 16:05:40,736 [INFO] vcham.lvc: Step 1600, Loss: 0.006440
+2025-06-10 16:05:40,859 [INFO] vcham.lvc: Step 1700, Loss: 0.006439
+2025-06-10 16:05:40,987 [INFO] vcham.lvc: Step 1800, Loss: 0.006446
+2025-06-10 16:05:41,105 [INFO] vcham.lvc: Step 1900, Loss: 0.006441
+2025-06-10 16:05:41,223 [INFO] vcham.lvc: Step 2000, Loss: 0.006452
+2025-06-10 16:05:41,355 [INFO] vcham.lvc: Step 2100, Loss: 0.006442
+2025-06-10 16:05:41,561 [INFO] vcham.lvc: Step 2200, Loss: 0.006451
+2025-06-10 16:05:41,680 [INFO] vcham.lvc: Step 2300, Loss: 0.006441
+2025-06-10 16:05:41,799 [INFO] vcham.lvc: Step 2400, Loss: 0.006440
+2025-06-10 16:05:41,930 [INFO] vcham.lvc: Step 2500, Loss: 0.006440
+2025-06-10 16:05:42,059 [INFO] vcham.lvc: Step 2600, Loss: 0.006453
+2025-06-10 16:05:42,184 [INFO] vcham.lvc: Step 2700, Loss: 0.006444
+2025-06-10 16:05:42,304 [INFO] vcham.lvc: Step 2800, Loss: 0.006440
+2025-06-10 16:05:42,422 [INFO] vcham.lvc: Step 2900, Loss: 0.006459
+2025-06-10 16:05:42,541 [INFO] vcham.lvc: Step 3000, Loss: 0.006491
+2025-06-10 16:05:42,660 [INFO] vcham.lvc: Step 3100, Loss: 0.006452
+2025-06-10 16:05:42,804 [INFO] vcham.lvc: Step 3200, Loss: 0.006451
+2025-06-10 16:05:42,925 [INFO] vcham.lvc: Step 3300, Loss: 0.006494
+2025-06-10 16:05:43,045 [INFO] vcham.lvc: Step 3400, Loss: 0.006480
+2025-06-10 16:05:43,167 [INFO] vcham.lvc: Step 3500, Loss: 0.006439
+2025-06-10 16:05:43,286 [INFO] vcham.lvc: Step 3600, Loss: 0.006451
+2025-06-10 16:05:43,408 [INFO] vcham.lvc: Step 3700, Loss: 0.006459
+2025-06-10 16:05:43,528 [INFO] vcham.lvc: Step 3800, Loss: 0.006445
+2025-06-10 16:05:43,646 [INFO] vcham.lvc: Step 3900, Loss: 0.006440
+2025-06-10 16:05:43,762 [INFO] vcham.lvc: Step 4000, Loss: 0.006443
+2025-06-10 16:05:43,879 [INFO] vcham.lvc: Step 4100, Loss: 0.006469
+2025-06-10 16:05:43,996 [INFO] vcham.lvc: Step 4200, Loss: 0.006460
+2025-06-10 16:05:44,113 [INFO] vcham.lvc: Step 4300, Loss: 0.006458
+2025-06-10 16:05:44,231 [INFO] vcham.lvc: Step 4400, Loss: 0.006442
+2025-06-10 16:05:44,350 [INFO] vcham.lvc: Step 4500, Loss: 0.006439
+2025-06-10 16:05:44,468 [INFO] vcham.lvc: Step 4600, Loss: 0.006443
+2025-06-10 16:05:44,585 [INFO] vcham.lvc: Step 4700, Loss: 0.006439
+2025-06-10 16:05:44,702 [INFO] vcham.lvc: Step 4800, Loss: 0.006439
+2025-06-10 16:05:44,817 [INFO] vcham.lvc: Step 4900, Loss: 0.006441
+2025-06-10 16:05:45,250 [INFO] vcham.lvc: Final loss: 0.006446
+2025-06-10 16:05:45,251 [INFO] vcham.lvc: Optimization completed in 6.96 seconds.
+2025-06-10 16:05:45,254 [INFO] vcham.lvc: 
+
+----- Initializing LVC Hamiltonian Builder -----
+2025-06-10 16:05:45,254 [INFO] vcham.lvc: Normal mode: 3
+2025-06-10 16:05:45,259 [INFO] vcham.lvc: JT off-diagonal pairs: []
+2025-06-10 16:05:45,259 [INFO] vcham.lvc: n_var_list (non-JT): [2, 2, 2, 2, 2, 2, 2, 2, 2]
+2025-06-10 16:05:45,260 [INFO] vcham.lvc: Total parameters to optimize: 24
+2025-06-10 16:05:45,261 [INFO] vcham.lvc: Optimizing mode 3...
+2025-06-10 16:05:46,032 [INFO] vcham.lvc: Step 0, Loss: 0.084513
+2025-06-10 16:05:46,156 [INFO] vcham.lvc: Step 100, Loss: 0.018710
+2025-06-10 16:05:46,265 [INFO] vcham.lvc: Step 200, Loss: 0.018710
+2025-06-10 16:05:46,374 [INFO] vcham.lvc: Step 300, Loss: 0.018711
+2025-06-10 16:05:46,482 [INFO] vcham.lvc: Step 400, Loss: 0.018712
+2025-06-10 16:05:46,590 [INFO] vcham.lvc: Step 500, Loss: 0.018686
+2025-06-10 16:05:46,699 [INFO] vcham.lvc: Step 600, Loss: 0.018486
+2025-06-10 16:05:46,812 [INFO] vcham.lvc: Step 700, Loss: 0.018475
+2025-06-10 16:05:46,926 [INFO] vcham.lvc: Step 800, Loss: 0.018480
+2025-06-10 16:05:47,047 [INFO] vcham.lvc: Step 900, Loss: 0.018502
+2025-06-10 16:05:47,168 [INFO] vcham.lvc: Step 1000, Loss: 0.018475
+2025-06-10 16:05:47,278 [INFO] vcham.lvc: Step 1100, Loss: 0.018476
+2025-06-10 16:05:47,452 [INFO] vcham.lvc: Step 1200, Loss: 0.018475
+2025-06-10 16:05:47,563 [INFO] vcham.lvc: Step 1300, Loss: 0.018476
+2025-06-10 16:05:47,670 [INFO] vcham.lvc: Step 1400, Loss: 0.018491
+2025-06-10 16:05:47,780 [INFO] vcham.lvc: Step 1500, Loss: 0.018477
+2025-06-10 16:05:47,887 [INFO] vcham.lvc: Step 1600, Loss: 0.018484
+2025-06-10 16:05:47,995 [INFO] vcham.lvc: Step 1700, Loss: 0.018478
+2025-06-10 16:05:48,103 [INFO] vcham.lvc: Step 1800, Loss: 0.018510
+2025-06-10 16:05:48,212 [INFO] vcham.lvc: Step 1900, Loss: 0.018484
+2025-06-10 16:05:48,325 [INFO] vcham.lvc: Step 2000, Loss: 0.018490
+2025-06-10 16:05:48,435 [INFO] vcham.lvc: Step 2100, Loss: 0.018479
+2025-06-10 16:05:48,548 [INFO] vcham.lvc: Step 2200, Loss: 0.018474
+2025-06-10 16:05:48,659 [INFO] vcham.lvc: Step 2300, Loss: 0.018482
+2025-06-10 16:05:48,776 [INFO] vcham.lvc: Step 2400, Loss: 0.018480
+2025-06-10 16:05:48,884 [INFO] vcham.lvc: Step 2500, Loss: 0.018497
+2025-06-10 16:05:48,999 [INFO] vcham.lvc: Step 2600, Loss: 0.018479
+2025-06-10 16:05:49,132 [INFO] vcham.lvc: Step 2700, Loss: 0.018476
+2025-06-10 16:05:49,253 [INFO] vcham.lvc: Step 2800, Loss: 0.018475
+2025-06-10 16:05:49,369 [INFO] vcham.lvc: Step 2900, Loss: 0.018475
+2025-06-10 16:05:49,490 [INFO] vcham.lvc: Step 3000, Loss: 0.018474
+2025-06-10 16:05:49,608 [INFO] vcham.lvc: Step 3100, Loss: 0.018475
+2025-06-10 16:05:49,720 [INFO] vcham.lvc: Step 3200, Loss: 0.018518
+2025-06-10 16:05:49,837 [INFO] vcham.lvc: Step 3300, Loss: 0.018474
+2025-06-10 16:05:49,945 [INFO] vcham.lvc: Step 3400, Loss: 0.018480
+2025-06-10 16:05:50,058 [INFO] vcham.lvc: Step 3500, Loss: 0.018474
+2025-06-10 16:05:50,175 [INFO] vcham.lvc: Step 3600, Loss: 0.018475
+2025-06-10 16:05:50,288 [INFO] vcham.lvc: Step 3700, Loss: 0.018478
+2025-06-10 16:05:50,399 [INFO] vcham.lvc: Step 3800, Loss: 0.018475
+2025-06-10 16:05:50,508 [INFO] vcham.lvc: Step 3900, Loss: 0.018476
+2025-06-10 16:05:50,623 [INFO] vcham.lvc: Step 4000, Loss: 0.018475
+2025-06-10 16:05:50,801 [INFO] vcham.lvc: Step 4100, Loss: 0.018479
+2025-06-10 16:05:50,913 [INFO] vcham.lvc: Step 4200, Loss: 0.018493
+2025-06-10 16:05:51,023 [INFO] vcham.lvc: Step 4300, Loss: 0.018480
+2025-06-10 16:05:51,145 [INFO] vcham.lvc: Step 4400, Loss: 0.018518
+2025-06-10 16:05:51,268 [INFO] vcham.lvc: Step 4500, Loss: 0.018504
+2025-06-10 16:05:51,386 [INFO] vcham.lvc: Step 4600, Loss: 0.018477
+2025-06-10 16:05:51,494 [INFO] vcham.lvc: Step 4700, Loss: 0.018475
+2025-06-10 16:05:51,601 [INFO] vcham.lvc: Step 4800, Loss: 0.018474
+2025-06-10 16:05:51,711 [INFO] vcham.lvc: Step 4900, Loss: 0.018477
+2025-06-10 16:05:52,135 [INFO] vcham.lvc: Final loss: 0.018473
+2025-06-10 16:05:52,136 [INFO] vcham.lvc: Optimization completed in 6.56 seconds.
+2025-06-10 16:05:52,138 [INFO] vcham.lvc: 
+
+----- Initializing LVC Hamiltonian Builder -----
+2025-06-10 16:05:52,138 [INFO] vcham.lvc: Normal mode: 4
+2025-06-10 16:05:52,142 [INFO] vcham.lvc: JT off-diagonal pairs: []
+2025-06-10 16:05:52,143 [INFO] vcham.lvc: n_var_list (non-JT): [2, 2, 2, 2, 2, 2, 2, 2, 2]
+2025-06-10 16:05:52,144 [INFO] vcham.lvc: Total parameters to optimize: 24
+2025-06-10 16:05:52,145 [INFO] vcham.lvc: Optimizing mode 4...
+2025-06-10 16:05:52,916 [INFO] vcham.lvc: Step 0, Loss: 0.192604
+2025-06-10 16:05:53,045 [INFO] vcham.lvc: Step 100, Loss: 0.015262
+2025-06-10 16:05:53,157 [INFO] vcham.lvc: Step 200, Loss: 0.013169
+2025-06-10 16:05:53,287 [INFO] vcham.lvc: Step 300, Loss: 0.013173
+2025-06-10 16:05:53,427 [INFO] vcham.lvc: Step 400, Loss: 0.013168
+2025-06-10 16:05:53,535 [INFO] vcham.lvc: Step 500, Loss: 0.013169
+2025-06-10 16:05:53,643 [INFO] vcham.lvc: Step 600, Loss: 0.013176
+2025-06-10 16:05:53,749 [INFO] vcham.lvc: Step 700, Loss: 0.013175
+2025-06-10 16:05:53,858 [INFO] vcham.lvc: Step 800, Loss: 0.013170
+2025-06-10 16:05:53,967 [INFO] vcham.lvc: Step 900, Loss: 0.013171
+2025-06-10 16:05:54,075 [INFO] vcham.lvc: Step 1000, Loss: 0.013170
+2025-06-10 16:05:54,181 [INFO] vcham.lvc: Step 1100, Loss: 0.013170
+2025-06-10 16:05:54,313 [INFO] vcham.lvc: Step 1200, Loss: 0.013171
+2025-06-10 16:05:54,420 [INFO] vcham.lvc: Step 1300, Loss: 0.013170
+2025-06-10 16:05:54,527 [INFO] vcham.lvc: Step 1400, Loss: 0.013183
+2025-06-10 16:05:54,634 [INFO] vcham.lvc: Step 1500, Loss: 0.013189
+2025-06-10 16:05:54,742 [INFO] vcham.lvc: Step 1600, Loss: 0.013170
+2025-06-10 16:05:54,860 [INFO] vcham.lvc: Step 1700, Loss: 0.013173
+2025-06-10 16:05:54,968 [INFO] vcham.lvc: Step 1800, Loss: 0.013205
+2025-06-10 16:05:55,079 [INFO] vcham.lvc: Step 1900, Loss: 0.013199
+2025-06-10 16:05:55,189 [INFO] vcham.lvc: Step 2000, Loss: 0.013170
+2025-06-10 16:05:55,297 [INFO] vcham.lvc: Step 2100, Loss: 0.013171
+2025-06-10 16:05:55,406 [INFO] vcham.lvc: Step 2200, Loss: 0.013174
+2025-06-10 16:05:55,574 [INFO] vcham.lvc: Step 2300, Loss: 0.013175
+2025-06-10 16:05:55,682 [INFO] vcham.lvc: Step 2400, Loss: 0.013202
+2025-06-10 16:05:55,788 [INFO] vcham.lvc: Step 2500, Loss: 0.013215
+2025-06-10 16:05:55,894 [INFO] vcham.lvc: Step 2600, Loss: 0.013169
+2025-06-10 16:05:55,999 [INFO] vcham.lvc: Step 2700, Loss: 0.013183
+2025-06-10 16:05:56,105 [INFO] vcham.lvc: Step 2800, Loss: 0.013174
+2025-06-10 16:05:56,209 [INFO] vcham.lvc: Step 2900, Loss: 0.013204
+2025-06-10 16:05:56,320 [INFO] vcham.lvc: Step 3000, Loss: 0.013170
+2025-06-10 16:05:56,429 [INFO] vcham.lvc: Step 3100, Loss: 0.013203
+2025-06-10 16:05:56,536 [INFO] vcham.lvc: Step 3200, Loss: 0.013170
+2025-06-10 16:05:56,650 [INFO] vcham.lvc: Step 3300, Loss: 0.013182
+2025-06-10 16:05:56,758 [INFO] vcham.lvc: Step 3400, Loss: 0.013176
+2025-06-10 16:05:56,865 [INFO] vcham.lvc: Step 3500, Loss: 0.013182
+2025-06-10 16:05:56,972 [INFO] vcham.lvc: Step 3600, Loss: 0.013213
+2025-06-10 16:05:57,078 [INFO] vcham.lvc: Step 3700, Loss: 0.013171
+2025-06-10 16:05:57,184 [INFO] vcham.lvc: Step 3800, Loss: 0.013213
+2025-06-10 16:05:57,291 [INFO] vcham.lvc: Step 3900, Loss: 0.013185
+2025-06-10 16:05:57,399 [INFO] vcham.lvc: Step 4000, Loss: 0.013194
+2025-06-10 16:05:57,509 [INFO] vcham.lvc: Step 4100, Loss: 0.013175
+2025-06-10 16:05:57,617 [INFO] vcham.lvc: Step 4200, Loss: 0.013174
+2025-06-10 16:05:57,723 [INFO] vcham.lvc: Step 4300, Loss: 0.013178
+2025-06-10 16:05:57,834 [INFO] vcham.lvc: Step 4400, Loss: 0.013170
+2025-06-10 16:05:57,942 [INFO] vcham.lvc: Step 4500, Loss: 0.013169
+2025-06-10 16:05:58,049 [INFO] vcham.lvc: Step 4600, Loss: 0.013174
+2025-06-10 16:05:58,156 [INFO] vcham.lvc: Step 4700, Loss: 0.013168
+2025-06-10 16:05:58,262 [INFO] vcham.lvc: Step 4800, Loss: 0.013170
+2025-06-10 16:05:58,370 [INFO] vcham.lvc: Step 4900, Loss: 0.013189
+2025-06-10 16:05:58,782 [INFO] vcham.lvc: Final loss: 0.013170
+2025-06-10 16:05:58,782 [INFO] vcham.lvc: Optimization completed in 6.33 seconds.
+2025-06-10 16:05:58,785 [INFO] vcham.lvc: 
+
+----- Initializing LVC Hamiltonian Builder -----
+2025-06-10 16:05:58,785 [INFO] vcham.lvc: Normal mode: 5
+2025-06-10 16:05:58,789 [INFO] vcham.lvc: JT off-diagonal pairs: []
+2025-06-10 16:05:58,789 [INFO] vcham.lvc: n_var_list (non-JT): [3, 3, 3, 3, 3, 3, 3, 3, 3]
+2025-06-10 16:05:58,790 [INFO] vcham.lvc: Total parameters to optimize: 27
+2025-06-10 16:05:58,791 [INFO] vcham.lvc: Optimizing mode 5...
+2025-06-10 16:05:59,464 [INFO] vcham.lvc: Step 0, Loss: 0.067862
+2025-06-10 16:05:59,569 [INFO] vcham.lvc: Step 100, Loss: 0.032468
+2025-06-10 16:05:59,664 [INFO] vcham.lvc: Step 200, Loss: 0.029198
+2025-06-10 16:05:59,759 [INFO] vcham.lvc: Step 300, Loss: 0.027098
+2025-06-10 16:05:59,854 [INFO] vcham.lvc: Step 400, Loss: 0.025633
+2025-06-10 16:05:59,949 [INFO] vcham.lvc: Step 500, Loss: 0.024525
+2025-06-10 16:06:00,043 [INFO] vcham.lvc: Step 600, Loss: 0.023615
+2025-06-10 16:06:00,200 [INFO] vcham.lvc: Step 700, Loss: 0.022772
+2025-06-10 16:06:00,296 [INFO] vcham.lvc: Step 800, Loss: 0.022023
+2025-06-10 16:06:00,392 [INFO] vcham.lvc: Step 900, Loss: 0.021334
+2025-06-10 16:06:00,488 [INFO] vcham.lvc: Step 1000, Loss: 0.020698
+2025-06-10 16:06:00,582 [INFO] vcham.lvc: Step 1100, Loss: 0.020109
+2025-06-10 16:06:00,676 [INFO] vcham.lvc: Step 1200, Loss: 0.019553
+2025-06-10 16:06:00,771 [INFO] vcham.lvc: Step 1300, Loss: 0.019031
+2025-06-10 16:06:00,865 [INFO] vcham.lvc: Step 1400, Loss: 0.018573
+2025-06-10 16:06:00,958 [INFO] vcham.lvc: Step 1500, Loss: 0.018073
+2025-06-10 16:06:01,053 [INFO] vcham.lvc: Step 1600, Loss: 0.017645
+2025-06-10 16:06:01,147 [INFO] vcham.lvc: Step 1700, Loss: 0.017252
+2025-06-10 16:06:01,247 [INFO] vcham.lvc: Step 1800, Loss: 0.016876
+2025-06-10 16:06:01,345 [INFO] vcham.lvc: Step 1900, Loss: 0.016534
+2025-06-10 16:06:01,443 [INFO] vcham.lvc: Step 2000, Loss: 0.016205
+2025-06-10 16:06:01,540 [INFO] vcham.lvc: Step 2100, Loss: 0.015902
+2025-06-10 16:06:01,636 [INFO] vcham.lvc: Step 2200, Loss: 0.015606
+2025-06-10 16:06:01,732 [INFO] vcham.lvc: Step 2300, Loss: 0.015333
+2025-06-10 16:06:01,827 [INFO] vcham.lvc: Step 2400, Loss: 0.015096
+2025-06-10 16:06:01,922 [INFO] vcham.lvc: Step 2500, Loss: 0.014837
+2025-06-10 16:06:02,021 [INFO] vcham.lvc: Step 2600, Loss: 0.014634
+2025-06-10 16:06:02,120 [INFO] vcham.lvc: Step 2700, Loss: 0.014403
+2025-06-10 16:06:02,219 [INFO] vcham.lvc: Step 2800, Loss: 0.014215
+2025-06-10 16:06:02,318 [INFO] vcham.lvc: Step 2900, Loss: 0.014012
+2025-06-10 16:06:02,418 [INFO] vcham.lvc: Step 3000, Loss: 0.013840
+2025-06-10 16:06:02,516 [INFO] vcham.lvc: Step 3100, Loss: 0.013681
+2025-06-10 16:06:02,612 [INFO] vcham.lvc: Step 3200, Loss: 0.013508
+2025-06-10 16:06:02,706 [INFO] vcham.lvc: Step 3300, Loss: 0.013358
+2025-06-10 16:06:02,802 [INFO] vcham.lvc: Step 3400, Loss: 0.013211
+2025-06-10 16:06:02,897 [INFO] vcham.lvc: Step 3500, Loss: 0.013075
+2025-06-10 16:06:02,992 [INFO] vcham.lvc: Step 3600, Loss: 0.012951
+2025-06-10 16:06:03,087 [INFO] vcham.lvc: Step 3700, Loss: 0.012830
+2025-06-10 16:06:03,182 [INFO] vcham.lvc: Step 3800, Loss: 0.012713
+2025-06-10 16:06:03,281 [INFO] vcham.lvc: Step 3900, Loss: 0.012607
+2025-06-10 16:06:03,383 [INFO] vcham.lvc: Step 4000, Loss: 0.012505
+2025-06-10 16:06:03,483 [INFO] vcham.lvc: Step 4100, Loss: 0.012416
+2025-06-10 16:06:03,583 [INFO] vcham.lvc: Step 4200, Loss: 0.012335
+2025-06-10 16:06:03,684 [INFO] vcham.lvc: Step 4300, Loss: 0.012231
+2025-06-10 16:06:03,783 [INFO] vcham.lvc: Step 4400, Loss: 0.012151
+2025-06-10 16:06:03,879 [INFO] vcham.lvc: Step 4500, Loss: 0.012074
+2025-06-10 16:06:03,976 [INFO] vcham.lvc: Step 4600, Loss: 0.012019
+2025-06-10 16:06:04,073 [INFO] vcham.lvc: Step 4700, Loss: 0.011931
+2025-06-10 16:06:04,170 [INFO] vcham.lvc: Step 4800, Loss: 0.011866
+2025-06-10 16:06:04,269 [INFO] vcham.lvc: Step 4900, Loss: 0.011802
+2025-06-10 16:06:04,672 [INFO] vcham.lvc: Final loss: 0.011738
+2025-06-10 16:06:04,673 [INFO] vcham.lvc: Optimization completed in 5.58 seconds.
+2025-06-10 16:06:04,675 [INFO] vcham.lvc: 
+
+----- Initializing LVC Hamiltonian Builder -----
+2025-06-10 16:06:04,675 [INFO] vcham.lvc: Normal mode: 6
+2025-06-10 16:06:04,680 [INFO] vcham.lvc: JT off-diagonal pairs: []
+2025-06-10 16:06:04,681 [INFO] vcham.lvc: n_var_list (non-JT): [2, 2, 2, 2, 2, 2, 2, 2, 2]
+2025-06-10 16:06:04,682 [INFO] vcham.lvc: Total parameters to optimize: 27
+2025-06-10 16:06:04,682 [INFO] vcham.lvc: Optimizing mode 6...
+2025-06-10 16:06:05,673 [INFO] vcham.lvc: Step 0, Loss: 0.006832
+2025-06-10 16:06:05,825 [INFO] vcham.lvc: Step 100, Loss: 0.002451
+2025-06-10 16:06:05,966 [INFO] vcham.lvc: Step 200, Loss: 0.002447
+2025-06-10 16:06:06,114 [INFO] vcham.lvc: Step 300, Loss: 0.002447
+2025-06-10 16:06:06,246 [INFO] vcham.lvc: Step 400, Loss: 0.002455
+2025-06-10 16:06:06,373 [INFO] vcham.lvc: Step 500, Loss: 0.002451
+2025-06-10 16:06:06,514 [INFO] vcham.lvc: Step 600, Loss: 0.002446
+2025-06-10 16:06:06,645 [INFO] vcham.lvc: Step 700, Loss: 0.002450
+2025-06-10 16:06:06,776 [INFO] vcham.lvc: Step 800, Loss: 0.002445
+2025-06-10 16:06:06,902 [INFO] vcham.lvc: Step 900, Loss: 0.002449
+2025-06-10 16:06:07,030 [INFO] vcham.lvc: Step 1000, Loss: 0.002443
+2025-06-10 16:06:07,154 [INFO] vcham.lvc: Step 1100, Loss: 0.002446
+2025-06-10 16:06:07,287 [INFO] vcham.lvc: Step 1200, Loss: 0.002463
+2025-06-10 16:06:07,416 [INFO] vcham.lvc: Step 1300, Loss: 0.002448
+2025-06-10 16:06:07,551 [INFO] vcham.lvc: Step 1400, Loss: 0.002447
+2025-06-10 16:06:07,680 [INFO] vcham.lvc: Step 1500, Loss: 0.002487
+2025-06-10 16:06:07,868 [INFO] vcham.lvc: Step 1600, Loss: 0.002452
+2025-06-10 16:06:07,995 [INFO] vcham.lvc: Step 1700, Loss: 0.002447
+2025-06-10 16:06:08,121 [INFO] vcham.lvc: Step 1800, Loss: 0.002460
+2025-06-10 16:06:08,247 [INFO] vcham.lvc: Step 1900, Loss: 0.002443
+2025-06-10 16:06:08,377 [INFO] vcham.lvc: Step 2000, Loss: 0.002444
+2025-06-10 16:06:08,506 [INFO] vcham.lvc: Step 2100, Loss: 0.002476
+2025-06-10 16:06:08,637 [INFO] vcham.lvc: Step 2200, Loss: 0.002453
+2025-06-10 16:06:08,772 [INFO] vcham.lvc: Step 2300, Loss: 0.002443
+2025-06-10 16:06:08,901 [INFO] vcham.lvc: Step 2400, Loss: 0.002446
+2025-06-10 16:06:09,032 [INFO] vcham.lvc: Step 2500, Loss: 0.002447
+2025-06-10 16:06:09,164 [INFO] vcham.lvc: Step 2600, Loss: 0.002444
+2025-06-10 16:06:09,295 [INFO] vcham.lvc: Step 2700, Loss: 0.002452
+2025-06-10 16:06:09,428 [INFO] vcham.lvc: Step 2800, Loss: 0.002445
+2025-06-10 16:06:09,558 [INFO] vcham.lvc: Step 2900, Loss: 0.002486
+2025-06-10 16:06:09,687 [INFO] vcham.lvc: Step 3000, Loss: 0.002477
+2025-06-10 16:06:09,813 [INFO] vcham.lvc: Step 3100, Loss: 0.002445
+2025-06-10 16:06:09,939 [INFO] vcham.lvc: Step 3200, Loss: 0.002444
+2025-06-10 16:06:10,064 [INFO] vcham.lvc: Step 3300, Loss: 0.002443
+2025-06-10 16:06:10,188 [INFO] vcham.lvc: Step 3400, Loss: 0.002445
+2025-06-10 16:06:10,316 [INFO] vcham.lvc: Step 3500, Loss: 0.002443
+2025-06-10 16:06:10,450 [INFO] vcham.lvc: Step 3600, Loss: 0.002453
+2025-06-10 16:06:10,578 [INFO] vcham.lvc: Step 3700, Loss: 0.002449
+2025-06-10 16:06:10,707 [INFO] vcham.lvc: Step 3800, Loss: 0.002444
+2025-06-10 16:06:10,836 [INFO] vcham.lvc: Step 3900, Loss: 0.002448
+2025-06-10 16:06:10,963 [INFO] vcham.lvc: Step 4000, Loss: 0.002459
+2025-06-10 16:06:11,091 [INFO] vcham.lvc: Step 4100, Loss: 0.002449
+2025-06-10 16:06:11,219 [INFO] vcham.lvc: Step 4200, Loss: 0.002457
+2025-06-10 16:06:11,346 [INFO] vcham.lvc: Step 4300, Loss: 0.002478
+2025-06-10 16:06:11,476 [INFO] vcham.lvc: Step 4400, Loss: 0.002445
+2025-06-10 16:06:11,605 [INFO] vcham.lvc: Step 4500, Loss: 0.002443
+2025-06-10 16:06:11,733 [INFO] vcham.lvc: Step 4600, Loss: 0.002443
+2025-06-10 16:06:11,859 [INFO] vcham.lvc: Step 4700, Loss: 0.002455
+2025-06-10 16:06:11,985 [INFO] vcham.lvc: Step 4800, Loss: 0.002455
+2025-06-10 16:06:12,110 [INFO] vcham.lvc: Step 4900, Loss: 0.002468
+2025-06-10 16:06:12,617 [INFO] vcham.lvc: Final loss: 0.002452
+2025-06-10 16:06:12,617 [INFO] vcham.lvc: Optimization completed in 7.55 seconds.
+2025-06-10 16:06:12,621 [INFO] vcham.lvc: 
+
+----- Initializing LVC Hamiltonian Builder -----
+2025-06-10 16:06:12,623 [INFO] vcham.lvc: Normal mode: 7
+2025-06-10 16:06:12,634 [INFO] vcham.lvc: JT off-diagonal pairs: []
+2025-06-10 16:06:12,635 [INFO] vcham.lvc: n_var_list (non-JT): [2, 2, 2, 2, 2, 2, 2, 2, 2]
+2025-06-10 16:06:12,636 [INFO] vcham.lvc: Total parameters to optimize: 27
+2025-06-10 16:06:12,637 [INFO] vcham.lvc: Optimizing mode 7...
+2025-06-10 16:06:13,516 [INFO] vcham.lvc: Step 0, Loss: 0.000917
+2025-06-10 16:06:13,656 [INFO] vcham.lvc: Step 100, Loss: 0.000758
+2025-06-10 16:06:13,775 [INFO] vcham.lvc: Step 200, Loss: 0.000753
+2025-06-10 16:06:13,895 [INFO] vcham.lvc: Step 300, Loss: 0.000667
+2025-06-10 16:06:14,013 [INFO] vcham.lvc: Step 400, Loss: 0.000621
+2025-06-10 16:06:14,133 [INFO] vcham.lvc: Step 500, Loss: 0.000613
+2025-06-10 16:06:14,251 [INFO] vcham.lvc: Step 600, Loss: 0.000615
+2025-06-10 16:06:14,374 [INFO] vcham.lvc: Step 700, Loss: 0.000631
+2025-06-10 16:06:14,504 [INFO] vcham.lvc: Step 800, Loss: 0.000681
+2025-06-10 16:06:14,629 [INFO] vcham.lvc: Step 900, Loss: 0.000595
+2025-06-10 16:06:14,749 [INFO] vcham.lvc: Step 1000, Loss: 0.000595
+2025-06-10 16:06:14,869 [INFO] vcham.lvc: Step 1100, Loss: 0.000597
+2025-06-10 16:06:14,988 [INFO] vcham.lvc: Step 1200, Loss: 0.000596
+2025-06-10 16:06:15,107 [INFO] vcham.lvc: Step 1300, Loss: 0.000612
+2025-06-10 16:06:15,226 [INFO] vcham.lvc: Step 1400, Loss: 0.000600
+2025-06-10 16:06:15,346 [INFO] vcham.lvc: Step 1500, Loss: 0.000597
+2025-06-10 16:06:15,467 [INFO] vcham.lvc: Step 1600, Loss: 0.000601
+2025-06-10 16:06:15,589 [INFO] vcham.lvc: Step 1700, Loss: 0.000595
+2025-06-10 16:06:15,707 [INFO] vcham.lvc: Step 1800, Loss: 0.000605
+2025-06-10 16:06:15,827 [INFO] vcham.lvc: Step 1900, Loss: 0.000671
+2025-06-10 16:06:15,946 [INFO] vcham.lvc: Step 2000, Loss: 0.000594
+2025-06-10 16:06:16,064 [INFO] vcham.lvc: Step 2100, Loss: 0.000595
+2025-06-10 16:06:16,185 [INFO] vcham.lvc: Step 2200, Loss: 0.000624
+2025-06-10 16:06:16,392 [INFO] vcham.lvc: Step 2300, Loss: 0.000667
+2025-06-10 16:06:16,515 [INFO] vcham.lvc: Step 2400, Loss: 0.000595
+2025-06-10 16:06:16,635 [INFO] vcham.lvc: Step 2500, Loss: 0.000595
+2025-06-10 16:06:16,756 [INFO] vcham.lvc: Step 2600, Loss: 0.000605
+2025-06-10 16:06:16,874 [INFO] vcham.lvc: Step 2700, Loss: 0.000604
+2025-06-10 16:06:16,992 [INFO] vcham.lvc: Step 2800, Loss: 0.000595
+2025-06-10 16:06:17,111 [INFO] vcham.lvc: Step 2900, Loss: 0.000640
+2025-06-10 16:06:17,251 [INFO] vcham.lvc: Step 3000, Loss: 0.000627
+2025-06-10 16:06:17,372 [INFO] vcham.lvc: Step 3100, Loss: 0.000604
+2025-06-10 16:06:17,492 [INFO] vcham.lvc: Step 3200, Loss: 0.000609
+2025-06-10 16:06:17,611 [INFO] vcham.lvc: Step 3300, Loss: 0.000618
+2025-06-10 16:06:17,732 [INFO] vcham.lvc: Step 3400, Loss: 0.000594
+2025-06-10 16:06:17,852 [INFO] vcham.lvc: Step 3500, Loss: 0.000595
+2025-06-10 16:06:17,972 [INFO] vcham.lvc: Step 3600, Loss: 0.000625
+2025-06-10 16:06:18,091 [INFO] vcham.lvc: Step 3700, Loss: 0.000594
+2025-06-10 16:06:18,212 [INFO] vcham.lvc: Step 3800, Loss: 0.000605
+2025-06-10 16:06:18,332 [INFO] vcham.lvc: Step 3900, Loss: 0.000594
+2025-06-10 16:06:18,467 [INFO] vcham.lvc: Step 4000, Loss: 0.000595
+2025-06-10 16:06:18,598 [INFO] vcham.lvc: Step 4100, Loss: 0.000595
+2025-06-10 16:06:18,720 [INFO] vcham.lvc: Step 4200, Loss: 0.000605
+2025-06-10 16:06:18,841 [INFO] vcham.lvc: Step 4300, Loss: 0.000595
+2025-06-10 16:06:18,961 [INFO] vcham.lvc: Step 4400, Loss: 0.000616
+2025-06-10 16:06:19,081 [INFO] vcham.lvc: Step 4500, Loss: 0.000596
+2025-06-10 16:06:19,202 [INFO] vcham.lvc: Step 4600, Loss: 0.000597
+2025-06-10 16:06:19,323 [INFO] vcham.lvc: Step 4700, Loss: 0.000598
+2025-06-10 16:06:19,443 [INFO] vcham.lvc: Step 4800, Loss: 0.000607
+2025-06-10 16:06:19,564 [INFO] vcham.lvc: Step 4900, Loss: 0.000598
+2025-06-10 16:06:20,060 [INFO] vcham.lvc: Final loss: 0.000598
+2025-06-10 16:06:20,061 [INFO] vcham.lvc: Optimization completed in 7.05 seconds.
+2025-06-10 16:06:20,063 [INFO] vcham.lvc: 
+
+----- Initializing LVC Hamiltonian Builder -----
+2025-06-10 16:06:20,064 [INFO] vcham.lvc: Normal mode: 8
+2025-06-10 16:06:20,070 [INFO] vcham.lvc: JT off-diagonal pairs: []
+2025-06-10 16:06:20,070 [INFO] vcham.lvc: n_var_list (non-JT): [2, 2, 2, 2, 2, 2, 2, 2, 2]
+2025-06-10 16:06:20,071 [INFO] vcham.lvc: Total parameters to optimize: 35
+2025-06-10 16:06:20,072 [INFO] vcham.lvc: Optimizing mode 8...
+2025-06-10 16:06:20,751 [INFO] vcham.lvc: Step 0, Loss: 1.967639
+2025-06-10 16:06:20,866 [INFO] vcham.lvc: Step 100, Loss: 0.067601
+2025-06-10 16:06:20,971 [INFO] vcham.lvc: Step 200, Loss: 0.033888
+2025-06-10 16:06:21,074 [INFO] vcham.lvc: Step 300, Loss: 0.033542
+2025-06-10 16:06:21,178 [INFO] vcham.lvc: Step 400, Loss: 0.033542
+2025-06-10 16:06:21,280 [INFO] vcham.lvc: Step 500, Loss: 0.033542
+2025-06-10 16:06:21,384 [INFO] vcham.lvc: Step 600, Loss: 0.033552
+2025-06-10 16:06:21,486 [INFO] vcham.lvc: Step 700, Loss: 0.033543
+2025-06-10 16:06:21,584 [INFO] vcham.lvc: Step 800, Loss: 0.033546
+2025-06-10 16:06:21,686 [INFO] vcham.lvc: Step 900, Loss: 0.033544
+2025-06-10 16:06:21,788 [INFO] vcham.lvc: Step 1000, Loss: 0.033542
+2025-06-10 16:06:21,889 [INFO] vcham.lvc: Step 1100, Loss: 0.033555
+2025-06-10 16:06:21,984 [INFO] vcham.lvc: Step 1200, Loss: 0.033541
+2025-06-10 16:06:22,079 [INFO] vcham.lvc: Step 1300, Loss: 0.033542
+2025-06-10 16:06:22,174 [INFO] vcham.lvc: Step 1400, Loss: 0.033549
+2025-06-10 16:06:22,269 [INFO] vcham.lvc: Step 1500, Loss: 0.033543
+2025-06-10 16:06:22,364 [INFO] vcham.lvc: Step 1600, Loss: 0.033581
+2025-06-10 16:06:22,460 [INFO] vcham.lvc: Step 1700, Loss: 0.033547
+2025-06-10 16:06:22,557 [INFO] vcham.lvc: Step 1800, Loss: 0.033546
+2025-06-10 16:06:22,653 [INFO] vcham.lvc: Step 1900, Loss: 0.033542
+2025-06-10 16:06:22,749 [INFO] vcham.lvc: Step 2000, Loss: 0.033541
+2025-06-10 16:06:22,843 [INFO] vcham.lvc: Step 2100, Loss: 0.033541
+2025-06-10 16:06:22,937 [INFO] vcham.lvc: Step 2200, Loss: 0.033541
+2025-06-10 16:06:23,030 [INFO] vcham.lvc: Step 2300, Loss: 0.033542
+2025-06-10 16:06:23,123 [INFO] vcham.lvc: Step 2400, Loss: 0.033572
+2025-06-10 16:06:23,217 [INFO] vcham.lvc: Step 2500, Loss: 0.033545
+2025-06-10 16:06:23,316 [INFO] vcham.lvc: Step 2600, Loss: 0.033543
+2025-06-10 16:06:23,419 [INFO] vcham.lvc: Step 2700, Loss: 0.033567
+2025-06-10 16:06:23,520 [INFO] vcham.lvc: Step 2800, Loss: 0.033573
+2025-06-10 16:06:23,616 [INFO] vcham.lvc: Step 2900, Loss: 0.033553
+2025-06-10 16:06:23,709 [INFO] vcham.lvc: Step 3000, Loss: 0.033552
+2025-06-10 16:06:23,803 [INFO] vcham.lvc: Step 3100, Loss: 0.033564
+2025-06-10 16:06:23,898 [INFO] vcham.lvc: Step 3200, Loss: 0.033541
+2025-06-10 16:06:23,998 [INFO] vcham.lvc: Step 3300, Loss: 0.033545
+2025-06-10 16:06:24,102 [INFO] vcham.lvc: Step 3400, Loss: 0.033566
+2025-06-10 16:06:24,198 [INFO] vcham.lvc: Step 3500, Loss: 0.033547
+2025-06-10 16:06:24,293 [INFO] vcham.lvc: Step 3600, Loss: 0.033546
+2025-06-10 16:06:24,389 [INFO] vcham.lvc: Step 3700, Loss: 0.033542
+2025-06-10 16:06:24,517 [INFO] vcham.lvc: Step 3800, Loss: 0.033545
+2025-06-10 16:06:24,625 [INFO] vcham.lvc: Step 3900, Loss: 0.033548
+2025-06-10 16:06:24,724 [INFO] vcham.lvc: Step 4000, Loss: 0.033541
+2025-06-10 16:06:24,831 [INFO] vcham.lvc: Step 4100, Loss: 0.033545
+2025-06-10 16:06:24,937 [INFO] vcham.lvc: Step 4200, Loss: 0.033584
+2025-06-10 16:06:25,037 [INFO] vcham.lvc: Step 4300, Loss: 0.033543
+2025-06-10 16:06:25,133 [INFO] vcham.lvc: Step 4400, Loss: 0.033541
+2025-06-10 16:06:25,229 [INFO] vcham.lvc: Step 4500, Loss: 0.033541
+2025-06-10 16:06:25,323 [INFO] vcham.lvc: Step 4600, Loss: 0.033543
+2025-06-10 16:06:25,420 [INFO] vcham.lvc: Step 4700, Loss: 0.033542
+2025-06-10 16:06:25,516 [INFO] vcham.lvc: Step 4800, Loss: 0.033560
+2025-06-10 16:06:25,613 [INFO] vcham.lvc: Step 4900, Loss: 0.033549
+2025-06-10 16:06:26,087 [INFO] vcham.lvc: Final loss: 0.033550
+2025-06-10 16:06:26,088 [INFO] vcham.lvc: Optimization completed in 5.63 seconds.
+2025-06-10 16:06:26,091 [INFO] vcham.lvc: 
+
+----- Initializing LVC Hamiltonian Builder -----
+2025-06-10 16:06:26,092 [INFO] vcham.lvc: Normal mode: 9
+2025-06-10 16:06:26,096 [INFO] vcham.lvc: JT off-diagonal pairs: []
+2025-06-10 16:06:26,096 [INFO] vcham.lvc: n_var_list (non-JT): [3, 3, 3, 3, 3, 3, 3, 3, 3]
+2025-06-10 16:06:26,098 [INFO] vcham.lvc: Total parameters to optimize: 27
+2025-06-10 16:06:26,098 [INFO] vcham.lvc: Optimizing mode 9...
+2025-06-10 16:06:26,793 [INFO] vcham.lvc: Step 0, Loss: 0.078285
+2025-06-10 16:06:26,897 [INFO] vcham.lvc: Step 100, Loss: 0.042040
+2025-06-10 16:06:26,992 [INFO] vcham.lvc: Step 200, Loss: 0.041657
+2025-06-10 16:06:27,095 [INFO] vcham.lvc: Step 300, Loss: 0.041367
+2025-06-10 16:06:27,195 [INFO] vcham.lvc: Step 400, Loss: 0.041097
+2025-06-10 16:06:27,293 [INFO] vcham.lvc: Step 500, Loss: 0.040820
+2025-06-10 16:06:27,390 [INFO] vcham.lvc: Step 600, Loss: 0.040619
+2025-06-10 16:06:27,485 [INFO] vcham.lvc: Step 700, Loss: 0.040355
+2025-06-10 16:06:27,584 [INFO] vcham.lvc: Step 800, Loss: 0.040170
+2025-06-10 16:06:27,681 [INFO] vcham.lvc: Step 900, Loss: 0.039972
+2025-06-10 16:06:27,777 [INFO] vcham.lvc: Step 1000, Loss: 0.039791
+2025-06-10 16:06:27,872 [INFO] vcham.lvc: Step 1100, Loss: 0.039607
+2025-06-10 16:06:27,968 [INFO] vcham.lvc: Step 1200, Loss: 0.039473
+2025-06-10 16:06:28,065 [INFO] vcham.lvc: Step 1300, Loss: 0.039280
+2025-06-10 16:06:28,161 [INFO] vcham.lvc: Step 1400, Loss: 0.039123
+2025-06-10 16:06:28,257 [INFO] vcham.lvc: Step 1500, Loss: 0.039002
+2025-06-10 16:06:28,353 [INFO] vcham.lvc: Step 1600, Loss: 0.038851
+2025-06-10 16:06:28,450 [INFO] vcham.lvc: Step 1700, Loss: 0.038732
+2025-06-10 16:06:28,547 [INFO] vcham.lvc: Step 1800, Loss: 0.038394
+2025-06-10 16:06:28,643 [INFO] vcham.lvc: Step 1900, Loss: 0.038178
+2025-06-10 16:06:28,738 [INFO] vcham.lvc: Step 2000, Loss: 0.038072
+2025-06-10 16:06:28,833 [INFO] vcham.lvc: Step 2100, Loss: 0.037863
+2025-06-10 16:06:28,928 [INFO] vcham.lvc: Step 2200, Loss: 0.037710
+2025-06-10 16:06:29,023 [INFO] vcham.lvc: Step 2300, Loss: 0.037595
+2025-06-10 16:06:29,118 [INFO] vcham.lvc: Step 2400, Loss: 0.037462
+2025-06-10 16:06:29,212 [INFO] vcham.lvc: Step 2500, Loss: 0.037336
+2025-06-10 16:06:29,306 [INFO] vcham.lvc: Step 2600, Loss: 0.037236
+2025-06-10 16:06:29,407 [INFO] vcham.lvc: Step 2700, Loss: 0.037146
+2025-06-10 16:06:29,503 [INFO] vcham.lvc: Step 2800, Loss: 0.037019
+2025-06-10 16:06:29,598 [INFO] vcham.lvc: Step 2900, Loss: 0.036976
+2025-06-10 16:06:29,695 [INFO] vcham.lvc: Step 3000, Loss: 0.036835
+2025-06-10 16:06:29,793 [INFO] vcham.lvc: Step 3100, Loss: 0.036757
+2025-06-10 16:06:29,888 [INFO] vcham.lvc: Step 3200, Loss: 0.036675
+2025-06-10 16:06:29,986 [INFO] vcham.lvc: Step 3300, Loss: 0.036594
+2025-06-10 16:06:30,083 [INFO] vcham.lvc: Step 3400, Loss: 0.036907
+2025-06-10 16:06:30,180 [INFO] vcham.lvc: Step 3500, Loss: 0.036692
+2025-06-10 16:06:30,275 [INFO] vcham.lvc: Step 3600, Loss: 0.036553
+2025-06-10 16:06:30,372 [INFO] vcham.lvc: Step 3700, Loss: 0.036484
+2025-06-10 16:06:30,468 [INFO] vcham.lvc: Step 3800, Loss: 0.036386
+2025-06-10 16:06:30,565 [INFO] vcham.lvc: Step 3900, Loss: 0.036296
+2025-06-10 16:06:30,660 [INFO] vcham.lvc: Step 4000, Loss: 0.036204
+2025-06-10 16:06:30,757 [INFO] vcham.lvc: Step 4100, Loss: 0.036142
+2025-06-10 16:06:30,852 [INFO] vcham.lvc: Step 4200, Loss: 0.036037
+2025-06-10 16:06:30,948 [INFO] vcham.lvc: Step 4300, Loss: 0.035971
+2025-06-10 16:06:31,042 [INFO] vcham.lvc: Step 4400, Loss: 0.035910
+2025-06-10 16:06:31,137 [INFO] vcham.lvc: Step 4500, Loss: 0.035857
+2025-06-10 16:06:31,239 [INFO] vcham.lvc: Step 4600, Loss: 0.036284
+2025-06-10 16:06:31,336 [INFO] vcham.lvc: Step 4700, Loss: 0.035987
+2025-06-10 16:06:31,432 [INFO] vcham.lvc: Step 4800, Loss: 0.035696
+2025-06-10 16:06:31,550 [INFO] vcham.lvc: Step 4900, Loss: 0.035578
+2025-06-10 16:06:32,013 [INFO] vcham.lvc: Final loss: 0.035540
+2025-06-10 16:06:32,015 [INFO] vcham.lvc: Optimization completed in 5.55 seconds.
+2025-06-10 16:06:32,020 [INFO] vcham.lvc: 
+
+----- Initializing LVC Hamiltonian Builder -----
+2025-06-10 16:06:32,021 [INFO] vcham.lvc: Normal mode: 10
+2025-06-10 16:06:32,025 [INFO] vcham.lvc: JT off-diagonal pairs: []
+2025-06-10 16:06:32,026 [INFO] vcham.lvc: n_var_list (non-JT): [3, 3, 3, 3, 3, 3, 3, 3, 3]
+2025-06-10 16:06:32,027 [INFO] vcham.lvc: Total parameters to optimize: 27
+2025-06-10 16:06:32,028 [INFO] vcham.lvc: Optimizing mode 10...
+2025-06-10 16:06:32,665 [INFO] vcham.lvc: Step 0, Loss: 1.345729
+2025-06-10 16:06:32,755 [INFO] vcham.lvc: Step 100, Loss: 0.215390
+2025-06-10 16:06:32,840 [INFO] vcham.lvc: Step 200, Loss: 0.214201
+2025-06-10 16:06:32,924 [INFO] vcham.lvc: Step 300, Loss: 0.212989
+2025-06-10 16:06:33,007 [INFO] vcham.lvc: Step 400, Loss: 0.211851
+2025-06-10 16:06:33,091 [INFO] vcham.lvc: Step 500, Loss: 0.210632
+2025-06-10 16:06:33,175 [INFO] vcham.lvc: Step 600, Loss: 0.209469
+2025-06-10 16:06:33,259 [INFO] vcham.lvc: Step 700, Loss: 0.208311
+2025-06-10 16:06:33,340 [INFO] vcham.lvc: Step 800, Loss: 0.207167
+2025-06-10 16:06:33,425 [INFO] vcham.lvc: Step 900, Loss: 0.206078
+2025-06-10 16:06:33,509 [INFO] vcham.lvc: Step 1000, Loss: 0.206418
+2025-06-10 16:06:33,593 [INFO] vcham.lvc: Step 1100, Loss: 0.204341
+2025-06-10 16:06:33,678 [INFO] vcham.lvc: Step 1200, Loss: 0.203325
+2025-06-10 16:06:33,762 [INFO] vcham.lvc: Step 1300, Loss: 0.201918
+2025-06-10 16:06:33,845 [INFO] vcham.lvc: Step 1400, Loss: 0.199646
+2025-06-10 16:06:33,929 [INFO] vcham.lvc: Step 1500, Loss: 0.197376
+2025-06-10 16:06:34,011 [INFO] vcham.lvc: Step 1600, Loss: 0.195191
+2025-06-10 16:06:34,094 [INFO] vcham.lvc: Step 1700, Loss: 0.193236
+2025-06-10 16:06:34,177 [INFO] vcham.lvc: Step 1800, Loss: 0.191583
+2025-06-10 16:06:34,259 [INFO] vcham.lvc: Step 1900, Loss: 0.189220
+2025-06-10 16:06:34,343 [INFO] vcham.lvc: Step 2000, Loss: 0.187198
+2025-06-10 16:06:34,427 [INFO] vcham.lvc: Step 2100, Loss: 0.185138
+2025-06-10 16:06:34,510 [INFO] vcham.lvc: Step 2200, Loss: 0.182654
+2025-06-10 16:06:34,595 [INFO] vcham.lvc: Step 2300, Loss: 0.180169
+2025-06-10 16:06:34,677 [INFO] vcham.lvc: Step 2400, Loss: 0.177860
+2025-06-10 16:06:34,760 [INFO] vcham.lvc: Step 2500, Loss: 0.175348
+2025-06-10 16:06:34,842 [INFO] vcham.lvc: Step 2600, Loss: 0.173491
+2025-06-10 16:06:34,925 [INFO] vcham.lvc: Step 2700, Loss: 0.172517
+2025-06-10 16:06:35,007 [INFO] vcham.lvc: Step 2800, Loss: 0.171905
+2025-06-10 16:06:35,090 [INFO] vcham.lvc: Step 2900, Loss: 0.171440
+2025-06-10 16:06:35,172 [INFO] vcham.lvc: Step 3000, Loss: 0.170998
+2025-06-10 16:06:35,254 [INFO] vcham.lvc: Step 3100, Loss: 0.170587
+2025-06-10 16:06:35,337 [INFO] vcham.lvc: Step 3200, Loss: 0.170256
+2025-06-10 16:06:35,421 [INFO] vcham.lvc: Step 3300, Loss: 0.169948
+2025-06-10 16:06:35,504 [INFO] vcham.lvc: Step 3400, Loss: 0.169591
+2025-06-10 16:06:35,589 [INFO] vcham.lvc: Step 3500, Loss: 0.169303
+2025-06-10 16:06:35,671 [INFO] vcham.lvc: Step 3600, Loss: 0.169048
+2025-06-10 16:06:35,753 [INFO] vcham.lvc: Step 3700, Loss: 0.168812
+2025-06-10 16:06:35,834 [INFO] vcham.lvc: Step 3800, Loss: 0.169910
+2025-06-10 16:06:35,916 [INFO] vcham.lvc: Step 3900, Loss: 0.168434
+2025-06-10 16:06:35,998 [INFO] vcham.lvc: Step 4000, Loss: 0.168229
+2025-06-10 16:06:36,079 [INFO] vcham.lvc: Step 4100, Loss: 0.168055
+2025-06-10 16:06:36,160 [INFO] vcham.lvc: Step 4200, Loss: 0.167895
+2025-06-10 16:06:36,242 [INFO] vcham.lvc: Step 4300, Loss: 0.167743
+2025-06-10 16:06:36,324 [INFO] vcham.lvc: Step 4400, Loss: 0.167605
+2025-06-10 16:06:36,409 [INFO] vcham.lvc: Step 4500, Loss: 0.167474
+2025-06-10 16:06:36,500 [INFO] vcham.lvc: Step 4600, Loss: 0.167355
+2025-06-10 16:06:36,592 [INFO] vcham.lvc: Step 4700, Loss: 0.167245
+2025-06-10 16:06:36,678 [INFO] vcham.lvc: Step 4800, Loss: 0.167152
+2025-06-10 16:06:36,761 [INFO] vcham.lvc: Step 4900, Loss: 0.167036
+2025-06-10 16:06:37,202 [INFO] vcham.lvc: Final loss: 0.156260
+2025-06-10 16:06:37,203 [INFO] vcham.lvc: Optimization completed in 4.82 seconds.
+2025-06-10 16:06:37,206 [INFO] vcham.lvc: 
+
+----- Initializing LVC Hamiltonian Builder -----
+2025-06-10 16:06:37,206 [INFO] vcham.lvc: Normal mode: 11
+2025-06-10 16:06:37,211 [INFO] vcham.lvc: JT off-diagonal pairs: []
+2025-06-10 16:06:37,212 [INFO] vcham.lvc: n_var_list (non-JT): [2, 2, 2, 2, 2, 2, 2, 2, 2]
+2025-06-10 16:06:37,213 [INFO] vcham.lvc: Total parameters to optimize: 27
+2025-06-10 16:06:37,213 [INFO] vcham.lvc: Optimizing mode 11...
+2025-06-10 16:06:38,209 [INFO] vcham.lvc: Step 0, Loss: 0.004573
+2025-06-10 16:06:38,333 [INFO] vcham.lvc: Step 100, Loss: 0.004435
+2025-06-10 16:06:38,436 [INFO] vcham.lvc: Step 200, Loss: 0.004311
+2025-06-10 16:06:38,539 [INFO] vcham.lvc: Step 300, Loss: 0.004229
+2025-06-10 16:06:38,644 [INFO] vcham.lvc: Step 400, Loss: 0.004164
+2025-06-10 16:06:38,752 [INFO] vcham.lvc: Step 500, Loss: 0.004160
+2025-06-10 16:06:38,857 [INFO] vcham.lvc: Step 600, Loss: 0.004157
+2025-06-10 16:06:38,959 [INFO] vcham.lvc: Step 700, Loss: 0.004154
+2025-06-10 16:06:39,063 [INFO] vcham.lvc: Step 800, Loss: 0.004151
+2025-06-10 16:06:39,165 [INFO] vcham.lvc: Step 900, Loss: 0.004144
+2025-06-10 16:06:39,272 [INFO] vcham.lvc: Step 1000, Loss: 0.004139
+2025-06-10 16:06:39,396 [INFO] vcham.lvc: Step 1100, Loss: 0.004138
+2025-06-10 16:06:39,500 [INFO] vcham.lvc: Step 1200, Loss: 0.004138
+2025-06-10 16:06:39,603 [INFO] vcham.lvc: Step 1300, Loss: 0.004138
+2025-06-10 16:06:39,706 [INFO] vcham.lvc: Step 1400, Loss: 0.004138
+2025-06-10 16:06:39,812 [INFO] vcham.lvc: Step 1500, Loss: 0.004138
+2025-06-10 16:06:39,920 [INFO] vcham.lvc: Step 1600, Loss: 0.004137
+2025-06-10 16:06:40,024 [INFO] vcham.lvc: Step 1700, Loss: 0.004140
+2025-06-10 16:06:40,126 [INFO] vcham.lvc: Step 1800, Loss: 0.004136
+2025-06-10 16:06:40,229 [INFO] vcham.lvc: Step 1900, Loss: 0.004138
+2025-06-10 16:06:40,333 [INFO] vcham.lvc: Step 2000, Loss: 0.004138
+2025-06-10 16:06:40,441 [INFO] vcham.lvc: Step 2100, Loss: 0.004137
+2025-06-10 16:06:40,547 [INFO] vcham.lvc: Step 2200, Loss: 0.004137
+2025-06-10 16:06:40,650 [INFO] vcham.lvc: Step 2300, Loss: 0.004137
+2025-06-10 16:06:40,752 [INFO] vcham.lvc: Step 2400, Loss: 0.004137
+2025-06-10 16:06:40,854 [INFO] vcham.lvc: Step 2500, Loss: 0.004138
+2025-06-10 16:06:40,961 [INFO] vcham.lvc: Step 2600, Loss: 0.004138
+2025-06-10 16:06:41,069 [INFO] vcham.lvc: Step 2700, Loss: 0.004138
+2025-06-10 16:06:41,173 [INFO] vcham.lvc: Step 2800, Loss: 0.004138
+2025-06-10 16:06:41,275 [INFO] vcham.lvc: Step 2900, Loss: 0.004137
+2025-06-10 16:06:41,377 [INFO] vcham.lvc: Step 3000, Loss: 0.004139
+2025-06-10 16:06:41,484 [INFO] vcham.lvc: Step 3100, Loss: 0.004138
+2025-06-10 16:06:41,595 [INFO] vcham.lvc: Step 3200, Loss: 0.004141
+2025-06-10 16:06:41,702 [INFO] vcham.lvc: Step 3300, Loss: 0.004139
+2025-06-10 16:06:41,811 [INFO] vcham.lvc: Step 3400, Loss: 0.004138
+2025-06-10 16:06:41,918 [INFO] vcham.lvc: Step 3500, Loss: 0.004138
+2025-06-10 16:06:42,027 [INFO] vcham.lvc: Step 3600, Loss: 0.004138
+2025-06-10 16:06:42,134 [INFO] vcham.lvc: Step 3700, Loss: 0.004137
+2025-06-10 16:06:42,237 [INFO] vcham.lvc: Step 3800, Loss: 0.004143
+2025-06-10 16:06:42,340 [INFO] vcham.lvc: Step 3900, Loss: 0.004137
+2025-06-10 16:06:42,442 [INFO] vcham.lvc: Step 4000, Loss: 0.004138
+2025-06-10 16:06:42,543 [INFO] vcham.lvc: Step 4100, Loss: 0.004137
+2025-06-10 16:06:42,646 [INFO] vcham.lvc: Step 4200, Loss: 0.004137
+2025-06-10 16:06:42,749 [INFO] vcham.lvc: Step 4300, Loss: 0.004139
+2025-06-10 16:06:42,851 [INFO] vcham.lvc: Step 4400, Loss: 0.004138
+2025-06-10 16:06:42,953 [INFO] vcham.lvc: Step 4500, Loss: 0.004138
+2025-06-10 16:06:43,055 [INFO] vcham.lvc: Step 4600, Loss: 0.004139
+2025-06-10 16:06:43,157 [INFO] vcham.lvc: Step 4700, Loss: 0.004139
+2025-06-10 16:06:43,259 [INFO] vcham.lvc: Step 4800, Loss: 0.004137
+2025-06-10 16:06:43,361 [INFO] vcham.lvc: Step 4900, Loss: 0.004139
+2025-06-10 16:06:43,846 [INFO] vcham.lvc: Final loss: 0.004136
+2025-06-10 16:06:43,847 [INFO] vcham.lvc: Optimization completed in 6.25 seconds.
+2025-06-10 16:06:43,869 [INFO] vcham.vcham_system: Geometry is not centered. Centering...
+2025-06-10 16:06:43,870 [INFO] vcham.vcham_system: Reference geometry updated.
+2025-06-10 16:06:43,876 [INFO] vcham.vcham_system: Dipole matrix updated.
+2025-06-10 16:06:43,878 [INFO] vcham.vcham_system: Geometry is not centered. Centering...
+2025-06-10 16:06:43,878 [INFO] vcham.vcham_system: Reference geometry updated.
+2025-06-10 16:06:49,480 [INFO] vcham.vcham_system: Dipole matrix updated.
+2025-06-10 16:06:49,482 [INFO] vcham.vcham_system: Geometry is not centered. Centering...
+2025-06-10 16:06:49,483 [INFO] vcham.vcham_system: Reference geometry updated.
+2025-06-10 16:06:51,121 [INFO] vcham.utils: Warning: Overwriting existing file results/test.json
+2025-06-10 16:06:51,127 [INFO] vcham.utils: Data successfully saved to results/test.json
+2025-06-10 16:06:51,130 [INFO] vcham.utils: No interactions found.
+2025-06-10 16:06:51,131 [INFO] vcham.utils: MCTDH operator file successfully written to: results/test.op
+2025-06-10 16:07:06,833 [INFO] vcham.utils: Reading 2 JSON files and merging them.
+2025-06-10 16:07:06,834 [INFO] vcham.utils: Warning: Overwriting existing file results/merged.json
+2025-06-10 16:07:06,841 [INFO] vcham.utils: Data successfully saved to results/merged.json
+2025-06-10 16:07:06,845 [INFO] vcham.utils: Interactions found!
+2025-06-10 16:09:17,679 [INFO] vcham.utils: Reading 2 JSON files and merging them.
+2025-06-10 16:09:17,680 [INFO] vcham.utils: Warning: Overwriting existing file results/merged.json
+2025-06-10 16:09:17,688 [INFO] vcham.utils: Data successfully saved to results/merged.json
+2025-06-10 16:09:17,692 [INFO] vcham.utils: No interactions found.
+2025-06-10 16:09:17,693 [INFO] vcham.utils: MCTDH operator file successfully written to: results/merged.op

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LVC Module &mdash; pyVCHAM 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Optimization Diagonalization Module" href="opt_diag.html" />
+    <link rel="prev" title="Diabatic Functions Module" href="diabfunct.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> pyVCHAM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation Sections:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="constants.html">Constants Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="constants.html#id1">Constants Module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="couplingfunct.html">Coupling Functions Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="couplingfunct.html#coupling-calculations-module">Coupling Calculations Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="couplingfunct.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="couplingfunct.html#variables">Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="diabfunct.html">Diabatic Functions Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="diabfunct.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diabfunct.html#variables">Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LVC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opt_diag.html">Optimization Diagonalization Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="symm_vcham.html">Symmetry VCHAM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utils Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#core-modules">Core Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#utility-modules">Utility Modules</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyVCHAM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">Modules</a></li>
+      <li class="breadcrumb-item active">LVC Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/lvc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-lvc">
+<span id="lvc-module"></span><h1>LVC Module<a class="headerlink" href="#module-lvc" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="lvc.LVCHam">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lvc.</span></span><span class="sig-name descname"><span class="pre">LVCHam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">normal_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">VCSystem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funct_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nepochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lvc.html#LVCHam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lvc.LVCHam" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Builder and optimizer for an LVC Hamiltonian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>normal_mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – </p></li>
+<li><p><strong>VCSystem</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a>) – </p></li>
+<li><p><strong>funct_guess</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a><em>]</em>) – </p></li>
+<li><p><strong>nepochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="lvc.LVCHam.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">normal_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">VCSystem</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funct_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nepochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lvc.html#LVCHam.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lvc.LVCHam.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize LVCHam with references to the system and its parameters.</p>
+<dl class="simple">
+<dt>normal_mode<span class="classifier">int</span></dt><dd><p>The vibrational mode to process.</p>
+</dd>
+<dt>VCSystem<span class="classifier">object</span></dt><dd><p>The parent system containing parameters and data.</p>
+</dd>
+<dt>funct_guess<span class="classifier">optional</span></dt><dd><p>Initial guess parameters for the diabatic functions.</p>
+</dd>
+<dt>nepochs<span class="classifier">int, optional</span></dt><dd><p>Number of optimization epochs.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>normal_mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – </p></li>
+<li><p><strong>VCSystem</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a>) – </p></li>
+<li><p><strong>funct_guess</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><em>Any</em></a><em>]</em>) – </p></li>
+<li><p><strong>nepochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lvc.LVCHam.build_vcham_tensor">
+<span class="sig-name descname"><span class="pre">build_vcham_tensor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/lvc.html#LVCHam.build_vcham_tensor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lvc.LVCHam.build_vcham_tensor" title="Permalink to this definition"></a></dt>
+<dd><p>Assemble the final Hamiltonian tensor from diagonal and off-diagonal contributions.</p>
+<dl class="simple">
+<dt>tf.Tensor</dt><dd><p>The Hamiltonian eigenvalue tensor.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Tensor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lvc.LVCHam.create_jt_off_diag">
+<span class="sig-name descname"><span class="pre">create_jt_off_diag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jt_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lvc.html#LVCHam.create_jt_off_diag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lvc.LVCHam.create_jt_off_diag" title="Permalink to this definition"></a></dt>
+<dd><p>Identify JT-type off-diagonal terms (symmetry_mask == 2) and initialize JT parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>jt_guess</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lvc.LVCHam.initialize_loss_function">
+<span class="sig-name descname"><span class="pre">initialize_loss_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'huber'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lvc.html#LVCHam.initialize_loss_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lvc.LVCHam.initialize_loss_function" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize a TensorFlow loss function by name.</p>
+<dl class="simple">
+<dt>fn<span class="classifier">str, optional</span></dt><dd><p>Name of the loss function (default is ‘huber’).</p>
+</dd>
+<dt>kwargs :</dt><dd><p>Additional keyword arguments for the loss function.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fn</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lvc.LVCHam.initialize_params">
+<span class="sig-name descname"><span class="pre">initialize_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jt_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kappa_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lvc.html#LVCHam.initialize_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lvc.LVCHam.initialize_params" title="Permalink to this definition"></a></dt>
+<dd><p>Collect all TF Variables that will be optimized.</p>
+<p>This method should be called after the off-diagonal and on-diagonal
+parameters have been created.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lambda_guess</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – </p></li>
+<li><p><strong>jt_guess</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – </p></li>
+<li><p><strong>kappa_guess</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lvc.LVCHam.optimize">
+<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/lvc.html#LVCHam.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lvc.LVCHam.optimize" title="Permalink to this definition"></a></dt>
+<dd><p>Run gradient-based optimization for the specified number of epochs or
+until early stopping is triggered. If the current mode is marked inactive,
+build the final Hamiltonian tensor directly without optimization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lvc.LVCHam.plot_results">
+<span class="sig-name descname"><span class="pre">plot_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">final_tensor_np</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_history</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lvc.html#LVCHam.plot_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lvc.LVCHam.plot_results" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the final eigenvalues vs. reference data and the loss evolution.</p>
+<dl class="simple">
+<dt>final_tensor_np<span class="classifier">np.ndarray</span></dt><dd><p>The final Hamiltonian eigenvalues.</p>
+</dd>
+<dt>loss_history<span class="classifier">list of float</span></dt><dd><p>The loss evolution during optimization.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>final_tensor_np</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>ndarray</em></a>) – </p></li>
+<li><p><strong>loss_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><em>List</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lvc.LVCHam.train_step">
+<span class="sig-name descname"><span class="pre">train_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/lvc.html#LVCHam.train_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lvc.LVCHam.train_step" title="Permalink to this definition"></a></dt>
+<dd><p>A single training step: compute loss, gradients, and update parameters.</p>
+<dl class="simple">
+<dt>tf.Tensor</dt><dd><p>The computed loss value.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Tensor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="diabfunct.html" class="btn btn-neutral float-left" title="Diabatic Functions Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="opt_diag.html" class="btn btn-neutral float-right" title="Optimization Diagonalization Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

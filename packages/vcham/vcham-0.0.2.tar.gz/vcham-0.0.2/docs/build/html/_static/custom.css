@@ -1,0 +1,13 @@
+/* custom.css */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.rst-content h1, .rst-content h2, .rst-content h3 {
+    color: #003399; /* Custom color for headers */
+}
+
+.rst-content {
+    line-height: 1.6; /* Increase line height for better readability */
+}
+
