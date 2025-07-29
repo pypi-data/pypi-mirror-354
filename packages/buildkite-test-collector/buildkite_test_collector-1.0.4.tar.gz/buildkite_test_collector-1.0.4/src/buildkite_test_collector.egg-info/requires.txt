@@ -1,0 +1,10 @@
+requests>=2
+pytest>=7
+filelock>=3
+
+[dev]
+mock>=4
+check-manifest
+twine
+responses
+pylint
