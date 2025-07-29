@@ -1,0 +1,12 @@
+python-crfsuite>=0.7
+probableparsing
+doublemetaphone
+
+[dev]
+pytest
+black
+isort
+mypy
+flake8
+parserator
+pre-commit
