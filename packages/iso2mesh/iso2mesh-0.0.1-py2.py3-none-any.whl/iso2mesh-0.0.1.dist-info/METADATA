@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: iso2mesh
+Version: 0.0.1
+Summary: Image-based 3D Surface and Volumetric Mesh Generator
+Home-page: https://github.com/NeuroJSON/pyiso2mesh
+Author: Qianqian Fang
+Author-email: fangqq@gmail.com
+Maintainer: Qianqian Fang
+License: GPLv3+
+Keywords: JSON,iso2mesh,UBJSON,Biso2mesh,Openiso2mesh,NeuroJSON,JNIfTI,JMesh,Encoder,Decoder
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy >=1.8.0
+
+# pyiso2mesh
+Iso2Mesh for Python
