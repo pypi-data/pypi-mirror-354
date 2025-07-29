@@ -1,0 +1,6 @@
+[run]
+branch = true
+omit =
+    tests/*
+    pdslogger/_finder_colors.py
+    pdslogger/_version.py
