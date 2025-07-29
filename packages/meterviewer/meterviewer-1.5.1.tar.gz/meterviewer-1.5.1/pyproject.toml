@@ -1,0 +1,58 @@
+[project]
+name = "meterviewer"
+dynamic = []
+description = "Process meter-formatted dataset."
+authors = [
+    { name = "svtter", email = "svtter@qq.com" },
+]
+dependencies = [
+    "matplotlib>=3.8.4",
+    "numpy>=1.26.4",
+    "pandas>=2.2.2",
+    "pillow>=10.3.0",
+    "toml>=0.10.2",
+    "opencv-python>=4.9.0.80",
+    "sqlalchemy>=2.0.30",
+    "alembic>=1.13.1",
+    "tqdm>=4.66.4",
+    "loguru>=0.7.2",
+    "pydantic>=2.10.6",
+]
+requires-python = ">=3.9,<4.0"
+readme = "README.md"
+version = "1.5.1"
+
+[project.license]
+text = "MIT"
+
+[tool.ruff]
+line-length = 88
+indent-width = 2
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.version]
+source = "file"
+path = "./src/meterviewer/__init__.py"
+
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
+
+[dependency-groups]
+dev = [
+    "devpk>=0.2.1",
+    "fastui>=0.6.0",
+    "jupyterlab>=4.4.3",
+    "nicegui>=1.4.25",
+    "pandoc>=2.3",
+    "pytest>=8.2.0",
+    "ruff>=0.4.4",
+    "streamlit>=1.35.0",
+]
+docs = [
+    "sphinx-rtd-theme>=3.0.2",
+]
