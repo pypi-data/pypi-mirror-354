@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: ppxgboost
+Version: 0.0.2
+Requires-Python: >=3.7
+License-File: LICENSE
+License-File: NOTICE
+Requires-Dist: numpy<2.0.0,>=1.22.0
+Requires-Dist: pandas==1.5.3
+Requires-Dist: phe==1.5.0
+Requires-Dist: xgboost>=1.6.2
+Requires-Dist: pytest==7.2.1
+Requires-Dist: pyope==0.2.2
+Dynamic: license-file
