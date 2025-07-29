@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "make-slice"
+version = "0.4.0"
+description = "Creates slice objects with clean syntax."
+authors = ["pl <0x00.pl@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "make_slice" }]
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
+pytest-cov = "^6.1.1"
+twine = "^6.1.0"
+mdformat = "^0.7.22"
+pre-commit = "^4.2.0"
+ruff = "^0.11.13"
+mkdocs = "^1.6.1"
+mkdocs-material = "^9.6.14"
+mkdocstrings-python = "^1.16.12"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "E501", # 行过长 - 由格式化处理
+    "D203", # 类文档字符串前需要空行
+    "D212", # 多行文档字符串应首行开始
+    "S101", # 不需要使用 assert
+]
+
+[tool.ruff.lint.per-file-ignores]
+"make_slice/__init__.py" = ["F401"]  # 忽略未使用的导入
+"tests/*" = ["S101"]  # 忽略测试文件中的 assert
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
