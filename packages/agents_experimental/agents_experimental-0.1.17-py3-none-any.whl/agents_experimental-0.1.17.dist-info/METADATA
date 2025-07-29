@@ -1,0 +1,197 @@
+Metadata-Version: 2.4
+Name: agents_experimental
+Version: 0.1.17
+Summary: Experimental SDK for interacting with Atlas AI agents
+Author-email: Kelvin  Sundli <kelvin.sundli@gmail.com>
+Requires-Python: >=3.8
+Requires-Dist: cognite-sdk>=6.0.0
+Requires-Dist: griffe>=1.4.0
+Requires-Dist: pydantic>=2.7.0
+Description-Content-Type: text/markdown
+
+# Experimental agents SDK
+> :warning: **Warning**: This is an untested experimental SDK. Breaking changes will happen regularly without notice. No guarantees for stability!
+
+A Python SDK for interacting with Atlas AI agents.
+
+## Installation
+
+```bash
+pip install agents_experimental
+```
+
+## Usage
+
+### Authentication
+
+First, authenticate with Cognite Data Fusion using the CogniteClient:
+
+```python
+from cognite.client import CogniteClient
+from agents_experimental import AIClient
+
+# Create a CogniteClient with your preferred authentication method
+# See https://cognite-sdk-python.readthedocs-hosted.com/en/latest/cognite.html#authentication
+client = CogniteClient() 
+
+# Create an AIClient using the CogniteClient
+ai = AIClient(client)
+```
+
+### Agents
+
+#### List Agents
+
+```python
+# List agents
+agents = ai.agents.list()
+for agent in agents:
+    # repr provides a concise overview including external ID, name, model, tools, owner
+    print(repr(agent))
+```
+
+#### Create or Update an Agent
+
+Define the agent's properties using the `AgentDefinition` dataclass and the specific tool dataclasses.
+
+```python
+from agents_experimental.data_classes import (
+    AgentDefinition,
+    DataModelReference, 
+    QueryKnowledgeGraphTool,
+    QueryKnowledgeGraphToolConfiguration,
+    AskDocumentTool,
+    SummarizeDocumentTool,
+    QueryTimeSeriesDatapointsTool
+)
+
+# 1. Define configuration for tools that require it (e.g., QueryKnowledgeGraphTool)
+data_model_ref = DataModelReference(
+    space="cdf_cdm",
+    external_id="CogniteCore",
+    version="v1",
+    view_external_ids=["CogniteAsset"]
+)
+query_config = QueryKnowledgeGraphToolConfiguration(data_models=[data_model_ref])
+
+# 2. Define the Agent
+agent_def = AgentDefinition(
+    external_id="my-sdk-agent",
+    name="My SDK Agent",
+    description="An agent demonstrating SDK usage with multiple tools.",
+    instructions="You are an assistant that can query the knowledge graph, ask about documents, summarize documents, and query time series.",
+    model="azure/gpt-4o",
+    tools=[
+        QueryKnowledgeGraphTool(
+            name="data_model_query_tool",
+            description="Use this tool to query the knowledge graph.",
+            configuration=query_config
+        ),
+        AskDocumentTool(
+            name="document_ask_tool",
+            description="Use this tool to answer questions based on documents."
+        ),
+        SummarizeDocumentTool(
+            name="document_summary_tool",
+            description="Use this tool to summarize documents."
+        ),
+        QueryTimeSeriesDatapointsTool(
+            name="timeseries_query_tool",
+            description="Use this tool to fetch time series datapoints."
+        )
+    ]
+)
+
+# 3. Create or update the agent
+agent = ai.agents.create(agent_def)
+print(f"Created/updated agent: {repr(agent)}")
+```
+
+#### Retrieve an Agent
+
+Retrieve a specific agent by its external ID.
+
+```python
+# Retrieve an agent by external ID
+agent = ai.agents.retrieve(external_id="my-sdk-agent")
+print(f"Retrieved agent: {repr(agent)}")
+print(f"Agent Instructions: {agent.instructions}")
+print(f"Agent Tools: {agent.tools}")
+```
+
+#### Delete an Agent
+
+```python
+# Delete an agent by external ID
+ai.agents.delete(external_id="my-sdk-agent")
+print("Agent deleted successfully.")
+```
+
+#### Chat with an Agent
+
+Start a session and interact with the agent.
+
+```python
+# Retrieve an agent first
+agent = ai.agents.retrieve(external_id="my-sdk-agent")
+
+# Start a chat session with the agent
+session = agent.start_session()
+
+# Chat with the agent
+print("\nUser: Hi, tell me about your capabilities.")
+response = session.chat(message="Hi, tell me about your capabilities.")
+
+if response:
+    # Access the agent's response message text
+    print(f"\nAgent: {response.message}")
+
+    # Print reasoning steps (if any)
+    if response.reasoning:
+        print(f"\nReasoning ({len(response.reasoning)}):")
+        for step in response.reasoning:
+            reasoning_text = ' '.join([content.text for content in step.content if content.text])
+            print(f"  - {reasoning_text}")
+
+    # Print data (if any)
+    if response.data:
+        print(f"\nData ({len(response.data)}):")
+        for item in response.data:
+            print(f"  - Type: {item.type}, Instances: {item.instances}")
+
+# Continue the conversation
+print("\nUser: Thanks!")
+response = session.chat(message="Thanks!")
+if response:
+    print(f"\nAgent: {response.message}")
+```
+
+#### Function tools
+
+You can expose Python functions as tools for an agent using the `@function_tool` decorator.
+
+```python
+from agents_experimental.tools import function_tool
+
+@function_tool
+def add(a: int, b: int) -> int:
+  """Calculates the sum of two integers.
+
+  Args:
+    a: The first integer.
+    b: The second integer.
+
+  Returns:
+    The sum of a and b.
+  """
+  return a + b
+
+session = agent.start_session(tools=[add])
+# Passing tools automatically enables the internal chat endpoint
+```
+
+The decorator automatically derives a JSON schema from the function's type hints and registers the tool with the session. When the agent calls the tool, the function is executed locally and the result is returned to the agent.
+
+For debugging, `AgentSession` stores each raw API response in `session.raw_responses`.
+
+See `examples/function_tool_example.py` for a full script.
