@@ -1,0 +1,21 @@
+syntax: glob
+vxi11_scan.c
+cPyUSBTMC.c
+usbtmc/*
+build
+dist
+build/*
+dist/*
+#*
+*/#*
+*~
+~.*
+._*
+*.pyc
+*.pyo
+*$py.class
+*.class
+*,v
+*.dSYM
+*.gz
+*.key

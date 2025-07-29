@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools >= 77.0.3", "cython >=3.1.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PyUSBTMC"
+#version ="0.2.dev2"
+dynamic = ["version"]
+authors = [
+  { name="Noboru Yamamoto, KEK, JAPAN", email="Noboru.YAMAMOTO@kek.jp"},
+]
+description = "Python module to control USBTMC/USB488 from python/cython"
+readme = "README.rst"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.12",
+    'Topic :: Scientific/Engineering :: Interface Engine/Protocol Translator',
+    "Programming Language :: Python :: Implementation :: CPython",
+    #"License :: OSI Approved :: MIT License",
+    "Operating System :: Unix",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+dependencies = ["pyusb"]
+
+[project.urls]
+Homepage = "http://www-acc.kek.jp/EPICS_Gr/products/"
+#Issues = ""
+#Source = ""

@@ -1,0 +1,8 @@
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0400", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0590", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="05ff", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0699", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0957", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0aad", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0b21", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0ce9", TAG+="uaccess"
