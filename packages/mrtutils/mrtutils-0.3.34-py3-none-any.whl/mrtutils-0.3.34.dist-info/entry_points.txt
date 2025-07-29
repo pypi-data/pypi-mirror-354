@@ -1,0 +1,11 @@
+[console_scripts]
+mrt-ble = mrtutils.mrt_ble:main
+mrt-config = mrtutils.mrt_config:main
+mrt-config-gui = mrtutils.mrt_config_gui:main
+mrt-device = mrtutils.mrt_device:main
+mrt-doc = mrtutils.mrt_doc:main
+mrt-gen = mrtutils.mrt_gen:main
+mrt-version = mrtutils.mrt_version:main
+
+[sphinx.extension]
+register = mrtutils.sphinx.registerDirective:RegisterDirective
