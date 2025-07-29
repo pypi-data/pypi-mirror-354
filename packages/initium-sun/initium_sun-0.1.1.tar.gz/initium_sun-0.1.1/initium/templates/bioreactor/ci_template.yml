@@ -1,0 +1,41 @@
+# Festo Bioreactor CI Pipeline
+image: python:3.10
+
+stages:
+  - setup
+  - test
+  - simulate
+  - visualize
+
+# Install dependencies
+dependency_install:
+  stage: setup
+  script:
+    - pip install -r requirements.txt
+
+# Run unit tests
+run_tests:
+  stage: test
+  script:
+    - pytest tests/
+  artifacts:
+    paths:
+      - simulation_outputs/
+      - simulation_results/
+
+# Run simulation
+run_simulation:
+  stage: simulate
+  script:
+    - python simulation/main.py --config production.yml
+
+# Generate visualization
+build_dashboard:
+  stage: visualize
+  script:
+    - python visualization/dashboard.py --build
+  dependencies:
+    - run_simulation
+  artifacts:
+    paths:
+      - dashboard//

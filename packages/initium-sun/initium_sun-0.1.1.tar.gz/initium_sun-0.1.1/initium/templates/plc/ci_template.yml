@@ -1,0 +1,16 @@
+# Festo PLC Pipeline
+stages:
+  - validate
+  - test
+
+festo_lint:
+  stage: validate
+  script:
+    - echo "Running Festo PLC Linter..."
+    # Placeholder for actual commands
+
+hardware_test:
+  stage: test
+  tags: [festo_plc]
+  script:
+    - echo "Starting CPX Simulation..."
