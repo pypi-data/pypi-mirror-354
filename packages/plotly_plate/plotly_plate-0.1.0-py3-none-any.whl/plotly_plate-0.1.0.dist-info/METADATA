@@ -1,0 +1,16 @@
+Metadata-Version: 2.3
+Name: plotly_plate
+Version: 0.1.0
+Summary: A tool for plotting laboratory microplates with plotly
+License: MIT
+Author: Griffin White
+Author-email: griffin@gwc-solutions.ch
+Requires-Python: >=3.10,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: pandas (>=2.1.0)
+Requires-Dist: plotly (>=4.14.3)
