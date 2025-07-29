@@ -1,0 +1,7 @@
+include README.md
+include LICENSE
+recursive-include sshplex *.py
+recursive-include sshplex *.yaml
+recursive-include sshplex *.yml
+recursive-exclude sshplex __pycache__
+recursive-exclude sshplex *.pyc
