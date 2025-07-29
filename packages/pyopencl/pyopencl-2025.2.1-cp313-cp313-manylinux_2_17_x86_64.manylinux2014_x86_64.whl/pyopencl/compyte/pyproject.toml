@@ -1,0 +1,34 @@
+[tool.ruff]
+preview = true
+
+[tool.ruff.lint]
+extend-select = [
+    "B",   # flake8-bugbear
+    "C",   # flake8-comprehensions
+    "E",   # pycodestyle
+    "F",   # pyflakes
+    "I",   # flake8-isort
+    "N",   # pep8-naming
+    "NPY", # numpy
+    "Q",   # flake8-quotes
+    "RUF", # ruff
+    "UP",  # pyupgrade
+    "W",   # pycodestyle
+]
+extend-ignore = [
+    "C90",  # McCabe complexity
+    "E402", # module level import not at the top of file
+    "E226", # missing whitespace around operator
+]
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+inline-quotes = "double"
+multiline-quotes = "double"
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+known-first-party = [
+    "pytools",
+]
+lines-after-imports = 2
