@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pystray-freedesktop"
+version = "0.19.6a1"
+description = "A library to create system tray icons with freedesktop support (temporary fork)."
+readme = "README.md"
+requires-python = ">=3.6"
+license = {text = "LGPL-3.0-or-later"}
+authors = [
+  {name = "Moses Palmér", email = "moses.palmer@gmail.com"},
+  {name = "Sebastian Silva", email = "sebastian@fuentelibre.org"}
+]
+maintainers = [
+  {name = "Sebastian Silva", email = "sebastian@fuentelibre.org"}
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows :: Windows NT/2000",
+    "Operating System :: POSIX",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+
+dependencies = [
+    "Pillow",
+    "six"
+]
+
+[project.urls]
+Homepage = "https://gtk-llm-chat.fuentelibre.org/"
+Repository = "https://github.com/fuentelibre/gtk-llm-chat"
+"Bug Reports" = "https://github.com/fuentelibre/gtk-llm-chat/issues"
