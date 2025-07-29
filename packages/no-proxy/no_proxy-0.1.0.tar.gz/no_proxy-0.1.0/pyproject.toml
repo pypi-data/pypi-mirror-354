@@ -1,0 +1,20 @@
+[project]
+name = "no-proxy"
+version = "0.1.0"
+authors = [
+    { name = "Pascal Bachor", email = "no-proxy.overtone042@passinbox.com" },
+]
+license = "MIT"
+maintainers = [
+    { name = "Pascal Bachor", email = "no-proxy.overtone042@passinbox.com" },
+]
+description = "Add your description here"
+keywords = ["proxy", "no_proxy", "NO_PROXY"]
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.9"
+
+[project.urls]
+source = "https://github.com/bachorp/no-proxy"
+changelog = "https://github.com/bachorp/no-proxy/blob/HEAD/CHANGELOG.md"
+documentation = "https://github.com/bachorp/no-proxy/#no-proxy"
+issues = "https://github.com/bachorp/no-proxy/issues"
