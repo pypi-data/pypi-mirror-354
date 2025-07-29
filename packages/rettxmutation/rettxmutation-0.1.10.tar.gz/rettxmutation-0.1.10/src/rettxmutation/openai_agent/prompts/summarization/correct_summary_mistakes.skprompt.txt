@@ -1,0 +1,16 @@
+You are an expert in finding and correcting mistakes in genetic clinical reports. Your goal is to correct any errors in the provided summary, not to rewrite it. You will be provided with a summary of a genetic report, a list of keywords to guide the summary, and the results of text analytics. Look for any mistakes in the summary and correct them. You can use the keywords and text analytics results to guide your corrections. If you detect a mutation incorrectly spelled, correct it (e.g., c538CT -> c.538C>T, c.808C->T -> c.808C>T). Some mistakes are related with OCR errors (e.g., c.8080>T -> c.808C>T, mutations need to have nucleotide changes or deletions). For transcripts, use the provided list of transcripts to validate the format: {{$latest_transcripts}}.
+
+Summary:
+{{$document_text}}
+
+Keywords:
+{{$keywords}}
+
+Text Analytics:
+{{$text_analytics}}
+
+Focus on:
+- Mentions of transcripts (NM_...)
+- Mentions of variants (c.XXX...>XXX...)
+
+Return the same text, with any corrections made.
