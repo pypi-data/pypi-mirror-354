@@ -1,0 +1,21 @@
+# autofeedback2pr
+
+This is a python package which can integrate in the workflow to use Claude API to evalute the difficulty of the feedback. 
+
+## Installation
+
+```bash
+pip install .
+```
+
+## How to use it
+
+```python
+import autofeedback2pr
+
+autofeedback2pr.config(api_key="YOUR_CLAUDE_KEY")
+result = autofeedback2pr.grade_feedback("The button does not work on mobile.", lang="en")
+print(result)
+```
+
+- Claude API Key can be used from `autofeedback2pr.config(api_key=...)` or set in as env variable `CLAUDE_API_KEY`。 
