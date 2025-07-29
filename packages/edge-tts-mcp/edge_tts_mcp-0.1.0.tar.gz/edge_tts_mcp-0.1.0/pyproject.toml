@@ -1,0 +1,15 @@
+[project]
+name = "edge-tts-mcp"
+version = "0.1.0"
+description = "A Text-to-Speech (TTS) service based on Model Context Protocol (MCP), using Microsoft Edge TTS engine"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp[cli]>=1.9.3",
+    "edge-tts==7.0.2",
+    "nest-asyncio==1.6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/eraincc/edge-tts-mcp"
+Issues = "https://github.com/eraincc/edge-tts-mcp/issues"
