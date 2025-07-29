@@ -1,0 +1,315 @@
+import dataclasses
+import json
+import threading
+from copy import deepcopy
+from time import sleep
+from typing import Union, List, Dict, Any, Optional
+
+from ovos_bus_client.message import Message
+from ovos_bus_client.session import SessionManager, Session
+from ovos_bus_client.util.scheduler import EventScheduler
+from ovos_core.intent_services import IntentService
+from ovos_core.skill_manager import SkillManager
+from ovos_plugin_manager.skills import find_skill_plugins
+from ovos_utils.fakebus import FakeBus
+from ovos_utils.log import LOG
+from ovos_utils.process_utils import ProcessState
+
+SerializedMessage = Dict[str, Union[str, Dict[str, Any]]]
+SerializedTest = Dict[str, Union[str, bool, List[str], SerializedMessage]]
+
+DEFAULT_IGNORED = ["ovos.skills.settings_changed"]
+DEFAULT_EOF = ["ovos.utterance.handled"]
+DEFAULT_FLIP_POINTS = ["recognizer_loop:utterance"]
+
+
+class MiniCroft(SkillManager):
+    def __init__(self, skill_ids, *args, **kwargs):
+        bus = FakeBus()
+        super().__init__(bus, *args, **kwargs)
+        self.skill_ids = skill_ids
+        self.intent_service = IntentService(self.bus)
+        self.scheduler = EventScheduler(bus, schedule_file="/tmp/schetest.json")
+
+    def load_metadata_transformers(self, cfg):
+        self.intent_service.metadata_plugins.config = cfg
+        self.intent_service.metadata_plugins.load_plugins()
+
+    def load_plugin_skills(self):
+        LOG.info("loading skill plugins")
+        plugins = find_skill_plugins()
+        for skill_id, plug in plugins.items():
+            if skill_id not in self.skill_ids:
+                continue
+            if skill_id not in self.plugin_skills:
+                self._load_plugin_skill(skill_id, plug)
+
+    def run(self):
+        """Load skills and mark core as ready to start tests"""
+        self.status.set_alive()
+        self.load_plugin_skills()
+        self.status.set_ready()
+        LOG.info("Skills all loaded!")
+
+    def stop(self):
+        super().stop()
+        self.scheduler.shutdown()
+
+
+def get_minicroft(skill_ids: Union[List[str], str]):
+    if isinstance(skill_ids, str):
+        skill_ids = [skill_ids]
+    assert isinstance(skill_ids, list)
+    croft1 = MiniCroft(skill_ids)
+    croft1.start()
+    while croft1.status.state != ProcessState.READY:
+        sleep(0.2)
+    return croft1
+
+
+
+@dataclasses.dataclass()
+class CaptureSession:
+    minicroft: MiniCroft
+    responses: List[Message] = dataclasses.field(default_factory=list)
+    ignore_messages: List[str] = dataclasses.field(default_factory=lambda: DEFAULT_IGNORED)
+    done: threading.Event = dataclasses.field(default_factory=lambda: threading.Event())
+
+    def __post_init__(self):
+
+        def handle_message(msg: str):
+            if self.done.is_set():
+                return
+            msg = Message.deserialize(msg)
+            if msg.msg_type not in self.ignore_messages:
+                self.responses.append(msg)
+
+        self.minicroft.bus.on("message", handle_message)
+
+    def capture(self, source_message: Message, eof_msgs: List[str], timeout=20):
+
+        test_message = deepcopy(source_message)  # ensure object not mutated by ovos-core
+
+        def handle_end_of_test(msg: Message):
+            self.done.set()
+
+        for m in eof_msgs:
+            self.minicroft.bus.on(m, handle_end_of_test)
+
+        self.done.clear()
+        self.minicroft.bus.emit(test_message)
+        self.done.wait(timeout)
+
+    def finish(self) -> List[Message]:
+        self.done.set()
+        self.minicroft.stop()
+        return self.responses
+
+
+@dataclasses.dataclass()
+class End2EndTest:
+    skill_ids: List[str]  # skill_ids to load during the test
+    source_message: Union[Message, List[Message]]  # to be emitted, sequentially if a list
+    expected_messages: List[Message]  # tests are performed against message list
+    ignore_messages: List[str] = dataclasses.field(default_factory=lambda: DEFAULT_IGNORED)
+
+    # if received, end message capture
+    eof_msgs: List[str] = dataclasses.field(default_factory=lambda: DEFAULT_EOF)
+
+    # messages after which source and destination flip in the message.context
+    flip_points: List[str] = dataclasses.field(default_factory=lambda: DEFAULT_FLIP_POINTS)
+
+    # test assertions to run
+    test_session_lang: bool = True
+    test_session_pipeline: bool = True
+    test_msg_type: bool = True
+    test_msg_data: bool = True
+    test_msg_context: bool = True
+    test_routing: bool = True
+
+
+    def __post_init__(self):
+        # standardize to be a list
+        if isinstance(self.source_message, Message):
+            self.source_message = [self.source_message]
+
+    def execute(self, timeout=30):
+        # track initial source/destination for use in routing tests
+        e_src = self.source_message[0].context.get("source")
+        e_dst = self.source_message[0].context.get("destination")
+
+        # the capture session will store all messages until capture.finish()
+        #  even if multiple messages are emitted
+        capture = CaptureSession(get_minicroft(self.skill_ids),
+                                 ignore_messages=self.ignore_messages)
+        for source_message in self.source_message:
+            capture.capture(source_message, self.eof_msgs, timeout)
+
+        # final message list
+        messages = capture.finish()
+        for expected, received in zip(self.expected_messages, messages):
+            try:
+                if expected.msg_type in self.flip_points:
+                    e_src = expected.context.get("source")
+                    e_dst = expected.context.get("destination")
+                sess_e = SessionManager.get(expected) if "session" in expected.context else None
+                sess_r = SessionManager.get(received) if "session" in received.context else None
+                if self.test_msg_type:
+                    assert expected.msg_type == received.msg_type
+                if self.test_msg_data:
+                    for k, v in expected.data.items():
+                        assert received.data[k] == v
+                if self.test_msg_context:
+                    for k, v in expected.context.items():
+                        assert received.context[k] == v
+                if self.test_routing:
+                    r_src = received.context.get("source")
+                    r_dst = received.context.get("destination")
+                    assert e_src == r_src
+                    assert e_dst == r_dst
+                    if expected.msg_type in self.flip_points:
+                        e_src, e_dst = e_dst, e_src
+
+                if sess_e and sess_r:
+                    if self.test_session_lang:
+                        assert sess_e.lang == sess_r.lang
+                    if self.test_session_pipeline:
+                        assert sess_e.pipeline == sess_r.pipeline
+            except Exception as e:
+                print(f"Expected message: {expected.serialize()}")
+                print(f"Received message: {received.serialize()}")
+                raise
+
+    @staticmethod
+    def anonymize_message(message: Message) -> Message:
+        msg = Message(message.msg_type, message.data, message.context)
+        sess = SessionManager.get(message)
+        sess.location_preferences = {
+            "city": {
+                "code": "N/A",
+                "name": "N/A",
+                "state": {
+                    "code": "N/A",
+                    "name": "N/A",
+                    "country": {
+                        "code": "N/A", "name": "N/A"
+                    }
+                }
+            },
+            "coordinate": {"latitude": 0, "longitude": 0},
+            "timezone": {"code": "Europe/Lisbon", "name": "Europe/Lisbon"}
+        }
+        msg.context["session"] = sess.serialize()
+        return msg
+
+    def serialize(self, anonymize=True) -> SerializedTest:
+        src = [self.anonymize_message(m) if anonymize else m
+                    for m in self.source_message]
+        expected = [self.anonymize_message(m) if anonymize else m
+                    for m in self.expected_messages]
+        data = {
+            "skill_ids": self.skill_ids,
+            "source_message": [json.loads(m.serialize()) for m in src],
+            "expected_messages": [json.loads(m.serialize()) for m in expected],
+            "eof_msgs": self.eof_msgs,
+            "flip_points": self.flip_points,
+            "test_session_lang": self.test_session_lang,
+            "test_session_pipeline": self.test_session_pipeline,
+            "test_msg_type": self.test_msg_type,
+            "test_msg_data": self.test_msg_data,
+            "test_msg_context": self.test_msg_context,
+            "test_routing": self.test_routing
+        }
+        return data
+
+    @staticmethod
+    def deserialize(data: Union[str, SerializedTest]) -> 'End2EndTest':
+        if isinstance(data, str):
+            data = json.loads(data)
+        kwargs = data
+        kwargs["source_message"] = [Message.deserialize(m) for m in data["source_message"]]
+        kwargs["expected_messages"] = [Message.deserialize(m) for m in data["expected_messages"]]
+        return End2EndTest(**kwargs)
+
+    @classmethod
+    def from_message(cls, message: Message,
+                     skill_ids: List[str],
+                     eof_msgs: Optional[List[str]]=None,
+                     flip_points:  Optional[List[str]]=None,
+                     ignore_messages:  Optional[List[str]]=None,
+                     timeout=20) -> 'End2EndTest':
+        eof_msgs = eof_msgs or DEFAULT_EOF
+        flip_points = flip_points or DEFAULT_FLIP_POINTS
+        ignore_messages = ignore_messages or DEFAULT_IGNORED
+
+        capture = CaptureSession(get_minicroft(skill_ids),
+                                 ignore_messages=ignore_messages)
+        capture.capture(message, eof_msgs, timeout)
+
+        return End2EndTest(
+            skill_ids=skill_ids,
+            source_message=message,
+            expected_messages=capture.finish(),
+            flip_points=flip_points
+        )
+
+    @staticmethod
+    def from_path(path:str) -> 'End2EndTest':
+        with open(path) as f:
+            return End2EndTest.deserialize(f.read())
+
+    def save(self, path: str, anonymize=True):
+        with open(path, "w") as f:
+            json.dump(self.serialize(anonymize=anonymize), f, ensure_ascii=False, indent=2)
+
+
+if __name__ == "__main__":
+    #LOG.set_level("CRITICAL")
+
+    session = Session("123")
+    session.lang = "en-US"  # change lang, pipeline, whatever as needed
+    message = Message("recognizer_loop:utterance",
+                      {"utterances": ["hello world"]},
+                      {"session": session.serialize(), "source": "A", "destination": "B"})
+    message = End2EndTest.anonymize_message(message)  # strip any location data leaked from mycroft.conf into Session
+
+    test = End2EndTest(
+        skill_ids=[],
+        source_message=message,
+        expected_messages=[
+            message,
+            Message("mycroft.audio.play_sound", {"uri": "snd/error.mp3"}),
+            Message("complete_intent_failure", {}),
+            Message("ovos.utterance.handled", {}),
+        ]
+    )
+
+
+    test.execute()
+
+    # multi message test
+    test = End2EndTest(
+        skill_ids=[],
+        source_message=[message, message],
+        expected_messages=[
+            message,
+            Message("mycroft.audio.play_sound", {"uri": "snd/error.mp3"}),
+            Message("complete_intent_failure", {}),
+            Message("ovos.utterance.handled", {}),
+            message,
+            Message("mycroft.audio.play_sound", {"uri": "snd/error.mp3"}),
+            Message("complete_intent_failure", {}),
+            Message("ovos.utterance.handled", {}),
+        ]
+    )
+    test.execute()
+
+    # export / import
+    test.deserialize(test.serialize())  # smoke test
+
+    autotest = End2EndTest.from_message(message, skill_ids=["ovos-skill-hello-world.openvoiceos"])
+    print(autotest)
+    autotest.save("test.json")
+
+    t = End2EndTest.from_path("test.json")
+    print(t)
