@@ -1,0 +1,16 @@
+LICENSE
+README.md
+pyproject.toml
+src/quicksave/__init__.py
+src/quicksave/backup_manager.py
+src/quicksave/cli.py
+src/quicksave/config.py
+src/quicksave/version.py
+src/quicksave_tool.egg-info/PKG-INFO
+src/quicksave_tool.egg-info/SOURCES.txt
+src/quicksave_tool.egg-info/dependency_links.txt
+src/quicksave_tool.egg-info/entry_points.txt
+src/quicksave_tool.egg-info/requires.txt
+src/quicksave_tool.egg-info/top_level.txt
+tests/test_backup_manager.py
+tests/test_config.py
