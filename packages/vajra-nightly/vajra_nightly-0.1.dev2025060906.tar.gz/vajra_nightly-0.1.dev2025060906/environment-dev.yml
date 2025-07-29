@@ -1,0 +1,43 @@
+name: vajra-dev
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - clang-tools
+  - cmake>=3.26
+  - cpplint
+  - doxygen        # For C++ API documentation
+  - gcc=13.2
+  - gmp
+  - gnutls
+  - graphviz       # For Doxygen diagrams
+  - gxx
+  - libsodium
+  - make
+  - ninja
+  - pip
+  - pkg-config
+  - python=3.12
+  - rust
+  - pip:
+    - autoflake
+    - black
+    - build
+    - cmake>=3.26 # python wrapper
+    - codespell
+    - datasets
+    - huggingface-hub
+    - isort
+    - protobuf==5.29.4
+    - py-spy
+    - pylint
+    - pyright
+    - pytest
+    - pytest-cov
+    - pytest-html
+    - pytest-mock
+    - pytest-xdist
+    - requests
+    - rich
+    - setuptools_scm
+    - twine
