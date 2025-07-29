@@ -1,0 +1,751 @@
+<!-- CTA Section v9.html - Creative Revamp -->
+<section class="relative min-h-screen bg-gradient-to-br from-slate-50 via-violet-50 to-fuchsia-50 overflow-hidden" id="cta">
+
+  <!-- Creative Background Elements -->
+  <div class="absolute inset-0">
+    <!-- Animated energy field pattern -->
+    <div class="absolute inset-0 opacity-8">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="energy-pattern" width="120" height="120" patternUnits="userSpaceOnUse">
+            <circle cx="60" cy="60" r="4" fill="url(#energy-gradient)" opacity="0.7">
+              <animate attributeName="r" values="2;6;2" dur="3s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="20" cy="20" r="2" fill="url(#energy-gradient)" opacity="0.5">
+              <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="100" cy="20" r="2" fill="url(#energy-gradient)" opacity="0.5">
+              <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="20" cy="100" r="2" fill="url(#energy-gradient)" opacity="0.5">
+              <animate attributeName="opacity" values="0.5;1;0.5" dur="1.8s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="100" cy="100" r="2" fill="url(#energy-gradient)" opacity="0.5">
+              <animate attributeName="opacity" values="0.2;0.7;0.2" dur="2.2s" repeatCount="indefinite"/>
+            </circle>
+          </pattern>
+          <radialGradient id="energy-gradient" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" style="stop-color:#8b5cf6"/>
+            <stop offset="50%" style="stop-color:#a855f7"/>
+            <stop offset="100%" style="stop-color:#d946ef"/>
+          </radialGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#energy-pattern)"/>
+      </svg>
+    </div>
+
+    <!-- Dynamic floating elements with magnetic effect -->
+    <div class="absolute top-20 left-20 w-40 h-40 bg-gradient-to-br from-violet-400/20 to-purple-400/20 rounded-full animate-magnetic-float blur-sm magnetic-element"></div>
+    <div class="absolute top-1/3 right-32 w-32 h-32 bg-gradient-to-br from-fuchsia-400/20 to-pink-400/20 rounded-2xl animate-magnetic-float blur-sm magnetic-element" style="animation-delay: 2s; transform: rotate(45deg);"></div>
+    <div class="absolute bottom-1/4 left-1/3 w-48 h-48 bg-gradient-to-br from-purple-400/20 to-violet-400/20 rounded-3xl animate-magnetic-float blur-sm magnetic-element" style="animation-delay: 4s;"></div>
+    <div class="absolute bottom-20 right-20 w-36 h-36 bg-gradient-to-br from-pink-400/20 to-fuchsia-400/20 rounded-full animate-magnetic-float blur-sm magnetic-element" style="animation-delay: 6s;"></div>
+
+    <!-- Interactive energy orbs -->
+    <div class="absolute top-1/4 left-1/2 w-6 h-6 bg-violet-500 rounded-full animate-energy-pulse energy-orb cursor-pointer" style="animation-delay: 1s;"></div>
+    <div class="absolute top-2/3 right-1/3 w-4 h-4 bg-fuchsia-500 rounded-full animate-energy-pulse energy-orb cursor-pointer" style="animation-delay: 3s;"></div>
+    <div class="absolute top-1/2 left-1/4 w-5 h-5 bg-purple-500 rounded-full animate-energy-pulse energy-orb cursor-pointer" style="animation-delay: 5s;"></div>
+
+    <!-- Gradient mesh overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-violet-50/50 via-transparent to-fuchsia-50/50"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20">
+    <!-- Creative Header Section -->
+    <div class="text-center mb-20">
+      <!-- Interactive Badge -->
+      <div class="inline-flex items-center space-x-3 bg-white/80 backdrop-blur-sm border border-violet-200/50 rounded-full px-8 py-4 mb-8 creative-cta-badge hover:scale-105 transition-transform duration-300">
+        <div class="w-3 h-3 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full animate-pulse"></div>
+        <span class="text-violet-700 font-medium text-sm tracking-wider uppercase">{{ sections.cta.badge | default('Ready to Begin?') }}</span>
+      </div>
+
+      <!-- Main Heading with Typewriter Effect -->
+      <h2 class="text-4xl md:text-6xl lg:text-7xl font-black text-slate-800 mb-6 leading-tight">
+        <span class="block">Ready to Get</span>
+        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 luxury-heading typewriter-text">
+          {{ sections.cta.highlight | default('Started?') }}
+        </span>
+      </h2>
+
+      <!-- Description -->
+      <p class="text-xl md:text-2xl text-slate-600 leading-relaxed mb-8 max-w-4xl mx-auto">
+        {{ sections.cta.description | default('Join thousands of satisfied customers who have already discovered the difference. Start your journey with us today.') }}
+      </p>
+
+      <!-- Social Proof Ticker -->
+      <div class="social-proof-ticker bg-white/60 backdrop-blur-sm rounded-2xl p-4 mb-12 border border-violet-100/50">
+        <div class="flex items-center justify-center space-x-6 text-sm text-slate-600">
+          <div class="flex items-center space-x-2">
+            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <span class="font-medium">{{ sections.cta.socialProof.activities[0].name }} {{ sections.cta.socialProof.activities[0].action }} from {{ sections.cta.socialProof.activities[0].location }}</span>
+          </div>
+          <div class="w-px h-4 bg-slate-300"></div>
+          <div class="flex items-center space-x-2">
+            <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+            <span class="font-medium">{{ sections.cta.socialProof.viewingCount }} people viewing this page</span>
+          </div>
+          <div class="w-px h-4 bg-slate-300"></div>
+          <div class="flex items-center space-x-2">
+            <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+            <span class="font-medium">{{ sections.cta.socialProof.communityMessage }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main CTA Container with 3D Effect -->
+    <div class="luxury-cta-container relative bg-white/70 backdrop-blur-md rounded-3xl p-12 md:p-16 lg:p-20 border border-violet-100/50 shadow-2xl shadow-violet-100/20 transform-gpu">
+
+      <!-- Animated Corner Elements -->
+      <div class="absolute top-8 left-8 w-20 h-20 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-2xl flex items-center justify-center text-white shadow-2xl animate-corner-pulse">
+        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+        </svg>
+      </div>
+
+      <div class="absolute top-8 right-8 w-16 h-16 bg-gradient-to-br from-fuchsia-500 to-pink-500 rounded-xl flex items-center justify-center text-white shadow-xl animate-corner-pulse" style="animation-delay: 1s;">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+        </svg>
+      </div>
+
+      <!-- Content -->
+      <div class="text-center max-w-4xl mx-auto">
+
+        <!-- Enhanced CTA Buttons with Animation -->
+        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+          <!-- Primary CTA with Magnetic Effect -->
+          <a
+            href="{{ sections.cta.buttons[0].url | default('#shop') }}"
+            class="luxury-cta-primary group relative bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white px-16 py-6 rounded-2xl font-bold text-2xl tracking-wide transition-all duration-500 hover:shadow-2xl hover:shadow-violet-300/50 hover:-translate-y-4 overflow-hidden magnetic-button"
+          >
+            <span class="relative z-10 flex items-center space-x-4">
+              <i class="{{ sections.cta.buttons[0].icon | default('ri-shopping-bag-line') }} text-3xl"></i>
+              <span>{{ sections.cta.buttons[0].label | default('Shop Now') }}</span>
+              <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </div>
+            </span>
+            <!-- Enhanced shimmer effect -->
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+            <!-- Pulse effect -->
+            <div class="absolute inset-0 bg-white/10 rounded-2xl opacity-0 group-hover:opacity-100 animate-pulse"></div>
+          </a>
+
+          <!-- Secondary CTA with Hover Effect -->
+          <a
+            href="{{ sections.cta.buttons[1].url | default('#learn-more') }}"
+            class="inline-flex items-center space-x-4 bg-white/80 backdrop-blur-sm border-2 border-violet-200 text-violet-700 px-12 py-6 rounded-2xl font-semibold text-xl tracking-wide transition-all duration-300 hover:border-violet-400 hover:text-violet-800 hover:bg-white hover:shadow-xl hover:-translate-y-4 secondary-cta"
+          >
+            <i class="{{ sections.cta.buttons[1].icon | default('ri-play-circle-line') }} text-2xl"></i>
+            <span>{{ sections.cta.buttons[1].label | default('Watch Demo') }}</span>
+            <div class="w-6 h-6 border-2 border-current rounded-full flex items-center justify-center">
+              <div class="w-2 h-2 bg-current rounded-full animate-ping"></div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Risk-Free Guarantee -->
+        <div class="flex justify-center items-center space-x-6 mb-12 text-sm text-slate-600">
+          {% for guarantee in sections.cta.guarantees %}
+          <div class="flex items-center space-x-2">
+            <i class="{{ guarantee.icon }} w-5 h-5 text-green-500"></i>
+            <span class="font-medium">{{ guarantee.title }}</span>
+          </div>
+          {% if not loop.last %}
+          <div class="w-px h-4 bg-slate-300"></div>
+          {% endif %}
+          {% endfor %}
+        </div>
+
+        <!-- Enhanced Trust Indicators with Animation -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {% for indicator in sections.cta.trustIndicators %}
+          <div class="text-center trust-indicator">
+            <div class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-fuchsia-600 mb-2 counter" data-target="{{ indicator.value }}">
+              0
+            </div>
+            <p class="text-slate-600 font-medium text-sm">{{ indicator.label }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Enhanced luxury border effect -->
+      <div class="absolute inset-0 rounded-3xl opacity-0 hover:opacity-100 transition-opacity duration-500" style="background: linear-gradient(135deg, #8b5cf6, #a855f7, #d946ef); padding: 3px; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude;"></div>
+
+      <!-- Floating particles inside container -->
+      <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-violet-400 rounded-full animate-float-particle opacity-60"></div>
+      <div class="absolute top-3/4 right-1/4 w-1.5 h-1.5 bg-fuchsia-400 rounded-full animate-float-particle opacity-60" style="animation-delay: 2s;"></div>
+      <div class="absolute top-1/2 right-1/3 w-2.5 h-2.5 bg-purple-400 rounded-full animate-float-particle opacity-60" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Enhanced Feature Showcase -->
+    <div class="grid md:grid-cols-3 gap-8 mt-20">
+      {% for feature in sections.cta.features %}
+      <div class="luxury-cta-feature group text-center bg-white/60 backdrop-blur-md rounded-2xl p-8 border border-violet-100/50 hover:shadow-xl hover:shadow-violet-100/20 transition-all duration-500 hover:-translate-y-4 relative overflow-hidden">
+        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center text-white mx-auto mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+          <i class="{{ feature.icon }} text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-green-600 transition-colors duration-300">
+          {{ feature.title }}
+        </h3>
+        <p class="text-slate-600 leading-relaxed mb-4">
+          {{ feature.description }}
+        </p>
+        <div class="text-sm text-green-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          ✓ {{ feature.title }}
+        </div>
+        <!-- Hover effect overlay -->
+        <div class="absolute inset-0 bg-gradient-to-br from-green-500/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Final Call to Action Section -->
+    <div class="text-center mt-20 bg-gradient-to-br from-violet-100/50 to-fuchsia-100/50 backdrop-blur-md rounded-3xl p-12 border border-violet-200/50">
+      <div class="max-w-2xl mx-auto">
+        <h3 class="text-2xl md:text-3xl font-bold text-slate-800 mb-4">
+          {{ sections.cta.finalMessage.title }}
+        </h3>
+        <p class="text-lg text-slate-600 mb-6">
+          {{ sections.cta.finalMessage.description }}
+        </p>
+        <div class="flex justify-center items-center space-x-4 text-sm text-slate-600">
+          <div class="flex items-center space-x-2">
+            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <span class="font-medium">{{ sections.cta.finalMessage.encouragement }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Creative CTA Section v9 Styles */
+  .luxury-heading {
+    font-family: 'Playfair Display', serif;
+    background-size: 200% 200%;
+    animation: gradient-shift 4s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes animate-magnetic-float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg) scale(1);
+    }
+    25% {
+      transform: translateY(-30px) rotate(90deg) scale(1.1);
+    }
+    50% {
+      transform: translateY(-15px) rotate(180deg) scale(1);
+    }
+    75% {
+      transform: translateY(-25px) rotate(270deg) scale(0.9);
+    }
+  }
+
+  .animate-magnetic-float {
+    animation: animate-magnetic-float 12s ease-in-out infinite;
+  }
+
+  @keyframes animate-energy-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.7;
+      box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7);
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 1;
+      box-shadow: 0 0 0 20px rgba(139, 92, 246, 0);
+    }
+  }
+
+  .animate-energy-pulse {
+    animation: animate-energy-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes animate-corner-pulse {
+    0%, 100% {
+      transform: scale(1) rotate(0deg);
+    }
+    50% {
+      transform: scale(1.1) rotate(180deg);
+    }
+  }
+
+  .animate-corner-pulse {
+    animation: animate-corner-pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes animate-float-particle {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.6;
+    }
+    25% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-10px) translateX(-15px);
+      opacity: 0.8;
+    }
+    75% {
+      transform: translateY(-25px) translateX(5px);
+      opacity: 0.9;
+    }
+  }
+
+  .animate-float-particle {
+    animation: animate-float-particle 6s ease-in-out infinite;
+  }
+
+  /* Creative Badge */
+  .creative-cta-badge {
+    backdrop-filter: blur(15px);
+    transition: all 0.3s ease;
+  }
+
+  .creative-cta-badge:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.2);
+  }
+
+  /* Typewriter Effect */
+  .typewriter-text {
+    overflow: hidden;
+    border-right: 3px solid;
+    white-space: nowrap;
+    animation: typewriter 3s steps(20) 1s forwards, blink 1s infinite;
+  }
+
+  @keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink {
+    50% { border-color: transparent; }
+  }
+
+  /* Social Proof Ticker */
+  .social-proof-ticker {
+    backdrop-filter: blur(10px);
+    animation: ticker-glow 3s ease-in-out infinite;
+  }
+
+  @keyframes ticker-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.1); }
+    50% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.2); }
+  }
+
+  /* Enhanced CTA Container */
+  .luxury-cta-container {
+    backdrop-filter: blur(20px);
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-style: preserve-3d;
+  }
+
+  .luxury-cta-container:hover {
+    transform: translateY(-12px) rotateX(2deg) rotateY(2deg);
+    box-shadow: 0 50px 100px rgba(139, 92, 246, 0.3);
+  }
+
+  /* Magnetic Button Effect */
+  .magnetic-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .magnetic-button:hover {
+    transform: translateY(-16px) scale(1.05);
+    box-shadow: 0 30px 60px rgba(139, 92, 246, 0.4);
+  }
+
+  .magnetic-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.8s ease;
+  }
+
+  .magnetic-button:hover::before {
+    left: 100%;
+  }
+
+  /* Secondary CTA */
+  .secondary-cta {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .secondary-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .secondary-cta:hover::before {
+    left: 100%;
+  }
+
+  /* Trust Indicators */
+  .trust-indicator {
+    transition: all 0.3s ease;
+  }
+
+  .trust-indicator:hover {
+    transform: translateY(-5px) scale(1.05);
+  }
+
+  /* Counter Animation */
+  .counter {
+    transition: all 0.3s ease;
+  }
+
+  /* Energy Orbs */
+  .energy-orb {
+    transition: all 0.3s ease;
+  }
+
+  .energy-orb:hover {
+    transform: scale(3) !important;
+    opacity: 1 !important;
+  }
+
+  /* Magnetic Elements */
+  .magnetic-element {
+    transition: all 0.3s ease;
+  }
+
+  /* Enhanced Feature Cards */
+  .luxury-cta-feature {
+    backdrop-filter: blur(15px);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+  }
+
+  .luxury-cta-feature:hover {
+    transform: translateY(-16px) scale(1.03) rotateY(5deg);
+    box-shadow: 0 25px 50px rgba(139, 92, 246, 0.2);
+  }
+
+  /* Social Proof Enhancements */
+  .social-proof-item {
+    transition: all 0.3s ease;
+  }
+
+  .social-proof-item:hover {
+    transform: scale(1.05);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .luxury-heading {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+
+    .luxury-cta-container {
+      padding: 2rem;
+    }
+
+    .luxury-cta-feature {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .luxury-cta-container {
+      padding: 1.5rem;
+    }
+
+    .luxury-cta-feature {
+      padding: 1.25rem;
+    }
+
+    .magnetic-button {
+      padding: 1rem 2rem;
+      font-size: 1.125rem;
+    }
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-magnetic-float,
+    .animate-energy-pulse,
+    .animate-corner-pulse,
+    .animate-float-particle,
+    .luxury-heading,
+    .typewriter-text,
+    .social-proof-ticker {
+      animation: none;
+    }
+
+    .luxury-cta-container:hover,
+    .magnetic-button:hover,
+    .luxury-cta-feature:hover {
+      transform: none;
+    }
+  }
+
+  /* Loading States */
+  .loading {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* Focus States */
+  .creative-cta-badge:focus,
+  .energy-orb:focus,
+  .magnetic-button:focus,
+  .secondary-cta:focus {
+    outline: 2px solid #8b5cf6;
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Enhanced scroll animations for CTA elements
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+
+          // Counter animation for trust indicators
+          if (entry.target.classList.contains('counter')) {
+            animateCounter(entry.target);
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Counter animation function
+    function animateCounter(element) {
+      const target = parseFloat(element.dataset.target);
+      const duration = 2000;
+      const step = target / (duration / 16);
+      let current = 0;
+
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+
+        // Format number appropriately
+        if (target >= 1000) {
+          element.textContent = (current / 1000).toFixed(1) + 'k+';
+        } else if (target < 10) {
+          element.textContent = current.toFixed(1);
+        } else {
+          element.textContent = Math.floor(current) + '%';
+        }
+      }, 16);
+    }
+
+    // Social proof ticker updates using data from sample.json
+    function updateSocialProof() {
+      // This will use the activities from sections.cta.socialProof.activities
+      // The data is already loaded from sample.json, so we just cycle through it
+      const ticker = document.querySelector('.social-proof-ticker');
+      if (ticker) {
+        const firstItem = ticker.querySelector('.flex:first-child span:last-child');
+        if (firstItem) {
+          // The content is already populated from sample.json
+          // This function can be used for future dynamic updates if needed
+        }
+      }
+    }
+
+    // Update social proof every 8 seconds
+    setInterval(updateSocialProof, 8000);
+
+    // Observe CTA elements
+    const ctaElements = document.querySelectorAll('.luxury-cta-container, .luxury-cta-feature, .trust-indicator');
+    ctaElements.forEach((element) => {
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(40px)';
+      element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      observer.observe(element);
+    });
+
+    // Observe counters
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      observer.observe(counter);
+    });
+
+    // Add staggered animation delay for features
+    const features = document.querySelectorAll('.luxury-cta-feature');
+    features.forEach((feature, index) => {
+      feature.style.transitionDelay = `${0.2 + (index * 0.1)}s`;
+    });
+
+    // Interactive energy orbs
+    const energyOrbs = document.querySelectorAll('.energy-orb');
+    energyOrbs.forEach(orb => {
+      orb.addEventListener('click', function() {
+        // Create energy burst effect
+        for (let i = 0; i < 8; i++) {
+          const burst = document.createElement('div');
+          burst.className = 'absolute w-3 h-3 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full';
+          burst.style.cssText = `
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            animation: energy-burst 1s ease-out forwards;
+            animation-delay: ${i * 0.1}s;
+            pointer-events: none;
+          `;
+
+          this.appendChild(burst);
+
+          setTimeout(() => {
+            burst.remove();
+          }, 1000);
+        }
+
+        // Main orb effect
+        this.style.transform = 'scale(4)';
+        this.style.opacity = '1';
+        setTimeout(() => {
+          this.style.transform = '';
+          this.style.opacity = '';
+        }, 600);
+      });
+    });
+
+    // Magnetic button effect
+    const magneticButtons = document.querySelectorAll('.magnetic-button');
+    magneticButtons.forEach(button => {
+      button.addEventListener('mouseenter', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        this.style.transform = `translateY(-16px) scale(1.05) translate(${x * 0.1}px, ${y * 0.1}px)`;
+      });
+
+      button.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1) translate(0px, 0px)';
+      });
+
+      button.addEventListener('click', function(e) {
+        // Ripple effect
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.cssText = `
+          position: absolute;
+          width: ${size}px;
+          height: ${size}px;
+          left: ${x}px;
+          top: ${y}px;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+          transform: scale(0);
+          animation: button-ripple 0.6s ease-out;
+          pointer-events: none;
+        `;
+
+        this.appendChild(ripple);
+
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    });
+
+    // Badge hover effect
+    const badge = document.querySelector('.creative-cta-badge');
+    if (badge) {
+      badge.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-3px) scale(1.05) rotate(1deg)';
+      });
+
+      badge.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+      });
+    }
+
+    // Parallax effect for magnetic elements
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const magneticElements = document.querySelectorAll('.magnetic-element');
+
+      magneticElements.forEach((element, index) => {
+        const speed = 0.3 + (index * 0.1);
+        const yPos = -(scrolled * speed);
+        element.style.transform += ` translateY(${yPos}px)`;
+      });
+    });
+
+    // Add custom animations
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes energy-burst {
+        0% {
+          transform: translate(-50%, -50%) scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-50%, -50%) translate(${Math.random() * 80 - 40}px, ${Math.random() * 80 - 40}px) scale(1);
+          opacity: 0;
+        }
+      }
+
+      @keyframes button-ripple {
+        to {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+
+      .animate {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Social proof ticker animation
+    const ticker = document.querySelector('.social-proof-ticker');
+    if (ticker) {
+      setInterval(() => {
+        ticker.style.transform = 'scale(1.02)';
+        setTimeout(() => {
+          ticker.style.transform = 'scale(1)';
+        }, 200);
+      }, 5000);
+    }
+  });
+</script>

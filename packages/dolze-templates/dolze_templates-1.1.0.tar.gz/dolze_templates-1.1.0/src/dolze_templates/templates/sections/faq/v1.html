@@ -1,0 +1,58 @@
+<section id="faq" class="py-24 relative overflow-hidden" style="background-color: {{ sections.faq.background.color | default(settings.theme.colors.background) }}">
+  <!-- Background image with overlay -->
+  {% if sections.faq.background.media %}
+  <div class="absolute inset-0">
+    <img
+      src="{{ sections.faq.background.media.src }}"
+      class="w-full h-full object-cover"
+      alt="FAQ Background"
+    />
+    {% if sections.faq.background.overlay %}
+    <div class="absolute inset-0 bg-gradient-to-r from-white/80 to-white/60"></div>
+    {% endif %}
+  </div>
+  {% endif %}
+  
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Section header with elegant typography -->
+    <div class="text-center mb-16">
+      <span class="inline-block text-xs uppercase tracking-widest text-gray-500 mb-3" style="font-family: {{settings.fonts.body}}">
+        {{ sections.faq.subtitle | default('Frequently Asked Questions') }}
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-light text-gray-900 mb-4" style="font-family: {{settings.fonts.heading}}">
+        {{ sections.faq.title }}
+      </h2>
+      <div class="w-16 h-px bg-gray-300 mx-auto mb-6"></div>
+      <p class="text-gray-600 max-w-2xl mx-auto font-light" style="font-family: {{settings.fonts.body}}">
+        {{ sections.faq.subtitle }}
+      </p>
+    </div>
+    
+    <!-- FAQ Accordion -->
+    <div class="max-w-3xl mx-auto">
+      {% for item in sections.faq.items %}
+      <div class="border-b border-gray-200 py-6 last:border-b-0">
+        <button
+          class="flex w-full justify-between items-center text-left focus:outline-none group"
+          aria-expanded="{{ 'true' if item.expanded else 'false' }}"
+          aria-controls="faq-{{ loop.index }}"
+        >
+          <h3 class="text-lg font-light text-gray-900" style="font-family: {{settings.fonts.heading}}">{{ item.question }}</h3>
+          <span class="ml-6 flex-shrink-0">
+            <i class="ri-add-line text-gray-400 group-aria-expanded:hidden"></i>
+            <i class="ri-subtract-line text-gray-400 hidden group-aria-expanded:block"></i>
+          </span>
+        </button>
+        <div
+          id="faq-{{ loop.index }}"
+          class="mt-3 overflow-hidden transition-all max-h-0 group-aria-expanded:max-h-96"
+        >
+          <p class="text-gray-600 font-light" style="font-family: {{settings.fonts.body}}">
+            {{ item.answer }}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

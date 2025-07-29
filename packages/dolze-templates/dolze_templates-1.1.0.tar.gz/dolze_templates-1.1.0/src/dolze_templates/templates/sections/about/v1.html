@@ -1,0 +1,209 @@
+<section id="about" class="py-24 relative overflow-hidden" style="background-color: {{ sections.about.background.color | default(settings.theme.colors.background) }}">
+  <!-- Background image with overlay -->
+  <div class="absolute inset-0">
+    {% if sections.about.background.media %}
+    <img
+      src="{{ sections.about.background.media.src }}"
+      class="w-full h-full object-cover"
+      alt="About Background"
+    />
+    {% endif %}
+    {% if sections.about.background.overlay %}
+    <div class="absolute inset-0 bg-gradient-to-r from-white/80 to-white/60"></div>
+    {% endif %}
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Section header with elegant typography -->
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <span class="inline-block text-xs uppercase tracking-widest text-gray-500 mb-3" style="font-family: {{settings.fonts.body}}">{{ sections.about.subtitle | default('About Our Brand') }}</span>
+      <h2 class="text-3xl sm:text-4xl font-light text-gray-900 mb-4" style="font-family: {{settings.fonts.heading}}">
+        {{ sections.about.title }}
+      </h2>
+      <div class="w-16 h-px bg-gray-300 mx-auto mb-6"></div>
+      <p class="text-gray-600 font-light" style="font-family: {{settings.fonts.body}}">
+        {{sections.about.content}}
+      </p>
+      
+      <!-- Optional tagline -->
+      {% if sections.about.tagline %}
+      <p class="text-gray-700 italic mt-4 font-light" style="font-family: {{settings.fonts.body}}">
+        "{{ sections.about.tagline }}"
+      </p>
+      {% endif %}
+    </div>
+    
+    <div class="grid lg:grid-cols-[60%_40%] gap-12 items-center justify-center">
+      <!-- Media Container with sharp corners matching Features v1 -->
+      <div>
+        {% if sections.about.media.type == 'image' %}
+        <div class="relative overflow-hidden group">
+          <!-- Main image with hover effect -->
+          <img
+            src="{{ sections.about.media.src }}"
+            alt="{{ sections.about.media.alt }}"
+            class="w-full aspect-[3/4] object-cover transform transition-transform duration-700 group-hover:scale-105"
+            loading="{{ 'lazy' if sections.about.media.lazyLoad }}"
+          />
+          <!-- Subtle gradient overlay -->
+          <div class="absolute inset-0 bg-gradient-to-tr from-gray-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <!-- Minimal caption like in Features v1 -->
+          <div class="absolute bottom-4 right-4 bg-white py-1 px-3 text-xs tracking-wider text-gray-500">
+            {{ sections.about.media.title | default('Our Story') }}
+          </div>
+          
+          <!-- Optional image subtitle -->
+          {% if sections.about.media.subtitle %}
+          <div class="absolute bottom-12 right-4 bg-white/80 backdrop-blur-sm py-1 px-3 text-xs tracking-wider text-gray-700">
+            {{ sections.about.media.subtitle }}
+          </div>
+          {% endif %}
+        </div>
+        {% else %}
+        <div
+          id="video-container"
+          class="relative aspect-video overflow-hidden group"
+        >
+          <!-- Video overlay with enhanced styling -->
+          <div
+            class="absolute inset-0 bg-gradient-to-tr from-gray-900/60 to-gray-900/30 flex items-center justify-center group cursor-pointer z-10 transition-opacity duration-300"
+            id="video-overlay"
+          >
+            <div
+              class="w-16 h-16 bg-white/90 backdrop-blur-sm flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-white"
+            >
+              <i class="ri-play-fill text-3xl text-gray-900"></i>
+            </div>
+          </div>
+          <video
+            id="demo-video"
+            class="w-full h-full object-cover"
+            poster="{{ sections.about.media.poster }}"
+            controls
+          >
+            <source src="{{ sections.about.media.src }}" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        {% endif %}
+        
+        <!-- Optional media caption -->
+        {% if sections.about.media.caption %}
+        <div class="mt-4 text-sm text-gray-500 italic font-light" style="font-family: {{settings.fonts.body}}">
+          {{ sections.about.media.caption }}
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Features Grid with card styling -->
+      <div class="grid grid-cols-2 gap-6">
+        {% for item in sections.about.items %}
+        <div class="bg-white p-6 border border-gray-100 shadow-sm hover:shadow transition-all duration-300">
+          <div
+            class="w-10 h-10 flex items-center justify-center mb-4"
+          >
+            <i class="{{ item.icon }} text-xl text-gray-700"></i>
+          </div>
+          <h3 class="text-lg font-light text-gray-900 mb-2" style="font-family: {{settings.fonts.heading}}">{{ item.title }}</h3>
+          <div class="w-8 h-px bg-gray-200 mb-3"></div>
+          <p class="text-gray-600 text-sm font-light" style="font-family: {{settings.fonts.body}}">{{ item.description }}</p>
+          
+          <!-- Optional item link -->
+          {% if item.link %}
+          <a href="{{ item.link.url }}" class="inline-block mt-3 text-sm text-gray-500 hover:text-gray-700 transition-colors duration-300">
+            {{ item.link.text }} →
+          </a>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <!-- Optional timeline section -->
+    {% if sections.about.timeline %}
+    <div class="mt-24">
+      <div class="text-center mb-12">
+        <h3 class="text-2xl font-light text-gray-900 mb-3" style="font-family: {{settings.fonts.heading}}">
+          {{ sections.about.timeline.title | default('Our Journey') }}
+        </h3>
+        <div class="w-12 h-px bg-gray-300 mx-auto mb-4"></div>
+      </div>
+      
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gray-200"></div>
+        
+        <div class="space-y-12">
+          {% for event in sections.about.timeline.events %}
+          <div class="relative flex items-center justify-between">
+            <div class="w-5/12 pr-8 text-right">
+              <h4 class="text-lg font-light text-gray-900 mb-1" style="font-family: {{settings.fonts.heading}}">{{ event.title }}</h4>
+              <p class="text-gray-600 text-sm font-light" style="font-family: {{settings.fonts.body}}">{{ event.description }}</p>
+            </div>
+            
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-white border-2 border-gray-300"></div>
+            
+            <div class="w-5/12 pl-8">
+              <span class="text-sm text-gray-500 font-medium" style="font-family: {{settings.fonts.body}}">{{ event.year }}</span>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    
+    <!-- Optional team highlights -->
+    {% if sections.about.team %}
+    <div class="mt-24">
+      <div class="text-center mb-12">
+        <h3 class="text-2xl font-light text-gray-900 mb-3" style="font-family: {{settings.fonts.heading}}">
+          {{ sections.about.team.title | default('Leadership Team') }}
+        </h3>
+        <div class="w-12 h-px bg-gray-300 mx-auto mb-4"></div>
+        <p class="text-gray-600 font-light max-w-2xl mx-auto" style="font-family: {{settings.fonts.body}}">
+          {{ sections.about.team.description | default('Meet the people behind our success.') }}
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {% for member in sections.about.team.members %}
+        <div class="text-center">
+          <div class="relative mb-4 overflow-hidden rounded-sm group">
+            <img 
+              src="{{ member.photo }}" 
+              alt="{{ member.name }}" 
+              class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
+              <div class="flex space-x-3">
+                {% for social in member.socialLinks %}
+                <a href="{{ social.url }}" class="text-white hover:text-gray-200 transition-colors duration-300">
+                  <i class="ri-{{ social.platform }}-line"></i>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <h4 class="text-gray-900 font-light" style="font-family: {{settings.fonts.heading}}">{{ member.name }}</h4>
+          <p class="text-gray-500 text-sm" style="font-family: {{settings.fonts.body}}">{{ member.role }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    
+    <!-- Optional CTA -->
+    {% if sections.about.cta %}
+    <div class="mt-24 text-center">
+      <a 
+        href="{{ sections.about.cta.url }}" 
+        class="inline-flex items-center px-8 py-3 border border-gray-900 text-gray-900 font-light text-sm tracking-widest uppercase hover:bg-gray-900 hover:text-white transition-colors duration-300"
+      >
+        {{ sections.about.cta.text | default('Learn More About Us') }}
+        <i class="ri-arrow-right-line ml-2"></i>
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</section>

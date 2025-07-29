@@ -1,0 +1,165 @@
+<section
+  id="hero"
+  class="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 to-indigo-950"
+>
+  <!-- Dynamic content container -->
+  <div id="hero-content" class="container mx-auto px-4 py-20 relative z-10"></div>
+  
+  <!-- Background elements container -->
+  <div id="hero-background" class="absolute inset-0 z-0"></div>
+</section>
+
+<script>
+$(document).ready(function() {
+  // Get hero data
+  const heroData = {
+    heroImage: { 
+      src: "{{ sections.hero.heroImage.src }}" 
+    },
+    title: "{{ sections.hero.title }}",
+    description: "{{ sections.hero.description }}",
+    ctaButtons: {{ sections.hero.ctaButtons | tojson | safe }}
+  };
+  
+  // Theme colors
+  const primaryColor = "{{ settings.theme.colors.primary | default('#6366F1') }}";
+  const secondaryColor = "{{ settings.theme.colors.secondary | default('#1F2937') }}";
+  
+  // Create background elements
+  const backgroundEl = $("#hero-background");
+  
+  // Add floating image with parallax effect
+  backgroundEl.append(`
+    <div class="absolute inset-0 opacity-20">
+      <img src="${heroData.heroImage.src}" class="w-full h-full object-cover object-center filter blur-sm" alt="" />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-slate-900/80"></div>
+  `);
+  
+  // Add animated decorative elements
+  backgroundEl.append(`
+    <div class="absolute top-1/4 right-1/4 w-64 h-64 rounded-full" 
+         style="background: radial-gradient(circle, ${primaryColor}40, transparent 70%); animation: float 8s infinite ease-in-out;"></div>
+    <div class="absolute bottom-1/3 left-1/3 w-80 h-80 rounded-full" 
+         style="background: radial-gradient(circle, ${secondaryColor}30, transparent 70%); animation: float 12s infinite ease-in-out 2s;"></div>
+    <div class="absolute top-1/2 left-1/4 w-40 h-40 rounded-full" 
+         style="background: radial-gradient(circle, ${primaryColor}20, transparent 70%); animation: float 10s infinite ease-in-out 1s;"></div>
+  `);
+  
+  // Add grid pattern
+  backgroundEl.append(`
+    <div class="absolute inset-0" style="background-image: 
+      radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px); 
+      background-size: 30px 30px;"></div>
+  `);
+  
+  // Create content structure
+  const contentEl = $("#hero-content");
+  
+  // Create two-column layout for larger screens
+  contentEl.append(`
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+      <div id="hero-text" class="order-2 lg:order-1"></div>
+      <div id="hero-image" class="order-1 lg:order-2 flex justify-center items-center"></div>
+    </div>
+  `);
+  
+  // Add hero image with effects
+  $("#hero-image").append(`
+    <div class="relative group">
+      <div class="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+      <div class="relative">
+        <img 
+          src="${heroData.heroImage.src}" 
+          alt="Hero image" 
+          class="rounded-lg shadow-2xl max-h-[60vh] object-cover transform transition-all duration-500 group-hover:scale-[1.01]"
+        />
+      </div>
+    </div>
+  `);
+  
+  // Add badge
+  $("#hero-text").append(`
+    <div class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-white/10 text-white/90 backdrop-blur-sm mb-6">
+      <span class="w-2 h-2 rounded-full mr-2" style="background-color: ${primaryColor}; animation: pulse 2s infinite;"></span>
+      Introducing
+    </div>
+  `);
+  
+  // Add title with gradient
+  $("#hero-text").append(`
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+      <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-indigo-200">
+        ${heroData.title}
+      </span>
+    </h1>
+  `);
+  
+  // Add description
+  $("#hero-text").append(`
+    <p class="text-lg text-indigo-100/90 mb-8 max-w-xl">
+      ${heroData.description}
+    </p>
+  `);
+  
+  // Create CTA buttons container
+  const ctaContainer = $('<div>', {
+    class: 'flex flex-wrap gap-4'
+  });
+  
+  // Add CTA buttons
+  heroData.ctaButtons.forEach((cta, index) => {
+    let buttonClass = '';
+    let buttonStyle = '';
+    
+    if (cta.style === 'outline') {
+      buttonClass = 'group relative px-6 py-3 overflow-hidden border border-white/30 hover:border-white/60 text-white rounded-lg transition-all duration-300';
+      buttonStyle = `
+        <span class="absolute inset-0 w-0 bg-gradient-to-r from-white/10 to-white/20 transition-all duration-300 ease-out group-hover:w-full"></span>
+        <span class="relative">${cta.label}</span>
+      `;
+    } else {
+      buttonClass = 'group relative px-6 py-3 overflow-hidden text-white rounded-lg transition-all duration-300';
+      buttonStyle = `
+        <span class="absolute inset-0 w-full bg-gradient-to-r from-${index === 0 ? 'pink-600 to-purple-600' : 'indigo-600 to-blue-600'} transition-all duration-300 ease-out"></span>
+        <span class="absolute inset-0 w-0 bg-gradient-to-r from-${index === 0 ? 'purple-600 to-pink-600' : 'blue-600 to-indigo-600'} transition-all duration-300 ease-out group-hover:w-full"></span>
+        <span class="relative">${cta.label}</span>
+      `;
+    }
+    
+    const button = $('<a>', {
+      href: cta.url,
+      class: buttonClass
+    }).html(buttonStyle);
+    
+    ctaContainer.append(button);
+  });
+  
+  // Add CTA buttons
+  $("#hero-text").append(ctaContainer);
+  
+  // Add scroll indicator
+  contentEl.append(`
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+      <span class="text-white/50 text-sm mb-2">Scroll to explore</span>
+      <div class="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center p-1">
+        <div class="w-1 h-2 bg-white/50 rounded-full animate-bounce"></div>
+      </div>
+    </div>
+  `);
+  
+  // Add custom animation styles
+  $("head").append(`
+    <style>
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+    </style>
+  `);
+});
+</script>

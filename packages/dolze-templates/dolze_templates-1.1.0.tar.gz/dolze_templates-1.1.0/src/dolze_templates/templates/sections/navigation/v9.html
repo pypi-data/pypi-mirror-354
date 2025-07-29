@@ -1,0 +1,208 @@
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-violet-100/50 luxury-nav" id="navigation">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Luxury Brand Logo -->
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-br from-violet-600 to-fuchsia-600 rounded-xl flex items-center justify-center shadow-lg">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <span class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-fuchsia-600 luxury-brand">
+          {{ site.brand.name }}
+        </span>
+      </div>
+
+      <!-- Desktop Navigation Menu -->
+      <div class="hidden lg:flex items-center space-x-8">
+        <a href="#about" class="nav-link text-slate-700 hover:text-violet-600 font-medium tracking-wide transition-all duration-300 relative">
+          About
+        </a>
+        <a href="#features" class="nav-link text-slate-700 hover:text-violet-600 font-medium tracking-wide transition-all duration-300 relative">
+          Features
+        </a>
+        <a href="#challenges" class="nav-link text-slate-700 hover:text-violet-600 font-medium tracking-wide transition-all duration-300 relative">
+          Solutions
+        </a>
+        <a href="#faq" class="nav-link text-slate-700 hover:text-violet-600 font-medium tracking-wide transition-all duration-300 relative">
+          FAQ
+        </a>
+        <a href="#contact" class="nav-link text-slate-700 hover:text-violet-600 font-medium tracking-wide transition-all duration-300 relative">
+          Contact
+        </a>
+        <a href="#community" class="nav-link text-slate-700 hover:text-violet-600 font-medium tracking-wide transition-all duration-300 relative">
+          Community
+        </a>
+      </div>
+
+      <!-- Luxury CTA Button -->
+      <div class="hidden lg:flex items-center space-x-4">
+        <a href="#signup" class="luxury-nav-button bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white px-6 py-3 rounded-xl font-semibold tracking-wide transition-all duration-300 hover:shadow-xl hover:shadow-violet-300/50 hover:-translate-y-1">
+          Get Started
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="lg:hidden p-2 rounded-xl bg-violet-100/50 text-violet-600 hover:bg-violet-200/50 transition-all duration-300" id="mobile-menu-button">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="lg:hidden fixed inset-0 top-20 bg-white/95 backdrop-blur-md transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-menu">
+    <div class="p-6 space-y-6">
+      <a href="#about" class="block text-slate-700 hover:text-violet-600 font-medium text-lg tracking-wide transition-all duration-300 mobile-nav-link">
+        About
+      </a>
+      <a href="#features" class="block text-slate-700 hover:text-violet-600 font-medium text-lg tracking-wide transition-all duration-300 mobile-nav-link">
+        Features
+      </a>
+      <a href="#challenges" class="block text-slate-700 hover:text-violet-600 font-medium text-lg tracking-wide transition-all duration-300 mobile-nav-link">
+        Solutions
+      </a>
+      <a href="#faq" class="block text-slate-700 hover:text-violet-600 font-medium text-lg tracking-wide transition-all duration-300 mobile-nav-link">
+        FAQ
+      </a>
+      <a href="#contact" class="block text-slate-700 hover:text-violet-600 font-medium text-lg tracking-wide transition-all duration-300 mobile-nav-link">
+        Contact
+      </a>
+      <a href="#community" class="block text-slate-700 hover:text-violet-600 font-medium text-lg tracking-wide transition-all duration-300 mobile-nav-link">
+        Community
+      </a>
+      <div class="pt-6 border-t border-violet-100">
+        <a href="#signup" class="block w-full text-center bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white px-6 py-3 rounded-xl font-semibold tracking-wide">
+          Get Started
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  /* Luxury Navigation Styles */
+  .luxury-nav {
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.1);
+  }
+
+  .luxury-brand {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #8b5cf6, #d946ef);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .luxury-nav-button {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .luxury-nav-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+  }
+
+  .luxury-nav-button:hover::before {
+    left: 100%;
+  }
+
+  .mobile-nav-link {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  /* Scroll effect */
+  .luxury-nav.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const nav = document.getElementById('navigation');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    let isMenuOpen = false;
+
+    // Scroll effect
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    mobileMenuButton.addEventListener('click', () => {
+      isMenuOpen = !isMenuOpen;
+      if (isMenuOpen) {
+        mobileMenu.style.transform = 'translateX(0)';
+        mobileMenuButton.innerHTML = `
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        `;
+      } else {
+        mobileMenu.style.transform = 'translateX(100%)';
+        mobileMenuButton.innerHTML = `
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        `;
+      }
+    });
+
+    // Close mobile menu when clicking on links
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        isMenuOpen = false;
+        mobileMenu.style.transform = 'translateX(100%)';
+        mobileMenuButton.innerHTML = `
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        `;
+      });
+    });
+
+    // Smooth scroll for navigation links
+    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  });
+</script>
