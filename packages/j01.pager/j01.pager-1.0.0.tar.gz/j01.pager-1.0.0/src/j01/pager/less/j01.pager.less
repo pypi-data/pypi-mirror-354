@@ -1,0 +1,57 @@
+// j01.pager.less
+@import "variables.less";
+
+.j01Pager {
+    height: @j01-pager-height;
+    color: @j01-pager-color;
+    a {
+        line-height: @j01-pager-line-height;
+        height: @j01-pager-height;
+        cursor: pointer;
+        padding: @j01-pager-padding;
+        margin: @j01-pager-margin;
+        float: left;
+    }
+    div.first {
+        top: 0;
+        float: left;
+    }
+    div.batch {
+        overflow: hidden;
+        float: left;
+    }
+    div.last {
+        left: 0;
+        float: left;
+    }
+    span {
+        cursor: pointer;
+        height: @j01-pager-height;
+        line-height: @j01-pager-line-height;
+    }
+    span.current {
+        cursor: default;
+        font-weight: @j01-pager-current-font-weight;
+        padding: @j01-pager-current-padding;
+        margin: @j01-pager-current-margin;
+        float: left;
+    }
+    span.previous,
+    span.next {
+        width: @j01-pager-scroller-width;
+        text-align: center;
+        float: left;
+    }
+    ul {
+        float: left;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        li {
+            display: inline;
+            float: left;
+            padding: 0;
+            margin: 0;
+        }
+    }
+}
