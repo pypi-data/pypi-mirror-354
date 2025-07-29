@@ -1,0 +1,148 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mrender"
+dynamic = ["version"]
+description = "Render markdown to html, text, and more"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "apache-2.0"
+keywords = []
+authors = [{name="mbodiai"}]
+classifiers = [
+"Development Status :: 4 - Beta",
+"Programming Language :: Python",
+"Programming Language :: Python :: 3.10",
+"Programming Language :: Python :: 3.11",
+"Programming Language :: Python :: 3.12",
+"Programming Language :: Python :: Implementation :: CPython",
+"Programming Language :: Python :: Implementation :: PyPy",
+]
+
+dependencies = [
+    "rich_click>=1.8.8",
+    "beautifulsoup4>=4.13.4",
+    "html2text>=2025.4.15",
+    "markdownify>=1.1.0",
+    "requests>=2.32.3",
+    "rich>=14.0.0",
+]
+
+[project.optional-dependencies]
+all = [
+    "rich_click>=1.8.8",
+    "datamodel_code_generator>=0.30.0",
+]
+
+
+[project.urls]
+Documentation = "https://github.com/mbodiai/mrender#readme"
+Issues = "https://github.com/mbodiai/mrender/issues"
+Source = "https://github.com/mbodiai/mrender"
+
+[project.scripts]
+mrender = "mrender:cli"
+mdstream = "mrender.md:cli"
+mdocs = "mrender.docs2md:cli"
+
+[tool.hatch.version]
+path = "mrender/__about__.py"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+
+[tool.hatch.envs.default]
+python = "3.11"
+path = ".mrender/envs/mrender"
+dependencies = [
+"pytest",
+"pytest-mock",
+"pytest-asyncio",
+]
+
+[tool.hatch.envs.default.env-vars]
+
+
+[tool.hatch.envs.default.scripts]
+test = "pytest -vv -s {args:tests}"
+test-cov = "coverage run -m pytest {args:tests}"
+cov-report = ["- coverage combine", "coverage report"]
+cov = ["test-cov", "cov-report"]
+
+[[tool.hatch.envs.all.matrix]]
+python = ["3.10", "3.11"]
+
+[tool.hatch.envs.types]
+dependencies = [
+"mypy>=1.0.0"
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:mrender/ tests}"
+
+[tool.coverage.run]
+source_pkgs = ["mrender", "tests"]
+branch = true
+parallel = true
+omit = ["mrender/__about__.py"]
+
+[tool.coverage.paths]
+mrender = ["mrender/"]
+tests = ["tests"]
+
+[tool.coverage.report]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+target-version = "py310"
+
+[tool.yapf]
+style = "pep8"
+line-length = 120
+
+[tool.lint]
+extend-unsafe-fixes = ["ALL"]
+select = [
+"A", "C4", "D", "E", "F", "UP", "B", "SIM", "N", "ANN", "ASYNC",
+"S", "T20", "RET", "SIM", "ARG", "PTH", "ERA", "PD", "I", "PLW",
+]
+ignore = [
+"D100", "D101", "D104", "D106", "ANN101", "ANN102", "ANN003", "UP009", "ANN204",
+"B026", "ANN001", "ANN401", "ANN202", "D107", "D102", "D103", "E731", "UP006",
+"UP035", "ANN002", "PLW2901"
+]
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.format]
+docstring-code-format = true
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.uv]
+dev-dependencies = [
+    "importlib-metadata>=8.5.0",
+    "mrender",
+    "twine>=5.1.1",
+]
+
+[tool.uv.sources]
+mrender = { workspace = true }
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"**/{tests,docs}/*" = ["ALL"]
+"**__init__.py" = ["F401"]
+
+[tool.pyright]
+extraPaths = ["/Users/sebastianperalta/simply/corp/projects/mbnew"]
+reportAny = false
+reportExplicitAny = false
