@@ -1,0 +1,3 @@
+[console_scripts]
+api2mdx = api2mdx.main:main
+regenerate-snapshots = api2mdx.scripts.regenerate_snapshots:main
