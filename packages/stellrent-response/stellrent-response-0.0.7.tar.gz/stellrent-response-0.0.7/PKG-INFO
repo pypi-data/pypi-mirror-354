@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: stellrent-response
+Version: 0.0.7
+Summary: Pattern responses for your API Projects
+Author: Marcus R. Magalhães
+Author-email: Marcus Rodrigues Magalhães <marcusrodrigues.magalhaes@stellantis.com>
+Project-URL: Homepage, https://github.com/stellrent/stellrent-response
+Project-URL: Issues, https://github.com/stellrent/stellrent-response/issues
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Framework :: Pytest
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# STELLRENT - Response pattern
+
+Pattern responses for REST API Projects using Flask
+
+## Development
+
+### Requirements
+
+* Visual Studio Code v1.95.2
+* Python v3.11.*
+
+### Testing
+Use VS Code snippet "Testing"
+
+### GITHUB Authentication
+Using SSH Authentication keys
