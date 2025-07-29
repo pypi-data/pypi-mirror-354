@@ -1,0 +1,858 @@
+Metadata-Version: 2.4
+Name: reverie_sdk
+Version: 0.1.3
+Summary: Reverie Language Technologies SDK
+Author: Rohnak Agarwal
+Author-email: rohnak.agarwal@reverieinc.com
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Multimedia :: Sound/Audio :: Speech
+Requires-Python: >=3.7,<3.13
+Description-Content-Type: text/markdown
+Provides-Extra: py37
+Requires-Dist: build==1.1.1; extra == "py37"
+Requires-Dist: dotenv==0.9.9; extra == "py37"
+Requires-Dist: ffmpeg==1.4; extra == "py37"
+Requires-Dist: pandas==1.3.5; extra == "py37"
+Requires-Dist: pip-chill==1.0.3; extra == "py37"
+Requires-Dist: pydub==0.25.1; extra == "py37"
+Requires-Dist: pyopenssl==25.0.0; extra == "py37"
+Requires-Dist: soundfile==0.13.1; extra == "py37"
+Requires-Dist: virtualenv==20.26.6; extra == "py37"
+Requires-Dist: requests==2.31.0; extra == "py37"
+Requires-Dist: websocket-client==1.6.1; extra == "py37"
+Requires-Dist: websockets==11.0.3; extra == "py37"
+Provides-Extra: py37-all
+Requires-Dist: build==1.1.1; extra == "py37-all"
+Requires-Dist: dotenv==0.9.9; extra == "py37-all"
+Requires-Dist: requests==2.31.0; extra == "py37-all"
+Requires-Dist: ffmpeg==1.4; extra == "py37-all"
+Requires-Dist: pandas==1.3.5; extra == "py37-all"
+Requires-Dist: pip-chill==1.0.3; extra == "py37-all"
+Requires-Dist: pydub==0.25.1; extra == "py37-all"
+Requires-Dist: pyopenssl==25.0.0; extra == "py37-all"
+Requires-Dist: soundfile==0.13.1; extra == "py37-all"
+Requires-Dist: stream2sentence==0.2.5; extra == "py37-all"
+Requires-Dist: virtualenv==20.26.6; extra == "py37-all"
+Requires-Dist: websocket-client==1.6.1; extra == "py37-all"
+Requires-Dist: websockets==11.0.3; extra == "py37-all"
+Provides-Extra: py38
+Requires-Dist: requests==2.31.0; extra == "py38"
+Requires-Dist: build==1.2.2.post1; extra == "py38"
+Requires-Dist: colorlog==6.9.0; extra == "py38"
+Requires-Dist: dotenv==0.9.9; extra == "py38"
+Requires-Dist: ffmpeg==1.4; extra == "py38"
+Requires-Dist: pandas==2.0.3; extra == "py38"
+Requires-Dist: pip-chill==1.0.3; extra == "py38"
+Requires-Dist: pydub==0.25.1; extra == "py38"
+Requires-Dist: pyopenssl==25.0.0; extra == "py38"
+Requires-Dist: soundfile==0.13.1; extra == "py38"
+Requires-Dist: virtualenv==20.29.3; extra == "py38"
+Requires-Dist: websocket-client==1.8.0; extra == "py38"
+Requires-Dist: websockets==13.1; extra == "py38"
+Provides-Extra: py38-all
+Requires-Dist: build==1.2.2.post1; extra == "py38-all"
+Requires-Dist: colorlog==6.9.0; extra == "py38-all"
+Requires-Dist: dotenv==0.9.9; extra == "py38-all"
+Requires-Dist: ffmpeg==1.4; extra == "py38-all"
+Requires-Dist: pandas==2.0.3; extra == "py38-all"
+Requires-Dist: pip-chill==1.0.3; extra == "py38-all"
+Requires-Dist: requests==2.31.0; extra == "py38-all"
+Requires-Dist: pydub==0.25.1; extra == "py38-all"
+Requires-Dist: pyopenssl==25.0.0; extra == "py38-all"
+Requires-Dist: soundfile==0.13.1; extra == "py38-all"
+Requires-Dist: stream2sentence==0.2.6; extra == "py38-all"
+Requires-Dist: virtualenv==20.29.3; extra == "py38-all"
+Requires-Dist: websocket-client==1.8.0; extra == "py38-all"
+Requires-Dist: websockets==13.1; extra == "py38-all"
+Provides-Extra: py39
+Requires-Dist: requests==2.31.0; extra == "py39"
+Requires-Dist: build==1.2.2.post1; extra == "py39"
+Requires-Dist: colorlog==6.9.0; extra == "py39"
+Requires-Dist: dotenv==0.9.9; extra == "py39"
+Requires-Dist: ffmpeg==1.4; extra == "py39"
+Requires-Dist: pandas==2.2.3; extra == "py39"
+Requires-Dist: pip-chill==1.0.3; extra == "py39"
+Requires-Dist: pydub==0.25.1; extra == "py39"
+Requires-Dist: pyopenssl==25.0.0; extra == "py39"
+Requires-Dist: soundfile==0.13.1; extra == "py39"
+Requires-Dist: virtualenv==20.29.3; extra == "py39"
+Requires-Dist: websocket-client==1.8.0; extra == "py39"
+Requires-Dist: websockets==15.0.1; extra == "py39"
+Provides-Extra: py39-all
+Requires-Dist: requests==2.31.0; extra == "py39-all"
+Requires-Dist: build==1.2.2.post1; extra == "py39-all"
+Requires-Dist: colorlog==6.9.0; extra == "py39-all"
+Requires-Dist: dotenv==0.9.9; extra == "py39-all"
+Requires-Dist: ffmpeg==1.4; extra == "py39-all"
+Requires-Dist: pandas==2.2.3; extra == "py39-all"
+Requires-Dist: pip-chill==1.0.3; extra == "py39-all"
+Requires-Dist: pydub==0.25.1; extra == "py39-all"
+Requires-Dist: pyopenssl==25.0.0; extra == "py39-all"
+Requires-Dist: soundfile==0.13.1; extra == "py39-all"
+Requires-Dist: stream2sentence==0.2.6; extra == "py39-all"
+Requires-Dist: virtualenv==20.29.3; extra == "py39-all"
+Requires-Dist: websocket-client==1.8.0; extra == "py39-all"
+Requires-Dist: websockets==15.0.1; extra == "py39-all"
+Provides-Extra: py310
+Requires-Dist: requests==2.31.0; extra == "py310"
+Requires-Dist: build==1.2.2.post1; extra == "py310"
+Requires-Dist: colorlog==6.9.0; extra == "py310"
+Requires-Dist: dotenv==0.9.9; extra == "py310"
+Requires-Dist: ffmpeg==1.4; extra == "py310"
+Requires-Dist: pandas==2.2.3; extra == "py310"
+Requires-Dist: pip-chill==1.0.3; extra == "py310"
+Requires-Dist: pydub==0.25.1; extra == "py310"
+Requires-Dist: pyopenssl==25.0.0; extra == "py310"
+Requires-Dist: soundfile==0.13.1; extra == "py310"
+Requires-Dist: virtualenv==20.29.3; extra == "py310"
+Requires-Dist: websocket-client==1.8.0; extra == "py310"
+Requires-Dist: websockets==15.0.1; extra == "py310"
+Provides-Extra: py310-all
+Requires-Dist: requests==2.31.0; extra == "py310-all"
+Requires-Dist: build==1.2.2.post1; extra == "py310-all"
+Requires-Dist: colorlog==6.9.0; extra == "py310-all"
+Requires-Dist: dotenv==0.9.9; extra == "py310-all"
+Requires-Dist: ffmpeg==1.4; extra == "py310-all"
+Requires-Dist: pandas==2.2.3; extra == "py310-all"
+Requires-Dist: pip-chill==1.0.3; extra == "py310-all"
+Requires-Dist: pydub==0.25.1; extra == "py310-all"
+Requires-Dist: pyopenssl==25.0.0; extra == "py310-all"
+Requires-Dist: soundfile==0.13.1; extra == "py310-all"
+Requires-Dist: stream2sentence==0.3.0; extra == "py310-all"
+Requires-Dist: virtualenv==20.29.3; extra == "py310-all"
+Requires-Dist: websocket-client==1.8.0; extra == "py310-all"
+Requires-Dist: websockets==15.0.1; extra == "py310-all"
+Provides-Extra: py311
+Requires-Dist: requests==2.31.0; extra == "py311"
+Requires-Dist: build==1.2.2.post1; extra == "py311"
+Requires-Dist: colorlog==6.9.0; extra == "py311"
+Requires-Dist: dotenv==0.9.9; extra == "py311"
+Requires-Dist: ffmpeg==1.4; extra == "py311"
+Requires-Dist: pandas==2.2.3; extra == "py311"
+Requires-Dist: pip-chill==1.0.3; extra == "py311"
+Requires-Dist: pydub==0.25.1; extra == "py311"
+Requires-Dist: pyopenssl==25.0.0; extra == "py311"
+Requires-Dist: soundfile==0.13.1; extra == "py311"
+Requires-Dist: virtualenv==20.29.3; extra == "py311"
+Requires-Dist: websocket-client==1.8.0; extra == "py311"
+Requires-Dist: websockets==15.0.1; extra == "py311"
+Provides-Extra: py311-all
+Requires-Dist: requests==2.31.0; extra == "py311-all"
+Requires-Dist: build==1.2.2.post1; extra == "py311-all"
+Requires-Dist: colorlog==6.9.0; extra == "py311-all"
+Requires-Dist: dotenv==0.9.9; extra == "py311-all"
+Requires-Dist: ffmpeg==1.4; extra == "py311-all"
+Requires-Dist: pandas==2.2.3; extra == "py311-all"
+Requires-Dist: pip-chill==1.0.3; extra == "py311-all"
+Requires-Dist: pydub==0.25.1; extra == "py311-all"
+Requires-Dist: pyopenssl==25.0.0; extra == "py311-all"
+Requires-Dist: soundfile==0.13.1; extra == "py311-all"
+Requires-Dist: stream2sentence==0.3.0; extra == "py311-all"
+Requires-Dist: virtualenv==20.29.3; extra == "py311-all"
+Requires-Dist: websocket-client==1.8.0; extra == "py311-all"
+Requires-Dist: websockets==15.0.1; extra == "py311-all"
+Provides-Extra: py312
+Requires-Dist: build==1.2.2.post1; extra == "py312"
+Requires-Dist: dotenv==0.9.9; extra == "py312"
+Requires-Dist: ffmpeg==1.4; extra == "py312"
+Requires-Dist: pandas==2.2.3; extra == "py312"
+Requires-Dist: pip-chill==1.0.3; extra == "py312"
+Requires-Dist: pydub==0.25.1; extra == "py312"
+Requires-Dist: pyopenssl==25.0.0; extra == "py312"
+Requires-Dist: soundfile==0.13.1; extra == "py312"
+Requires-Dist: virtualenv==20.29.3; extra == "py312"
+Requires-Dist: websocket-client==1.8.0; extra == "py312"
+Requires-Dist: websockets==15.0.1; extra == "py312"
+Requires-Dist: requests==2.31.0; extra == "py312"
+Provides-Extra: py312-all
+Requires-Dist: requests==2.31.0; extra == "py312-all"
+Requires-Dist: build==1.2.2.post1; extra == "py312-all"
+Requires-Dist: dotenv==0.9.9; extra == "py312-all"
+Requires-Dist: ffmpeg==1.4; extra == "py312-all"
+Requires-Dist: pandas==2.2.3; extra == "py312-all"
+Requires-Dist: pip-chill==1.0.3; extra == "py312-all"
+Requires-Dist: pydub==0.25.1; extra == "py312-all"
+Requires-Dist: pyopenssl==25.0.0; extra == "py312-all"
+Requires-Dist: soundfile==0.13.1; extra == "py312-all"
+Requires-Dist: stream2sentence==0.3.0; extra == "py312-all"
+Requires-Dist: virtualenv==20.29.3; extra == "py312-all"
+Requires-Dist: websocket-client==1.8.0; extra == "py312-all"
+Requires-Dist: websockets==15.0.1; extra == "py312-all"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: provides-extra
+Dynamic: requires-python
+Dynamic: summary
+
+# Reverie Python SDK
+
+[Official Reverie API documentation](https://docs.reverieinc.com/)  
+[PyPI project](https://pypi.org/project/reverie-sdk/)
+
+
+# Supported Python versons:
+- 3.7.x
+- 3.8.x
+- 3.9.x
+- 3.10.x
+- 3.11.x
+- 3.12.x
+
+
+# Installing
+
+1. Minimal dependencies (excluded service: `tts_streaming`)
+    ```bash
+    # total size: approx 150-200 MB
+    pip install reverie_sdk[py3x]
+    # example: 
+    # pip install reverie_sdk[py37]
+    ```
+2. Full dependencies
+    ```bash
+    # total size: approx 1.5-5.5 GB
+    pip install reverie_sdk[py3x-all]
+    # example: 
+    # pip install reverie_sdk[py37-all]
+    ```
+
+**where**: `x` = `7`, `8`, `9`, `10`, `11` and `12`
+
+
+# How to
+
+## ASR/STT | stt_stream
+
+### Sample 0: From Bytes (Simulated file streaming)
+
+**Sample Code**:
+
+```python 3.x
+from reverie_sdk import ReverieClient
+
+client = ReverieClient(
+    api_key="MY_API_KEY",
+    app_id="MY_APP_ID",
+)
+
+for resp in client.asr.stt_stream(
+    src_lang="en",
+    bytes_or_stream=open("/path/to/audio.wav", "rb").read(),
+    continuous="0",
+    domain="generic",
+    format="16k_int16",
+    logging="true",
+    punctuate="true",
+    silence=15,
+    timeout=15,
+):
+    print(resp)
+
+```
+
+**Sample Output**:
+
+```
+ReverieAsrResult (
+    id           : xxxxxxa8257a4e45eb
+    text         : 
+    final        : False
+    cause        : partial
+    success      : True
+    confidence   : 1.0
+    display_text : 
+)
+ReverieAsrResult (
+    id           : xxxxxxa8257a4e45eb
+    text         : but what if somebody
+    final        : False
+    cause        : partial
+    success      : True
+    confidence   : 0
+    display_text : but what if somebody
+)
+                        .
+                        .
+                        .
+ReverieAsrResult (
+    id           : xxxxxxa8257a4e45eb
+    text         : but what if somebody decides to break and be careful that you keep adequate coverage but look for places to save money maybe it's taking longer to get things squared away then the bankers expected hiring the wife for one's company may win her tenth
+    final        : False
+    cause        : partial
+    success      : True
+    confidence   : 0
+    display_text : but what if somebody decides to break and be careful that you keep adequate coverage but look for places to save money maybe it's taking longer to get things squared away then the bankers expected hiring the wife for one's company may win her tenth
+)
+ReverieAsrResult (
+    id           : xxxxxxa8257a4e45eb
+    text         : but what if somebody decides to break it be careful that you keep adequate coverage but look for places to save money maybe it's taking longer to get things squared away then the bankers expected hiring the ymca for one's company may win her tech cited retirement and
+    final        : True
+    cause        : silence detected
+    success      : True
+    confidence   : 0.905
+    display_text : But what if somebody decides to break it? Be careful that you keep adequate coverage, but look for places to save money. Maybe it's taking longer to get things squared away. then. the bankers expected hiring the Y.M.CA for one's company may win her tech cited retirement, and.
+)
+```
+
+### Sample 1: From Stream (Mic)
+
+**Sample Code**:
+```python 3.x
+import pyaudio, asyncio
+from reverie_sdk import ReverieClient
+from reverie_sdk.services.asr import AudioStream
+
+client = ReverieClient(
+    api_key="REVERIE_API_KEY",
+    app_id="REVERIE_APP_ID",
+)
+
+stream = AudioStream()
+pa = pyaudio.PyAudio()
+
+def mic_callback(in_data, frame_count, time_info, status):
+    try:
+        asyncio.run(stream.add_chunk_async(in_data))
+    except:
+        return (None, pyaudio.paAbort)
+    return (None, pyaudio.paContinue)
+
+async def main():
+    pa_stream = pa.open(
+        rate=RATE,
+        channels=CHANNELS,
+        format=FORMAT,
+        frames_per_buffer=CHUNK_SIZE,
+        input=True,
+        stream_callback=mic_callback,
+    )
+    pa_stream.start_stream()
+
+    print("listening... press ctrl+C to stop", flush=True)
+
+    try:
+        await client.asr.stt_stream_async(
+            src_lang="en",
+            bytes_or_stream=stream,
+            callback=print,
+            continuous="0",
+            domain="generic",
+            format="16k_int16",
+            logging="true",
+            punctuate="true",
+            silence=15,
+            timeout=15,
+        )
+    except Exception as err:
+        print(err)
+    finally:
+        pa_stream.stop_stream()
+        pa_stream.close()
+
+
+asyncio.run(main())
+
+pa.terminate()
+```
+
+**Sample Output**:
+```
+ALSA lib pcm_dsnoop.c:567:(snd_pcm_dsnoop_open) unable to open slave
+ALSA lib pcm_dmix.c:1000:(snd_pcm_dmix_open) unable to open slave
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.rear
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.center_lfe
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.side
+... (SOME WARNINGS) ...
+listening... press ctrl+C to stop
+ReverieAsrResult (
+    id           : xxxxxxa384ee3c64b3d
+    text         : 
+    final        : False
+    cause        : ready
+    success      : True
+    confidence   : 1.0
+    display_text : 
+)
+ReverieAsrResult (
+    id           : xxxxxxa384ee3c64b3d
+    text         : 
+    final        : False
+    cause        : partial
+    success      : True
+    confidence   : 1.0
+    display_text : 
+)
+ReverieAsrResult (
+    id           : xxxxxxa384ee3c64b3d
+    text         : hello
+    final        : False
+    cause        : partial
+    success      : True
+    confidence   : 0.9876
+    display_text : hello
+)
+ReverieAsrResult (
+    id           : xxxxxxa384ee3c64b3d
+    text         : hello hello testing one two three
+    final        : False
+    cause        : partial
+    success      : True
+    confidence   : 0.9161
+    display_text : hello hello testing one two three
+)
+ReverieAsrResult (
+    id           : xxxxxxa384ee3c64b3d
+    text         : hello hello testing one two three
+    final        : True
+    cause        : silence detected
+    success      : True
+    confidence   : 0.9065
+    display_text : Hello hello Testing 123.
+)
+```
+
+
+## ASR/STT | stt_file
+
+**Sample Code**:
+
+```python 3.x
+from reverie_sdk import ReverieClient
+
+client = ReverieClient(
+    api_key="MY_API_KEY",
+    app_id="MY_APP_ID",
+)
+
+resp = client.asr.stt_file(
+    src_lang="en",
+    data=open("./path/to/audio.wav", "rb").read(),
+    domain="generic",
+    format="16k_int16",
+    logging="true",
+    punctuate="true",
+)
+
+print(resp)
+```
+
+**Sample Output**:
+
+```
+ReverieAsrResult (
+    id           : xxxxxxxxxaa0b80d34a7b
+    text         : but what if ... some make beautiful chairs, cabinets, chests, dollhouses, et cetera.
+    final        : True
+    cause        : EOF received
+    success      : True
+    confidence   : 0.9475
+    display_text : But what if ... some make beautiful chairs, cabinets, chests, dollhouses, et cetera.
+)
+```
+
+
+## ASR/STT | stt_batch
+
+**Sample Code**:
+
+```python 3.x
+from reverie_sdk import ReverieClient
+
+client = ReverieClient(
+    api_key="MY_API_KEY",
+    app_id="MY_APP_ID",
+)
+
+for resp in client.asr.stt_batch(
+    src_lang="en",
+    data=open("/path/to/audio.wav", "rb").read(),
+    domain="generic",
+    format="16k_int16",
+    subtitles=True,
+):
+    print(resp, flush=True)
+
+print(resp)
+```
+
+**Sample Output**:
+
+```
+ReverieAsrBatchResult (
+    code    : 000
+    job_id  : xxxxxxb97e45211716
+    message : Success. Request accepted
+)
+ReverieAsrBatchResult (
+    code    : 004
+    job_id  : xxxxxxb97e45211716
+    status  : processing
+    message : Your request is being processed.
+)
+ReverieAsrBatchResult (
+    code    : 004
+    job_id  : xxxxxxb97e45211716
+    status  : processing
+    message : Your request is being processed.
+)
+ReverieAsrBatchResult (
+    code    : 004
+    job_id  : xxxxxxb97e45211716
+    status  : processing
+    message : Your request is being processed.
+)
+ReverieAsrBatchResult (
+    code    : 000
+    job_id  : xxxxxxb97e45211716
+    status  : completed
+    message : Transcript ready.
+)
+ReverieAsrBatchResult (
+    code    : 000
+    job_id  : xxxxxxb97e45211716
+    message : Transcript ready.
+    result  :
+    _Transcript(
+        transcript          : But what if somebody decides to break it? be ... some make beautiful chairs, cabinets, chests, dollhouses, et cetera.
+        original_transcript : BUT WHAT IF SOMEBODY DECIDES TO BREAK IT BE ... SOME MAKE BEAUTIFUL CHAIRS CABINETS CHESTS DOLLHOUSES ET CETERA.
+        channel_number      : 1
+        subtitles           : "1\n00:00:00,000 --> 00:00:51,000\nBUT WHAT IF SOMEBODY DECIDES TO BREAK IT BE ... SOME MAKE BEAUTIFUL CHAIRS CABINETS CHESTS DOLLHOUSES ET CETERA\n\n"
+        words               : 155 words
+    )
+)
+```
+
+
+
+## TTS | tts
+
+### Sample 0: text
+
+**Sample Code**:
+
+```python 3.x
+from reverie_sdk import ReverieClient
+
+client = ReverieClient(
+    api_key="MY_API_KEY",
+    app_id="MY_APP_ID",
+)
+
+resp = client.tts.tts(
+    speaker="en_male",
+    text="hello there, how are you?",
+    sample_rate=16000,
+    format="OPUS",
+    pitch=0,
+    speed=1,
+)
+
+print(resp)
+```
+
+**Sample Output**:
+
+```
+ReverieTtsResponse(
+    format          : OPUS
+    sample_rate     : 16000
+    audio_bytes     : 8392
+    duration        : 1.695 seconds
+    kwargs          : {'src': {'text': 'hello there, how are you?', 'ssml': None}}
+)
+```
+
+### Sample 1: ssml
+
+**Sample Code**:
+
+```python 3.x
+from reverie_sdk import ReverieClient
+
+client = ReverieClient(
+    api_key="MY_API_KEY",
+    app_id="MY_APP_ID",
+)
+
+resp = client.tts.tts(
+    speaker="en_male",
+    ssml="""
+<speak>
+<voice name="en_female"> This is an example. </voice>
+<voice name="hi_female"> यह एक उदाहरण है </voice>
+</speak>
+""".strip(),
+    sample_rate=16000,
+    format="OPUS",
+    pitch=0,
+    speed=1,
+)
+
+print(resp)
+```
+
+**Sample Output**:
+
+```
+ReverieTtsResponse(
+    format          : OPUS
+    sample_rate     : 16000
+    audio_bytes     : 8392
+    duration        : 1.695 seconds
+    kwargs          : {'src': {'text': 'hello there, how are you?', 'ssml': None}}
+)
+```
+
+
+## TTS | Streaming
+
+**Note**: `py3x-all` variant is required to install for this. See *Installing* section.
+
+**Sample Code**:
+
+```python 3.x
+from reverie_sdk import ReverieClient
+
+client = ReverieClient(
+    api_key="MY_API_KEY",
+    app_id="MY_APP_ID",
+)
+
+with open("./big_text.txt", encoding="utf-8") as f:
+    text = f.read()
+
+for resp_idx, resp in enumerate(
+    client.tts.tts_streaming(
+        text=text,
+        speaker="en_male",
+        max_words_per_chunk=5,
+        fast_sentence_fragment=False,
+    )
+):
+    print(f"{resp_idx:08d} {resp.duration:10.3f}")
+    resp.save_audio(
+        f".path/to/output/{resp_idx:08d}.wav",
+        create_parents=True,
+        overwrite_existing=True,
+    )
+```
+
+**Sample Output**:
+
+```
+00000000     13.351
+00000001      5.422
+00000002      9.799
+...
+00000048      6.014
+00000049      9.741
+00000050     11.622
+```
+
+## T13N | transliteration
+
+**Sample Code**:
+
+```python 3.x
+from reverie_sdk import ReverieClient
+
+client = ReverieClient(
+    api_key="MY_API_KEY",
+    app_id="MY_APP_ID",
+)
+
+resp = client.t13n.transliteration(
+    data=["Reverie Language Technologies ltd website address is http://www.reverieinc.com"],
+    src_lang="en",
+    tgt_lang="hi",
+    cnt_lang="en",
+    convertOrdinal=True,
+    ignoreTaggedEntities=False,
+    convertNumber="words",
+    abbreviationWithoutDot=False,
+    isBulk=False,
+    noOfSuggestions=3,
+    domain="1",
+)
+
+print(resp)
+```
+
+**Sample Output**:
+
+```
+ReverieT13nResponse(
+    responseList    : 
+        ReverieT13nResponse.Result(
+            apiStatus   : 2
+            inString    : Reverie Language Technologies ltd website address is http://www.reverieinc.com
+            outString   : 
+                रेवरी लैंग्वेज टेक्नोलॉजीस लिमिटेड वेबसाइट एड्रेस इज़ http://www.reverieinc.com
+        )
+)
+```
+
+## NMT | localization
+
+### Sample 0: Single tgt_lang
+
+**Sample Code**:
+
+```python 3.x
+from reverie_sdk import ReverieClient
+
+client = ReverieClient(
+    api_key="MY_API_KEY",
+    app_id="MY_APP_ID",
+)
+
+resp = client.nmt.localization(
+    data=[
+        "Reverie Language Technologies was established in 2009.",
+        "The company head office is located in Bangalore.",
+    ],
+    domain=1,
+    src_lang="en",
+    tgt_lang=["hi"],
+    nmtMaskTerms=["Reverie Language Technologies"],
+    nmtMask=True,
+    debugMode=True,
+    enableNmt=False,
+    enableTransliteration=True,
+    enableLookup=True,
+)
+
+print(resp)
+```
+
+**Sample Output**:
+
+```
+ReverieLocalizationResult(
+    responseList:
+        ReverieLocalizationResponseItem(
+            inString    = Reverie Language Technologies was established in 2009.
+            outString   = रेवेरी लैंगएज टेच्नोलोजीस वैस इस्टैब्लिश्ड इन 2009।
+            apiStatus   = 10
+        )
+        ReverieLocalizationResponseItem(
+            inString    = The company head office is located in Bangalore.
+            outString   = द कोम्पैनी हीड ओफिस इस लोकैट्ड इन बैंगैलोर।
+            apiStatus   = 10
+        )
+    tokenConsumed: 0
+)
+```
+
+### Sample 1: Multiple tgt_lang
+
+**Sample Code**:
+
+```python 3.x
+from reverie_sdk import ReverieClient
+
+client = ReverieClient(
+    api_key="MY_API_KEY",
+    app_id="MY_APP_ID",
+)
+
+resp = client.nmt.localization(
+    data=[
+        "Reverie Language Technologies was established in 2009.",
+        "The company head office is located in Bangalore.",
+    ],
+    domain=1,
+    src_lang="en",
+    tgt_lang=["hi", "ta"],
+    nmtMaskTerms=["Reverie Language Technologies"],
+    nmtMask=True,
+    debugMode=True,
+    enableNmt=False,
+    enableTransliteration=True,
+    enableLookup=True,
+)
+
+print(resp)
+```
+
+**Sample Output**:
+
+```
+ReverieLocalizationResult(
+    responseList:
+        ReverieLocalizationResponseItem(
+            inString    = Reverie Language Technologies was established in 2009.
+            apiStatus   = 4
+            outStrings:
+                hi : रेवेरी लैंगएज टेच्नोलोजीस वैस इस्टैब्लिश्ड इन 2009.
+                ta : ரெவெரி லஙுய்ஜ் டெச்னோலோஜீஸ் வஸ் எஸ்டப்லிஷெட் இன் 2009.
+        
+        )
+        ReverieLocalizationResponseItem(
+            inString    = The company head office is located in Bangalore.
+            apiStatus   = 4
+            outStrings:
+                hi : द कोम्पैनी हीड ओफिस इस लोकैट्ड इन बैंगैलोर.
+                ta : த் கோம்பனி ஹீட் ஓஃபிஸ் இஸ் லோகடெட் இன் பஙலோர்.
+        
+        )
+    tokenConsumed: 0
+)
+```
+
+## NLU | lang_id_text
+
+**Sample Code**:
+
+```python 3.x
+from reverie_sdk import ReverieClient
+
+client = ReverieClient(
+    api_key="MY_API_KEY",
+    app_id="MY_APP_ID",
+)
+
+resp = client.nlu.lang_id_text(
+    "भारत दक्षिण एशिया में स्थित भारतीय उपमहाद्वीप का सबसे बड़ा देश है",
+    max_length=16,
+)
+
+print(resp)
+```
+
+**Sample Output**:
+
+```
+ReverieLangIdTextResponse(
+    lang        = hi
+    confidence  = 0.9999784231185913
+)
+```
+
+# Integration Status
+
+1. Speech [✔️]
+    1. stt_stream [✔️]
+    1. stt_file (non-streaming) [✔️]
+    1. stt_batch (async) [✔️]
+1. NMT [✔️]
+    1. localization [✔️]
+1. T13N[✔️]
+    1. transliteration [✔️]
+1. TTS [✔️]
+    1. tts [✔️]
+    1. tts streaming [✔️]
+1. NLU [ ]
+    1. lang_id_text [✔️]
+    1. train_model [ ]
+    1. test_model [ ]
+
+## Note:
+1. All functions have basic validations in place, atleast datatype checks
+
+
