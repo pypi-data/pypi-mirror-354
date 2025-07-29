@@ -1,0 +1,29 @@
+Metadata-Version: 2.3
+Name: kozmoai-etf
+Version: 1.4.0.dev202506081902
+Summary: ETF extension for KozmoAI
+License: AGPL-3.0-only
+Author: KozmoAI Team
+Author-email: hello@kozmoai.co
+Requires-Python: >=3.9,<3.13
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Dist: kozmoai-core (>=1.4.2,<2.0.0)
+Description-Content-Type: text/markdown
+
+# ETF data extension for KozmoAI SDK
+
+This extension provides a set of commands for ETF data retrieval.
+
+## Installation
+
+To install the extension, run the following command in this folder:
+
+```bash
+pip install kozmoai-etf
+```
+

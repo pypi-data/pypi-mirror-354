@@ -1,0 +1,6 @@
+[kozmoai_charting_extension]
+etf=kozmoai_etf.etf_views:EtfViews
+
+[kozmoai_core_extension]
+etf=kozmoai_etf.etf_router:router
+
