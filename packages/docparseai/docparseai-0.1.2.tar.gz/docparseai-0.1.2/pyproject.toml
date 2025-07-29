@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "docparseai"
+version = "0.1.2"
+description = "Document parsing, chunking, embedding, and vector retrieval made easy."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+  { name="Paul Onyekwelu", email="paulonyekweluo@gmail.com" }
+]
+
+dependencies = [
+  "numpy",
+  "faiss-cpu",
+  "chardet",
+  "pymupdf",
+  "python-docx"
+]
+
+[project.optional-dependencies]
+embedding = [
+  "sentence-transformers"
+]
+advanced = [
+  "spacy"
+]
+
+[project.urls]
+Homepage = "https://docparseai.readthedocs.io/en/latest/"
+Repository = "https://github.com/AgenticAiLabs/docparseai"
+Issues = "https://github.com/AgenticAiLabs/docparseai/issues"
+
+[tool.setuptools]
+packages = ["docparseai"]
+include-package-data = true
