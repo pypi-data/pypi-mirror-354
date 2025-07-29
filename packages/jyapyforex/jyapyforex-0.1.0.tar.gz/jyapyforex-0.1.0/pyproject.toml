@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jyapyforex"
+version = "0.1.0"
+authors = [
+  { name="Krishna Kuruvadi", email="krishnakuruvadi@gmail.com" },
+]
+description = "A Python library to get historical forex rates from various providers."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Office/Business :: Financial",
+    "Intended Audience :: Developers",
+]
+dependencies = [
+    "requests>=2.28.1",
+    # Add any other dependencies here
+]
+
+[project.urls]
+Homepage = "https://github.com/JustYetAnother/jyapyforex"
+"Bug Tracker" = "https://github.com/JustYetAnother/jyapyforex/issues"
+
+[project.scripts]
+# This entry point makes cli.py script runnable directly from the command line
+jyapyforex = "jyapyforex.cli:main"
