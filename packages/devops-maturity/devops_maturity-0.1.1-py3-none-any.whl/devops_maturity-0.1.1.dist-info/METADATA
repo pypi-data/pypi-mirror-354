@@ -1,0 +1,108 @@
+Metadata-Version: 2.4
+Name: devops-maturity
+Version: 0.1.1
+Summary: A DevOps maturity assessment tool with CLI and Web interface.
+Author-email: Xianpeng Shen <xianpeng.shen@gmail.com>
+License-Expression: MIT
+Project-URL: homepage, https://github.com/devops-maturity
+Project-URL: source, https://github.com/devops-maturity/devops-maturity
+Project-URL: tracker, https://github.com/devops-maturity/devops-maturity/issues
+Keywords: devops,maturity,assessment,cli,web
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi
+Requires-Dist: badgepy
+Requires-Dist: typer
+Requires-Dist: jinja2
+Requires-Dist: pydantic
+Requires-Dist: python-multipart
+Requires-Dist: sqlalchemy
+Provides-Extra: dev
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: uvicorn; extra == "dev"
+Provides-Extra: test
+Requires-Dist: fastapi; extra == "test"
+Requires-Dist: httpx; extra == "test"
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: pytest-cov; extra == "test"
+
+# DevOps Maturity Assessment
+
+[![CI](https://github.com/devops-maturity/devops-maturity/actions/workflows/ci.yml/badge.svg)](https://github.com/devops-maturity/devops-maturity/actions/workflows/ci.yml)
+
+## Overview
+
+This repository contains a DevOps Maturity Assessment tool designed to help organizations evaluate their DevOps practices and identify areas for improvement. The assessment is based on a set of questions that cover various aspects of DevOps, including culture, automation, measurement, sharing, and security.
+
+## Usage
+
+### Launch Web Application
+
+To launch the web application, you can use the following command:
+
+```bash
+uvicorn src.web.main:app --reload
+```
+
+Then open [http://localhost:8000](http://localhost:8000) in your browser to access the DevOps Maturity Assessment web interface.
+
+### Use the CLI
+
+To run the assessment in your terminal, use:
+
+```bash
+python -m src.cli.main check
+```
+
+This will prompt you to answer questions interactively and generate a badge based on your score.
+
+## Assessment Categories & Criteria
+
+The assessment covers the following categories and criteria:
+
+### CI/CD Basics
+- Build a specific branch (must have)
+- Build upon pull request (must have)
+- Docker (nice to have)
+
+### Quality
+- Automated Testing: Functional testing (must have)
+- Automated Testing: Performance testing (must have)
+- Code Coverage (nice to have)
+- Accessibility Testing (nice to have)
+
+### Security
+- Security scan (must have)
+- License scan (nice to have)
+
+### Secure Supply Chain
+- Documented Build Chain (must have)
+- CICD as coded (must have)
+- Artifacts are signed (nice to have)
+- Artifactory download for Package Managers (nice to have)
+
+### Reporting
+- Email/Slack reporting functionality
+
+### Analysis
+- Quality Gate (nice to have)
+- Code Lint (nice to have)
+- Static code analysis (nice to have)
+- Dynamic code analysis (nice to have)
+
+## Badge Levels
+
+Your score will generate one of the following badges:
+- **WIP**: 0%
+- **PASSING**: 1–49%
+- **BRONZE**: 50–69%
+- **SILVER**: 70–89%
+- **GOLD**: 90–100%
