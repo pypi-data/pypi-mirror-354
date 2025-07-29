@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "win32str"
+version = "0.0.3"
+description = "A simple package"
+authors = [{name = "cdh", email = "cdh@wearehackerone.com"}]
+license = {text = "MIT"}
+requires-python = ">=3.7"
+
+[project.urls]
+Homepage = "https://hackerone.com/cdh"
