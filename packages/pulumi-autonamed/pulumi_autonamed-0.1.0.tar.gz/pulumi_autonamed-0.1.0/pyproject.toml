@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pulumi-autonamed"
+version = "0.1.0"
+description = "Pulumi component that auto-names Azure resources from the subscription ID"
+requires-python = ">=3.9"
+dependencies = [
+  "pulumi>=3.100",
+  "pulumi-azure-native>=2.0"
+]
