@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  kafka:
+    image: bitnami/kafka:latest
+    container_name: kafka
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    environment:
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_LISTENERS=INTERNAL://:9092,EXTERNAL://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka:9092,EXTERNAL://localhost:9093
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9092
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    networks:
+      - app-tier
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    ports:
+      - "8080:8080"
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+    depends_on:
+      - kafka
+    networks:
+      - app-tier
+
+  app:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      container_name: kafka-framework-app
+      depends_on:
+        - kafka
+      networks:
+        - app-tier
+      environment:
+        KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+        KAFKA_GROUP_ID: kafka-framework-group
+#      working_dir: /app/examples
+      command: python app.py
+#      ports:
+#        - "8000:8000"  # For Prometheus metrics if exposed
+
+networks:
+  app-tier:
+    driver: bridge
