@@ -1,0 +1,42 @@
+# Category definitions with both dependencies and API URLs
+categories:
+  "Web Frameworks":
+    dependencies:
+      - "tomli"
+      - "packaging" 
+      - "pyyaml"
+      - "click"
+    api_patterns:
+      - "https://api.github.com/*"
+      - "https://api.example.com/users*"
+      - "https://api.example.com/auth*"
+    status: "allowed"
+  
+  "Data Science":
+    dependencies:
+      - "jinja2"
+      - "pytest"
+      - "pytest-cov" 
+      - "matplotlib"
+    api_patterns:
+      - "https://api.openweathermap.org/*"
+      - "https://api.internal.example.com/*"
+    status: "allowed"
+  
+  "Machine Learning":
+    dependencies:
+      - "black"
+      - "ruff"
+      - "scikit-learn"
+      - "keras"
+    api_patterns:
+      - "https://auth.example.com/*"
+      - "https://api.example.com/httpx-data*"
+    status: "restricted"
+
+ignore_patterns:
+  - ".venv"
+  - ".venv-win"
+  - "__pycache__"
+  - "*.pyc"
+  - ".git"

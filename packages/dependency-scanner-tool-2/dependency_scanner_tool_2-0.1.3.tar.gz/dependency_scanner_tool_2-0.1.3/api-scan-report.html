@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dependency Scanner Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap">
+    <style>
+        :root {
+            --gl-primary: #6666c4;
+            --gl-secondary: #2e2e2e;
+            --gl-gray-100: #fafafa;
+            --gl-gray-200: #dfdfdf;
+            --gl-gray-300: #e3e3e3;
+            --gl-text: #333;
+            --gl-high: #dd2b0e;
+            --gl-medium: #ef8e50;
+            --gl-low: #1f75cb;
+            --gl-success: #1aaa55;
+            --gl-warning: #fc9403;
+            --gl-danger: #db3b21;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 4rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--gl-text);
+            background-color: var(--gl-gray-100);
+        }
+        
+        .navbar {
+            background: #fff;
+            border-bottom: 1px solid var(--gl-gray-200);
+            padding: 0.5rem 2rem;
+            display: flex;
+            align-items: center;
+            height: 48px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            gap: 1rem;
+        }
+        
+        .navbar-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gl-secondary);
+            white-space: nowrap;
+        }
+        
+        .content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        h1 {
+            font-size: 1.75rem;
+            color: var(--gl-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .generation-info {
+            color: #666;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 0.25rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        
+        .card-header {
+            background-color: white;
+            padding: 1rem;
+            border-bottom: 1px solid var(--gl-gray-200);
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--gl-secondary);
+        }
+        
+        .card-body {
+            padding: 1rem;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .summary-item {
+            background-color: white;
+            border-radius: 0.25rem;
+            padding: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .summary-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .summary-item h3 {
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            color: #666;
+            font-weight: normal;
+        }
+        
+        .summary-item p {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gl-primary);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9375rem;
+        }
+        
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gl-gray-200);
+        }
+        
+        th {
+            background-color: white;
+            font-weight: 600;
+            color: #666;
+        }
+        
+        tr:hover {
+            background-color: var(--gl-gray-100);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .badge-allowed {
+            background-color: var(--gl-success);
+            color: white;
+        }
+        
+        .badge-restricted {
+            background-color: var(--gl-danger);
+            color: white;
+        }
+        
+        .badge-unknown {
+            background-color: var(--gl-warning);
+            color: white;
+        }
+        
+        .language-bar {
+            height: 8px;
+            background-color: var(--gl-gray-200);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .language-segment {
+            height: 100%;
+            float: left;
+        }
+        
+        .language-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .language-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .language-color {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+        }
+        
+        .dependency-files {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .dependency-files li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--gl-gray-200);
+        }
+        
+        .category-section {
+            margin-bottom: 2rem;
+        }
+        
+        .category-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .category-status {
+            margin-left: 0.5rem;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .category-status-allowed {
+            background-color: var(--gl-success);
+        }
+        
+        .category-status-restricted {
+            background-color: var(--gl-danger);
+        }
+        
+        .category-status-cannot_determine {
+            background-color: var(--gl-warning);
+            color: #333;
+        }
+        
+        .dependency-files li:last-child {
+            border-bottom: none;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #666;
+            font-size: 0.875rem;
+            border-top: 1px solid var(--gl-gray-200);
+            margin-top: 2rem;
+        }
+        
+        /* Styles for source files list */
+        .source-files {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            max-height: 100px;
+            overflow-y: auto;
+            font-size: 0.85rem;
+        }
+        
+        .source-files li {
+            padding: 0.25rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .source-files li:last-child {
+            border-bottom: none;
+        }
+        
+        .occurrence-count {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.25rem;
+            background-color: #f0f0f0;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+            color: #666;
+        }
+        
+        .toggle-sources {
+            cursor: pointer;
+            color: #6666c4;
+            font-size: 0.85rem;
+            background: none;
+            border: none;
+            padding: 0;
+            text-decoration: underline;
+            margin-left: 0.5rem;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .category-section h4 {
+            font-size: 0.875rem;
+            color: #666;
+            margin: 1rem 0 0.5rem 0;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--gl-gray-200);
+            font-weight: 600;
+        }
+        
+        .category-section h4:first-of-type {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <span class="navbar-title">Dependency Scanner</span>
+    </div>
+    
+    <div class="content">
+        <h1>Dependency Scanner Report</h1>
+        <div class="generation-info">Report generated on <span id="generation-date"></span></div>
+        
+        <div class="summary-grid">
+            <div class="summary-item">
+                <h3>Unique Dependencies</h3>
+                <p>45</p>
+            </div>
+            <div class="summary-item">
+                <h3>Total Occurrences</h3>
+                <p>53</p>
+            </div>
+            <div class="summary-item">
+                <h3>Languages</h3>
+                <p>0</p>
+            </div>
+            <div class="summary-item">
+                <h3>Package Managers</h3>
+                <p>0</p>
+            </div>
+            <div class="summary-item">
+                <h3>API Calls</h3>
+                <p>3</p>
+            </div>
+            <div class="summary-item">
+                <h3>Errors</h3>
+                <p>0</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">Languages</div>
+            <div class="card-body">
+                <div class="language-bar">
+                    
+                    
+                </div>
+                
+                <div class="language-legend">
+                    
+                </div>
+                
+                <table style="margin-top: 1.5rem;">
+                    <thead>
+                        <tr>
+                            <th>Language</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">Package Managers</div>
+            <div class="card-body">
+                
+                <p>No package managers detected.</p>
+                
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">Dependency Files</div>
+            <div class="card-body">
+                
+                <ul class="dependency-files">
+                    
+                    <li>sample_code/requirements.txt</li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">Dependencies</div>
+            <div class="card-body">
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Version</th>
+                            <th>Occurrences</th>
+                            <th>Sources</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                            <td>Jinja2</td>
+                            <td>3.1.6</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>MarkupSafe</td>
+                            <td>3.0.2</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>PyYAML</td>
+                            <td>6.0.2</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Pygments</td>
+                            <td>2.19.1</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>SecretStorage</td>
+                            <td>3.3.3</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>black</td>
+                            <td>==22.8.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        sample_code/requirements.txt
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>build</td>
+                            <td>1.2.2.post1</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>certifi</td>
+                            <td>2025.4.26</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>cffi</td>
+                            <td>1.17.1</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>charset-normalizer</td>
+                            <td>3.4.2</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>click</td>
+                            <td>8.1.8</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>cryptography</td>
+                            <td>44.0.3</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>dependency-scanner-tool</td>
+                            <td>0.1.2</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>docutils</td>
+                            <td>0.21.2</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>flake8</td>
+                            <td>==5.0.4</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        sample_code/requirements.txt
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>httpx</td>
+                            <td>==0.23.0</td>
+                            <td>
+                                <span class="occurrence-count">3</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        <button class="toggle-sources" onclick="toggleSources('dep-16')">
+                                            Show 2 sources
+                                        </button>
+                                        <ul id="dep-16" class="source-files hidden">
+                                            
+                                            <li>sample_code/api_example.py</li>
+                                            
+                                            <li>sample_code/requirements.txt</li>
+                                            
+                                        </ul>
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>id</td>
+                            <td>1.5.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>idna</td>
+                            <td>3.10</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>iniconfig</td>
+                            <td>2.1.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>jaraco.classes</td>
+                            <td>3.4.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>jaraco.context</td>
+                            <td>6.0.1</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>jaraco.functools</td>
+                            <td>4.1.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>jeepney</td>
+                            <td>0.9.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>keyring</td>
+                            <td>25.6.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>markdown-it-py</td>
+                            <td>3.0.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>mdurl</td>
+                            <td>0.1.2</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>more-itertools</td>
+                            <td>10.7.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>nh3</td>
+                            <td>0.2.21</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>packaging</td>
+                            <td>25.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>pip</td>
+                            <td>24.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>pluggy</td>
+                            <td>1.5.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>pycparser</td>
+                            <td>2.22</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>pyproject_hooks</td>
+                            <td>1.2.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>pytest</td>
+                            <td>==7.1.3</td>
+                            <td>
+                                <span class="occurrence-count">3</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        <button class="toggle-sources" onclick="toggleSources('dep-34')">
+                                            Show 2 sources
+                                        </button>
+                                        <ul id="dep-34" class="source-files hidden">
+                                            
+                                            <li>sample_code/requirements.txt</li>
+                                            
+                                            <li>pip_database</li>
+                                            
+                                        </ul>
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>pyyaml</td>
+                            <td>==6.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        sample_code/requirements.txt
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>readme_renderer</td>
+                            <td>44.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>requests</td>
+                            <td>==2.28.1</td>
+                            <td>
+                                <span class="occurrence-count">4</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        <button class="toggle-sources" onclick="toggleSources('dep-37')">
+                                            Show 3 sources
+                                        </button>
+                                        <ul id="dep-37" class="source-files hidden">
+                                            
+                                            <li>sample_code/api_example.py</li>
+                                            
+                                            <li>sample_code/requirements.txt</li>
+                                            
+                                            <li>pip_database</li>
+                                            
+                                        </ul>
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>requests-toolbelt</td>
+                            <td>1.0.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>rfc3986</td>
+                            <td>2.0.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>rich</td>
+                            <td>14.0.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>ruff</td>
+                            <td>0.11.8</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>tomli</td>
+                            <td>2.2.1</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>twine</td>
+                            <td>6.1.0</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        pip_database
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>urllib</td>
+                            <td>N/A</td>
+                            <td>
+                                <span class="occurrence-count">1</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        sample_code/api_example.py
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>urllib3</td>
+                            <td>==1.26.12</td>
+                            <td>
+                                <span class="occurrence-count">2</span>
+                            </td>
+                            <td>
+                                
+                                    
+                                        <button class="toggle-sources" onclick="toggleSources('dep-45')">
+                                            Show 2 sources
+                                        </button>
+                                        <ul id="dep-45" class="source-files hidden">
+                                            
+                                            <li>sample_code/requirements.txt</li>
+                                            
+                                            <li>pip_database</li>
+                                            
+                                        </ul>
+                                    
+                                
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+        
+        
+        <div class="card">
+            <div class="card-header">Categorized Dependencies and API Calls</div>
+            <div class="card-body">
+                
+                <div class="category-section">
+                    <h3 class="category-title">
+                        Uncategorized
+                        <span class="category-status category-status-cannot_determine">cannot_determine</span>
+                    </h3>
+                    
+                    
+                    
+                    <h4>Dependencies (36)</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Version</th>
+                                <th>Occurrences</th>
+                                <th>Sources</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr>
+                                <td>MarkupSafe</td>
+                                <td>3.0.2</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Pygments</td>
+                                <td>2.19.1</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>SecretStorage</td>
+                                <td>3.3.3</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>build</td>
+                                <td>1.2.2.post1</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>certifi</td>
+                                <td>2025.4.26</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>cffi</td>
+                                <td>1.17.1</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>charset-normalizer</td>
+                                <td>3.4.2</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>cryptography</td>
+                                <td>44.0.3</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>dependency-scanner-tool</td>
+                                <td>0.1.2</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>docutils</td>
+                                <td>0.21.2</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>flake8</td>
+                                <td>==5.0.4</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            sample_code/requirements.txt
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>httpx</td>
+                                <td>==0.23.0</td>
+                                <td>
+                                    <span class="occurrence-count">3</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            <button class="toggle-sources" onclick="toggleSources('unified-Uncategorized-dep-12')">
+                                                Show 2 sources
+                                            </button>
+                                            <ul id="unified-Uncategorized-dep-12" class="source-files hidden">
+                                                
+                                                <li>sample_code/api_example.py</li>
+                                                
+                                                <li>sample_code/requirements.txt</li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>id</td>
+                                <td>1.5.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>idna</td>
+                                <td>3.10</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>iniconfig</td>
+                                <td>2.1.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>jaraco.classes</td>
+                                <td>3.4.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>jaraco.context</td>
+                                <td>6.0.1</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>jaraco.functools</td>
+                                <td>4.1.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>jeepney</td>
+                                <td>0.9.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>keyring</td>
+                                <td>25.6.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>markdown-it-py</td>
+                                <td>3.0.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>mdurl</td>
+                                <td>0.1.2</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>more-itertools</td>
+                                <td>10.7.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>nh3</td>
+                                <td>0.2.21</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>pip</td>
+                                <td>24.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>pluggy</td>
+                                <td>1.5.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>pycparser</td>
+                                <td>2.22</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>pyproject_hooks</td>
+                                <td>1.2.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>readme_renderer</td>
+                                <td>44.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>requests</td>
+                                <td>==2.28.1</td>
+                                <td>
+                                    <span class="occurrence-count">4</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            <button class="toggle-sources" onclick="toggleSources('unified-Uncategorized-dep-30')">
+                                                Show 3 sources
+                                            </button>
+                                            <ul id="unified-Uncategorized-dep-30" class="source-files hidden">
+                                                
+                                                <li>sample_code/api_example.py</li>
+                                                
+                                                <li>sample_code/requirements.txt</li>
+                                                
+                                                <li>pip_database</li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>requests-toolbelt</td>
+                                <td>1.0.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>rfc3986</td>
+                                <td>2.0.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>rich</td>
+                                <td>14.0.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>twine</td>
+                                <td>6.1.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>urllib</td>
+                                <td>N/A</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            sample_code/api_example.py
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>urllib3</td>
+                                <td>==1.26.12</td>
+                                <td>
+                                    <span class="occurrence-count">2</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            <button class="toggle-sources" onclick="toggleSources('unified-Uncategorized-dep-36')">
+                                                Show 2 sources
+                                            </button>
+                                            <ul id="unified-Uncategorized-dep-36" class="source-files hidden">
+                                                
+                                                <li>sample_code/requirements.txt</li>
+                                                
+                                                <li>pip_database</li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+                    
+                    
+                </div>
+                
+                <div class="category-section">
+                    <h3 class="category-title">
+                        Data Science
+                        <span class="category-status category-status-allowed">allowed</span>
+                    </h3>
+                    
+                    
+                    
+                    <h4>Dependencies (2)</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Version</th>
+                                <th>Occurrences</th>
+                                <th>Sources</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr>
+                                <td>Jinja2</td>
+                                <td>3.1.6</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>pytest</td>
+                                <td>==7.1.3</td>
+                                <td>
+                                    <span class="occurrence-count">3</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            <button class="toggle-sources" onclick="toggleSources('unified-Data-Science-dep-2')">
+                                                Show 2 sources
+                                            </button>
+                                            <ul id="unified-Data-Science-dep-2" class="source-files hidden">
+                                                
+                                                <li>sample_code/requirements.txt</li>
+                                                
+                                                <li>pip_database</li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+                    
+                    
+                    <h4>API Calls (1)</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>URL</th>
+                                <th>HTTP Method</th>
+                                <th>Source File</th>
+                                <th>Line</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr>
+                                <td>https://api.openweathermap.org/data/2.5/weather</td>
+                                <td>GET</td>
+                                <td>sample_code/api_example.py</td>
+                                <td>103</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+                </div>
+                
+                <div class="category-section">
+                    <h3 class="category-title">
+                        Machine Learning
+                        <span class="category-status category-status-restricted">restricted</span>
+                    </h3>
+                    
+                    
+                    
+                    <h4>Dependencies (2)</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Version</th>
+                                <th>Occurrences</th>
+                                <th>Sources</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr>
+                                <td>black</td>
+                                <td>==22.8.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            sample_code/requirements.txt
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>ruff</td>
+                                <td>0.11.8</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+                    
+                    
+                </div>
+                
+                <div class="category-section">
+                    <h3 class="category-title">
+                        Web Frameworks
+                        <span class="category-status category-status-allowed">allowed</span>
+                    </h3>
+                    
+                    
+                    
+                    <h4>Dependencies (5)</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Version</th>
+                                <th>Occurrences</th>
+                                <th>Sources</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr>
+                                <td>PyYAML</td>
+                                <td>6.0.2</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>click</td>
+                                <td>8.1.8</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>packaging</td>
+                                <td>25.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>pyyaml</td>
+                                <td>==6.0</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            sample_code/requirements.txt
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>tomli</td>
+                                <td>2.2.1</td>
+                                <td>
+                                    <span class="occurrence-count">1</span>
+                                </td>
+                                <td>
+                                    
+                                        
+                                            pip_database
+                                        
+                                    
+                                </td>
+                                <td>
+                                    <span class="badge badge-unknown">unknown</span>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+                    
+                    
+                    <h4>API Calls (2)</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>URL</th>
+                                <th>HTTP Method</th>
+                                <th>Source File</th>
+                                <th>Line</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr>
+                                <td>https://api.github.com/user</td>
+                                <td>GET</td>
+                                <td>sample_code/api_example.py</td>
+                                <td>95</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>https://api.github.com/user</td>
+                                <td>GET</td>
+                                <td>sample_code/api_example.py</td>
+                                <td>99</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        <footer>
+            <p>Generated with Dependency Scanner Tool</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Set the generation date
+        document.getElementById('generation-date').textContent = new Date().toLocaleString();
+        
+        // Function to toggle source files visibility
+        function toggleSources(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.previousElementSibling.textContent = 'Hide sources';
+            } else {
+                element.classList.add('hidden');
+                element.previousElementSibling.textContent = 'Show ' + element.childElementCount + ' sources';
+            }
+        }
+    </script>
+</body>
+</html>
