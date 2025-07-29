@@ -1,0 +1,82 @@
+Metadata-Version: 2.4
+Name: youtube.py3
+Version: 5.0.0
+Summary: A simplified wrapper for YouTube Data API v3
+Home-page: https://github.com/chihalu/youtube-py3
+Author: Chihalu
+Author-email: 
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/Himarry/youtube.py3
+Project-URL: Bug Reports, https://github.com/Himarry/youtube.py3/issues
+Project-URL: Source, https://github.com/Himarry/youtube.py3
+Project-URL: Documentation, https://github.com/Himarry/youtube.py3#readme
+Keywords: youtube,api,wrapper,python,google,data,v3
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: google-api-python-client>=2.0.0
+Requires-Dist: google-auth>=2.0.0
+Requires-Dist: google-auth-oauthlib>=0.5.0
+Requires-Dist: google-auth-httplib2>=0.1.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: pytest-cov>=2.0; extra == "dev"
+Requires-Dist: black>=21.0; extra == "dev"
+Requires-Dist: flake8>=3.8; extra == "dev"
+Requires-Dist: mypy>=0.910; extra == "dev"
+Requires-Dist: twine>=4.0.0; extra == "dev"
+Requires-Dist: build>=0.8.0; extra == "dev"
+Requires-Dist: cython>=0.29.0; extra == "dev"
+Requires-Dist: numpy>=1.19.0; extra == "dev"
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+※あくまでもプライベート用に作成したライブラリです。その為全てはありませんが使い方、機能を簡単にReference.mdに書いてあります※
+
+# YouTube.py3
+
+YouTube Data API v3 のプライベート用Pythonラッパーライブラリです。
+
+## 特徴
+- 動画・チャンネル・プレイリスト・検索・コメント取得などの基本機能
+- コメント取得は視聴者のみ・返信なし・ページネーション等のフィルタ対応
+- APIキーのみで利用可能
+
+## インストール
+```
+pip install -r requirements.txt
+```
+
+## 使い方
+詳しい使い方・機能は `Reference.md` を参照してください。
+
+```python
+from youtube_py3 import YouTube
+
+yt = YouTube(api_key="YOUR_API_KEY")
+info = yt.videos.get_video("動画ID")
+for c in yt.comments.get_viewer_comments_paginated("動画ID", "チャンネルID"):
+    print(c)
+```
+
+## 注意
+- Google Cloud ConsoleでAPIキーを取得してください
+- 利用制限・Quotaに注意
+
+## ライセンス
+MIT
+
