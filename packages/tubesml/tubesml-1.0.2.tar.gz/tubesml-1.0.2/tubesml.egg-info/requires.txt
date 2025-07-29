@@ -1,0 +1,12 @@
+kneed==0.8.5
+matplotlib>=3.7.2
+pandas>=2.2.2
+scikit-learn<1.6.1,>=1.2.2
+seaborn>=0.12.2
+shap>=0.44.1
+
+[testing]
+pytest==8.2.2
+coverage==7.5.3
+xgboost==2.1.0
+lightgbm==4.4.0
