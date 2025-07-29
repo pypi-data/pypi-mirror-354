@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sidekick-py"
+dynamic = ["version"]
+description = "Client library for Sidekick Visual Coding Buddy"
+readme = "README.md"
+requires-python = ">=3.7"
+license = { text = "MIT" }
+authors = [
+    { name = "Enjan Chou", email = "zhouer@gmail.com" },
+]
+dependencies = [
+    "websockets == 13.1"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.dynamic]
+version = {attr = "sidekick._version.__version__"}
