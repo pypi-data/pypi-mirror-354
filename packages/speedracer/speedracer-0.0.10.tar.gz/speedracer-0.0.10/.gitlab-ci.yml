@@ -1,0 +1,12 @@
+stages:
+  - lint
+
+image: $LATEST_TEST_IMAGE
+
+lint:
+  stage: lint
+  before_script:
+    - python --version
+    - apk -U add py3-pylint
+  script:
+    - pylint --disable=import-error,unknown-option-value src/
