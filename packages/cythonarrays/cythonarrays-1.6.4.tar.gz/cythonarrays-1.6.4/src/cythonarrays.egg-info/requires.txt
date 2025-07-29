@@ -1,0 +1,8 @@
+cython
+numpy
+xarray
+h5netcdf>=1.6
+setuptools
+
+[test]
+pytest
