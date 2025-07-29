@@ -1,0 +1,82 @@
+v0.5.2 (released June 9, 2025):
+
+- Support Python 3.13+.
+- Drop support for EOL Python versions (3.7 and below).
+- Switch to uv for project management.
+
+v0.5.1 (released September 20, 2019):
+
+- Support simple comments in the bookmarks file. (#51)
+- Add an integrated pytest testing suite, runnable with `--selftest`.
+- Refactor internals, remove deprecated options, and drop support for
+  end-of-life Python versions.
+
+v0.5 (released August 28, 2018):
+
+- Added a `--depth` flag to control recursion depth when searching for
+  repositories inside of subdirectories. For example:
+  - `--depth 0` will never recurse into subdirectories; the provided paths must
+    be repositories by themselves.
+  - `--depth 1` will descend one level to look for repositories. This is the
+    old behavior.
+  - `--depth 3` will look three levels deep. This is the new default.
+  - `--depth -1` will recurse indefinitely. This is not recommended.
+- Allow gitup to be run directly as a Python module (python -m gitup).
+- Fixed an error when updating branches if the upstream is completely unrelated
+  from the local branch (no common ancestor).
+- Fixed error message when fetching from a remote fails.
+
+v0.4.1 (released December 13, 2017):
+
+- Bump dependencies to deal with newer versions of Git.
+
+v0.4 (released January 17, 2017):
+
+- Added a `--prune` flag to delete remote-tracking branches that no longer
+  exist on their remote after fetching.
+- Added a `--bookmark-file` flag to support multiple bookmark config files.
+- Added a `--cleanup` flag to remove old bookmarks that don't exist.
+- Added an `--exec` flag to run a shell command on all of your repos.
+- Added support for shell glob patterns and tilde expansion in bookmark files.
+- Cleaned up the bookmark file format, fixing a related Windows bug. The script
+  will automatically migrate to the new one.
+- Fixed a bug related to Python 3 compatibility.
+- Fixed Unicode support.
+
+v0.3 (released June 7, 2015):
+
+- Added support for Python 3.
+- Fixed behavior on bare repositories.
+- Made branch updating code safer in general: only fast-forwardable branches
+  tracking upstreams are updated. This deprecates `--merge` and `--rebase`.
+- Added `--fetch-only` to disable branch updating entirely, if desired.
+- Fixed trying to fetch remotes without configured refspecs.
+- Miscellaneous fixes and tweaks.
+
+v0.2.4 (released May 23, 2015):
+
+- Follow the XDG Base Directory Specification for the config file.
+- Added installation instructions for Homebrew.
+
+v0.2.3 (released March 14, 2015):
+
+- Added support for newer versions of GitPython.
+
+v0.2.2 (released April 27, 2014):
+
+- Fixed an error being raised when HEAD is detached.
+
+v0.2.1 (released April 21, 2014):
+
+- Fixed a bug when handling errors during a fetch.
+
+v0.2 (released April 21, 2014):
+
+- Rewrote backend to use GitPython instead of direct shell calls. Improved
+  stability and fixed various bugs.
+- Use colorama for highlighting instead of ANSI escape codes.
+- Added `--current-only`, `--merge`, and `--rebase` options.
+
+v0.1 (released June 7, 2011):
+
+- Initial release.
