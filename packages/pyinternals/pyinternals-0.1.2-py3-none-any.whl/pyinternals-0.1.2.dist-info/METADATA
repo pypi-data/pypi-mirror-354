@@ -1,0 +1,34 @@
+Metadata-Version: 2.4
+Name: pyinternals
+Version: 0.1.2
+Summary: A Python object layout visualizer using CPython internals
+Home-page: https://github.com/yourusername/cpy_layouts
+Author: Mohamed Desouky
+Author-email: Mohamed Desouky <mohamed.d180@gmail.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/mohamed-180/pyinternals
+Keywords: cpython,visualizer,memory,introspection
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
+# pyinternals
+
+A visualizer for Python object layout in CPython.
+
+This package provides tools to inspect and visualize internal memory layout of Python objects such as lists, dicts, and custom classes.
+
+## Features
+
+- Inspect memory layout of Python objects.
+- Visualize CPython object internals like `__dict__`, `__slots__`, methods, and more.
+- Great for learning how CPython manages memory.
+
+## Installation
+
+Install via pip (once published):
+
+```bash
+pip install pyinternals
