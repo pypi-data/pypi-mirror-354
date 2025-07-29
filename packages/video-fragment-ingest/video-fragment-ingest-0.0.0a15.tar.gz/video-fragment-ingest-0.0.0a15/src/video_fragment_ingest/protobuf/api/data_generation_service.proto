@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "models/graph_models.proto";
+
+option java_multiple_files = true;
+option java_package = "ai.volt.api";
+option go_package = "github.com/vlt-ai/atla/generated/api";
+
+package api;
+
+message TestInferenceFrameStream {
+  int32 duration = 1;
+  repeated int32 show_object_at_time = 2;
+  string camera_id = 3;
+  TestMode test_mode = 4;
+
+  enum TestMode {
+    UNKNOWN_TEST_CASE = 0;
+    WEAPON = 1;
+    MEDICAL = 2;
+  }
+}
+
+/*
+   gRPC Service that generates test data in the database
+*/
+service DataGenerationService {
+  rpc GenerateTestData(GenerationRequest) returns (google.protobuf.Empty);
+  rpc ClearTestData(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc BindIncidentWithFloorPlan(models.Incident) returns (google.protobuf.Empty);
+  rpc GenerateInferenceFrame(TestInferenceFrameStream) returns (google.protobuf.Empty);
+  rpc MigrateIncidentToElastic(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc ExportIncident(models.Incident) returns (google.protobuf.Empty);
+}
+
+message GenerationRequest{
+  int32 record_count = 1;
+}

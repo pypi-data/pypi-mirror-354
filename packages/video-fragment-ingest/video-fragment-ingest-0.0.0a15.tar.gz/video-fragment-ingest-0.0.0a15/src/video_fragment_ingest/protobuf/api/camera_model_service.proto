@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+import "models/graph_models.proto";
+
+option java_multiple_files = true;
+option java_package = "ai.volt.api";
+option go_package = "github.com/vlt-ai/atla/generated/api";
+
+package api;
+
+message GetCameraManufacturersRequest {
+    string predicate = 1;
+}
+
+message GetCameraManufacturersResponse {
+    repeated models.CameraManufacturer manufacturers = 1;
+}
+
+enum LocalizationReadyStatus {
+    UNKNOWN = 0;
+    ALL = 1;
+    READY = 2;
+    NOT_READY = 3;
+}
+
+message GetCameraModelsRequest {
+    models.CameraManufacturer manufacturer = 1;
+    string predicate = 2;
+    LocalizationReadyStatus localization_ready_status = 3;
+}
+
+message GetCameraModelsResponse {
+    repeated models.CameraModel models = 1;
+}
+
+service CameraModelService {
+    rpc GetCameraManufacturers(GetCameraManufacturersRequest) returns (GetCameraManufacturersResponse);
+    rpc GetCameraModels(GetCameraModelsRequest) returns (GetCameraModelsResponse);
+    rpc UpdateCameraModel(models.CameraModel) returns (models.CameraModel);
+}
