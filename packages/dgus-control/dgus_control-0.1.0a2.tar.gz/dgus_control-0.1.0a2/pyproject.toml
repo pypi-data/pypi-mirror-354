@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dgus-control"
+version = "0.1.0.a2"
+description = "DGUS UI automation toolkit (not affiliated with or endorsed by DWIN Technology or DGUS)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [
+    { name = "TheRealRazbi", email = "therealrazbi@users.noreply.github.com" }
+]
+keywords = ["dgus", "automation", "ui automation", "template matching", "runner"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: Microsoft :: Windows",
+    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
+]
+dependencies = [
+    "stage-click>=0.0.1.dev2,<1.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/TheRealRazbi/dgus-control"
+"Bug Tracker" = "https://github.com/TheRealRazbi/dgus-control/issues"
