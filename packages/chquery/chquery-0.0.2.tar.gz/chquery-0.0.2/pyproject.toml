@@ -1,0 +1,40 @@
+[project]
+name = "chquery"
+version = "0.0.2"
+description = "CHQuery is an async Python client and query builder for ClickHouse, built on top of asynch using native TCP connection for speed."
+authors = [
+    {name = "Filip Nyquist", email = "nyquistfilip@gmail.com"},
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Development Status :: 4 - Beta",
+    "Topic :: Database"
+]
+dependencies = ["asynch[compression]>=0.3.0"]
+requires-python = ">=3.10"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/filipnyquist/chquery"
+Issues = "https://github.com/filipnyquist/chquery/issues"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+
+[tool.pdm]
+distribution = true
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "pytest-asyncio>=1.0.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
