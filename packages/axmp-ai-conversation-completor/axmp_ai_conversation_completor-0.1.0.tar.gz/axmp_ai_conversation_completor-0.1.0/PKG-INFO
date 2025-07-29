@@ -1,0 +1,20 @@
+Metadata-Version: 2.3
+Name: axmp-ai-conversation-completor
+Version: 0.1.0
+Summary: This library provides the functions to complete the conversation via SSE between client and LLM
+Author: Kilsoo Kang
+Author-email: kilsoo75@gmail.com
+Requires-Python: >=3.11,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: fastapi (>=0.115.11,<0.116.0)
+Requires-Dist: langchain (>=0.3.25,<0.4.0)
+Requires-Dist: langchain-core (>=0.3.64,<0.4.0)
+Requires-Dist: pydantic (>=2.11.5,<3.0.0)
+Requires-Dist: sse-starlette (>=2.1.0,<2.2.0)
+Requires-Dist: starlette (>=0.46.2,<0.47.0)
+Description-Content-Type: text/markdown
+
+
