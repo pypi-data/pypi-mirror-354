@@ -1,0 +1,9 @@
+[project]
+name = "aws-mcp-tools"
+version = "0.1.1"
+description = "AWS MCP tools"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastmcp>=2.7.1",
+]
