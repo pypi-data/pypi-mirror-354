@@ -1,0 +1,28 @@
+Metadata-Version: 2.4
+Name: notified_py
+Version: 1.0.2
+Description-Content-Type: text/markdown
+Requires-Dist: requests==2.32.3
+Requires-Dist: slack_bolt==1.23.0
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
+
+# notified-py
+
+Notified-py is a simple Python library for sending notifications via different channels (email, SMS, desktop, etc.).
+It aims to provide an easy-to-use interface for triggering notifications from any Python application.
+
+### Try it out
+
+```python
+pip install notified_py
+```
+
+### Roadmap
+
+- [x] Basic email notification support
+- [x] SMS notification support
+- [ ] Desktop notification support
+- [x] Slack and webhook support
+- [ ] Advanced configuration and templating
