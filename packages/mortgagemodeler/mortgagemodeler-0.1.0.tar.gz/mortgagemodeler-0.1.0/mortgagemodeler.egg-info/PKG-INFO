@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: mortgagemodeler
+Version: 0.1.0
+Summary: Flexible mortgage amortization and analytics tools in Python
+Author: Arun Kumar
+License: MIT
+Requires-Dist: click>=8.0
+Requires-Dist: pandas>=2.0
+Requires-Dist: fredapi>=0.5
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: numpy_financial
+Requires-Dist: python-dotenv
