@@ -1,0 +1,2 @@
+class AkamaiPapiError(Exception):
+    pass
