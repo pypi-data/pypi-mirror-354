@@ -1,0 +1,39 @@
+[project]
+name = "uimadcad"
+version = "0.8.1"
+requires-python = ">= 3.8"
+dependencies = [
+	"pymadcad[ply,stl] ~= 0.19",
+	"pyqt5 ~= 5.11",
+	"pyyaml ~= 6",
+	"pnprint ~= 1.3",
+	"processional ~= 1.0",
+	]
+authors = [{name = "jimy byerley", email = "jimy.byerley@gmail.com"}]
+license = {file = "LICENSE"}
+description = "user-friendly graphical environment for madcad"
+readme = "readme.md"
+classifiers = [
+	"License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+	"Topic :: Scientific/Engineering",
+	"Programming Language :: Python :: 3.8",
+	"Programming Language :: Python :: 3.9",
+	"Programming Language :: Python :: 3.10",
+	"Programming Language :: Python :: 3.11",
+	"Programming Language :: Python :: 3.12",
+	"Programming Language :: Python :: Implementation :: CPython",
+	"Intended Audience :: Science/Research",
+	"Intended Audience :: Manufacturing",
+	"Intended Audience :: Education",
+	"Topic :: Scientific/Engineering",
+	"Topic :: Scientific/Engineering :: Visualization",
+	"Environment :: X11 Applications :: Qt",
+	]
+
+[project.urls]
+Home = "https://madcad.netlify.com"
+Repository = "https://github.com/jimy-byerley/uimadcad"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
