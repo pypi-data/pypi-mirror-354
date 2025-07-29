@@ -1,0 +1,10 @@
+[project]
+name = "easy-ask"
+version = "0.1.0"
+description = "Generate ECharts option dictionaries"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["easy_ask"]
