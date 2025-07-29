@@ -1,0 +1,55 @@
+[project]
+name = "commonroad-global-planner"
+version = "0.0.1"
+description = "CommonRoad Global Planner Toolbox"
+authors = [{name = "Tobias Mascetta", email = "<tobias.mascetta@tum.de>"} , {name = "Kilian Northoff", email= "<kilian.northoff@tum.de"}]
+license = "BSD"
+readme = "README.md"
+keywords= ["autonomous", "automated", "vehicles", "driving", "motion", "planning"]
+classifiers = [
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: POSIX :: Linux",
+]
+
+requires-python = ">=3.9, <3.12"
+dynamic = ["dependencies"]
+
+
+packages = [{include = "commonroad_global_planner"}]
+
+
+# Dependencies
+[tool.poetry.dependencies]
+python = ">=3.9,<3.12"
+commonroad-io = ">=2022.2, <2025.0.1"
+commonroad-route-planner = "^2025.0.1"
+commonroad-velocity-planner = "^1.0.0"
+matplotlib = "<3.9"
+
+
+
+# test
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+coverage = {version = "^7.1.0", extras = ["toml"] }
+commonroad-reactive-planner = "^2024.1"
+
+# docs
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+mkdocstrings-python = "^1.8.0"
+mkdocs-material = "^9.5.10"
+
+
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
