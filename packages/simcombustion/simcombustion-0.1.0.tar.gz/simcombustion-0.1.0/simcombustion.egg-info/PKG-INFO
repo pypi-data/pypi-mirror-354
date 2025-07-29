@@ -1,0 +1,66 @@
+Metadata-Version: 2.4
+Name: simcombustion
+Version: 0.1.0
+Summary: Una librería para análisis de combustión con Cantera.
+Author-email: Nicolás Herrera Fernández <ni.herrefer@gmail.com>
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: cantera>=3.1.0
+Dynamic: license-file
+
+# SimCombustion
+
+Una librería de Python para realizar análisis de combustión en un reactor de mezcla perfecta (Ideal Gas Reactor) utilizando Cantera.
+
+El paquete incluye el mecanismo de reacción '91sp_991re.yaml', que contiene 91 especies y 991 reacciones.
+
+## Instalación
+
+Puedes instalar `simcombustion` directamente desde PyPI:
+
+```bash
+pip install simcombustion
+
+
+ - Combustible: NC10H22 para sustituto del queroseno, CH4... explorar en el archivo 91sp_991re.yaml
+ - Condiciones iniciales: 
+	+ rel_equivalencia-> es igual a 1/coeficiente de exceso de aire, 
+	+ T_in_K -> Temperatura inicial de la mezcla en grados Kelvin, 
+	+ P_in_atm -> Presión (constante) en la cámara de combustión en atmósferas,
+	+ tiempo_residencia_s -> tiempo que permanece la mezcla reaccionando en el interior de la cámara de combustión (normalmente valores de milisegundos) en segundos.
+
+==============================================================
+Puedes listar todas las especies (y por tanto, combustibles potenciales) disponibles en el mecanismo con el siguiente método:
+==============================================================
+from simcombustion import CombustionAnalyzer
+print(CombustionAnalyzer.list_available_fuels())
+
+==============================================================
+script de ejemplo
+==============================================================
+# Importa la clase desde tu nuevo paquete 'simcombustion'
+from simcombustion import CombustionAnalyzer
+
+try:
+    # Crear la instancia
+    analyzer = CombustionAnalyzer(fuel_name='NC10H22') #aproximacion al keroseno NC10H22, metano: CH4...
+
+    # Calcular propiedades
+    results = analyzer.calcular_propiedades(rel_equivalencia=0.98, T_in_K=479, P_in_atm=12,
+                                            tiempo_residencia_s=0.025)
+
+    print("\nResultados de la simulación:")
+    # Imprime los resultados...
+    print(results)
+
+except ValueError as e:
+    print(f"Error al usar la librería: {e}")
+
+
