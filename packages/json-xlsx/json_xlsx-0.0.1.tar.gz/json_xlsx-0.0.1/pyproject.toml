@@ -1,0 +1,116 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "json_xlsx"
+version = "0.0.1"
+description = "Convert nested JSON data to formatted Excel files"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.8"
+authors = [
+    {name = "Quant", email = "pengzhia@gmail.com"},
+]
+maintainers = [
+    {name = "Quant", email = "pengzhia@gmail.com"},
+]
+keywords = [
+    "json",
+    "excel",
+    "xlsx", 
+    "converter",
+    "pandas",
+    "openpyxl",
+    "data-processing"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Office/Business :: Office Suites",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "pandas>=2.0.0",
+    "openpyxl>=3.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov",
+    "black",
+    "flake8",
+    "mypy",
+]
+test = [
+    "pytest>=6.0",
+    "pytest-cov",
+]
+
+[project.urls]
+Homepage = "https://github.com/quantatirsk/json_xlsx"
+Repository = "https://github.com/quantatirsk/json_xlsx.git"
+Documentation = "https://github.com/quantatirsk/json_xlsx#readme"
+"Bug Tracker" = "https://github.com/quantatirsk/json_xlsx/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["json_xlsx"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/json_xlsx",
+    "/tests",
+    "README.md",
+    "LICENSE",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
