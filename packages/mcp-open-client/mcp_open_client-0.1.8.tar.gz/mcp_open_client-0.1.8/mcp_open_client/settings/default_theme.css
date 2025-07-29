@@ -1,0 +1,236 @@
+/* Global scroll elimination */
+html, body {
+    height: 100vh !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* NiceGUI root container */
+.nicegui-content {
+    height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+}
+
+/* Page container */
+.q-page {
+    height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+}
+
+/* Main container height management - Account for footer */
+.app-main-container {
+    flex: 1 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: calc(100vh - var(--header-height) - var(--footer-height)) !important;
+    max-height: calc(100vh - var(--header-height) - var(--footer-height)) !important;
+}
+
+/* Content container proper scrolling */
+.app-content-container {
+    flex: 1 !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    width: 100% !important;
+    padding: 1rem !important;
+}
+
+/* Ensure all NiceGUI columns expand to full width */
+.app-content-container .nicegui-column {
+    width: 100% !important;
+}
+
+/* Ensure cards use full width without max-width constraints */
+.app-card {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Override Quasar card default styles */
+.q-card.app-card {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+}
+
+/* Ensure all containers in content area use full width */
+.app-content-container > * {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+/* Force full width on all NiceGUI elements in content */
+.app-content-container .nicegui-card,
+.app-content-container .nicegui-column,
+.app-content-container .nicegui-row {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+/* Override any Quasar container width limitations */
+.q-page-container,
+.q-page {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+/* Header and footer positioning */
+.app-header {
+    --header-height: 64px;
+    height: var(--header-height) !important;
+    flex-shrink: 0 !important;
+}
+
+/* Test styles for theme button - Full width */
+.app-menu-button {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4) !important;
+    border: 3px solid #ffd93d !important;
+    border-radius: 15px !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4) !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 100% !important;
+    display: block !important;
+}
+
+/* Chat container full width styles */
+.app-main-container {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.app-content-container {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+/* Chat cards and containers full width */
+.app-card {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+}
+
+/* Chat input container full width */
+.app-container {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+/* Textarea container - flex for proper row layout */
+.app-textarea {
+    flex: 1 !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 40px !important;
+    max-height: 120px !important;
+}
+
+/* Ensure all nicegui elements in chat use full width - except rows which need flex */
+.nicegui-column,
+.nicegui-card {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+/* Rows should use flexbox properly */
+.nicegui-row {
+    display: flex !important;
+    width: 100% !important;
+    max-width: none !important;
+}
+
+/* Override any Quasar field width restrictions - allow flex in rows */
+.q-field {
+    max-width: none !important;
+}
+
+/* Specific override for textarea in chat input row */
+.app-container .q-field.app-textarea {
+    flex: 1 !important;
+    width: auto !important;
+    min-width: 0 !important;
+}
+
+/* Position chat input card at bottom of container - ensure it's visible above footer */
+.app-content-container {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    padding-bottom: 80px !important; /* Add space for footer */
+}
+
+/* Make the input card stick to bottom but above footer */
+.app-card:last-child {
+    margin-top: auto !important;
+    flex-shrink: 0 !important;
+    margin-bottom: 16px !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* Ensure messages card takes available space */
+.app-card:not(:last-child) {
+    flex: 1 !important;
+    min-height: 0 !important;
+    margin-bottom: 16px !important;
+    overflow-y: auto !important;
+}
+
+.app-menu-button:hover {
+    transform: scale(1.2) rotate(5deg) !important;
+    background: linear-gradient(45deg, #4ecdc4, #ff6b6b) !important;
+}
+
+.app-footer {
+    --footer-height: 48px;
+    height: var(--footer-height) !important;
+    flex-shrink: 0 !important;
+}
+
+/* Hide all scrollbars on main containers */
+.q-layout, .q-page-container, .q-page {
+    overflow: hidden !important;
+}
+
+/* Ensure drawer doesn't cause overflow */
+.app-drawer {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+/* Chat textarea height control - target the actual textarea element */
+.app-textarea textarea,
+.app-textarea .q-field__control,
+.app-textarea .q-field__native {
+    min-height: 40px !important;
+    max-height: 120px !important;
+    height: 40px !important;
+    resize: vertical !important;
+}
+
+/* Override any Quasar textarea defaults */
+.q-textarea .q-field__control {
+    min-height: 40px !important;
+    height: 40px !important;
+}
+
+/* Messages container should take all available height */
+.app-messages-container {
+    flex: 1 !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    height: auto !important;
+    overflow-y: auto !important;
+}
