@@ -1,0 +1,28 @@
+[project]
+name = "cluster-detection"
+dynamic = ["version"]
+description = "Cluster Detection in Microscopy Images"
+readme = "README.md"
+requires-python = "==3.10.13"
+dependencies = [
+  "numpy>=1.21.2",
+  "matplotlib>=3.6.0",
+  "scipy>=1.7.1",
+  "scikit-image>=0.18.3",
+  "mkdocs==1.6.0",
+  "lmfit>=1.0.2",
+  "scikit-learn>=1.5.2",
+  "pandas>=2.2.3",
+]
+
+[tool.hatch.version]
+path = "src/cluster_detection/__init__.py"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+ignore = ["."]
