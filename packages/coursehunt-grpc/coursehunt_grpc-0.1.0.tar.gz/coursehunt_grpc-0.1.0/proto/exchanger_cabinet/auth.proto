@@ -1,0 +1,12 @@
+syntax = "proto3";
+package exchanger_cabinet;
+
+import "auth_service/auth.proto";
+
+message ExchangeRequest {
+  auth.ValidateTokenRequest token = 1;
+}
+
+service ExchangerCabinet {
+  rpc DoExchange(ExchangeRequest) returns (auth.UserResponse);
+}

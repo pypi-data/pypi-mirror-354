@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=60.0", "wheel", "build", "grpcio-tools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "coursehunt-grpc"
+version = "0.1.0"
+description = "gRPC contracts and Python stubs for Coursehunt"
+readme = "README.md"
+license = { text = "MIT" }
+dependencies = [
+  "grpcio>=1.54.0",
+  "protobuf>=4.0.0"
+]

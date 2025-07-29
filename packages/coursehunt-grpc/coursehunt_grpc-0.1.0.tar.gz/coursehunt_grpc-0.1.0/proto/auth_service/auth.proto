@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package auth;
+
+service AuthService {
+  rpc ValidateToken (ValidateTokenRequest) returns (UserResponse);
+}
+
+message ValidateTokenRequest {
+  string token = 1;
+}
+
+message UserResponse {
+  string uuid = 1;
+  string email = 2;
+  optional string exchanger_uuid = 3;
+  repeated string roles = 4;
+  repeated string permissions = 5;
+}
