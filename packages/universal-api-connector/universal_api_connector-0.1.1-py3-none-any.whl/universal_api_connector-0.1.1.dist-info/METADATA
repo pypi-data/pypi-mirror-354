@@ -1,0 +1,105 @@
+Metadata-Version: 2.1
+Name: universal-api-connector
+Version: 0.1.1
+Summary: Universal OpenAPI-driven API connector
+Home-page: https://github.com/yourusername/universal-api-connector
+Author: Your Name
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests
+Requires-Dist: PyYAML
+Requires-Dist: streamlit
+Requires-Dist: requests-oauthlib
+
+# Universal API Connector
+
+A universal, OpenAPI-driven Python connector for interacting with any API that provides an OpenAPI (Swagger) specification. Supports dynamic authentication (API Key, Bearer, Basic, OAuth1, OAuth2) and secure credential management.
+
+## Features
+- Upload and parse any OpenAPI (Swagger) specification (JSON or YAML)
+- Dynamic operation listing and parameter input
+- Built-in authentication support: API Key, Bearer, Basic, OAuth2
+- Secure credential storage (never logged or exposed)
+- Universal, spec-driven (no hardcoded API logic)
+- Extensible and production-ready architecture
+
+## Installation
+
+```bash
+pip install universal-api-connector
+```
+
+## Usage Example
+
+```python
+from universal_api_connector import UniversalAPIConnector
+
+# Load your OpenAPI spec
+yaml_path = 'your_api_spec.yaml'
+connector = UniversalAPIConnector.from_spec_file(yaml_path)
+
+# Authenticate (if required)
+# connector.authenticate('api_name', credentials_dict)
+
+# List available operations
+ops = connector.list_operations('api_name')
+
+# Execute an operation
+response = connector.execute('api_name', 'GET /me', params={})
+print(response.status_code)
+print(response.json())
+```
+
+## Authentication Support
+- API Key (header or query)
+- Bearer Token
+- Basic Auth
+- OAuth2 (Authorization Code, Client Credentials, etc.)
+
+Credentials are never shown in the UI or logs, and are stored securely.
+
+## Troubleshooting
+- **Token refresh errors:** Ensure your credentials and redirect URIs are correct and registered with your API provider.
+- **403 errors:** Check user registration and permissions in your API provider dashboard.
+- **Spec parsing issues:** Only valid OpenAPI 3.x or Swagger 2.0 specs are supported (JSON or YAML).
+
+For more details, see your API provider's documentation or open an issue.
+
+## License
+
+MIT License
+
+## Security
+
+- Credentials are stored locally and never displayed or logged
+- Authorization headers and sensitive data are always redacted in debug output
+
+## Requirements
+- Python 3.7+
+- streamlit
+- requests
+- requests_oauthlib
+- pyyaml
+
+## Tips & Troubleshooting
+- **API Name:** Operations will only show after you enter an API name.
+- **Credentials:** Youâ€™ll only be prompted for credentials if not already saved for that API name.
+- **Token refresh:** For OAuth2 APIs (like Spotify), the app will auto-refresh tokens and let you re-authenticate if needed.
+- **Debug info:** The debug panel shows request details, but never exposes your secrets or tokens.
+- **Path parameters:** Always fill in required path parameters (e.g. `{user_id}`) with real values.
+- **Error messages:** If you get a 400/401/403, check your credentials, scopes, or required parameters.
+
+## Example APIs
+- Spotify, Twitter, HTTPBin, Mailgun, and any OpenAPI-compatible REST API.
+
+## Security
+- Credentials are stored locally in `credentials.json` and never shown in debug output.
+- Authorization headers and sensitive data are always redacted in the UI.
+
+---
+
+For questions or improvements, open an issue or contact the maintainer.
