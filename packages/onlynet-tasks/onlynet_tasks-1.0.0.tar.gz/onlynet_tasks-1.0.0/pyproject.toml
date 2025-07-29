@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "onlynet-tasks"
+version = "1.0.0"
+description = "MCP server for PRD generation and task management with Cursor agents"
+readme = "README.md"
+authors = [
+    {name = "OnlyNet", email = "contact@onlynet.dev"}
+]
+license = "MIT"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "fastmcp>=2.7.0",
+    "pydantic>=2.0.0",
+    "typing-extensions>=4.0.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/onlynet/onlynet-tasks"
+"Bug Reports" = "https://github.com/onlynet/onlynet-tasks/issues"
+"Source" = "https://github.com/onlynet/onlynet-tasks"
+
+[project.scripts]
+onlynet-tasks = "onlynet_tasks.server:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools.package-data]
+onlynet_tasks = ["*.md", "*.json", "*.txt"]
