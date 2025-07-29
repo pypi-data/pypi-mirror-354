@@ -1,0 +1,25 @@
+Metadata-Version: 2.3
+Name: poseigen_oyster
+Version: 0.0.4
+Summary: The basics for Poseigen software
+License: MIT
+Author: Husam Abdulnabi
+Author-email: husam.abdulnabi@gmail.com
+Maintainer: Husam Abdulnabi
+Maintainer-email: husam.abdulnabi@gmail.com
+Requires-Python: >=3.12
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: kneed
+Requires-Dist: numpy
+Requires-Dist: poseigen_chisel
+Requires-Dist: poseigen_seaside
+Requires-Dist: poseigen_trident
+Requires-Dist: scikit-learn
+Requires-Dist: torch
+Project-URL: Homepage, https://github.com/husam94/poseigen_oyster
+Description-Content-Type: text/markdown
+
+Will do
