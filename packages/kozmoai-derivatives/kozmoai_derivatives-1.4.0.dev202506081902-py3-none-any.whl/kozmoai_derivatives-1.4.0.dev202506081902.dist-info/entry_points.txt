@@ -1,0 +1,6 @@
+[kozmoai_charting_extension]
+derivatives=kozmoai_derivatives.derivatives_views:DerivativesViews
+
+[kozmoai_core_extension]
+derivatives=kozmoai_derivatives.derivatives_router:router
+
