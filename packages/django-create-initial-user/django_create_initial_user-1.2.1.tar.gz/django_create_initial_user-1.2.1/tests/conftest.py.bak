@@ -1,0 +1,55 @@
+"""Pytest configuration and shared fixtures."""
+
+import pytest
+from django.contrib.auth import get_user_model
+from django.test import override_settings
+
+
+@pytest.fixture
+def user_model():
+    """Return the user model."""
+    return get_user_model()
+
+
+@pytest.fixture
+def sample_user(user_model):
+    """Create a sample user for testing."""
+    return user_model.objects.create_user(
+        username='testuser',
+        password='testpassword123',
+        email='test@example.com'
+    )
+
+
+@pytest.fixture
+def sample_superuser(user_model):
+    """Create a sample superuser for testing."""
+    return user_model.objects.create_user(
+        username='admin',
+        password='adminpassword123',
+        email='admin@example.com',
+        is_superuser=True,
+        is_staff=True
+    )
+
+
+@pytest.fixture
+def debug_enabled():
+    """Override DEBUG setting to True."""
+    with override_settings(DEBUG=True):
+        yield
+
+
+@pytest.fixture
+def debug_disabled():
+    """Override DEBUG setting to False."""
+    with override_settings(DEBUG=False):
+        yield
+
+
+@pytest.fixture
+def no_existing_superusers(user_model):
+    """Ensure no superusers exist in the database."""
+    user_model.objects.filter(is_superuser=True).delete()
+    yield
+    # Cleanup is handled by Django's test database rollback

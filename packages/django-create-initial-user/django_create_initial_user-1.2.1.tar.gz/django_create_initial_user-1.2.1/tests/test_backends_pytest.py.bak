@@ -1,0 +1,143 @@
+"""Pytest-style tests for CreateInitialSuperUserBackend."""
+
+import warnings
+
+import pytest
+from django.contrib.auth import authenticate
+
+from create_initial_superuser.backends import CreateInitialSuperUserBackend
+
+
+@pytest.mark.django_db
+class TestCreateInitialSuperUserBackendPytest:
+    """Pytest-style tests for CreateInitialSuperUserBackend."""
+
+    def test_authenticate_with_existing_superuser(self, sample_superuser, sample_user):
+        """Test authentication when superuser already exists."""
+        authenticated_user = authenticate(
+            username=sample_user.username,
+            password='testpassword123',
+            backend='create_initial_superuser.backends.CreateInitialSuperUserBackend'
+        )
+
+        assert authenticated_user == sample_user
+        assert not authenticated_user.is_superuser
+
+    def test_authenticate_creates_initial_superuser(
+        self, debug_enabled, no_existing_superusers, user_model
+    ):
+        """Test that initial superuser is created when none exist."""
+        with warnings.catch_warnings(record=True) as warning_list:
+            warnings.simplefilter("always")
+
+            authenticated_user = authenticate(
+                username='newadmin',
+                password='newpassword123',
+                backend='create_initial_superuser.backends.CreateInitialSuperUserBackend'
+            )
+
+        assert authenticated_user is not None
+        assert authenticated_user.username == 'newadmin'
+        assert authenticated_user.is_superuser
+        assert authenticated_user.is_staff
+        assert authenticated_user.check_password('newpassword123')
+
+        # Check warning was issued
+        assert len(warning_list) == 1
+        assert "No superusers exist" in str(warning_list[0].message)
+
+    def test_authenticate_does_not_create_superuser_when_debug_false(
+        self, debug_disabled, no_existing_superusers, user_model
+    ):
+        """Test that superuser is not created when DEBUG=False."""
+        authenticated_user = authenticate(
+            username='newadmin',
+            password='newpassword123',
+            backend='create_initial_superuser.backends.CreateInitialSuperUserBackend'
+        )
+
+        assert authenticated_user is None
+        assert not user_model.objects.filter(is_superuser=True).exists()
+
+    def test_get_user_methods(self, sample_user):
+        """Test get_user method with various inputs."""
+        backend = CreateInitialSuperUserBackend()
+
+        # Valid user ID
+        retrieved_user = backend.get_user(sample_user.id)
+        assert retrieved_user == sample_user
+
+        # Invalid user ID
+        invalid_user = backend.get_user(999999)
+        assert invalid_user is None
+
+        # None user ID
+        none_user = backend.get_user(None)
+        assert none_user is None
+
+    @pytest.mark.parametrize("username,password,expected", [
+        ('', 'password', None),
+        ('username', '', None),
+        ('', '', None),
+        (None, 'password', None),
+        ('username', None, None),
+    ])
+    def test_authenticate_invalid_inputs(self, username, password, expected):
+        """Test authentication with various invalid inputs."""
+        user = authenticate(
+            username=username,
+            password=password,
+            backend='create_initial_superuser.backends.CreateInitialSuperUserBackend'
+        )
+        assert user == expected
+
+    def test_email_username_sets_email_field(
+        self, debug_enabled, no_existing_superusers
+    ):
+        """Test that email username sets the email field."""
+        email_username = 'admin@example.com'
+
+        with warnings.catch_warnings(record=True):
+            warnings.simplefilter("always")
+
+            authenticated_user = authenticate(
+                username=email_username,
+                password='password123',
+                backend='create_initial_superuser.backends.CreateInitialSuperUserBackend'
+            )
+
+        assert authenticated_user.username == email_username
+        assert authenticated_user.email == email_username
+
+    def test_backend_inherits_from_model_backend(self):
+        """Test that backend properly inherits from ModelBackend."""
+        backend = CreateInitialSuperUserBackend()
+        from django.contrib.auth.backends import ModelBackend
+        assert isinstance(backend, ModelBackend)
+
+    def test_multiple_auth_attempts_create_only_one_superuser(
+        self, debug_enabled, no_existing_superusers, user_model
+    ):
+        """Test that multiple authentication attempts only create one superuser."""
+        with warnings.catch_warnings(record=True):
+            warnings.simplefilter("always")
+
+            # First auth should create superuser
+            user1 = authenticate(
+                username='admin1',
+                password='password1',
+                backend='create_initial_superuser.backends.CreateInitialSuperUserBackend'
+            )
+
+            # Second auth should not create another superuser
+            user2 = authenticate(
+                username='admin2',
+                password='password2',
+                backend='create_initial_superuser.backends.CreateInitialSuperUserBackend'
+            )
+
+        # Only one superuser should exist
+        superusers = user_model.objects.filter(is_superuser=True)
+        assert superusers.count() == 1
+        assert superusers.first() == user1
+        assert user2 is None  # Second auth fails because user doesn't exist
