@@ -1,0 +1,26 @@
+[CDF-24910] 🙃 Support dumping multiple transformations (#1611)
+
+# Description
+
+Today we support only dumping one transformation at a time. This adds
+support for dumping multiple
+
+![image](https://github.com/user-attachments/assets/373f3fb3-b11f-4508-8660-7323be61e725)
+
+
+## Changelog
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## cdf
+
+### Improved
+
+- The `cdf dump transformation` now supports selecting multiple
+transformations.
+
+## templates
+
+No changes.
