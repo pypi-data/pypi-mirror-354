@@ -1,0 +1,17 @@
+orcid~=1.0
+sqlalchemy
+requests
+fuzzywuzzy[speedup]
+ckantools>=0.4.2
+
+[cli]
+spacy[transformers]~=3.7.0
+unidecode~=1.0
+nameparser~=1.0
+prompt_toolkit~=3.0
+
+[test]
+mock
+pytest>=4.6.5
+pytest-cov>=2.7.1
+coveralls
