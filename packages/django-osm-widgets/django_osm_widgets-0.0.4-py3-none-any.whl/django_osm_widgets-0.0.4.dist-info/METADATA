@@ -1,0 +1,103 @@
+Metadata-Version: 2.3
+Name: django-osm-widgets
+Version: 0.0.4
+Summary: Improved widgets for Django's PointField
+License: BSD-3-Clause
+Author: Kapt
+Author-email: dev@kapt.mobi
+Requires-Python: >=3.10
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: Django (>=3.0,<5.2)
+Project-URL: Repository, https://gitlab.com/kapt/open-source/django-osm-widgets
+Description-Content-Type: text/markdown
+
+# django-osm-widgets
+
+Improved widgets for Django's PointField.
+
+`LatLonOpenlayersOSMWidget` handles latitude and longitude inputs synced with the point on the map.
+
+
+![Example of the LatLonOpenlayersOSMWidget on a page](https://gitlab.com/kapt/open-source/django-osm-widgets/-/raw/main/preview.jpg)
+
+# Requirements
+
+- Python 3.10+
+- Django >=3.0, <5.2
+
+# Installation
+
+- run `pip install django-osm-widgets`
+- add `django_osm_widgets` to your `INSTALLED_APPS`
+
+# Usage
+
+In your forms, use the widget like this:
+
+```py
+from django.contrib.gis.forms.fields import PointField
+from django_osm_widgets.widgets import LatLonOpenlayersOSMWidget
+
+
+class MyForm(forms.Form):
+  location = PointField(widget=LatLonOpenlayersOSMWidget)
+```
+
+The latitute and longitude fields will be automatically added in your page.
+
+Currently `django-osm-widgets` supports only a unique instance of the `LatLonOpenlayersOSMWidget` in a page.
+
+# Customizations
+
+You can define some options as in the example below.
+
+When using `"must_display_latlon_fields": False,` your are responsible for providing two input fields in your page. These fields must have ids corresponding to `latitude_field_id` and `longitude_field_id` values (defaults to `id_osm_widget_latitude` and `id_osm_widget_longitude`) and must appear in the DOM before the LatLonOpenlayersOSMWidget. To achieve that, you may find useful to override the `latlon-openlayers-osm.html` template as follow:
+
+```html
+{% extends "django_osm_widgets/latlon-openlayers-osm.html" %}
+
+{% block map_wrapper %}
+  {{ block.super }}
+  <label for="{{ latitude_field_id }}" class="form-label">Latitude</label>
+  <input type="number" step="0.0001" min="-90" max="90" name="latitude" id="{{ latitude_field_id }}" placeholder="for example: 45.123456" class="form-control">
+  <label for="{{ longitude_field_id }}" class="form-label">Longitude</label>
+  <input type="number" step="0.0001" min="-180" max="180" name="longitude" id="{{ longitude_field_id }}" placeholder="for example: 2.123456" class="form-control">
+{% endblock map_wrapper %}
+```
+
+You can override some attributes when instantiating the widget class in your form. Below are all the attributes and their default values.
+
+```py
+from django.contrib.gis.forms.fields import PointField
+from django_osm_widgets.widgets import LatLonOpenlayersOSMWidget
+
+
+class MyForm(forms.Form):
+  location = PointField(
+    widget=LatLonOpenlayersOSMWidget(
+      attrs={
+        "must_display_latlon_fields": True,
+        "map_width": "auto",
+        "map_height": "auto",
+        "default_lat": 45,
+        "default_lon": 5,
+        "default_zoom": 8,
+        "latitude_field_id": "id_osm_widget_latitude",
+        "longitude_field_id": "id_osm_widget_longitude",
+        "listened_events": "input",
+        "marker_options": {
+          "src": "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/images/marker-icon.png",
+          "scale": 1,
+          "anchor": [0.5, 1],
+        }
+        "precision": 4,
+      }
+    )
+  )
+```
+

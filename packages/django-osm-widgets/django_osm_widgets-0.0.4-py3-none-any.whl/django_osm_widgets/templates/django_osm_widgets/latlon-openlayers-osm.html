@@ -1,0 +1,42 @@
+{% extends "django_osm_widgets/openlayers-osm.html" %}
+{% load l10n %}
+{% load i18n %}
+
+{% block map_wrapper_class %}latlon-openlayers-osm-widget{% endblock map_wrapper_class %}
+
+{% block map_wrapper %}
+  {{ block.super }}
+  {% if must_display_latlon_fields %}
+    <fieldset>
+      <legend>{% translate "Coordinates" %}</legend>
+      <label for="{{ latitude_field_id }}">Latitude</label>
+      <input type="text" name="latitude" id="{{ latitude_field_id }}" placeholder="{% translate "eg. 45.123456" %}">
+      <label for="{{ longitude_field_id }}">Longitude</label>
+      <input type="text" name="longitude" id="{{ longitude_field_id }}" placeholder="{% translate "eg. 2.123456" %}">
+    </fieldset>
+  {% endif %}
+{% endblock map_wrapper %}
+
+{% block options %}
+  {{ block.super }}
+  {% if listened_events %}
+    options['listenedEvents'] = "{{ listened_events }}";
+  {% endif %}
+  {% if marker_options %}
+    options['markerOptions'] = {{ marker_options|safe }};
+  {% endif %}
+  {% if latitude_field_id %}
+    options['latitudeFieldId'] = "{{ latitude_field_id }}";
+  {% endif %}
+  {% if longitude_field_id %}
+    options['longitudeFieldId'] = "{{ longitude_field_id }}";
+  {% endif %}
+  {% if precision %}
+    options['precision'] = {{ precision }};
+  {% endif %}
+{% endblock options %}
+
+{% block extra_js %}
+  options['mapWidgetInstance'] = {{ module }};
+  var {{ module }}_latlon_openlayers_osm_widget = new LatLonOpenlayersOSMWidget(options);
+{% endblock extra_js %}
