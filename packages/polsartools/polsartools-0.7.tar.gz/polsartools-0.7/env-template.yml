@@ -1,0 +1,18 @@
+name: pst-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python
+  - gdal==3.9.0
+  - numpy
+  - h5py
+  - matplotlib
+  - scipy
+  - scikit-image
+  - pytest
+  - pip
+  - pip:
+      - git+https://github.com/Narayana-Rao/polsartools.git#egg=polsartools
+      - pytest
+      - cibuildwheel

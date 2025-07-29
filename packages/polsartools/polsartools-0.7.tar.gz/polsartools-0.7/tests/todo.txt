@@ -1,0 +1,23 @@
+-vectorize/cpp grvi
+-correct boxcar elements 
+
+-sesors
+    -UAVSAR
+    -NISAR
+
+-Speckle filters
+    -refined lee
+-utils
+    -PauliRGB
+    -C3-T3 conversion
+    -T3-C3 conversion
+    
+-Full pol
+    -
+-compact pol
+    -
+    -
+
+# proj.db error fix: 
+        copy proj.db from any installed QGIS polder to conda folder 
+        "C:\Users\user_name\AppData\Local\anaconda3\envs\cms\Library\share\proj\"

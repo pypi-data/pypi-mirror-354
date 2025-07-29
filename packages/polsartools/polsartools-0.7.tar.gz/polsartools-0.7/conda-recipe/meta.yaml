@@ -1,0 +1,48 @@
+
+package:
+  name: polsartools
+  version: "0.7"
+
+source:
+  path: ..  
+
+build:
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  host:
+    - python
+    - pip
+    - pybind11
+    - setuptools
+    - wheel
+    - conda-build  # If you want to ensure conda-build is available
+    - gdal         # If gdal is needed at build time (compiling C++ extensions, for example)
+    - anaconda-client
+  run:
+    - python
+    - pip
+    - numpy
+    - scipy
+    - click
+    - tqdm
+    - matplotlib
+    - pybind11  # pybind11 should only be here if it’s needed at runtime
+    - h5py
+    - scikit-image
+    - gdal  # Keep this here for runtime if you need gdal's Python bindings
+
+test:
+  # Include tests to validate the build
+  commands:
+    - python -c "import polsartools"
+
+about:
+  home: https://github.com/Narayana-Rao/polsartools
+  license: GPL-3.0
+  summary: "A python package for processing Polarimetric Synthetic Aperture Radar (PolSAR) data."
+
+# platforms:
+#   - linux
+#   - osx
+#   - win
