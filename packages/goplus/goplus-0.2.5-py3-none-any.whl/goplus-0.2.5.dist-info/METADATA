@@ -1,0 +1,44 @@
+Metadata-Version: 2.4
+Name: goplus
+Version: 0.2.5
+Summary: GoPlus SDK
+Home-page: https://github.com/GoPlusSecurity/goplus-sdk-python
+Author: GoPlus
+Author-email: service@gopluslabs.io
+License: Apache License 2.0
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: certifi>=14.05.14
+Requires-Dist: six>=1.10
+Requires-Dist: python_dateutil>=2.5.3
+Requires-Dist: urllib3>=1.15.1
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+
+# GoPlus Security SDK for Python
+
+The official [GoPlus Security](https://gopluslabs.io/) Python SDK.
+
+## Installation
+
+```
+pip install goplus
+```
+
+## Documentation
+
+Please see the [SDK guide](https://docs.gopluslabs.io/docs/goplus-sdk) and [API reference](https://docs.gopluslabs.io/reference/api-overview) for the most up-to-date documentation and examples.
