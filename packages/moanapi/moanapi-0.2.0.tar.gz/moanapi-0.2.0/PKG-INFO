@@ -1,0 +1,62 @@
+Metadata-Version: 2.4
+Name: moanapi
+Version: 0.2.0
+Summary: A dynamic, auto-updating Python wrapper for the Moan API suite.
+Author-email: mineogo <venkatesh10year@gmail.com>
+Project-URL: Homepage, https://moanapi.ddns.net
+Project-URL: Bug Tracker, https://moanapi.duckdns.net/module/report-bug
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests>=2.25.0
+Dynamic: license-file
+
+# Moan API Python Client (Dynamic Version)
+
+A simple and intuitive Python wrapper for the [Moan API](https://moanapi.ddns.net/).
+
+This package features a dynamic loader for its API modules and an automatic update checker.
+
+## Installation
+
+Install the package directly from PyPI:
+
+    pip install moanapi
+
+## Usage
+
+First, import and initialize the client with your API key. The client will automatically load all available API categories.
+
+    import moanapi
+
+    try:
+        client = moanapi.Client(api_key="YOUR_API_KEY")
+
+        # Access dynamically loaded API modules
+        quote = client.utility.get_quote(category="anime")
+        print(quote['quote'])
+
+        user = client.roblox.get_user_info(user_id=261)
+        print(f"Username: {user['data']['username']}")
+        
+        image_data = client.generative.get_flux_image(prompt="a powerful cat wizard")
+        print(f"Image URL: {image_data['image_url']}")
+
+    except moanapi.APIError as e:
+        print(f"An API error occurred: {e}")
+
+
+For a full list of available functions and to check for new updates, use the built-in help function:
+
+    import moanapi
+
+    moanapi.help()
+
+
+## License
+This project is licensed under the MIT License.
