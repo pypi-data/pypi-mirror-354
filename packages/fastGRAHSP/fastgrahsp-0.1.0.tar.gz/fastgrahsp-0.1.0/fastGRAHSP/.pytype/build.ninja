@@ -1,0 +1,9 @@
+rule infer
+  command = /usr/bin/python3 -m pytype.main --imports_info $imports --module-name $module --platform linux -V 3.12 -o $out --no-report-errors --nofail --quick $in
+  description = infer $module
+rule check
+  command = /usr/bin/python3 -m pytype.main --imports_info $imports --module-name $module --platform linux -V 3.12 -o $out --analyze-annotated --nofail --quick $in
+  description = check $module
+build /mnt/data/daten/PostDoc/research/agn/opt/release/fastGRAHSP/fastGRAHSP/.pytype/pyi/fastGRAHSP/__init__.pyi: check /mnt/data/daten/PostDoc/research/agn/opt/release/fastGRAHSP/fastGRAHSP/__init__.py
+  imports = /mnt/data/daten/PostDoc/research/agn/opt/release/fastGRAHSP/fastGRAHSP/.pytype/imports/fastGRAHSP.__init__.imports
+  module = fastGRAHSP.__init__
