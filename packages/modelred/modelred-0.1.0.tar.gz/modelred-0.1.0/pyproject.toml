@@ -1,0 +1,17 @@
+[project]
+name = "modelred"
+version = "0.1.0"
+description = "ModelRed SDK - Coming Soon"
+readme = "README.md"
+authors = [
+    { name = "ModelRed AI", email = "contact@modelred.ai" }
+]
+requires-python = ">=3.6"
+dependencies = []
+
+[project.scripts]
+modelred = "modelred:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
