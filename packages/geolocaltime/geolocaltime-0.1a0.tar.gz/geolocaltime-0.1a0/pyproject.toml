@@ -1,0 +1,25 @@
+[build-system]
+requires = ['setuptools', 'setuptools-scm']
+build-backend = 'setuptools.build_meta'
+
+[tool.setuptools.packages.find]
+include = ['geolocaltime']
+
+[project]
+name = 'geolocaltime'
+version = '0.1a'
+description = 'Accurately enriches location data with local time and time-of-day insights.'
+readme = 'README.md'
+requires-python = '>=3.7'
+keywords = ['geospatial', 'intelligence', 'time']
+classifiers = [
+    'Programming Language :: Python :: 3',
+    'License :: OSI Approved :: Apache Software License',
+    'Operating System :: OS Independent',
+]
+dependencies = ['georapid']
+
+[project.urls]
+'Homepage' = 'https://geospatial-ai.de'
+'GitHub' = 'https://github.com/Geospatial-AI-DE/geolocaltime-py'
+'Documentation' = 'https://geolocaltime.readthedocs.io/en/latest'
