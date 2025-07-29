@@ -1,0 +1,68 @@
+Metadata-Version: 2.4
+Name: bofire_converters
+Version: 0.0.4
+License: BSD 3-Clause License
+        
+        Copyright (c) 2023, experimental-design
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are met:
+        
+        1. Redistributions of source code must retain the above copyright notice, this
+           list of conditions and the following disclaimer.
+        
+        2. Redistributions in binary form must reproduce the above copyright notice,
+           this list of conditions and the following disclaimer in the documentation
+           and/or other materials provided with the distribution.
+        
+        3. Neither the name of the copyright holder nor the names of its
+           contributors may be used to endorse or promote products derived from
+           this software without specific prior written permission.
+        
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+        DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+        FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+        DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+        SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+        CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+        OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+        OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        
+Project-URL: Homepage, https://github.com/experimental-design/bofire-converters
+Classifier: Development Status :: 1 - Planning
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Scientific/Engineering
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: mopti>=0.10.10
+Requires-Dist: bofire>=0.2.0
+Provides-Extra: test
+Requires-Dist: pytest>=8.1.1; extra == "test"
+Dynamic: license-file
+
+# Mopti Problem to Bofire Domain Converter
+
+These tools are to help with migration of legacy applications from [Mopti](https://github.com/basf/mopti) to [BoFire](https://github.com/experimental-design/bofire). Mopti is for defining optimization problems (inputs, outputs, constraints, ...) and has some sampling utilities. If you have a _problem_ defined in the Mopti format, `bofire_converters` can help you to create the corresponding BoFire object, which is called a _domain_.
+
+## Quick start
+
+Install via pip
+
+`pip install bofire-converters`
+
+Here is an example of converting a `Problem` object from [Mopti](https://github.com/basf/mopti) to a BoFire `Domain`.
+
+```python
+from bofire_converters.opti_to_domain import convert_problem
+from opti.problems.multi import Daechert1
+
+# Use one of the opti built-in problems as an example
+my_opti_problem = Daechert1()                    
+my_bofire_domain = convert_problem(my_opti_problem)
+```
