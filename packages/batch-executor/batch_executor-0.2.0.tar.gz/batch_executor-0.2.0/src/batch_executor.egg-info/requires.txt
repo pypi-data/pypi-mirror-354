@@ -1,0 +1,13 @@
+click
+tqdm
+func_timeout
+
+[dev]
+coverage
+pytest
+pytest-asyncio
+asyncio
+pytest-cov
+pytest-mock
+pytest-xdist
+pytest-pythonpath
