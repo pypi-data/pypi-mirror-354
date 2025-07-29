@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: virtual-mechanism
+Version: 0.0.1
+Summary: virtual mechanism for mock and test
+Author-email: Pride Leong <lykling.lyk@gmail.com>
+Project-URL: Homepage, https://github.com/lykling/virtual-mechanism/tree/main
+Project-URL: Bug Tracker, https://github.com/lykling/virtual-mechanism/issues
+Requires-Python: >3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: cantools
+Requires-Dist: click
+Requires-Dist: python-can
+Requires-Dist: setuptools
+
+# virtual-mechanism
+
+This is simple program to simulate a virtual mechanism for testing
