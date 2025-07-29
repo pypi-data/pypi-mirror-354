@@ -1,0 +1,88 @@
+---
+name: Release
+
+# yamllint disable-line rule:truthy
+on:
+  release:
+    types:
+      - published
+
+env:
+  DEFAULT_PYTHON: "3.11"
+
+jobs:
+  release:
+    name: Releasing to PyPi
+    runs-on: ubuntu-latest
+    environment:
+      name: release
+      url: https://pypi.org/p/python-bsblan
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - name: ⤵️ Check out code from GitHub
+        uses: actions/checkout@v4.2.2
+      - name: 🏗 Set up uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+      - name: 🏗 Set up Python ${{ env.DEFAULT_PYTHON }}
+        id: python
+        uses: actions/setup-python@v5.6.0
+        with:
+          python-version: ${{ env.DEFAULT_PYTHON }}
+      - name: 🏗 Install dependencies
+        run: uv sync
+      - name: 🏗 Set package version
+        run: |
+          version="${{ github.event.release.tag_name }}"
+          version="${version,,}"
+          version="${version#v}"
+          sed -i '0,/version = ".*"/{s/version = ".*"/version = "'"${version}"'"/}' pyproject.toml
+      - name: 🏗 Build package
+        run: uv build
+      - name: 🚀 Publish to PyPi
+        uses: pypa/gh-action-pypi-publish@v1.12.4
+        with:
+          verbose: true
+          print-hash: true
+      - name: ✍️ Sign published artifacts
+        uses: sigstore/gh-action-sigstore-python@v3.0.0
+        with:
+          inputs: ./dist/*.tar.gz ./dist/*.whl
+          release-signing-artifacts: false
+      - name: 🔍 Verify signature files
+        run: |
+          # Retry mechanism for file system sync
+          max_retries=5
+          retry_delay=2
+          retries=0
+          while [ $retries -lt $max_retries ]; do
+            echo "Checking for signature files (attempt $((retries + 1))/$max_retries)..."
+            if find ./dist -name "*.sigstore.json" -type f -exec echo "Found: {}" \; -exec ls -la {} \;; then
+              echo "Signature files found and listed."
+              break
+            else
+              echo "Files not ready, retrying in $retry_delay seconds..."
+              sleep $retry_delay
+              retries=$((retries + 1))
+            fi
+          done
+          if [ $retries -eq $max_retries ]; then
+            echo "Error: Signature files not found after $max_retries attempts."
+            exit 1
+          fi
+          # Ensure files are not locked or being written to
+          for file in ./dist/*.sigstore.json; do
+            if [ -f "$file" ]; then
+              echo "Checking file: $file"
+              # Test file readability
+              cat "$file" > /dev/null && echo "✓ File is readable" || echo "✗ File read error"
+            fi
+          done
+      - name: 📤 Upload signature files to release
+        uses: softprops/action-gh-release@v2.3.0
+        if: github.event_name == 'release' && github.event.action == 'published'
+        with:
+          files: ./dist/*.sigstore.json
