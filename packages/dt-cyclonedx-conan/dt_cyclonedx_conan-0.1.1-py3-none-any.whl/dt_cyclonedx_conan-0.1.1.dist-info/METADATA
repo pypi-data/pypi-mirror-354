@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: dt-cyclonedx-conan
+Version: 0.1.1
+Summary: Tool to generate CycloneDX SBOMs for conan-based projects.
+Project-URL: Source, https://bitbucket.lab.dynatrace.org/scm/sec/dt-cyclonedx-conan.git
+Project-URL: Documentation, https://backstage.internal.dynatrace.com/catalog/default/component/dt-cyclonedx-conan/docs
+Author-email: Johannes Feichtner <johannes.feichtner@dynatrace.com>
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Security
+Requires-Python: >=3.6
+Requires-Dist: conan<2
+Requires-Dist: dataclasses; python_version == '3.6'
+Description-Content-Type: text/markdown
+
+# dt-cyclonedx-conan
+
+This repository includes `dt-cyclonedx-conan`, a tool to generate CycloneDX SBOMs for conan-based projects. Head over to the [documentation](docs/index.md) to learn more about it.
