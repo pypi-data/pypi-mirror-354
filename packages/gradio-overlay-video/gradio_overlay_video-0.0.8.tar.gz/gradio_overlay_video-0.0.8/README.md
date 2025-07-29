@@ -1,0 +1,239 @@
+---
+tags: [gradio-custom-component, gradio-5, laban-movement-analysis, pose-visualisation, pose-estimation, movement-visualisation, visualisation, video]
+title: gradio_overlay_video
+emoji: 🏃
+short_description: pose data overlayed video controller
+colorFrom: violet
+colorTo: green
+sdk: gradio
+sdk_version: 5.33.0
+pinned: false
+app_file: space.py
+---
+
+# `gradio_overlay_video`
+<img alt="Static Badge" src="https://img.shields.io/badge/version%20-%200.0.8%20-%20orange">  
+
+overlayed video controller
+
+## Installation
+
+```bash
+pip install gradio_overlay_video
+```
+
+## Usage
+
+```python
+
+import gradio as gr
+from gradio_overlay_video import OverlayVideo
+from pathlib import Path
+
+DEMO_DIR = Path(__file__).parent.parent
+sample_video_path = DEMO_DIR / "files/balette.mp4"
+sample_json_path = DEMO_DIR / "files/mediapipe_full_kp_balette.json"
+mediapipe_json_path = DEMO_DIR / "files/mediapipe_heavy_kp_parkour.json"
+movenet_json_path = DEMO_DIR / "files/movenet_thunder_kp_skate.json"
+yolo8_json_path = DEMO_DIR / "files/yolov8_kp_dance.json"
+yolo11_json_path = DEMO_DIR / "files/yolov11.json"
+
+def prepare_visualization_data(json_path, video_path):
+    """
+    This function simply validates the inputs and passes them to the
+    custom OverlayVideo component for frontend processing.
+    """
+    if not json_path:
+        raise gr.Error("A JSON file is required to generate a visualization.")
+
+    print(f"✅ Preparing visualization with JSON: {json_path}")
+    if video_path:
+        print(f"✅ Video background provided: {video_path}")
+    else:
+        print("ℹ️ No video background provided. Visualization will be on a black background.")
+
+    # The backend's job is just to pass the filepaths to the frontend.
+    # The return format (video_path, json_path) must match what postprocess expects.
+    return (video_path, json_path)
+
+
+with gr.Blocks(theme=gr.themes.Default(primary_hue="rose", secondary_hue="pink")) as demo:
+    gr.Markdown(
+        "# 🩰 Interactive Pose Visualization\n"
+        "1. **Upload a JSON file** with pose data.\n"
+        "2. **(Optional) Upload a video** to use as the background.\n"
+        "3. Click 'Display Visualization' to see the interactive result."
+    )
+    
+    with gr.Row():
+        with gr.Column(scale=1):
+            # Use standard gr.File for robust input handling
+            json_upload = gr.File(
+                label="Upload Required JSON File",
+                file_types=[".json"],
+                type="filepath"
+            )
+            video_upload = gr.File(
+                label="Upload Optional Video File",
+                file_types=["video"],
+                type="filepath",
+                value=None 
+            )
+            btn = gr.Button("Display Visualization", variant="primary")
+        
+        with gr.Column(scale=1):
+            output_ov = OverlayVideo(label="Output", interactive=False, autoplay=True)
+
+    btn.click(
+        fn=prepare_visualization_data,
+        inputs=[json_upload, video_upload],
+        outputs=[output_ov]
+    )
+    
+    gr.Examples(
+        examples=[
+            [str(mediapipe_json_path), None],
+            [str(movenet_json_path), None],
+            [str(yolo8_json_path), None],
+            [str(sample_json_path), str(sample_video_path)],
+            [str(yolo11_json_path), None]
+        ],
+        inputs=[json_upload, video_upload],
+        outputs=output_ov,
+        fn=prepare_visualization_data,
+        cache_examples=True
+    )
+
+if __name__ == "__main__":
+    demo.launch(allowed_paths=["/Users/csabi/Develop/overlay_video/files"])
+```
+
+## `OverlayVideo`
+
+### Initialization
+
+<table>
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left" style="width: 25%;">type</th>
+<th align="left">default</th>
+<th align="left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>value</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+typing.Any
+```
+
+</td>
+<td align="left"><code>None</code></td>
+<td align="left">None</td>
+</tr>
+
+<tr>
+<td align="left"><code>label</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+str | None
+```
+
+</td>
+<td align="left"><code>None</code></td>
+<td align="left">None</td>
+</tr>
+
+<tr>
+<td align="left"><code>interactive</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+bool | None
+```
+
+</td>
+<td align="left"><code>None</code></td>
+<td align="left">None</td>
+</tr>
+
+<tr>
+<td align="left"><code>autoplay</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+bool
+```
+
+</td>
+<td align="left"><code>False</code></td>
+<td align="left">None</td>
+</tr>
+
+<tr>
+<td align="left"><code>loop</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+bool
+```
+
+</td>
+<td align="left"><code>False</code></td>
+<td align="left">None</td>
+</tr>
+
+<tr>
+<td align="left"><code>mode</code></td>
+<td align="left" style="width: 25%;">
+
+```python
+str
+```
+
+</td>
+<td align="left"><code>"overlay"</code></td>
+<td align="left">None</td>
+</tr>
+</tbody></table>
+
+
+### Events
+
+| name | description |
+|:-----|:------------|
+| `change` | Triggered when the value of the OverlayVideo changes either because of user input (e.g. a user types in a textbox) OR because of a function update (e.g. an image receives a value from the output of an event trigger). See `.input()` for a listener that is only triggered by user input. |
+| `clear` | This listener is triggered when the user clears the OverlayVideo using the clear button for the component. |
+| `play` | This listener is triggered when the user plays the media in the OverlayVideo. |
+| `pause` | This listener is triggered when the media in the OverlayVideo stops for any reason. |
+| `end` | This listener is triggered when the user reaches the end of the media playing in the OverlayVideo. |
+
+
+
+### User function
+
+The impact on the users predict function varies depending on whether the component is used as an input or output for an event (or both).
+
+- When used as an Input, the component only impacts the input signature of the user function.
+- When used as an output, the component only impacts the return signature of the user function.
+
+The code snippet below is accurate in cases where the component is used as both an input and an output.
+
+
+
+ ```python
+ def predict(
+     value: str | None
+ ) -> typing.Optional[typing.Tuple[str | None, str | None]][
+    typing.Tuple[str | None, str | None][
+        str | None, str | None
+    ],
+    None,
+]:
+     return value
+ ```
+ 
