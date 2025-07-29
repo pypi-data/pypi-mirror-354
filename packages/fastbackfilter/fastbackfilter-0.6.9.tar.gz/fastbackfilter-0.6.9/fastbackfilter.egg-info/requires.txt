@@ -1,0 +1,10 @@
+pydantic>=2.7
+cachetools>=5.3
+platformdirs>=4.2
+
+[cli]
+rich>=13.7
+
+[perf]
+python-magic
+rapidfuzz
