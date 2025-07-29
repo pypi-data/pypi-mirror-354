@@ -1,0 +1,137 @@
+Metadata-Version: 2.4
+Name: policyguard-paolovella
+Version: 0.1.0
+Summary: Pre-commit hook for detecting security issues in AI-generated code
+Author-email: Paolo vella <paolovella1993@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/yourusername/policyguard
+Project-URL: Documentation, https://policyguard.readthedocs.io
+Project-URL: Repository, https://github.com/yourusername/policyguard
+Project-URL: Issues, https://github.com/yourusername/policyguard/issues
+Keywords: security,linter,pre-commit,ai,copilot,code-quality
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Security
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: Topic :: Software Development :: Testing
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: click>=8.0
+Requires-Dist: colorama>=0.4.4; platform_system == "Windows"
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0; extra == "dev"
+Requires-Dist: black>=22.0; extra == "dev"
+Requires-Dist: mypy>=0.990; extra == "dev"
+Requires-Dist: ruff>=0.0.261; extra == "dev"
+Dynamic: license-file
+
+<div align="center">
+
+# 🛡️ PolicyGuard
+
+**Pre-commit security scanner for AI-generated Python code**
+
+[![PyPI](https://img.shields.io/pypi/v/policyguard)](https://pypi.org/project/policyguard/)
+[![Python](https://img.shields.io/pypi/pyversions/policyguard)](https://pypi.org/project/policyguard/)
+[![License](https://img.shields.io/github/license/yourusername/policyguard)](LICENSE)
+[![Tests](https://github.com/yourusername/policyguard/workflows/Tests/badge.svg)](https://github.com/yourusername/policyguard/actions)
+
+</div>
+
+---
+
+PolicyGuard catches common security vulnerabilities in your Python code, especially those often introduced by AI coding assistants like GitHub Copilot.
+
+## ✨ Features
+
+- 🚨 **Detects hardcoded secrets** - passwords, API keys, tokens
+- 💉 **Prevents SQL injection** - finds string concatenation in queries  
+- 🎯 **Catches dangerous functions** - eval(), exec(), pickle.load()
+- 🤖 **AI-specific patterns** - TODOs for passwords, example keys
+- ⚡ **Fast** - typically <100ms per file
+- 🎨 **Beautiful output** - color-coded, with context
+- 🔧 **Git pre-commit hook** - catch issues before they're committed
+- 📦 **Zero dependencies** - minimal requirements
+
+## 🚀 Quick Start
+
+### Install
+
+```bash
+pip install policyguard
+```
+
+### Initialize in your repo
+
+```bash
+cd your-python-project
+policyguard init
+```
+
+### That's it! 
+
+PolicyGuard will now check your Python files before each commit.
+
+## 📋 What It Catches
+
+### Security Issues
+- Hardcoded passwords and secrets
+- SQL injection vulnerabilities
+- Command injection risks
+- Insecure deserialization (pickle)
+- Weak random number generation
+- Dangerous eval/exec usage
+
+### AI-Specific Patterns
+- `# TODO: change password` comments
+- Example API keys (sk-xxx, AKIA-xxx)
+- Placeholder emails (test@test.com)
+- Localhost URLs in production code
+
+## 🔧 Usage
+
+### Scan manually
+
+```bash
+# Scan current directory
+policyguard scan
+
+# Scan specific file
+policyguard scan auth.py
+
+# Output as JSON
+policyguard scan --json
+```
+
+### View all rules
+
+```bash
+policyguard rules
+```
+
+## 🤝 Contributing
+
+We love contributions! Please see our contributing guidelines.
+
+## 📄 License
+
+MIT - see [LICENSE](LICENSE)
+
+---
+
+<div align="center">
+
+**Built with ❤️ to keep AI-generated code secure**
+
+</div>

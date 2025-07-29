@@ -1,0 +1,9 @@
+include README.md
+include LICENSE
+include CHANGELOG.md
+recursive-include policyguard *.py
+recursive-include tests *.py
+recursive-include docs *.md
+prune **/__pycache__
+exclude .gitignore
+exclude .pre-commit-config.yaml

@@ -1,0 +1,11 @@
+click>=8.0
+
+[:platform_system == "Windows"]
+colorama>=0.4.4
+
+[dev]
+pytest>=7.0
+pytest-cov>=4.0
+black>=22.0
+mypy>=0.990
+ruff>=0.0.261
