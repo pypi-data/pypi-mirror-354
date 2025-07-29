@@ -1,0 +1,18 @@
+include .coveragerc
+include .editorconfig
+include .git-blame-ignore-revs
+include .pre-commit-config.yaml
+include .readthedocs.yaml
+include CHANGELOG.rst
+include LICENSE.txt
+include Makefile
+include README.rst
+include requirements.pip
+include tox.ini
+
+recursive-include cogapp *.py
+recursive-include docs Makefile *.py *.rst
+recursive-include docs/_static *
+recursive-include success *
+
+prune doc/_build
