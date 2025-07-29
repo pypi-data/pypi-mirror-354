@@ -1,0 +1,415 @@
+<!-- Footer Section v9.html -->
+<footer id="footer" class="relative bg-gradient-to-br from-slate-100 via-violet-100 to-fuchsia-100 overflow-hidden pt-20 pb-10">
+
+  <!-- Elegant Background Elements -->
+  <div class="absolute inset-0">
+    <!-- Floating geometric shapes -->
+    <div class="absolute top-1/4 right-1/4 w-64 h-64 bg-violet-200/20 rounded-full animate-elegant-float blur-sm"></div>
+    <div class="absolute bottom-1/3 left-1/4 w-80 h-80 bg-fuchsia-200/20 rounded-full animate-elegant-float blur-sm" style="animation-delay: 4s;"></div>
+    <div class="absolute top-1/2 left-1/2 w-48 h-48 bg-purple-200/15 rounded-2xl animate-elegant-float blur-sm" style="animation-delay: 2s;"></div>
+
+    <!-- Gradient mesh overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-violet-50/40 via-transparent to-fuchsia-50/40"></div>
+  </div>
+
+  <div class="max-w-{{ sections['footer']['maxWidth'] | default('7xl') }} mx-auto px-{{ sections['footer']['padding']['x'] | default('6') }} sm:px-{{ sections['footer']['padding']['smX'] | default('8') }} lg:px-{{ sections['footer']['padding']['lgX'] | default('12') }} relative z-10">
+
+    <!-- Main Footer Content -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-{{ sections['footer']['grid']['cols'] | default('4') }} gap-{{ sections['footer']['grid']['gap'] | default('8') }}" data-animate="section">
+
+      <!-- Brand Column -->
+      <div class="luxury-footer-brand" data-animate="feature" data-delay="100">
+        <div class="flex items-center space-x-3 mb-6">
+          <!-- Logo mark -->
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-white shadow-lg transform hover:rotate-3 transition-transform duration-300">
+            <span class="text-xl font-bold">{{ sections['footer']['brand']['name'] | default(site.brand.name) | slice(0, 1) }}</span>
+          </div>
+
+          <!-- Logo text -->
+          <div>
+            <span class="{{ sections['footer']['brand']['textClasses'] | default('text-2xl font-bold') }} text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-fuchsia-600 luxury-brand">
+              {{ sections['footer']['brand']['name'] | default(site.brand.name) }}
+            </span>
+            <div class="text-xs text-violet-600 font-medium">Premium Quality Products</div>
+          </div>
+        </div>
+
+        <p class="text-slate-600 leading-relaxed mb-6 max-w-sm">
+          {{ sections['footer']['brand']['description']['text'] | default(site.brand.description) }}
+        </p>
+
+        <!-- Business Credentials -->
+        <div class="space-y-2 mb-6">
+          <div class="flex items-center space-x-2 text-sm">
+            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span class="text-slate-600">Certified Quality • Eco-Friendly</span>
+          </div>
+          <div class="flex items-center space-x-2 text-sm">
+            <div class="w-2 h-2 bg-violet-500 rounded-full"></div>
+            <span class="text-slate-600">Free Shipping • 30-Day Returns</span>
+          </div>
+        </div>
+
+        {% if sections['footer']['brand']['socialLinks']['links'] is defined %}
+        <div class="flex flex-wrap gap-3">
+          {% for social in sections['footer']['brand']['socialLinks']['links'] %}
+          <a href="{{ social['url'] }}" class="w-10 h-10 rounded-xl bg-white/60 backdrop-blur-sm border border-violet-100/50 flex items-center justify-center text-slate-600 hover:bg-gradient-to-br hover:from-violet-500 hover:to-fuchsia-500 hover:text-white hover:border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <i class="{{ social['icon'] }} text-lg"></i>
+          </a>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="flex flex-wrap gap-3">
+          {% for social in site.social %}
+          <a href="{{ social.url }}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-white/60 backdrop-blur-sm border border-violet-100/50 flex items-center justify-center text-slate-600 hover:bg-gradient-to-br hover:from-violet-500 hover:to-fuchsia-500 hover:text-white hover:border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <i class="{{ social.icon }} text-lg"></i>
+          </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Navigation Columns -->
+      {% for column in sections['footer']['navigation'] %}
+      <div class="luxury-footer-column" data-animate="feature" data-delay="{{ loop.index * 100 + 200 }}">
+        <h3 class="{{ column['titleClasses'] | default('text-lg font-bold') }} text-slate-800 mb-6 relative">
+          {{ column['title'] }}
+          <!-- Decorative underline -->
+          <span class="absolute -bottom-2 left-0 w-8 h-0.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full"></span>
+        </h3>
+        <ul class="space-y-{{ column['list']['spacing'] | default('3') }} text-slate-600">
+          {% for link in column['links'] %}
+          <li>
+            <a href="{{ link['url'] }}" class="hover:text-violet-600 transition-colors duration-300 flex items-center space-x-2 group">
+              <span class="w-1 h-1 bg-violet-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span>{{ link['label'] }}</span>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+
+        <!-- Quick Stats for first column -->
+        {% if loop.first %}
+        <div class="mt-6 pt-4 border-t border-violet-200/50 text-sm text-slate-600">
+          <div><span class="text-violet-600 font-semibold">10,000+</span> Happy Customers</div>
+          <div><span class="text-fuchsia-600 font-semibold">50+</span> Countries Shipped</div>
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+
+      <!-- Subscribe Column -->
+      {% if sections['footer']['subscribe'] %}
+      <div class="luxury-footer-subscribe" data-animate="feature" data-delay="500">
+        <h3 class="{{ sections['footer']['subscribe']['titleClasses'] | default('text-lg font-bold') }} text-slate-800 mb-6 relative">
+          {{ sections['footer']['subscribe']['title'] }}
+          <!-- Decorative underline -->
+          <span class="absolute -bottom-2 left-0 w-8 h-0.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full"></span>
+        </h3>
+
+        <!-- Contact Information -->
+        <div class="space-y-3 mb-6 text-sm">
+          <div class="text-slate-600">
+            <div class="text-slate-800 font-medium flex items-center space-x-2">
+              <span>📍</span>
+              <span>Customer Service</span>
+            </div>
+            <div class="ml-6">Available 24/7 for support</div>
+          </div>
+          <div class="text-slate-600">
+            <div class="text-slate-800 font-medium flex items-center space-x-2">
+              <span>📧</span>
+              <span>Email Support</span>
+            </div>
+            <div class="ml-6">hello@company.com</div>
+          </div>
+          <div class="text-slate-600">
+            <div class="text-slate-800 font-medium flex items-center space-x-2">
+              <span>📞</span>
+              <span>Phone Support</span>
+            </div>
+            <div class="ml-6">+1 (800) 555-SHOP</div>
+          </div>
+        </div>
+
+        <form id="subscribeForm" class="space-y-4">
+          <div class="relative">
+            <input type="email" placeholder="{{ sections['footer']['subscribe']['input']['placeholder'] }}" class="w-full px-4 py-3 rounded-xl bg-white/60 backdrop-blur-sm border border-violet-100/50 text-slate-700 placeholder-slate-400 focus:outline-none focus:border-violet-400 focus:bg-white transition-all duration-300">
+            <div class="input-focus-indicator absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-violet-500 to-fuchsia-500 transition-all duration-300 rounded-full"></div>
+          </div>
+
+          <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-violet-300/50 hover:-translate-y-1 transition-all duration-300">
+            {{ sections['footer']['subscribe']['button']['text'] }}
+          </button>
+        </form>
+
+        <p class="text-slate-500 mt-4 text-sm leading-relaxed">
+          {{ sections['footer']['subscribe']['description']['text'] }}
+        </p>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="mt-{{ sections['footer']['bottom']['marginTop'] | default('16') }} pt-{{ sections['footer']['bottom']['paddingTop'] | default('8') }} border-t border-violet-200/50 flex flex-col gap-4 sm:gap-0 sm:flex-row justify-between items-center text-slate-600" data-animate="feature" data-delay="600">
+
+      <!-- Company Information -->
+      <div class="text-center sm:text-left">
+        <p class="text-sm">
+          {{ sections['footer']['bottom']['copyright'] | default('© 2024 ' + site.brand.name + ', Inc. All rights reserved.') }}
+        </p>
+        <p class="text-xs mt-1 text-slate-500">Premium Quality • Worldwide Shipping</p>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="flex items-center space-x-4 text-xs text-slate-500">
+        <span class="flex items-center space-x-1">
+          <span>🔒</span>
+          <span>Secure</span>
+        </span>
+        <span class="flex items-center space-x-1">
+          <span>🛡️</span>
+          <span>Trusted</span>
+        </span>
+        <span class="flex items-center space-x-1">
+          <span>⚡</span>
+          <span>Fast Ship</span>
+        </span>
+        <span class="flex items-center space-x-1">
+          <span>🌍</span>
+          <span>Global</span>
+        </span>
+      </div>
+
+      {% if sections['footer']['bottom']['links']['items'] is defined %}
+      <div class="flex flex-wrap justify-center sm:justify-end space-x-6">
+        {% for link in sections['footer']['bottom']['links']['items'] %}
+        <a href="{{ link['url'] }}" class="hover:text-violet-600 transition-colors duration-300 text-sm">
+          {{ link['label'] }}
+        </a>
+        {% if not loop.last %}
+        <span class="text-violet-300">•</span>
+        {% endif %}
+        {% endfor %}
+      </div>
+      {% else %}
+      <!-- Default Legal Links -->
+      <div class="flex space-x-6">
+        <a href="#" class="text-slate-600 hover:text-violet-600 transition-colors duration-300 text-sm">Privacy Policy</a>
+        <a href="#" class="text-slate-600 hover:text-violet-600 transition-colors duration-300 text-sm">Terms of Service</a>
+        <a href="#" class="text-slate-600 hover:text-violet-600 transition-colors duration-300 text-sm">Returns</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Back to top button -->
+  <button id="backToTopBtn" class="fixed bottom-8 right-8 w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-600 to-fuchsia-600 flex items-center justify-center text-white shadow-lg opacity-0 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-violet-300/50 z-50">
+    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    </svg>
+  </button>
+</footer>
+
+<style>
+  /* Luxury Footer v9 Styles */
+  .luxury-brand {
+    font-family: 'Playfair Display', serif;
+    background-size: 200% 200%;
+    animation: gradient-shift 4s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes animate-elegant-float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-25px) rotate(2deg);
+    }
+    66% {
+      transform: translateY(-12px) rotate(-1deg);
+    }
+  }
+
+  .animate-elegant-float {
+    animation: animate-elegant-float 12s ease-in-out infinite;
+  }
+
+  /* Footer sections */
+  .luxury-footer-brand,
+  .luxury-footer-column,
+  .luxury-footer-subscribe {
+    transition: all 0.3s ease;
+  }
+
+  .luxury-footer-brand:hover,
+  .luxury-footer-column:hover,
+  .luxury-footer-subscribe:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Input focus effects */
+  .input-focus-indicator {
+    transition: width 0.3s ease;
+  }
+
+  input:focus + .input-focus-indicator {
+    width: 100%;
+  }
+
+  /* Link hover effects */
+  footer a:hover {
+    text-shadow: 0 0 8px rgba(139, 92, 246, 0.3);
+  }
+
+  /* Fade in animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  [data-animate] {
+    opacity: 0;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .luxury-footer-brand,
+    .luxury-footer-column,
+    .luxury-footer-subscribe {
+      margin-bottom: 2rem;
+    }
+  }
+
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-elegant-float,
+    .luxury-brand {
+      animation: none;
+    }
+
+    .luxury-footer-brand:hover,
+    .luxury-footer-column:hover,
+    .luxury-footer-subscribe:hover {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Subscribe form functionality (from v6)
+    const subscribeForm = document.getElementById('subscribeForm');
+    if (subscribeForm) {
+      subscribeForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const emailInput = this.querySelector('input[type="email"]');
+        const email = emailInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const button = this.querySelector('button');
+
+        if (email && emailRegex.test(email)) {
+          // Success feedback
+          button.innerHTML = '✓ Subscribed!';
+          button.classList.add('bg-green-500');
+          emailInput.value = '';
+
+          // Reset after 3 seconds
+          setTimeout(() => {
+            button.innerHTML = 'Subscribe';
+            button.classList.remove('bg-green-500');
+          }, 3000);
+        } else {
+          // Error feedback
+          button.innerHTML = '✗ Invalid Email';
+          button.classList.add('bg-red-500');
+
+          setTimeout(() => {
+            button.innerHTML = 'Subscribe';
+            button.classList.remove('bg-red-500');
+          }, 2000);
+        }
+      });
+    }
+
+    // Back to top button (from v6)
+    const backToTopBtn = document.getElementById('backToTopBtn');
+
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.style.opacity = '1';
+      } else {
+        backToTopBtn.style.opacity = '0';
+      }
+    });
+
+    backToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Input focus effect (from v6)
+    const inputs = document.querySelectorAll('input[type="email"]');
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        const indicator = this.parentNode.querySelector('.input-focus-indicator');
+        if (indicator) {
+          indicator.style.width = '100%';
+        }
+      });
+
+      input.addEventListener('blur', function() {
+        const indicator = this.parentNode.querySelector('.input-focus-indicator');
+        if (indicator && !this.value) {
+          indicator.style.width = '0';
+        }
+      });
+    });
+
+    // Reveal animations on scroll (from v6)
+    const animateElements = document.querySelectorAll('[data-animate]');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => {
+            entry.target.classList.add('animate-fadeIn');
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    animateElements.forEach(element => {
+      observer.observe(element);
+    });
+
+    // Smooth scroll for anchor links
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    anchorLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  });
+</script>

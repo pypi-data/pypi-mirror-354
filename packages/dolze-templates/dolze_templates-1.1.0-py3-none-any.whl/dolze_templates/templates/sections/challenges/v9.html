@@ -1,0 +1,632 @@
+<!-- Challenges Section v9.html - Creative Revamp -->
+<section class="relative min-h-screen bg-gradient-to-br from-slate-50 via-violet-50 to-fuchsia-50 overflow-hidden" id="challenges">
+
+  <!-- Creative Background Elements -->
+  <div class="absolute inset-0">
+    <!-- Animated wave pattern -->
+    <div class="absolute inset-0 opacity-10">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="wave-pattern" width="200" height="100" patternUnits="userSpaceOnUse">
+            <path d="M0,50 Q50,0 100,50 T200,50" fill="none" stroke="url(#wave-gradient)" stroke-width="2"/>
+          </pattern>
+          <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#8b5cf6"/>
+            <stop offset="50%" style="stop-color:#a855f7"/>
+            <stop offset="100%" style="stop-color:#d946ef"/>
+          </linearGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#wave-pattern)"/>
+      </svg>
+    </div>
+
+    <!-- Dynamic floating elements -->
+    <div class="absolute top-20 left-20 w-40 h-40 bg-gradient-to-br from-violet-400/15 to-purple-400/15 rounded-full animate-creative-orbit blur-sm"></div>
+    <div class="absolute top-1/3 right-32 w-32 h-32 bg-gradient-to-br from-fuchsia-400/15 to-pink-400/15 rounded-2xl animate-creative-orbit blur-sm" style="animation-delay: 2s; transform: rotate(45deg);"></div>
+    <div class="absolute bottom-1/4 left-1/3 w-48 h-48 bg-gradient-to-br from-purple-400/15 to-violet-400/15 rounded-3xl animate-creative-orbit blur-sm" style="animation-delay: 4s;"></div>
+    <div class="absolute bottom-20 right-20 w-36 h-36 bg-gradient-to-br from-pink-400/15 to-fuchsia-400/15 rounded-full animate-creative-orbit blur-sm" style="animation-delay: 6s;"></div>
+
+    <!-- Interactive sparkles -->
+    <div class="absolute top-1/4 left-1/2 w-4 h-4 bg-violet-500 rounded-full animate-sparkle sparkle" style="animation-delay: 1s;"></div>
+    <div class="absolute top-2/3 right-1/3 w-3 h-3 bg-fuchsia-500 rounded-full animate-sparkle sparkle" style="animation-delay: 3s;"></div>
+    <div class="absolute top-1/2 left-1/4 w-3.5 h-3.5 bg-purple-500 rounded-full animate-sparkle sparkle" style="animation-delay: 5s;"></div>
+
+    <!-- Gradient mesh overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-violet-50/50 via-transparent to-fuchsia-50/50"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20">
+
+    <!-- Creative Header Section -->
+    <div class="text-center mb-20">
+      <!-- Interactive Badge -->
+      <div class="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm border border-violet-200/50 rounded-full px-6 py-3 mb-8 creative-badge hover:scale-105 transition-transform duration-300">
+        <div class="w-2 h-2 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full animate-pulse"></div>
+        <span class="text-violet-700 font-medium text-sm tracking-wider uppercase">Quality Standards</span>
+      </div>
+
+      <!-- Main Heading with Animation -->
+      <h2 class="text-4xl md:text-6xl lg:text-7xl font-black text-slate-800 mb-6 leading-tight">
+        <span class="block">Overcoming Every</span>
+        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 luxury-heading">
+          {{ sections.challenges.title | default('Challenge') }}
+        </span>
+      </h2>
+
+      <!-- Subtitle -->
+      <p class="text-xl md:text-2xl text-slate-600 leading-relaxed max-w-4xl mx-auto mb-12">
+        {{ sections.challenges.subtitle | default('We turn obstacles into opportunities, delivering exceptional results that exceed expectations.') }}
+      </p>
+
+      <!-- Progress Indicators -->
+      <div class="flex justify-center space-x-8 mb-16">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center text-white mx-auto mb-3 shadow-lg">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <p class="text-sm font-semibold text-slate-700">Quality Assured</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center text-white mx-auto mb-3 shadow-lg">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <p class="text-sm font-semibold text-slate-700">Fast Delivery</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center text-white mx-auto mb-3 shadow-lg">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+          </div>
+          <p class="text-sm font-semibold text-slate-700">Customer Love</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid md:grid-cols-3 gap-8 mb-16">
+      {% for item in sections.challenges.items %}
+      <div class="luxury-stat-card group relative bg-white/70 backdrop-blur-md rounded-3xl p-10 text-center border border-violet-100/50 hover:shadow-2xl hover:shadow-violet-100/30 transition-all duration-700 hover:-translate-y-6">
+
+        <!-- Icon Container -->
+        <div class="relative mb-6">
+          <div class="w-20 h-20 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-2xl flex items-center justify-center text-white mx-auto shadow-2xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+            <i class="{{ item.icon }} text-3xl"></i>
+          </div>
+
+          <!-- Floating glow effect -->
+          <div class="absolute inset-0 w-20 h-20 bg-gradient-to-br from-violet-400/30 to-fuchsia-400/30 rounded-2xl mx-auto blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        </div>
+
+        <!-- Stats Content -->
+        <div class="space-y-4">
+          <!-- Value with counter animation -->
+          <div class="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-600 mb-2 counter" data-target="{{ item.value }}">
+            0
+          </div>
+
+          <!-- Label -->
+          <h3 class="text-lg font-semibold text-slate-700 tracking-wide group-hover:text-violet-600 transition-colors duration-300">
+            {{ item.label }}
+          </h3>
+
+          <!-- Description -->
+          <p class="text-sm text-slate-600 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            {{ item.description }}
+          </p>
+        </div>
+
+        <!-- Luxury border effect on hover -->
+        <div class="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="background: linear-gradient(135deg, #8b5cf6, #a855f7, #d946ef); padding: 2px; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude;"></div>
+
+        <!-- Shimmer effect -->
+        <div class="absolute inset-0 rounded-3xl overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Product Quality Standards -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+      <div class="bg-white/60 backdrop-blur-md rounded-2xl p-6 border border-violet-100/50 hover:shadow-xl hover:shadow-violet-100/20 transition-all duration-500">
+        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center text-white mb-4">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+        <h4 class="text-lg font-bold text-slate-800 mb-2">Premium Materials</h4>
+        <p class="text-sm text-slate-600">Ethically sourced, high-grade materials ensuring durability and comfort in every product.</p>
+      </div>
+
+      <div class="bg-white/60 backdrop-blur-md rounded-2xl p-6 border border-violet-100/50 hover:shadow-xl hover:shadow-violet-100/20 transition-all duration-500">
+        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center text-white mb-4">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+          </svg>
+        </div>
+        <h4 class="text-lg font-bold text-slate-800 mb-2">Handcrafted Quality</h4>
+        <p class="text-sm text-slate-600">Meticulously crafted by skilled artisans with attention to every detail and finishing.</p>
+      </div>
+
+      <div class="bg-white/60 backdrop-blur-md rounded-2xl p-6 border border-violet-100/50 hover:shadow-xl hover:shadow-violet-100/20 transition-all duration-500">
+        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-500 rounded-xl flex items-center justify-center text-white mb-4">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+          </svg>
+        </div>
+        <h4 class="text-lg font-bold text-slate-800 mb-2">Sustainable Design</h4>
+        <p class="text-sm text-slate-600">Eco-friendly production processes and sustainable materials for conscious consumers.</p>
+      </div>
+
+      <div class="bg-white/60 backdrop-blur-md rounded-2xl p-6 border border-violet-100/50 hover:shadow-xl hover:shadow-violet-100/20 transition-all duration-500">
+        <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center text-white mb-4">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+          </svg>
+        </div>
+        <h4 class="text-lg font-bold text-slate-800 mb-2">Global Shipping</h4>
+        <p class="text-sm text-slate-600">Worldwide delivery with secure packaging and tracking for safe product arrival.</p>
+      </div>
+    </div>
+    <!-- Bottom Content -->
+    <div class="text-center">
+      <!-- Achievement Badge -->
+      <div class="inline-flex items-center mb-8 px-8 py-4 bg-gradient-to-r from-violet-100/80 to-fuchsia-100/80 backdrop-blur-md border border-violet-200/50 rounded-2xl">
+        <div class="w-12 h-12 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-xl flex items-center justify-center text-white mr-4 shadow-lg">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+        <div class="text-left">
+          <p class="text-sm text-violet-600 font-medium">Proven Results</p>
+          <p class="text-lg font-bold text-slate-800">Transforming businesses worldwide</p>
+        </div>
+      </div>
+
+      <!-- CTA Button -->
+      <a href="#features" class="luxury-challenges-button inline-flex items-center space-x-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white px-12 py-5 rounded-2xl font-bold text-lg tracking-wide transition-all duration-500 hover:shadow-2xl hover:shadow-violet-300/50 hover:-translate-y-2 overflow-hidden relative">
+        <span class="relative z-10">See How We Do It</span>
+        <svg class="relative z-10 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+<style>
+  /* Creative Challenges Section v9 Styles */
+  .luxury-heading {
+    font-family: 'Playfair Display', serif;
+    background-size: 200% 200%;
+    animation: gradient-shift 4s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes animate-creative-orbit {
+    0% {
+      transform: translateY(0px) rotate(0deg) scale(1);
+    }
+    25% {
+      transform: translateY(-20px) rotate(90deg) scale(1.1);
+    }
+    50% {
+      transform: translateY(0px) rotate(180deg) scale(1);
+    }
+    75% {
+      transform: translateY(20px) rotate(270deg) scale(0.9);
+    }
+    100% {
+      transform: translateY(0px) rotate(360deg) scale(1);
+    }
+  }
+
+  .animate-creative-orbit {
+    animation: animate-creative-orbit 15s ease-in-out infinite;
+  }
+
+  @keyframes animate-sparkle {
+    0%, 100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1.5) rotate(180deg);
+      opacity: 1;
+    }
+  }
+
+  .animate-sparkle {
+    animation: animate-sparkle 3s ease-in-out infinite;
+  }
+
+  /* Creative Badge */
+  .creative-badge {
+    backdrop-filter: blur(15px);
+    transition: all 0.3s ease;
+  }
+
+  .creative-badge:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.2);
+  }
+
+  /* Enhanced Stat Cards */
+  .luxury-stat-card {
+    position: relative;
+    backdrop-filter: blur(20px);
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .luxury-stat-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(168, 85, 247, 0.04), rgba(217, 70, 239, 0.08));
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+  }
+
+  .luxury-stat-card:hover::before {
+    opacity: 1;
+  }
+
+  .luxury-stat-card:hover {
+    transform: translateY(-24px) scale(1.05) rotateX(5deg);
+    box-shadow: 0 30px 60px rgba(139, 92, 246, 0.2);
+  }
+
+  /* Counter Animations */
+  .counter {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+  }
+
+  /* Interactive Sparkles */
+  .sparkle {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .sparkle:hover {
+    transform: scale(2) !important;
+    opacity: 1 !important;
+  }
+
+  /* Button Styles */
+  .luxury-challenges-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .luxury-challenges-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .luxury-challenges-button:hover::before {
+    left: 100%;
+  }
+
+  .luxury-challenges-button:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+  }
+
+  /* Progress Indicators */
+  .progress-indicator {
+    transition: all 0.3s ease;
+  }
+
+  .progress-indicator:hover {
+    transform: translateY(-5px) scale(1.1);
+  }
+
+  /* Quality Standards Cards */
+  .quality-card {
+    backdrop-filter: blur(15px);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quality-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .quality-card:hover::before {
+    left: 100%;
+  }
+
+  .quality-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .luxury-heading {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+
+    .luxury-stat-card {
+      padding: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .luxury-stat-card {
+      padding: 1.5rem;
+    }
+
+    .quality-card {
+      padding: 1rem;
+    }
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-creative-orbit,
+    .animate-sparkle,
+    .luxury-heading {
+      animation: none;
+    }
+
+    .luxury-stat-card:hover,
+    .quality-card:hover,
+    .luxury-challenges-button:hover {
+      transform: none;
+    }
+  }
+
+  /* Loading States */
+  .loading {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* Focus States */
+  .creative-badge:focus,
+  .sparkle:focus,
+  .luxury-challenges-button:focus {
+    outline: 2px solid #8b5cf6;
+    outline-offset: 2px;
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Enhanced counter animation with luxury easing
+    const counters = document.querySelectorAll('.counter');
+
+    const animateCounter = (counter) => {
+      const targetText = counter.getAttribute('data-target');
+      const target = parseInt(targetText.replace(/[^\d]/g, ''));
+      const suffix = targetText.replace(/[\d]/g, '');
+      const duration = 2500;
+      const startTime = performance.now();
+
+      const easeOutExpo = (t) => t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+
+      const updateCounter = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutExpo(progress);
+        const current = Math.floor(target * easedProgress);
+
+        counter.textContent = current.toLocaleString() + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = target.toLocaleString() + suffix;
+          // Enhanced completion effect
+          counter.style.transform = 'scale(1.2)';
+          counter.style.filter = 'brightness(1.3) drop-shadow(0 0 10px rgba(139, 92, 246, 0.5))';
+          setTimeout(() => {
+            counter.style.transform = 'scale(1)';
+            counter.style.filter = 'brightness(1)';
+          }, 500);
+        }
+      };
+
+      requestAnimationFrame(updateCounter);
+    };
+
+    // Enhanced Intersection Observer
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('counter')) {
+            setTimeout(() => animateCounter(entry.target), Math.random() * 500);
+          } else {
+            entry.target.classList.add('animate');
+          }
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Animate stat cards with enhanced stagger
+    const statCards = document.querySelectorAll('.luxury-stat-card');
+    statCards.forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(80px) scale(0.8) rotateX(15deg)';
+      card.style.transition = `all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.2}s`;
+      observer.observe(card);
+    });
+
+    // Quality cards animation
+    const qualityCards = document.querySelectorAll('.quality-card');
+    qualityCards.forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(40px) scale(0.9)';
+      card.style.transition = `all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.1}s`;
+      observer.observe(card);
+    });
+
+    // Interactive sparkles
+    const sparkles = document.querySelectorAll('.sparkle');
+    sparkles.forEach(sparkle => {
+      sparkle.addEventListener('click', function() {
+        // Create burst effect
+        for (let i = 0; i < 8; i++) {
+          const burst = document.createElement('div');
+          burst.className = 'absolute w-2 h-2 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full';
+          burst.style.cssText = `
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            animation: sparkle-burst 1s ease-out forwards;
+            animation-delay: ${i * 0.1}s;
+            pointer-events: none;
+          `;
+
+          this.appendChild(burst);
+
+          setTimeout(() => {
+            burst.remove();
+          }, 1000);
+        }
+
+        // Main sparkle effect
+        this.style.transform = 'scale(3) rotate(360deg)';
+        this.style.opacity = '1';
+        setTimeout(() => {
+          this.style.transform = '';
+          this.style.opacity = '';
+        }, 600);
+      });
+    });
+
+    // Progress indicators hover effects
+    const progressIndicators = document.querySelectorAll('.progress-indicator');
+    progressIndicators.forEach(indicator => {
+      indicator.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-8px) scale(1.1) rotate(5deg)';
+      });
+
+      indicator.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+      });
+    });
+
+    // Badge interactive effects
+    const badge = document.querySelector('.creative-badge');
+    if (badge) {
+      badge.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-3px) scale(1.05) rotate(1deg)';
+      });
+
+      badge.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1) rotate(0deg)';
+      });
+    }
+
+    // Button ripple effect
+    const button = document.querySelector('.luxury-challenges-button');
+    if (button) {
+      button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.cssText = `
+          position: absolute;
+          width: ${size}px;
+          height: ${size}px;
+          left: ${x}px;
+          top: ${y}px;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+          transform: scale(0);
+          animation: button-ripple 0.6s ease-out;
+          pointer-events: none;
+        `;
+
+        this.appendChild(ripple);
+
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    }
+
+    // Observe counters
+    counters.forEach(counter => {
+      observer.observe(counter);
+    });
+
+    // Add custom animations
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes sparkle-burst {
+        0% {
+          transform: translate(-50%, -50%) scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-50%, -50%) translate(${Math.random() * 60 - 30}px, ${Math.random() * 60 - 30}px) scale(1);
+          opacity: 0;
+        }
+      }
+
+      @keyframes button-ripple {
+        to {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+
+      .animate {
+        opacity: 1 !important;
+        transform: translateY(0) scale(1) rotateX(0deg) !important;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Parallax effect for background elements
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const orbitElements = document.querySelectorAll('.animate-creative-orbit');
+
+      orbitElements.forEach((element, index) => {
+        const speed = 0.3 + (index * 0.1);
+        const yPos = -(scrolled * speed);
+        element.style.transform += ` translateY(${yPos}px)`;
+      });
+    });
+  });
+</script>

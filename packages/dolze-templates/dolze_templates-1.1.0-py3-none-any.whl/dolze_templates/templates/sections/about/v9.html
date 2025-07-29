@@ -1,0 +1,575 @@
+<!-- About Section v9.html - Creative Revamp -->
+<section class="relative min-h-screen bg-gradient-to-br from-slate-50 via-violet-50 to-fuchsia-50 overflow-hidden" id="about">
+
+  <!-- Creative Background Elements -->
+  <div class="absolute inset-0">
+    <!-- Animated geometric grid -->
+    <div class="absolute inset-0 opacity-10">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="creative-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+            <circle cx="30" cy="30" r="2" fill="url(#gradient-dot)" opacity="0.6"/>
+            <rect x="28" y="28" width="4" height="4" fill="url(#gradient-square)" opacity="0.4"/>
+          </pattern>
+          <linearGradient id="gradient-dot" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#8b5cf6"/>
+            <stop offset="100%" style="stop-color:#d946ef"/>
+          </linearGradient>
+          <linearGradient id="gradient-square" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#a855f7"/>
+            <stop offset="100%" style="stop-color:#ec4899"/>
+          </linearGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#creative-grid)"/>
+      </svg>
+    </div>
+
+    <!-- Floating creative shapes -->
+    <div class="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-violet-400/20 to-fuchsia-400/20 rounded-full animate-creative-float blur-sm"></div>
+    <div class="absolute top-40 right-32 w-24 h-24 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-2xl animate-creative-float blur-sm" style="animation-delay: 1.5s; transform: rotate(45deg);"></div>
+    <div class="absolute bottom-32 left-1/4 w-40 h-40 bg-gradient-to-br from-fuchsia-400/20 to-violet-400/20 rounded-3xl animate-creative-float blur-sm" style="animation-delay: 3s;"></div>
+    <div class="absolute bottom-20 right-20 w-28 h-28 bg-gradient-to-br from-pink-400/20 to-purple-400/20 rounded-full animate-creative-float blur-sm" style="animation-delay: 4.5s;"></div>
+
+    <!-- Creative mesh overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-violet-50/40 via-transparent to-fuchsia-50/40"></div>
+
+    <!-- Parallax elements -->
+    <div class="absolute top-1/4 left-1/2 w-2 h-2 bg-violet-500 rounded-full animate-pulse parallax-slow"></div>
+    <div class="absolute top-3/4 right-1/4 w-1 h-1 bg-fuchsia-500 rounded-full animate-pulse parallax-medium" style="animation-delay: 1s;"></div>
+    <div class="absolute top-1/2 left-1/4 w-1.5 h-1.5 bg-purple-500 rounded-full animate-pulse parallax-fast" style="animation-delay: 2s;"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20">
+
+    <!-- Creative Header Section -->
+    <div class="text-center mb-20">
+      <!-- Luxury Badge -->
+      <div class="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm border border-violet-200/50 rounded-full px-6 py-3 mb-8 creative-badge">
+        <div class="w-2 h-2 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full animate-pulse"></div>
+        <span class="text-violet-700 font-medium text-sm tracking-wider uppercase">About Our Brand</span>
+      </div>
+
+      <!-- Main Heading -->
+      <h2 class="text-4xl md:text-6xl lg:text-7xl font-black text-slate-800 mb-6 leading-tight">
+        <span class="block">Crafting Excellence</span>
+        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 luxury-heading">
+          {{ sections.about.title | default('Since 2010') }}
+        </span>
+      </h2>
+
+      <!-- Subtitle -->
+      <p class="text-xl md:text-2xl text-slate-600 leading-relaxed max-w-4xl mx-auto">
+        {{ sections.about.subtitle }}
+      </p>
+    </div>
+
+    <!-- Creative Content Grid -->
+    <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+      <!-- Interactive Story Timeline -->
+      <div class="order-2 lg:order-1">
+        <div class="creative-timeline relative">
+          <!-- Timeline Line -->
+          <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-violet-500 via-purple-500 to-fuchsia-500 timeline-line"></div>
+
+          {% for item in sections.about.timeline %}
+          <div class="timeline-item relative pl-20 pb-12 group" data-aos="fade-right" data-aos-delay="{{ loop.index0 * 200 }}">
+            <!-- Timeline Dot -->
+            <div class="absolute left-6 w-4 h-4 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-full border-4 border-white shadow-lg group-hover:scale-125 transition-transform duration-300"></div>
+
+            <!-- Content Card -->
+            <div class="creative-story-card bg-white/70 backdrop-blur-md rounded-2xl p-6 border border-violet-100/50 hover:shadow-xl hover:shadow-violet-100/30 transition-all duration-500 hover:-translate-y-2">
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-xl flex items-center justify-center text-white shadow-lg group-hover:rotate-12 transition-transform duration-300">
+                  <i class="{{ item.icon }} text-xl"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-violet-600 transition-colors duration-300">
+                    {{ item.title }}
+                  </h3>
+                  <p class="text-slate-600 leading-relaxed">
+                    {{ item.description }}
+                  </p>
+                  <div class="mt-3 inline-flex items-center space-x-2 text-sm text-violet-600 font-medium">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>{{ item.year }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Creative Visual Gallery -->
+      <div class="order-1 lg:order-2 relative">
+        <div class="creative-gallery relative">
+          <!-- Main Image Container -->
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-white/40 to-violet-100/40 backdrop-blur-sm border border-white/30 group">
+            <div class="aspect-[4/3] w-full relative overflow-hidden">
+              <img
+                src="{{ sections.about.media.src }}"
+                alt="{{ sections.about.media.alt }}"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-violet-900/30 via-transparent to-transparent"></div>
+
+              <!-- Interactive Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-br from-violet-600/20 to-fuchsia-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </div>
+
+            <!-- Floating Stats -->
+            <div class="absolute top-6 left-6 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl p-4 animate-creative-float border border-violet-100/50">
+              <div class="text-center">
+                <div class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-fuchsia-600">
+                  {{ sections.about.media.stat_value | default('10+') }}
+                </div>
+                <div class="text-xs text-slate-600 font-medium">
+                  {{ sections.about.media.stat_label | default('Years Experience') }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Quality Badge -->
+            <div class="absolute top-6 right-6 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl p-4 animate-creative-float animation-delay-1000 border border-violet-100/50">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white shadow-lg">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-500 font-medium">{{ sections.about.media.title | default('Premium') }}</p>
+                  <p class="text-sm font-bold text-slate-800">{{ sections.about.media.subtitle | default('Quality') }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Achievement -->
+            <div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl p-4 border border-violet-100/50">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-sm font-bold text-slate-800">{{ sections.about.media.achievement | default('Award Winning Design') }}</p>
+                  <p class="text-xs text-slate-500">{{ sections.about.media.achievement_year | default('2023 Excellence Award') }}</p>
+                </div>
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decorative Elements -->
+          <div class="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-violet-300/20 to-purple-300/20 rounded-full -z-10 blur-xl animate-creative-float"></div>
+          <div class="absolute -bottom-8 -left-8 w-40 h-40 bg-gradient-to-br from-fuchsia-300/20 to-pink-300/20 rounded-full -z-10 blur-xl animate-creative-float animation-delay-2000"></div>
+
+          <!-- Side Mini Gallery -->
+          <div class="absolute -right-12 top-1/2 transform -translate-y-1/2 space-y-4 hidden lg:block">
+            <div class="w-20 h-20 rounded-2xl bg-white/80 backdrop-blur-sm border border-violet-100/50 shadow-lg overflow-hidden group hover:scale-110 transition-transform duration-300">
+              <img src="{{ sections.about.gallery.image1 | default('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400') }}" alt="Gallery 1" class="w-full h-full object-cover">
+            </div>
+            <div class="w-20 h-20 rounded-2xl bg-white/80 backdrop-blur-sm border border-violet-100/50 shadow-lg overflow-hidden group hover:scale-110 transition-transform duration-300">
+              <img src="{{ sections.about.gallery.image2 | default('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400') }}" alt="Gallery 2" class="w-full h-full object-cover">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Creative Stats Section -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+      {% for stat in sections.about.stats %}
+      <div class="creative-stat-card group text-center bg-white/60 backdrop-blur-md rounded-2xl p-8 border border-violet-100/50 hover:shadow-xl hover:shadow-violet-100/30 transition-all duration-500 hover:-translate-y-4">
+        <div class="w-16 h-16 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-2xl flex items-center justify-center text-white mx-auto mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+          <i class="{{ stat.icon }} text-2xl"></i>
+        </div>
+        <div class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-fuchsia-600 mb-2 counter" data-target="{{ stat.value }}">
+          0
+        </div>
+        <h3 class="text-lg font-bold text-slate-800 mb-2 group-hover:text-violet-600 transition-colors duration-300">
+          {{ stat.label }}
+        </h3>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          {{ stat.description }}
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center">
+      <a href="#products" class="luxury-about-button inline-flex items-center space-x-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white px-10 py-5 rounded-2xl font-bold text-lg tracking-wide transition-all duration-500 hover:shadow-2xl hover:shadow-violet-300/50 hover:-translate-y-3 overflow-hidden relative">
+        <span class="relative z-10 flex items-center space-x-3">
+          <span>Explore Our Products</span>
+          <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+          </svg>
+        </span>
+        <!-- Shimmer effect -->
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Creative About Section v9 Styles */
+  .luxury-heading {
+    font-family: 'Playfair Display', serif;
+    background-size: 200% 200%;
+    animation: gradient-shift 4s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes animate-creative-float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-20px) rotate(3deg);
+    }
+    66% {
+      transform: translateY(-10px) rotate(-2deg);
+    }
+  }
+
+  .animate-creative-float {
+    animation: animate-creative-float 8s ease-in-out infinite;
+  }
+
+  /* Creative Badge */
+  .creative-badge {
+    backdrop-filter: blur(15px);
+    transition: all 0.3s ease;
+  }
+
+  .creative-badge:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.2);
+  }
+
+  /* Timeline Styles */
+  .creative-timeline {
+    position: relative;
+  }
+
+  .timeline-line {
+    background: linear-gradient(to bottom, #8b5cf6, #a855f7, #d946ef);
+    animation: timeline-grow 2s ease-out forwards;
+    transform-origin: top;
+    transform: scaleY(0);
+  }
+
+  @keyframes timeline-grow {
+    to { transform: scaleY(1); }
+  }
+
+  .timeline-item {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.6s ease;
+  }
+
+  .timeline-item.animate {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .creative-story-card {
+    backdrop-filter: blur(15px);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .creative-story-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+  }
+
+  /* Gallery Styles */
+  .creative-gallery {
+    transition: all 0.3s ease;
+  }
+
+  .creative-gallery:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Stats Cards */
+  .creative-stat-card {
+    backdrop-filter: blur(15px);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .creative-stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .creative-stat-card:hover::before {
+    left: 100%;
+  }
+
+  .creative-stat-card:hover {
+    transform: translateY(-16px) scale(1.05);
+    box-shadow: 0 25px 50px rgba(139, 92, 246, 0.2);
+  }
+
+  /* Counter Animation */
+  .counter {
+    transition: all 0.3s ease;
+  }
+
+  /* Button Styles */
+  .luxury-about-button {
+    position: relative;
+    overflow: hidden;
+    group: true;
+  }
+
+  .luxury-about-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .luxury-about-button:hover::before {
+    left: 100%;
+  }
+
+  /* Parallax Elements */
+  .parallax-slow {
+    animation: parallax-float 6s ease-in-out infinite;
+  }
+
+  .parallax-medium {
+    animation: parallax-float 4s ease-in-out infinite;
+  }
+
+  .parallax-fast {
+    animation: parallax-float 3s ease-in-out infinite;
+  }
+
+  @keyframes parallax-float {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-15px) scale(1.2); }
+  }
+
+  /* Animation Delays */
+  .animation-delay-1000 { animation-delay: 1s; }
+  .animation-delay-2000 { animation-delay: 2s; }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .luxury-heading {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+
+    .creative-timeline {
+      padding-left: 0;
+    }
+
+    .timeline-item {
+      padding-left: 0;
+    }
+
+    .timeline-line {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .creative-stat-card {
+      padding: 1.5rem;
+    }
+
+    .creative-story-card {
+      padding: 1rem;
+    }
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-creative-float,
+    .luxury-heading,
+    .parallax-slow,
+    .parallax-medium,
+    .parallax-fast {
+      animation: none;
+    }
+
+    .creative-stat-card:hover,
+    .creative-story-card:hover,
+    .creative-gallery:hover {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Enhanced Intersection Observer for creative animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+
+          // Counter animation for stats
+          if (entry.target.classList.contains('counter')) {
+            animateCounter(entry.target);
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Timeline animation
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach((item, index) => {
+      item.style.transitionDelay = `${index * 0.2}s`;
+      observer.observe(item);
+    });
+
+    // Stats cards animation
+    const statCards = document.querySelectorAll('.creative-stat-card');
+    statCards.forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(40px)';
+      card.style.transition = `all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.1}s`;
+      observer.observe(card);
+    });
+
+    // Counter animation function
+    function animateCounter(element) {
+      const target = parseInt(element.dataset.target);
+      const duration = 2000;
+      const step = target / (duration / 16);
+      let current = 0;
+
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+
+        // Format number with + if it's a number
+        const value = Math.floor(current);
+        const suffix = element.dataset.target.includes('+') ? '+' : '';
+        element.textContent = value + suffix;
+      }, 16);
+    }
+
+    // Parallax effect for floating elements
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const parallaxElements = document.querySelectorAll('[class*="parallax-"]');
+
+      parallaxElements.forEach(element => {
+        const speed = element.classList.contains('parallax-fast') ? 0.8 :
+                     element.classList.contains('parallax-medium') ? 0.5 : 0.3;
+        const yPos = -(scrolled * speed);
+        element.style.transform = `translateY(${yPos}px)`;
+      });
+    });
+
+    // Interactive gallery hover effects
+    const galleryImages = document.querySelectorAll('.creative-gallery img');
+    galleryImages.forEach(img => {
+      img.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.1) rotate(2deg)';
+      });
+
+      img.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1) rotate(0deg)';
+      });
+    });
+
+    // Timeline line animation trigger
+    const timelineLine = document.querySelector('.timeline-line');
+    if (timelineLine) {
+      observer.observe(timelineLine);
+    }
+
+    // Badge hover effect
+    const badge = document.querySelector('.creative-badge');
+    if (badge) {
+      badge.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-3px) scale(1.05)';
+      });
+
+      badge.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+    }
+
+    // Button ripple effect
+    const button = document.querySelector('.luxury-about-button');
+    if (button) {
+      button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.cssText = `
+          position: absolute;
+          width: ${size}px;
+          height: ${size}px;
+          left: ${x}px;
+          top: ${y}px;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+          transform: scale(0);
+          animation: ripple 0.6s ease-out;
+          pointer-events: none;
+        `;
+
+        this.appendChild(ripple);
+
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    }
+
+    // Add ripple animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes ripple {
+        to {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  });
+</script>

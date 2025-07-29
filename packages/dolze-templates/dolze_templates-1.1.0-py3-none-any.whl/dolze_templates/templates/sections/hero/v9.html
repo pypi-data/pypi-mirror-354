@@ -1,0 +1,784 @@
+<section class="relative min-h-screen bg-gradient-to-br from-violet-50 via-purple-50 to-fuchsia-50 overflow-hidden" id="hero">
+  <!-- Elegant background with sophisticated patterns -->
+  <div class="absolute inset-0">
+    <!-- Luxury geometric elements -->
+    <div class="absolute top-16 left-8 w-40 h-40 bg-gradient-to-br from-violet-300/15 to-purple-300/15 transform rotate-12 animate-elegant-float rounded-[2rem] backdrop-blur-sm"></div>
+    <div class="absolute top-32 right-16 w-32 h-32 bg-gradient-to-br from-fuchsia-300/15 to-pink-300/15 transform -rotate-6 animate-elegant-float animation-delay-1000 rounded-full backdrop-blur-sm"></div>
+    <div class="absolute bottom-24 left-1/5 w-48 h-48 bg-gradient-to-br from-purple-300/15 to-violet-300/15 transform rotate-45 animate-elegant-float animation-delay-2000 rounded-[3rem] backdrop-blur-sm"></div>
+    <div class="absolute bottom-16 right-12 w-36 h-36 bg-gradient-to-br from-pink-300/15 to-fuchsia-300/15 transform -rotate-12 animate-elegant-float animation-delay-3000 rounded-2xl backdrop-blur-sm"></div>
+
+    <!-- Sophisticated mesh gradient overlay -->
+    <div class="absolute inset-0 opacity-30">
+      <div class="absolute inset-0 bg-gradient-to-r from-violet-400/20 via-transparent to-fuchsia-400/20"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-purple-400/10 to-transparent"></div>
+    </div>
+
+    <!-- Elegant decorative pattern -->
+    <div class="absolute inset-0 opacity-8">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="elegant-pattern" width="120" height="120" patternUnits="userSpaceOnUse">
+            <circle cx="60" cy="60" r="2" fill="currentColor" class="text-violet-400"/>
+            <circle cx="30" cy="30" r="1" fill="currentColor" class="text-purple-400"/>
+            <circle cx="90" cy="90" r="1.5" fill="currentColor" class="text-fuchsia-400"/>
+            <path d="M55 55 L65 55 L65 65 L55 65 Z" fill="currentColor" class="text-pink-300" opacity="0.4"/>
+            <path d="M25 85 Q35 75 45 85" stroke="currentColor" class="text-violet-300" stroke-width="0.5" fill="none" opacity="0.6"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#elegant-pattern)" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Sophisticated content layout -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-24">
+    <!-- Centered elegant layout -->
+    <div class="text-center max-w-5xl mx-auto">
+
+      <!-- Premium content section -->
+      <!-- Luxury status badge -->
+      <div class="inline-flex items-center mb-8 px-8 py-3 bg-white/70 backdrop-blur-md border border-violet-200/40 rounded-full text-violet-700 font-medium text-sm tracking-wide animate-luxury-fade shadow-xl shadow-violet-100/30">
+        <span class="flex h-3 w-3 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 mr-3 animate-pulse shadow-sm"></span>
+        <span class="font-semibold">✨ Premium Collection</span>
+      </div>
+
+      <!-- Elegant main title with sophisticated typography -->
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-none tracking-tight" id="luxury-title">
+        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 drop-shadow-lg luxury-text">
+          {{ sections.hero.title }}
+        </span>
+      </h1>
+
+      <!-- Sophisticated description -->
+      <div class="mb-12">
+        <p class="text-xl md:text-2xl text-slate-700 font-light leading-relaxed max-w-4xl mx-auto tracking-wide luxury-description">
+          {{ sections.hero.description }}
+        </p>
+      </div>
+
+      <!-- Premium CTA buttons with luxury design -->
+      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mt-12">
+        {% for btn in sections.hero.ctaButtons %}
+        {% if loop.first %}
+        <a
+          href="{{ btn.url }}"
+          aria-label="{{ btn.ariaLabel }}"
+          class="group relative inline-flex items-center justify-center px-12 py-5 bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 text-white font-bold text-lg rounded-2xl transition-all duration-500 hover:from-fuchsia-600 hover:via-violet-600 hover:to-purple-600 hover:shadow-2xl hover:shadow-violet-300/50 hover:-translate-y-2 luxury-button overflow-hidden"
+        >
+          <span class="relative z-10 flex items-center space-x-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            <span class="tracking-wide">{{ btn.label }}</span>
+          </span>
+          <div class="absolute inset-0 bg-gradient-to-r from-pink-600 via-rose-600 to-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
+        </a>
+        {% else %}
+        <a
+          href="{{ btn.url }}"
+          aria-label="{{ btn.ariaLabel }}"
+          class="inline-flex items-center justify-center px-12 py-5 bg-white/80 backdrop-blur-sm border-2 border-violet-200 text-violet-700 font-semibold text-lg rounded-2xl transition-all duration-500 hover:border-violet-400 hover:text-violet-800 hover:bg-white hover:shadow-xl hover:shadow-violet-100/50 hover:-translate-y-2"
+        >
+          <span class="tracking-wide">{{ btn.label }}</span>
+        </a>
+        {% endif %}
+        {% endfor %}
+      </div>
+
+      <!-- Elegant stats with luxury cards -->
+      <div class="mt-20 grid grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div class="text-center bg-white/60 backdrop-blur-md rounded-3xl p-8 shadow-xl shadow-violet-100/30 border border-violet-100/50 hover:shadow-2xl hover:shadow-violet-200/40 transition-all duration-500 hover:-translate-y-2 luxury-card">
+          <div class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-600 mb-3 counter" data-target="2500">0</div>
+          <div class="text-slate-600 text-sm font-semibold tracking-wider uppercase">Premium Items</div>
+        </div>
+        <div class="text-center bg-white/60 backdrop-blur-md rounded-3xl p-8 shadow-xl shadow-purple-100/30 border border-purple-100/50 hover:shadow-2xl hover:shadow-purple-200/40 transition-all duration-500 hover:-translate-y-2 luxury-card">
+          <div class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-fuchsia-600 mb-3 counter" data-target="25000">0</div>
+          <div class="text-slate-600 text-sm font-semibold tracking-wider uppercase">Satisfied Clients</div>
+        </div>
+        <div class="text-center bg-white/60 backdrop-blur-md rounded-3xl p-8 shadow-xl shadow-fuchsia-100/30 border border-fuchsia-100/50 hover:shadow-2xl hover:shadow-fuchsia-200/40 transition-all duration-500 hover:-translate-y-2 luxury-card">
+          <div class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 to-pink-600 mb-3">4.9</div>
+          <div class="text-slate-600 text-sm font-semibold tracking-wider uppercase">Excellence Rating</div>
+        </div>
+      </div>
+
+      <!-- Luxury hero image section -->
+      <div class="mt-20 relative max-w-4xl mx-auto">
+        <div class="relative rounded-[2rem] overflow-hidden shadow-2xl bg-gradient-to-br from-white/40 to-violet-100/40 backdrop-blur-sm border border-white/30">
+          <!-- Premium image container -->
+          <div class="aspect-[16/9] w-full relative">
+            <img
+              src="{{ sections.hero.heroImage.src }}"
+              alt="{{ sections.hero.heroImage.alt }}"
+              class="w-full h-full object-cover"
+              loading="{% if sections.hero.heroImage.lazyLoad %}lazy{% else %}eager{% endif %}"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-violet-900/20 via-transparent to-transparent"></div>
+          </div>
+
+          <!-- Floating luxury badges -->
+          <div class="absolute top-6 right-6 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl p-4 animate-elegant-float animation-delay-1000 border border-violet-100/50">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center text-white shadow-lg">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs text-slate-500 font-medium">Premium Quality</p>
+                <p class="text-sm font-bold text-slate-800">Guaranteed</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl p-4 animate-elegant-float animation-delay-2000 border border-fuchsia-100/50">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-fuchsia-500 to-pink-500 flex items-center justify-center text-white shadow-lg">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs text-slate-500 font-medium">Exclusive Access</p>
+                <p class="text-sm font-bold text-slate-800">VIP Members</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Luxury decorative elements -->
+        <div class="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-violet-300/20 to-purple-300/20 rounded-full -z-10 blur-xl"></div>
+        <div class="absolute -bottom-8 -left-8 w-40 h-40 bg-gradient-to-br from-fuchsia-300/20 to-pink-300/20 rounded-full -z-10 blur-xl"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Luxury scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-luxury-bounce cursor-pointer group">
+    <div class="text-violet-500 text-sm font-medium tracking-wide mb-3 group-hover:text-violet-600 transition-colors duration-300">Discover More</div>
+    <div class="w-px h-16 bg-gradient-to-b from-violet-400 via-purple-400 to-transparent group-hover:from-violet-500 group-hover:via-purple-500 transition-colors duration-300"></div>
+    <svg class="w-7 h-7 text-violet-400 mt-2 group-hover:text-violet-500 transition-all duration-300 group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
+</section>
+
+<style>
+  /* Luxury animations and sophisticated effects */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+
+  @keyframes luxury-fade {
+    from {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+      filter: blur(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0px);
+    }
+  }
+
+  @keyframes elegant-float {
+    0% {
+      transform: translateY(0px) rotate(0deg) scale(1);
+      filter: brightness(1);
+    }
+    33% {
+      transform: translateY(-12px) rotate(2deg) scale(1.02);
+      filter: brightness(1.1);
+    }
+    66% {
+      transform: translateY(6px) rotate(-1deg) scale(0.98);
+      filter: brightness(0.95);
+    }
+    100% {
+      transform: translateY(0px) rotate(0deg) scale(1);
+      filter: brightness(1);
+    }
+  }
+
+  @keyframes luxury-shimmer {
+    0% {
+      background-position: -200% center;
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      background-position: 200% center;
+      opacity: 0;
+    }
+  }
+
+  @keyframes luxury-glow {
+    0%, 100% {
+      box-shadow:
+        0 0 30px rgba(139, 92, 246, 0.3),
+        0 0 60px rgba(168, 85, 247, 0.2),
+        0 0 90px rgba(217, 70, 239, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    50% {
+      box-shadow:
+        0 0 40px rgba(139, 92, 246, 0.4),
+        0 0 80px rgba(168, 85, 247, 0.3),
+        0 0 120px rgba(217, 70, 239, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  @keyframes luxury-bounce {
+    0%, 20%, 53%, 80%, 100% {
+      transform: translate(-50%, 0) scale(1);
+    }
+    40%, 43% {
+      transform: translate(-50%, -15px) scale(1.05);
+    }
+  }
+
+  @keyframes text-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(50px) rotateX(90deg);
+      filter: blur(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg);
+      filter: blur(0px);
+    }
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Luxury component styles */
+  .animate-luxury-fade {
+    animation: luxury-fade 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-elegant-float {
+    animation: elegant-float 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-luxury-bounce {
+    animation: luxury-bounce 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Sophisticated typography */
+  .luxury-text {
+    font-family: 'Playfair Display', serif;
+    background-size: 300% 300%;
+    animation: gradient-shift 6s ease infinite, text-reveal 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    position: relative;
+  }
+
+  .luxury-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: luxury-shimmer 3s ease-in-out infinite;
+    border-radius: inherit;
+  }
+
+  .luxury-description {
+    font-family: 'Inter', sans-serif;
+    animation: luxury-fade 2s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+    opacity: 0;
+    position: relative;
+  }
+
+  .luxury-description:hover {
+    color: #7c3aed;
+    transform: translateY(-3px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Premium button styles */
+  .luxury-button {
+    position: relative;
+    overflow: hidden;
+    background-size: 300% 300%;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 1rem;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .luxury-button:hover {
+    animation: luxury-glow 2s ease-in-out infinite;
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  .luxury-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transition: left 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .luxury-button:hover::before {
+    left: 100%;
+  }
+
+  .luxury-button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    background: linear-gradient(45deg, #8b5cf6, #a855f7, #d946ef, #ec4899);
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .luxury-button:hover::after {
+    opacity: 1;
+  }
+
+  /* Elegant counter styles */
+  .counter {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+  }
+
+  .counter::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #8b5cf6, #a855f7, #d946ef);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-50%);
+    border-radius: 2px;
+  }
+
+  .counter:hover::after {
+    width: 100%;
+  }
+
+  .counter:hover {
+    transform: translateY(-2px) scale(1.05);
+  }
+
+  /* Luxury card styles */
+  .luxury-card {
+    position: relative;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0.3)
+    );
+  }
+
+  .luxury-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, #8b5cf6, #a855f7, #d946ef);
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .luxury-card:hover::before {
+    opacity: 1;
+  }
+
+  .luxury-card:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.6)
+    );
+  }
+
+  /* Sophisticated title animation */
+  #luxury-title {
+    animation: text-reveal 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* Sophisticated animation delays */
+  .animation-delay-1000 { animation-delay: 1s; }
+  .animation-delay-2000 { animation-delay: 2s; }
+  .animation-delay-3000 { animation-delay: 3s; }
+
+  /* Luxury responsive design */
+  @media (max-width: 1024px) {
+    .luxury-text {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+
+    .luxury-description {
+      font-size: clamp(1rem, 4vw, 1.25rem);
+    }
+
+    .luxury-button {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+    }
+
+    .luxury-card {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .luxury-text {
+      font-size: clamp(2rem, 10vw, 3rem);
+      line-height: 1.1;
+    }
+
+    .luxury-description {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .luxury-button {
+      padding: 0.875rem 1.5rem;
+      font-size: 0.875rem;
+    }
+  }
+
+  /* Premium scrollbar design */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: linear-gradient(180deg, #faf5ff, #f3e8ff);
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #8b5cf6, #a855f7, #d946ef);
+    border-radius: 6px;
+    border: 2px solid #faf5ff;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #7c3aed, #9333ea, #c026d3);
+  }
+
+  /* Enhanced image effects */
+  .aspect-\[16\/9\] img {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(1) contrast(1.05) saturate(1.1);
+  }
+
+  .aspect-\[16\/9\]:hover img {
+    transform: scale(1.03);
+    filter: brightness(1.1) contrast(1.1) saturate(1.2);
+  }
+
+  /* Luxury selection styles */
+  ::selection {
+    background: linear-gradient(90deg, #8b5cf6, #d946ef);
+    color: white;
+  }
+
+  ::-moz-selection {
+    background: linear-gradient(90deg, #8b5cf6, #d946ef);
+    color: white;
+  }
+
+  /* Sophisticated focus styles */
+  .luxury-button:focus,
+  .luxury-card:focus {
+    outline: none;
+    box-shadow:
+      0 0 0 3px rgba(139, 92, 246, 0.3),
+      0 0 30px rgba(168, 85, 247, 0.2);
+  }
+
+  /* Premium backdrop effects */
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px) saturate(180%);
+  }
+
+  /* Elegant text effects */
+  .tracking-wide {
+    letter-spacing: 0.05em;
+  }
+
+  .tracking-wider {
+    letter-spacing: 0.1em;
+  }
+
+  /* Luxury shadow variations */
+  .shadow-luxury {
+    box-shadow:
+      0 25px 50px -12px rgba(139, 92, 246, 0.25),
+      0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .shadow-luxury-lg {
+    box-shadow:
+      0 35px 60px -12px rgba(139, 92, 246, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.15);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Luxury counter animation with sophisticated easing
+    const counters = document.querySelectorAll('.counter');
+
+    const animateCounter = (counter) => {
+      const target = parseInt(counter.getAttribute('data-target'));
+      const duration = 3000; // 3 seconds for elegant animation
+      const startTime = performance.now();
+
+      // Luxury easing function for smooth, premium feel
+      const easeOutExpo = (t) => t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+
+      const updateCounter = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutExpo(progress);
+
+        const current = target * easedProgress;
+
+        // Handle different target values for luxury stats
+        if (target >= 1000) {
+          if (target === 25000) {
+            counter.textContent = Math.floor(current / 1000) + 'k+';
+          } else if (target === 2500) {
+            counter.textContent = Math.floor(current / 100) * 100 + '+';
+          } else {
+            counter.textContent = Math.floor(current) + '+';
+          }
+        } else {
+          counter.textContent = Math.floor(current);
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          // Final luxury values
+          if (target === 25000) {
+            counter.textContent = '25k+';
+          } else if (target === 2500) {
+            counter.textContent = '2.5k+';
+          } else {
+            counter.textContent = target;
+          }
+
+          // Elegant completion effect
+          counter.style.transform = 'translateY(-2px) scale(1.05)';
+          counter.style.filter = 'brightness(1.2)';
+          setTimeout(() => {
+            counter.style.transform = 'translateY(0) scale(1)';
+            counter.style.filter = 'brightness(1)';
+          }, 400);
+        }
+      };
+
+      requestAnimationFrame(updateCounter);
+    };
+
+    // Sophisticated Intersection Observer for luxury animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Staggered luxury animation with elegant delays
+          setTimeout(() => {
+            animateCounter(entry.target);
+            // Add luxury sparkle effect
+            entry.target.style.filter = 'brightness(1.3) saturate(1.2)';
+            setTimeout(() => {
+              entry.target.style.filter = 'brightness(1) saturate(1)';
+            }, 600);
+          }, Math.random() * 800 + 200);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.3,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    counters.forEach(counter => {
+      observer.observe(counter);
+    });
+
+    // Luxury title animation with sophisticated reveal
+    const title = document.getElementById('luxury-title');
+    if (title) {
+      title.style.opacity = '0';
+      title.style.transform = 'translateY(50px) rotateX(90deg)';
+      title.style.filter = 'blur(20px)';
+
+      setTimeout(() => {
+        title.style.transition = 'all 2.5s cubic-bezier(0.4, 0, 0.2, 1)';
+        title.style.opacity = '1';
+        title.style.transform = 'translateY(0) rotateX(0deg)';
+        title.style.filter = 'blur(0px)';
+      }, 500);
+    }
+
+    // Luxury scroll indicator with premium interaction
+    const scrollIndicator = document.querySelector('.animate-luxury-bounce');
+    if (scrollIndicator) {
+      scrollIndicator.addEventListener('click', () => {
+        // Elegant click effect with luxury animation
+        scrollIndicator.style.transform = 'translate(-50%, 0) scale(0.9)';
+        scrollIndicator.style.filter = 'brightness(1.3)';
+        setTimeout(() => {
+          scrollIndicator.style.transform = 'translate(-50%, 0) scale(1)';
+          scrollIndicator.style.filter = 'brightness(1)';
+        }, 200);
+
+        window.scrollTo({
+          top: window.innerHeight,
+          behavior: 'smooth'
+        });
+      });
+    }
+
+    // Sophisticated parallax effect for luxury floating elements
+    const floatingElements = document.querySelectorAll('.animate-elegant-float');
+
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const rate = scrolled * -0.2; // Subtle luxury parallax
+
+      floatingElements.forEach((element, index) => {
+        const speed = 0.15 + (index * 0.03);
+        const rotation = (scrolled * 0.05) + (index * 20);
+        element.style.transform = `translateY(${rate * speed}px) rotate(${rotation}deg) scale(${1 + (scrolled * 0.0001)})`;
+        element.style.filter = `brightness(${1 + (scrolled * 0.0002)}) saturate(${1 + (scrolled * 0.0001)})`;
+      });
+    });
+
+    // Premium hover effects for luxury buttons
+    const luxuryButtons = document.querySelectorAll('.luxury-button');
+    luxuryButtons.forEach(button => {
+      button.addEventListener('mouseenter', () => {
+        button.style.transform = 'translateY(-4px) scale(1.02)';
+        button.style.filter = 'brightness(1.1) saturate(1.2)';
+      });
+
+      button.addEventListener('mouseleave', () => {
+        button.style.transform = 'translateY(0) scale(1)';
+        button.style.filter = 'brightness(1) saturate(1)';
+      });
+    });
+
+    // Elegant hover effects for luxury cards
+    const luxuryCards = document.querySelectorAll('.luxury-card');
+    luxuryCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-8px) scale(1.02)';
+        card.style.filter = 'brightness(1.05) saturate(1.1)';
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) scale(1)';
+        card.style.filter = 'brightness(1) saturate(1)';
+      });
+    });
+
+    // Sophisticated image hover effect
+    const luxuryImage = document.querySelector('.aspect-\\[16\\/9\\]');
+    if (luxuryImage) {
+      luxuryImage.addEventListener('mouseenter', () => {
+        luxuryImage.style.transform = 'scale(1.02)';
+        luxuryImage.style.filter = 'brightness(1.1) contrast(1.1) saturate(1.2)';
+      });
+
+      luxuryImage.addEventListener('mouseleave', () => {
+        luxuryImage.style.transform = 'scale(1)';
+        luxuryImage.style.filter = 'brightness(1) contrast(1.05) saturate(1.1)';
+      });
+    }
+
+    // Luxury description animation
+    const description = document.querySelector('.luxury-description');
+    if (description) {
+      setTimeout(() => {
+        description.style.opacity = '1';
+        description.style.transform = 'translateY(0)';
+      }, 1000);
+    }
+
+    // Premium badge animation
+    const badge = document.querySelector('.animate-luxury-fade');
+    if (badge) {
+      setTimeout(() => {
+        badge.style.transform = 'translateY(0) scale(1)';
+        badge.style.filter = 'blur(0px)';
+        badge.style.opacity = '1';
+      }, 200);
+    }
+
+    // Add luxury cursor trail effect (optional)
+    let mouseX = 0, mouseY = 0;
+    let trailX = 0, trailY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateTrail() {
+      trailX += (mouseX - trailX) * 0.1;
+      trailY += (mouseY - trailY) * 0.1;
+
+      // Create subtle luxury glow effect at cursor position
+      const trail = document.querySelector('.luxury-cursor-trail');
+      if (trail) {
+        trail.style.left = trailX + 'px';
+        trail.style.top = trailY + 'px';
+      }
+
+      requestAnimationFrame(animateTrail);
+    }
+
+    // Start luxury cursor animation
+    animateTrail();
+  });
+</script>

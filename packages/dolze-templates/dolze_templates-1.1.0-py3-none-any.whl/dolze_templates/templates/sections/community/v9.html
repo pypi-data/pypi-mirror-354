@@ -1,0 +1,691 @@
+<!-- Community Section v9.html - Creative Revamp -->
+<section class="relative min-h-screen bg-gradient-to-br from-slate-50 via-violet-50 to-fuchsia-50 overflow-hidden" id="community">
+
+  <!-- Creative Background Elements -->
+  <div class="absolute inset-0">
+    <!-- Animated community network pattern -->
+    <div class="absolute inset-0 opacity-8">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="network-pattern" width="150" height="150" patternUnits="userSpaceOnUse">
+            <circle cx="75" cy="75" r="3" fill="url(#network-gradient)" opacity="0.6"/>
+            <circle cx="25" cy="25" r="2" fill="url(#network-gradient)" opacity="0.4"/>
+            <circle cx="125" cy="25" r="2" fill="url(#network-gradient)" opacity="0.4"/>
+            <circle cx="25" cy="125" r="2" fill="url(#network-gradient)" opacity="0.4"/>
+            <circle cx="125" cy="125" r="2" fill="url(#network-gradient)" opacity="0.4"/>
+            <line x1="75" y1="75" x2="25" y2="25" stroke="url(#network-gradient)" stroke-width="1" opacity="0.3"/>
+            <line x1="75" y1="75" x2="125" y2="25" stroke="url(#network-gradient)" stroke-width="1" opacity="0.3"/>
+            <line x1="75" y1="75" x2="25" y2="125" stroke="url(#network-gradient)" stroke-width="1" opacity="0.3"/>
+            <line x1="75" y1="75" x2="125" y2="125" stroke="url(#network-gradient)" stroke-width="1" opacity="0.3"/>
+          </pattern>
+          <linearGradient id="network-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#8b5cf6"/>
+            <stop offset="50%" style="stop-color:#a855f7"/>
+            <stop offset="100%" style="stop-color:#d946ef"/>
+          </linearGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#network-pattern)"/>
+      </svg>
+    </div>
+
+    <!-- Dynamic floating community elements -->
+    <div class="absolute top-20 left-20 w-40 h-40 bg-gradient-to-br from-violet-400/15 to-purple-400/15 rounded-full animate-community-pulse blur-sm"></div>
+    <div class="absolute top-1/3 right-32 w-32 h-32 bg-gradient-to-br from-fuchsia-400/15 to-pink-400/15 rounded-2xl animate-community-pulse blur-sm" style="animation-delay: 2s; transform: rotate(45deg);"></div>
+    <div class="absolute bottom-1/4 left-1/3 w-48 h-48 bg-gradient-to-br from-purple-400/15 to-violet-400/15 rounded-3xl animate-community-pulse blur-sm" style="animation-delay: 4s;"></div>
+    <div class="absolute bottom-20 right-20 w-36 h-36 bg-gradient-to-br from-pink-400/15 to-fuchsia-400/15 rounded-full animate-community-pulse blur-sm" style="animation-delay: 6s;"></div>
+
+    <!-- Interactive connection lines -->
+    <div class="absolute top-1/4 left-1/2 w-4 h-4 bg-violet-500 rounded-full animate-pulse connection-node" style="animation-delay: 1s;"></div>
+    <div class="absolute top-2/3 right-1/3 w-3 h-3 bg-fuchsia-500 rounded-full animate-pulse connection-node" style="animation-delay: 3s;"></div>
+    <div class="absolute top-1/2 left-1/4 w-3.5 h-3.5 bg-purple-500 rounded-full animate-pulse connection-node" style="animation-delay: 5s;"></div>
+
+    <!-- Gradient mesh overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-violet-50/50 via-transparent to-fuchsia-50/50"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20">
+
+    <!-- Creative Header Section -->
+    <div class="text-center mb-20">
+      <!-- Interactive Badge -->
+      <div class="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm border border-violet-200/50 rounded-full px-6 py-3 mb-8 creative-badge hover:scale-105 transition-transform duration-300">
+        <div class="w-2 h-2 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full animate-pulse"></div>
+        <span class="text-violet-700 font-medium text-sm tracking-wider uppercase">Join Our Community</span>
+      </div>
+
+      <!-- Main Heading with Animation -->
+      <h2 class="text-4xl md:text-6xl lg:text-7xl font-black text-slate-800 mb-6 leading-tight">
+        <span class="block">Connect & Grow</span>
+        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 luxury-heading">
+          {{ sections.community.title | default('Together') }}
+        </span>
+      </h2>
+
+      <!-- Subtitle -->
+      <p class="text-xl md:text-2xl text-slate-600 leading-relaxed max-w-4xl mx-auto mb-12">
+        {{ sections.community.subtitle | default('Join thousands of like-minded individuals sharing experiences, tips, and building lasting connections in our vibrant community.') }}
+      </p>
+
+      <!-- Live Community Activity -->
+      <div class="flex justify-center items-center space-x-6 mb-16">
+        <div class="flex -space-x-2">
+          <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Member" class="w-12 h-12 rounded-full border-3 border-white shadow-lg animate-bounce" style="animation-delay: 0.1s;">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Member" class="w-12 h-12 rounded-full border-3 border-white shadow-lg animate-bounce" style="animation-delay: 0.2s;">
+          <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="Member" class="w-12 h-12 rounded-full border-3 border-white shadow-lg animate-bounce" style="animation-delay: 0.3s;">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 border-3 border-white flex items-center justify-center text-white text-sm font-bold shadow-lg animate-bounce" style="animation-delay: 0.4s;">+5k</div>
+        </div>
+        <div class="text-left">
+          <p class="text-sm text-violet-600 font-medium flex items-center">
+            <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+            Live now: 247 members online
+          </p>
+          <p class="text-lg font-bold text-slate-800">Join the conversation</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Community Stats -->
+    <div class="grid md:grid-cols-4 gap-8 mb-16">
+      {% for stat in sections.community.stats %}
+      <div class="luxury-community-stat text-center bg-white/60 backdrop-blur-md rounded-2xl p-8 border border-violet-100/50 hover:shadow-xl hover:shadow-violet-100/30 transition-all duration-500 hover:-translate-y-2">
+        <div class="w-16 h-16 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-2xl flex items-center justify-center text-white mx-auto mb-4 shadow-lg">
+          <i class="{{ stat.icon }} text-2xl"></i>
+        </div>
+        <div class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-600 mb-2 counter" data-target="{{ stat.value }}">
+          0
+        </div>
+        <div class="text-slate-600 text-sm font-medium tracking-wide">
+          {{ stat.label }}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Community Features Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      {% for feature in sections.community.features %}
+      <div class="luxury-community-card group relative bg-white/60 backdrop-blur-md rounded-3xl p-8 border border-violet-100/50 hover:shadow-2xl hover:shadow-violet-100/30 transition-all duration-700 hover:-translate-y-4">
+
+        <!-- Feature Icon -->
+        <div class="relative mb-6">
+          <div class="w-16 h-16 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-2xl flex items-center justify-center text-white shadow-2xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+            <i class="{{ feature.icon }} text-2xl"></i>
+          </div>
+
+          <!-- Floating glow effect -->
+          <div class="absolute inset-0 w-16 h-16 bg-gradient-to-br from-violet-400/30 to-fuchsia-400/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        </div>
+
+        <!-- Feature Content -->
+        <div class="space-y-4">
+          <h3 class="text-xl font-bold text-slate-800 group-hover:text-violet-600 transition-colors duration-300">
+            {{ feature.title }}
+          </h3>
+          <p class="text-slate-600 leading-relaxed">
+            {{ feature.description }}
+          </p>
+
+          <!-- Feature Benefits -->
+          <div class="space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            {% for benefit in feature.benefits %}
+            <div class="flex items-center space-x-2 text-sm text-slate-600">
+              <div class="w-1.5 h-1.5 bg-violet-400 rounded-full"></div>
+              <span>{{ benefit }}</span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Hover Effect Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-br from-violet-600/5 to-fuchsia-600/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+        <!-- Luxury Border Effect -->
+        <div class="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background: linear-gradient(135deg, #8b5cf6, #a855f7, #d946ef); padding: 1px; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude;"></div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Community Highlights -->
+    <div class="grid md:grid-cols-2 gap-8 mb-16">
+      <!-- Product Showcases & Events -->
+      <div class="bg-gradient-to-br from-violet-50/80 to-purple-50/80 backdrop-blur-md rounded-3xl p-8 border border-violet-100/50">
+        <div class="flex items-center space-x-4 mb-6">
+          <div class="w-14 h-14 bg-gradient-to-br from-violet-500 to-purple-500 rounded-2xl flex items-center justify-center text-white shadow-lg">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-slate-800">Product Showcases</h3>
+            <p class="text-violet-600 font-medium">Exclusive collections & events</p>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div class="bg-white/60 rounded-2xl p-4 border border-violet-100/50">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-semibold text-slate-800">New Collection Launch</h4>
+              <span class="text-xs bg-violet-100 text-violet-700 px-2 py-1 rounded-full">Monthly</span>
+            </div>
+            <p class="text-sm text-slate-600">First access to new arrivals and limited editions</p>
+            <div class="flex items-center space-x-2 mt-2 text-xs text-slate-500">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+              </svg>
+              <span>VIP early access</span>
+            </div>
+          </div>
+
+          <div class="bg-white/60 rounded-2xl p-4 border border-violet-100/50">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-semibold text-slate-800">Style Workshop</h4>
+              <span class="text-xs bg-fuchsia-100 text-fuchsia-700 px-2 py-1 rounded-full">Weekly</span>
+            </div>
+            <p class="text-sm text-slate-600">Styling tips and product care guidance from experts</p>
+            <div class="flex items-center space-x-2 mt-2 text-xs text-slate-500">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+              <span>Live styling sessions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Stories -->
+      <div class="bg-gradient-to-br from-fuchsia-50/80 to-pink-50/80 backdrop-blur-md rounded-3xl p-8 border border-fuchsia-100/50">
+        <div class="flex items-center space-x-4 mb-6">
+          <div class="w-14 h-14 bg-gradient-to-br from-fuchsia-500 to-pink-500 rounded-2xl flex items-center justify-center text-white shadow-lg">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold text-slate-800">Customer Stories</h3>
+            <p class="text-fuchsia-600 font-medium">Real experiences</p>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div class="bg-white/60 rounded-2xl p-4 border border-fuchsia-100/50">
+            <div class="flex items-start space-x-3">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah" class="w-10 h-10 rounded-full border-2 border-white shadow-lg">
+              <div class="flex-1">
+                <div class="flex items-center space-x-2 mb-1">
+                  <h4 class="font-semibold text-slate-800">Sarah Chen</h4>
+                  <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Verified Purchase</span>
+                </div>
+                <p class="text-sm text-slate-600">"The quality exceeded my expectations! Perfect fit and amazing craftsmanship."</p>
+                <div class="flex items-center space-x-1 mt-2">
+                  <div class="flex text-yellow-400">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                  </div>
+                  <span class="text-xs text-slate-500">5.0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white/60 rounded-2xl p-4 border border-fuchsia-100/50">
+            <div class="flex items-start space-x-3">
+              <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Marcus" class="w-10 h-10 rounded-full border-2 border-white shadow-lg">
+              <div class="flex-1">
+                <div class="flex items-center space-x-2 mb-1">
+                  <h4 class="font-semibold text-slate-800">Marcus Johnson</h4>
+                  <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">Repeat Customer</span>
+                </div>
+                <p class="text-sm text-slate-600">"Third purchase this year! Love the sustainable materials and timeless design."</p>
+                <div class="flex items-center space-x-1 mt-2">
+                  <div class="flex text-yellow-400">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                  </div>
+                  <span class="text-xs text-slate-500">5.0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Community CTA Section -->
+    <div class="text-center bg-gradient-to-br from-violet-100/50 to-fuchsia-100/50 backdrop-blur-md rounded-3xl p-12 border border-violet-200/50">
+
+      <!-- CTA Content -->
+      <div class="max-w-3xl mx-auto mb-8">
+        <h3 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+          Ready to Join Our Community?
+        </h3>
+        <p class="text-lg text-slate-600 leading-relaxed mb-6">
+          Connect with like-minded individuals, share experiences, and grow together in our vibrant community.
+        </p>
+
+        <!-- Community Benefits -->
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+          <div class="bg-white/60 rounded-2xl p-4 border border-violet-100/50">
+            <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center text-white mx-auto mb-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-slate-800 mb-1">Exclusive Discounts</h4>
+            <p class="text-sm text-slate-600">Member-only pricing and early access to sales</p>
+          </div>
+
+          <div class="bg-white/60 rounded-2xl p-4 border border-violet-100/50">
+            <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center text-white mx-auto mb-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-slate-800 mb-1">Free Shipping</h4>
+            <p class="text-sm text-slate-600">Complimentary worldwide shipping on all orders</p>
+          </div>
+
+          <div class="bg-white/60 rounded-2xl p-4 border border-violet-100/50">
+            <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-violet-500 rounded-xl flex items-center justify-center text-white mx-auto mb-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-slate-800 mb-1">Style Consultation</h4>
+            <p class="text-sm text-slate-600">Personal styling advice and product recommendations</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+        {% for cta in sections.community.cta %}
+        {% if loop.first %}
+        <a
+          href="{{ cta.url }}"
+          class="luxury-community-button bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white px-10 py-4 rounded-2xl font-bold text-lg tracking-wide transition-all duration-500 hover:shadow-2xl hover:shadow-violet-300/50 hover:-translate-y-2 overflow-hidden relative"
+        >
+          <span class="relative z-10 flex items-center space-x-2">
+            <i class="{{ cta.icon }} text-xl"></i>
+            <span>{{ cta.label }}</span>
+          </span>
+        </a>
+        {% else %}
+        <a
+          href="{{ cta.url }}"
+          class="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm border-2 border-violet-200 text-violet-700 px-10 py-4 rounded-2xl font-semibold text-lg tracking-wide transition-all duration-300 hover:border-violet-400 hover:text-violet-800 hover:bg-white hover:shadow-lg hover:-translate-y-2"
+        >
+          <i class="{{ cta.icon }} text-xl"></i>
+          <span>{{ cta.label }}</span>
+        </a>
+        {% endif %}
+        {% endfor %}
+      </div>
+
+      <!-- Community Testimonial -->
+      <div class="pt-8 border-t border-violet-200/50">
+        <div class="flex items-center justify-center space-x-4 mb-6">
+          <div class="flex -space-x-2">
+            <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Member" class="w-10 h-10 rounded-full border-2 border-white shadow-lg">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Member" class="w-10 h-10 rounded-full border-2 border-white shadow-lg">
+            <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="Member" class="w-10 h-10 rounded-full border-2 border-white shadow-lg">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 border-2 border-white flex items-center justify-center text-white text-sm font-bold shadow-lg">+5k</div>
+          </div>
+          <div class="text-left">
+            <p class="text-sm text-violet-600 font-medium">Trusted by thousands</p>
+            <p class="text-lg font-bold text-slate-800">Join our growing community</p>
+          </div>
+        </div>
+
+        <!-- Community Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div>
+            <div class="text-2xl font-bold text-violet-600">10,000+</div>
+            <div class="text-sm text-slate-600">Happy Customers</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-fuchsia-600">4.9/5</div>
+            <div class="text-sm text-slate-600">Average Rating</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-purple-600">98%</div>
+            <div class="text-sm text-slate-600">Satisfaction Rate</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-pink-600">50+</div>
+            <div class="text-sm text-slate-600">Countries Shipped</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Creative Community Section v9 Styles */
+  .luxury-heading {
+    font-family: 'Playfair Display', serif;
+    background-size: 200% 200%;
+    animation: gradient-shift 4s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes animate-community-pulse {
+    0%, 100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.2) rotate(180deg);
+      opacity: 0.9;
+    }
+  }
+
+  .animate-community-pulse {
+    animation: animate-community-pulse 8s ease-in-out infinite;
+  }
+
+  /* Connection nodes */
+  .connection-node {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .connection-node:hover {
+    transform: scale(2) !important;
+    opacity: 1 !important;
+  }
+
+  /* Creative Badge */
+  .creative-badge {
+    backdrop-filter: blur(15px);
+    transition: all 0.3s ease;
+  }
+
+  .creative-badge:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.2);
+  }
+
+  /* Enhanced Community Stats */
+  .luxury-community-stat {
+    position: relative;
+    backdrop-filter: blur(20px);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .luxury-community-stat:hover {
+    transform: translateY(-12px) scale(1.05) rotateY(5deg);
+    box-shadow: 0 25px 50px rgba(139, 92, 246, 0.2);
+  }
+
+  /* Enhanced Community Cards */
+  .luxury-community-card {
+    position: relative;
+    backdrop-filter: blur(20px);
+    transform-style: preserve-3d;
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .luxury-community-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(168, 85, 247, 0.04), rgba(217, 70, 239, 0.08));
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+  }
+
+  .luxury-community-card:hover::before {
+    opacity: 1;
+  }
+
+  .luxury-community-card:hover {
+    transform: translateY(-20px) scale(1.03) rotateX(5deg);
+    box-shadow: 0 30px 60px rgba(139, 92, 246, 0.2);
+  }
+
+  /* Counter Animations */
+  .counter {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+  }
+
+  /* Button Styles */
+  .luxury-community-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .luxury-community-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .luxury-community-button:hover::before {
+    left: 100%;
+  }
+
+  .luxury-community-button:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+  }
+
+  /* Live Activity Animation */
+  .live-activity {
+    animation: live-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes live-pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+
+  /* Member Avatar Animations */
+  .member-avatar {
+    transition: all 0.3s ease;
+  }
+
+  .member-avatar:hover {
+    transform: translateY(-5px) scale(1.1);
+    z-index: 10;
+  }
+
+  /* Community Highlights */
+  .community-highlight {
+    backdrop-filter: blur(15px);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .community-highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .community-highlight:hover::before {
+    left: 100%;
+  }
+
+  .community-highlight:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+  }
+
+  /* Interactive Elements */
+  .interactive-element {
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .interactive-element:hover {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .luxury-heading {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+
+    .luxury-community-card {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .luxury-community-card {
+      padding: 1.25rem;
+    }
+
+    .community-highlight {
+      padding: 1rem;
+    }
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-community-pulse,
+    .luxury-heading,
+    .live-activity {
+      animation: none;
+    }
+
+    .luxury-community-card:hover,
+    .luxury-community-stat:hover,
+    .community-highlight:hover {
+      transform: none;
+    }
+  }
+
+  /* Loading States */
+  .loading {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* Focus States */
+  .creative-badge:focus,
+  .connection-node:focus,
+  .luxury-community-button:focus {
+    outline: 2px solid #8b5cf6;
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Counter animation for community stats
+    const counters = document.querySelectorAll('.counter');
+
+    const animateCounter = (counter) => {
+      const targetText = counter.getAttribute('data-target');
+      const target = parseInt(targetText.replace(/[^\d]/g, ''));
+      const suffix = targetText.replace(/[\d]/g, '');
+      const duration = 2000;
+      const startTime = performance.now();
+
+      const easeOutExpo = (t) => t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+
+      const updateCounter = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutExpo(progress);
+        const current = Math.floor(target * easedProgress);
+
+        if (target >= 1000) {
+          counter.textContent = (current / 1000).toFixed(1) + 'k' + suffix;
+        } else {
+          counter.textContent = current.toLocaleString() + suffix;
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          if (target >= 1000) {
+            counter.textContent = (target / 1000).toFixed(1) + 'k' + suffix;
+          } else {
+            counter.textContent = target.toLocaleString() + suffix;
+          }
+          
+          // Completion effect
+          counter.style.transform = 'scale(1.1)';
+          counter.style.filter = 'brightness(1.2)';
+          setTimeout(() => {
+            counter.style.transform = 'scale(1)';
+            counter.style.filter = 'brightness(1)';
+          }, 300);
+        }
+      };
+
+      requestAnimationFrame(updateCounter);
+    };
+
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('counter')) {
+            setTimeout(() => animateCounter(entry.target), Math.random() * 300);
+          } else {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0) scale(1)';
+          }
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { 
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Animate community cards with stagger
+    const communityCards = document.querySelectorAll('.luxury-community-card');
+    communityCards.forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(50px) scale(0.95)';
+      card.style.transition = `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.15}s`;
+      observer.observe(card);
+    });
+
+    // Animate stat cards
+    const statCards = document.querySelectorAll('.luxury-community-stat');
+    statCards.forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = `all 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`;
+      observer.observe(card);
+    });
+
+    // Observe counters
+    counters.forEach(counter => {
+      observer.observe(counter);
+    });
+  });
+</script>

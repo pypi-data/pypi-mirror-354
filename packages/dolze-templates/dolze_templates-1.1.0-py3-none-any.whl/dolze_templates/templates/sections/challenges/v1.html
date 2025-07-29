@@ -1,0 +1,114 @@
+<section id="challenges" class="py-24 relative overflow-hidden" style="background-color: {{ sections.challenges.background.color | default(settings.theme.colors.background) }}">
+  <!-- Background image with overlay -->
+  {% if sections.challenges.background.media %}
+  <div class="absolute inset-0">
+    <img
+      src="{{ sections.challenges.background.media.src }}"
+      class="w-full h-full object-cover"
+      alt="Challenges Background"
+    />
+    {% if sections.challenges.background.overlay %}
+    <div class="absolute inset-0 bg-gradient-to-r from-white/80 to-white/60"></div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Elegant section header -->
+    <div class="text-center mb-20">
+      <span class="inline-block text-xs uppercase tracking-widest text-gray-500 mb-3" style="font-family: {{settings.fonts.body}}">
+        {{ sections.challenges.subtitle | default('Our Approach') }}
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-light text-gray-900 mb-4" style="font-family: {{settings.fonts.heading}}">
+        {{ sections.challenges.title }}
+      </h2>
+      <div class="w-16 h-px bg-gray-300 mx-auto mb-6"></div>
+      <p class="text-gray-600 max-w-xl mx-auto font-light" style="font-family: {{settings.fonts.body}}">
+        {{ sections.challenges.description | default('We help businesses overcome challenges and achieve their goals through innovative solutions.') }}
+      </p>
+    </div>
+
+    <!-- Elegant card layout -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for item in sections.challenges.items %}
+      <div class="group">
+        <div class="bg-white p-8 border border-gray-100 rounded-sm shadow-sm transition-all duration-300 hover:shadow-md hover:translate-y-[-5px] relative overflow-hidden">
+          <!-- Accent corner -->
+          <div class="absolute top-0 right-0 w-16 h-16 bg-{{ item.color }}-50 transform rotate-45 translate-x-8 -translate-y-8"></div>
+          
+          <!-- Minimal icon presentation -->
+          <div class="w-14 h-14 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 bg-{{ item.color }}-50 rounded-sm">
+            <i class="{{ item.icon }} text-{{ item.color }}-500 text-2xl"></i>
+          </div>
+          
+          <!-- Content with minimal styling -->
+          <h3 class="text-xl font-light text-gray-900 mb-3 tracking-wide" style="font-family: {{settings.fonts.heading}}">
+            {{ item.value }}
+          </h3>
+          <div class="w-10 h-px bg-{{ item.color }}-300 mb-4"></div>
+          <p class="text-gray-600 font-light mb-4" style="font-family: {{settings.fonts.body}}">
+            {{ item.label }}
+          </p>
+          
+          <!-- Optional description -->
+          {% if item.description %}
+          <p class="text-gray-500 text-sm mb-4 font-light" style="font-family: {{settings.fonts.body}}">
+            {{ item.description }}
+          </p>
+          {% endif %}
+          
+          <!-- Optional stats or metrics -->
+          {% if item.stats %}
+          <div class="flex items-center space-x-4 mt-4 mb-4 py-3 border-t border-b border-gray-100">
+            {% for stat in item.stats %}
+            <div class="flex-1 text-center">
+              <span class="block text-{{ item.color }}-500 font-medium text-lg">{{ stat.value }}</span>
+              <span class="text-xs text-gray-500 uppercase tracking-wider">{{ stat.label }}</span>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+          
+          <!-- Optional features list -->
+          {% if item.features %}
+          <ul class="mt-4 mb-4 space-y-2">
+            {% for feature in item.features %}
+            <li class="flex items-start">
+              <i class="ri-check-line text-{{ item.color }}-500 mt-1 mr-2"></i>
+              <span class="text-sm text-gray-600">{{ feature }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          
+          <!-- Optional link -->
+          {% if item.link %}
+          <div class="mt-6">
+            <a href="{{ item.link.url }}" class="inline-flex items-center text-{{ item.color }}-500 text-sm hover:text-{{ item.color }}-600 transition-colors duration-300">
+              {{ item.link.text | default('Learn more') }}
+              <i class="ri-arrow-right-line ml-1 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
+          {% endif %}
+          
+          <!-- Optional badge -->
+          {% if item.badge %}
+          <div class="absolute top-4 right-4 bg-{{ item.color }}-100 text-{{ item.color }}-800 text-xs px-2 py-1 rounded-sm">
+            {{ item.badge }}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <!-- Optional CTA section -->
+    {% if sections.challenges.cta %}
+    <div class="mt-16 text-center">
+      <a href="{{ sections.challenges.cta.url }}" class="inline-block px-6 py-3 bg-gray-900 text-white rounded-sm hover:bg-gray-800 transition-colors duration-300">
+        {{ sections.challenges.cta.text | default('Learn more about our solutions') }}
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</section>
