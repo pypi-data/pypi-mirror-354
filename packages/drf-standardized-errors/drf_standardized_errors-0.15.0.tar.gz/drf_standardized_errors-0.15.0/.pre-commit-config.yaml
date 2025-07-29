@@ -1,0 +1,29 @@
+exclude: '^docs/|\.tox|\.git|venv|^dist'
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+
+  - repo: https://github.com/Zac-HD/shed
+    rev: 2024.10.1
+    hooks:
+      - id: shed
+        additional_dependencies: [ 'black~=24.3' ]
+        types_or: [ python, pyi, markdown, rst ]
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.2.0
+    hooks:
+      - id: flake8
+        args: [ --max-line-length, '120' , --ignore, 'E,W']
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.16.0
+    hooks:
+      - id: mypy
+        args: [ --ignore-missing-imports, --check-untyped-defs, --disallow-incomplete-defs ]
+        exclude: '^tests'
