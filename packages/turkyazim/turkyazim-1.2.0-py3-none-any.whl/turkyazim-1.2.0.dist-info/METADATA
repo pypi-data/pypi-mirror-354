@@ -1,0 +1,54 @@
+Metadata-Version: 2.4
+Name: turkyazim
+Version: 1.2.0
+Summary: Gelişmiş Türkçe Yazım Denetleyici - Zemberek + BERT + TDK
+Home-page: https://github.com/kullaniciadi/turkce-yazim-kontrol
+Author: Umut573
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: zemberek-python
+Requires-Dist: python-Levenshtein
+Requires-Dist: transformers
+Requires-Dist: torch
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
+Requires-Dist: requests
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
+
+# Türkçe Yazım Kontrol Kütüphanesi
+
+Türkçe metinlerde yazım hatalarını tespit eden ve düzelten basit ama güçlü bir Python kütüphanesi.
+
+## Özellikler
+
+- Türkçeye özel yazım denetimi  
+- Otomatik kelime önerileri  
+- Büyük harf ve noktalama kuralları kontrolü  
+- Kolay entegrasyon  
+- CLI desteği  
+- Web API olarak kullanılabilir  
+
+## Kurulum
+
+```bash
+pip install turkyazim
+
+## kullanım
+from turkyazim import TurkceYazim
+
+denetleyici = TurkceYazim()
+sonuc = denetleyici.duzelt("Bu metin cok guzel degıl.")
+print(sonuc)
+
+CLI ile kullanım
+turkyazim "Bu metin cok guzel degıl." --duzelt
