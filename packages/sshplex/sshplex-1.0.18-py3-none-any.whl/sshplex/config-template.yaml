@@ -1,0 +1,91 @@
+# SSHplex Configuration - tmux support with multiple SoT providers
+sshplex:
+  session_prefix: "sshplex"
+
+# Source of Truth configuration
+sot:
+  providers: ["static", "netbox", "ansible"]  # Available: static, netbox, ansible
+  import:
+    - name: "production-servers"
+      type: static
+      hosts:
+        - name: "web-server-01"
+          ip: "192.168.1.10"
+          description: "Production web server"
+          tags: ["web", "production"]
+        - name: "db-server-01"
+          ip: "192.168.1.20"
+          description: "Primary database server"
+          tags: ["database", "production"]
+    - name: "test-servers"
+      type: static
+      hosts:
+        - name: "test-web-01"
+          ip: "192.168.2.10"
+          description: "Test web server"
+          tags: ["web", "test"]
+    - name: "primary-netbox"
+      type: netbox
+      url: "https://netbox.lan/"
+      token: "CHANGE_TOKEN_HERE"
+      verify_ssl: false
+      timeout: 30
+      default_filters:
+        status: "active"
+        role: "virtual-machine"
+        has_primary_ip: "true"
+    - name: "secondary-netbox"
+      type: netbox
+      url: "https://netbox2.lan/"
+      token: "CHANGE_TOKEN_HERE_2"
+      verify_ssl: false
+      timeout: 30
+      default_filters:
+        status: "active"
+        role: "router"
+        has_primary_ip: "true"
+    - name: "production-inventory"
+      type: ansible
+      inventory_paths:
+        - "/path/to/production/inventory.yml"
+      default_filters:
+        groups: ["webservers", "databases"]
+        exclude_groups: []
+        host_patterns: []
+    - name: "staging-inventory"
+      type: ansible
+      inventory_paths:
+        - "/path/to/staging/inventory.yml"
+        - "/path/to/staging/additional.yml"
+      default_filters:
+        groups: []
+        exclude_groups: ["maintenance"]
+        host_patterns: ["^staging-.*"]
+
+ssh:
+  username: "admin"
+  key_path: "~/.ssh/id_ed25519"
+  timeout: 10
+  port: 22
+
+tmux:
+  layout: "tiled" # tiled, even-horizontal, even-vertical
+  broadcast: false # Start with broadcast off
+  window_name: "sshplex"
+  max_panes_per_window: 5 # Maximum panes per window before creating a new window
+
+ui:
+  show_log_panel: false
+  log_panel_height: 20
+  table_columns: ["name", "ip", "cluster", "tags", "description", "provider"]
+
+logging:
+  enabled: false
+  level: "DEBUG" # DEBUG, INFO, WARNING, ERROR
+  file: "logs/sshplex.log"
+
+# Host cache configuration for faster startup
+cache:
+  enabled: true
+  cache_dir: "~/.cache/sshplex"  # Directory to store cached host data
+  ttl_hours: 24  # Cache time-to-live in hours (24 = refresh daily)
