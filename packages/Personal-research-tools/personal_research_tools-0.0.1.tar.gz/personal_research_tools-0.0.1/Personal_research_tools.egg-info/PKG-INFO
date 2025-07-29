@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: Personal_research_tools
+Version: 0.0.1
+Summary: A package containing all my research tools not for anyone else
+Home-page: https://github.com/Anthony904175/personal_research_tools.git
+Author: Anthony R. Osborne
+Author-email: anthony.r.osborne@pm.me
+License: GNU3.0
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-python
+Dynamic: summary
+
+# personal_research_tools
+Contains tools I use in my research that I do not intended to distribute to anyone else. That means these are likely either very simple and I'm being too lazy to rewrite them over and over or they are very complicated bits of code that took a while to write so I made it part of the package. This also means that these tools may be rough inefficient code, that only fucntions on my computer. **Future Anthony, this means that you need to check each tool if you ever need to give the code to someone else. *Be sure you check it!***

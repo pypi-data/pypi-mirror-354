@@ -1,0 +1,2 @@
+# personal_research_tools
+Contains tools I use in my research that I do not intended to distribute to anyone else. That means these are likely either very simple and I'm being too lazy to rewrite them over and over or they are very complicated bits of code that took a while to write so I made it part of the package. This also means that these tools may be rough inefficient code, that only fucntions on my computer. **Future Anthony, this means that you need to check each tool if you ever need to give the code to someone else. *Be sure you check it!***
