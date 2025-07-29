@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: spannery
+Version: 0.1.15
+Summary: A lightweight ORM for Google Cloud Spanner
+Author-email: Caio Pizzol <caiopizzol@gmail.com>
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: google-cloud-spanner>=3.0.0
