@@ -1,0 +1,45 @@
+[project]
+name = "bin-package-manager"
+version = "2.2.11"
+description = "Bin package manager, a package manager based on Github release"
+authors = [{ name = "lxl66566", email = "lxl66566@gmail.com" }]
+license = "MIT"
+readme = "README.md"
+keywords = ["binary", "packaging", "release"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.9",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+requires-python = ">=3.9"
+dependencies = [
+  "pretty-assert>=0.1.1",
+  "pylnk3>=0.4.2",
+  "questionary>=2.1.0",
+  "requests>=2.32.3",
+  "tqdm>=4.66.5",
+]
+
+[tool.uv]
+dev-dependencies = ["pytest>=8.3.3", "py7zr>=1.0.0"]
+
+[project.urls]
+Repository = "https://github.com/lxl66566/bpm"
+Homepage = "https://github.com/lxl66566/bpm"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["bpm"]
+
+[project.scripts]
+bpm = "bpm.cli:main"
+
+[tool.hatch.build.targets.sdist]
+include = ["/bpm"]
