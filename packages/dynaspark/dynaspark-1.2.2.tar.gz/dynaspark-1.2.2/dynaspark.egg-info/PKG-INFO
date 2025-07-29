@@ -1,0 +1,247 @@
+Metadata-Version: 2.4
+Name: dynaspark
+Version: 1.2.2
+Summary: A client for interacting with the DynaSpark API
+Home-page: https://github.com/Th3-AI/DynaSpark
+Author: Th3-C0der
+Author-email: dvp.ai.ml@gmail.com
+Requires-Python: >=3.0
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests>=2.30.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# DynaSpark API
+
+A free and open Python client for the DynaSpark API, supporting text generation, text-to-speech, and image generation. No API key required!
+
+## Installation
+
+You can install the package via pip:
+
+```bash
+pip install dynaspark
+```
+
+## Quick Start
+
+```python
+from dynaspark import DynaSpark
+
+# Initialize the DynaSpark client (no API key required!)
+client = DynaSpark()  # Uses free API key by default
+
+# Generate text
+response = client.generate_response("Hello, how are you?")
+print(response)
+
+# Convert text to speech
+audio_data = client.text_to_speech("Hello! This is a test.")
+client.save_audio(audio_data, "greeting.mp3")
+
+# Generate an image
+image_url = client.generate_image("A beautiful sunset over mountains")
+print(image_url)
+```
+
+## Features
+
+- ðŸ†“ **Free to Use**: No API key required! Uses a free API key by default
+- ðŸ¤– **Text Generation**: Generate text responses using various models
+- ðŸ”Š **Text-to-Speech**: Convert text to speech with multiple voice options
+- ðŸŽ¨ **Image Generation**: Create images from text descriptions
+- âš¡ **Easy to Use**: Simple and intuitive Python interface
+- ðŸ”„ **Async Support**: All features available in async mode
+
+## Text Generation
+
+### Basic Text Generation
+```python
+# Generate text response
+response = client.generate_response(
+    user_input="Write a short story about space exploration",
+    model="mistral",  # Optional: specify the model
+    temperature=0.7,  # Optional: control randomness (0.0 to 3.0)
+    top_p=0.9,       # Optional: control diversity (0.0 to 1.0)
+    stream=True      # Optional: stream the response
+)
+print(response)
+```
+
+### Direct Text Generation
+```python
+# Get text directly from the text endpoint
+text = client.get_text(
+    prompt="Write a haiku about nature",
+    temperature=0.8,
+    presence_penalty=0.1,
+    frequency_penalty=0.1
+)
+print(text)
+```
+
+## Text-to-Speech
+
+### Using text_to_speech Method
+```python
+# Basic text-to-speech with default voice (alloy)
+audio_data = client.text_to_speech("Hello, welcome to DynaSpark!")
+client.save_audio(audio_data, "welcome.mp3")
+
+# Text-to-speech with specific voice
+audio_data = client.text_to_speech(
+    text="This is a test of the text-to-speech feature.",
+    voice="nova"  # Choose from available voices
+)
+client.save_audio(audio_data, "test.mp3")
+```
+
+### Using get_text Method for Text-to-Speech
+```python
+# Text-to-speech using get_text
+audio_data = client.get_text(
+    prompt="Hello, this is a test of text-to-speech!",
+    model="openai-audio",  # Enable text-to-speech
+    voice="echo"          # Optional: specify voice
+)
+client.save_audio(audio_data, "hello.mp3")
+```
+
+### Available Voices
+- `alloy` (default): A balanced, natural-sounding voice
+- `echo`: A clear, professional voice
+- `fable`: A warm, engaging voice
+- `onyx`: A deep, authoritative voice
+- `nova`: A bright, energetic voice
+- `shimmer`: A soft, melodic voice
+
+## Image Generation
+
+```python
+# Generate an image with custom parameters
+image_url = client.generate_image(
+    prompt="A majestic lion with a flowing mane, standing on a rocky cliff overlooking a sunset.",
+    width=1024,      # Optional: image width (64-2048, default: 768)
+    height=768,      # Optional: image height (64-2048, default: 768)
+    model="flux",    # Optional: model to use (flux, turbo, gptimage)
+    seed=42,         # Optional: random seed for reproducibility
+    wm="My Art"      # Optional: custom watermark text
+)
+print(image_url)
+```
+
+## API Parameters
+
+### Text Generation Parameters
+Available for `generate_response` and `get_text` methods:
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `model` | str | Model to use for generation | None |
+| `seed` | int | Random seed for reproducibility | None |
+| `temperature` | float | Controls randomness (0.0 to 3.0) | None |
+| `top_p` | float | Controls diversity (0.0 to 1.0) | None |
+| `presence_penalty` | float | Penalizes repeated tokens (-2.0 to 2.0) | None |
+| `frequency_penalty` | float | Penalizes frequent tokens (-2.0 to 2.0) | None |
+| `json` | bool | Whether to return JSON response | False |
+| `system` | str | Custom system prompt | None |
+| `stream` | bool | Whether to stream the response | False |
+| `private` | bool | Whether to keep the generation private | False |
+| `referrer` | str | Referrer information | None |
+| `voice` | str | Voice for text-to-speech | None |
+
+### Text-to-Speech Parameters
+Available when using text-to-speech functionality:
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `voice` | str | Voice to use for speech synthesis | "alloy" |
+| `model` | str | Must be "openai-audio" for text-to-speech | None |
+
+### Image Generation Parameters
+Available for `generate_image` method:
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `width` | int | Image width (64-2048) | 768 |
+| `height` | int | Image height (64-2048) | 768 |
+| `model` | str | Model to use (flux, turbo, gptimage) | None |
+| `nologo` | bool | Whether to exclude the watermark | False |
+| `seed` | int | Random seed for reproducibility | None |
+| `wm` | str | Custom watermark text | None |
+
+## Methods
+
+### `DynaSpark(api_key="TH3_API_KEY")`
+Initialize the DynaSpark client.
+- Parameters:
+  - `api_key` (str, optional): API key for authentication. Defaults to free API key.
+- Note: You don't need to provide an API key as it uses a free key by default.
+
+### `generate_response(user_input, **kwargs)`
+Generates a text response using DynaSpark's text generation API.
+- Returns: Dictionary containing the text_url for generation
+- Supports all text generation parameters
+- Can be used for text-to-speech by setting `model="openai-audio"`
+
+### `get_text(prompt, **kwargs)`
+Directly gets text generation from the text endpoint.
+- Returns: Generated text, JSON response, or audio data
+- Supports all text generation parameters
+- Can be used for text-to-speech by setting `model="openai-audio"`
+
+### `text_to_speech(text, voice='alloy')`
+Converts text to speech using DynaSpark's text-to-speech API.
+- Returns: Audio data in MP3 format
+- Parameters:
+  - `text` (str): Text to convert to speech
+  - `voice` (str): Voice to use (default: "alloy")
+
+### `save_audio(audio_data, filename)`
+Saves audio data to an MP3 file.
+- Returns: Path to the saved file
+- Parameters:
+  - `audio_data` (bytes): Audio data from text_to_speech or get_text
+  - `filename` (str): Name of the output file (must end with .mp3)
+
+### `generate_image(prompt, **kwargs)`
+Generates an image using DynaSpark's image generation API.
+- Returns: URL to the generated image
+- Supports all image generation parameters
+
+## Error Handling
+
+All methods will raise exceptions with descriptive messages for common errors:
+- Network errors
+- Invalid parameters
+- Rate limit exceeded
+- Invalid voice selection for text-to-speech
+
+Example error handling:
+```python
+from dynaspark import DynaSpark, DynaSparkError
+
+# Initialize without API key (uses free key)
+client = DynaSpark()
+
+try:
+    audio_data = client.text_to_speech("Hello!", voice="invalid_voice")
+except DynaSparkError as e:
+    print(f"Error: {e}")
+```
+
+## Rate Limiting
+
+The API has rate limits in place to ensure fair usage. Please refer to the API documentation for current limits.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
