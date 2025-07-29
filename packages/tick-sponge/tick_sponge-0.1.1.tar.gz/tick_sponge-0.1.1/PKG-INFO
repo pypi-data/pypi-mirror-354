@@ -1,0 +1,29 @@
+Metadata-Version: 2.4
+Name: tick_sponge
+Version: 0.1.1
+Summary: Downloader for historical tick data
+Home-page: https://github.com/nasadiya/tick_data_downloader
+Author: nasadiya
+Author-email: you@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.13.2
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: playwright
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+Repository to download tick level data sets for FX major and crosses. 
+
+Frequency ms. 
+
+#tests
+pytest --cov=tick_data_downloader --cov-report=term-missing
