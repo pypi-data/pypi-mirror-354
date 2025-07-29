@@ -1,0 +1,33 @@
+Metadata-Version: 2.4
+Name: geoshell
+Version: 1.0.0
+Summary: A CLI & Python library to fetch real-time geo-data
+Home-page: https://github.com/kelv-inn/geoshell
+Author: kelv
+Author-email: your.email@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.25.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# GeoShell
+
+A CLI & Python library to fetch real-time geo-data: country info, timezones, holidays, weather, news, and political facts – all from your terminal.
+
+## Installation
+
+```bash
+pip install geoshell
+npm install geoshell
+```
