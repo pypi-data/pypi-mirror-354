@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: jenkins_kit
+Version: 0.1.6
+Summary: A Python Library for Jenkins Pipelines creation.
+Classifier: Development Status :: 6 - Mature
+Classifier: Topic :: Utilities
+Requires-Dist: python-jenkins==1.8.2
+Requires-Dist: chevron==0.14.0
+Dynamic: classifier
+Dynamic: requires-dist
+Dynamic: summary
