@@ -1,0 +1,11 @@
+version: 2
+jobs:
+    build:
+      branches:
+        only:
+          - develop
+      docker:
+        - image: srcml/ubuntu:24.04
+      steps:
+        - checkout
+        - run: cmake --workflow --preset ci-ubuntu
