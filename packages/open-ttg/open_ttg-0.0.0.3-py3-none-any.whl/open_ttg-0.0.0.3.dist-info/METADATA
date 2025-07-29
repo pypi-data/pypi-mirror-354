@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: open-ttg
+Version: 0.0.0.3
+Summary: graph builder from text
+Home-page: https://github.com/monkitect/text2graph.git
+Author: monkitect.com
+Author-email: 1304646911@qq.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/monkitect/text2graph/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: jieba
+
+
+# setup docker env
+```text
+docker build -t text2graph -f docker/Dockerfile .
+docker run -it --rm --name text2graph -v .\:/code text2graph bash
+```
+
+
+This is a simple example package. You can use
+[Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+to write your content.
+
+Change Logs
+
+
