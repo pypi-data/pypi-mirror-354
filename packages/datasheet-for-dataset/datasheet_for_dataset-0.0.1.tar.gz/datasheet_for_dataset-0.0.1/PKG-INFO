@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: datasheet-for-dataset
+Version: 0.0.1
+Project-URL: Homepage, https://github.com/anwielts/datasheet-for-dataset
+Project-URL: Repository, https://github.com/anwielts/datasheet-for-dataset
+Author-email: anwielts <52626848+anwielts@users.noreply.github.com>, Flippchen <91947480+flippchen@users.noreply.github.com>
+License-File: LICENSE
+Requires-Python: >=3.10
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: polars
+Provides-Extra: dev
+Requires-Dist: flake8; extra == 'dev'
+Requires-Dist: pytest; extra == 'dev'
