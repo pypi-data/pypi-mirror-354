@@ -1,0 +1,70 @@
+#  Photini - a simple photo metadata editor.
+#  http://github.com/jim-easterbrook/Photini
+#  Copyright (C) 2024  Jim Easterbrook  jim@jim-easterbrook.me.uk
+#
+#  This file is part of Photini.
+#
+#  Photini is free software: you can redistribute it and/or modify it
+#  under the terms of the GNU General Public License as published by the
+#  Free Software Foundation, either version 3 of the License, or (at
+#  your option) any later version.
+#
+#  Photini is distributed in the hope that it will be useful, but
+#  WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#  General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with Photini.  If not, see <http://www.gnu.org/licenses/>.
+
+[flickr]
+client_key = (0, 32)
+client_secret = (32, 16)
+
+[ipernity]
+api_key = (48, 32)
+api_secret = (80, 16)
+
+[googlephotos]
+client_id = (96, 72)
+client_secret = (168, 24)
+
+[googlemap]
+api_key = (192, 39)
+
+[azuremap]
+api_key = (231, 84)
+
+[bingmap]
+api_key = (315, 64)
+
+[opencage]
+api_key = (379, 32)
+
+[mapboxmap]
+api_key = (411, 100)
+
+[pixelfed pixelfed.de]
+client_id = (511, 5)
+client_secret = (516, 40)
+
+[pixelfed pxlmo.com]
+client_id = (556, 4)
+client_secret = (560, 40)
+
+[pixelfed metapixl.com]
+client_id = (600, 4)
+client_secret = (604, 40)
+
+[pixelfed pixelfed.tokyo]
+client_id = (644, 4)
+client_secret = (648, 40)
+
+[pixelfed pixey.org]
+client_id = (688, 4)
+client_secret = (692, 40)
+
+[data]
+data = 1e17Q3QMqCWc3rdQ87EetfDQ0mxVQyMAMu4.xw_753dZxx.o4sC7Ko0ArggQaJuMq2ii6cOJEiJGK-Ne7OIJSkB8qfB666fK2No0v5Nrne5oBt5eAbxfIrf2.oNHaM7ec86ecl0p0zmys9PRFz44frw5M6GOZ36KlaZ6cuHfYbJ9yg225wS7aX5o5AJvbErLK2a8t4iNAPAbdN5M73dN0mSKulh9Fa16Km93g2SJ58GAd9KfzMlJ8pHv5xIciH5.Ke_ywtZQ62aAdPA59H7rfnwdmWpNtGiy3274VK5dT7VYwd1uN175lAInC78WvDr4WLwa85GfR3jT10pVn0cO14yJc_Qvx72kW8feT9-Rpo63w98ta4cm.O59jfFUffej78sscHwmxgrKDR09oWaZVsKsOnftk43htEm8ASfzeaT09JcW.Zama68R4.33ioaseavpZqmcWZPaJkJXyRG1.2odEQ1rOfMoNGAaNg28MOhjpINBoFij614ss5LS81ptn9mfmub00yARlF722yqZMycY2ha0ememKbAto0DWrK-HDkJq.416yree6ReenZsI3bVQ-u1Y6Y_EN5Q396zZSfICV5AVn3vXITfjc1tailoiA1u31NNK4a11H1c2WVSR6Qmy.e0tg6_A-RNmzL1h4rUg023lcng976Z18a8f5vAylam8npOpjDYkjMq64l-B6AE1cXlSZhMyhgIq67eMj003ALeM1lT49tb4HS3u72af.CUQ5C7X1yBDK-JF1pZ9l6nt2n0MRqMkkJpAV2nCF36RRilXuuKCzaZ63DnAheWhUWm9HIs4L_nV1115nBpdxPgOuaXroCQeRsLf5RuJ7P9QnfanF6x95buq.n1ZMtsGt0Wq3vgrqWIY11ASqQSZJCRhbyVCi5D8AUbRC659xZK0X2d6CQbCf36Yy80d9e-jpumsa-oXOe6b9UEAdL.w79P24iX0LGp94Ke5W59Bvdn01rR1IgZrkidMQaE9Z3AfNQf076uSywcKWTD7HCMc
+date = 2025-01-03
+
