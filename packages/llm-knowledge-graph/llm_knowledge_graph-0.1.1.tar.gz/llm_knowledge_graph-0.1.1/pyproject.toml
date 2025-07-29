@@ -1,0 +1,12 @@
+[project]
+name = "llm-knowledge-graph"
+version = "0.1.1"
+description = "A plugin for LLM that adds tools to interact with a Go knowledge graph."
+dependencies = [
+    "llm",
+    "requests",
+]
+
+# This is the part that registers the plugin with llm
+[project.entry-points.llm]
+knowledge_graph = "llm_knowledge_graph.client"
