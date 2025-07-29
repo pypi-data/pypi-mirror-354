@@ -1,0 +1,63 @@
+Metadata-Version: 2.4
+Name: llm-templates-sourcehut
+Version: 0.1
+Summary: Load LLM templates from SourceHut repositories
+Author: Amolith
+License: Apache-2.0
+Project-URL: Homepage, https://git.sr.ht/~amolith/llm-templates-sourcehut
+Project-URL: Changelog, https://git.sr.ht/~amolith/llm-templates-sourcehut/refs
+Project-URL: Issues, https://todo.sr.ht/~amolith/public-tracker
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: llm>=0.24
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: pytest-httpx; extra == "test"
+Dynamic: license-file
+
+# llm-templates-sourcehut
+
+[![PyPI](https://img.shields.io/pypi/v/llm-templates-sourcehut.svg)](https://pypi.org/project/llm-templates-sourcehut/)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://git.sr.ht/~amolith/llm-templates-sourcehut/tree/main/item/LICENSE)
+
+Load LLM templates from sourcehut repositories
+
+## Installation
+
+Install this plugin in the same environment as [LLM](https://llm.datasette.io/).
+
+```bash
+llm install llm-templates-sourcehut
+```
+
+## Usage
+
+To use the template from `templatename.yaml` in the `https://git.sr.ht/~user/llm-templates` repo:
+
+```bash
+llm -t srht:user/templatename
+```
+
+## Development
+
+To set up this plugin locally, first checkout the code. Then create a new virtual environment:
+
+```bash
+cd llm-templates-sourcehut
+python -m venv venv
+source venv/bin/activate
+```
+
+Now install the dependencies and test dependencies:
+
+```bash
+llm install -e '.[test]'
+```
+
+To run the tests:
+
+```bash
+python -m pytest
+```

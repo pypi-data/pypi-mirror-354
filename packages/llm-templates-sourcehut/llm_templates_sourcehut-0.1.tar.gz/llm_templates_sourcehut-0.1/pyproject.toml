@@ -1,0 +1,29 @@
+[project]
+name = "llm-templates-sourcehut"
+version = "0.1"
+description = "Load LLM templates from SourceHut repositories"
+readme = "README.md"
+authors = [{name = "Amolith"}]
+license = {text = "Apache-2.0"}
+classifiers = [
+    "License :: OSI Approved :: Apache Software License"
+]
+requires-python = ">=3.9"
+dependencies = [
+    "llm>=0.24"
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project.urls]
+Homepage = "https://git.sr.ht/~amolith/llm-templates-sourcehut"
+Changelog = "https://git.sr.ht/~amolith/llm-templates-sourcehut/refs"
+Issues = "https://todo.sr.ht/~amolith/public-tracker"
+
+[project.entry-points.llm]
+templates_github = "llm_templates_sourcehut"
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-httpx"]
