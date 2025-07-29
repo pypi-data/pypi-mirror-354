@@ -1,0 +1,72 @@
+.highlight {
+
+    /* Comment */
+    & .c1,
+    & .cm {
+        color: var(--hl-comment, black);
+    }
+
+    /* Documentation */
+    & .sd {
+        color: var(--hl-doc, black);
+    }
+
+    /* Keyword */
+    & .k,
+    & .kd {
+        color: var(--hl-keyword, black);
+    }
+
+    /* Variable */
+    & .n {
+        color: var(--hl-var, black);
+    }
+
+    /* Function name */
+    & .nf {
+        color: var(--hl-func, black);
+    }
+
+    /* Class name */
+    & .nb,
+    & .kt {
+        color: var(--hl-type, black);
+    }
+
+    /* String */
+    & .s2,
+    & .sb {
+        color: var(--hl-string, black);
+    }
+
+}
+
+/* Prevent images from exceeding the bounds of the slide */
+.slide-content img {
+    max-width: 100%;
+    max-height: 50vh;
+}
+
+/* Code block highlighting */
+p code,
+ol code,
+ul code {
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+p code,
+ol code,
+ul code,
+pre {
+    background-color: rgb(245, 245, 245);
+    border-color: rgb(231, 231, 231);
+    border-style: solid;
+    border-width: 1px;
+    /* Kinda bold but not obnoxiously so */
+    font-weight: 600;
+}
+/* Code blocks */
+pre {
+    padding: 1em;
+    border-radius: 5px;
+}
