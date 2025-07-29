@@ -1,0 +1,29 @@
+Metadata-Version: 2.3
+Name: oqc-qcaas-client
+Version: 3.20.0
+Summary: OQC Quantum Computing as a Service (QCaaS)
+License: Proprietary
+Author: OQC
+Author-email: oqc_qcaas_support@oxfordquantumcircuits.com
+Requires-Python: >=3.10,<3.13
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Provides-Extra: experimental
+Requires-Dist: compiler-config (==0.1.0)
+Requires-Dist: fermioniq-qc (==1.5.2) ; extra == "experimental"
+Requires-Dist: numpy (>=2.2.5,<3.0.0) ; extra == "experimental"
+Requires-Dist: requests (>=2.32.3,<3.0.0)
+Requires-Dist: toml (>=0.10.2,<0.11.0)
+Description-Content-Type: text/markdown
+
+# OQC QCaaS Client
+
+The OQC QCaaS Client is our python library serving as the primary interface for the OQC QCaaS service. It provides the capability to submit and manage tasks on our quantum computers and simulators.
+
+For information on how to install and use the Client visit our [documentation](https://docs.oqc.app/).
+
+Note, client versions prior to 3.9.1 are no longer installable because of a yanked dependency. Customers are advised to upgrade to version 3.9.1 or later.
+
