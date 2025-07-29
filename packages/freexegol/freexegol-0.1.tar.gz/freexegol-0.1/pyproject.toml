@@ -1,0 +1,12 @@
+[project]
+name = "freexegol"
+version = "0.1"
+description = "A free and open-source Python wrapper for Docker, available for lifetime use and permitted for commercial applications."
+authors = [{ name="ProcessusT", email="processus@thiefin.fr" }]
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.8"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
