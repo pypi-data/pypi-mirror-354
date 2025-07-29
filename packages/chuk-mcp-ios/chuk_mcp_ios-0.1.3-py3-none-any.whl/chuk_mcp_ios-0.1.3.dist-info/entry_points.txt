@@ -1,0 +1,6 @@
+[console_scripts]
+chuk-mcp-ios = chuk_mcp_ios.main:main
+ios-control = chuk_mcp_ios.cli.main:main
+ios-device-control = chuk_mcp_ios.cli.main:main
+ios-mcp = chuk_mcp_ios.mcp.main:main
+ios-simulator = chuk_mcp_ios.cli.main:main
