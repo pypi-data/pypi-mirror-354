@@ -1,0 +1,418 @@
+# custom_flet_components
+
+This is a custom Flet package.
+
+## Installation
+
+Run this command:
+
+    pip install custom_flet_components
+
+## Usage
+
+Document how to use custom_flet_components here.
+
+## CustomAPI Control
+SendAPI Class — Complete Documentation & Usage Guide
+Overview
+SendAPI is a versatile, powerful, and easy-to-use HTTP client wrapper built on top of httpx that supports:
+
+Synchronous and Asynchronous HTTP requests (GET, POST, PUT, DELETE, PATCH)
+
+Customizable timeouts, retries, and exponential backoff
+
+Automatic authentication headers (Bearer token or Basic Auth)
+
+File uploads, query params, JSON & form data
+
+Flexible response handling via a user-defined callback (response_handler)
+
+Debug logging and error callbacks
+
+Shortcut class methods for quick calls
+
+It is designed to work smoothly with any backend response type — JSON, plain text, lists, complex nested objects, or even custom formats — via a pluggable response handler.
+
+Features
+Feature	Description
+Async & Sync	Choose async or sync mode via async_mode parameter.
+HTTP Methods	Supports GET, POST, PUT, DELETE, PATCH with shortcut class methods.
+Retries & Backoff	Automatic retry on failure with exponential backoff delay (configurable).
+Timeouts	Timeout configurable per request.
+Authentication	Add Bearer or Basic Auth headers with token/username-password.
+File Uploads	Supports multipart file uploads via files parameter.
+Response Handler	Accepts a callable response_handler that processes backend response data before returning.
+Debug Logging	Enable detailed logging of requests and errors.
+Callbacks	Hooks for success (on_success) and error (on_error) to customize behavior.
+
+Class Initialization Parameters
+Parameter	Type	Description	Default
+url	str	Request URL	(required)
+method	str	HTTP method ("GET", "POST", etc.)	"POST"
+params	dict	Query parameters	None
+json	dict	JSON body	None
+data	dict	Form-encoded data	None
+files	dict	Files for multipart upload (e.g., {"file": open("path","rb")})	None
+headers	dict	Custom HTTP headers	None
+timeout	float	Request timeout in seconds	10.0
+retries	int	Number of retry attempts on failure	3
+backoff_factor	float	Multiplier for exponential backoff delay between retries	1.5
+async_mode	bool	Whether to run the request asynchronously	True
+auth_type	str	Authentication type: "bearer", "basic"	None
+token	str	Bearer token string (if auth_type="bearer")	None
+username	str	Username for basic auth (if auth_type="basic")	None
+password	str	Password for basic auth	None
+on_success	callable	Function to call on success (receives parsed response dict)	None
+on_error	callable	Function to call on error (receives exception instance)	None
+response_handler	callable	Function to process backend response data before returning (receives response.json() or text)	None
+debug	bool	Enable debug logging	False
+
+Usage Examples
+1. Basic Async POST Request
+python
+Copy
+Edit
+response = await SendAPI.post(
+    url="https://api.example.com/update",
+    json={"field": "value"},
+    async_mode=True,
+)
+
+print(response)
+2. Synchronous GET with query params and headers
+python
+Copy
+Edit
+response = SendAPI.get(
+    url="https://api.example.com/items",
+    params={"page": 1, "limit": 10},
+    headers={"X-API-Key": "your-api-key"},
+    async_mode=False,
+)
+
+print(response)
+3. With Bearer Token Authentication and Retry
+python
+Copy
+Edit
+response = await SendAPI.post(
+    url="https://api.example.com/secure/data",
+    json={"data": 123},
+    auth_type="bearer",
+    token="your_jwt_token_here",
+    retries=5,
+    timeout=5,
+    async_mode=True,
+)
+4. File Upload (sync)
+python
+Copy
+Edit
+files = {"file": open("test.jpg", "rb")}
+response = SendAPI.post(
+    url="https://api.example.com/upload",
+    files=files,
+    async_mode=False,
+)
+Handling Different Backend Response Types
+The response_handler parameter lets you define how the response data is processed before returning.
+
+Backend Response Types Supported
+Backend Response Format	How It Is Handled	Example of response_handler
+JSON Object (dict)	Parsed by response.json()	lambda r: r (default returns raw JSON dict)
+JSON List (array)	Parsed by response.json()	lambda r: r if isinstance(r, list) else [r]
+Plain Text	response.json() fails → fallback to response.text	lambda r: r.upper() or custom parser
+Nested JSON Object	User-defined extractor function	def handler(r): return [x["name"] for x in r["data"]]
+Custom formats (XML, etc.)	Requires custom parsing in response_handler	Use xml.etree.ElementTree or other parser in your function
+
+Example 1: Simple JSON object
+Backend returns:
+
+json
+Copy
+Edit
+{
+  "status": "ok",
+  "user": {"id": 123, "name": "Alice"}
+}
+Usage:
+
+python
+Copy
+Edit
+response = await SendAPI.post(
+    url="https://api.example.com/user",
+    response_handler=lambda r: r.get("user"),
+    async_mode=True,
+)
+
+print(response["data"])  # {'id': 123, 'name': 'Alice'}
+Example 2: List of JSON objects inside data key (your example)
+Backend returns:
+
+json
+Copy
+Edit
+{
+  "data": [
+    {"name": "ali"},
+    {"name": "fatima"},
+    {"name": "ahmed"}
+  ]
+}
+Response handler:
+
+python
+Copy
+Edit
+def extract_names(response_json):
+    if isinstance(response_json, dict) and "data" in response_json:
+        return [item.get("name") for item in response_json["data"]]
+    return response_json
+
+response = await SendAPI.post(
+    url="https://api.example.com/users",
+    response_handler=extract_names,
+    async_mode=True,
+)
+
+print(response["data"])  # ['ali', 'fatima', 'ahmed']
+Example 3: Plain text response
+Backend returns a plain text string:
+
+arduino
+Copy
+Edit
+"Service is temporarily unavailable"
+Handle with:
+
+python
+Copy
+Edit
+response = await SendAPI.get(
+    url="https://api.example.com/status",
+    response_handler=lambda text: f"Server says: {text}",
+    async_mode=True,
+)
+
+print(response["data"])  # Server says: Service is temporarily unavailable
+Example 4: Custom XML response (needs xml parser)
+Backend returns XML string.
+
+Define handler:
+
+python
+Copy
+Edit
+import xml.etree.ElementTree as ET
+
+def parse_xml(xml_str):
+    root = ET.fromstring(xml_str)
+    return [elem.text for elem in root.findall(".//item")]
+
+response = await SendAPI.get(
+    url="https://api.example.com/xml_data",
+    response_handler=parse_xml,
+    async_mode=True,
+)
+
+print(response["data"])  # List of item texts from XML
+Callbacks
+on_success(response_dict)
+Function called after successful request and parsing.
+
+Example:
+
+python
+Copy
+Edit
+def success_callback(resp):
+    print("Success:", resp)
+
+response = await SendAPI.post(
+    url="...",
+    on_success=success_callback,
+    async_mode=True,
+)
+on_error(exception)
+Function called after all retries fail or request error occurs.
+
+Example:
+
+python
+Copy
+Edit
+def error_callback(exc):
+    print("Error occurred:", exc)
+
+response = await SendAPI.get(
+    url="...",
+    on_error=error_callback,
+    async_mode=True,
+)
+Debugging
+Enable debug logging for detailed info about requests and errors:
+
+python
+Copy
+Edit
+response = await SendAPI.get(
+    url="https://api.example.com/debug",
+    debug=True,
+    async_mode=True,
+)
+Summary
+SendAPI can handle any backend response type because it tries JSON parsing first, falls back to text if JSON fails, and allows you to plug in your own custom parser via response_handler.
+
+Supports sync & async HTTP methods with retries, timeouts, authentication, and file upload.
+
+Easy to extend with callbacks and debugging.
+
+Ideal for fast, flexible, and robust API communication in Python projects.
+
+Example 1: Simple GET request to JSONPlaceholder (JSON Object)
+API: https://jsonplaceholder.typicode.com/todos/1
+Returns a JSON object for a todo item.
+
+python
+Copy
+Edit
+import asyncio
+
+async def main():
+    response = await SendAPI.get(
+        url="https://jsonplaceholder.typicode.com/todos/1",
+        async_mode=True,
+    )
+    print("Response:", response["data"])
+
+asyncio.run(main())
+Output:
+
+json
+Copy
+Edit
+{
+  "userId": 1,
+  "id": 1,
+  "title": "delectus aut autem",
+  "completed": False
+}
+Example 2: GET request with response handler — extract only title
+python
+Copy
+Edit
+import asyncio
+
+async def main():
+    response = await SendAPI.get(
+        url="https://jsonplaceholder.typicode.com/todos/1",
+        response_handler=lambda r: r.get("title", "No title found"),
+        async_mode=True,
+    )
+    print("Todo Title:", response["data"])
+
+asyncio.run(main())
+Output:
+
+yaml
+Copy
+Edit
+Todo Title: delectus aut autem
+Example 3: GET request to public API returning a list
+API: https://jsonplaceholder.typicode.com/users
+Returns list of users (JSON array).
+
+python
+Copy
+Edit
+import asyncio
+
+async def main():
+    response = await SendAPI.get(
+        url="https://jsonplaceholder.typicode.com/users",
+        async_mode=True,
+    )
+    print(f"Received {len(response['data'])} users")
+    print("First user:", response["data"][0])
+
+asyncio.run(main())
+Example 4: GET with custom response handler — extract user names
+python
+Copy
+Edit
+import asyncio
+
+def extract_user_names(json_response):
+    # Expecting list of user dicts
+    if isinstance(json_response, list):
+        return [user.get("name") for user in json_response]
+    return []
+
+async def main():
+    response = await SendAPI.get(
+        url="https://jsonplaceholder.typicode.com/users",
+        response_handler=extract_user_names,
+        async_mode=True,
+    )
+    print("User Names:", response["data"])
+
+asyncio.run(main())
+Example 5: POST request with JSON body
+API: https://jsonplaceholder.typicode.com/posts
+This endpoint accepts JSON and returns the created resource.
+
+python
+Copy
+Edit
+import asyncio
+
+async def main():
+    payload = {
+        "title": "foo",
+        "body": "bar",
+        "userId": 1
+    }
+    response = await SendAPI.post(
+        url="https://jsonplaceholder.typicode.com/posts",
+        json=payload,
+        async_mode=True,
+    )
+    print("Created post:", response["data"])
+
+asyncio.run(main())
+Example 6: Handling plain text response
+API: https://httpbin.org/status/418
+Returns HTTP status 418 with plain text "I'm a teapot".
+
+python
+Copy
+Edit
+import asyncio
+
+async def main():
+    response = await SendAPI.get(
+        url="https://httpbin.org/status/418",
+        response_handler=lambda text: f"Server response: {text}",
+        async_mode=True,
+    )
+    print(response["data"])
+
+asyncio.run(main())
+Example 7: Using retries and timeout
+python
+Copy
+Edit
+import asyncio
+
+async def main():
+    response = await SendAPI.get(
+        url="https://jsonplaceholder.typicode.com/users",
+        retries=5,
+        timeout=2,
+        async_mode=True,
+        debug=True,
+    )
+    print("User count:", len(response["data"]))
+
+asyncio.run(main())
