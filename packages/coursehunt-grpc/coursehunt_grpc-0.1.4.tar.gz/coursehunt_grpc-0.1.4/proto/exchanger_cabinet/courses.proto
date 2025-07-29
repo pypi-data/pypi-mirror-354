@@ -1,0 +1,41 @@
+syntax = "proto3";
+package exchanger_course_router;
+
+
+import "common/common.proto";
+
+service CourseService {
+  rpc GetCourses          (GetCoursesRequest)      returns (GetCoursesResponse);
+  rpc SetParams           (SetParamsRequest)       returns (SetParamsResponse);
+  rpc CountDirections     (CountDirectionsRequest) returns (CountDirectionsResponse);
+}
+
+message SetParamsParams {
+  optional bool is_fast      = 1;
+  optional bool verify_from  = 2;
+  optional bool verify_to    = 3;
+}
+
+message SetParamsRequest {
+  string exchanger_uuid    = 1;
+  string currency_give_name = 2;
+  string currency_get_name  = 3;
+  string city               = 4;
+  SetParamsParams params    = 5;
+}
+
+message SetParamsResponse {
+}
+
+message CountDirectionsRequest {
+  repeated string exchanger_uuid = 1;
+}
+
+message CountDirections {
+  string exchanger_uuid = 1;
+  int64 count           = 2;
+}
+
+message CountDirectionsResponse {
+  repeated CountDirections response = 1;
+}

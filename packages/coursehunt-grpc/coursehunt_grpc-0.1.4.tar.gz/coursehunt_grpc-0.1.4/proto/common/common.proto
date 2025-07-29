@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+message Course {
+  float currency_give_rate   = 1;
+  float currency_get_rate    = 2;
+  string currency_give_name  = 3;
+  string currency_get_name   = 4;
+  float reserve              = 5;
+  float min_amount           = 6;
+  float max_amount           = 7;
+  float floating             = 8;
+  string param               = 9;
+  string exchanger_uuid      = 10;
+  bool is_active             = 11;
+}
+
+message CourseFiltersParams {
+  optional float currency_give_rate      = 1;
+  optional float currency_give_rate__lte = 2;
+  optional float currency_give_rate__gte = 3;
+  optional float currency_get_rate       = 4;
+  optional float currency_get_rate__lte  = 5;
+  optional float currency_get_rate__gte  = 6;
+  repeated string currency_give_name     = 7;
+  repeated string currency_get_name      = 8;
+  optional float reserve                 = 9;
+  // … остальные общие фильтры
+}
+
+message CourseOrderingParams {
+  string order_type    = 1;
+  repeated string order_by = 2;
+}
+
+message GetCoursesRequest {
+  optional CourseFiltersParams  filters  = 1;
+  optional CourseOrderingParams ordering = 2;
+  int64 limit                           = 3;
+  int64 skip                            = 4;
+}
+
+message GetCoursesResponse {
+  repeated Course rates = 2;
+}
