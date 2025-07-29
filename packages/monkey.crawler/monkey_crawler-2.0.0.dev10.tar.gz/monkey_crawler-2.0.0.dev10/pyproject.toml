@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "monkey.crawler"
+version = "2.0.0.dev10"
+description = "Small framework to crawl misc data sources and process records."
+readme = "README.rst"
+license = { text = "Apache License, Version 2.0" }
+
+authors = [
+    { name = "Xavier ROY", email = "xavier@regbuddy.eu" }
+]
+maintainers = [
+
+]
+
+requires-python = ">= 3.12"
+
+dependencies = [
+
+]
+
+classifiers = [
+    'Programming Language :: Python',
+    'Development Status :: 1 - Planning',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: 3.12',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+    'Intended Audience :: Developers'
+]
+
+[project.urls]
+Repository = "https://bitbucket.org/monkeytechnologies/monkey-crawler"
+
+[tool.distutils.egg_info]
+egg_base = "."
+
+[tool.setuptools]
+package-dir = {"" = "src/main/python"}
+
+[tool.setuptools.packages.find]
+where = ["src/main/python"]
+namespaces = true
