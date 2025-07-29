@@ -1,0 +1,10 @@
+numpy>=1.18.0
+pcl_ros
+rosbag
+rospy
+sensor_msgs
+setuptools>=45.0.0
+
+[dev]
+flake8
+pytest
