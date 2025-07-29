@@ -1,0 +1,74 @@
+Metadata-Version: 2.3
+Name: pix-framework
+Version: 0.14.2
+Summary: Process Improvement Explorer Framework contains process discovery and improvement modules of the Process Improvement Explorer project.
+Author: David Chapela de la Campa
+Author-email: david.chapela.delacampa@gmail.com
+Requires-Python: >=3.9,<3.12
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: lxml (>=5.3.0,<6.0.0)
+Requires-Dist: m5py (>=0.3.3,<0.4.0)
+Requires-Dist: networkx (>=3.1,<4.0)
+Requires-Dist: optuna (>=4.0.0,<5.0.0)
+Requires-Dist: pandas (>=2.2.3,<3.0.0)
+Requires-Dist: pandasql (>=0.7.3,<0.8.0)
+Requires-Dist: polars (>=1.8.0,<2.0.0)
+Requires-Dist: pyarrow (>=17.0.0,<18.0.0)
+Requires-Dist: pytz (>=2024.2,<2025.0)
+Requires-Dist: scikit-learn (>=1.5.2,<2.0.0)
+Requires-Dist: scipy (>=1.13.0,<2.0.0)
+Requires-Dist: wittgenstein (>=0.3.4,<0.4.0)
+Description-Content-Type: text/markdown
+
+# PIX Framework
+
+![pix-framework](https://github.com/AutomatedProcessImprovement/pix-framework/actions/workflows/build.yaml/badge.svg)
+![version](https://img.shields.io/github/v/tag/AutomatedProcessImprovement/pix-framework)
+
+Framework for building process mining applications.
+
+## Installation
+
+The package requires **Python 3.9+**. You can install it from PyPI: 
+
+```shell
+pip install pix-framework
+```
+
+## Releases
+
+You can browse compiled releases in the [Releases](https://github.com/AutomatedProcessImprovement/pix-framework/releases) section.
+
+## Description
+
+The `pix_framework.discovery` package besides root modules contains the following subpackages with additional information located in their README files:
+
+- [batch_processing_discovery](src/pix_framework/discovery/batch_processing/)
+- [prioritization_discovery](src/pix_framework/discovery/prioritization/)
+- [case_attribute_discovery](src/pix_framework/discovery/case_attribute/)
+
+The `pix_framework.enhancement` package besides root modules contains the following subpackages with additional information located in their README files:
+
+- [start_time_estimator](src/pix_framework/enhancement/start_time_estimator/)
+
+## Development
+
+### Testing
+
+To run tests, use the following command:
+
+```shell
+pytest -m "not benchmark"
+```
+
+### Benchmarking
+
+To run benchmarks, use the following command:
+
+```shell
+pytest --benchmark-only
+```
+
