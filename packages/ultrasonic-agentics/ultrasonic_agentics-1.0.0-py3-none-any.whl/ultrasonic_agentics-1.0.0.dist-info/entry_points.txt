@@ -1,0 +1,4 @@
+[console_scripts]
+ultrasonic-agentics = agentic_commands_stego.mcp_tools.cli:main
+ultrasonic-api = agentic_commands_stego.server.api:main
+ultrasonic-server = agentic_commands_stego.mcp_tools.server:run_server
