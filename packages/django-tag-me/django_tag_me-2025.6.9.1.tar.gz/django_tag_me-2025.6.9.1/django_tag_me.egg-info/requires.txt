@@ -1,0 +1,10 @@
+Django>=4.0
+
+[dev]
+django-extensions
+hypothesis
+pyright
+pytest
+pytest-django
+pytest-cov
+tox
