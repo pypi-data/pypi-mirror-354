@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: convertbonds
+Version: 0.0.1
+Summary: Calculation of Convertible Bond Value
+Home-page: https://github.com/
+Author: Taisen Zheng
+Author-email: jc3802201@gmail.com
+License: MIT
+Keywords: python,convertbonds
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: Microsoft :: Windows
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: matplotlib>=3.5.2
+Requires-Dist: scipy>=1.9.1
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+A simple tool for calculating convertible bond value.
