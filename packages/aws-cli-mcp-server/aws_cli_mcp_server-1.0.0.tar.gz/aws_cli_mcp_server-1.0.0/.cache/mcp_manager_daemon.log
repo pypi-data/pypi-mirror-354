@@ -1,0 +1,22 @@
+2025-06-10 09:33:25,788 [INFO] root: Starting MCP Manager FastAPI server on port 4123
+2025-06-10 09:33:26,362 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-06-10 09:33:26,397 [DEBUG] mcp.server.sse: SseServerTransport initialized with endpoint: /hackernews/messages
+2025-06-10 09:33:41,934 [INFO] root: No change in hackernews, skipping reload
+2025-06-10 09:33:41,935 [DEBUG] mcp.server.sse: SseServerTransport initialized with endpoint: /aws-cli-mcp-server/messages
+2025-06-10 09:34:03,422 [ERROR] root: Error in list_server_tools(aws-cli-mcp-server): 
+2025-06-10 09:35:04,412 [INFO] root: No change in hackernews, skipping reload
+2025-06-10 09:35:04,412 [INFO] root: Reloading aws-cli-mcp-server
+2025-06-10 09:35:04,412 [ERROR] root: Error in stop_server(aws-cli-mcp-server): Connection closed
+2025-06-10 09:35:04,412 [DEBUG] mcp.server.sse: SseServerTransport initialized with endpoint: /aws-cli-mcp-server/messages
+2025-06-10 10:02:59,514 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-06-10 10:02:59,526 [DEBUG] mcp.server.sse: SseServerTransport initialized with endpoint: /hackernews/messages
+2025-06-10 10:02:59,526 [DEBUG] mcp.server.sse: SseServerTransport initialized with endpoint: /aws-cli-mcp-server/messages
+2025-06-10 10:09:59,529 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-06-10 10:09:59,546 [DEBUG] mcp.server.sse: SseServerTransport initialized with endpoint: /hackernews/messages
+2025-06-10 10:09:59,546 [DEBUG] mcp.server.sse: SseServerTransport initialized with endpoint: /aws-cli-mcp-server/messages
+2025-06-10 10:10:17,214 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-06-10 10:10:17,225 [DEBUG] mcp.server.sse: SseServerTransport initialized with endpoint: /hackernews/messages
+2025-06-10 10:10:17,225 [DEBUG] mcp.server.sse: SseServerTransport initialized with endpoint: /aws-cli-mcp-server/messages
+2025-06-10 10:10:19,527 [DEBUG] asyncio: Using selector: KqueueSelector
+2025-06-10 10:10:19,536 [DEBUG] mcp.server.sse: SseServerTransport initialized with endpoint: /hackernews/messages
+2025-06-10 10:10:19,536 [DEBUG] mcp.server.sse: SseServerTransport initialized with endpoint: /aws-cli-mcp-server/messages

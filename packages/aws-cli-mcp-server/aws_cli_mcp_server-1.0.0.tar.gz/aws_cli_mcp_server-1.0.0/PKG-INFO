@@ -1,0 +1,47 @@
+Metadata-Version: 2.4
+Name: aws-cli-mcp-server
+Version: 1.0.0
+Summary: A simple implementation of an AWS CLI MCP server with read/write tools for executing AWS CLI commands
+Requires-Python: >=3.9
+Requires-Dist: fastmcp>=2.7.1
+Description-Content-Type: text/markdown
+
+# AWS CLI MCP Server
+
+A simple implementation of an AWS CLI MCP server.
+
+## Overview
+
+This MCP server provides a bridge to execute AWS CLI commands through two main tools:
+
+- **aws_cli_read**: For read-only AWS operations (listing resources, describing configurations, etc.)
+- **aws_cli_write**: For write operations (creating/modifying/deleting AWS resources, pricing queries)
+
+## Features
+
+- Execute AWS CLI commands safely through MCP tools
+- Separate read and write permissions for better security control
+- Built-in timeout protection (5 minutes)
+- Error handling and output capture
+- Support for complex bash scripts and command consolidation
+
+## Usage
+
+The server exposes two tools that can execute AWS CLI commands:
+
+1. **Read Operations**: Use `aws_cli_read` for queries and listing operations
+2. **Write Operations**: Use `aws_cli_write` for modifications and resource management
+
+Both tools require:
+- `script`: The AWS CLI command or bash script to execute
+- `reasoning`: Explanation for why the operation is needed
+
+## AWS SSO Configuration
+
+To use this server with AWS IAM Identity Center (SSO), you'll need to configure your AWS CLI with SSO authentication first follow [this guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html#sso-configure-profile-token-auto-sso).
+
+### Prerequisites
+
+1. Install the AWS CLI (version 2.22.0+ recommended)
+2. Have access to AWS IAM Identity Center through your organization
+3. Gather your SSO Start URL and SSO Region from your AWS access portal
