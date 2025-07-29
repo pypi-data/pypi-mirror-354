@@ -1,0 +1,72 @@
+Metadata-Version: 2.4
+Name: macmon-python
+Version: 0.1.2
+Summary: Python wrapper for macmon binary (macOS Apple Silicon only)
+Home-page: https://github.com/transformerlab/macmon-python
+Author: Ali Asaria
+Author-email: developers@transformerlab.ai
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: MacOS :: MacOS X
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+# macmon-python
+
+A Python wrapper for a binary that reports system metrics like CPU/GPU temperature, 
+memory usage, and power consumption.
+
+This just a simple wrapper around https://github.com/vladkens/macmon
+
+## Installation
+
+```bash
+pip install macmon-python
+```
+
+## Usage
+
+```python
+from macmon import MacMon
+
+# Create an instance
+metrics = MacMon()
+data = metrics.get_metrics()
+
+print("System Metrics:")
+print(data)
+```
+
+### Async Usage
+
+```python
+from macmon import MacMon
+import asyncio
+async def main():
+    # Create an instance
+    metrics = MacMon()
+    data = await metrics.get_metrics_async()
+
+    print("System Metrics:")
+    print(data)
+
+asyncio.run(main())
+```
