@@ -1,0 +1,18 @@
+[project]
+name = "binloader"
+version = "0.0.3"
+description = "Run VIM and Busybox. Optionally run remote binaries"
+authors = [{ name="Ulises", email="ulises.odysseus22@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.4"
+license = { text = "GPLv2" }
+classifiers = [
+    "Operating System :: POSIX",
+]
+
+[project.urls]
+Homepage = "https://github.com/ulisesojeda/binary_loader"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
