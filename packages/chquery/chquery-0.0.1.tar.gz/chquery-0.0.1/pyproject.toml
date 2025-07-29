@@ -1,0 +1,29 @@
+[project]
+name = "chquery"
+version = "0.0.1"
+description = "A wrapper around the asynch library for clickhouse"
+authors = [
+    {name = "Filip Nyquist", email = "nyquistfilip@gmail.com"},
+]
+dependencies = ["asynch[compression]>=0.3.0"]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+
+[tool.pdm]
+distribution = true
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "pytest-asyncio>=1.0.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
