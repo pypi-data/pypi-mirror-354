@@ -1,0 +1,14 @@
+[project]
+name = "writings"
+version = "0.1.1"
+description = "A simple chatbot syle printing system"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+authors = [
+  { name = "Dorian Ben", email = "doribenbass@gmail.com" }
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
