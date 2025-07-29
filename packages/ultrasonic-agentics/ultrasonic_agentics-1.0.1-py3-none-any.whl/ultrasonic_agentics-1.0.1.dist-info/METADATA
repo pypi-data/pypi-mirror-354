@@ -1,0 +1,218 @@
+Metadata-Version: 2.4
+Name: ultrasonic-agentics
+Version: 1.0.1
+Summary: Steganography framework for ultrasonic agentic command transmission
+Home-page: https://github.com/ultrasonic-agentics/ultrasonic-agentics
+Author: Ultrasonic Agentics Team
+Author-email: Ultrasonic Agentics Team <contact@ultrasonic-agentics.org>
+Maintainer-email: Ultrasonic Agentics Team <contact@ultrasonic-agentics.org>
+License: MIT
+Project-URL: Homepage, https://github.com/ultrasonic-agentics/ultrasonic-agentics
+Project-URL: Documentation, https://github.com/ultrasonic-agentics/ultrasonic-agentics/docs
+Project-URL: Repository, https://github.com/ultrasonic-agentics/ultrasonic-agentics
+Project-URL: Bug Tracker, https://github.com/ultrasonic-agentics/ultrasonic-agentics/issues
+Project-URL: Changelog, https://github.com/ultrasonic-agentics/ultrasonic-agentics/blob/main/CHANGELOG.md
+Project-URL: Examples, https://github.com/ultrasonic-agentics/ultrasonic-agentics/tree/main/agentic_commands_stego/examples
+Keywords: steganography,ultrasonic,audio,video,agentic,commands,covert,communication,frequency,embedding,extraction,cryptography,security,AI,automation
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Multimedia :: Sound/Audio
+Classifier: Topic :: Multimedia :: Video
+Classifier: Topic :: Security :: Cryptography
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=1.20.0
+Requires-Dist: scipy>=1.7.0
+Requires-Dist: pydub>=0.25.0
+Requires-Dist: moviepy>=1.0.3
+Requires-Dist: pycryptodome>=3.15.0
+Requires-Dist: sounddevice>=0.4.4
+Requires-Dist: fastapi>=0.68.0
+Requires-Dist: uvicorn>=0.15.0
+Requires-Dist: python-multipart>=0.0.5
+Requires-Dist: ffmpeg-python>=0.2.0
+Requires-Dist: librosa>=0.9.0
+Requires-Dist: opencv-python>=4.5.0
+Requires-Dist: mcp>=1.9.0
+Requires-Dist: typer>=0.9.0
+Requires-Dist: rich>=13.0.0
+Requires-Dist: click>=8.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=2.12.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.15.0; extra == "dev"
+Requires-Dist: black>=21.0.0; extra == "dev"
+Requires-Dist: flake8>=3.9.0; extra == "dev"
+Requires-Dist: mypy>=0.910; extra == "dev"
+Requires-Dist: isort>=5.9.0; extra == "dev"
+Requires-Dist: pre-commit>=2.15.0; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx>=4.0.0; extra == "docs"
+Requires-Dist: sphinx-rtd-theme>=0.5.0; extra == "docs"
+Requires-Dist: myst-parser>=0.15.0; extra == "docs"
+Provides-Extra: examples
+Requires-Dist: matplotlib>=3.3.0; extra == "examples"
+Requires-Dist: jupyter>=1.0.0; extra == "examples"
+Requires-Dist: ipython>=7.0.0; extra == "examples"
+Provides-Extra: performance
+Requires-Dist: numba>=0.54.0; extra == "performance"
+Requires-Dist: cython>=0.29.0; extra == "performance"
+Provides-Extra: all
+Requires-Dist: pytest>=6.0.0; extra == "all"
+Requires-Dist: pytest-cov>=2.12.0; extra == "all"
+Requires-Dist: pytest-asyncio>=0.15.0; extra == "all"
+Requires-Dist: black>=21.0.0; extra == "all"
+Requires-Dist: flake8>=3.9.0; extra == "all"
+Requires-Dist: mypy>=0.910; extra == "all"
+Requires-Dist: isort>=5.9.0; extra == "all"
+Requires-Dist: sphinx>=4.0.0; extra == "all"
+Requires-Dist: sphinx-rtd-theme>=0.5.0; extra == "all"
+Requires-Dist: myst-parser>=0.15.0; extra == "all"
+Requires-Dist: matplotlib>=3.3.0; extra == "all"
+Requires-Dist: jupyter>=1.0.0; extra == "all"
+Requires-Dist: ipython>=7.0.0; extra == "all"
+Requires-Dist: numba>=0.54.0; extra == "all"
+Requires-Dist: cython>=0.29.0; extra == "all"
+Requires-Dist: pre-commit>=2.15.0; extra == "all"
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: platform
+Dynamic: requires-python
+
+# Ultrasonic Agentics
+
+A comprehensive steganography framework for embedding and extracting agentic commands in audio and video media using ultrasonic frequencies. This project provides tools for covert communication and command transmission through multimedia channels.
+
+## Features
+
+- **Ultrasonic Audio Encoding/Decoding**: Embed and extract commands in high-frequency audio ranges
+- **Video Steganography**: Hide data in video frames using LSB techniques
+- **Cryptographic Security**: Built-in encryption for secure command transmission
+- **RESTful API**: HTTP server for remote encoding/decoding operations
+- **Calibration System**: Automatic frequency calibration for optimal transmission
+- **Comprehensive Testing**: Full test suite with pytest framework
+
+## Installation
+
+### From PyPI (Recommended)
+
+```bash
+pip install ultrasonic-agentics
+```
+
+### From Source
+
+```bash
+git clone https://github.com/yourusername/ultrasonic-agentics.git
+cd ultrasonic-agentics
+pip install -e .
+```
+
+## Quick Start
+
+### Basic Usage
+
+```python
+from ultrasonic_agentics import UltrasonicEncoder, UltrasonicDecoder
+
+# Encode a command
+encoder = UltrasonicEncoder()
+audio_data = encoder.encode("execute:status_check")
+
+# Decode the command
+decoder = UltrasonicDecoder()
+command = decoder.decode(audio_data)
+print(f"Decoded: {command}")
+```
+
+### API Server
+
+```bash
+# Start the API server
+python -m ultrasonic_agentics.server
+
+# Encode via API
+curl -X POST http://localhost:8000/encode \
+  -H "Content-Type: application/json" \
+  -d '{"command": "execute:status_check"}'
+```
+
+## Documentation
+
+- [User Guide](docs/user-guide.md) - Comprehensive usage instructions
+- [API Reference](docs/api-reference.md) - Complete API documentation
+- [Advanced Usage](docs/advanced-usage.md) - Advanced features and configurations
+- [Examples](examples/) - Code examples and tutorials
+
+## Project Structure
+
+```
+ultrasonic_agentics/
+├── crypto/           # Encryption and security modules
+├── embed/            # Encoding implementations
+├── decode/           # Decoding implementations
+├── server/           # HTTP API server
+├── tests/            # Test suite
+├── docs/             # Documentation
+└── examples/         # Usage examples
+```
+
+## Requirements
+
+- Python 3.8+
+- NumPy
+- SciPy
+- librosa
+- opencv-python
+- cryptography
+- fastapi
+- uvicorn
+
+## Testing
+
+```bash
+# Run all tests
+pytest
+
+# Run with coverage
+pytest --cov=ultrasonic_agentics
+
+# Run specific test categories
+pytest tests/test_ultrasonic_encoder.py
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Add tests for new functionality
+4. Ensure all tests pass
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Security Notice
+
+This tool is designed for legitimate research and authorized testing purposes. Users are responsible for complying with applicable laws and regulations regarding steganography and covert communications.
+
+## Acknowledgments
+
+- Built using modern Python steganography techniques
+- Inspired by research in ultrasonic communication systems
+- Designed for integration with agentic AI systems
