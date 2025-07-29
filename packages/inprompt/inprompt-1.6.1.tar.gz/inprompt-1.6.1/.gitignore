@@ -1,0 +1,17 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cd]
+*$py.class
+
+# Distribution / build folders
+build/
+dist/
+
+# Virtual environments
+.venv/
+
+# Uv lock file
+uv.lock
+
+# VSCode settings
+.vscode/
