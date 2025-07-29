@@ -1,0 +1,24 @@
+{
+  "title": "Workout with section",
+  "content": [
+    {
+      "type": "section",
+      "name": "Warm Up",
+      "content": [
+        {
+          "type": "interval",
+          "volume": {
+            "type": "fixed",
+            "quantity": "duration",
+            "value": 10.0
+          },
+          "intensity": {
+            "type": "fixed",
+            "quantity": "power",
+            "value": 100.0
+          }
+        }
+      ]
+    }
+  ]
+}

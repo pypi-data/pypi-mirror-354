@@ -1,0 +1,31 @@
+{
+  "title": "Workout with variable",
+  "content": [
+    {
+      "type": "interval",
+      "volume": {
+        "type": "fixed",
+        "quantity": "duration",
+        "variable": "interval_volume_variable"
+      },
+      "intensity": {
+        "type": "range",
+        "quantity": "power",
+        "variable": "interval_intensity_variable"
+      }
+    },
+    {
+      "type": "interval",
+      "volume": {
+        "type": "fixed",
+        "quantity": "distance",
+        "variable": "interval_volume_variable"
+      },
+      "intensity": {
+        "type": "ramp",
+        "quantity": "power",
+        "variable": "RAMP_VARIABLE"
+      }
+    }
+  ]
+}

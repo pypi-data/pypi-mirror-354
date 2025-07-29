@@ -1,0 +1,79 @@
+{
+    "title": "6x6 minutes at FTP",
+    "description": "This workout begins with a warm-up to prepare your body, followed by six intervals of six minutes at your FTP, interspersed with one minute of rest between each. Finally, a cool down.",
+    "content": [
+      {
+        "type": "section",
+        "name": "warm up",
+        "content": [
+          {
+            "type": "interval",
+            "volume": {
+              "quantity": "duration",
+              "type": "fixed",
+              "variable": "WARM_UP_DURATION"
+            },
+            "intensity": {
+              "quantity": "power",
+              "type": "fixed",
+              "variable": "FTP",
+              "fraction": 0.7
+            }
+          }
+        ]
+      },
+      {
+        "type": "section",
+        "name": "main set",
+        "content": [
+          {
+            "type": "repeat",
+            "count": {
+              "quantity": "number",
+              "type": "fixed",
+              "variable": "REPEAT_COUNT"
+            },
+            "content": [
+              {
+                "type": "interval",
+                "volume": {
+                  "quantity": "duration",
+                  "type": "fixed",
+                  "variable": "INTERVAL_DURATION"
+                },
+                "intensity": {
+                  "quantity": "power",
+                  "type": "fixed",
+                  "variable": "FTP"
+                }
+              },
+              {
+                "type": "instruction",
+                "text": "Rest for 60 seconds"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "section",
+        "name": "cool down",
+        "content": [
+          {
+            "type": "interval",
+            "volume": {
+              "quantity": "duration",
+              "type": "fixed",
+              "variable": "COOL_DOWN_DURATION"
+            },
+            "intensity": {
+              "quantity": "power",
+              "type": "fixed",
+              "variable": "FTP",
+              "fraction": 0.5
+            }
+          }
+        ]
+      }
+    ]
+  }

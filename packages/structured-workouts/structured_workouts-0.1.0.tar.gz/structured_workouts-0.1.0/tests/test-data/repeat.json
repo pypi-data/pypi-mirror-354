@@ -1,0 +1,14 @@
+{
+  "title": "Workout with repeat",
+  "content": [
+    {
+      "type": "repeat",
+      "count": {
+        "type": "fixed",
+        "quantity": "number",
+        "value": 3
+      },
+      "content": []
+    }
+  ]
+}

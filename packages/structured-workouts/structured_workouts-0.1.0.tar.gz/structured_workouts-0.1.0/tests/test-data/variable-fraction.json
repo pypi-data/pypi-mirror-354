@@ -1,0 +1,32 @@
+{
+  "title": "Workout with variable fraction",
+  "content": [
+    {
+      "type": "interval",
+      "volume": {
+        "type": "fixed",
+        "quantity": "duration",
+        "value": 120
+      },
+      "intensity": {
+        "type": "fixed",
+        "quantity": "power",
+        "variable": "threshold",
+        "fraction": 0.5
+      }
+    },
+    {
+      "type": "interval",
+      "volume": {
+        "type": "fixed",
+        "quantity": "distance",
+        "variable": "INTERVAL_VOLUME_VARIABLE"
+      },
+      "intensity": {
+        "type": "range",
+        "quantity": "power",
+        "variable": "INTERVAL_INTENSITY_VARIABLE"
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+    "title": "6x6 minutes at FTP",
+    "description": "This workout begins with a warm-up to prepare your body, followed by six intervals of six minutes at your FTP, interspersed with one minute of rest between each. Finally, a cool down.",
+    "content": [
+      {
+        "type": "section",
+        "name": "warm up",
+        "content": [
+          {
+            "type": "interval",
+            "volume": {
+              "quantity": "duration",
+              "type": "fixed",
+              "value": 600
+            },
+            "intensity": {
+              "quantity": "power",
+              "type": "fixed",
+              "value": 100
+            }
+          }
+        ]
+      },
+      {
+        "type": "section",
+        "name": "main set",
+        "content": [
+          {
+            "type": "repeat",
+            "count": {
+              "quantity": "number",
+              "type": "fixed",
+              "value": 6
+            },
+            "content": [
+              {
+                "type": "interval",
+                "volume": {
+                  "quantity": "duration",
+                  "type": "fixed",
+                  "value": 360
+                },
+                "intensity": {
+                  "quantity": "power",
+                  "type": "fixed",
+                  "value": 200
+                }
+              },
+              {
+                "type": "instruction",
+                "text": "Rest for 60 seconds"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "section",
+        "name": "cool down",
+        "content": [
+          {
+            "type": "interval",
+            "volume": {
+              "quantity": "duration",
+              "type": "fixed",
+              "value": 600
+            },
+            "intensity": {
+              "quantity": "power",
+              "type": "fixed",
+              "value": 100
+            }
+          }
+        ]
+      }
+    ]
+  }

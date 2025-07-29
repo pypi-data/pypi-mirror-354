@@ -1,0 +1,18 @@
+{
+  "title": "Workout with erronous volume quantity",
+  "content": [
+    {
+      "type": "interval",
+      "volume": {
+        "type": "fixed",
+        "quantity": "power",
+        "value": 10.0
+      },
+      "intensity": {
+        "type": "fixed",
+        "quantity": "power",
+        "value": 100.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "title": "Workout with fixed range ramp",
+  "content": [
+    {
+      "type": "interval",
+      "volume": {
+        "type": "fixed",
+        "quantity": "duration",
+        "value": 10.0
+      },
+      "intensity": {
+        "type": "range",
+        "quantity": "power",
+        "min_value": 100.0,
+        "max_value": 150.0
+      }
+    },
+    {
+      "type": "interval",
+      "volume": {
+        "type": "fixed",
+        "quantity": "distance",
+        "value": 10.0
+      },
+      "intensity": {
+        "type": "ramp",
+        "quantity": "power",
+        "start_value": 100.0,
+        "end_value": 150.0
+      }
+    }
+  ]
+}
