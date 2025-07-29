@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "simpledspy"
+version = "0.3.0"
+description = "A simplified DSPy interface"
+authors = ["Tom Dörr <tomdoerr96@gmail.com>"]
+readme = "README.md"
+license = "MIT"
+packages = [{include = "simpledspy"}]
+homepage = "https://github.com/tomdoerr/simpledspy"
+repository = "https://github.com/tomdoerr/simpledspy"
+keywords = ["dspy", "llm", "pipeline", "nlp"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+
+[tool.poetry.scripts]
+simpledspy = "simpledspy.cli:main"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+dspy = ">=2.5.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.0"
+black = "^23.0"
+mypy = "^1.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
