@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gfftk"
+version = "25.6.10"
+description = "GFFtk: genome annotation GFF3 tool kit"
+readme = {file = "README.md", content-type = "text/markdown"}
+authors = [
+    {name = "Jon Palmer", email = "nextgenusfs@gmail.com"}
+]
+requires-python = ">=3.7.0"
+dependencies = [
+    "natsort",
+    "numpy",
+    "requests",
+    "gb-io>=0.3.2"
+]
+license = {file = "LICENSE.md"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python",
+    "Operating System :: Unix",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+keywords = ["bioinformatics", "genome", "annotation", "completeness"]
+
+[project.urls]
+Homepage = "https://github.com/nextgenusfs/gfftk"
+Repository = "https://github.com/nextgenusfs/gfftk.git"
+
+[project.scripts]
+gfftk = "gfftk.__main__:main"
+
+[tool.hatch.build]
+include = [
+  "gfftk/*.py",
+  "gfftk/data/*",
+  "README.md",
+  "LICENSE.md"
+]
+exclude = [
+  "tests/*",
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''/(\n  # Directories
+  \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
