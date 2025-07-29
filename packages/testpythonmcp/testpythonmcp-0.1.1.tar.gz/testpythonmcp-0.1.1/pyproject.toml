@@ -1,0 +1,17 @@
+[project]
+name = "testpythonmcp"
+version = "0.1.1"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+dependencies = [
+    "mcp>=1.2.0",
+    "requests",
+    "beautifulsoup4",
+]
+[project.scripts]
+mcp-web-extractor = "web_extractor.server:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
