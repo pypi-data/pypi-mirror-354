@@ -1,0 +1,69 @@
+Metadata-Version: 2.4
+Name: markdown-typst
+Version: 0.1.0
+Summary: A Markdown extension to compile typst code blocks to SVG.
+Home-page: https://github.com/eWloYW8/markdown-typst
+Author: eWloYW8
+Author-email: 3171132517@qq.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: Public Domain
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: markdown
+Requires-Dist: typst
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# markdown-typst
+
+A Python Markdown extension that compiles `typst` fenced code blocks into inline SVG images.
+
+## Features
+
+- Detects fenced code blocks labeled as `typst` with `typst-preview` in the first line.
+- Compiles the Typst code into SVG format using the `typst` compiler.
+
+## Installation
+
+```bash
+pip install markdown-typst
+```
+
+## Usage
+
+````python
+import markdown
+import markdown_typst
+
+md = markdown.Markdown(extensions=["markdown_typst.typst_extension"])
+input_text = '''
+```typst
+// typst-preview
+# Your Typst code here
+```
+
+'''
+
+html = md.convert(input_text)
+print(html)
+
+````
+
+## Requirements
+
+* `markdown`
+* `typst`
+
+## License
+
+MIT License
