@@ -1,0 +1,174 @@
+# This workflow will upload a Python Package when a release is created
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python#publishing-to-package-registries
+
+name: Upload Python Package
+
+on:
+  workflow_run:
+    workflows: ["Bump Version"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag name to use for release (e.g., v0.0.10)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  id-token: write  # Required for PyPI trusted publishing
+
+jobs:
+  check_version_bump:
+    runs-on: ubuntu-latest
+    if: >
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') ||
+      github.event_name == 'workflow_dispatch'
+    outputs:
+      version: ${{ steps.get_version.outputs.version }}
+      tag_exists: ${{ steps.check_tag.outputs.exists }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Make sure to get the right commit, from workflow_run or the current one for workflow_dispatch
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 0
+          # Use the same authentication method as the version-bump workflow
+          ssh-key: ${{ secrets.SSH_DEPLOY_KEY }}
+      
+      - name: Debug git info
+        run: |
+          echo "Current commit: $(git rev-parse HEAD)"
+          echo "Commit message: $(git log -1 --pretty=%B)"
+          echo "Files changed:"
+          git show --name-status HEAD
+      
+      - name: Fetch all tags
+        run: |
+          git fetch --tags -f
+      
+      - name: Extract version
+        id: get_version
+        run: |
+          # Check if tag was manually specified
+          MANUAL_TAG="${{ github.event.inputs.tag_name }}"
+          
+          if [[ -n "$MANUAL_TAG" ]]; then
+            # Remove 'v' prefix if present
+            if [[ "$MANUAL_TAG" == v* ]]; then
+              VERSION="${MANUAL_TAG#v}"
+            else
+              VERSION="$MANUAL_TAG"
+            fi
+            echo "Using manually specified tag: $MANUAL_TAG (version: $VERSION)"
+          else
+            # First check pyproject.toml content to ensure we're seeing the most recent version
+            echo "pyproject.toml content:"
+            cat pyproject.toml | grep -A 2 "version ="
+            
+            # Get version directly from file
+            FILE_VERSION=$(grep -m 1 "version = " pyproject.toml | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+            
+            # Get latest tag version - ensure we have ALL tags
+            git fetch --tags -f
+            LATEST_TAG=$(git tag -l | grep "^v" | sort -V | tail -n 1)
+            TAG_VERSION=${LATEST_TAG#v}
+            
+            echo "Version in pyproject.toml: $FILE_VERSION"
+            echo "Latest git tag: $LATEST_TAG ($TAG_VERSION)"
+            
+            # Use the more recent version (comparing tags with file)
+            if [[ "$TAG_VERSION" > "$FILE_VERSION" ]]; then
+              echo "Tag version is more recent, using $TAG_VERSION"
+              VERSION=$TAG_VERSION
+            else
+              echo "File version is more recent or equal, using $FILE_VERSION"
+              VERSION=$FILE_VERSION
+            fi
+            
+            echo "Using version: $VERSION"
+          fi
+          
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+      
+      - name: Check if tag exists
+        id: check_tag
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          if git rev-parse "v$VERSION" >/dev/null 2>&1; then
+            echo "Tag v$VERSION already exists"
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "Tag v$VERSION does not exist yet"
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Check if release exists
+        id: check_release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          RELEASE_EXISTS=$(gh release view "v$VERSION" --json id 2>/dev/null || echo "")
+          if [ -n "$RELEASE_EXISTS" ]; then
+            echo "Release for v$VERSION already exists"
+          else
+            echo "Release for v$VERSION does not exist yet"
+          fi
+
+  deploy:
+    needs: check_version_bump
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Make sure to get the right commit
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 0
+          # Use the same authentication method
+          ssh-key: ${{ secrets.SSH_DEPLOY_KEY }}
+      
+      - name: Fetch all tags
+        run: |
+          git fetch --tags -f
+      
+      - name: Checkout tag if needed
+        run: |
+          VERSION="${{ needs.check_version_bump.outputs.version }}"
+          CURRENT_VERSION=$(grep -m 1 "version = " pyproject.toml | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+          
+          if [[ "$CURRENT_VERSION" != "$VERSION" ]]; then
+            echo "Current checked out version ($CURRENT_VERSION) doesn't match target version ($VERSION), checkout tag"
+            git checkout "v$VERSION" || (echo "Failed to checkout tag v$VERSION" && exit 1)
+          else
+            echo "Current version matches target version: $VERSION"
+          fi
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build twine
+      
+      - name: Build package
+        run: python -m build
+      
+      - name: Publish package
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
+    
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ needs.check_version_bump.outputs.version }}
+          name: Release v${{ needs.check_version_bump.outputs.version }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          token: ${{ secrets.GITHUB_TOKEN }} 
