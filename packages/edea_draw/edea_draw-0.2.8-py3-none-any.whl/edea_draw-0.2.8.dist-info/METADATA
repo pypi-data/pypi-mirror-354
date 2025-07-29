@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: edea_draw
+Version: 0.2.8
+Summary: KiCad to SVG renderer
+Author-email: Elen Eisendle <ln@calcifer.ee>, Zoé Bőle <zoe@astech.hu>, Kaspar Emanuel <kaspar@kitspace.org>, Abdulrhmn Ghanem <abdoghanem160@gmail.com>
+License-Expression: EUPL-1.2
+License-File: LICENSE.md
+Requires-Python: <4,>=3.11
+Requires-Dist: defusedxml<0.8,>=0.7.1
+Requires-Dist: edea>=0.8.4
+Requires-Dist: svg-py<2,>=1.6.0
+Requires-Dist: svgpathtools<2,>=1.7.1
