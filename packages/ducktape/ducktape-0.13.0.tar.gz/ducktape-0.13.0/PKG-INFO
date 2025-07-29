@@ -1,0 +1,39 @@
+Metadata-Version: 2.4
+Name: ducktape
+Version: 0.13.0
+Summary: Distributed system test tools
+Home-page: http://github.com/confluentinc/ducktape
+Author: Confluent
+License: apache2.0
+Platform: any
+Requires-Python: >= 3.6
+Requires-Dist: jinja2~=3.1.6
+Requires-Dist: boto3==1.33.13
+Requires-Dist: MarkupSafe~=2.1.5
+Requires-Dist: pyparsing==3.1.4
+Requires-Dist: zipp==3.20.2
+Requires-Dist: pywinrm==0.4.3
+Requires-Dist: requests==2.32.2
+Requires-Dist: paramiko~=2.12.0
+Requires-Dist: pyzmq==26.4.0
+Requires-Dist: pycryptodome==3.23.0
+Requires-Dist: more-itertools==5.0.0
+Requires-Dist: PyYAML==6.0.2
+Requires-Dist: psutil==5.7.2
+Provides-Extra: test
+Requires-Dist: pytest~=6.2.0; extra == "test"
+Requires-Dist: mock==4.0.2; extra == "test"
+Requires-Dist: memory_profiler==0.57; extra == "test"
+Requires-Dist: statistics==1.0.3.5; extra == "test"
+Requires-Dist: requests-testadapter==0.3.0; extra == "test"
+Requires-Dist: flake8~=6.1.0; extra == "test"
+Requires-Dist: pytest-cov~=3.0; extra == "test"
+Requires-Dist: pytest-xdist~=2.5; extra == "test"
+Dynamic: author
+Dynamic: home-page
+Dynamic: license
+Dynamic: platform
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
