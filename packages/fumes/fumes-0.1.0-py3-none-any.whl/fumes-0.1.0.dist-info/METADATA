@@ -1,0 +1,139 @@
+Metadata-Version: 2.4
+Name: fumes
+Version: 0.1.0
+Summary: A Python library for building web-based AI/data apps with custom frontends
+Home-page: https://github.com/t4zn/fumes
+Author: Taizun
+Author-email: taizun8@gmail.com
+Project-URL: Bug Tracker, https://github.com/t4zn/fumes/issues
+Project-URL: Documentation, https://github.com/t4zn/fumes#readme
+Project-URL: Source Code, https://github.com/t4zn/fumes
+Keywords: web,ai,data,ui,framework,streamlit,gradio
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Framework :: FastAPI
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastapi>=0.68.0
+Requires-Dist: uvicorn>=0.15.0
+Requires-Dist: websockets>=10.0
+Requires-Dist: python-multipart>=0.0.5
+Requires-Dist: jinja2>=3.0.0
+Requires-Dist: watchdog>=2.1.0
+Requires-Dist: click>=8.0.0
+Requires-Dist: pydantic>=1.8.0
+Requires-Dist: aiofiles>=0.7.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: black>=21.0; extra == "dev"
+Requires-Dist: isort>=5.0; extra == "dev"
+Requires-Dist: mypy>=0.910; extra == "dev"
+Requires-Dist: build>=0.7.0; extra == "dev"
+Requires-Dist: twine>=3.4.2; extra == "dev"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Fumes
+
+A Python library for building web-based AI/data apps with custom frontends. Fumes provides an intuitive Python API for creating interactive web applications, similar to Streamlit or Gradio, but with a unique design and modern features.
+
+## Features
+
+- 🎨 Intuitive Python API for defining UIs using decorators
+- 🔄 Real-time updates via WebSocket
+- 🎯 Modern, responsive UI with dark mode
+- 🚀 Hot-reload for development
+- 📦 Easy deployment with CLI tools
+- 🎮 Rich set of UI components
+- 🔌 FastAPI backend for high performance
+
+## Installation
+
+```bash
+pip install fumes
+```
+
+## Quick Start
+
+1. Create a new Fumes app:
+
+```bash
+fumes create my_app
+cd my_app
+```
+
+2. Edit `app.py` to build your UI:
+
+```python
+from fumes import App, Textbox, Button
+
+app = App(title="My AI Tool")
+
+input = Textbox(label="Enter text")
+btn = Button("Generate")
+
+@app.bind(btn)
+def on_click():
+    return f"You typed: {input.value}"
+
+if __name__ == "__main__":
+    app.mount()
+```
+
+3. Run your app:
+
+```bash
+fumes run app.py
+```
+
+## Available Components
+
+- `Textbox`: Text input field
+- `Button`: Interactive button
+- `Markdown`: Rich text display
+- `Image`: Image display
+- `FileUpload`: File upload component
+- `Chart`: Data visualization
+
+## CLI Commands
+
+- `fumes create <app_name>`: Create a new Fumes app
+- `fumes run <app.py>`: Run a Fumes app in development mode
+- `fumes serve <app.py>`: Serve a Fumes app in production mode
+
+## Development
+
+```bash
+# Clone the repository
+git clone https://github.com/t4zn/fumes.git
+cd fumes
+
+# Install development dependencies
+pip install -e ".[dev]"
+
+# Run tests
+pytest
+```
+
+## License
+
+MIT License - see LICENSE file for details 
