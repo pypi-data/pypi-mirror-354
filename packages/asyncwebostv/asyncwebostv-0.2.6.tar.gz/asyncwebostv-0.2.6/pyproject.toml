@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "asyncwebostv"
+version = "0.2.6"
+description = "Asynchronous client library for LG WebOS TVs"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "AsyncWebOSTV Team", email = "your-email@example.com" }]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Development Status :: 3 - Alpha",
+    "Typing :: Typed",
+]
+dependencies = [
+    "aiohttp>=3.8.0",
+    "websockets>=15.0.1",
+    "aiofiles>=0.8.0",
+    "typing_extensions>=4.0.0",
+    "aiohttp-sse-client>=0.2.0",
+    "aiohttp-socks>=0.7.0",
+    "build>=1.2.2.post1",
+    "twine>=6.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.18.0",
+    "black>=22.0.0",
+    "isort>=5.0.0",
+    "mypy>=0.900",
+]
+
+[tool.setuptools.packages.find]
+include = ["asyncwebostv*"]
+exclude = ["tests*", "docs*", "scripts*"]
+
+[tool.setuptools.package-data]
+asyncwebostv = ["py.typed"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v"
+# Integration tests can be run separately with: pytest tests/integration/
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+
+[dependency-groups]
+dev = ["build>=1.2.2.post1", "pyyaml>=6.0.2"]
