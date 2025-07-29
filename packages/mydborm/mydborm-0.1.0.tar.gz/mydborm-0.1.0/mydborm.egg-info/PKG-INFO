@@ -1,0 +1,40 @@
+Metadata-Version: 2.4
+Name: mydborm
+Version: 0.1.0
+Summary: A lightweight ORM supporting MySQL and YugabyteDB
+Home-page: https://github.com/codengers/mydborm
+Author: Atikrant Upadhye
+Author-email: AtikrantUpadhye@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: mysql-connector-python>=8.0.33
+Requires-Dist: psycopg2-binary>=2.9.9
+Requires-Dist: typer>=0.9.0
+Requires-Dist: streamlit>=1.30.0
+Dynamic: license-file
+
+myorm_package_v2/
+├── mydborm/
+│   ├── __init__.py               # ORM init module
+│   ├── db.py                     # Database connection handler
+│   ├── fields.py                 # Field definitions for models
+│   ├── model.py                  # Base model class with CRUD
+│   ├── migrations.py             # Basic schema/migration logic
+│   ├── dialects/
+│   │   ├── __init__.py
+│   │   ├── mysql.py              # MySQL dialect SQL generator
+│   │   └── yugabyte.py           # YugabyteDB dialect SQL generator
+│
+├── examples/
+│   └── example.py                # Sample usage of ORM
+├── cli.py                        # Typer-based CLI
+├── app.py                        # Streamlit web interface
+├── setup.py                      # Package installer
+├── README.md
+├── LICENSE
+└── requirements.txt
