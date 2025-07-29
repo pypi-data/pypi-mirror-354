@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: dedupeflow
+Version: 0.0.1
+Summary: A Python library for deduplication and data cleaning.
+Home-page: https://github.com/kedjar/dedupeflow
+Author: "M'Hand KEDJAR"
+Author-email: "M'Hand KEDJAR" <kedjar@gmail.com>
+License: MIT
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: termcolor<2,>=1.1.0
+Dynamic: license-file
+
+# DedupeFlow
+
+A Python library for deduplication and data cleaning.
+
+## Installation
+
+```shell
+python -m pip install dedupeflow
+```
