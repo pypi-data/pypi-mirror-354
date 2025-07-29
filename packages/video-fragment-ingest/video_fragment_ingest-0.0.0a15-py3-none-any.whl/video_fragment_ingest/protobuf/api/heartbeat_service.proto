@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "models/graph_models.proto";
+import "google/protobuf/empty.proto";
+import "api/core_service.proto";
+option java_multiple_files = true;
+option java_package = "ai.volt.api";
+option go_package = "github.com/vlt-ai/atla/generated/api";
+
+package api;
+
+service HeartbeatService {
+    rpc GetHistoricalCameraList(HistoricalCameraListRequest) returns (HistoricalCameraListResponse);
+    rpc GetCameraStatusHistogram(CameraStatusHistogramRequest) returns (CameraStatusHistogramResponse);
+    rpc GetCameraStatus(CameraStatusRequest) returns (HeartbeatResponse);
+    rpc HeartbeatStream(CameraStatusRequest) returns (stream HeartbeatResponse);
+
+    rpc CameraHeartbeat(api.CameraList) returns (google.protobuf.Empty);
+}
+
+message CameraStatusRequest {
+  models.Facility facility = 1;
+  repeated models.Camera cameras = 2;
+}
+
+message HeartbeatResponse {
+  repeated models.Camera cameras = 1;
+}
+
+message HistoricalCameraListRequest {
+  string facility_id = 1;
+  google.protobuf.Timestamp from_timestamp = 2;
+  google.protobuf.Timestamp to_timestamp = 3;
+}
+
+message HistoricalCameraListResponse {
+  repeated CameraStatus cameras = 1;
+}
+
+message CameraStatus {
+  string id = 1;
+  int32 online_count = 2;
+  int32 offline_count = 3;
+}
+
+message CameraStatusHistogramRequest {
+  string facility_id = 1;
+  string camera_id = 2;
+  google.protobuf.Timestamp from_timestamp = 3;
+  google.protobuf.Timestamp to_timestamp = 4;
+}
+
+message CameraStatusHistogramResponse {
+   message Bucket {
+    google.protobuf.Timestamp timestamp = 1;
+    int32 online_count = 2;
+    int32 offline_count = 3;
+    int32 online_inference_count = 4;
+    int32 offline_inference_count = 5;
+    int32 online_recording_count = 6;
+    int32 offline_recording_count = 7;
+    int32 online_streaming_count = 8;
+    int32 offline_streaming_count = 9;
+  }
+
+  repeated Bucket buckets = 1;
+}

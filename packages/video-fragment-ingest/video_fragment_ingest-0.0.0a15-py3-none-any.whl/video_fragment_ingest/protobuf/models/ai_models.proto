@@ -1,0 +1,176 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+
+option java_multiple_files = true;
+option java_package = "ai.volt.models";
+option go_package = "github.com/vlt-ai/atla/generated/models";
+
+
+package models;
+
+message MLModel {
+  string id = 1;
+  string name = 2;
+  string version = 3;
+}
+
+message InferenceFrame {
+  string id = 1;
+  string camera_id = 2;
+  string customer_id = 3;
+  string facility_id = 4;
+  int32 width = 5;
+  int32 height = 6;
+  google.protobuf.Timestamp timestamp = 20;
+  repeated DetectedObject objects = 21;
+  string bucket = 22;
+  string key = 23;
+  map<string, string> string_tags = 24;
+  map<string, float> numeric_tags = 25;
+  string url = 26;
+  optional int32 rotation = 27; // 0~359
+  repeated MLModel models = 28;
+  Codec codec = 29;
+
+  enum Codec {
+    UNKNOWN = 0;
+    H264 = 1;
+    H265 = 2;
+  }
+
+  Embedding embeddings = 30;
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message DetectedObject {
+  enum ObjectClass {
+    UNKNOWN = 0;
+    PERSON = 1;
+    WEAPON = 2;
+    CAR = 3;
+    LONG_GUN = 4;
+    PHONE = 5;
+    BACKPACK = 6;
+    SUITCASE = 7;
+    BASEBALL_BAT = 8;
+    KNIFE = 9;
+    FORKLIFT = 10;
+  }
+  string id = 1;
+  ObjectClass object_class = 2;
+  float confidence = 3;
+  float x_min = 4;
+  float y_min = 5;
+  float x_max = 6;
+  float y_max = 7;
+  string track_id = 8;
+  string global_track_id = 9;
+  optional bool highlighted = 10;
+
+
+  HumanPose human_poses = 20;
+  Embedding embeddings = 21;
+
+  string label = 22;
+  oneof detail {
+    Person person = 23;
+  }
+  Embedding reid_embeddings = 24;
+
+  float position_x = 25;
+  float position_y = 26;
+  float orientation = 27;
+  // Metadata for the object
+  map<string, string> string_tags = 28;
+  map<string, float> numeric_tags = 29;
+
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+
+message HumanPose {
+  message BodyPart {
+    enum KeyPoint{
+      UNKNOWN = 0;
+      NOSE = 1;
+      LEFT_EYE = 2;
+      RIGHT_EYE = 3;
+      LEFT_EAR = 4;
+      RIGHT_EAR = 5;
+      LEFT_SHOULDER = 6;
+      RIGHT_SHOULDER = 7;
+      LEFT_ELBOW = 8;
+      RIGHT_ELBOW = 9;
+      LEFT_WRIST = 10;
+      RIGHT_WRIST = 11;
+      LEFT_HIP = 12;
+      RIGHT_HIP = 13;
+      LEFT_KNEE = 14;
+      RIGHT_KNEE = 15;
+      LEFT_ANKLE = 16;
+      RIGHT_ANKLE = 17;
+    }
+    KeyPoint name = 1;
+    float pos_x = 2;
+    float pos_y = 3;
+    float confidence = 4;
+    string id = 5;
+  }
+
+  string id = 1;
+  float confidence = 2;
+  repeated BodyPart body_parts = 10;
+
+}
+
+message Embedding {
+  string id = 1;
+  repeated float embedding = 2; //size will be 1*128 for now
+}
+
+message Tracker {
+  enum Mode {
+    UNKNOWN = 0;
+    ACTIVE = 1;
+    TENTATIVE = 2;
+    INACTIVE = 3;
+    TERMINATED = 4;
+  }
+  string id = 1;
+  int32 tracker_id = 2;
+  Mode mode = 3;
+}
+
+message PositionDetails {
+  enum PositionState {
+    UNKNOWN = 0;
+    FALLEN = 1;
+    STANDING = 2;
+    SITTING = 3;
+    WORKING_OUT = 4;
+    HANDS_UP = 5;
+    FIGHTING = 6;
+    WALKING = 7;
+  }
+  string id = 1;
+  PositionState state = 2;
+  float confidence = 3;
+}
+
+message Person {
+  string id = 1;
+  PositionDetails position = 2;
+}
+
+
+message DetectedObjectList {
+  string id = 1;
+  repeated DetectedObject objects = 2;
+}

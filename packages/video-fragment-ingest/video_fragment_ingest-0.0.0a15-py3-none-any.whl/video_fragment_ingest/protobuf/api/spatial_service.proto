@@ -1,0 +1,67 @@
+syntax = "proto3";
+option go_package = "github.com/vlt-ai/atla/generated/api";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "models/graph_models.proto";
+import "models/spatial_models.proto";
+import "models/ai_models.proto";
+
+package api;
+
+message GetRenderingFramesRequest {
+  models.Facility facility = 1;
+  models.Level level = 2;
+  google.protobuf.Timestamp start_timestamp = 3;
+  google.protobuf.Timestamp end_timestamp = 4;
+  int32 start_index = 5;
+  int32 page_size = 6;
+}
+
+message CalibrateCameraRequest {
+  models.Camera camera = 1;
+  int32 image_resolution_height = 2;
+  int32 image_resolution_width = 3;
+  repeated models.SpatialCoordinate image_coordinates = 4;
+  repeated models.SpatialWorldPoint world_coordinates = 5;
+}
+
+message GetRenderingFramesResponse {
+  repeated models.RenderingFrame rendering_frames = 1;
+}
+
+message CalibrateByFrameRequest {
+  models.Camera camera = 1;
+  models.InferenceFrame inference_frame = 2;
+  repeated models.DetectedObject calibrated_objects = 3;
+}
+
+message CalibrateByFrameResponse {
+  models.Camera camera = 1;
+  double initial_error = 2;
+  double final_error = 3;
+  models.InferenceFrame inference_frame = 4;
+}
+
+message DebugPointInFloorPlanRequest {
+  string stream_id = 1;
+  models.Camera camera = 2;
+}
+
+message DebugPointInFloorPlan {
+  string stream_id = 1;
+  models.SpatialCoordinate image_coordinate = 2;
+}
+
+service SpatialService {
+  rpc GetSpatialDetails(models.Facility) returns (models.FloorPlan);
+  rpc GetRenderingFrames(GetRenderingFramesRequest) returns (GetRenderingFramesResponse);
+  rpc CalibrateCamera(CalibrateCameraRequest) returns (models.Camera);
+  rpc DebugCalibrateCamera(CalibrateCameraRequest) returns (models.Camera);
+
+  rpc GetCalibrationFrame(models.Camera) returns (models.InferenceFrame);
+  rpc CalibrateByFrame(CalibrateByFrameRequest) returns (CalibrateByFrameResponse);
+
+  rpc DebugPointInFloorPlanStream(DebugPointInFloorPlanRequest) returns (stream models.SpatialWorldPoint);
+  rpc SendPointToDebugStream(DebugPointInFloorPlan) returns (google.protobuf.Empty);
+}

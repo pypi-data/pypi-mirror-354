@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "models/graph_models.proto";
+
+option java_multiple_files = true;
+option java_package = "ai.volt.api";
+option go_package = "github.com/vlt-ai/atla/generated/api";
+
+package api;
+
+message IncidentsAvgResolveTimeRequest {
+  repeated models.Facility facilities = 1;
+  models.Customer customer = 2;
+  google.protobuf.Timestamp from_timestamp = 3;
+  google.protobuf.Timestamp to_timestamp = 4;
+}
+
+message IncidentsAvgResolveTimeResponse {
+  float avg = 1;
+  int32 closed_incidents_count = 2;
+}
+
+message IncidentsHistogramRequest {
+  repeated models.Facility facilities = 1;
+  models.Customer customer = 2;
+  google.protobuf.Timestamp from_timestamp = 3;
+  google.protobuf.Timestamp to_timestamp = 4;
+  optional IncidentsHistogramResponse.Bucket.Key after_key = 7;
+  optional int32 max_buckets = 8;
+}
+
+message IncidentsHistogramResponse {
+  message Bucket{
+    message Key{
+      string date = 1;
+      string trigger_rule_id = 2;
+      string facility_id = 3;
+    }
+    Key key = 1;
+    int32 count = 2;
+  }
+
+  optional Bucket.Key after_key = 1;
+  repeated Bucket buckets = 2;
+}
+
+message IncidentsOverviewRequest {
+  repeated models.Facility facilities = 1;
+  models.Customer customer = 2;
+  google.protobuf.Timestamp from_timestamp = 3;
+  google.protobuf.Timestamp to_timestamp = 4;
+}
+
+message IncidentsOverviewResponse {
+  int32 open_incidents_total_count = 1;
+  repeated models.Incident open_incidents = 2;
+}
+
+message OccupancyHistogramRequest {
+  oneof entity {
+    models.Facility facility = 1;
+    models.Level level = 2;
+    models.Location location = 3;
+    models.Camera camera = 4;
+  }
+  google.protobuf.Timestamp from_timestamp = 5;
+  google.protobuf.Timestamp to_timestamp = 6;
+}
+
+message OccupancyHistogramResponse {
+  message Bucket{
+    google.protobuf.Timestamp timestamp = 1;
+    int32 count = 2;
+  }
+
+  repeated Bucket buckets = 1;
+}
+
+
+message OccupancyHistogramByZoneTypeRequest {
+  models.Facility facility = 1;
+  repeated models.Zone.ZoneType zone_types = 2;
+  google.protobuf.Timestamp from_timestamp = 3;
+  google.protobuf.Timestamp to_timestamp = 4;
+}
+
+message AnalyticsReportRequest {
+  string id = 1;
+  models.User user = 2;
+  repeated models.Facility facilities = 3;
+  optional string email_override = 4;
+  google.protobuf.Timestamp from_timestamp = 5;
+  google.protobuf.Timestamp to_timestamp = 6;
+}
+
+service AnalyticsService {
+  rpc GetIncidentsAvgResolveTime(IncidentsAvgResolveTimeRequest) returns (IncidentsAvgResolveTimeResponse);
+  rpc GetIncidentsHistogram(IncidentsHistogramRequest) returns (IncidentsHistogramResponse);
+  rpc GetIncidentsOverview(IncidentsOverviewRequest) returns (IncidentsOverviewResponse);
+
+  rpc GetOccupancyHistogram(OccupancyHistogramRequest) returns (OccupancyHistogramResponse);
+  rpc GetOccupancyHistogramByZoneType(OccupancyHistogramByZoneTypeRequest) returns (OccupancyHistogramResponse);
+  rpc SendAnalyticsReport(AnalyticsReportRequest) returns (google.protobuf.Empty);
+}

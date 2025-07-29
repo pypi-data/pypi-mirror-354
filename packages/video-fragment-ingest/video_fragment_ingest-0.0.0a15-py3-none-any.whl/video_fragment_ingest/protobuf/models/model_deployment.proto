@@ -1,0 +1,113 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+import "models/graph_models.proto";
+
+option java_multiple_files = true;
+option java_package = "ai.volt.models";
+option go_package = "github.com/vlt-ai/atla/generated/models";
+
+
+package models;
+
+message ModelArtifact {
+	string id = 1;
+	string version = 2;
+	optional string object_detection = 3; // s3 path to the object detection model
+	optional string feature_extractor = 4; // s3 path to the person down model
+	optional string tracker = 5; // s3 path to tracker model
+}
+
+message DeviceActiveModelRequest {
+	string id = 1;
+	string device_id = 2;
+
+}
+
+message DeviceActiveModelResponse {
+	string id = 1;
+	string request_id = 2;
+	string device_id = 3;
+	ModelArtifact active_model_artifacts = 4;
+}
+
+message DeviceModelDeployRequest {
+	string id = 1;
+	string deployment_request_id = 2;
+	string device_id = 3;
+	ModelArtifact model = 4;
+    VersionedConfigs configs = 5;
+}
+
+message DeviceModelDeployResponse {
+  enum DeliveryStatus {
+    UNKNOWN = 0; //default
+    DEPLOYMENT_INITIATED = 1; //updated by edge ack for receiving request
+    DEPLOYMENT_COMPLETED = 2; //updated by edge ack after deployment completion verified
+    DEPLOYMENT_FAILED = 3; //updated by edge if deployment failed
+  }
+  string id = 1;
+  string request_id = 2;
+  string device_id = 3;
+  DeliveryStatus delivery_status = 4;
+}
+
+message ResponseLatestArtifacts {
+  string id = 1;
+  VersionedConfigs configs = 3;
+}
+
+message VersionedConfigs {
+  string id = 1;
+  string configs_json = 2;
+  google.protobuf.Timestamp created = 3;
+}
+
+message DeployModelRequest{
+  string id = 1;
+  repeated Device devices  = 2;
+  string config = 3; //json or s3 path
+}
+
+message DeployModelResponse{
+  string id = 1;
+  repeated DeviceModelDeployResponse devices = 2;
+}
+
+message DeviceDeployRequestMap{
+  ModelMessageHistory device_deploy_message_request = 1;
+  ModelMessageHistory device_deploy_message_latest_response = 2;
+}
+
+message HistoricDeviceDeployRequest{
+  string id = 1;
+  Device device  = 2;
+  int32 num_of_deploys = 3; //max num of historic deploys needed
+}
+
+message HistoricDeviceDeployResponse{
+  string id = 1;
+  repeated DeviceDeployRequestMap device_deploy_history = 2;
+}
+
+message HistoricConfigsResponse {
+  string id = 1;
+  repeated VersionedConfigs configs = 3;
+}
+
+message HistoricConfigsRequest {
+  string id = 1;
+  int32 num_of_configs = 2; //max num of historic configs needed
+}
+
+message ModelMessageHistory {
+  string id = 1;
+  google.protobuf.Timestamp timestamp = 2;
+
+  oneof payload {
+    DeviceModelDeployRequest device_model_deploy_request = 20;
+    DeviceModelDeployResponse device_model_deploy_response = 21;
+    DeviceActiveModelRequest active_model_request = 22;
+    DeviceActiveModelResponse active_model_response = 23;
+    DeployModelRequest deploy_model_request = 24;
+  }
+}
