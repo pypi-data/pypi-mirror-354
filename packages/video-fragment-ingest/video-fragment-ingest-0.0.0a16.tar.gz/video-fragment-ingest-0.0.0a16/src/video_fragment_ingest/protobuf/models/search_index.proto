@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "models/ai_models.proto";
+
+option java_multiple_files = true;
+option java_package = "ai.volt.models";
+option go_package = "github.com/vlt-ai/atla/generated/models";
+
+package models;
+
+
+message OccupancyCount{
+  string id = 1;
+  string contextId = 2;
+  int32   count = 3;
+  google.protobuf.Timestamp  timestamp = 4;
+  string cameraId = 5;
+  string locationId = 6;
+  string levelId = 7;
+  string facilityId = 8;
+  string zoneId = 9;
+  repeated DetectedObject detectedObjects = 10;
+}

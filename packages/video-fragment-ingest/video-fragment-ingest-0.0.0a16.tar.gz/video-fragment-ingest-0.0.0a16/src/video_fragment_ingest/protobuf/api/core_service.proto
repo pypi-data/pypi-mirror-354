@@ -1,0 +1,446 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "models/ai_models.proto";
+import "models/service_models.proto";
+import "models/graph_models.proto";
+
+option java_multiple_files = true;
+option java_package = "ai.volt.api";
+option go_package = "github.com/vlt-ai/atla/generated/api";
+
+package api;
+
+/*
+  gRPC Service that handles all CRUD interaction with user, customer, facility, camera
+*/
+
+
+message GraphRequest {
+  oneof entity {
+    models.User user = 1;
+    models.Customer customer = 2;
+    models.Facility facility = 3;
+    models.Device device = 4;
+    models.Camera camera = 5;
+    models.Contact contact = 6;
+    models.Incident incident = 7;
+    models.APIKey api_key = 8;
+    models.UserSession user_session = 9;
+    models.Level level = 10;
+    models.Location location = 11;
+    models.FloorPlan floor_plan = 12;
+    models.Zone zone = 13;
+    models.Event event = 14;
+    models.ActivityLog activity_log = 15;
+    models.Coordinate coordinate = 16;
+    models.DeviceCluster device_cluster = 17;
+    models.RuleSetting rule_setting = 18;
+    models.Mask mask = 19;
+    models.Campus campus = 20;
+    models.Speaker speaker = 21;
+    models.MultiLensCamera multi_lens_camera = 22;
+    models.Furniture furniture = 23;
+    models.DecomposerRegion decomposer_region = 24;
+    models.WorkHours work_hours = 25;
+    models.Permission permission = 26;
+    models.Role role = 27;
+    models.UserGroup user_group = 28;
+    models.Shift shift = 29;
+    models.ObjectOfInterestTrackingJob object_of_interest_tracking_job = 30;
+    models.InferenceFrame inference_frame = 31;
+    models.CameraManufacturer camera_manufacturer = 32;
+    models.CameraModel camera_model = 33;
+    models.IncidentEvent incident_event = 34;
+    models.BadgeReader badge_reader = 35;
+    models.SystemEvent system_event = 36;
+    models.AuthorizedBadgeHolder authorized_badge_holder = 37;
+    models.VapeDetector vape_detector = 38;
+    models.Wall wall = 39;
+    models.Door door = 40;
+  }
+  // Optional field to indicate the depth of graph traversal
+  int32 depth = 80;
+  // Map that could signal keys to be included in the response,
+  // or key values to be used for search
+  map<string, string> kv_map = 81;
+}
+
+message GraphResponse {
+  oneof entity {
+    models.User user = 1;
+    models.Customer customer = 2;
+    models.Facility facility = 3;
+    models.Device device = 4;
+    models.Camera camera = 5;
+    models.Contact contact = 6;
+    models.Incident incident = 7;
+    models.APIKey api_key = 8;
+    models.UserSession user_session = 9;
+    models.Level level = 10;
+    models.Location location = 11;
+    models.FloorPlan floor_plan = 12;
+    models.Zone zone = 13;
+    models.Event event = 14;
+    models.ActivityLog activity_log = 15;
+    models.Coordinate coordinate = 16;
+    models.DeviceCluster device_cluster = 17;
+    models.RuleSetting rule_setting = 18;
+    models.Mask mask = 19;
+    models.Campus campus = 20;
+    models.Speaker speaker = 21;
+    models.MultiLensCamera multi_lens_camera = 22;
+    models.WorkHours work_hours = 25;
+    models.Permission permission = 26;
+    models.Role role = 27;
+    models.UserGroup user_group = 28;
+    models.Shift shift = 29;
+    models.ObjectOfInterestTrackingJob object_of_interest_tracking_job = 30;
+    models.InferenceFrame inference_frame = 31;
+    models.CameraManufacturer camera_manufacturer = 32;
+    models.CameraModel camera_model = 33;
+    models.IncidentEvent incident_event = 34;
+    models.BadgeReader badge_reader = 35;
+    models.SystemEvent system_event = 36;
+    models.AuthorizedBadgeHolder authorized_badge_holder = 37;
+    models.VapeDetector vape_detector = 38;
+  }
+  bool completed = 80;
+}
+
+message GraphResponseList {
+  repeated GraphResponse entities = 1;
+}
+
+message ClearFieldRequest {
+  GraphRequest graph_request = 1;
+  string field = 2;
+}
+
+message CameraList {
+  repeated models.Camera cameras = 1;
+}
+
+message MultiLensCameraList {
+  repeated models.MultiLensCamera cameras = 1;
+}
+
+message DeviceList {
+  repeated models.Device devices = 1;
+}
+
+message CameraListRequest {
+  oneof parent {
+    models.Customer customer = 1;
+    models.Facility facility = 2;
+  }
+}
+
+message Link {
+  string url = 1;
+}
+
+message ZoneList {
+  repeated models.Zone zones = 1;
+  repeated models.Camera unassigned_cameras = 2;
+  string time_zone = 3;
+  repeated models.RuleSetting facility_wide_rules = 4;
+  repeated models.BadgeReader unassigned_badge_readers = 5;
+  repeated models.VapeDetector unassigned_vape_detectors = 6;
+}
+
+message RuleList {
+  repeated models.RuleSetting rules = 1;
+}
+
+message UpdateIncidentRequest {
+  models.Incident incident = 1;
+  string description = 2;
+}
+
+message UpdateDeviceClusterRequest {
+  models.DeviceCluster cluster = 1;
+  models.Device device = 2;
+}
+
+message IncidentListRequest{
+  int32 start_index = 1;
+  int32 size = 2;
+  string customer_id = 3; // deprecated
+  repeated int32 statuses = 4;
+  string query = 5;
+  models.User user = 6;
+  repeated string facility_ids = 7;
+  repeated string rule_ids = 8;
+
+  google.protobuf.Timestamp from_timestamp = 10;
+  google.protobuf.Timestamp to_timestamp = 11;
+
+  string start_time = 12;  // 00:00
+  string end_time = 13;    // 23:59
+}
+
+message EventListRequest{
+  int32 start_index = 1;
+  int32 size = 2;
+  string incident_id = 3;
+  optional bool asc = 4;
+
+  google.protobuf.Timestamp from_timestamp = 10;
+  google.protobuf.Timestamp to_timestamp = 11;
+}
+
+message FloorPlansRequest {
+  repeated models.FloorPlan plans = 1;
+}
+
+message PauseRulesRequest {
+  int32 duration = 1; // in seconds
+  repeated models.RuleSetting rules = 2;
+  string facility_id = 3;
+}
+
+
+message PagingRequest {
+  optional int32 start_index = 1;
+
+  // optional
+  models.User user = 3;        // access control
+  models.Incident incident = 4;
+  models.IncidentEvent event = 5;
+}
+
+message IncidentSharing {
+  models.Incident incident = 1;
+  string email = 2;
+  string phone = 3;
+  models.User sender = 4;
+}
+
+message EmergencyCallRequest {
+  models.Incident incident = 1;
+  models.User user = 2;
+}
+
+message RemoteDeviceRequest {
+  models.Facility facility = 1; // current facility
+  models.Device device = 2;     // remote device
+}
+
+message CameraDiagnosisRequest {
+  string id = 1;
+  repeated models.Camera cameras = 2;
+}
+
+message CameraDiagnosisResultsRequest{
+  repeated models.Camera cameras = 1;
+}
+
+message CameraDiagnosisResultsResponse{
+  repeated models.FFProbResponse responses = 1;
+}
+
+message VideoPlaybackRequest {
+  models.Camera camera = 1;
+  google.protobuf.Timestamp start_timestamp = 2;
+  optional string stream_name = 3;
+}
+
+message VideoPlaybackResponse {
+  string stream_name = 1;
+}
+
+message FacilityControlList {
+  repeated models.FacilityControl controls = 1;
+}
+
+message CustomIncidentRequest {
+  string title = 1;
+  models.InferenceFrame frame = 2;
+  models.User user = 3;
+  models.Facility facility = 4;
+  optional bytes image_data = 5;
+}
+
+message SystemEventListRequest {
+  int32 start_index = 1;
+  int32 size = 2;
+  models.User user = 3;
+  repeated string facility_ids = 4;
+
+  google.protobuf.Timestamp from_timestamp = 15;
+  google.protobuf.Timestamp to_timestamp = 16;
+
+  string start_time = 17;  // 00:00
+  string end_time = 18;    // 23:59
+}
+
+message CameraMetadataResponse {
+  models.Customer customer = 1;
+  models.Facility facility = 2;
+}
+
+service CoreService {
+
+  /* Graph CRUD API */
+  rpc Create (GraphRequest) returns (GraphResponse);
+  rpc Get (GraphRequest) returns (GraphResponse);
+  rpc Update (GraphRequest) returns (GraphResponse);
+  rpc Delete (GraphRequest) returns (google.protobuf.Empty);
+  rpc List (GraphRequest) returns (GraphResponseList);
+  rpc DeleteEdges (GraphRequest) returns (google.protobuf.Empty);
+  rpc DeleteSubtree (GraphRequest) returns (google.protobuf.Empty);
+  rpc ClearField (ClearFieldRequest) returns (google.protobuf.Empty);
+
+  /* MIMIR HEARTBEAT */
+  rpc HealthCheck(google.protobuf.Empty) returns (google.protobuf.Empty);
+
+  /* AWS KVS ARN */
+  rpc CreateKvsArn (GraphRequest) returns (models.Camera);
+  rpc DeleteKvsArn (GraphRequest) returns (google.protobuf.Empty);
+
+  /* Redis PubSub */
+  //  rpc PubSubStream(stream models.Message) returns (stream models.Message);
+  rpc SubStream (models.SubscribeRequest) returns (stream models.Message);
+  rpc PubStream (models.Message) returns (google.protobuf.Empty);
+
+  /* Odin */
+  /** RuleViolated to be removed in favour TriggerRuleViolation*/
+  rpc RuleViolated (models.ViolationTrigger) returns (models.Incident);
+  rpc TriggerRuleViolation (models.ViolationTrigger) returns (google.protobuf.Empty);
+  rpc RequestUploadFrame(models.InferenceFrame) returns (google.protobuf.Empty);
+
+  /* UI / Ops */
+  rpc GetCustomerList (google.protobuf.Empty) returns (models.CustomerList);
+  rpc GetCustomer (models.Customer) returns (models.Customer);
+  rpc GetFacility (models.Facility) returns (models.Facility);
+  rpc GetFloorPlan (models.FloorPlan) returns (models.FloorPlan);
+  rpc GetFloorPlans (google.protobuf.Empty) returns (models.MagicFloorPlans);
+  rpc DeleteFloorPlan (models.FloorPlan) returns (google.protobuf.Empty);
+  rpc GetIncident(models.Incident) returns (models.Incident);
+  rpc GetIncidentPageList(IncidentListRequest) returns (models.IncidentList);
+  rpc GetIncidentEventList(EventListRequest) returns (models.IncidentEventList);
+  rpc GetIncidentViewerSession (models.IncidentViewerSession) returns (models.IncidentViewerSession);
+  rpc CreateIncidentLog(models.IncidentEvent) returns (models.IncidentEvent);
+  rpc UpdateIncidentLog(models.IncidentEvent) returns (models.IncidentEvent);
+  rpc DeleteAudioFromRuleSetting(models.RuleSetting) returns (google.protobuf.Empty);
+  rpc DeleteZone(models.Zone) returns (google.protobuf.Empty);
+  rpc StartHLSLiveView(models.Camera) returns (google.protobuf.Empty);
+  rpc RestartWebrtc(models.Camera) returns (google.protobuf.Empty);
+
+  rpc UpdateIncident (UpdateIncidentRequest) returns (models.Incident);
+  rpc GetCameraList (CameraListRequest) returns (CameraList);
+  rpc GetMultiLensCameraList(CameraListRequest) returns (MultiLensCameraList);
+  rpc GetCameraLevel (models.Camera) returns (models.Level);
+  rpc ShareIncident (models.Incident) returns (Link);
+  rpc StartPairing(models.Facility) returns (google.protobuf.Empty); // deprecated
+  rpc StopPairing(models.Facility) returns (google.protobuf.Empty);  // deprecated
+
+  rpc TriggerCustomIncident(CustomIncidentRequest) returns (models.Incident);
+
+  rpc ShareIncidentTo(IncidentSharing) returns (google.protobuf.Empty);
+
+  // Report frame as having incorrect detections (should only have objects that are invalid)
+  rpc ReportInvalidDetection(models.InferenceFrame) returns (google.protobuf.Empty);
+
+  rpc UpdateContact(models.Contact) returns (models.Contact);
+  rpc DeleteContact(models.Contact) returns (google.protobuf.Empty);
+
+  rpc ExportIncident(IncidentSharing) returns (google.protobuf.Empty);
+  rpc TriggerEmergencyCall(EmergencyCallRequest) returns (google.protobuf.Empty);
+  rpc EndEmergencyCall(EmergencyCallRequest) returns (google.protobuf.Empty);
+
+  // return active incidents assigned to a user
+  rpc GetAssignedIncident(models.User) returns (models.IncidentList);
+
+
+  /* Evidence */
+  rpc UploadEvidence(models.InferenceFrame) returns (google.protobuf.Empty);
+  rpc RemoveFramesFromIncident(models.Incident) returns (google.protobuf.Empty);
+
+
+  /* Device */
+  rpc CreateDevice(models.Device) returns (models.Device);
+  rpc DeleteDevice(models.Device) returns (google.protobuf.Empty);
+  rpc AddDeviceToCluster(UpdateDeviceClusterRequest) returns (google.protobuf.Empty);
+  rpc AssignRemoteDevice(RemoteDeviceRequest) returns (models.Device);
+  rpc UnAssignRemoteDevice(RemoteDeviceRequest) returns (google.protobuf.Empty);
+  rpc RequestVideoUpload(models.KvsVideoUploadRequest) returns (google.protobuf.Empty);
+  rpc RetireDevice(DeviceList) returns (google.protobuf.Empty);
+
+
+  rpc RequestVideoPlayback(VideoPlaybackRequest) returns (VideoPlaybackResponse);
+
+  /* Camera */
+  rpc ConfigureCamera (models.Camera) returns (models.Device);
+  rpc BulkConfigureCameras (CameraList)  returns (DeviceList);
+  rpc BulkDeleteCameras (CameraList)  returns (google.protobuf.Empty);
+  rpc DeleteCamera (models.Camera) returns (google.protobuf.Empty);
+  rpc GetThumbnail (models.Camera) returns (models.PresignedUrl);
+  rpc GenerateThumbnail(models.Camera) returns (google.protobuf.Empty);
+  rpc AssignCameraToLocation(models.PairCameraRequest) returns (google.protobuf.Empty);
+  rpc AssignMultiLensCameraToLocation(models.PairMultiLensCameraRequest) returns (google.protobuf.Empty);
+  rpc RemoveCameraLocation(models.RemoveCameraLocationRequest) returns (google.protobuf.Empty);
+  rpc GetAssociatedRules(models.Camera) returns (RuleList);
+  rpc BulkUpdateCameraController(models.Camera) returns (google.protobuf.Empty);
+  rpc UpdateCameraMasks(models.Camera) returns (google.protobuf.Empty);
+  rpc GetCameraMetadata(models.Camera) returns (CameraMetadataResponse);
+
+  /* Speaker */
+  rpc CreateSpeaker(models.Speaker) returns (models.Speaker);
+  rpc ConfigureSpeaker(models.Speaker) returns (models.Speaker);
+
+  /* Rule */
+  rpc GetFacilityZones(models.Facility) returns (ZoneList);
+  rpc PauseRule(PauseRulesRequest) returns (google.protobuf.Empty);
+  rpc EnableRule(PauseRulesRequest) returns (google.protobuf.Empty);
+
+  /* Campus */
+  rpc CreateCampus (models.Facility) returns (models.Campus);
+
+  /* Floor Plan */
+  rpc BuildFloorPlan (models.FloorPlan) returns (models.FloorPlan);
+  rpc BuildFloorPlans (FloorPlansRequest) returns (google.protobuf.Empty);
+  rpc GetFloorLevels (models.FloorPlan) returns (models.FloorPlan);
+  rpc GetLevelDetail(models.Level) returns (models.Level);
+
+  /* Twilio */
+  rpc GetConversation (models.Conversation) returns (models.TwilioToken);
+  rpc Escalate (models.TwilioConversationMessage) returns (google.protobuf.Empty);
+  rpc SendSMS (models.TwilioMessage) returns (google.protobuf.Empty);
+  rpc SendVoice (models.TwilioMessage) returns (google.protobuf.Empty);
+  rpc AddParticipant (models.TwilioParticipant) returns (google.protobuf.Empty);
+  rpc RemoveParticipants (models.TwilioParticipant) returns (google.protobuf.Empty);
+  rpc RemoveConversation (models.TwilioChannel) returns (google.protobuf.Empty);
+
+  /* Audio */
+  rpc SaveAudioFile(models.SpeechAudio) returns (models.SpeechAudio);
+  rpc RemoveAudioFile(models.SpeechAudio) returns (google.protobuf.Empty);
+  rpc PlayAudioFile(models.SpeechAudio) returns (models.SpeechAudio);
+
+  /* Speaker */
+  rpc PlayAudioOnSpeaker(models.PlayAudioRequest) returns (google.protobuf.Empty);
+
+  /* Trail Log */
+  rpc GetTrailLogs(models.TrailLogRequest) returns (models.TrailLogList);
+  rpc GetTrailLogsField(models.TrailLogFieldRequest) returns(models.TrailLogField);
+
+  rpc GetCamerasInFacility(models.Facility) returns (models.CamerasInFacility);
+  rpc GetCamerasInFloorPlan(models.Facility) returns (models.FloorPlan);
+
+  rpc RunCamerasDiagnosis(CameraDiagnosisRequest) returns (google.protobuf.Empty);
+  rpc GetCameraDiagnosisResults(CameraDiagnosisResultsRequest) returns (CameraDiagnosisResultsResponse);
+
+  rpc ManageFacility(models.FacilityControl) returns (models.FacilityControl);
+  rpc GetActiveDisableCameras(models.Facility) returns (FacilityControlList);
+
+  rpc DeleteMask(models.Mask) returns (google.protobuf.Empty);
+  rpc UpdateBadgeReader(models.BadgeReader) returns (models.BadgeReader);
+  rpc UpdateVapeDetector(models.VapeDetector) returns (models.VapeDetector);
+
+  rpc GetSystemEventPageList(SystemEventListRequest) returns (models.SystemEventList);
+  rpc GetPendingAccessControlEvents(models.User) returns (models.SystemEventList);
+  rpc GetAuthorizedBadgeHolderConfirmedFrames(models.AuthorizedBadgeHolder) returns (models.InferenceFrameList);
+  rpc ValidateAccessControlEvent(models.AccessControlEvent) returns (models.AccessControlEvent);
+}

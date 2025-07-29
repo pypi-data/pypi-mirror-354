@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "models/graph_models.proto";
+import "models/service_models.proto";
+import "models/ai_models.proto";
+
+
+option java_multiple_files = true;
+option java_package = "ai.volt.api";
+option go_package = "github.com/vlt-ai/atla/generated/api";
+
+package api;
+
+message FrameThroughput {
+  string camera_id = 1;
+  int32 number_of_message = 2;
+}
+
+message IncidentPrompt {
+    string incident_id = 1;
+    string prompt = 2;
+    optional int32 frame_count = 3;
+    optional bool debug_cropped_frame = 4;
+    repeated string frame_ids = 5;
+}
+
+message IncidentPromptResponse {
+    string response = 1;
+}
+
+service DebuggingService {
+  rpc TriggerIncidentsInFacility(models.Facility) returns (google.protobuf.Empty);
+  rpc TriggerIncidentManually(models.IncidentTrigger) returns (google.protobuf.Empty);
+  rpc TestFrameThroughput(FrameThroughput) returns (google.protobuf.Empty);
+  rpc StartDebugInferenceFrame(models.Camera) returns (google.protobuf.Empty);
+  rpc SendFrameForTraining(models.InferenceFrame) returns (google.protobuf.Empty);
+
+  rpc NotifyDemoAttendants(models.UserGroup) returns (google.protobuf.Empty);
+  rpc ClearDemoAttendants(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc AutoConfirmIncident(models.EmergencyCallProgress) returns (google.protobuf.Empty);
+  rpc GetDemoUser(models.User) returns (models.User);
+  rpc CreateIncidentEvent(models.IncidentEvent) returns (google.protobuf.Empty);
+  rpc GetCameraLocation(models.Camera) returns (models.Camera);
+  rpc MakeSpeakerAnnouncement(models.WebNotification) returns (google.protobuf.Empty);
+  rpc Inference(models.InferenceFrame) returns (google.protobuf.Empty);
+  rpc RunIncidentWithVLM(IncidentPrompt) returns (IncidentPromptResponse);
+}

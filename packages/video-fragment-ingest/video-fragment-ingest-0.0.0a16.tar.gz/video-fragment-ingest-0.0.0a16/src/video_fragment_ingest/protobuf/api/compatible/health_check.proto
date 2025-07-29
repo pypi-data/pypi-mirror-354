@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+option java_multiple_files = true;
+option java_package = "ai.volt.api.health";
+option go_package = "github.com/vlt-ai/atla/generated/api/compatible";
+
+package health;
+
+service HealthCheck {
+  rpc Check(HealthCheckRequest) returns (HealthCheckResponse) {}
+}
+
+message HealthCheckRequest {
+  string id = 1;
+}
+
+message HealthCheckResponse {
+  string id = 1;
+  string status = 2;
+  google.protobuf.Timestamp timestamp = 3;
+}
+

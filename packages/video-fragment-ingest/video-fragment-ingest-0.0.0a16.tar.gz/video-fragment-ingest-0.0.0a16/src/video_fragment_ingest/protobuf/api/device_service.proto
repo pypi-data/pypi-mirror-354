@@ -1,0 +1,31 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "ai.volt.api";
+option go_package = "github.com/vlt-ai/atla/generated/api";
+
+import "google/protobuf/empty.proto";
+import "models/ai_models.proto";
+import "models/model_deployment.proto";
+import "models/graph_models.proto";
+import "models/service_models.proto";
+import "google/protobuf/timestamp.proto";
+
+
+package api;
+
+message FrameList {
+    string id = 1;
+    repeated models.InferenceFrame frames = 2;
+    google.protobuf.Timestamp timestamp = 3;
+}
+
+service DeviceService {
+    rpc PubSubStream(stream models.Message) returns (stream models.Message);
+    rpc InferenceStream(stream FrameList) returns (stream google.protobuf.Empty);
+    rpc BiInferenceStream(stream models.InferenceFrame) returns (stream google.protobuf.Empty);
+    rpc GetDeviceByUUID(models.Device) returns (models.Device);
+    rpc GetDesiredDeviceModel(models.Device) returns (models.ModelArtifact); //Edge -> Mimir
+
+    rpc RequestManifestUpload(models.ManifestRequest) returns (google.protobuf.Empty);
+    rpc RequestVideoSegmentUpload(models.VideoSegmentRequest) returns (google.protobuf.Empty);
+}

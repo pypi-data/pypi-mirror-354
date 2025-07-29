@@ -1,0 +1,130 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "models/graph_models.proto";
+
+option java_multiple_files = true;
+option java_package = "ai.volt.api";
+option go_package = "github.com/vlt-ai/atla/generated/api";
+
+package api;
+
+service UserService {
+  rpc GetUserProvider (SAMLUserRequest) returns (SAMLUserResponse);
+  rpc GetUser (google.protobuf.Empty) returns (models.User);
+  rpc InviteAdmin (models.User) returns (models.User);
+  rpc InviteMember (models.User) returns (models.User);
+  rpc DeleteUser (models.User) returns (google.protobuf.Empty);
+  rpc ResendVerificationCode(models.User) returns (google.protobuf.Empty);
+  rpc SetMFAOptions(SetMFAOptionsRequest) returns (google.protobuf.Empty);
+  rpc ResetMFA(models.User) returns (google.protobuf.Empty);
+  rpc GetActiveOperators(google.protobuf.Empty) returns (UserList);
+  rpc UpdateNewUserWithAuth(models.User) returns (google.protobuf.Empty);
+  rpc UpdateUserStatus(models.User) returns (google.protobuf.Empty);
+
+  // Role and Permission
+  rpc CreateRole(models.Role) returns (models.Role);
+  rpc AddPermissionToRole(models.Role) returns (models.Role);
+  rpc RemovePermissionFromRole(models.Role) returns (models.Role);
+  rpc UpdateDefaultPermission(google.protobuf.Empty) returns (google.protobuf.Empty);
+
+  // Auth Tokens
+  rpc CreateToken(CreateTokenRequest) returns (TokenGeneratedResponse);
+  rpc RevokeToken(models.Token) returns (models.Token);
+  rpc RegenerateToken(models.Token) returns (TokenGeneratedResponse);
+  rpc CheckToken(CheckTokenRequest) returns (CheckTokenResponse);
+
+  rpc CreateUserGroup(models.UserGroup) returns (models.UserGroup);
+  rpc UpdateUserGroup(models.UserGroup) returns (models.UserGroup);
+  rpc AddEntityToUserGroup(models.UserGroup) returns (models.UserGroup);
+  rpc RemoveEntityFromUserGroup(models.UserGroup) returns (models.UserGroup);
+  rpc CreateDefaultRoles(models.Customer) returns (google.protobuf.Empty);
+  rpc GetUserPermissions(models.User) returns (UserPermissionResponse);
+
+  // Schedule
+  rpc CreateWorkShift(WorkShift) returns (models.Shift);
+  rpc UpdateWorkHoursForShift(WorkShift) returns (models.Shift);
+  rpc RemoveShift(models.Shift) returns (google.protobuf.Empty);
+  rpc ListWorkShifts(models.Customer) returns (WorkShifts);
+
+  // Escalation Policy
+  rpc ListEscalationPolicies(models.Customer) returns (EscalationPolicies);
+  rpc GetEscalationPolicy(models.EscalationPolicy) returns (EscalationPolicyWithOnCallUsers);
+  rpc UpdateEscalationPolicy(models.EscalationPolicy) returns (models.EscalationPolicy);
+  rpc RemoveEscalationPolicy(models.EscalationPolicy) returns (google.protobuf.Empty);
+  rpc AssignEscalationPolicy(AssignEscalationPolicyRequest) returns (google.protobuf.Empty);
+}
+
+message UserList {
+  repeated models.User users = 1;
+}
+message SetMFAOptionsRequest {
+  models.User user = 1;
+  bool sms_enabled = 2;
+  bool sms_preferred = 3;
+  bool totp_enabled = 4;
+  bool totp_preferred = 5;
+}
+message SAMLUserRequest {
+  string email = 1;
+}
+message SAMLUserResponse {
+  string provider = 1;
+  string customer_name = 2;
+}
+message UserPermissionResponse {
+  repeated models.UserGroup groups = 1;
+}
+message WorkShift {
+  models.Shift shift = 1;
+  models.WorkHours work_hours = 2;
+  repeated models.User users = 3;
+  models.Customer customer = 4;
+}
+message EscalationPolicies {
+  repeated models.EscalationPolicy policies = 1;
+}
+message EscalationPolicyWithOnCallUsers {
+  models.EscalationPolicy policy = 1;
+  repeated models.User on_call_users = 2;
+}
+message AssignEscalationPolicyRequest {
+  models.EscalationPolicy policy = 1;
+  oneof entity {
+    models.Facility facility = 2;
+    models.Zone zone = 3;
+    models.RuleSetting rule_setting = 4;
+  }
+}
+message WorkShiftWithUser {
+  models.Shift shift = 1;
+  message WorkHoursWithUser {
+    models.WorkHours work_hours = 1;
+    repeated models.User users = 2;
+  }
+  repeated WorkHoursWithUser work_hours_with_user = 2;
+}
+message WorkShifts {
+  repeated WorkShiftWithUser work_shifts = 1;
+}
+
+message CreateTokenRequest {
+  models.Token token = 1;
+  models.Customer customer = 2;
+  models.User user = 3;
+}
+
+message TokenGeneratedResponse {
+  models.Token token = 1;
+  string secret_token = 2;
+}
+
+message CheckTokenRequest {
+  string secret_token = 1;
+}
+
+message CheckTokenResponse {
+  bool valid = 1;
+  models.Token token = 2;
+  models.Customer customer = 3;
+}

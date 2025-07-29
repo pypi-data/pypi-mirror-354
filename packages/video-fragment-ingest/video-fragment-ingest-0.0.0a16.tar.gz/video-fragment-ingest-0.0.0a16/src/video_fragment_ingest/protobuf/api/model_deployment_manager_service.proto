@@ -1,0 +1,21 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "ai.volt.api";
+option go_package = "github.com/vlt-ai/atla/generated/api";
+
+import "google/protobuf/empty.proto";
+import "models/model_deployment.proto";
+import "models/graph_models.proto";
+
+
+package api;
+
+service ModelDeploymentManager {
+    rpc GetCurrentActiveModel(models.Device) returns (google.protobuf.Empty); //Client/VOR -> Mimir -> uses pubsub for Edge interaction / Async Request
+    rpc DeployModel(models.DeployModelRequest) returns (google.protobuf.Empty); //Client/VOR -> Mimir -> uses pubsub for Edge interaction / Async Request
+    rpc GetModelDeploymentStatus(models.DeployModelRequest) returns (models.DeployModelResponse); //Client/VOR -> Mimir requesting deployment status
+    rpc GetModel(models.Device) returns (models.ModelArtifact); //Client/VOR -> Mimir
+    rpc GetLatestArtifacts(google.protobuf.Empty) returns (models.ResponseLatestArtifacts); //Client/VOR -> Mimir
+    rpc GetHistoricConfigs(models.HistoricConfigsRequest) returns (models.HistoricConfigsResponse); //Client/VOR -> Mimir requesting n number of historic versioned configs
+    rpc GetDeviceDeploymentStatus(models.HistoricDeviceDeployRequest) returns (models.HistoricDeviceDeployResponse); //Client/VOR -> Mimir requesting n number of historic device deploys
+}
