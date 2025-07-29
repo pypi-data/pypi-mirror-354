@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: factory-py
+Version: 0.0.1
+Summary: Factory is a library designed to streamline the creation of automated robotic workflows.
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+Requires-Dist: setuptools>=80.9.0
+Requires-Dist: twine>=6.1.0
+Requires-Dist: wheel>=0.45.1
+Provides-Extra: build
+Requires-Dist: setuptools; extra == "build"
+Requires-Dist: wheel; extra == "build"
+Requires-Dist: twine; extra == "build"
+Provides-Extra: compile
+Requires-Dist: wheel; extra == "compile"
