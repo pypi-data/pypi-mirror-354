@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: CRC-API
+Version: 0.1.0
+Summary: Python wrapper for the CRC 1625 MatInf VRO API
+Home-page: https://gitlab.ruhr-uni-bochum.de/icams-mids/crc1625rdmswrapper/-/tree/Doaa?ref_type=heads
+Author: Your Name
+Author-email: your.email@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+# CRC_API
+
+A Python wrapper for the MatInf VRO API used in CRC 1625. It allows querying samples, associated objects, compositions, and properties.
+
+## Installation
+
+```bash
+pip install CRC_API
