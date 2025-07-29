@@ -1,0 +1,31 @@
+[project]
+name = "ceda-flight-pipeline"
+version = "1.2.1"
+description = "The flight-pipeline mechanism allows for uploading new flights to the STAC index using the ElasticSearch client. The flight-pipeline scripts push new records that are not currently in the index and can remove or archive pushed records on the local system. "
+authors = [
+    {name = "Ioana Circu",email = "ioana.circu@stfc.ac.uk"},
+    {name = "Daniel Westwood", email = "daniel.westwood@stfc.ac.uk"}
+]
+license = {text = "BSD 3"}
+readme = "README.md"
+requires-python = ">=3.9,<4.0"
+dependencies = [
+    "certifi (>=2022.12.7,<2023.0.0)",
+    "elasticsearch (>=8.14.0,<9.0.0)",
+    "urllib3 (>=1.26.14,<2.0.0)",
+    "numpy (>=1.24.2,<2.0.0)",
+    "click (>=8.1.8,<9.0.0)",
+    "requests (>=2.32.4,<3.0.0)"
+]
+
+[tool.poetry.group.dev.dependencies]
+sphinx-rtd-theme = "^3.0.2"
+sphinx = "^7.4.7"
+poetry = "^2.1.1"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project.scripts]
+flight-pipeline = "ceda_flight_pipeline.cli:main"
