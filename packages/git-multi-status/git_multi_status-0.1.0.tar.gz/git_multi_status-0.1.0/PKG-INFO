@@ -1,0 +1,49 @@
+Metadata-Version: 2.4
+Name: git-multi-status
+Version: 0.1.0
+Summary: Python port of multi-git-status
+Requires-Python: >=3.10
+Requires-Dist: rich>=14.0.0
+Requires-Dist: typer>=0.15.2
+Description-Content-Type: text/markdown
+
+# Git Multi Status
+
+List the status of multiple Git repositories in a directory.
+
+## Install
+
+You can install using `pipx install git-multi-status` or `uvx git-multi-status`
+
+## Usage
+```
+% git-multi-status --help
+
+ Usage: git-multi-status [OPTIONS] [DIR]
+
+ git-multi-status shows uncommitted, untracked and unpushed changes in multiple Git repositories.
+
+╭─ Arguments ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│   dir      [DIR]  Dir to scan [default: .]                                                                                                                        │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                       -w               Warn about dirs that are not Git repositories                                                                              │
+│ --no-ok               -e               Exclude repos that are 'ok'                                                                                                │
+│                       -f               Do a 'git fetch' on each repo (slow for many repos)                                                                        │
+│ --throttle                    INTEGER  Wait SEC seconds between each 'git fetch' (-f option) [default: 0]                                                         │
+│ --depth               -d      INTEGER  Scan depth: 0=no recursion, -1=unlimited, >0=max depth [default: 2]                                                        │
+│ --flatten                              Show only one status per line                                                                                              │
+│                       -b               Show currently checked out branch                                                                                          │
+│ --no-push                              Limit output: hide push status                                                                                             │
+│ --no-pull                              Limit output: hide pull status                                                                                             │
+│ --no-upstream                          Limit output: hide upstream status                                                                                         │
+│ --no-uncommitted                       Limit output: hide uncommitted changes                                                                                     │
+│ --no-untracked                         Limit output: hide untracked files                                                                                         │
+│ --no-stashes                           Limit output: hide stashes                                                                                                 │
+│ --version             -v                                                                                                                                          │
+│ --debug                                Enable debug output                                                                                                        │
+│ --install-completion                   Install completion for the current shell.                                                                                  │
+│ --show-completion                      Show completion for the current shell, to copy it or customize the installation.                                           │
+│ --help                                 Show this message and exit.                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
