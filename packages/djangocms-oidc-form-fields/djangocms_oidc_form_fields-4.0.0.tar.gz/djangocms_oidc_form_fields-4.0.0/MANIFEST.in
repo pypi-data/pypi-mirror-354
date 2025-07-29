@@ -1,0 +1,5 @@
+include LICENSE
+include README.rst
+recursive-include djangocms_oidc_form_fields/locale *
+recursive-include djangocms_oidc_form_fields/templates *
+recursive-exclude * *.py[co]

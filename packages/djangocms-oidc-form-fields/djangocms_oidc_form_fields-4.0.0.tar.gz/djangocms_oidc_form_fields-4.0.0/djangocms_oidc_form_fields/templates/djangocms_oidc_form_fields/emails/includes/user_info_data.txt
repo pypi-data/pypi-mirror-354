@@ -1,0 +1,2 @@
+{% for name, value in user_info_data %}{{ name }}: {{ value }}
+{% endfor %}
