@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+requirements.txt
+ssh_unlock_config.toml
+.githooks/pre-commit
+src/gopass_utils/__init__.py
+src/gopass_utils/gopass_utils.py
+src/gopass_utils/gu_logger.py
+src/gopass_utils/ssh_unlock.py
+src/gopass_utils.egg-info/PKG-INFO
+src/gopass_utils.egg-info/SOURCES.txt
+src/gopass_utils.egg-info/dependency_links.txt
+src/gopass_utils.egg-info/entry_points.txt
+src/gopass_utils.egg-info/requires.txt
+src/gopass_utils.egg-info/top_level.txt
