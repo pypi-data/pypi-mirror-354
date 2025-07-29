@@ -1,0 +1,28 @@
+Metadata-Version: 2.4
+Name: cursofiap_package_carlobrayer
+Version: 1.0.0
+Summary: Descricao da sua lib cursofiap
+Home-page: https://github.com/carlobrayer/cursofiap
+Author: Carlo Brayer
+Author-email: carlobrayer@gmail.com
+License: MIT
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: summary
+
+# Cursofiap
+A simple example library.
+## Installation
+```sh
+pip install cursofiap
+```
+## Usage
+```python
+from cursofiap import hello_world
+print(hello_world())
+```
