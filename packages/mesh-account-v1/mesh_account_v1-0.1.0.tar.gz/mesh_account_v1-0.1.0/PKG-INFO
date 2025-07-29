@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: mesh-account-v1
+Version: 0.1.0
+Summary: Integration SDK for the account v1 API service.
+Author-email: Bernard Bussy <bernard@meshtrade.co>
+Keywords: meshtrade,mesh-sdk,grpc,betterproto,grpclib
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: betterproto<3.0,>=2.0.0b7
+Requires-Dist: grpclib<0.5,>=0.4.8
+Dynamic: license-file
+
+# Mesh Accounts integration v1 SDK
