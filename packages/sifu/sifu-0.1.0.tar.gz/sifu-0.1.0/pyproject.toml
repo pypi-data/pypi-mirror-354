@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "sifu"
+version = "0.1.0"
+description = "Enhanced Knowledge System for ELLMa"
+authors = ["Your Name <your.email@example.com>"]
+license = "Apache 2.0 "
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.95.0"
+uvicorn = {extras = ["standard"], version = "^0.21.1"}
+pydantic = "^1.10.7"
+pyyaml = "^6.0"
+redis = "^4.5.5"
+python-multipart = "^0.0.6"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+langdetect = "^1.0.9"
+spacy = "^3.5.0"
+python-dateutil = "^2.8.2"
+httpx = "^0.23.3"
+faiss-cpu = {version = "^1.7.4", platform = "linux"}  # or faiss-gpu if CUDA is available
+sentence-transformers = "^2.2.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.1"
+pytest-asyncio = "^0.21.0"
+black = "^23.3.0"
+isort = "^5.12.0"
+mypy = "^1.2.0"
+flake8 = "^6.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 88
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
