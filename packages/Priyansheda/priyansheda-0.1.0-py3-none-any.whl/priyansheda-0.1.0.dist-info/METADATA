@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: Priyansheda
+Version: 0.1.0
+Summary: Automated bivariate analysis and visualization tools for EDA
+Author: Priyanshu Raj
+Author-email: priyanshujha274@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
