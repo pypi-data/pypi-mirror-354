@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: rememepy
+Version: 0.1.1
+Summary: A tool to substitute the main image in memes with a different image.
+Author-email: Robin Škába <robin.skaba@gmail.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/robinskaba/rememepy
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=2.3.0
+Requires-Dist: pillow>=11.2.1
+Requires-Dist: scipy>=1.15.3
+Dynamic: license-file
+
+# TODO README for rememepy
