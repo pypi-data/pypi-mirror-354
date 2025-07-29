@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: adskalman
+Version: 0.3.12
+Summary: Kalman filtering routine
+Author-email: Andrew Straw <strawman@astraw.com>
+Maintainer-email: Andrew Straw <strawman@astraw.com>
+License-Expression: BSD-3-Clause
+Project-URL: homepage, https://github.com/astraw/adskalman
+Requires-Python: >=3.8
+License-File: LICENSE.txt
+Requires-Dist: numpy
+Dynamic: license-file
