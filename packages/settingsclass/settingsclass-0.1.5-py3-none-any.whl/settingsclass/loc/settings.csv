@@ -1,0 +1,40 @@
+id,ja,en
+
+#ログメッセージ/logging messages
+initing_settings_1,"設定ファイルが存在しないため、以下ファイルで初期化します。：{}","Settings file not found. Creating a config file with default values to {}"
+loading_settings_from_1,"以下のファイルから設定を読み込みます。：{}","Loading settings from {}"
+using_key_var_from_env_1,"以下の環境変数を適用します。：{}","The following environmental variable will be applied: {}"
+unencrypted_data_found_1,"暗号化されていないデータ（{}）が見つかりました。ファイルを暗号化して上書きします。","Unencrypted data found ({}). Encrypting and overwriting the current file."
+
+#エラーメッセージ/error messages
+
+file_is_folder_1,"指定されたパスはファイルを指すことが期待されていましたが、フォルダを指しています。：{}。","The path was expected to point to a file, but points to a folder. Path: {}"
+invalid_type_5,"【{0}】セクションのパラメータ【{1}】に対して、【{3}】をタイプ{2}に変換できませんでした。デフォルト値の【{4}】に設定します。","Could not convert '{3}' to type {2} for parameter <{1}> in section <{0}>. Setting to the default value of {4}"
+missing_config_section_1,"セクション【{}】が見つかりませんでした。","The config file is missing section <{}>"
+config_param_missing_2,"セクションのパラメータ【{0}】に【{1}】が見つかりませんでした。","Config file is missing parameter <{1}> in section <{0}>"
+extra_config_sections_1,"設定ファイルに予期しないセクションは使用できません。：{}","The following sections are not in the definition and will be ignored: {}"
+extra_config_parameter_2,"設定ファイルの【{0}】セクションに予期されていない【{1}】のパラメーターが見つかりました。","Unexpected parameter {1} found in section {0} of the settings file"
+param_type_is_string_but_looks_x_4,"設定ファイルの【{}】セクション【{}】の【{}】値を設定されているパラメーターは文字列ですが、{}に見えます。","The parameter <{}> in section <{}> with value {} of the settings file is a string but looks like a {}"
+cannot_convert_to_bool_1,"【{}】の値をbooleanに変換できませんでした。","Could not convert the value of <{}> to a boolean."
+dictionary_not_supported_2,"辞書型はサポート対象外ため、初期化できませんでした【{}】（{}）","Dictionaries are currently not supported. Please use a different type for <{}> ({})"
+unexpected_class_found_2,"予期されない型が見つかりました。：{}{}。GenericAliasを継承するクラスは_RandomTypeまたは_TypeWrapperも継承する必要があります。ほかの可変タイプ（例：set)は対象外です","Unexpected type found in: {}/{}. Classes inheriting GenericAlias should also inherit _RandomType or _TypeWrapper. Other parametrized types such as set are not supported"
+invalid_encryption_key_type_1,"暗号化キーの型が不正です：{}。使用可能なタイプは【None】・【str】・【tuple[Callable]】。Tupleの場合は【暗号化関数、複合化関数】の順番が必用","{} has been provided but only types str, None and tuple[Callable] can be used as encryption keys. In case of tuple, the first callable should handle encryption, with the second handling decrpytion"
+could_not_decode_string_1,"ファイルのデコードに失敗しました。ファイルが壊れている可能性があります：{}","Failed to decode the file. The file may be corrupted: {}"
+function_can_only_be_called_on_randomtype_1,"この関数は_RandomTypeのみで呼び出すことができます：{}","This function can only be called on _RandomType: {}"
+keyfile_location_unaccessible_1,"キーファイルの場所にアクセスできません。代わりに文字列または呼び出し可能なキーで指定してください：{}","The keyfile location is unaccessable. Please provide a string or callable key instead: {}"
+no_initial_value_3,"クラス{}.{}の<{}>の値は見つかりませんでした。ランダムの変数の場合でもプレースホルダーの値は必用です。","Missing value for variable <{2}> inside {0}.{1}. All keys need to be initialized, even random properties require a placeholder."
+parameter_type_missing_1,"{} のパラメータの型ヒントが見つかりませんでした。明示的な型が指定されていないパラメータは、その値から型が推測されますが、これは部分的に失敗しました。値は引き続き推測されますが、文字列の変換ではこのメンバーは表示されません。","Parameter type hint for {} was not found. Parameters without explicit type are inferred from their values, but this has partially failed. The value will still be inferred, but string conversion will not show this member"
+json_decode_failed_3,"パラメータ【{}】の【{}】型へのでコードは失敗しました。デフォルト値の【{}】に設定します。","Failed to decode parameter <{}> into type <{}> defaulting to <{}>"
+iterable_class_annotation_too_many_1,"【{}】のアノテーションの数が足りません","Annotation <{}> has too many type annotations, should be exactly 1"
+iterable_class_annotation_too_few_1,【{}】のアノテーションの数が多すぎます,"Annotation <{}> has too few type annotations, should be exactly 1"
+
+#UT
+##設定モジュール/Settings module
+lower_third_not_reached,"RandomSettingTypeの設定生成のユニットテスト中に、下位の1割の値が生成されませんでした。","The lower third values have not been generated during the unit test of RandomType for setting generation"
+higher_third_not_reached,"RandomSettingTypeの設定生成のユニットテスト中に、上位の1割の値が生成されませんでした。","The higher third values have not been generated during the unit test of RandomType for setting generation"
+
+##翻訳モジュール/Translation module
+param_count_mismatch_2,"パラメータの数がキーの期待値と一致しません。 ({}の{}行目から呼び出されました)","The number of parameters does not match the number at the end of the key (called from {} line {})"
+pos_and_non_pos_brackets_mixed_2,"位置指定と非位置指定のブラケットが混在しています。 (＜{}＞キー値：{})","Positional and non-positional brackets are mixed. (key <{}> has value <{}>)"
+translation_key_does_not_exist_3,"翻訳キーの「{}」が存在しません。箇所：{}の{}行目","The translation key '{}' does not exist in file {} line {}"
+unused_key_found_1,"未使用の翻訳キーが見つかりました。：{}","Unused translation key found: {}"
