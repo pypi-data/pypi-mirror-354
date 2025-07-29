@@ -1,0 +1,339 @@
+{#- Template for OWA plugins.
+
+This template renders an OWA plugin.
+
+Context:
+  plugin (PluginSpecWrapper): The plugin to render.
+  plugin_name (str): The plugin name/identifier.
+  root (bool): Whether this is the root object, injected with `:::` in a Markdown page.
+  heading_level (int): The HTML heading level to use.
+  config (dict): The configuration options.
+-#}
+
+{% block logs scoped %}
+  {#- Logging block.
+
+  This block can be used to log debug messages, deprecation messages, warnings, etc.
+  -#}
+  {{ log.debug("Rendering OWA plugin " + plugin.namespace) }}
+{% endblock logs %}
+
+<div class="doc doc-object doc-plugin">
+  {% with obj = plugin, html_id = plugin.namespace %}
+
+    {% if root %}
+      {% set show_full_path = config.show_root_full_path %}
+      {% set root_members = True %}
+    {% elif root_members %}
+      {% set show_full_path = config.show_root_members_full_path or config.show_object_full_path %}
+      {% set root_members = False %}
+    {% else %}
+      {% set show_full_path = config.show_object_full_path %}
+    {% endif %}
+
+    {% set plugin_name = plugin.namespace if show_full_path else plugin.name %}
+
+    {% if not root or config.show_root_heading %}
+      {% filter heading(
+          heading_level,
+          role="plugin",
+          id=html_id,
+          class="doc doc-heading",
+          toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-plugin"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + (config.toc_label if config.toc_label and root else plugin.name),
+        ) %}
+
+        {% block heading scoped %}
+          {#- Heading block.
+
+          This block renders the heading for the plugin.
+          -#}
+          {% if config.show_symbol_type_heading %}<code class="doc-symbol doc-symbol-heading doc-symbol-plugin"></code>{% endif %}
+          {% if config.heading and root %}
+            {{ config.heading }}
+          {% elif config.separate_signature %}
+            <span class="doc doc-object-name doc-plugin-name">{{ plugin_name }}</span>
+          {% else %}
+            <code>{{ plugin_name }}</code>
+          {% endif %}
+        {% endblock heading %}
+
+        {% block labels scoped %}
+          {#- Labels block.
+
+          This block renders the labels for the plugin.
+          -#}
+          <span class="doc-label doc-label-plugin">plugin</span>
+          {% if plugin.version %}
+            <span class="doc-label doc-label-version">{{ plugin.version }}</span>
+          {% endif %}
+        {% endblock labels %}
+
+      {% endfilter %}
+
+    {% else %}
+      {% if config.show_root_toc_entry %}
+        {% filter heading(heading_level,
+            role="plugin",
+            id=html_id,
+            toc_label=('<code class="doc-symbol doc-symbol-toc doc-symbol-plugin"></code>&nbsp;'|safe if config.show_symbol_type_toc else '') + (config.toc_label if config.toc_label and root else plugin.name),
+            hidden=True,
+          ) %}
+        {% endfilter %}
+      {% endif %}
+      {% set heading_level = heading_level - 1 %}
+    {% endif %}
+
+    <div class="doc doc-contents {% if root %}first{% endif %}">
+      {% block contents scoped %}
+        {#- Contents block.
+
+        This block renders the contents of the plugin.
+        It contains other blocks that users can override.
+        Overriding the contents block allows to rearrange the order of the blocks.
+        -#}
+        {% block docstring scoped %}
+          {#- Docstring block.
+
+          This block renders the description and metadata for the plugin.
+          -#}
+          {% if plugin.description %}
+            <div class="doc doc-contents">
+              <p>{{ plugin.description }}</p>
+            </div>
+          {% endif %}
+
+          {% if plugin.author %}
+            <div class="doc doc-contents">
+              <p><strong>Author:</strong> {{ plugin.author }}</p>
+            </div>
+          {% endif %}
+        {% endblock docstring %}
+
+        {% if config.backlinks %}
+          <backlinks identifier="{{ html_id }}" handler="owa" />
+        {% endif %}
+
+        {% block children scoped %}
+          {#- Children block.
+
+          This block renders the children (components) of the plugin.
+          -#}
+          {% if plugin.components %}
+            {% set root = False %}
+            {% set heading_level = heading_level + 1 %}
+
+            {#- Callables section -#}
+            {% if plugin.components.get("callables") %}
+              {% filter heading(heading_level, id=html_id ~ "-callables") %}
+                Callables
+              {% endfilter %}
+
+              <div class="doc doc-contents">
+                <p><strong>Usage:</strong> To use callable components, import <code>CALLABLES</code> from <code>owa.core</code> and access them by their component name:</p>
+                <pre><code>from owa.core import CALLABLES
+
+# Access a callable component (replace 'component_name' with actual name)
+callable_func = CALLABLES["{{ plugin.namespace }}/component_name"]
+result = callable_func(your_arguments)</code></pre>
+              </div>
+
+              {% set heading_level = heading_level + 1 %}
+
+              {% for component_name, import_path in plugin.components.callables.items() %}
+                {#- Parse import path: module_path:object_name -#}
+                {% set module_path, object_name = import_path.split(':') %}
+                {% set full_path = module_path ~ '.' ~ object_name %}
+                {% set full_component_name = plugin.namespace ~ "/" ~ component_name %}
+
+                {#- Try to collect and render the actual Python object -#}
+                {% set python_object = collect_python_object(full_path) %}
+                {% if python_object %}
+                  {#- Render using existing Python templates with OWA context -#}
+                  {% set root = False %}
+                  {% set owa_plugin_name = plugin.namespace %}
+                  {% set owa_component_name = component_name %}
+                  {% set owa_full_component_name = full_component_name %}
+                  {% set owa_component_name_used = false %}
+                  {% if python_object.kind.value == "function" %}
+                    {% set function = python_object %}
+                    {% include "function.html.jinja" with context %}
+                  {% elif python_object.kind.value == "class" %}
+                    {% set class = python_object %}
+                    {% include "class.html.jinja" with context %}
+                  {% elif python_object.kind.value == "module" %}
+                    {% set module = python_object %}
+                    {% include "module.html.jinja" with context %}
+                  {% elif python_object.kind.value == "attribute" %}
+                    {% set attribute = python_object %}
+                    {% include "attribute.html.jinja" with context %}
+                  {% else %}
+                    {#- Fallback for unknown types -#}
+                    {% filter heading(heading_level, id=html_id ~ "-callables-" ~ component_name.replace('.', '-')) %}
+                      <code>{{ full_component_name }}</code>
+                    {% endfilter %}
+                    <p><strong>Type:</strong> {{ python_object.kind.value }}</p>
+                    <p><strong>Import path:</strong> <code>{{ import_path }}</code></p>
+                  {% endif %}
+                {% else %}
+                  {#- Fallback to simple display if object can't be collected -#}
+                  {% filter heading(heading_level, id=html_id ~ "-callables-" ~ component_name.replace('.', '-')) %}
+                    <code>{{ full_component_name }}</code>
+                  {% endfilter %}
+                  <p><strong>Import path:</strong> <code>{{ import_path }}</code></p>
+                {% endif %}
+              {% endfor %}
+
+              {% set heading_level = heading_level - 1 %}
+            {% endif %}
+
+            {#- Listeners section -#}
+            {% if plugin.components.get("listeners") %}
+              {% filter heading(heading_level, id=html_id ~ "-listeners") %}
+                Listeners
+              {% endfilter %}
+
+              <div class="doc doc-contents">
+                <p><strong>Usage:</strong> To use listener components, import <code>LISTENERS</code> from <code>owa.core</code> and call the <code>configure()</code> method with a <code>callback</code> function:</p>
+                <pre><code>from owa.core import LISTENERS
+
+# Define your callback function
+def my_callback(event_data):
+    print(f"Event received: {event_data}")
+
+# Configure a listener component (replace 'component_name' with actual name)
+listener = LISTENERS["{{ plugin.namespace }}/component_name"]
+listener.configure(callback=my_callback)
+
+# Use the listener in a context manager
+with listener.session as active_listener:
+    # The listener is now running and will call my_callback when events occur
+    pass  # Your main code here</code></pre>
+                <p><em>Note: The <code>callback</code> argument is required. The <code>on_configure()</code> method shown in the documentation is an internal method called by <code>configure()</code>.</em></p>
+              </div>
+
+              {% set heading_level = heading_level + 1 %}
+
+              {% for component_name, import_path in plugin.components.listeners.items() %}
+                {#- Parse import path: module_path:object_name -#}
+                {% set module_path, object_name = import_path.split(':') %}
+                {% set full_path = module_path ~ '.' ~ object_name %}
+                {% set full_component_name = plugin.namespace ~ "/" ~ component_name %}
+
+                {#- Try to collect and render the actual Python object -#}
+                {% set python_object = collect_python_object(full_path) %}
+                {% if python_object %}
+                  {#- Render using existing Python templates with OWA context -#}
+                  {% set root = False %}
+                  {% set owa_plugin_name = plugin.namespace %}
+                  {% set owa_component_name = component_name %}
+                  {% set owa_full_component_name = full_component_name %}
+                  {% set owa_component_name_used = false %}
+                  {% if python_object.kind.value == "function" %}
+                    {% set function = python_object %}
+                    {% include "function.html.jinja" with context %}
+                  {% elif python_object.kind.value == "class" %}
+                    {% set class = python_object %}
+                    {% include "class.html.jinja" with context %}
+                  {% elif python_object.kind.value == "module" %}
+                    {% set module = python_object %}
+                    {% include "module.html.jinja" with context %}
+                  {% elif python_object.kind.value == "attribute" %}
+                    {% set attribute = python_object %}
+                    {% include "attribute.html.jinja" with context %}
+                  {% else %}
+                    {#- Fallback for unknown types -#}
+                    {% filter heading(heading_level, id=html_id ~ "-listeners-" ~ component_name.replace('.', '-')) %}
+                      <code>{{ full_component_name }}</code>
+                    {% endfilter %}
+                    <p><strong>Type:</strong> {{ python_object.kind.value }}</p>
+                    <p><strong>Import path:</strong> <code>{{ import_path }}</code></p>
+                  {% endif %}
+                {% else %}
+                  {#- Fallback to simple display if object can't be collected -#}
+                  {% filter heading(heading_level, id=html_id ~ "-listeners-" ~ component_name.replace('.', '-')) %}
+                    <code>{{ full_component_name }}</code>
+                  {% endfilter %}
+                  <p><strong>Import path:</strong> <code>{{ import_path }}</code></p>
+                {% endif %}
+              {% endfor %}
+
+              {% set heading_level = heading_level - 1 %}
+            {% endif %}
+
+            {#- Runnables section -#}
+            {% if plugin.components.get("runnables") %}
+              {% filter heading(heading_level, id=html_id ~ "-runnables") %}
+                Runnables
+              {% endfilter %}
+
+              <div class="doc doc-contents">
+                <p><strong>Usage:</strong> To use runnable components, import <code>RUNNABLES</code> from <code>owa.core</code> and call the <code>configure()</code> method (not <code>on_configure()</code>):</p>
+                <pre><code>from owa.core import RUNNABLES
+
+# Configure a runnable component (replace 'component_name' with actual name)
+runnable = RUNNABLES["{{ plugin.namespace }}/component_name"]
+runnable.configure(your_configuration_dict)
+
+# Use the runnable in a context manager
+with runnable.session as active_runnable:
+    # The runnable is now running in the background
+    pass  # Your main code here</code></pre>
+                <p><em>Note: The <code>on_configure()</code> method shown in the documentation is an internal method called by <code>configure()</code>.</em></p>
+              </div>
+
+              {% set heading_level = heading_level + 1 %}
+
+              {% for component_name, import_path in plugin.components.runnables.items() %}
+                {#- Parse import path: module_path:object_name -#}
+                {% set module_path, object_name = import_path.split(':') %}
+                {% set full_path = module_path ~ '.' ~ object_name %}
+                {% set full_component_name = plugin.namespace ~ "/" ~ component_name %}
+
+                {#- Try to collect and render the actual Python object -#}
+                {% set python_object = collect_python_object(full_path) %}
+                {% if python_object %}
+                  {#- Render using existing Python templates with OWA context -#}
+                  {% set root = False %}
+                  {% set owa_plugin_name = plugin.namespace %}
+                  {% set owa_component_name = component_name %}
+                  {% set owa_full_component_name = full_component_name %}
+                  {% set owa_component_name_used = false %}
+                  {% if python_object.kind.value == "function" %}
+                    {% set function = python_object %}
+                    {% include "function.html.jinja" with context %}
+                  {% elif python_object.kind.value == "class" %}
+                    {% set class = python_object %}
+                    {% include "class.html.jinja" with context %}
+                  {% elif python_object.kind.value == "module" %}
+                    {% set module = python_object %}
+                    {% include "module.html.jinja" with context %}
+                  {% elif python_object.kind.value == "attribute" %}
+                    {% set attribute = python_object %}
+                    {% include "attribute.html.jinja" with context %}
+                  {% else %}
+                    {#- Fallback for unknown types -#}
+                    {% filter heading(heading_level, id=html_id ~ "-runnables-" ~ component_name.replace('.', '-')) %}
+                      <code>{{ full_component_name }}</code>
+                    {% endfilter %}
+                    <p><strong>Type:</strong> {{ python_object.kind.value }}</p>
+                    <p><strong>Import path:</strong> <code>{{ import_path }}</code></p>
+                  {% endif %}
+                {% else %}
+                  {#- Fallback to simple display if object can't be collected -#}
+                  {% filter heading(heading_level, id=html_id ~ "-runnables-" ~ component_name.replace('.', '-')) %}
+                    <code>{{ full_component_name }}</code>
+                  {% endfilter %}
+                  <p><strong>Import path:</strong> <code>{{ import_path }}</code></p>
+                {% endif %}
+              {% endfor %}
+
+              {% set heading_level = heading_level - 1 %}
+            {% endif %}
+
+          {% endif %}
+        {% endblock children %}
+      {% endblock contents %}
+    </div>
+
+  {% endwith %}
+</div>
