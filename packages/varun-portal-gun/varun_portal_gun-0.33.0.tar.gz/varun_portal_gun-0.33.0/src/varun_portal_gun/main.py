@@ -1,0 +1,119 @@
+import typer
+from pathlib import Path
+from typing import Optional
+
+from typing_extensions import Annotated
+import os
+import joblib
+import pandas as pd
+
+from sklearn.preprocessing import OrdinalEncoder
+import random
+
+app = typer.Typer()
+
+
+@app.callback()
+def callback():
+    pass
+
+@app.command()
+def predict(path: Annotated[str, typer.Option()] = None):
+    print("Here are your input files: " + path)
+
+    for filename in os.listdir(path):
+        print(filename)
+
+
+
+@app.command()
+def run_model():
+    print("Loaded Model")
+    loaded_model = joblib.load("/Users/vyelluru/Desktop/bdc_power_det_v4.sav")
+    X_test = [[1.00000, 17.7500, 4.413225, 1858.00], [1.00000, 17.7500, 4.413225, 1858.00]]
+    result = loaded_model.predict(pd.DataFrame(X_test))
+    print(result)
+    print("Success")
+
+
+#Setting up inference X_test
+'''
+BDC Power - -80 to -32 p_in * 2 pol's * 2 temps (52 rows)
+creating an X_test df
+'''
+@app.command()
+def bdc_power_det_test():
+    columns = ['pol', 'f_in', 'sgt_attn_cmd', 'vva', 'p_in', 'f_out', 'p_out', 
+            'TEMP_BDC_SCALED', 'temperature']
+    p_in_arr = [-80, -76, -72, -68, -64, -60, -56, -52, -48, -44, -40, -36, -32]
+
+    p_out_arr = [-31.8, -28.1, -24.1, -19.9, -15.7, -11.5, -7.7, -4.6, -0.5, 3.5, 8.1, 10.6, 13.9]
+    TEMP_BDC_SCALED_arr = [-40, 55]
+
+    df = pd.DataFrame(columns=columns)
+    temperature = 0
+
+    for i in range(52):
+        if i < 26:
+            pol = 'lhcp'
+            offset = round(random.uniform(-1, 1), 3) * 2
+            if i < 13:
+                TEMP_BDC_SCALED = TEMP_BDC_SCALED_arr[0] + offset
+                temperature = -40
+                sgt_attn_cmd = 13.0
+            else:
+                TEMP_BDC_SCALED = TEMP_BDC_SCALED_arr[1] + offset
+                temperature = 55
+                sgt_attn_cmd = 19.5
+        else:
+            pol = 'rhcp'
+            offset = round(random.uniform(-1, 1), 3) * 2
+            if i < 39:
+                TEMP_BDC_SCALED = TEMP_BDC_SCALED_arr[0] + offset
+                sgt_attn_cmd = 19.5
+            else:
+                TEMP_BDC_SCALED = TEMP_BDC_SCALED_arr[1] + offset
+                sgt_attn_cmd = 18.5
+        p_in = p_in_arr[i % 13]
+        f_in = 28.75
+        vva = 4080
+        f_out = 4320000000
+        p_out = p_out_arr[i % 13]
+
+
+        df.loc[i] = [pol, f_in, sgt_attn_cmd, vva, p_in, f_out, p_out, TEMP_BDC_SCALED, temperature]
+
+
+    X_test = df.iloc[:, [0, 2, 6, 7]]
+
+    encoder = OrdinalEncoder(categories=[['lhcp', 'rhcp']])
+    X_test['pol'] = encoder.fit_transform(X_test[['pol']])
+
+    X_test = X_test.to_numpy()
+    print(X_test)
+
+    X_test = pd.DataFrame(X_test)
+
+    loaded_model = joblib.load("/Users/vyelluru/Desktop/bdc_power_det_v5.sav")
+    result = loaded_model.predict(X_test)
+
+
+    BDC_IF_DETECT_COMB_RAW_arr = []
+    TMP_BDC_LNA_COMB_SCALED_arr = []
+    for i in range(len(result)):
+        BDC_IF_DETECT_COMB_RAW_arr.append(result[i][0])
+        TMP_BDC_LNA_COMB_SCALED_arr.append(result[i][1])
+    print(result)
+
+
+    X_test['BDC_IF_DETECT_COMB_RAW'] = BDC_IF_DETECT_COMB_RAW_arr
+    X_test['TMP_BDC_LNA_COMB_SCALED'] = TMP_BDC_LNA_COMB_SCALED_arr
+    print(X_test.columns)
+    # X_test['sgt_sn'] = 1
+
+    # for row, index in X_test.iterrows():
+    #     if X_test.loc[row, 'pol'] == 0.0:
+    #         X_test.loc[row, 'pol'] = 'lhcp'
+    #     else:
+    #         X_test.loc[row, 'pol'] = 'rhcp'
+    print(X_test.head())
