@@ -1,0 +1,488 @@
+Metadata-Version: 2.3
+Name: agtos
+Version: 0.3.2
+Summary: Local AI-driven development utility with MCP server for Claude Code and Codex CLI
+Author: William Attaway
+Requires-Python: >=3.10,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Provides-Extra: full
+Requires-Dist: aiohttp (>=3.9.0,<4.0.0)
+Requires-Dist: fastapi (>=0.115.0,<0.116.0)
+Requires-Dist: packaging (>=23.0,<24.0)
+Requires-Dist: prompt-toolkit (>=3.0.0,<4.0.0)
+Requires-Dist: psutil (>=6.0.0,<7.0.0) ; extra == "full"
+Requires-Dist: pydantic (>=2.0.0,<3.0.0)
+Requires-Dist: python-dotenv (>=1.0.0,<2.0.0)
+Requires-Dist: pyyaml (>=6.0,<7.0)
+Requires-Dist: requests (>=2.32.0,<3.0.0)
+Requires-Dist: rich (>=13.0.0,<14.0.0)
+Requires-Dist: sse-starlette (>=2.1.0,<3.0.0)
+Requires-Dist: supabase (>=2.11.0,<3.0.0)
+Requires-Dist: toml (>=0.10.2,<0.11.0)
+Requires-Dist: typer (>=0.16.0,<0.17.0)
+Requires-Dist: uvicorn (>=0.32.0,<0.33.0)
+Requires-Dist: watchdog (>=6.0.0,<7.0.0)
+Project-URL: Homepage, https://agtos.ai
+Project-URL: Repository, https://github.com/agtos-ai/agtos
+Description-Content-Type: text/markdown
+
+# agtOS - Agent Operating System
+
+[![Version](https://img.shields.io/badge/version-0.3.2--dev-blue)](https://github.com/agtos-ai/agtos)
+[![Tests](https://img.shields.io/badge/tests-181%2B%20passing-brightgreen)](https://github.com/agtos-ai/agtos)
+[![Phase](https://img.shields.io/badge/phase-1.5%20complete-success)](https://github.com/agtos-ai/agtos/blob/main/ROADMAP.md)
+[![License](https://img.shields.io/badge/license-Proprietary-red)](https://github.com/agtos-ai/agtos)
+
+**The Operating System for AI Agents** 🚀
+
+agtOS orchestrates multiple AI agents (Claude, Codex, Cursor, local LLMs) through a unified interface, providing them with 87+ tools to work on your behalf. It's the platform that makes AI agents actually useful for real work.
+
+## 🎯 What is agtOS?
+
+agtOS is a revolutionary platform that transforms how you work with AI:
+
+- **🤖 Multi-Agent Orchestration** - Intelligently routes tasks to the best AI agent
+- **🛠️ 87+ Built-in Tools** - From git to AWS, Stripe to Slack - all unified
+- **💬 Natural Language Everything** - Create tools, workflows, and automations by describing them
+- **🔐 Enterprise Security** - Your credentials never touch AI models
+- **⚡ One-Click Setup** - From install to productivity in under 5 minutes
+
+## 🖥️ How It Works: The Interactive Terminal
+
+When you run `agtos`, you get an interactive terminal UI that serves as your control center:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                                                               │
+│                    ▄▀█ █▀▀ ▀█▀ █▀█ █▀                       │
+│                    █▀█ █▄█  █  █▄█ ▄█                       │
+│                                                               │
+│              Agent Operating System v0.3.2 (Beta)            │
+│                                                               │
+├─────────────────────────────────────────────────────────────┤
+│  Status: ● Active    Agents: Claude, Codex    Tools: 87     │
+├─────────────────────────────────────────────────────────────┤
+│                                                               │
+│  Select an action (↑↓ to navigate, Enter to select):        │
+│                                                               │
+│  > Open Claude (Orchestrator)          [$0.25/1K tokens]    │
+│    Select Primary Agent                                       │
+│    ──────────────────────────────────────                   │
+│    Browse Workflows                                          │
+│    Manage Projects                                           │
+│    Configure Credentials                                      │
+│    ──────────────────────────────────────                   │
+│    View Agent Costs                                          │
+│    Server Status                                             │
+│    Help & Documentation                                       │
+│                                                               │
+│  ESC: Back  ↑↓: Navigate  Enter: Select  Ctrl+C: Quit       │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 🎯 The New Way to Work
+
+**No More CLI Commands!** agtOS uses an intuitive TUI (Terminal User Interface) that eliminates the need to memorize commands:
+
+1. **🚀 Launch**: Just type `agtos` - that's the only command you need
+2. **🎮 Navigate**: Use arrow keys to browse options
+3. **🤖 Work**: Select "Open Claude" for natural language interaction
+4. **⚡ Admin**: Quick actions available directly in the TUI
+
+### Two Interaction Modes
+
+1. **🤖 AI-First Mode** (Primary)
+   - Select "Open Claude" to work through natural language
+   - Claude handles all complex operations
+   - Example: "Deploy the new version to staging"
+   - Claude orchestrates git, Docker, Kubernetes, and notifications
+
+2. **⚡ Quick Actions** (Administrative)
+   - Use the TUI for simple administrative tasks
+   - Switch projects, manage credentials, view status
+   - No need to interrupt your Claude session
+
+## 🚀 Quick Start
+
+### Beta Access Required
+agtOS is currently in beta. You'll need an invite code to get started:
+- 🎟️ Request access at [agtos.ai](https://agtos.ai)
+- 🧑‍💻 Developers: Use code `AGTOS-DEV-2025`
+
+### Installation
+
+```bash
+# Install agtOS
+pip install agtos  # or: git clone && poetry install
+
+# Start agtOS - that's it!
+agtos
+
+# First time? You'll be prompted to:
+# 1. Sign up with your invite code
+# 2. Configure Claude Code integration
+# 3. Launch the interactive UI
+```
+
+## 💫 What Can agtOS Do?
+
+### 🤖 Multi-Agent Capabilities
+- **Intelligent Orchestration** - Routes tasks to the best AI for the job
+- **Claude** - Complex reasoning, planning, and natural conversation
+- **Codex** - Specialized code generation and terminal operations
+- **Cursor** - IDE integration for code editing (coming soon)
+- **Ollama** - Local LLMs for privacy-sensitive tasks (coming soon)
+- **Cost Optimization** - Automatically balances capability vs cost
+- **Real-time Cost Tracking** - Monitor token usage and spending (coming soon)
+
+### 🛠️ 87+ Integrated Tools
+
+**Development Tools**
+- Git operations (status, commit, branch, merge)
+- Docker (containers, images, compose)
+- Package managers (npm, pip, cargo)
+- Build tools (make, webpack, gradle)
+
+**Cloud & Infrastructure**
+- AWS (EC2, S3, Lambda, CloudFormation)
+- Google Cloud Platform
+- Azure
+- Terraform & Ansible
+- Kubernetes (kubectl, helm)
+
+**APIs & Services**
+- Stripe (payments, customers, subscriptions)
+- Slack (messages, channels, users)
+- GitHub (repos, issues, PRs)
+- SendGrid (email)
+- Twilio (SMS, calls)
+- OpenAI, Anthropic APIs
+
+**Databases & Storage**
+- PostgreSQL, MySQL, MongoDB
+- Redis, Elasticsearch
+- S3, GCS, Azure Storage
+
+**And many more...** Full list available with `agtos tools browse`
+
+### 🔧 Natural Language Tool Creation
+
+Create any tool by describing it in plain English:
+
+```
+You: "I need to post updates to our Slack channel"
+Claude: "I don't see a Slack tool. What's the API endpoint?"
+You: "It's api.slack.com/chat.postMessage with bearer token auth"
+Claude: [Creates the tool automatically] "Tool created! What would you like to post?"
+```
+
+Supported API types:
+- REST APIs (GET, POST, PUT, DELETE)
+- Bearer token & API key auth
+- GraphQL, WebSocket, gRPC (coming soon)
+
+### 📝 Workflow Automation
+
+**Pre-built Workflows**
+- Ship Feature (Figma → Code → Deploy)
+- Fix Bug (Issue → Fix → Test → Deploy)
+- Daily Standup automation
+- Database migrations
+- Security audits
+
+**Custom Workflows**
+- Record any sequence of operations
+- Parameterize for reuse
+- Share with your team
+- Schedule for automation
+
+### 🔐 Enterprise Security
+- **Credential Vault** - Encrypted storage with provider isolation
+- **No AI Access** - Credentials never sent to AI models
+- **Audit Logging** - Track all tool usage
+- **Project Isolation** - Separate configs per project
+- **MFA Support** - For sensitive operations
+
+### 💾 Context Management
+- **Save/Restore Sessions** - Pick up where you left off
+- **Cross-Session Memory** - AI remembers your preferences
+- **Project Switching** - Instant context switch
+- **Token Tracking** - Monitor AI usage and costs
+
+## 📊 Example: Ship a Feature
+
+Here's what happens when you tell Claude "Ship the new pricing page":
+
+```mermaid
+graph TD
+    A[You: "Ship the new pricing page"] --> B[Claude Orchestrator]
+    B --> C[1. Export from Figma]
+    C --> D[2. Generate React code]
+    D --> E[3. Create feature branch]
+    E --> F[4. Update Stripe products]
+    F --> G[5. Run tests]
+    G --> H[6. Deploy to staging]
+    H --> I[7. Post to Slack]
+    I --> J[Complete! 2 hours → 5 minutes]
+```
+
+## 🎨 The agtOS Terminal Interface
+
+### Main Menu Commands
+
+**Agent Operations**
+- `Open Claude` - Start working with the orchestrator
+- `Select Primary Agent` - Choose default agent for tasks
+- `View Agent Costs` - See token usage and pricing
+
+**Project Management**
+- `Select Project` - Quick switch between projects
+- `Create Project` - Set up new project
+- `Project Settings` - Configure project-specific options
+
+**Workflows**
+- `Browse Workflows` - See available automations
+- `Run Workflow` - Execute saved workflow
+- `Record Workflow` - Create new automation
+
+**Administration**
+- `Manage Credentials` - Add/update API keys
+- `Server Status` - View health and connections
+- `Configure Settings` - Global preferences
+
+### Keyboard Shortcuts
+- `↑↓` - Navigate menu
+- `Enter` - Select item
+- `/` - Search commands
+- `Esc` - Go back
+- `Ctrl+C` - Quit
+
+## 🏗️ Architecture
+
+```
+┌─────────────────────────────────────────┐
+│            You (User)                    │
+│                                          │
+│    Terminal UI  OR  Natural Language    │
+└──────┬──────────────────┬───────────────┘
+       │ Quick Actions    │ Complex Work
+       ▼                  ▼
+┌─────────────────┬──────────────────────┐
+│   agtOS TUI     │   Claude (or other)   │
+│                 │   Orchestrator Agent   │
+└────────┬────────┴──────────┬────────────┘
+         │                   │
+         └─────────┬─────────┘
+                   ▼
+        ┌──────────────────────┐
+        │   Meta-MCP Server    │
+        │   (Tool Registry)     │
+        └──────────┬───────────┘
+                   │
+     ┌─────────────┼─────────────┐
+     ▼             ▼             ▼
+[87+ Tools]  [MCP Servers]  [REST APIs]
+```
+
+## 🚀 Installation
+
+### Requirements
+- Python 3.10+
+- macOS (for full features) or Linux
+- 4GB RAM minimum
+- Internet connection (for cloud agents)
+- GitHub account with repository access (private repository)
+
+### Install Options
+
+**🔐 Note: agtOS is currently in private beta. You'll need repository access and a GitHub token.**
+
+#### Step 1: Configure GitHub Authentication
+
+First, set up GitHub authentication for private repository access:
+
+```bash
+# Option A: Use environment variable (recommended for CI/CD)
+export GITHUB_TOKEN=your_personal_access_token
+
+# Option B: Interactive setup (recommended for personal use)
+pip install agtos  # Install from PyPI when available
+agtos github login
+```
+
+To create a GitHub token:
+1. Go to https://github.com/settings/tokens
+2. Click "Generate new token (classic)"
+3. Select 'repo' scope
+4. Generate and copy the token
+
+#### Step 2: Install agtOS
+
+**From GitHub Release (Recommended)**
+```bash
+# With token in environment
+export GITHUB_TOKEN=your_token
+pip install git+https://${GITHUB_TOKEN}@github.com/agtos-ai/agtos.git
+
+# Or download release directly
+curl -H "Authorization: token $GITHUB_TOKEN" \
+     -L https://api.github.com/repos/agtos-ai/agtos/releases/latest/download/agtos-0.3.2-py3-none-any.whl \
+     -o agtos.whl
+pip install agtos.whl
+
+# Run agtOS
+agtos
+```
+
+**Via pip with token (Alternative)**
+```bash
+# Install directly from private repo
+pip install git+https://your_token@github.com/agtos-ai/agtos.git@main
+
+# Or with requirements.txt
+echo "git+https://${GITHUB_TOKEN}@github.com/agtos-ai/agtos.git" >> requirements.txt
+pip install -r requirements.txt
+```
+
+**From source (For developers)**
+```bash
+# Clone with SSH (recommended if you have SSH keys set up)
+git clone git@github.com:agtos-ai/agtos.git
+
+# Or clone with token
+git clone https://${GITHUB_TOKEN}@github.com/agtos-ai/agtos.git
+
+cd agtos
+poetry install
+poetry shell
+agtos
+```
+
+#### Step 3: Verify Installation
+
+```bash
+# Check GitHub authentication
+agtos github status
+
+# Launch agtOS
+agtos
+```
+
+### 🔄 Updating
+
+agtOS includes automatic update management with private repository support:
+
+**One-Click Updates** (Requires GitHub authentication):
+1. Launch agtOS: `agtos`
+2. If an update is available, you'll see a notification
+3. Select "Check for Updates" → "Install Update Now"
+4. agtOS will handle authentication and update automatically
+5. Restart when prompted
+
+**Update Features**:
+- 🔄 **Auto-check on startup** (requires GitHub token)
+- ✨ **One-click installation** from the TUI
+- 📝 **View release notes** before updating
+- ⏭️ **Skip versions** you don't want
+- 🔔 **Update preferences** control
+- 🔐 **Secure token handling** for private repo access
+
+**Manual Update**:
+```bash
+# Ensure GitHub token is set
+export GITHUB_TOKEN=your_token
+
+# Update using pip
+pip install --upgrade git+https://${GITHUB_TOKEN}@github.com/agtos-ai/agtos.git
+
+# Or download specific release
+curl -H "Authorization: token $GITHUB_TOKEN" \
+     -L https://api.github.com/repos/agtos-ai/agtos/releases/latest/download/agtos-0.3.2-py3-none-any.whl \
+     -o agtos.whl
+pip install --upgrade agtos.whl
+```
+
+**Troubleshooting Updates**:
+- If update checks fail: `agtos github status`
+- To refresh authentication: `agtos github login`
+- For CI/CD: Use `GITHUB_TOKEN` environment variable
+
+## 🎓 Learn More
+
+**Documentation**
+- [Complete Setup Guide](docs/setup-guide.md)
+- [Creating Custom Tools](docs/tool-creation.md)
+- [Workflow Automation](docs/workflows.md)
+- [Multi-Agent Orchestration](docs/agents.md)
+
+**Examples**
+- [Example Workflows](examples/workflows/)
+- [Custom Tool Templates](examples/tools/)
+- [Integration Patterns](examples/integrations/)
+
+## 🌟 Why agtOS?
+
+**Before agtOS:**
+- 😔 Copy-paste between ChatGPT and terminal
+- 😔 Managing dozens of API keys and configs
+- 😔 No memory between sessions
+- 😔 Can't automate complex workflows
+- 😔 One AI model for everything
+
+**With agtOS:**
+- 🎉 AI agents do the work for you
+- 🎉 Centralized credential management
+- 🎉 Persistent context and memory
+- 🎉 Record once, replay anytime
+- 🎉 Best AI for each task automatically
+
+## 🤝 Contributing
+
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+**Development Setup**
+```bash
+git clone https://github.com/agtos-ai/agtos.git
+cd agtos
+poetry install
+poetry shell
+pytest  # Run tests
+agtos --dev  # Development mode
+```
+
+## 📈 Roadmap
+
+**Phase 1: Foundation** ✅ Complete
+- Multi-agent orchestration
+- Natural language tool creation
+- 87+ integrated tools
+- Basic workflows
+
+**Phase 2: Production** (Current)
+- GUI dashboard
+- Advanced workflow designer
+- Team collaboration
+- Performance optimization
+
+**Phase 3: Enterprise**
+- Self-hosted deployment
+- Custom agent training
+- Compliance frameworks
+- Global scale
+
+See [ROADMAP.md](ROADMAP.md) for detailed plans.
+
+## 🙏 Acknowledgments
+
+Built on the shoulders of giants:
+- [Model Context Protocol](https://modelcontextprotocol.io) by Anthropic
+- Claude, Codex, and the AI community
+- All our contributors and early adopters
+
+---
+
+**Ready to work at the speed of thought?** Run `agtos` and let AI handle the details! 🚀
