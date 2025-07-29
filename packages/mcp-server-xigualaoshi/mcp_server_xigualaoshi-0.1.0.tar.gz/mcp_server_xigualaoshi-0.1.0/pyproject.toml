@@ -1,0 +1,20 @@
+[build-system] 
+requires = ["setuptools>=61.0", "wheel"] 
+build-backend = "setuptools.build_meta" 
+[project]
+name = "mcp-server-xigualaoshi"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dotenv>=0.9.9",
+    "mcp>=1.9.3",
+    "openai>=1.84.0",
+]
+[project.scripts] 
+mcp-server-xigualaoshi = "mcp_server_xiagualaoshi:main" 
+[tool.setuptools] 
+package-dir = {"" = "src"} 
+[tool.setuptools.packages.find] 
+where = ["src"]
