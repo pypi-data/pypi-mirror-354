@@ -1,0 +1,14 @@
+[project]
+name = "glslt"
+
+[project.scripts]
+glsltc = "glslt:main"
+
+[build-system]
+requires = ["maturin>=1.8,<1.9"]
+build-backend = "maturin"
+
+[tools.maturin]
+bindings = "pyo3"
+features = ["python"]
+strip = true
