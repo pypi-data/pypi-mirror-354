@@ -1,0 +1,38 @@
+from setuptools import setup, find_packages
+
+
+setup(
+    name='keyvomit',
+    version='0.2.0',
+    description='Unhinged character sequence generator for passwords, tokens, and general chaos.',
+    long_description=open('README.md', encoding='utf-8').read(),
+    long_description_content_type='text/markdown',
+    author='mosphox',
+    author_email='mosphox@gmail.com',
+    url='https://github.com/mosphox/mashup',
+    project_urls={
+        "Source": "https://github.com/mosphox/mashup",
+        "Tracker": "https://github.com/mosphox/mashup/issues"
+    },
+    license='MIT',
+    packages=find_packages(),
+    python_requires='>=3.7',
+    install_requires=[
+        'pyperclip'
+    ],
+    entry_points={
+        'console_scripts': [
+            'mashup = mashup.cli:main',
+        ],
+    },
+    classifiers=[
+        'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
+        'Environment :: Console',
+        'Topic :: Security :: Cryptography',
+        'Intended Audience :: Developers',
+    ],
+    include_package_data=True,
+    zip_safe=False,
+)
