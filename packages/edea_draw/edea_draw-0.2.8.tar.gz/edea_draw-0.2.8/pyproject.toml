@@ -1,0 +1,42 @@
+[project]
+name = "edea_draw"
+version = "0.2.8"
+description = "KiCad to SVG renderer"
+authors = [
+    { name = "Elen Eisendle", email = "ln@calcifer.ee" },
+    { name = "Zoé Bőle", email = "zoe@astech.hu" },
+    { name = "Kaspar Emanuel", email = "kaspar@kitspace.org" },
+    { name = "Abdulrhmn Ghanem", email = "abdoghanem160@gmail.com" },
+]
+requires-python = ">=3.11,<4"
+license = "EUPL-1.2"
+dependencies = [
+    "svg.py>=1.6.0,<2",
+    "svgpathtools>=1.7.1,<2",
+    "defusedxml>=0.7.1,<0.8",
+    "edea>=0.8.4",
+]
+
+[dependency-groups]
+dev = [
+    "bandit>=1.8.3,<2",
+    "black>=25.1.0,<26",
+    "pylint>=3.3.7,<4",
+    "pyright==1.1.401",
+    "pytest>=8.4.0,<9",
+    "pytest-cov>=6.1.1,<7",
+    "nox>=2025.5.1,<2026",
+    "ruff>=0.11.13,<0.12",
+    "pytest-only>=2.1.2,<3",
+]
+
+[tool.uv]
+
+[[tool.uv.index]]
+name = "gitlab"
+url = "https://gitlab.com/api/v4/projects/35843774/packages/pypi/simple"
+explicit = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

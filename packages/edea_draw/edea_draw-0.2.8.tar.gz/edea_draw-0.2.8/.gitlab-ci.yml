@@ -1,0 +1,80 @@
+image: kicad/kicad:8.0
+
+variables:
+  UV_CACHE_DIR: .uv-cache
+cache:
+  key:
+    files:
+      - uv.lock
+  paths:
+    - $UV_CACHE_DIR
+
+before_script:
+  - python3 --version # For debugging
+  - sudo apt update
+  - sudo apt install -y curl
+  - curl -LsSf https://astral.sh/uv/install.sh | sh
+  - source $HOME/.local/bin/env
+  - uv venv --system-site-packages
+  - uv sync
+
+after_script:
+  - uv cache prune --ci
+
+test:
+  tags:
+    - saas-linux-large-amd64
+  script:
+    - uv run nox --default-venv-backend uv -- --cov=edea_draw
+    - uv run coverage report
+    - uv run coverage xml
+  coverage: "/(?i)total.*? (100(?:\\.0+)?\\%|[1-9]?\\d(?:\\.\\d+)?\\%)$/"
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+
+test-kicad-9:
+  image: kicad/kicad:9.0
+  allow_failure: true
+  tags:
+    - saas-linux-large-amd64
+  script:
+    - uv run nox --default-venv-backend uv -- --cov=edea_draw
+
+test-kicad-nightly:
+  image: kicad/kicad:nightly
+  allow_failure: true
+  tags:
+    - saas-linux-large-amd64
+  script:
+    - uv run nox --default-venv-backend uv -- --cov=edea_draw
+
+formatting:
+  script:
+    - uv run black --check edea_draw tests --exclude tests/kicad_projects
+
+lint:
+  script:
+    - uv run ruff check edea_draw tests
+    # - poetry run pylint edea_draw
+
+typecheck:
+  script:
+    - uv run pyright edea_draw
+
+bandit:
+  script:
+    - uv run bandit -r edea_draw
+
+release:
+  stage: deploy
+  script:
+    - uv build
+    - uv publish -t ${PYPI_TOKEN}
+  artifacts:
+    paths:
+      - dist/*.whl
+  rules:
+    - if: $CI_COMMIT_BRANCH == "release"
