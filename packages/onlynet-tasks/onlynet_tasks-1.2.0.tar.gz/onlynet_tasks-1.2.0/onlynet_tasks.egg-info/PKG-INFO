@@ -1,0 +1,196 @@
+Metadata-Version: 2.4
+Name: onlynet-tasks
+Version: 1.2.0
+Summary: MCP server for PRD generation and task management with Cursor agents
+Author-email: OnlyNet <contact@onlynet.dev>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/onlynet/onlynet-tasks
+Project-URL: Bug Reports, https://github.com/onlynet/onlynet-tasks/issues
+Project-URL: Source, https://github.com/onlynet/onlynet-tasks
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastmcp>=2.7.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: typing-extensions>=4.0.0
+Dynamic: license-file
+
+# OnlyNet Tasks MCP Server
+
+[![PyPI version](https://badge.fury.io/py/onlynet-tasks.svg)](https://badge.fury.io/py/onlynet-tasks)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+A powerful Model Context Protocol (MCP) server for generating Product Requirements Documents (PRDs) and creating intelligent task breakdowns with complexity assessment. Designed specifically for integration with Cursor agents and development workflows.
+
+## Features
+
+- **📋 PRD Generation**: Interactive PRD creation with guided questions covering all project aspects
+- **🎯 Intelligent Task Breakdown**: Automatic generation of tasks from PRD analysis with proper complexity assessment
+- **📊 Complexity Levels**: 4-level complexity system (0: Very easy, 1: Easy, 2: Complex, 3: Senior level)
+- **🔗 Dependency Management**: Automatic task dependency detection and workflow organization
+- **📂 Smart Directory Detection**: Intelligent project directory detection for seamless integration
+- **🎮 Cursor Integration**: Native support for Cursor agent workflows
+
+## Installation
+
+Install directly from PyPI:
+
+```bash
+pip install onlynet-tasks
+```
+
+## Quick Start
+
+### 1. Configure Cursor MCP Settings
+
+Add the following to your Cursor MCP settings:
+
+```json
+{
+  "mcpServers": {
+    "onlynet-tasks": {
+      "command": "onlynet-tasks",
+      "env": {
+        "ONLYNET_DATA_DIR": "/absolute/path/to/your/project"
+      }
+    }
+  }
+}
+```
+
+Or for auto-detection (recommended):
+
+```json
+{
+  "mcpServers": {
+    "onlynet-tasks": {
+      "command": "onlynet-tasks"
+    }
+  }
+}
+```
+
+### 2. Start Using
+
+Once configured, you can interact with the server through Cursor:
+
+1. **Generate PRD**: Create a comprehensive Product Requirements Document
+2. **Create Tasks**: Generate intelligent task breakdown from PRD
+3. **Manage Tasks**: Read, update, and complete tasks as you progress
+
+## Available Tools
+
+| Tool | Description |
+|------|-------------|
+| `generate_prd` | Create PRD with guided questions |
+| `update_prd` | Update PRD sections with answers |
+| `create_tasks_from_prd` | Generate tasks from PRD analysis |
+| `read_task` | Read specific task or get next open task |
+| `complete_task` | Mark task as completed |
+| `list_all_tasks` | List all tasks with status |
+
+## Complexity Levels
+
+Tasks are automatically assigned complexity levels based on intelligent analysis:
+
+- **Level 0**: Very easy task (basic setup, documentation)
+- **Level 1**: Easy task (simple implementations, basic features)
+- **Level 2**: Complex task (advanced features, integrations)
+- **Level 3**: Senior developer level (architecture, complex algorithms)
+
+## Example Workflow
+
+```bash
+# 1. Generate PRD for your project
+"Generate PRD for a task management app"
+
+# 2. Create task breakdown
+"Create tasks from the PRD"
+
+# 3. Work through tasks
+"Show me the next open task"
+"Complete task TASK-001-01"
+"List all tasks to see progress"
+```
+
+## Directory Configuration
+
+The server automatically detects the project directory using these methods:
+
+1. **Environment Variable**: `ONLYNET_DATA_DIR` (if set)
+2. **Auto-detection**: Searches for project indicators (`.git`, `package.json`, etc.)
+3. **Current Directory**: Falls back to current working directory
+
+The detection happens automatically when you first use any tool - no manual configuration needed!
+
+## Integration Examples
+
+### Cursor Configuration
+
+```json
+{
+  "mcpServers": {
+    "onlynet-tasks": {
+      "command": "onlynet-tasks",
+      "env": {
+        "ONLYNET_DATA_DIR": "/home/user/projects/my-app"
+      }
+    }
+  }
+}
+```
+
+### Direct Usage
+
+```bash
+# Run the server directly
+onlynet-tasks
+
+# Or with Python module syntax
+python -m onlynet_tasks.server
+```
+
+## File Structure
+
+The server creates the following files in your project directory:
+
+```
+project/
+├── onlynet/
+│   ├── prd.md              # Generated PRD
+│   └── tasks.json          # Task breakdown and status
+```
+
+## Requirements
+
+- Python 3.8 or higher
+- FastMCP 2.7.0 or higher
+- Pydantic 2.0.0 or higher
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For issues and questions:
+- Create an issue on GitHub
+- Check the [integration guide](CURSOR_INTEGRATION.md) for Cursor-specific help
+
+---
+
+**Made with ❤️ for the development community**
