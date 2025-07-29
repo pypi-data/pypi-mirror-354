@@ -1,0 +1,2 @@
+from . import stable_video_diffusion_pipeline
+StableVideoDiffusionPipeline = stable_video_diffusion_pipeline.StableVideoDiffusionPipeline
