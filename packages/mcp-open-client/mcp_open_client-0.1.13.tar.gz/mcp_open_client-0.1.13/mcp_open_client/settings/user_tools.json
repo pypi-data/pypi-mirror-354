@@ -1,0 +1,20 @@
+[
+  {
+    "id": "9cf1fae9-ed21-4365-8d3f-c05aae364635",
+    "type": "function",
+    "name": "clima",
+    "description": "clima",
+    "parameters": "{\"type\": \"object\", \"properties\": {\"location\": {\"type\": \"string\", \"description\": \"Ciudad y pa\\u00eds, ej: Bogot\\u00e1, Colombia\"}}, \"required\": [\"location\"], \"additionalProperties\": false}",
+    "code": "def execute_tool(params):\n    # C\u00f3digo para ejecutar la herramienta\n    location = params.get('location', '')\n    \n    # Aqu\u00ed ir\u00eda la l\u00f3gica para obtener el clima\n    # En un caso real, podr\u00edas usar una API externa\n    \n    # Ejemplo de respuesta simulada\n    result = f\"La temperatura en {location} es de 22\u00b0C con cielo parcialmente nublado\"\n    \n    # Devolver resultado\n    return {\n        \"result\": result\n    }\n",
+    "active": true
+  },
+  {
+    "id": "80e65cb3-2456-4e93-9124-dc4ea28f9187",
+    "type": "function",
+    "name": "nuevatool",
+    "description": "desc nueva tool",
+    "parameters": "{\"json\": {\"type\": \"object\", \"properties\": {\"query\": {\"type\": \"string\", \"description\": \"Consulta o par\\u00e1metro principal\"}, \"options\": {\"type\": \"object\", \"properties\": {\"limit\": {\"type\": \"number\", \"description\": \"N\\u00famero m\\u00e1ximo de resultados\"}}}}, \"required\": [\"query\"], \"additionalProperties\": false}, \"type\": \"object\", \"properties\": {}}",
+    "code": "def execute_tool(params):\n    \"\"\"Implementaci\u00f3n de la herramienta\n    \n    Args:\n        params (dict): Par\u00e1metros recibidos seg\u00fan el esquema JSON definido\n        \n    Returns:\n        dict: Resultado de la ejecuci\u00f3n de la herramienta\n    \"\"\"\n    # Extraer par\u00e1metros\n    query = params.get('query', '')\n    options = params.get('options', {})\n    limit = options.get('limit', 10)\n    \n    # L\u00f3gica de la herramienta\n    # Aqu\u00ed implementa la funcionalidad principal\n    \n    # Ejemplo de respuesta\n    result = f\"Procesando consulta: {query} (l\u00edmite: {limit})\"\n    \n    # Devolver resultado estructurado\n    return {\n        \"result\": result,\n        \"timestamp\": __import__('datetime').datetime.now().isoformat()\n    }\n",
+    "active": true
+  }
+]
