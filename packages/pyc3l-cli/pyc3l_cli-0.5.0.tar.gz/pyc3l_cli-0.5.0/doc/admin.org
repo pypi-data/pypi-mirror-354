@@ -1,0 +1,240 @@
+# -*- ispell-local-dictionary: "english" -*-
+#+PROPERTY: TASK_CATEG pyc3l-cli
+#+TITLE: pyc3l-cli
+
+
+* Logs
+** nouveau paquet pyc3l-cli
+  :PROPERTIES:
+  :TASK_REF:      lok/1398
+  :END:
+
+
+*** Contexte
+
+La librairie =pyc3l= contenait des exemple et du code qui semble
+avoir une utilité. C'est l'occasion de séparer le code (et les dépendances)
+et de garder un endroit dédié pour le scripting et le développement
+d'outils en ligne de commande.
+
+*** Logs
+
+**** Déplacement du code, préparation des fichiers du paquet
+  :LOGBOOK:
+  CLOCK: [2023-02-22 Wed 21:15 +0100]--[2023-02-22 Wed 21:30 +0100] =>  0:15
+  :END:
+
+pyproject.toml
+README
+déplacement des fichiers examples/* vers =src/pyc3l_cli/cmd/*=
+
+**** Interface utilisant click
+  :LOGBOOK:
+  CLOCK: [2023-02-22 Wed 21:30 +0100]--[2023-02-22 Wed 22:30 +0100] =>  1:00
+  :END:
+
+Permet de selectionner le niveau de log sur la ligne de commande sans
+toucher aux fichier originaux.
+
+On peut toujours:
+
+#+begin_src sh
+cd src/pyc3l_cli/cmd
+python blockRateMonitoring.py
+#+end_src
+
+Et maintenant aussi:
+
+#+begin_src sh
+pyc3l blockRateMonitoring
+#+end_src
+
+J'ai testé le fait de pouvoir utiliser =click= dans ces sous commande.
+Que l'accès à =sys.argv= est équivalent.
+
+**** Test de tous les scripts et lecture
+  :LOGBOOK:
+  CLOCK: [2023-02-23 Thu 10:15 +0100]--[2023-02-23 Thu 10:45 +0100] =>  0:30
+  :END:
+
+**** Nombreuses amélioration, nouvelles commandes
+  :LOGBOOK:
+  CLOCK: [2023-04-10 Mon 14:30 +0200]--[2023-04-10 Mon 18:30 +0200] =>  4:00
+  CLOCK: [2023-04-11 Tue 14:30 +0200]--[2023-04-11 Tue 18:30 +0200] =>  4:00
+  CLOCK: [2023-04-14 Fri 14:30 +0200]--[2023-04-14 Fri 18:30 +0200] =>  4:00
+  :END:
+**** Aide @FlorianDubath
+  :LOGBOOK:
+  CLOCK: [2023-09-12 Tue 11:45 +0200]--[2023-09-12 Tue 12:30 +0200] =>  0:45
+  :END:
+
+Installation sur son PC via visio. Problème de dépendances et d'installation.
+**** Aide @StephanSainleger
+  :LOGBOOK:
+  CLOCK: [2023-09-19 Wed 10:45 +0200]--[2023-09-19 Wed 12:30 +0200] =>  1:45
+  :END:
+
+Vérification du code, check. Installation en local. Check divers.
+Il manquait une déléguation finalisée pour faire marcher le tout.
+
+**** Tour tous les scripts pour release
+  :LOGBOOK:
+  CLOCK: [2024-03-27 Wed 11:45 +0100]--[2024-03-27 Wed 12:00 +0100] =>  0:15
+  CLOCK: [2024-03-27 Wed 16:30 +0100]--[2024-03-27 Wed 16:45 +0100] =>  0:15
+  CLOCK: [2024-03-27 Wed 17:30 +0100]--[2024-03-27 Wed 18:45 +0100] =>  1:15
+  CLOCK: [2024-03-27 Wed 09:15 +0100]--[2024-03-27 Wed 10:00 +0100] =>  0:45
+  CLOCK: [2024-03-28 Wed 09:45 +0100]--[2024-03-28 Wed 10:00 +0100] =>  0:15
+  CLOCK: [2024-03-28 Wed 11:45 +0100]--[2024-03-28 Wed 12:15 +0100] =>  0:30
+  :END:
+
+La nouvelle version de pyc3l impose un tour de tous les tests pour
+valider le code.
+
+Nettoyage, renommage, test, commit.
+
+
+** Mise à jours de la commande avec plusieurs améliorations
+  :PROPERTIES:
+  :TASK_REF:      lok/2060
+  :END:
+
+*** Contexte
+
+Dans la suite des transaction fantôme, et des ajouts sur la pyc3l,
+l'accès en ligne de commande permet d'explorer au mieux la comchain.
+Dans ce sens, de nombreux ajout de fonctionnalité sont le bienvenu.
+
+*** Logs
+**** Ajout d'une visualisation des blocks
+  :LOGBOOK:
+  CLOCK: [2024-05-21 Tue 21:30 +0200]--[2024-05-21 Tue 22:15 +0200] =>  0:45
+  CLOCK: [2024-05-21 Tue 13:30 +0200]--[2024-05-21 Tue 15:30 +0200] =>  2:00
+  CLOCK: [2024-05-21 Tue 08:30 +0200]--[2024-05-21 Tue 12:15 +0200] =>  3:45
+  CLOCK: [2024-05-20 Mon 16:30 +0200]--[2024-05-20 Mon 18:30 +0200] =>  2:00
+  CLOCK: [2024-05-20 Mon 15:15 +0200]--[2024-05-20 Mon 15:45 +0200] =>  0:30
+  CLOCK: [2024-05-20 Mon 10:15 +0200]--[2024-05-20 Mon 12:00 +0200] =>  1:45
+  CLOCK: [2024-05-19 Sun 15:00 +0200]--[2024-05-19 Sun 16:00 +0200] =>  1:00
+  CLOCK: [2024-03-18 Mon 10:15 +0100]--[2024-03-18 Mon 10:45 +0100] =>  0:30
+  :END:
+
+**** Improve transactions, account_info
+  :LOGBOOK:
+  CLOCK: [2024-05-23 Thu 15:45 +0200]--[2024-05-23 Thu 16:30 +0200] =>  0:45
+  CLOCK: [2024-05-23 Thu 16:45 +0200]--[2024-05-23 Thu 17:15 +0200] =>  0:30
+  CLOCK: [2024-05-23 Thu 17:30 +0200]--[2024-05-23 Thu 17:45 +0200] =>  0:15
+  :END:
+
+** TODO report / permettre un regroupement arbitraire
+  :PROPERTIES:
+  :TASK_REF:      lok/2473
+  :END:
+
+*** Contexte
+
+Suite à l'utilisation de la commande report, il a été demandé de
+pouvoir séparer les comptes pro du reste. Comme ces informations ne
+sont disponibles que du coté odoo, et qu'il n'est pas de la
+responsabilité de ~pyc3l-cli~ de connaitre =odoo=, il s'agit
+de permettre de regrouper les adresses en autant de groupe voulu, et
+de donner les stats entre ces groupes.
+
+*** Logs
+
+**** Implémentation
+  :LOGBOOK:
+  CLOCK: [2025-01-29 Wed 09:30 +0100]--[2025-01-29 Wed 10:00 +0100] =>  0:30
+  CLOCK: [2025-01-28 Tue 19:45 +0100]--[2025-01-28 Tue 20:00 +0100] =>  0:15
+  CLOCK: [2025-01-28 Tue 18:30 +0100]--[2025-01-28 Tue 18:45 +0100] =>  0:15
+  CLOCK: [2025-01-28 Tue 17:45 +0100]--[2025-01-28 Tue 18:15 +0100] =>  0:30
+  CLOCK: [2025-01-28 Tue 16:00 +0100]--[2025-01-28 Tue 17:30 +0100] =>  1:30
+  CLOCK: [2025-01-28 Wed 14:45 +0100]--[2025-01-28 Wed 15:30 +0100] =>  0:45
+  CLOCK: [2025-01-24 Fri 17:15 +0100]--[2025-01-24 Fri 18:00 +0100] =>  0:45
+  CLOCK: [2025-01-24 Fri 14:30 +0100]--[2025-01-24 Fri 16:30 +0100] =>  2:00
+  :END:
+
+
+**** Production des chiffres de vélocité
+  :LOGBOOK:
+  CLOCK: [2025-01-29 Wed 15:30 +0100]--[2025-01-29 Wed 18:00 +0100] =>  2:30
+  :END:
+
+***** Visio @StéphanSainleger
+  :LOGBOOK:
+  CLOCK: [2025-01-28 Tue 11:00 +0100]--[2025-01-28 Tue 11:30 +0100] =>  0:30
+  :END:
+
+***** Stats pour les monnaies
+  :LOGBOOK:
+  CLOCK: [2025-01-31 Fri 11:15 +0100]--[2025-01-31 Fri 12:00 +0100] =>  0:45
+  CLOCK: [2025-01-30 Thu 17:30 +0100]--[2025-01-30 Thu 18:00 +0100] =>  0:30
+  CLOCK: [2025-01-30 Thu 10:00 +0100]--[2025-01-30 Thu 11:15 +0100] =>  1:15
+  CLOCK: [2025-01-30 Thu 09:30 +0100]--[2025-01-30 Thu 10:00 +0100] =>  0:30
+  CLOCK: [2025-01-30 Thu 09:00 +0100]--[2025-01-30 Thu 09:30 +0100] =>  0:30
+  CLOCK: [2025-01-29 Wed 18:00 +0100]--[2025-01-29 Wed 18:45 +0100] =>  0:45
+  :END:
+
+récupération des pro toute monnaies dans leur odoo respectifs.
+
+[[https://docs.google.com/spreadsheets/d/11WG6w51MSoIeLpZETNHasSla54OyCBp4eMrGBevgaZA/edit?gid=0#gid=0][Tableau pour la gemme]]
+
+visio avec @StephanSainleger pour savoir quoi donner aux monnaies.
+
+@ValentinLAB, le <2025-01-30 Thu 09:34>, sur =chat.lokavaluto.fr=, ~#ngi_local_for_local~, ([[https://chat.lokavaluto.fr/group/ngi_local_for_local?msg=MG5JWHoeQnBpDcE9A][ici]]), a écrit:
+#+begin_quote
+J'ai concocté à la va-vite un récapitulatif avec les dernières données
+monétaires, comprenant :
+
+- vélocité (ratio)
+
+- Fréquence (déf de Stéphane) en jours
+
+- le détail des échanges Business <-> Customer, top-up et reconversion
+  Business / Customer.
+
+Le problème, c'est que suite au fait qu'il fallait discuter de ces
+indicateurs et bricoler avec les chiffres, j'ai fini par produire un
+spreadsheet Google. Je peux éventuellement le convertir, j'imagine, ou
+vous le refiler. J'en ai un pour la gemme (déjà dispo), et j'allais en
+créer un pour l'Agnel sur la même base, et je vais voir pour le Léman
+(il me faut faire une petite collecte de données avant, car le Léman
+fonctionne un peu différemment).
+#+end_quote
+
+récupération liste léman, discussion et comparaison de chiffres [[https://docs.google.com/spreadsheets/d/1ZnXOGRAzA0ZJIR-xf-YdL_KCQRiniK4ffwIZMlXG-1s/edit?gid=0#gid=0][ici]].
+
+Discussions avec @FlorianDubath autour des incohérence des rapports:
+
+@ValentinLAB, le <2025-01-31 Fri 08:30>, sur =chat.lokavaluto.fr=, ~#Mpgstr5DtpiJuaYWBaqRnbDnMxkBCE7pdg~, ([[https://chat.lokavaluto.fr/direct/Mpgstr5DtpiJuaYWBaqRnbDnMxkBCE7pdg?msg=h3dBot6XWxebFKhBo][ici]]), a écrit:
+#+begin_quote
+J'ai des incohérences sur mon outil qui parse la comchain et les
+rapports que m'a transmis au sujet du nombre de LEM nantis en CHF en
+circulation. Il est possible que cela provienne de spécificités de
+gestion du Leman, du crédit mutuel, ou autre. Si tu as une adresse
+email sur Google, je peux te transmettre le résultat, actuellement mis
+en relief sur un spreadsheet Google. Les chiffres produits par mon
+outil (un bug est toujours possible) sont plutôt bons pour les autres
+monnaies et cadrent avec leur propre monitoring sur Odoo. Mon outil
+parse les blocks et lit les transactions une à une.
+#+end_quote
+
+
+***** bug UNIQUE CONSTRAINT failed
+  :LOGBOOK:
+  CLOCK: [2025-01-30 Thu 18:00 +0100]--[2025-01-30 Thu 18:45 +0100] =>  0:45
+  :END:
+
+survenu lors du minage des années précédentes pour le léman
+
+***** Ajout de la fonctionnalité amountPledged à pyc3l
+  :LOGBOOK:
+  CLOCK: [2025-01-31 Fri 15:45 +0100]--[2025-01-31 Fri 17:15 +0100] =>  1:30
+  CLOCK: [2025-01-31 Fri 14:00 +0100]--[2025-01-31 Fri 15:15 +0100] =>  1:15
+  :END:
+
+Pour le léman et les rapports:
+- Et ajout de la fonctionnalityé amountPledged()
+  - [[https://github.com/com-chain/pyc3l/commit/72cee808e63699262998e86fcd3f80d5f2a04bc6][commit préparatoire]] et [[https://github.com/com-chain/pyc3l/commit/d115c20dca9df16f44a512b5aaba6d2d4ccb4211][commit]]
+- Consultation de l'historique des états du contrat
+  - [[https://github.com/com-chain/pyc3l/commit/2409c6c347bae055c88745d93a92787a15571255][commit]]
+
+**** TODO publication
