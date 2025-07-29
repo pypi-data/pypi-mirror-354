@@ -1,0 +1,381 @@
+Metadata-Version: 2.4
+Name: delg
+Version: 0.1.1
+Summary: delg: A Python Package for Dockerized DELG Implementation
+Author-email: Duje Giljanović <giljanovic.duje@gmail.com>
+License:                                  Apache License
+                                   Version 2.0, January 2004
+                                http://www.apache.org/licenses/
+        
+           TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+        
+           1. Definitions.
+        
+              "License" shall mean the terms and conditions for use, reproduction,
+              and distribution as defined by Sections 1 through 9 of this document.
+        
+              "Licensor" shall mean the copyright owner or entity authorized by
+              the copyright owner that is granting the License.
+        
+              "Legal Entity" shall mean the union of the acting entity and all
+              other entities that control, are controlled by, or are under common
+              control with that entity. For the purposes of this definition,
+              "control" means (i) the power, direct or indirect, to cause the
+              direction or management of such entity, whether by contract or
+              otherwise, or (ii) ownership of fifty percent (50%) or more of the
+              outstanding shares, or (iii) beneficial ownership of such entity.
+        
+              "You" (or "Your") shall mean an individual or Legal Entity
+              exercising permissions granted by this License.
+        
+              "Source" form shall mean the preferred form for making modifications,
+              including but not limited to software source code, documentation
+              source, and configuration files.
+        
+              "Object" form shall mean any form resulting from mechanical
+              transformation or translation of a Source form, including but
+              not limited to compiled object code, generated documentation,
+              and conversions to other media types.
+        
+              "Work" shall mean the work of authorship, whether in Source or
+              Object form, made available under the License, as indicated by a
+              copyright notice that is included in or attached to the work
+              (an example is provided in the Appendix below).
+        
+              "Derivative Works" shall mean any work, whether in Source or Object
+              form, that is based on (or derived from) the Work and for which the
+              editorial revisions, annotations, elaborations, or other modifications
+              represent, as a whole, an original work of authorship. For the purposes
+              of this License, Derivative Works shall not include works that remain
+              separable from, or merely link (or bind by name) to the interfaces of,
+              the Work and Derivative Works thereof.
+        
+              "Contribution" shall mean any work of authorship, including
+              the original version of the Work and any modifications or additions
+              to that Work or Derivative Works thereof, that is intentionally
+              submitted to Licensor for inclusion in the Work by the copyright owner
+              or by an individual or Legal Entity authorized to submit on behalf of
+              the copyright owner. For the purposes of this definition, "submitted"
+              means any form of electronic, verbal, or written communication sent
+              to the Licensor or its representatives, including but not limited to
+              communication on electronic mailing lists, source code control systems,
+              and issue tracking systems that are managed by, or on behalf of, the
+              Licensor for the purpose of discussing and improving the Work, but
+              excluding communication that is conspicuously marked or otherwise
+              designated in writing by the copyright owner as "Not a Contribution."
+        
+              "Contributor" shall mean Licensor and any individual or Legal Entity
+              on behalf of whom a Contribution has been received by Licensor and
+              subsequently incorporated within the Work.
+        
+           2. Grant of Copyright License. Subject to the terms and conditions of
+              this License, each Contributor hereby grants to You a perpetual,
+              worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+              copyright license to reproduce, prepare Derivative Works of,
+              publicly display, publicly perform, sublicense, and distribute the
+              Work and such Derivative Works in Source or Object form.
+        
+           3. Grant of Patent License. Subject to the terms and conditions of
+              this License, each Contributor hereby grants to You a perpetual,
+              worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+              (except as stated in this section) patent license to make, have made,
+              use, offer to sell, sell, import, and otherwise transfer the Work,
+              where such license applies only to those patent claims licensable
+              by such Contributor that are necessarily infringed by their
+              Contribution(s) alone or by combination of their Contribution(s)
+              with the Work to which such Contribution(s) was submitted. If You
+              institute patent litigation against any entity (including a
+              cross-claim or counterclaim in a lawsuit) alleging that the Work
+              or a Contribution incorporated within the Work constitutes direct
+              or contributory patent infringement, then any patent licenses
+              granted to You under this License for that Work shall terminate
+              as of the date such litigation is filed.
+        
+           4. Redistribution. You may reproduce and distribute copies of the
+              Work or Derivative Works thereof in any medium, with or without
+              modifications, and in Source or Object form, provided that You
+              meet the following conditions:
+        
+              (a) You must give any other recipients of the Work or
+                  Derivative Works a copy of this License; and
+        
+              (b) You must cause any modified files to carry prominent notices
+                  stating that You changed the files; and
+        
+              (c) You must retain, in the Source form of any Derivative Works
+                  that You distribute, all copyright, patent, trademark, and
+                  attribution notices from the Source form of the Work,
+                  excluding those notices that do not pertain to any part of
+                  the Derivative Works; and
+        
+              (d) If the Work includes a "NOTICE" text file as part of its
+                  distribution, then any Derivative Works that You distribute must
+                  include a readable copy of the attribution notices contained
+                  within such NOTICE file, excluding those notices that do not
+                  pertain to any part of the Derivative Works, in at least one
+                  of the following places: within a NOTICE text file distributed
+                  as part of the Derivative Works; within the Source form or
+                  documentation, if provided along with the Derivative Works; or,
+                  within a display generated by the Derivative Works, if and
+                  wherever such third-party notices normally appear. The contents
+                  of the NOTICE file are for informational purposes only and
+                  do not modify the License. You may add Your own attribution
+                  notices within Derivative Works that You distribute, alongside
+                  or as an addendum to the NOTICE text from the Work, provided
+                  that such additional attribution notices cannot be construed
+                  as modifying the License.
+        
+           5. Submission of Contributions. Unless You explicitly state otherwise,
+              any Contribution intentionally submitted for inclusion in the Work
+              by You to the Licensor shall be under the terms and conditions of
+              this License, without any additional terms or conditions.
+              Notwithstanding the above, nothing herein shall supersede or modify
+              the terms of any separate license agreement you may have executed
+              with Licensor regarding such Contributions.
+        
+           6. Trademarks. This License does not grant permission to use the trade
+              names, trademarks, service marks, or product names of the Licensor,
+              except as required for describing the origin of the Work and
+              reproducing the content of the NOTICE file.
+        
+           7. Disclaimer of Warranty. Unless required by applicable law or
+              agreed to in writing, Licensor provides the Work (and each
+              Contributor provides its Contributions) on an "AS IS" BASIS,
+              WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+              implied, including, without limitation, any warranties or conditions
+              of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+              PARTICULAR PURPOSE. You are solely responsible for determining the
+              appropriateness of using or redistributing the Work and assume any
+              risks associated with Your exercise of permissions under this License.
+        
+           8. Limitation of Liability. In no event and under no legal theory,
+              whether in tort (including negligence), contract, or otherwise,
+              unless required by applicable law (such as deliberate and grossly
+              negligent acts) or agreed to in writing, shall any Contributor be
+              liable to You for damages, including any direct, indirect, special,
+              incidental, or consequential damages of any character arising as a
+              result of this License or out of the use or inability to use the
+              Work (including but not limited to damages for loss of goodwill,
+              work stoppage, computer failure or malfunction, or any and all
+              other commercial damages or losses), even if such Contributor
+              has been advised of the possibility of such damages.
+        
+           9. Accepting Warranty or Additional Liability. While redistributing
+              the Work or Derivative Works thereof, You may choose to offer,
+              and charge a fee for, acceptance of support, warranty, indemnity,
+              or other liability obligations and/or rights consistent with this
+              License. However, in accepting such obligations, You may act only
+              on Your own behalf and on Your sole responsibility, not on behalf
+              of any other Contributor, and only if You agree to indemnify,
+              defend, and hold each Contributor harmless for any liability
+              incurred by, or claims asserted against, such Contributor by reason
+              of your accepting any such warranty or additional liability.
+        
+           END OF TERMS AND CONDITIONS
+        
+           APPENDIX: How to apply the Apache License to your work.
+        
+              To apply the Apache License to your work, attach the following
+              boilerplate notice, with the fields enclosed by brackets "[]"
+              replaced with your own identifying information. (Don't include
+              the brackets!)  The text should be enclosed in the appropriate
+              comment syntax for the file format. We also recommend that a
+              file or class name and description of purpose be included on the
+              same "printed page" as the license notice for easier identification
+              within third-party archives.
+        
+           Copyright [2025] [Duje Giljanović]
+        
+           Licensed under the Apache License, Version 2.0 (the "License");
+           you may not use this file except in compliance with the License.
+           You may obtain a copy of the License at
+        
+               http://www.apache.org/licenses/LICENSE-2.0
+        
+           Unless required by applicable law or agreed to in writing, software
+           distributed under the License is distributed on an "AS IS" BASIS,
+           WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+           See the License for the specific language governing permissions and
+           limitations under the License.
+        
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests>=2.24.0
+Requires-Dist: scikit-learn>=0.24
+Requires-Dist: scipy>=1.5
+Requires-Dist: numpy>=1.19.0
+Requires-Dist: scikit-image>=0.18.0
+Provides-Extra: server
+Requires-Dist: fastapi; extra == "server"
+Requires-Dist: uvicorn; extra == "server"
+Requires-Dist: tensorflow-cpu; extra == "server"
+Requires-Dist: pillow; extra == "server"
+Requires-Dist: numpy; extra == "server"
+Requires-Dist: protobuf; extra == "server"
+Dynamic: license-file
+
+# **delg**
+
+![Author](https://img.shields.io/badge/Author-Duje_Giljanović-green)
+![Version](https://img.shields.io/badge/Version-0.1.0-green)
+![License](https://img.shields.io/badge/License-Apache%202.0-green)\
+![Python Version](https://img.shields.io/badge/Python-3.7%2B-blue)
+![Docker](https://img.shields.io/badge/Requires-Docker-blue)
+
+
+
+**delg** is a Python package that containerizes Google’s DELG (Deep Local and Global features) model for image feature extraction. It provides a seamless interface for extracting both global and local image features through a Dockerized FastAPI server and a Python client.
+
+Originally developed by Google Research, DELG is a state-of-the-art model for large-scale image retrieval, offering both fine-grained local features and holistic global descriptors. This package simplifies the usage by providing a fully containerized, PyPI-compatible solution with automatic model downloading, container management, and easy integration into your Python code.
+
+In addition, this package extends DELG’s original design by implementing **parallel image processing**, allowing you to process multiple images in parallel, even though the DELG model itself does not natively support batch inference. This is accomplished through asynchronous client requests that emulate batch processing for increased efficiency.
+
+&nbsp;
+
+## Features
+
+- **Containerized Server**: Fully Dockerized DELG feature extraction server using FastAPI. Automatically manages Docker images, container lifecycle, and server health checks.
+- **Automatic Server Orchestration**: Package automatically starts and stops the Docker container, ensuring a seamless user experience without manual Docker management.
+- **Pre-trained Model Management**: Automatically downloads and extracts DELG model weights from Google Cloud Storage if not already available, storing them in the installed package directory for local use.
+- **Global Feature Extraction**: Functions to extract global image descriptors using DELG, suitable for image retrieval and similarity search.
+- **Local Feature Extraction**: Functions to extract local keypoints and descriptors with attention scores using DELG, enabling fine-grained image matching.
+- **Parallel Image Processing**: The client supports processing multiple images in parallel using asynchronous requests, making it possible to efficiently process batches of images even though DELG itself doesn’t natively support batch inference.
+- **REST API Endpoints**: Exposes FastAPI endpoints for:
+  - Health check (`/healthz`)
+  - Global feature extraction (`/extract/global`)
+  - Local feature extraction (`/extract/local`)
+  - Updating local configuration (`/config/local`)
+- **Python Client Functions**: Easy-to-use Python functions to:
+  - Extract global and local features (single or multiple images).
+  - Compare global features using cosine similarity.
+  - Match local features with RANSAC geometric verification.
+  - Update Docker runtime settings and local feature extraction configuration at runtime.
+- **Dynamic Configuration**: Runtime updates of local feature extraction parameters (`max_feature_num`, `score_threshold`) and Docker container settings (`image name`, `container name`, `port`).
+- **Server-side Local Configuration Update**: Allows dynamic reconfiguration of local feature extraction thresholds without restarting the container.
+- **Efficient Image Processing**: Includes internal utilities for image loading, resizing, and configuration file parsing to ensure compatibility with DELG’s input requirements.
+- **Testing and Logging**: Incorporates automatic logging and error handling for robust feature extraction and server health monitoring.
+
+&nbsp;
+
+## Prerequisites
+
+You must have **Docker** installed and properly set up on your machine. Below are some helpful tips:
+  - **macOS**:
+    - For Intel-based Macs, Docker Desktop typically installs at `/Applications/Docker.app`, and it automatically adds Docker to your PATH.
+    - For Apple Silicon (M1/M2), Docker Desktop also handles PATH configuration automatically.
+  - **Windows**:
+    - Docker Desktop usually handles PATH setup automatically. If needed, verify that the Docker executable is in your PATH by checking your environment variables.
+  - **Linux and other Unix-based systems**:
+    - Docker is generally installed via your package manager (e.g., `apt`, `yum`, `dnf`). Make sure the `docker` binary is accessible in your PATH.
+    - Common installation paths include `/usr/bin/docker` or `/usr/local/bin/docker`.
+
+> **Important!**  
+> After installing Docker, verify that it is accessible from the command line by running:
+
+
+> ```sh
+> docker --version
+> ```
+>
+> You should see the Docker version information displayed.
+
+&nbsp;
+
+## Installation
+
+>
+> If you are installing delg in a virtual environment, make sure that PATH has been correctly updated to point to Docker install location! 
+>
+
+To install delg simply run
+
+> ```sh
+> pip install delg
+> ```
+
+&nbsp;
+
+## Usage
+
+Below is a minimal example for using the package to extract both global and local features:
+
+&nbsp;
+
+```python
+from delg.client import extract_global_features, extract_local_features
+from delg.similarity import local_feature_match, cosine_similarity
+import os
+
+from delg.config import update_local_config, set_docker_config
+
+# Define supported image extensions
+image_extensions = (".png", ".jpg", ".jpeg", ".bmp", ".gif", ".tiff", ".webp")
+
+
+# Load image paths for the first set
+images_path_1 = "<path_to_first_image_set>"
+image_paths_1 = sorted(
+    [
+        os.path.join(images_path_1, fname)
+        for fname in os.listdir(images_path_1)
+        if fname.lower().endswith(image_extensions)
+    ]
+)
+
+# Load image paths for the second set
+images_path_2 = "<path_to_second_image_set>"
+image_paths_2 = sorted(
+    [
+        os.path.join(images_path_2, fname)
+        for fname in os.listdir(images_path_2)
+        if fname.lower().endswith(image_extensions)
+    ]
+)
+
+# Extract global features in parallel (preserves order)
+global_features_1 = extract_global_features(image_paths_1, parallel=True, max_workers=20)
+global_features_2 = extract_global_features(image_paths_2, parallel=True, max_workers=20)
+
+for img1_path, descriptor1 in zip(image_paths_1, global_features_1):
+    if descriptor1 is None:
+        continue  # Skip images that failed processing
+
+    for img2_path, descriptor2 in zip(image_paths_2, global_features_2):
+        if descriptor2 is None:
+            continue
+
+        cos_sim = cosine_similarity(descriptor1, descriptor2)
+
+        if cos_sim > <global_similarity_threshold>:
+            print(f"Cosine similarity: {cos_sim:.4f}")
+            continue
+
+        if cos_sim > <local_similarity_trigger>:
+            local_features_1 = extract_local_features(img1_path)
+            local_features_2 = extract_local_features(img2_path)
+
+            match = local_feature_match(
+                local_features_1,
+                local_features_2,
+                ransac_residual_threshold=15,
+                min_inliers=8,
+                ratio_thresh=0.9,
+            )
+
+            print(f"Cosine similarity: {cos_sim:.4f}")
+            print(f"Local match score: {match}")
+```
+&nbsp;
+
+If needed, one can modify configuration for local feature extraction and/or Docker runtime settings using the following two functions:
+
+``` python
+update_local_config(max_feature_num=1000, score_threshold=454.6)
+set_docker_config(image="delg-server", container="delg-server-container", port=8080)
+```
+
+&nbsp;
+
+>
+> Note: values above are used by default if left unspecified.
+>

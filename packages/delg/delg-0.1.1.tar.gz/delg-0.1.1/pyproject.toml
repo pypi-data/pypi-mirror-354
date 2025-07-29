@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "delg"
+version = "0.1.1"
+description = "delg: A Python Package for Dockerized DELG Implementation"
+authors = [
+    { name = "Duje Giljanović", email = "giljanovic.duje@gmail.com" }
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+dependencies = [
+    "requests>=2.24.0",
+    "scikit-learn>=0.24",
+    "scipy>=1.5",
+    "numpy>=1.19.0", 
+    "scikit-image>=0.18.0"
+]
+
+[tool.setuptools]
+packages = ["delg"]
+
+[tool.setuptools.package-data]
+# include configs
+"delg" = [
+    "model_configs/*.pbtxt",
+]
+
+[project.optional-dependencies]
+server = [
+    "fastapi",
+    "uvicorn",
+    "tensorflow-cpu",
+    "pillow",
+    "numpy",
+    "protobuf"
+]

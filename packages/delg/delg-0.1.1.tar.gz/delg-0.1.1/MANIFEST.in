@@ -1,0 +1,15 @@
+# Include core metadata files
+include README.md
+include LICENSE
+include pyproject.toml
+include entrypoint.py
+include Dockerfile
+
+# Include all protocol buffer configs
+recursive-include delg/model_configs *.pbtxt
+
+# Include Python source code
+recursive-include delg *.py
+
+# Exclude cache and junk files
+global-exclude __pycache__ *.pyc *.pyo
