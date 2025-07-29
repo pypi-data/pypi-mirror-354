@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "my_data_lib"
+version = "0.1.2"
+description = "Uma biblioteca para manipulação de dados em diferentes fontes"
+authors = [
+    { name="Gugpo", email="poliveiragpo@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.13.3"
+dependencies = [
+    "pandas==2.2.3",
+    "sqlalchemy==2.0.41",
+    "psycopg2==2.9.10",
+    "pymongo==4.13.0",
+    "pytest==8.4.0"
+]
