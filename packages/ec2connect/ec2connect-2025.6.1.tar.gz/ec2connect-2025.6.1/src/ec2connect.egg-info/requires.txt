@@ -1,0 +1,15 @@
+packaging<24.0,>=23.0
+questionary<3.0,>=2.0
+boto3<2.0,>=1.10.0
+click<9.0,>=8
+click-default-group<2.0,>=1.0
+xdg<7,>=6
+
+[linting]
+pylint
+
+[testing]
+setuptools
+pytest
+pytest-cov
+pyfakefs
