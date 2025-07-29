@@ -1,0 +1,4 @@
+[console_scripts]
+everything-gui = everything_search.gui_main:main
+everything-index = everything_search.cli.index_cli:main
+everything-search = everything_search.cli.search_cli:main
