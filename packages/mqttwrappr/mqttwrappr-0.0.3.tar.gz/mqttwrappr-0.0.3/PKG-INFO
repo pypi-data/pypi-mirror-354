@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: mqttwrappr
+Version: 0.0.3
+Summary: A user friendly wrappr for easy mqtt operations
+Author-email: Nils Klasen <likeable.versed-78@icloud.com>
+License-Expression: MIT
+Project-URL: Homepage, https://git-ce.rwth-aachen.de/kls/mqttwrappr
+Project-URL: Documentation, https://mqttwrappr-dee8f6.pages.git-ce.rwth-aachen.de
+Project-URL: Issues, https://git-ce.rwth-aachen.de/kls/mqttwrappr/-/issues
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: OS Independent
+Requires-Python: <4,>=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: paho-mqtt<2.0.0
+Dynamic: license-file
+
+# mqttwrappr
+
+⚠️ Note: This package is currently in active development. It is not yet feature-complete and lacks comprehensive documentation. Users should expect changes and potential instability.
+
+## 🧩 Features
+*to be documented*
+
+## 🚀 Quickstart Example
+*to be documented*
+
+
+# How to setup mqtt-server in docker environment
+- https://github.com/sukesh-ak/setup-mosquitto-with-docker
+
+
+# Installation
+```pip install mqttwrappr```
+
+
+## ©️ License
+This project is licensed under the [MIT License](LICENSE).
