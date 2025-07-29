@@ -1,0 +1,68 @@
+Metadata-Version: 2.4
+Name: gopass_utils
+Version: 0.5.0
+Summary: Reusable Gopass interface for Python Projects
+Author-email: Rick <ricks.homelab@gmail.com>
+License-Expression: LicenseRef-Proprietary
+Project-URL: homepage, https://github.com/Ricks-Lab/gopass-utils
+Project-URL: documentation, https://github.com/Ricks-Lab/gopass-utils
+Project-URL: source, https://github.com/Ricks-Lab/gopass-utils
+Project-URL: bug-tracker, https://github.com/Ricks-Lab/gopass-utils/issues
+Keywords: security,gpg,vault,password,gopass
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Security
+Classifier: Topic :: Utilities
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pexpect>=4.9.0
+Dynamic: license-file
+
+# gopass_utils
+
+A set of utilities to manage secrets with [Gopass](https://www.gopass.pw/) and extract them as needed.
+
+This module is designed for use in Python projects that require secure, runtime access to
+secrets such as database passwords, API tokens, or configuration blobs.
+
+## Features
+
+-  Securely fetch secrets from Gopass CLI
+-  Supports environment-scoped secrets (e.g. `dev/`, `prod/`)
+-  In-memory caching (optional)
+-  Easy integration with existing Python logging
+-  Supports JSON-formatted secrets
+
+## Installation
+
+```bash
+wget https://github.com/gopasspw/gopass/releases/download/v1.15.15/gopass_1.15.15_linux_amd64.deb
+sudo dpkg -i gopass_1.15.15_linux_amd64.deb
+```
+
+## New in this Release - v0.4.0
+* Use new packaging build env.
+
+## History
+
+## New in this Previos Release - v0.3.0
+* Update to use v1.15.15 of gopass.
+* Change back to using -o option of gopass.
+
+### New in Previous Release - v0.2.0
+* Remove `-o` option in call to gopass.
+
+### New in Previous Release - v0.1.0
+* Initial release.
