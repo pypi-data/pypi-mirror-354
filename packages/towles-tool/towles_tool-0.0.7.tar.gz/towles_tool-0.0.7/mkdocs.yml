@@ -1,0 +1,52 @@
+site_name: towles-tool
+repo_url: https://github.com/ChrisTowles/towles-tool
+site_url: https://ChrisTowles.github.io/towles-tool
+site_description: Helper cli commands from a developer
+site_author: Chris Towles
+edit_uri: edit/main/docs/
+repo_name: ChrisTowles/towles-tool
+copyright: Maintained by <a href="https://Chris.Towles.dev">Chris Towles</a>.
+
+nav:
+  - Home: index.md
+  - Modules: modules.md
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["src/towles_tool"]
+theme:
+  name: material
+  feature:
+    tabs: true
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ChrisTowles/towles-tool
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/towles-tool
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
