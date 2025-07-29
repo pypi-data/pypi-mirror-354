@@ -1,0 +1,38 @@
+Metadata-Version: 2.4
+Name: kilopa-protection
+Version: 1.0.1
+Summary: Comprehensive Python application protection library
+Home-page: https://github.com/kilopa/kilopa-python
+Author: Kilopa Security Team
+Author-email: security@kilopa.dev
+Keywords: security protection license drm anti-tamper hwid
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Security
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.7
+Description-Content-Type: text/plain
+License-File: LICENSE
+Requires-Dist: requests>=2.25.0
+Requires-Dist: pycryptodome>=3.15.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+Kilopa is a comprehensive security and licensing library for Python applications with features like license management, hardware ID protection, IP monitoring, anti-tampering, and more.
