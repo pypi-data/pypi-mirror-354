@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: drf-protector
+Version: 0.1.0
+Summary: Obfuscate and package Django/DRF apps securely with PyArmor + Docker
+Home-page: https://github.com/pranav-dixit/drf-protector
+Author: Pranav Dixit
+Author-email: pranavdixit20@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Requires-Dist: click
+Requires-Dist: pyarmor
+Requires-Dist: docker
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
