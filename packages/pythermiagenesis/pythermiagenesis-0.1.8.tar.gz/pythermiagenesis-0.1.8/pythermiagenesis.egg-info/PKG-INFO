@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: pythermiagenesis
+Version: 0.1.8
+Summary: Python wrapper for getting data from Thermia Mega and Inverter heat pumps         via Modbus TCP.
+Home-page: https://github.com/cjne/pythermiagenesis
+Author: Johan Isaksson
+Author-email: johan@generatorhallen.se
+License: MIT
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+License-File: LICENSE
+Requires-Dist: pymodbustcp==0.1.10
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
