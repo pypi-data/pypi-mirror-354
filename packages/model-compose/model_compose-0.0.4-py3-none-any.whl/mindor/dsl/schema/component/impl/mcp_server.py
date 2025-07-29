@@ -1,0 +1,9 @@
+from pydantic import BaseModel, Field, HttpUrl
+from pydantic import model_validator
+from typing import Type, Union, Literal, Optional, Dict, List, Tuple, Set, Annotated, Any
+from mindor.dsl.schema.action import McpServerActionConfig
+from .common import ComponentType, CommonComponentConfig
+
+class McpServerComponentConfig(CommonComponentConfig):
+    type: Literal[ComponentType.MCP_SERVER]
+    actions: Optional[Dict[str, McpServerActionConfig]] = Field(default_factory=dict)
