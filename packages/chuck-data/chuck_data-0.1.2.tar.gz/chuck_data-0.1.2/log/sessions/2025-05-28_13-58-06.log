@@ -1,0 +1,72 @@
+2025-05-28 13:58:12,908 - INFO - Executing agent tool 'scan_schema_for_pii' with handler: handle_command
+2025-05-28 13:58:13,121 - INFO - Starting PII Scan for 3 tables in john_test.bronze.
+2025-05-28 13:58:40,709 - INFO - Executing agent tool 'tag_pii_columns' with handler: handle_command
+2025-05-28 13:58:40,826 - INFO - Applying tag 'update-dt' to column 'last_updated'
+2025-05-28 13:58:41,705 - INFO - Applying tag 'given-name' to column 'first_name'
+2025-05-28 13:58:42,547 - INFO - Applying tag 'surname' to column 'last_name'
+2025-05-28 13:58:43,317 - INFO - Applying tag 'email' to column 'email_address'
+2025-05-28 13:58:44,147 - INFO - Applying tag 'phone' to column 'phone_number'
+2025-05-28 13:58:44,950 - INFO - Applying tag 'address' to column 'address_line_1'
+2025-05-28 13:58:45,733 - INFO - Applying tag 'city' to column 'city'
+2025-05-28 13:58:46,534 - INFO - Applying tag 'state' to column 'state'
+2025-05-28 13:58:47,276 - INFO - Applying tag 'postal' to column 'zip_code'
+2025-05-28 13:58:48,076 - INFO - Applying tag 'gender' to column 'gender'
+2025-05-28 13:58:48,840 - INFO - Applying tag 'birthdate' to column 'birthdate'
+2025-05-28 13:58:55,848 - INFO - Executing agent tool 'tag_pii_columns' with handler: handle_command
+2025-05-28 13:58:56,012 - INFO - Applying tag 'update-dt' to column 'dtUpdateDate'
+2025-05-28 13:58:56,767 - INFO - Applying tag 'given-name' to column 'cus_first'
+2025-05-28 13:58:57,515 - INFO - Applying tag 'surname' to column 'cus_last'
+2025-05-28 13:58:58,313 - INFO - Applying tag 'email' to column 'cus_email'
+2025-05-28 13:58:59,227 - INFO - Applying tag 'phone' to column 'cus_phone'
+2025-05-28 13:59:00,001 - INFO - Applying tag 'address' to column 'cus_addr1'
+2025-05-28 13:59:00,824 - INFO - Applying tag 'city' to column 'cus_city'
+2025-05-28 13:59:01,581 - INFO - Applying tag 'state' to column 'cus_state'
+2025-05-28 13:59:02,329 - INFO - Applying tag 'postal' to column 'cus_zip'
+2025-05-28 13:59:03,159 - INFO - Applying tag 'gender' to column 'cus_gender'
+2025-05-28 13:59:03,895 - INFO - Applying tag 'birthdate' to column 'cus_birthdt'
+2025-05-28 13:59:11,422 - INFO - Executing agent tool 'tag_pii_columns' with handler: handle_command
+2025-05-28 13:59:11,581 - INFO - Applying tag 'update-dt' to column 'last_updated'
+2025-05-28 13:59:13,167 - INFO - Applying tag 'given-name' to column 'fname'
+2025-05-28 13:59:13,893 - INFO - Applying tag 'surname' to column 'lname'
+2025-05-28 13:59:14,643 - INFO - Applying tag 'email' to column 'email'
+2025-05-28 13:59:15,393 - INFO - Applying tag 'phone' to column 'phone_nbr'
+2025-05-28 13:59:16,162 - INFO - Applying tag 'address' to column 'address_line_1'
+2025-05-28 13:59:16,907 - INFO - Applying tag 'city' to column 'city'
+2025-05-28 13:59:17,633 - INFO - Applying tag 'state' to column 'state'
+2025-05-28 13:59:18,398 - INFO - Applying tag 'postal' to column 'postal'
+2025-05-28 13:59:19,168 - INFO - Applying tag 'gender' to column 'gender'
+2025-05-28 13:59:19,896 - INFO - Applying tag 'birthdate' to column 'birth_date'
+2025-05-28 14:01:56,496 - INFO - Executing agent tool 'table' with handler: handle_command
+2025-05-28 14:02:01,874 - INFO - Executing agent tool 'run_sql' with handler: handle_command
+2025-05-28 14:02:03,020 - ERROR - Tool 'run_sql' execution failed. Message: Query did not complete successfully. Final state: , Error: None
+2025-05-28 14:02:08,337 - INFO - Executing agent tool 'run_sql' with handler: handle_command
+2025-05-28 14:02:09,133 - ERROR - Tool 'run_sql' execution failed. Message: Query did not complete successfully. Final state: , Error: None
+2025-05-28 14:02:13,561 - INFO - Executing agent tool 'scan_schema_for_pii' with handler: handle_command
+2025-05-28 14:02:13,764 - INFO - Starting PII Scan for 3 tables in john_test.bronze.
+2025-05-28 14:35:55,834 - INFO - Executing agent tool 'tag_pii_columns' with handler: handle_command
+2025-05-28 14:35:56,022 - INFO - Applying tag 'foo' to column 'last_updated'
+2025-05-28 14:35:57,157 - INFO - Applying tag 'foo' to column 'fname'
+2025-05-28 14:35:57,993 - INFO - Applying tag 'foo' to column 'lname'
+2025-05-28 14:35:58,755 - INFO - Applying tag 'foo' to column 'email'
+2025-05-28 14:35:59,614 - INFO - Applying tag 'foo' to column 'phone_nbr'
+2025-05-28 14:36:00,373 - INFO - Applying tag 'foo' to column 'address_line_1'
+2025-05-28 14:36:01,146 - INFO - Applying tag 'foo' to column 'city'
+2025-05-28 14:36:01,961 - INFO - Applying tag 'foo' to column 'state'
+2025-05-28 14:36:02,725 - INFO - Applying tag 'foo' to column 'postal'
+2025-05-28 14:36:03,456 - INFO - Applying tag 'foo' to column 'gender'
+2025-05-28 14:36:04,226 - INFO - Applying tag 'foo' to column 'birth_date'
+2025-05-28 14:41:07,214 - INFO - Executing agent tool 'tag_pii_columns' with handler: handle_command
+2025-05-28 14:41:12,589 - INFO - Executing agent tool 'help' with handler: handle_command
+2025-05-28 14:41:19,588 - INFO - Executing agent tool 'tag_pii_columns' with handler: handle_command
+2025-05-28 14:41:29,286 - INFO - Executing agent tool 'tag_pii_columns' with handler: handle_command
+2025-05-28 14:41:29,416 - INFO - Applying tag 'not-pii' to column 'last_updated'
+2025-05-28 14:41:30,388 - INFO - Applying tag 'not-pii' to column 'fname'
+2025-05-28 14:41:31,149 - INFO - Applying tag 'not-pii' to column 'lname'
+2025-05-28 14:41:31,962 - INFO - Applying tag 'not-pii' to column 'email'
+2025-05-28 14:41:32,976 - INFO - Applying tag 'not-pii' to column 'phone_nbr'
+2025-05-28 14:41:33,745 - INFO - Applying tag 'not-pii' to column 'address_line_1'
+2025-05-28 14:41:34,545 - INFO - Applying tag 'not-pii' to column 'city'
+2025-05-28 14:41:35,312 - INFO - Applying tag 'not-pii' to column 'state'
+2025-05-28 14:41:36,129 - INFO - Applying tag 'not-pii' to column 'postal'
+2025-05-28 14:41:36,869 - INFO - Applying tag 'not-pii' to column 'gender'
+2025-05-28 14:41:37,635 - INFO - Applying tag 'not-pii' to column 'birth_date'

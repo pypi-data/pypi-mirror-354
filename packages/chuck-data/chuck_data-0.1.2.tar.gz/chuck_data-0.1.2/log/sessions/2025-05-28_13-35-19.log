@@ -1,0 +1,41 @@
+2025-05-28 13:41:02,565 - INFO - Executing agent tool 'list_tables' with handler: handle_command
+2025-05-28 13:41:10,429 - INFO - Executing agent tool 'tag_pii_columns' with handler: handle_command
+2025-05-28 13:41:10,639 - INFO - Applying tag 'email' to column 'email'
+2025-05-28 13:46:43,971 - INFO - Executing agent tool 'scan_schema_for_pii' with handler: handle_command
+2025-05-28 13:46:44,419 - INFO - Starting PII Scan for 3 tables in john_test.bronze.
+2025-05-28 13:46:58,174 - INFO - Executing agent tool 'tag_pii_columns' with handler: handle_command
+2025-05-28 13:46:58,340 - INFO - Applying tag 'update-dt' to column 'last_updated'
+2025-05-28 13:46:59,443 - INFO - Applying tag 'given-name' to column 'first_name'
+2025-05-28 13:47:00,267 - INFO - Applying tag 'surname' to column 'last_name'
+2025-05-28 13:47:01,083 - INFO - Applying tag 'email' to column 'email_address'
+2025-05-28 13:47:01,880 - INFO - Applying tag 'phone' to column 'phone_number'
+2025-05-28 13:47:02,867 - INFO - Applying tag 'address' to column 'address_line_1'
+2025-05-28 13:47:03,665 - INFO - Applying tag 'city' to column 'city'
+2025-05-28 13:47:04,507 - INFO - Applying tag 'state' to column 'state'
+2025-05-28 13:47:05,265 - INFO - Applying tag 'postal' to column 'zip_code'
+2025-05-28 13:47:06,065 - INFO - Applying tag 'gender' to column 'gender'
+2025-05-28 13:47:06,858 - INFO - Applying tag 'birthdate' to column 'birthdate'
+2025-05-28 13:47:15,914 - INFO - Executing agent tool 'tag_pii_columns' with handler: handle_command
+2025-05-28 13:47:16,100 - INFO - Applying tag 'update-dt' to column 'dtUpdateDate'
+2025-05-28 13:47:16,848 - INFO - Applying tag 'given-name' to column 'cus_first'
+2025-05-28 13:47:17,588 - INFO - Applying tag 'surname' to column 'cus_last'
+2025-05-28 13:47:18,419 - INFO - Applying tag 'email' to column 'cus_email'
+2025-05-28 13:47:19,299 - INFO - Applying tag 'phone' to column 'cus_phone'
+2025-05-28 13:47:20,120 - INFO - Applying tag 'address' to column 'cus_addr1'
+2025-05-28 13:47:20,984 - INFO - Applying tag 'city' to column 'cus_city'
+2025-05-28 13:47:21,759 - INFO - Applying tag 'state' to column 'cus_state'
+2025-05-28 13:47:22,533 - INFO - Applying tag 'postal' to column 'cus_zip'
+2025-05-28 13:47:23,602 - INFO - Applying tag 'gender' to column 'cus_gender'
+2025-05-28 13:47:24,365 - INFO - Applying tag 'birthdate' to column 'cus_birthdt'
+2025-05-28 13:47:31,280 - INFO - Executing agent tool 'tag_pii_columns' with handler: handle_command
+2025-05-28 13:47:31,429 - INFO - Applying tag 'update-dt' to column 'last_updated'
+2025-05-28 13:47:32,202 - INFO - Applying tag 'given-name' to column 'fname'
+2025-05-28 13:47:32,916 - INFO - Applying tag 'surname' to column 'lname'
+2025-05-28 13:47:33,767 - INFO - Applying tag 'email' to column 'email'
+2025-05-28 13:47:34,564 - INFO - Applying tag 'phone' to column 'phone_nbr'
+2025-05-28 13:47:35,321 - INFO - Applying tag 'address' to column 'address_line_1'
+2025-05-28 13:47:36,120 - INFO - Applying tag 'city' to column 'city'
+2025-05-28 13:47:36,983 - INFO - Applying tag 'state' to column 'state'
+2025-05-28 13:47:37,755 - INFO - Applying tag 'postal' to column 'postal'
+2025-05-28 13:47:38,515 - INFO - Applying tag 'gender' to column 'gender'
+2025-05-28 13:47:39,252 - INFO - Applying tag 'birthdate' to column 'birth_date'

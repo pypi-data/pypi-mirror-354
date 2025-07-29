@@ -1,0 +1,18 @@
+2025-05-21 17:23:15,848 - INFO - ClampService executing: '/auth', args: (), interactive: 'None'
+2025-05-21 17:23:16,031 - ERROR - HTTP error: 401 Client Error: Unauthorized for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/preview/scim/v2/Me, Response: {"error_code":401,"message":"Credential was not sent or was of an unsupported type for this API. [ReqId: ac546329-92df-4d02-84ec-6ee68ed801c9]"}
+2025-05-21 17:23:16,152 - ERROR - HTTP error: 401 Client Error: Unauthorized for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/catalogs?max_results=1, Response: {"error_code":401,"message":"Credential was not sent or was of an unsupported type for this API. [ReqId: 761ba616-43bf-452b-8a83-0c4a917f021f]"}
+2025-05-21 17:23:16,274 - ERROR - HTTP error: 401 Client Error: Unauthorized for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/warehouses?page_size=1, Response: {"error_code":401,"message":"Credential was not sent or was of an unsupported type for this API. [ReqId: 53d47a35-2036-46d3-82d2-452c79b61bd3]"}
+2025-05-21 17:23:16,378 - ERROR - HTTP error: 401 Client Error: Unauthorized for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/jobs/list?limit=1, Response: {"error_code":401,"message":"Credential was not sent or was of an unsupported type for this API. [ReqId: bafbccc3-d521-46d4-8b07-bd0aec07c3da]"}
+2025-05-21 17:23:16,486 - ERROR - HTTP error: 401 Client Error: Unauthorized for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/mlflow/registered-models/list?max_results=1, Response: {"error_code":401,"message":"Credential was not sent or was of an unsupported type for this API. [ReqId: 13d9833e-22be-4177-91ba-e1762b0563c4]"}
+2025-05-21 17:23:16,604 - ERROR - HTTP error: 401 Client Error: Unauthorized for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/catalogs?max_results=1, Response: {"error_code":401,"message":"Credential was not sent or was of an unsupported type for this API. [ReqId: 453e52dc-aebd-496d-baf5-d7fa562cac7a]"}
+2025-05-21 17:23:18,074 - INFO - ClampService executing: '/setup', args: (), interactive: 'None'
+2025-05-21 17:23:18,075 - INFO - WIZARD DEBUG - handle_command called with params:
+2025-05-21 17:23:18,075 - INFO -   - interactive_input: 'None'
+2025-05-21 17:23:18,075 - INFO -   - client: <src.clients.databricks.DatabricksAPIClient object at 0x107acb0e0>
+2025-05-21 17:23:18,075 - INFO -   - kwargs: {}
+2025-05-21 17:23:18,075 - INFO - setup_wizard: handle_command called with interactive_input=None, kwargs={}
+2025-05-21 17:23:18,075 - INFO - Setting active context. Current command: /setup_wizard
+2025-05-21 17:23:18,075 - INFO - Interactive mode active: True
+2025-05-21 17:23:18,076 - INFO - Context data: {'current_step': 1}
+2025-05-21 17:23:18,077 - INFO - Updated step to 2, context data: {'current_step': 2}
+2025-05-21 17:23:20,063 - INFO - ClampService executing: '/setup_wizard', args: (), interactive: 'hi!'

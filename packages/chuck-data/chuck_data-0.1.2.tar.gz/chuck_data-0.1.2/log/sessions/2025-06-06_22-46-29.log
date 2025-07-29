@@ -1,0 +1,106 @@
+2025-06-06 22:46:29,299 - DEBUG - Logging initialized. Writing to /Users/johnrush/repos/chuck-data/log/sessions/2025-06-06_22-46-29.log
+2025-06-06 22:46:29,300 - DEBUG - Loaded configuration from /Users/johnrush/.chuck_config.json
+2025-06-06 22:46:29,318 - DEBUG - Using selector: KqueueSelector
+2025-06-06 22:46:29,918 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-06 22:46:29,979 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x107e83230>
+2025-06-06 22:46:29,980 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x107e5d010> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-06 22:46:30,025 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x107eb8190>
+2025-06-06 22:46:30,025 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-06 22:46:30,025 - DEBUG - send_request_headers.complete
+2025-06-06 22:46:30,026 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-06 22:46:30,026 - DEBUG - send_request_body.complete
+2025-06-06 22:46:30,026 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-06 22:46:31,100 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json; charset=utf-8'), (b'server', b'databricks'), (b'date', b'Sat, 7 Jun 2025 05:46:31 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'8b674501-1fd2-42f3-9fda-352fb14a566a'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'transfer-encoding', b'chunked')])
+2025-06-06 22:46:31,102 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-06 22:46:31,102 - DEBUG - receive_response_body.complete
+2025-06-06 22:46:31,102 - DEBUG - response_closed.started
+2025-06-06 22:46:31,102 - DEBUG - response_closed.complete
+2025-06-06 22:46:31,105 - DEBUG - Agent attempting to execute tool: scan-schema-for-pii with args: {'catalog_name': 'john_test', 'schema_name': 'bronze', 'show_progress': True}
+2025-06-06 22:46:31,107 - DEBUG - Tool arguments for 'scan-schema-for-pii' validated successfully.
+2025-06-06 22:46:31,107 - DEBUG - Executing agent tool 'scan-schema-for-pii' with handler: handle_command
+2025-06-06 22:46:31,108 - DEBUG - GET request with params to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables
+2025-06-06 22:46:31,112 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-06 22:46:31,354 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables?catalog_name=john_test&schema_name=bronze&omit_columns=true HTTP/1.1" 200 None
+2025-06-06 22:46:31,355 - INFO - Starting PII Scan for 3 tables in john_test.bronze.
+2025-06-06 22:46:31,356 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.ecommerce_profiles
+2025-06-06 22:46:31,358 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.loyalty_member
+2025-06-06 22:46:31,359 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.pos_customer
+2025-06-06 22:46:31,359 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-06 22:46:31,360 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-06 22:46:31,360 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-06 22:46:31,493 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.ecommerce_profiles HTTP/1.1" 200 None
+2025-06-06 22:46:31,495 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.loyalty_member HTTP/1.1" 200 None
+2025-06-06 22:46:31,503 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.pos_customer HTTP/1.1" 200 None
+2025-06-06 22:46:31,506 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-06 22:46:31,507 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-06 22:46:31,513 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-06 22:46:31,540 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x107f0f4d0>
+2025-06-06 22:46:31,540 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x107e5d6d0> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-06 22:46:31,541 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x107f26190>
+2025-06-06 22:46:31,541 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x107e5d910> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-06 22:46:31,544 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x107f262c0>
+2025-06-06 22:46:31,544 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x107e5dac0> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-06 22:46:31,587 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x107e91a30>
+2025-06-06 22:46:31,587 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-06 22:46:31,587 - DEBUG - send_request_headers.complete
+2025-06-06 22:46:31,587 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-06 22:46:31,587 - DEBUG - send_request_body.complete
+2025-06-06 22:46:31,587 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-06 22:46:31,588 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x107ea5040>
+2025-06-06 22:46:31,589 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-06 22:46:31,589 - DEBUG - send_request_headers.complete
+2025-06-06 22:46:31,589 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-06 22:46:31,589 - DEBUG - send_request_body.complete
+2025-06-06 22:46:31,589 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-06 22:46:31,594 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x107ea49e0>
+2025-06-06 22:46:31,594 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-06 22:46:31,594 - DEBUG - send_request_headers.complete
+2025-06-06 22:46:31,594 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-06 22:46:31,594 - DEBUG - send_request_body.complete
+2025-06-06 22:46:31,594 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-06 22:46:33,964 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json; charset=utf-8'), (b'server', b'databricks'), (b'date', b'Sat, 7 Jun 2025 05:46:33 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'e5c7864e-d6b0-462b-81e5-f241401654a4'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'transfer-encoding', b'chunked')])
+2025-06-06 22:46:33,965 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-06 22:46:33,965 - DEBUG - receive_response_body.complete
+2025-06-06 22:46:33,965 - DEBUG - response_closed.started
+2025-06-06 22:46:33,965 - DEBUG - response_closed.complete
+2025-06-06 22:46:34,142 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json; charset=utf-8'), (b'server', b'databricks'), (b'date', b'Sat, 7 Jun 2025 05:46:34 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'916d4276-6760-4226-846b-1a5d83c10a4b'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'transfer-encoding', b'chunked')])
+2025-06-06 22:46:34,142 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-06 22:46:34,143 - DEBUG - receive_response_body.complete
+2025-06-06 22:46:34,143 - DEBUG - response_closed.started
+2025-06-06 22:46:34,143 - DEBUG - response_closed.complete
+2025-06-06 22:46:34,849 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json; charset=utf-8'), (b'server', b'databricks'), (b'date', b'Sat, 7 Jun 2025 05:46:34 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'ceefddd3-af90-4d17-b95b-f482673c244f'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'transfer-encoding', b'chunked')])
+2025-06-06 22:46:34,849 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-06 22:46:34,850 - DEBUG - receive_response_body.complete
+2025-06-06 22:46:34,850 - DEBUG - response_closed.started
+2025-06-06 22:46:34,850 - DEBUG - response_closed.complete
+2025-06-06 22:46:34,852 - DEBUG - Tool 'scan-schema-for-pii' executed successfully. Data: {'catalog': 'john_test', 'schema': 'bronze', 'tables_scanned_attempted': 3, 'tables_successfully_processed': 3, 'tables_with_pii': 3, 'total_pii_columns': 33, 'results_detail': [{'table_name': 'ecommerce_profiles', 'full_name': 'john_test.bronze.ecommerce_profiles', 'column_count': 12, 'pii_column_count': 11, 'has_pii': True, 'columns': [{'name': 'system_id', 'type': 'STRING', 'semantic': None}, {'name': 'last_updated', 'type': 'TIMESTAMP', 'semantic': 'update-dt'}, {'name': 'first_name', 'type': 'STRING', 'semantic': 'given-name'}, {'name': 'last_name', 'type': 'STRING', 'semantic': 'surname'}, {'name': 'email_address', 'type': 'STRING', 'semantic': 'email'}, {'name': 'phone_number', 'type': 'STRING', 'semantic': 'phone'}, {'name': 'address_line_1', 'type': 'STRING', 'semantic': 'address'}, {'name': 'city', 'type': 'STRING', 'semantic': 'city'}, {'name': 'state', 'type': 'STRING', 'semantic': 'state'}, {'name': 'zip_code', 'type': 'STRING', 'semantic': 'postal'}, {'name': 'gender', 'type': 'STRING', 'semantic': 'gender'}, {'name': 'birthdate', 'type': 'DATE', 'semantic': 'birthdate'}], 'pii_columns': [{'name': 'last_updated', 'type': 'TIMESTAMP', 'semantic': 'update-dt'}, {'name': 'first_name', 'type': 'STRING', 'semantic': 'given-name'}, {'name': 'last_name', 'type': 'STRING', 'semantic': 'surname'}, {'name': 'email_address', 'type': 'STRING', 'semantic': 'email'}, {'name': 'phone_number', 'type': 'STRING', 'semantic': 'phone'}, {'name': 'address_line_1', 'type': 'STRING', 'semantic': 'address'}, {'name': 'city', 'type': 'STRING', 'semantic': 'city'}, {'name': 'state', 'type': 'STRING', 'semantic': 'state'}, {'name': 'zip_code', 'type': 'STRING', 'semantic': 'postal'}, {'name': 'gender', 'type': 'STRING', 'semantic': 'gender'}, {'name': 'birthdate', 'type': 'DATE', 'semantic': 'birthdate'}], 'skipped': False}, {'table_name': 'loyalty_member', 'full_name': 'john_test.bronze.loyalty_member', 'column_count': 15, 'pii_column_count': 11, 'has_pii': True, 'columns': [{'name': 'customer_id', 'type': 'STRING', 'semantic': None}, {'name': 'dtUpdateDate', 'type': 'TIMESTAMP', 'semantic': 'update-dt'}, {'name': 'cus_first', 'type': 'STRING', 'semantic': 'given-name'}, {'name': 'cus_last', 'type': 'STRING', 'semantic': 'surname'}, {'name': 'cus_email', 'type': 'STRING', 'semantic': 'email'}, {'name': 'cus_phone', 'type': 'STRING', 'semantic': 'phone'}, {'name': 'cus_addr1', 'type': 'STRING', 'semantic': 'address'}, {'name': 'cus_city', 'type': 'STRING', 'semantic': 'city'}, {'name': 'cus_state', 'type': 'STRING', 'semantic': 'state'}, {'name': 'cus_zip', 'type': 'STRING', 'semantic': 'postal'}, {'name': 'cus_gender', 'type': 'STRING', 'semantic': 'gender'}, {'name': 'loyalty_opt_in_date', 'type': 'DATE', 'semantic': None}, {'name': 'loyalty_opt_out_date', 'type': 'DATE', 'semantic': None}, {'name': 'cus_birthdt', 'type': 'DATE', 'semantic': 'birthdate'}, {'name': 'loyalty_program', 'type': 'STRING', 'semantic': None}], 'pii_columns': [{'name': 'dtUpdateDate', 'type': 'TIMESTAMP', 'semantic': 'update-dt'}, {'name': 'cus_first', 'type': 'STRING', 'semantic': 'given-name'}, {'name': 'cus_last', 'type': 'STRING', 'semantic': 'surname'}, {'name': 'cus_email', 'type': 'STRING', 'semantic': 'email'}, {'name': 'cus_phone', 'type': 'STRING', 'semantic': 'phone'}, {'name': 'cus_addr1', 'type': 'STRING', 'semantic': 'address'}, {'name': 'cus_city', 'type': 'STRING', 'semantic': 'city'}, {'name': 'cus_state', 'type': 'STRING', 'semantic': 'state'}, {'name': 'cus_zip', 'type': 'STRING', 'semantic': 'postal'}, {'name': 'cus_gender', 'type': 'STRING', 'semantic': 'gender'}, {'name': 'cus_birthdt', 'type': 'DATE', 'semantic': 'birthdate'}], 'skipped': False}, {'table_name': 'pos_customer', 'full_name': 'john_test.bronze.pos_customer', 'column_count': 13, 'pii_column_count': 11, 'has_pii': True, 'columns': [{'name': 'pos_id', 'type': 'STRING', 'semantic': None}, {'name': 'last_updated', 'type': 'TIMESTAMP', 'semantic': 'update-dt'}, {'name': 'fname', 'type': 'STRING', 'semantic': 'given-name'}, {'name': 'lname', 'type': 'STRING', 'semantic': 'surname'}, {'name': 'email', 'type': 'STRING', 'semantic': 'email'}, {'name': 'phone_nbr', 'type': 'STRING', 'semantic': 'phone'}, {'name': 'address_line_1', 'type': 'STRING', 'semantic': 'address'}, {'name': 'city', 'type': 'STRING', 'semantic': 'city'}, {'name': 'state', 'type': 'STRING', 'semantic': 'state'}, {'name': 'postal', 'type': 'STRING', 'semantic': 'postal'}, {'name': 'gender', 'type': 'STRING', 'semantic': 'gender'}, {'name': 'brand', 'type': 'STRING', 'semantic': None}, {'name': 'birth_date', 'type': 'DATE', 'semantic': 'birthdate'}], 'pii_columns': [{'name': 'last_updated', 'type': 'TIMESTAMP', 'semantic': 'update-dt'}, {'name': 'fname', 'type': 'STRING', 'semantic': 'given-name'}, {'name': 'lname', 'type': 'STRING', 'semantic': 'surname'}, {'name': 'email', 'type': 'STRING', 'semantic': 'email'}, {'name': 'phone_nbr', 'type': 'STRING', 'semantic': 'phone'}, {'name': 'address_line_1', 'type': 'STRING', 'semantic': 'address'}, {'name': 'city', 'type': 'STRING', 'semantic': 'city'}, {'name': 'state', 'type': 'STRING', 'semantic': 'state'}, {'name': 'postal', 'type': 'STRING', 'semantic': 'postal'}, {'name': 'gender', 'type': 'STRING', 'semantic': 'gender'}, {'name': 'birth_date', 'type': 'DATE', 'semantic': 'birthdate'}], 'skipped': False}]}
+2025-06-06 22:46:34,852 - WARNING - Output formatter failed for 'scan-schema-for-pii': OutputFormatter._display_pii_scan_results() missing 1 required positional argument: 'console', falling back to default
+2025-06-06 22:46:34,889 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-06 22:46:34,914 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x107e53a50>
+2025-06-06 22:46:34,914 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x107e5dd00> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-06 22:46:34,964 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x107f6c050>
+2025-06-06 22:46:34,964 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-06 22:46:34,964 - DEBUG - send_request_headers.complete
+2025-06-06 22:46:34,964 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-06 22:46:34,964 - DEBUG - send_request_body.complete
+2025-06-06 22:46:34,964 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-06 22:46:41,089 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'content-type', b'application/json; charset=utf-8'), (b'server', b'databricks'), (b'date', b'Sat, 7 Jun 2025 05:46:41 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'b88b7bef-9d0b-4aa0-8c53-be0e5a8006d1'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'transfer-encoding', b'chunked')])
+2025-06-06 22:46:41,090 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-06 22:46:41,090 - DEBUG - receive_response_body.complete
+2025-06-06 22:46:41,090 - DEBUG - response_closed.started
+2025-06-06 22:46:41,090 - DEBUG - response_closed.complete
+2025-06-06 22:46:41,091 - DEBUG - Sending metric: {"event": "USAGE", "configuration": {"workspace_url": "https://dbc-df998298-4c7e.cloud.databricks.co...
+2025-06-06 22:46:41,092 - DEBUG - Starting new HTTPS connection (1): chuck.amperity.com:443
+2025-06-06 22:46:41,694 - DEBUG - https://chuck.amperity.com:443 "POST /api/usage HTTP/1.1" 204 0
+2025-06-06 22:46:41,694 - DEBUG - Failed to send metrics: 204 - 
+2025-06-06 22:46:41,695 - DEBUG - Using selector: KqueueSelector
+2025-06-06 22:46:55,758 - DEBUG - close.started
+2025-06-06 22:46:55,759 - DEBUG - close.complete
+2025-06-06 22:46:55,759 - DEBUG - close.started
+2025-06-06 22:46:55,759 - DEBUG - close.complete
+2025-06-06 22:46:55,759 - DEBUG - close.started
+2025-06-06 22:46:55,759 - DEBUG - close.complete
+2025-06-06 22:46:55,759 - DEBUG - close.started
+2025-06-06 22:46:55,759 - DEBUG - close.complete
+2025-06-06 22:46:55,759 - DEBUG - close.started
+2025-06-06 22:46:55,759 - DEBUG - close.complete

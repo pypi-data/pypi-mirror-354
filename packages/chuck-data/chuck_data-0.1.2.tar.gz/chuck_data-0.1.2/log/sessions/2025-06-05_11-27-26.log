@@ -1,0 +1,323 @@
+2025-06-05 11:27:26,947 - DEBUG - Logging initialized. Writing to /Users/johnrush/repos/chuck-data/log/sessions/2025-06-05_11-27-26.log
+2025-06-05 11:27:26,948 - DEBUG - Loaded configuration from /Users/johnrush/.chuck_config.json
+2025-06-05 11:27:26,965 - DEBUG - Using selector: KqueueSelector
+2025-06-05 11:27:41,330 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-05 11:27:41,387 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1102e70e0>
+2025-06-05 11:27:41,387 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x110259250> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-05 11:27:41,454 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x106b9fed0>
+2025-06-05 11:27:41,454 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-05 11:27:41,455 - DEBUG - send_request_headers.complete
+2025-06-05 11:27:41,455 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-05 11:27:41,455 - DEBUG - send_request_body.complete
+2025-06-05 11:27:41,455 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-05 11:27:45,105 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'320450a2-2944-4a85-afca-fe2bee7235c8'), (b'x-amzn-bedrock-invocation-latency', b'3248'), (b'x-amzn-bedrock-output-token-count', b'83'), (b'x-amzn-bedrock-input-token-count', b'4149'), (b'content-type', b'application/json'), (b'date', b'Thu, 5 Jun 2025 18:27:45 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'e4bd0d88-d81b-4cda-b9a2-70e252133a07'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-05 11:27:45,107 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-05 11:27:45,108 - DEBUG - receive_response_body.complete
+2025-06-05 11:27:45,108 - DEBUG - response_closed.started
+2025-06-05 11:27:45,108 - DEBUG - response_closed.complete
+2025-06-05 11:27:45,113 - DEBUG - Agent attempting to execute tool: status with args: {}
+2025-06-05 11:27:45,114 - DEBUG - Tool arguments for 'status' validated successfully.
+2025-06-05 11:27:45,114 - DEBUG - Executing agent tool 'status' with handler: handle_command
+2025-06-05 11:27:45,114 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/preview/scim/v2/Me
+2025-06-05 11:27:45,120 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:27:45,495 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/preview/scim/v2/Me HTTP/1.1" 200 None
+2025-06-05 11:27:45,496 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/catalogs?max_results=1
+2025-06-05 11:27:45,498 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:27:45,710 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/catalogs?max_results=1 HTTP/1.1" 200 None
+2025-06-05 11:27:45,711 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/warehouses?page_size=1
+2025-06-05 11:27:45,712 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:27:45,871 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/warehouses?page_size=1 HTTP/1.1" 200 None
+2025-06-05 11:27:45,871 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/jobs/list?limit=1
+2025-06-05 11:27:45,871 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:27:46,121 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/jobs/list?limit=1 HTTP/1.1" 200 None
+2025-06-05 11:27:46,123 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/mlflow/registered-models/list?max_results=1
+2025-06-05 11:27:46,125 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:27:46,230 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/mlflow/registered-models/list?max_results=1 HTTP/1.1" 200 2
+2025-06-05 11:27:46,230 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/catalogs?max_results=1
+2025-06-05 11:27:46,232 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:27:46,405 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/catalogs?max_results=1 HTTP/1.1" 200 None
+2025-06-05 11:27:46,406 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/schemas?catalog_name=__databricks_internal&max_results=1
+2025-06-05 11:27:46,408 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:27:46,576 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/schemas?catalog_name=__databricks_internal&max_results=1 HTTP/1.1" 200 None
+2025-06-05 11:27:46,577 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/volumes?catalog_name=__databricks_internal&schema_name=__dlt_materialization_schema_16ba9f51_ef4e_43a2_bfe8_4a1a919fe7cd
+2025-06-05 11:27:46,578 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:27:46,715 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/volumes?catalog_name=__databricks_internal&schema_name=__dlt_materialization_schema_16ba9f51_ef4e_43a2_bfe8_4a1a919fe7cd HTTP/1.1" 200 2
+2025-06-05 11:27:46,716 - DEBUG - Tool 'status' executed successfully. Data: {'workspace_url': 'https://dbc-df998298-4c7e.cloud.databricks.com', 'active_catalog': 'john_test', 'active_schema': 'bronze', 'active_model': 'databricks-claude-3-7-sonnet', 'warehouse_id': None, 'connection_status': 'Connected (client present).', 'permissions': {'basic_connectivity': {'authorized': True, 'details': 'Connected as john.rush@amperity.com', 'api_path': '/api/2.0/preview/scim/v2/Me'}, 'unity_catalog': {'authorized': True, 'details': 'Unity Catalog access granted (1 catalogs visible)', 'api_path': '/api/2.1/unity-catalog/catalogs'}, 'sql_warehouse': {'authorized': True, 'details': 'SQL Warehouse access granted (6 warehouses visible)', 'api_path': '/api/2.0/sql/warehouses'}, 'jobs': {'authorized': True, 'details': 'Jobs access granted (1 jobs visible)', 'api_path': '/api/2.1/jobs/list'}, 'models': {'authorized': True, 'details': 'ML Models access granted (0 models visible)', 'api_path': '/api/2.0/mlflow/registered-models/list'}, 'volumes': {'authorized': True, 'details': 'Volumes access granted in __databricks_internal.__dlt_materialization_schema_16ba9f51_ef4e_43a2_bfe8_4a1a919fe7cd (0 volumes visible)', 'api_path': '/api/2.1/unity-catalog/volumes'}}}
+2025-06-05 11:27:46,724 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-05 11:27:46,741 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x11040d810>
+2025-06-05 11:27:46,741 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x110259d90> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-05 11:27:46,771 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x11028e9e0>
+2025-06-05 11:27:46,771 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-05 11:27:46,772 - DEBUG - send_request_headers.complete
+2025-06-05 11:27:46,772 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-05 11:27:46,772 - DEBUG - send_request_body.complete
+2025-06-05 11:27:46,772 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-05 11:27:50,773 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'b2301bec-d747-4907-a8a4-5e1b11d351ac'), (b'x-amzn-bedrock-invocation-latency', b'3603'), (b'x-amzn-bedrock-output-token-count', b'87'), (b'x-amzn-bedrock-input-token-count', b'4631'), (b'content-type', b'application/json'), (b'date', b'Thu, 5 Jun 2025 18:27:50 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'a16a8168-34f0-458c-a61b-8318e433a5c4'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-05 11:27:50,774 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-05 11:27:50,775 - DEBUG - receive_response_body.complete
+2025-06-05 11:27:50,775 - DEBUG - response_closed.started
+2025-06-05 11:27:50,775 - DEBUG - response_closed.complete
+2025-06-05 11:27:50,776 - DEBUG - Sending metric: {"event": "USAGE", "configuration": {"workspace_url": "https://dbc-df998298-4c7e.cloud.databricks.co...
+2025-06-05 11:27:50,778 - DEBUG - Starting new HTTPS connection (1): chuck.amperity.com:443
+2025-06-05 11:27:50,994 - DEBUG - https://chuck.amperity.com:443 "POST /api/usage HTTP/1.1" 204 0
+2025-06-05 11:27:50,994 - DEBUG - Failed to send metrics: 204 - 
+2025-06-05 11:27:50,995 - DEBUG - Using selector: KqueueSelector
+2025-06-05 11:28:01,042 - DEBUG - close.started
+2025-06-05 11:28:01,043 - DEBUG - close.complete
+2025-06-05 11:28:13,269 - DEBUG - close.started
+2025-06-05 11:28:13,269 - DEBUG - close.complete
+2025-06-05 11:28:22,369 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-05 11:28:22,387 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x106b98b00>
+2025-06-05 11:28:22,387 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x11025a060> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-05 11:28:22,420 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x106cb3bf0>
+2025-06-05 11:28:22,420 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-05 11:28:22,421 - DEBUG - send_request_headers.complete
+2025-06-05 11:28:22,421 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-05 11:28:22,421 - DEBUG - send_request_body.complete
+2025-06-05 11:28:22,421 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-05 11:28:27,665 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'000b02d9-33bc-46f6-93e3-32ac2879485c'), (b'x-amzn-bedrock-invocation-latency', b'5006'), (b'x-amzn-bedrock-output-token-count', b'130'), (b'x-amzn-bedrock-input-token-count', b'4728'), (b'content-type', b'application/json'), (b'date', b'Thu, 5 Jun 2025 18:28:27 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'2cdff3c7-4ffd-4169-83b5-5e2e9712795a'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-05 11:28:27,666 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-05 11:28:27,666 - DEBUG - receive_response_body.complete
+2025-06-05 11:28:27,667 - DEBUG - response_closed.started
+2025-06-05 11:28:27,667 - DEBUG - response_closed.complete
+2025-06-05 11:28:27,668 - DEBUG - Agent attempting to execute tool: scan-schema-for-pii with args: {'catalog_name': 'john_test', 'schema_name': 'bronze'}
+2025-06-05 11:28:27,671 - DEBUG - Tool arguments for 'scan-schema-for-pii' validated successfully.
+2025-06-05 11:28:27,671 - DEBUG - Executing agent tool 'scan-schema-for-pii' with handler: handle_command
+2025-06-05 11:28:27,671 - DEBUG - GET request with params to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables
+2025-06-05 11:28:27,675 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:28:27,870 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables?catalog_name=john_test&schema_name=bronze&omit_columns=true HTTP/1.1" 200 None
+2025-06-05 11:28:27,872 - INFO - Starting PII Scan for 3 tables in john_test.bronze.
+2025-06-05 11:28:27,873 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.ecommerce_profiles
+2025-06-05 11:28:27,874 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.loyalty_member
+2025-06-05 11:28:27,875 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.pos_customer
+2025-06-05 11:28:27,876 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:28:27,877 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:28:27,877 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:28:28,030 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.loyalty_member HTTP/1.1" 200 None
+2025-06-05 11:28:28,030 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.ecommerce_profiles HTTP/1.1" 200 None
+2025-06-05 11:28:28,033 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.pos_customer HTTP/1.1" 200 None
+2025-06-05 11:28:28,050 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-05 11:28:28,052 - DEBUG - close.started
+2025-06-05 11:28:28,054 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-05 11:28:28,054 - DEBUG - close.complete
+2025-06-05 11:28:28,056 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-05 11:28:28,077 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x106bd4050>
+2025-06-05 11:28:28,077 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x110400c00>
+2025-06-05 11:28:28,077 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x11025ae70> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-05 11:28:28,077 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1102aba50>
+2025-06-05 11:28:28,078 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x11025bda0> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-05 11:28:28,078 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x11025b9b0> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-05 11:28:28,114 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1102abb50>
+2025-06-05 11:28:28,114 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1104187d0>
+2025-06-05 11:28:28,114 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-05 11:28:28,115 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-05 11:28:28,115 - DEBUG - send_request_headers.complete
+2025-06-05 11:28:28,115 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-05 11:28:28,115 - DEBUG - send_request_headers.complete
+2025-06-05 11:28:28,115 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-05 11:28:28,116 - DEBUG - send_request_body.complete
+2025-06-05 11:28:28,116 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-05 11:28:28,116 - DEBUG - send_request_body.complete
+2025-06-05 11:28:28,116 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-05 11:28:28,119 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x110419130>
+2025-06-05 11:28:28,119 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-05 11:28:28,119 - DEBUG - send_request_headers.complete
+2025-06-05 11:28:28,119 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-05 11:28:28,119 - DEBUG - send_request_body.complete
+2025-06-05 11:28:28,119 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-05 11:28:32,477 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'37b0ce9f-4753-44f2-a68d-0216be9f9adc'), (b'x-amzn-bedrock-invocation-latency', b'4049'), (b'x-amzn-bedrock-output-token-count', b'205'), (b'x-amzn-bedrock-input-token-count', b'508'), (b'content-type', b'application/json'), (b'date', b'Thu, 5 Jun 2025 18:28:32 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'a2310c24-d189-4360-ab06-2058abd5975a'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-05 11:28:32,477 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'27106f9f-ac68-4d4b-87e6-58ebc8b88796'), (b'x-amzn-bedrock-invocation-latency', b'4008'), (b'x-amzn-bedrock-output-token-count', b'197'), (b'x-amzn-bedrock-input-token-count', b'493'), (b'content-type', b'application/json'), (b'date', b'Thu, 5 Jun 2025 18:28:32 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'dc7b7698-d22d-4e24-b3ec-7595b34c80cb'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-05 11:28:32,477 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-05 11:28:32,478 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-05 11:28:32,478 - DEBUG - receive_response_body.complete
+2025-06-05 11:28:32,478 - DEBUG - receive_response_body.complete
+2025-06-05 11:28:32,478 - DEBUG - response_closed.started
+2025-06-05 11:28:32,478 - DEBUG - response_closed.started
+2025-06-05 11:28:32,478 - DEBUG - response_closed.complete
+2025-06-05 11:28:32,478 - DEBUG - response_closed.complete
+2025-06-05 11:28:33,811 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'1f1e222f-04db-4652-abed-6a2a8840cf24'), (b'x-amzn-bedrock-invocation-latency', b'5339'), (b'x-amzn-bedrock-output-token-count', b'267'), (b'x-amzn-bedrock-input-token-count', b'588'), (b'content-type', b'application/json'), (b'date', b'Thu, 5 Jun 2025 18:28:33 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'6e1fdb61-dabd-43d4-9128-bb76d0e7fd0b'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-05 11:28:33,812 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-05 11:28:33,813 - DEBUG - receive_response_body.complete
+2025-06-05 11:28:33,813 - DEBUG - response_closed.started
+2025-06-05 11:28:33,813 - DEBUG - response_closed.complete
+2025-06-05 11:28:33,815 - DEBUG - Tool 'scan-schema-for-pii' executed successfully. Data: {'catalog': 'john_test', 'schema': 'bronze', 'tables_scanned_attempted': 3, 'tables_successfully_processed': 3, 'tables_with_pii': 3, 'total_pii_columns': 33, 'results_detail': [{'table_name': 'ecommerce_profiles', 'full_name': 'john_test.bronze.ecommerce_profiles', 'column_count': 12, 'pii_column_count': 11, 'has_pii': True, 'columns': [{'name': 'system_id', 'type': 'STRING', 'semantic': None}, {'name': 'last_updated', 'type': 'TIMESTAMP', 'semantic': 'update-dt'}, {'name': 'first_name', 'type': 'STRING', 'semantic': 'given-name'}, {'name': 'last_name', 'type': 'STRING', 'semantic': 'surname'}, {'name': 'email_address', 'type': 'STRING', 'semantic': 'email'}, {'name': 'phone_number', 'type': 'STRING', 'semantic': 'phone'}, {'name': 'address_line_1', 'type': 'STRING', 'semantic': 'address'}, {'name': 'city', 'type': 'STRING', 'semantic': 'city'}, {'name': 'state', 'type': 'STRING', 'semantic': 'state'}, {'name': 'zip_code', 'type': 'STRING', 'semantic': 'postal'}, {'name': 'gender', 'type': 'STRING', 'semantic': 'gender'}, {'name': 'birthdate', 'type': 'DATE', 'semantic': 'birthdate'}], 'pii_columns': [{'name': 'last_updated', 'type': 'TIMESTAMP', 'semantic': 'update-dt'}, {'name': 'first_name', 'type': 'STRING', 'semantic': 'given-name'}, {'name': 'last_name', 'type': 'STRING', 'semantic': 'surname'}, {'name': 'email_address', 'type': 'STRING', 'semantic': 'email'}, {'name': 'phone_number', 'type': 'STRING', 'semantic': 'phone'}, {'name': 'address_line_1', 'type': 'STRING', 'semantic': 'address'}, {'name': 'city', 'type': 'STRING', 'semantic': 'city'}, {'name': 'state', 'type': 'STRING', 'semantic': 'state'}, {'name': 'zip_code', 'type': 'STRING', 'semantic': 'postal'}, {'name': 'gender', 'type': 'STRING', 'semantic': 'gender'}, {'name': 'birthdate', 'type': 'DATE', 'semantic': 'birthdate'}], 'skipped': False}, {'table_name': 'loyalty_member', 'full_name': 'john_test.bronze.loyalty_member', 'column_count': 15, 'pii_column_count': 11, 'has_pii': True, 'columns': [{'name': 'customer_id', 'type': 'STRING', 'semantic': None}, {'name': 'dtUpdateDate', 'type': 'TIMESTAMP', 'semantic': 'update-dt'}, {'name': 'cus_first', 'type': 'STRING', 'semantic': 'given-name'}, {'name': 'cus_last', 'type': 'STRING', 'semantic': 'surname'}, {'name': 'cus_email', 'type': 'STRING', 'semantic': 'email'}, {'name': 'cus_phone', 'type': 'STRING', 'semantic': 'phone'}, {'name': 'cus_addr1', 'type': 'STRING', 'semantic': 'address'}, {'name': 'cus_city', 'type': 'STRING', 'semantic': 'city'}, {'name': 'cus_state', 'type': 'STRING', 'semantic': 'state'}, {'name': 'cus_zip', 'type': 'STRING', 'semantic': 'postal'}, {'name': 'cus_gender', 'type': 'STRING', 'semantic': 'gender'}, {'name': 'loyalty_opt_in_date', 'type': 'DATE', 'semantic': None}, {'name': 'loyalty_opt_out_date', 'type': 'DATE', 'semantic': None}, {'name': 'cus_birthdt', 'type': 'DATE', 'semantic': 'birthdate'}, {'name': 'loyalty_program', 'type': 'STRING', 'semantic': None}], 'pii_columns': [{'name': 'dtUpdateDate', 'type': 'TIMESTAMP', 'semantic': 'update-dt'}, {'name': 'cus_first', 'type': 'STRING', 'semantic': 'given-name'}, {'name': 'cus_last', 'type': 'STRING', 'semantic': 'surname'}, {'name': 'cus_email', 'type': 'STRING', 'semantic': 'email'}, {'name': 'cus_phone', 'type': 'STRING', 'semantic': 'phone'}, {'name': 'cus_addr1', 'type': 'STRING', 'semantic': 'address'}, {'name': 'cus_city', 'type': 'STRING', 'semantic': 'city'}, {'name': 'cus_state', 'type': 'STRING', 'semantic': 'state'}, {'name': 'cus_zip', 'type': 'STRING', 'semantic': 'postal'}, {'name': 'cus_gender', 'type': 'STRING', 'semantic': 'gender'}, {'name': 'cus_birthdt', 'type': 'DATE', 'semantic': 'birthdate'}], 'skipped': False}, {'table_name': 'pos_customer', 'full_name': 'john_test.bronze.pos_customer', 'column_count': 13, 'pii_column_count': 11, 'has_pii': True, 'columns': [{'name': 'pos_id', 'type': 'STRING', 'semantic': None}, {'name': 'last_updated', 'type': 'TIMESTAMP', 'semantic': 'update-dt'}, {'name': 'fname', 'type': 'STRING', 'semantic': 'given-name'}, {'name': 'lname', 'type': 'STRING', 'semantic': 'surname'}, {'name': 'email', 'type': 'STRING', 'semantic': 'email'}, {'name': 'phone_nbr', 'type': 'STRING', 'semantic': 'phone'}, {'name': 'address_line_1', 'type': 'STRING', 'semantic': 'address'}, {'name': 'city', 'type': 'STRING', 'semantic': 'city'}, {'name': 'state', 'type': 'STRING', 'semantic': 'state'}, {'name': 'postal', 'type': 'STRING', 'semantic': 'postal'}, {'name': 'gender', 'type': 'STRING', 'semantic': 'gender'}, {'name': 'brand', 'type': 'STRING', 'semantic': None}, {'name': 'birth_date', 'type': 'DATE', 'semantic': 'birthdate'}], 'pii_columns': [{'name': 'last_updated', 'type': 'TIMESTAMP', 'semantic': 'update-dt'}, {'name': 'fname', 'type': 'STRING', 'semantic': 'given-name'}, {'name': 'lname', 'type': 'STRING', 'semantic': 'surname'}, {'name': 'email', 'type': 'STRING', 'semantic': 'email'}, {'name': 'phone_nbr', 'type': 'STRING', 'semantic': 'phone'}, {'name': 'address_line_1', 'type': 'STRING', 'semantic': 'address'}, {'name': 'city', 'type': 'STRING', 'semantic': 'city'}, {'name': 'state', 'type': 'STRING', 'semantic': 'state'}, {'name': 'postal', 'type': 'STRING', 'semantic': 'postal'}, {'name': 'gender', 'type': 'STRING', 'semantic': 'gender'}, {'name': 'birth_date', 'type': 'DATE', 'semantic': 'birthdate'}], 'skipped': False}]}
+2025-06-05 11:28:33,840 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-05 11:28:33,858 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x110410910>
+2025-06-05 11:28:33,859 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x110259250> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-05 11:28:33,888 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x110410e50>
+2025-06-05 11:28:33,888 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-05 11:28:33,888 - DEBUG - send_request_headers.complete
+2025-06-05 11:28:33,888 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-05 11:28:33,888 - DEBUG - send_request_body.complete
+2025-06-05 11:28:33,888 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-05 11:28:42,745 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'7b3bdde9-93a3-4286-b2af-e4d68e5d88f3'), (b'x-amzn-bedrock-invocation-latency', b'8744'), (b'x-amzn-bedrock-output-token-count', b'346'), (b'x-amzn-bedrock-input-token-count', b'6703'), (b'content-type', b'application/json'), (b'date', b'Thu, 5 Jun 2025 18:28:42 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'408e2583-8de1-4daf-84a1-fe2317afc678'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-05 11:28:42,746 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-05 11:28:42,746 - DEBUG - receive_response_body.complete
+2025-06-05 11:28:42,746 - DEBUG - response_closed.started
+2025-06-05 11:28:42,746 - DEBUG - response_closed.complete
+2025-06-05 11:28:42,746 - DEBUG - Agent attempting to execute tool: tag-pii-columns with args: {'table_name': 'john_test.bronze.ecommerce_profiles', 'pii_columns': [{'name': 'last_updated', 'semantic': 'update-dt'}, {'name': 'first_name', 'semantic': 'given-name'}, {'name': 'last_name', 'semantic': 'surname'}, {'name': 'email_address', 'semantic': 'email'}, {'name': 'phone_number', 'semantic': 'phone'}, {'name': 'address_line_1', 'semantic': 'address'}, {'name': 'city', 'semantic': 'city'}, {'name': 'state', 'semantic': 'state'}, {'name': 'zip_code', 'semantic': 'postal'}, {'name': 'gender', 'semantic': 'gender'}, {'name': 'birthdate', 'semantic': 'birthdate'}]}
+2025-06-05 11:28:42,747 - DEBUG - Tool arguments for 'tag-pii-columns' validated successfully.
+2025-06-05 11:28:42,747 - DEBUG - Executing agent tool 'tag-pii-columns' with handler: handle_command
+2025-06-05 11:28:42,747 - ERROR - Tool 'tag-pii-columns' execution failed. Message: No warehouse ID configured. Use /warehouse command to select a SQL warehouse first., Error: None
+2025-06-05 11:28:42,759 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-05 11:28:42,777 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1102e20d0>
+2025-06-05 11:28:42,777 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x110258200> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-05 11:28:42,809 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x11028a390>
+2025-06-05 11:28:42,809 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-05 11:28:42,810 - DEBUG - send_request_headers.complete
+2025-06-05 11:28:42,810 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-05 11:28:42,810 - DEBUG - send_request_body.complete
+2025-06-05 11:28:42,810 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-05 11:28:45,808 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'5f28275b-968b-4c4b-8d06-e7246668cec5'), (b'x-amzn-bedrock-invocation-latency', b'2640'), (b'x-amzn-bedrock-output-token-count', b'63'), (b'x-amzn-bedrock-input-token-count', b'7080'), (b'content-type', b'application/json'), (b'date', b'Thu, 5 Jun 2025 18:28:45 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'0c5b341d-a6a0-4395-8d75-ebff2c0f7925'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-05 11:28:45,809 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-05 11:28:45,809 - DEBUG - receive_response_body.complete
+2025-06-05 11:28:45,809 - DEBUG - response_closed.started
+2025-06-05 11:28:45,809 - DEBUG - response_closed.complete
+2025-06-05 11:28:45,810 - DEBUG - Agent attempting to execute tool: list-warehouses with args: {}
+2025-06-05 11:28:45,811 - DEBUG - Tool arguments for 'list-warehouses' validated successfully.
+2025-06-05 11:28:45,811 - DEBUG - Executing agent tool 'list-warehouses' with handler: handle_command
+2025-06-05 11:28:45,811 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/warehouses
+2025-06-05 11:28:45,813 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:28:45,919 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/warehouses HTTP/1.1" 200 None
+2025-06-05 11:28:45,920 - DEBUG - Tool 'list-warehouses' executed successfully. Data: {'warehouses': [{'id': '1bfc8803d32a69c3', 'name': 'Perlovsky Chuck Testing', 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'daniel.perlovsky@amperity.com', 'auto_stop_mins': 10}, {'id': '865b9b2dc901775c', 'name': 'Christian Serverless Compute', 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'christian.saffici@amperity.com', 'auto_stop_mins': 10}, {'id': '9b07e1f740586a24', 'name': 'Integration tests', 'size': 'XXSMALL', 'state': 'STOPPED', 'creator_name': 'john.rush@amperity.com', 'auto_stop_mins': 10}, {'id': 'aaa2993b572dcf34', 'name': 'Parker Chuck Testing', 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'jeff.parker@amperity.com', 'auto_stop_mins': 10}, {'id': 'cda9d8187af3f951', 'name': "Carson's Chuck Data", 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'carson.crooks@amperity.com', 'auto_stop_mins': 10}, {'id': 'ed6a5cc30217adf0', 'name': 'Starter Warehouse', 'size': 'SMALL', 'state': 'STOPPED', 'creator_name': 'cary+databricks@amperity.com', 'auto_stop_mins': 60}], 'total_count': 6}
+2025-06-05 11:28:45,926 - DEBUG - Using selector: KqueueSelector
+2025-06-05 11:32:49,406 - DEBUG - close.started
+2025-06-05 11:32:49,407 - DEBUG - close.complete
+2025-06-05 11:32:49,407 - DEBUG - close.started
+2025-06-05 11:32:49,408 - DEBUG - close.complete
+2025-06-05 11:32:54,026 - DEBUG - Using selector: KqueueSelector
+2025-06-05 11:32:58,918 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/warehouses/Starter Warehouse
+2025-06-05 11:32:58,919 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:32:59,173 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/warehouses/Starter%20Warehouse HTTP/1.1" 400 None
+2025-06-05 11:32:59,174 - DEBUG - HTTP error: 400 Client Error: Bad Request for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/warehouses/Starter%20Warehouse, Response: {"error_code":"INVALID_PARAMETER_VALUE","message":"Starter Warehouse is not a valid endpoint id.","details":[{"@type":"type.googleapis.com/google.rpc.RequestInfo","request_id":"2af32a55-747c-4c6e-9315-5c435ea8c2c9","serving_data":""}]}
+2025-06-05 11:32:59,175 - DEBUG - Saved configuration to /Users/johnrush/.chuck_config.json
+2025-06-05 11:32:59,176 - DEBUG - Using selector: KqueueSelector
+2025-06-05 11:33:18,252 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-05 11:33:18,269 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x11028a2d0>
+2025-06-05 11:33:18,269 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x11025bb60> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-05 11:33:18,302 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x106b1cec0>
+2025-06-05 11:33:18,302 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-05 11:33:18,302 - DEBUG - send_request_headers.complete
+2025-06-05 11:33:18,302 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-05 11:33:18,302 - DEBUG - send_request_body.complete
+2025-06-05 11:33:18,302 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-05 11:33:21,323 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'66d86444-1b72-46ab-93c7-99e7c33eb25d'), (b'x-amzn-bedrock-invocation-latency', b'2880'), (b'x-amzn-bedrock-output-token-count', b'84'), (b'x-amzn-bedrock-input-token-count', b'4736'), (b'content-type', b'application/json'), (b'date', b'Thu, 5 Jun 2025 18:33:21 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'fa8fa65c-a5b5-4020-80da-91ea400447b8'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-05 11:33:21,323 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-05 11:33:21,324 - DEBUG - receive_response_body.complete
+2025-06-05 11:33:21,324 - DEBUG - response_closed.started
+2025-06-05 11:33:21,324 - DEBUG - response_closed.complete
+2025-06-05 11:33:21,324 - DEBUG - Agent attempting to execute tool: list-warehouses with args: {}
+2025-06-05 11:33:21,324 - DEBUG - Tool arguments for 'list-warehouses' validated successfully.
+2025-06-05 11:33:21,324 - DEBUG - Executing agent tool 'list-warehouses' with handler: handle_command
+2025-06-05 11:33:21,324 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/warehouses
+2025-06-05 11:33:21,325 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:33:21,448 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/warehouses HTTP/1.1" 200 None
+2025-06-05 11:33:21,449 - DEBUG - Tool 'list-warehouses' executed successfully. Data: {'warehouses': [{'id': '1bfc8803d32a69c3', 'name': 'Perlovsky Chuck Testing', 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'daniel.perlovsky@amperity.com', 'auto_stop_mins': 10}, {'id': '865b9b2dc901775c', 'name': 'Christian Serverless Compute', 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'christian.saffici@amperity.com', 'auto_stop_mins': 10}, {'id': '9b07e1f740586a24', 'name': 'Integration tests', 'size': 'XXSMALL', 'state': 'STOPPED', 'creator_name': 'john.rush@amperity.com', 'auto_stop_mins': 10}, {'id': 'aaa2993b572dcf34', 'name': 'Parker Chuck Testing', 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'jeff.parker@amperity.com', 'auto_stop_mins': 10}, {'id': 'cda9d8187af3f951', 'name': "Carson's Chuck Data", 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'carson.crooks@amperity.com', 'auto_stop_mins': 10}, {'id': 'ed6a5cc30217adf0', 'name': 'Starter Warehouse', 'size': 'SMALL', 'state': 'STOPPED', 'creator_name': 'cary+databricks@amperity.com', 'auto_stop_mins': 60}], 'total_count': 6}
+2025-06-05 11:33:21,454 - DEBUG - Using selector: KqueueSelector
+2025-06-05 11:33:29,181 - DEBUG - close.started
+2025-06-05 11:33:29,181 - DEBUG - close.complete
+2025-06-05 11:33:47,211 - DEBUG - close.started
+2025-06-05 11:33:47,211 - DEBUG - close.complete
+2025-06-05 11:33:47,211 - DEBUG - close.started
+2025-06-05 11:33:47,211 - DEBUG - close.complete
+2025-06-05 11:33:47,211 - DEBUG - close.started
+2025-06-05 11:33:47,212 - DEBUG - close.complete
+2025-06-05 11:33:53,542 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-05 11:33:53,582 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x106b1d180>
+2025-06-05 11:33:53,582 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x110258200> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-05 11:33:53,617 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x110454cd0>
+2025-06-05 11:33:53,617 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-05 11:33:53,617 - DEBUG - send_request_headers.complete
+2025-06-05 11:33:53,617 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-05 11:33:53,618 - DEBUG - send_request_body.complete
+2025-06-05 11:33:53,618 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-05 11:33:57,546 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'fd1827fb-8d02-42d8-9d02-4a09c0a40279'), (b'x-amzn-bedrock-invocation-latency', b'3804'), (b'x-amzn-bedrock-output-token-count', b'78'), (b'x-amzn-bedrock-input-token-count', b'4734'), (b'content-type', b'application/json'), (b'date', b'Thu, 5 Jun 2025 18:33:57 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'475f3ffe-4947-45b9-bbd0-c345ae787f74'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-05 11:33:57,547 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-05 11:33:57,547 - DEBUG - receive_response_body.complete
+2025-06-05 11:33:57,547 - DEBUG - response_closed.started
+2025-06-05 11:33:57,547 - DEBUG - response_closed.complete
+2025-06-05 11:33:57,547 - DEBUG - Agent attempting to execute tool: list-warehouses with args: {}
+2025-06-05 11:33:57,548 - DEBUG - Tool arguments for 'list-warehouses' validated successfully.
+2025-06-05 11:33:57,548 - DEBUG - Executing agent tool 'list-warehouses' with handler: handle_command
+2025-06-05 11:33:57,548 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/warehouses
+2025-06-05 11:33:57,548 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:33:57,669 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/warehouses HTTP/1.1" 200 None
+2025-06-05 11:33:57,669 - DEBUG - Tool 'list-warehouses' executed successfully. Data: {'warehouses': [{'id': '1bfc8803d32a69c3', 'name': 'Perlovsky Chuck Testing', 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'daniel.perlovsky@amperity.com', 'auto_stop_mins': 10}, {'id': '865b9b2dc901775c', 'name': 'Christian Serverless Compute', 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'christian.saffici@amperity.com', 'auto_stop_mins': 10}, {'id': '9b07e1f740586a24', 'name': 'Integration tests', 'size': 'XXSMALL', 'state': 'STOPPED', 'creator_name': 'john.rush@amperity.com', 'auto_stop_mins': 10}, {'id': 'aaa2993b572dcf34', 'name': 'Parker Chuck Testing', 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'jeff.parker@amperity.com', 'auto_stop_mins': 10}, {'id': 'cda9d8187af3f951', 'name': "Carson's Chuck Data", 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'carson.crooks@amperity.com', 'auto_stop_mins': 10}, {'id': 'ed6a5cc30217adf0', 'name': 'Starter Warehouse', 'size': 'SMALL', 'state': 'STOPPED', 'creator_name': 'cary+databricks@amperity.com', 'auto_stop_mins': 60}], 'total_count': 6}
+2025-06-05 11:33:57,672 - DEBUG - Using selector: KqueueSelector
+2025-06-05 11:34:33,734 - DEBUG - close.started
+2025-06-05 11:34:33,735 - DEBUG - close.complete
+2025-06-05 11:34:35,322 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/warehouses/Starter Warehouse
+2025-06-05 11:34:35,323 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:34:35,454 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/warehouses/Starter%20Warehouse HTTP/1.1" 400 None
+2025-06-05 11:34:35,454 - DEBUG - HTTP error: 400 Client Error: Bad Request for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/warehouses/Starter%20Warehouse, Response: {"error_code":"INVALID_PARAMETER_VALUE","message":"Starter Warehouse is not a valid endpoint id.","details":[{"@type":"type.googleapis.com/google.rpc.RequestInfo","request_id":"bb658b25-5d97-4ee9-8c3f-1491e847ad6e","serving_data":""}]}
+2025-06-05 11:34:35,455 - DEBUG - Saved configuration to /Users/johnrush/.chuck_config.json
+2025-06-05 11:34:35,455 - DEBUG - Using selector: KqueueSelector
+2025-06-05 11:34:37,719 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-05 11:34:37,735 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1104bf4d0>
+2025-06-05 11:34:37,735 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x11025aba0> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-05 11:34:37,765 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x110259d90>
+2025-06-05 11:34:37,765 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-05 11:34:37,765 - DEBUG - send_request_headers.complete
+2025-06-05 11:34:37,765 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-05 11:34:37,765 - DEBUG - send_request_body.complete
+2025-06-05 11:34:37,765 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-05 11:34:41,666 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'232350de-7cb0-4942-98dc-9f30bda3bcbf'), (b'x-amzn-bedrock-invocation-latency', b'3843'), (b'x-amzn-bedrock-output-token-count', b'80'), (b'x-amzn-bedrock-input-token-count', b'4734'), (b'content-type', b'application/json'), (b'date', b'Thu, 5 Jun 2025 18:34:41 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'62d9ea3f-fb13-4adf-93e1-f878b6693e75'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-05 11:34:41,666 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-05 11:34:41,666 - DEBUG - receive_response_body.complete
+2025-06-05 11:34:41,666 - DEBUG - response_closed.started
+2025-06-05 11:34:41,666 - DEBUG - response_closed.complete
+2025-06-05 11:34:41,667 - DEBUG - Agent attempting to execute tool: list-warehouses with args: {}
+2025-06-05 11:34:41,667 - DEBUG - Tool arguments for 'list-warehouses' validated successfully.
+2025-06-05 11:34:41,667 - DEBUG - Executing agent tool 'list-warehouses' with handler: handle_command
+2025-06-05 11:34:41,667 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/warehouses
+2025-06-05 11:34:41,668 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:34:41,774 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/warehouses HTTP/1.1" 200 None
+2025-06-05 11:34:41,775 - DEBUG - Tool 'list-warehouses' executed successfully. Data: {'warehouses': [{'id': '1bfc8803d32a69c3', 'name': 'Perlovsky Chuck Testing', 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'daniel.perlovsky@amperity.com', 'auto_stop_mins': 10}, {'id': '865b9b2dc901775c', 'name': 'Christian Serverless Compute', 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'christian.saffici@amperity.com', 'auto_stop_mins': 10}, {'id': '9b07e1f740586a24', 'name': 'Integration tests', 'size': 'XXSMALL', 'state': 'STOPPED', 'creator_name': 'john.rush@amperity.com', 'auto_stop_mins': 10}, {'id': 'aaa2993b572dcf34', 'name': 'Parker Chuck Testing', 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'jeff.parker@amperity.com', 'auto_stop_mins': 10}, {'id': 'cda9d8187af3f951', 'name': "Carson's Chuck Data", 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'carson.crooks@amperity.com', 'auto_stop_mins': 10}, {'id': 'ed6a5cc30217adf0', 'name': 'Starter Warehouse', 'size': 'SMALL', 'state': 'STOPPED', 'creator_name': 'cary+databricks@amperity.com', 'auto_stop_mins': 60}], 'total_count': 6}
+2025-06-05 11:34:41,778 - DEBUG - Using selector: KqueueSelector
+2025-06-05 11:34:43,993 - DEBUG - close.started
+2025-06-05 11:34:43,994 - DEBUG - close.complete
+2025-06-05 11:34:45,207 - DEBUG - Using selector: KqueueSelector
+2025-06-05 11:34:49,632 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.nonexistent_table
+2025-06-05 11:34:49,633 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:34:49,830 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.nonexistent_table HTTP/1.1" 404 None
+2025-06-05 11:34:49,831 - DEBUG - HTTP error: 404 Client Error: Not Found for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.nonexistent_table, Response: {"error_code":"TABLE_DOES_NOT_EXIST","message":"Table 'john_test.bronze.nonexistent_table' does not exist.","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"RESOURCE_DOES_NOT_EXIST","domain":"unity-catalog.databricks.com","metadata":{"resourceType":"Table","resourceIdentifier":"john_test.bronze.nonexistent_table"}},{"@type":"type.googleapis.com/google.rpc.RequestInfo","request_id":"7be002cd-6a91-4142-87af-24e6160b3752","serving_data":""}]}
+2025-06-05 11:34:49,832 - DEBUG - Using selector: KqueueSelector
+2025-06-05 11:35:04,563 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.pos_customers
+2025-06-05 11:35:04,565 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:35:04,702 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.pos_customers HTTP/1.1" 404 None
+2025-06-05 11:35:04,703 - DEBUG - HTTP error: 404 Client Error: Not Found for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.pos_customers, Response: {"error_code":"TABLE_DOES_NOT_EXIST","message":"Table 'john_test.bronze.pos_customers' does not exist.","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"RESOURCE_DOES_NOT_EXIST","domain":"unity-catalog.databricks.com","metadata":{"resourceType":"Table","resourceIdentifier":"john_test.bronze.pos_customers"}},{"@type":"type.googleapis.com/google.rpc.RequestInfo","request_id":"95e77e30-3d25-4595-a371-a330633374c8","serving_data":""}]}
+2025-06-05 11:35:04,704 - DEBUG - Using selector: KqueueSelector
+2025-06-05 11:35:11,800 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.pos_customer
+2025-06-05 11:35:11,800 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:35:11,923 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.pos_customer HTTP/1.1" 200 None
+2025-06-05 11:35:11,923 - INFO - Applying tag 'given-name' to column 'test_column'
+2025-06-05 11:35:11,923 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-05 11:35:11,924 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:35:12,028 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 400 None
+2025-06-05 11:35:12,029 - DEBUG - HTTP error: 400 Client Error: Bad Request for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements, Response: {"error_code":"INVALID_PARAMETER_VALUE","message":"Starter Warehouse is not a valid endpoint id.","details":[{"@type":"type.googleapis.com/google.rpc.RequestInfo","request_id":"be0ce8ed-1bae-42fd-a246-2bd939e0a5d2","serving_data":""}]}
+2025-06-05 11:35:12,029 - ERROR - Error applying tag to test_column: HTTP error occurred: 400 Client Error: Bad Request for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements, Response: {"error_code":"INVALID_PARAMETER_VALUE","message":"Starter Warehouse is not a valid endpoint id.","details":[{"@type":"type.googleapis.com/google.rpc.RequestInfo","request_id":"be0ce8ed-1bae-42fd-a246-2bd939e0a5d2","serving_data":""}]}
+2025-06-05 11:35:12,029 - DEBUG - Using selector: KqueueSelector
+2025-06-05 11:35:26,309 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-05 11:35:26,347 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x110415dd0>
+2025-06-05 11:35:26,347 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x11025be30> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-05 11:35:26,382 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x110415550>
+2025-06-05 11:35:26,383 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-05 11:35:26,383 - DEBUG - send_request_headers.complete
+2025-06-05 11:35:26,383 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-05 11:35:26,383 - DEBUG - send_request_body.complete
+2025-06-05 11:35:26,383 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-05 11:35:29,914 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'6ce70ea4-88a4-41da-8ac6-d74f66a58923'), (b'x-amzn-bedrock-invocation-latency', b'3258'), (b'x-amzn-bedrock-output-token-count', b'93'), (b'x-amzn-bedrock-input-token-count', b'4728'), (b'content-type', b'application/json'), (b'date', b'Thu, 5 Jun 2025 18:35:29 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'd96789f8-326c-4bca-a5ab-113b7f8d1a66'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-05 11:35:29,914 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-05 11:35:29,914 - DEBUG - receive_response_body.complete
+2025-06-05 11:35:29,915 - DEBUG - response_closed.started
+2025-06-05 11:35:29,915 - DEBUG - response_closed.complete
+2025-06-05 11:35:29,915 - DEBUG - Agent attempting to execute tool: list-tables with args: {}
+2025-06-05 11:35:29,916 - DEBUG - Tool arguments for 'list-tables' validated successfully.
+2025-06-05 11:35:29,916 - DEBUG - Executing agent tool 'list-tables' with handler: handle_command
+2025-06-05 11:35:29,916 - DEBUG - GET request with params to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables
+2025-06-05 11:35:29,917 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 11:35:30,173 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables?catalog_name=john_test&schema_name=bronze HTTP/1.1" 200 None
+2025-06-05 11:35:30,174 - DEBUG - Tool 'list-tables' executed successfully. Data: {'tables': [{'name': 'ecommerce_profiles', 'full_name': 'john_test.bronze.ecommerce_profiles', 'table_type': 'MANAGED', 'data_source_format': 'DELTA', 'comment': '', 'created_at': 1748473407547, 'created_by': 'john.rush@amperity.com', 'owner': 'john.rush@amperity.com', 'row_count': 'Unknown', 'size_bytes': 'Unknown', 'column_count': 12, 'columns': [{'name': 'system_id', 'type': 'string', 'nullable': True}, {'name': 'last_updated', 'type': 'timestamp', 'nullable': True}, {'name': 'first_name', 'type': 'string', 'nullable': True}, {'name': 'last_name', 'type': 'string', 'nullable': True}, {'name': 'email_address', 'type': 'string', 'nullable': True}, {'name': 'phone_number', 'type': 'string', 'nullable': True}, {'name': 'address_line_1', 'type': 'string', 'nullable': True}, {'name': 'city', 'type': 'string', 'nullable': True}, {'name': 'state', 'type': 'string', 'nullable': True}, {'name': 'zip_code', 'type': 'string', 'nullable': True}, {'name': 'gender', 'type': 'string', 'nullable': True}, {'name': 'birthdate', 'type': 'date', 'nullable': True}]}, {'name': 'loyalty_member', 'full_name': 'john_test.bronze.loyalty_member', 'table_type': 'MANAGED', 'data_source_format': 'DELTA', 'comment': '', 'created_at': 1748473412513, 'created_by': 'john.rush@amperity.com', 'owner': 'john.rush@amperity.com', 'row_count': 'Unknown', 'size_bytes': 'Unknown', 'column_count': 15, 'columns': [{'name': 'customer_id', 'type': 'string', 'nullable': True}, {'name': 'dtUpdateDate', 'type': 'timestamp', 'nullable': True}, {'name': 'cus_first', 'type': 'string', 'nullable': True}, {'name': 'cus_last', 'type': 'string', 'nullable': True}, {'name': 'cus_email', 'type': 'string', 'nullable': True}, {'name': 'cus_phone', 'type': 'string', 'nullable': True}, {'name': 'cus_addr1', 'type': 'string', 'nullable': True}, {'name': 'cus_city', 'type': 'string', 'nullable': True}, {'name': 'cus_state', 'type': 'string', 'nullable': True}, {'name': 'cus_zip', 'type': 'string', 'nullable': True}, {'name': 'cus_gender', 'type': 'string', 'nullable': True}, {'name': 'loyalty_opt_in_date', 'type': 'date', 'nullable': True}, {'name': 'loyalty_opt_out_date', 'type': 'date', 'nullable': True}, {'name': 'cus_birthdt', 'type': 'date', 'nullable': True}, {'name': 'loyalty_program', 'type': 'string', 'nullable': True}]}, {'name': 'pos_customer', 'full_name': 'john_test.bronze.pos_customer', 'table_type': 'MANAGED', 'data_source_format': 'DELTA', 'comment': '', 'created_at': 1748473419588, 'created_by': 'john.rush@amperity.com', 'owner': 'john.rush@amperity.com', 'row_count': 'Unknown', 'size_bytes': 'Unknown', 'column_count': 13, 'columns': [{'name': 'pos_id', 'type': 'string', 'nullable': True}, {'name': 'last_updated', 'type': 'timestamp', 'nullable': True}, {'name': 'fname', 'type': 'string', 'nullable': True}, {'name': 'lname', 'type': 'string', 'nullable': True}, {'name': 'email', 'type': 'string', 'nullable': True}, {'name': 'phone_nbr', 'type': 'string', 'nullable': True}, {'name': 'address_line_1', 'type': 'string', 'nullable': True}, {'name': 'city', 'type': 'string', 'nullable': True}, {'name': 'state', 'type': 'string', 'nullable': True}, {'name': 'postal', 'type': 'string', 'nullable': True}, {'name': 'gender', 'type': 'string', 'nullable': True}, {'name': 'brand', 'type': 'string', 'nullable': True}, {'name': 'birth_date', 'type': 'date', 'nullable': True}]}], 'total_count': 3, 'catalog_name': 'john_test', 'schema_name': 'bronze'}
+2025-06-05 11:35:30,177 - DEBUG - Using selector: KqueueSelector
+2025-06-05 11:41:15,196 - DEBUG - close.started
+2025-06-05 11:41:15,197 - DEBUG - close.complete

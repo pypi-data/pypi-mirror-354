@@ -1,0 +1,6 @@
+2025-05-22 07:07:36,044 - INFO - Executing agent tool 'list_tables' with handler: handle_command
+2025-05-22 07:07:59,956 - INFO - Executing agent tool 'scan_schema_for_pii' with handler: handle_command
+2025-05-22 07:07:59,956 - ERROR - Tool 'scan_schema_for_pii' execution failed. Message: Failed to list tables for amperity_marketplace.bronze: 'DatabricksAPIClient' object has no attribute 'list_tables_api', Error: None
+2025-05-22 07:08:09,001 - INFO - Executing agent tool 'tag_pii_columns' with handler: handle_command
+2025-05-22 07:08:09,002 - ERROR - Tool 'tag_pii_columns' execution failed. Message: Failed to retrieve table details: 'DatabricksAPIClient' object has no attribute 'get_table_details', Error: None
+2025-05-22 07:08:12,928 - INFO - Executing agent tool 'table' with handler: handle_command

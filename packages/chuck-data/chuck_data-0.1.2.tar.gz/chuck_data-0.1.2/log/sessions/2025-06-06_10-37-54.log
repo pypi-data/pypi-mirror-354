@@ -1,0 +1,7 @@
+2025-06-06 10:37:54,879 - DEBUG - Logging initialized. Writing to /Users/johnrush/repos/chuck-data/log/sessions/2025-06-06_10-37-54.log
+2025-06-06 10:37:54,880 - DEBUG - Loaded configuration from /Users/johnrush/.chuck_config.json
+2025-06-06 10:37:54,902 - DEBUG - Using selector: KqueueSelector
+2025-06-06 10:37:55,707 - DEBUG - GET request with params to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables
+2025-06-06 10:37:55,714 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-06 10:37:56,173 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables?catalog_name=chuck_demo&schema_name=bronze HTTP/1.1" 200 None
+2025-06-06 10:37:56,184 - DEBUG - Using selector: KqueueSelector

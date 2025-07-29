@@ -1,0 +1,32 @@
+2025-06-05 15:07:50,200 - DEBUG - Logging initialized. Writing to /Users/johnrush/repos/chuck-data/log/sessions/2025-06-05_15-07-50.log
+2025-06-05 15:07:50,201 - DEBUG - Loaded configuration from /Users/johnrush/.chuck_config.json
+2025-06-05 15:07:50,219 - DEBUG - Using selector: KqueueSelector
+2025-06-05 15:07:52,134 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/warehouses/ed6a5cc30217adf0
+2025-06-05 15:07:52,144 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 15:07:52,290 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/warehouses/ed6a5cc30217adf0 HTTP/1.1" 200 None
+2025-06-05 15:07:52,292 - DEBUG - Saved configuration to /Users/johnrush/.chuck_config.json
+2025-06-05 15:07:52,294 - DEBUG - Using selector: KqueueSelector
+2025-06-05 15:07:53,106 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-05 15:07:53,123 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1062b23c0>
+2025-06-05 15:07:53,123 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x106217a40> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-05 15:07:53,154 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1062d8190>
+2025-06-05 15:07:53,154 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-05 15:07:53,154 - DEBUG - send_request_headers.complete
+2025-06-05 15:07:53,154 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-05 15:07:53,154 - DEBUG - send_request_body.complete
+2025-06-05 15:07:53,154 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-05 15:07:55,994 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'956fdc32-4acf-4f17-b2e5-af1f3b7aab12'), (b'x-amzn-bedrock-invocation-latency', b'2581'), (b'x-amzn-bedrock-output-token-count', b'56'), (b'x-amzn-bedrock-input-token-count', b'4153'), (b'content-type', b'application/json'), (b'date', b'Thu, 5 Jun 2025 22:07:55 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'a823370d-c243-4a61-b381-041aa7ac6dcd'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-05 15:07:55,995 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-05 15:07:55,996 - DEBUG - receive_response_body.complete
+2025-06-05 15:07:55,996 - DEBUG - response_closed.started
+2025-06-05 15:07:55,996 - DEBUG - response_closed.complete
+2025-06-05 15:07:55,999 - DEBUG - Agent attempting to execute tool: list-warehouses with args: {}
+2025-06-05 15:07:55,999 - DEBUG - Tool arguments for 'list-warehouses' validated successfully.
+2025-06-05 15:07:55,999 - DEBUG - Executing agent tool 'list-warehouses' with handler: handle_command
+2025-06-05 15:07:55,999 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/warehouses
+2025-06-05 15:07:56,001 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-05 15:07:56,096 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/warehouses HTTP/1.1" 200 None
+2025-06-05 15:07:56,099 - DEBUG - Tool 'list-warehouses' executed successfully. Data: {'warehouses': [{'id': '1bfc8803d32a69c3', 'name': 'Perlovsky Chuck Testing', 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'daniel.perlovsky@amperity.com', 'auto_stop_mins': 10, 'enable_serverless_compute': True, 'warehouse_type': 'PRO'}, {'id': '865b9b2dc901775c', 'name': 'Christian Serverless Compute', 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'christian.saffici@amperity.com', 'auto_stop_mins': 10, 'enable_serverless_compute': True, 'warehouse_type': 'PRO'}, {'id': '9b07e1f740586a24', 'name': 'Integration tests', 'size': 'XXSMALL', 'state': 'STOPPED', 'creator_name': 'john.rush@amperity.com', 'auto_stop_mins': 10, 'enable_serverless_compute': True, 'warehouse_type': 'PRO'}, {'id': 'aaa2993b572dcf34', 'name': 'Parker Chuck Testing', 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'jeff.parker@amperity.com', 'auto_stop_mins': 10, 'enable_serverless_compute': True, 'warehouse_type': 'PRO'}, {'id': 'cda9d8187af3f951', 'name': "Carson's Chuck Data", 'size': 'XLARGE', 'state': 'STOPPED', 'creator_name': 'carson.crooks@amperity.com', 'auto_stop_mins': 10, 'enable_serverless_compute': True, 'warehouse_type': 'PRO'}, {'id': 'ed6a5cc30217adf0', 'name': 'Starter Warehouse', 'size': 'SMALL', 'state': 'STOPPED', 'creator_name': 'cary+databricks@amperity.com', 'auto_stop_mins': 60, 'enable_serverless_compute': False, 'warehouse_type': 'PRO'}], 'total_count': 6}
+2025-06-05 15:07:56,109 - DEBUG - Using selector: KqueueSelector
+2025-06-05 15:20:54,106 - DEBUG - close.started
+2025-06-05 15:20:54,107 - DEBUG - close.complete

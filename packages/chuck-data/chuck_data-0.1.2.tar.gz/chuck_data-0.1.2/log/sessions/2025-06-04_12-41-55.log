@@ -1,0 +1,12 @@
+2025-06-04 12:41:55,682 - DEBUG - Logging initialized. Writing to /Users/johnrush/repos/clamp-internal/log/sessions/2025-06-04_12-41-55.log
+2025-06-04 12:41:55,683 - DEBUG - Loaded configuration from /Users/johnrush/.chuck_config.json
+2025-06-04 12:41:55,690 - DEBUG - Using selector: KqueueSelector
+2025-06-04 12:41:56,762 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/schemas/amperity_marketplace.bronze
+2025-06-04 12:41:56,769 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:41:56,934 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/schemas/amperity_marketplace.bronze HTTP/1.1" 200 None
+2025-06-04 12:41:56,935 - DEBUG - Saved configuration to /Users/johnrush/.chuck_config.json
+2025-06-04 12:41:56,938 - DEBUG - Using selector: KqueueSelector
+2025-06-04 12:41:56,946 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/amperity_marketplace.bronze.web_visitors
+2025-06-04 12:41:56,946 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:41:57,088 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/amperity_marketplace.bronze.web_visitors HTTP/1.1" 200 None
+2025-06-04 12:41:57,106 - DEBUG - Using selector: KqueueSelector

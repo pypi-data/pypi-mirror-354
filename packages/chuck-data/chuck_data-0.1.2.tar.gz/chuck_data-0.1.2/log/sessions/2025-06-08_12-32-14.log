@@ -1,0 +1,10 @@
+2025-06-08 12:32:14,899 - DEBUG - Logging initialized. Writing to /Users/johnrush/repos/chuck-data/log/sessions/2025-06-08_12-32-14.log
+2025-06-08 12:32:14,900 - DEBUG - Loaded configuration from /Users/johnrush/.chuck_config.json
+2025-06-08 12:32:14,916 - DEBUG - Using selector: KqueueSelector
+2025-06-08 12:32:19,352 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/catalogs/john_test
+2025-06-08 12:32:19,357 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 12:32:19,616 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/catalogs/john_test HTTP/1.1" 200 None
+2025-06-08 12:32:19,616 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/schemas/john_test.bronze
+2025-06-08 12:32:19,618 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 12:32:19,765 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/schemas/john_test.bronze HTTP/1.1" 200 None
+2025-06-08 12:32:19,767 - DEBUG - Using selector: KqueueSelector

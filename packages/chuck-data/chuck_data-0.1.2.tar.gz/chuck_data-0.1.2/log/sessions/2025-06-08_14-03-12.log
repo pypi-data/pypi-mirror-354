@@ -1,0 +1,71 @@
+2025-06-08 14:03:12,313 - DEBUG - Logging initialized. Writing to /Users/johnrush/repos/chuck-data/log/sessions/2025-06-08_14-03-12.log
+2025-06-08 14:03:12,315 - DEBUG - Loaded configuration from /Users/johnrush/.chuck_config.json
+2025-06-08 14:03:12,345 - DEBUG - Using selector: KqueueSelector
+2025-06-08 14:03:13,520 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/catalogs/john_test
+2025-06-08 14:03:13,529 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:03:13,718 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/catalogs/john_test HTTP/1.1" 200 None
+2025-06-08 14:03:13,719 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/schemas/john_test.bronze
+2025-06-08 14:03:13,721 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:03:13,861 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/schemas/john_test.bronze HTTP/1.1" 200 None
+2025-06-08 14:03:13,862 - DEBUG - GET request with params to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables
+2025-06-08 14:03:13,863 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:03:14,074 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables?catalog_name=john_test&schema_name=bronze&omit_columns=true HTTP/1.1" 200 None
+2025-06-08 14:03:14,074 - INFO - Starting PII Scan for 3 tables in john_test.bronze.
+2025-06-08 14:03:14,076 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.ecommerce_profiles
+2025-06-08 14:03:14,076 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.loyalty_member
+2025-06-08 14:03:14,076 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.pos_customer
+2025-06-08 14:03:14,076 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:03:14,077 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:03:14,077 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:03:14,221 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.pos_customer HTTP/1.1" 200 None
+2025-06-08 14:03:14,222 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.ecommerce_profiles HTTP/1.1" 200 None
+2025-06-08 14:03:14,226 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.loyalty_member HTTP/1.1" 200 None
+2025-06-08 14:03:14,260 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-08 14:03:14,260 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-08 14:03:14,260 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-08 14:03:14,286 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1083dfb60>
+2025-06-08 14:03:14,286 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x1083c1910> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-08 14:03:14,288 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x10840bd90>
+2025-06-08 14:03:14,288 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x1083c16d0> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-08 14:03:14,288 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x10840bc50>
+2025-06-08 14:03:14,288 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x1083c12e0> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-08 14:03:14,331 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x10839d220>
+2025-06-08 14:03:14,331 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-08 14:03:14,331 - DEBUG - send_request_headers.complete
+2025-06-08 14:03:14,331 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-08 14:03:14,331 - DEBUG - send_request_body.complete
+2025-06-08 14:03:14,331 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-08 14:03:14,339 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x10839d350>
+2025-06-08 14:03:14,339 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-08 14:03:14,339 - DEBUG - send_request_headers.complete
+2025-06-08 14:03:14,339 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-08 14:03:14,339 - DEBUG - send_request_body.complete
+2025-06-08 14:03:14,339 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-08 14:03:14,339 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1083d1a30>
+2025-06-08 14:03:14,339 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-08 14:03:14,340 - DEBUG - send_request_headers.complete
+2025-06-08 14:03:14,340 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-08 14:03:14,340 - DEBUG - send_request_body.complete
+2025-06-08 14:03:14,340 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-08 14:03:18,245 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'757fd572-2510-4635-8ef2-a44e16800369'), (b'x-amzn-bedrock-invocation-latency', b'3763'), (b'x-amzn-bedrock-output-token-count', b'197'), (b'x-amzn-bedrock-input-token-count', b'493'), (b'content-type', b'application/json'), (b'date', b'Sun, 8 Jun 2025 21:03:18 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'33286668-c1d3-4612-9a2c-d1abfc49f880'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-08 14:03:18,246 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-08 14:03:18,247 - DEBUG - receive_response_body.complete
+2025-06-08 14:03:18,247 - DEBUG - response_closed.started
+2025-06-08 14:03:18,247 - DEBUG - response_closed.complete
+2025-06-08 14:03:18,417 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'477db621-7efe-4ff3-b710-87a6712c2bfc'), (b'x-amzn-bedrock-invocation-latency', b'3927'), (b'x-amzn-bedrock-output-token-count', b'205'), (b'x-amzn-bedrock-input-token-count', b'508'), (b'content-type', b'application/json'), (b'date', b'Sun, 8 Jun 2025 21:03:18 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'7559e011-c469-4701-a132-a786b498a194'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-08 14:03:18,418 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-08 14:03:18,418 - DEBUG - receive_response_body.complete
+2025-06-08 14:03:18,418 - DEBUG - response_closed.started
+2025-06-08 14:03:18,418 - DEBUG - response_closed.complete
+2025-06-08 14:03:19,531 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'da13523f-85ec-4e75-9dd7-49f2010c7728'), (b'x-amzn-bedrock-invocation-latency', b'5048'), (b'x-amzn-bedrock-output-token-count', b'267'), (b'x-amzn-bedrock-input-token-count', b'588'), (b'content-type', b'application/json'), (b'date', b'Sun, 8 Jun 2025 21:03:19 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'cbeba194-620b-4ff9-9a14-1d342fb7448b'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-08 14:03:19,531 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-08 14:03:19,532 - DEBUG - receive_response_body.complete
+2025-06-08 14:03:19,532 - DEBUG - response_closed.started
+2025-06-08 14:03:19,532 - DEBUG - response_closed.complete
+2025-06-08 14:03:19,533 - DEBUG - Using selector: KqueueSelector
+2025-06-08 14:03:27,502 - DEBUG - close.started
+2025-06-08 14:03:27,502 - DEBUG - close.complete
+2025-06-08 14:03:27,502 - DEBUG - close.started
+2025-06-08 14:03:27,502 - DEBUG - close.complete
+2025-06-08 14:03:27,502 - DEBUG - close.started
+2025-06-08 14:03:27,503 - DEBUG - close.complete

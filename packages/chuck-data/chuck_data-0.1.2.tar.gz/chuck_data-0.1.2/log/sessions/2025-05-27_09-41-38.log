@@ -1,0 +1,74 @@
+2025-05-27 09:41:38,583 - INFO - setup_wizard: handle_command called with interactive_input='', kwargs={}
+2025-05-27 09:42:02,229 - INFO - setup_wizard: handle_command called with interactive_input='dbc-df998298-4c7e.cloud.databricks.com', kwargs={}
+2025-05-27 09:42:14,378 - INFO - setup_wizard: handle_command called with interactive_input='dapie35b35e614c50bb6cbade57844598d17', kwargs={}
+2025-05-27 09:42:14,919 - INFO - Attempting to reinitialize DatabricksAPIClient...
+2025-05-27 09:42:14,919 - INFO - DatabricksAPIClient reinitialized successfully.
+2025-05-27 09:42:15,183 - INFO - Found 8 models
+2025-05-27 09:42:17,301 - INFO - setup_wizard: handle_command called with interactive_input='1', kwargs={}
+2025-05-27 09:42:21,204 - INFO - setup_wizard: handle_command called with interactive_input='yes', kwargs={}
+2025-05-27 09:43:12,439 - INFO - Starting PII Scan for 8 tables in amperity_marketplace.bronze.
+2025-05-27 09:43:17,434 - ERROR - _helper_tag_pii_columns_logic error for 'unified_clusterpks': Error code: 503 - {'error_code': 'TEMPORARILY_UNAVAILABLE', 'message': 'The server is currently unable to handle the request.'}
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/clamp-internal/src/commands/pii_tools.py", line 97, in _helper_tag_pii_columns_logic
+    llm_response_obj = llm_client_instance.chat(
+        messages=[
+    ...<2 lines>...
+        ]
+    )
+  File "/Users/johnrush/repos/clamp-internal/src/llm/client.py", line 64, in chat
+    response = client.chat.completions.create(
+        model=model, messages=messages, stream=stream
+    )
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/openai/_utils/_utils.py", line 287, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 925, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<43 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1239, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1034, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.InternalServerError: Error code: 503 - {'error_code': 'TEMPORARILY_UNAVAILABLE', 'message': 'The server is currently unable to handle the request.'}
+2025-05-27 09:43:18,616 - ERROR - _helper_tag_pii_columns_logic error for 'e_commerce_customers_tiny': Error code: 503 - {'error_code': 'TEMPORARILY_UNAVAILABLE', 'message': 'The server is currently unable to handle the request.'}
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/clamp-internal/src/commands/pii_tools.py", line 97, in _helper_tag_pii_columns_logic
+    llm_response_obj = llm_client_instance.chat(
+        messages=[
+    ...<2 lines>...
+        ]
+    )
+  File "/Users/johnrush/repos/clamp-internal/src/llm/client.py", line 64, in chat
+    response = client.chat.completions.create(
+        model=model, messages=messages, stream=stream
+    )
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/openai/_utils/_utils.py", line 287, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 925, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<43 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1239, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1034, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.InternalServerError: Error code: 503 - {'error_code': 'TEMPORARILY_UNAVAILABLE', 'message': 'The server is currently unable to handle the request.'}
+2025-05-27 09:43:31,021 - INFO - Stitch config written to /Volumes/amperity_marketplace/bronze/chuck/stitch-2025-05-27_09-43.json
+2025-05-27 09:43:31,950 - INFO - Cluster init script written to /Volumes/amperity_marketplace/bronze/chuck/cluster_init.sh
+2025-05-27 09:43:56,937 - INFO - Starting PII Scan for 8 tables in amperity_marketplace.bronze.
+2025-05-27 09:44:11,519 - INFO - Stitch config written to /Volumes/amperity_marketplace/bronze/chuck/stitch-2025-05-27_09-44.json
+2025-05-27 09:44:12,187 - INFO - Cluster init script written to /Volumes/amperity_marketplace/bronze/chuck/cluster_init.sh

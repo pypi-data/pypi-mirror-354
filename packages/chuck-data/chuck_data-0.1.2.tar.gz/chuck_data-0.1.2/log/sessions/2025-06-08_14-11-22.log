@@ -1,0 +1,339 @@
+2025-06-08 14:11:22,675 - DEBUG - Logging initialized. Writing to /Users/johnrush/repos/chuck-data/log/sessions/2025-06-08_14-11-22.log
+2025-06-08 14:11:22,676 - DEBUG - Loaded configuration from /Users/johnrush/.chuck_config.json
+2025-06-08 14:11:22,692 - DEBUG - Using selector: KqueueSelector
+2025-06-08 14:11:24,577 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/catalogs/john_test
+2025-06-08 14:11:24,582 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:24,971 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/catalogs/john_test HTTP/1.1" 200 None
+2025-06-08 14:11:24,973 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/schemas/john_test.bronze
+2025-06-08 14:11:24,976 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:25,154 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/schemas/john_test.bronze HTTP/1.1" 200 None
+2025-06-08 14:11:25,156 - DEBUG - GET request with params to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables
+2025-06-08 14:11:25,158 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:25,415 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables?catalog_name=john_test&schema_name=bronze&omit_columns=true HTTP/1.1" 200 None
+2025-06-08 14:11:25,417 - INFO - Starting PII Scan for 3 tables in john_test.bronze.
+2025-06-08 14:11:25,421 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.ecommerce_profiles
+2025-06-08 14:11:25,422 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.loyalty_member
+2025-06-08 14:11:25,424 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.pos_customer
+2025-06-08 14:11:25,424 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:25,425 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:25,425 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:25,572 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.ecommerce_profiles HTTP/1.1" 200 None
+2025-06-08 14:11:25,614 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.pos_customer HTTP/1.1" 200 None
+2025-06-08 14:11:25,625 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.loyalty_member HTTP/1.1" 200 None
+2025-06-08 14:11:25,633 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-08 14:11:25,633 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-08 14:11:25,635 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-08 14:11:25,658 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1151bea50>
+2025-06-08 14:11:25,658 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x1151897f0> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-08 14:11:25,658 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1151e6ad0>
+2025-06-08 14:11:25,659 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x115189400> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-08 14:11:25,664 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x115303750>
+2025-06-08 14:11:25,664 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x1121a85f0> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-08 14:11:25,714 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1121ede00>
+2025-06-08 14:11:25,714 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-08 14:11:25,714 - DEBUG - send_request_headers.complete
+2025-06-08 14:11:25,714 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-08 14:11:25,714 - DEBUG - send_request_body.complete
+2025-06-08 14:11:25,714 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-08 14:11:25,716 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x115170b00>
+2025-06-08 14:11:25,716 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-08 14:11:25,716 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1151a16d0>
+2025-06-08 14:11:25,716 - DEBUG - send_request_headers.complete
+2025-06-08 14:11:25,716 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-08 14:11:25,716 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-08 14:11:25,716 - DEBUG - send_request_headers.complete
+2025-06-08 14:11:25,716 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-08 14:11:25,716 - DEBUG - send_request_body.complete
+2025-06-08 14:11:25,716 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-08 14:11:25,716 - DEBUG - send_request_body.complete
+2025-06-08 14:11:25,716 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-08 14:11:29,663 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'907181f4-eea8-49e3-ac43-26e72d271dff'), (b'x-amzn-bedrock-invocation-latency', b'3823'), (b'x-amzn-bedrock-output-token-count', b'205'), (b'x-amzn-bedrock-input-token-count', b'508'), (b'content-type', b'application/json'), (b'date', b'Sun, 8 Jun 2025 21:11:29 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'4a6617cc-efc0-436a-a6eb-83b71e6c566b'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-08 14:11:29,665 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-08 14:11:29,666 - DEBUG - receive_response_body.complete
+2025-06-08 14:11:29,666 - DEBUG - response_closed.started
+2025-06-08 14:11:29,666 - DEBUG - response_closed.complete
+2025-06-08 14:11:30,066 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'af773c41-edbe-48e5-9604-350041d62693'), (b'x-amzn-bedrock-invocation-latency', b'4218'), (b'x-amzn-bedrock-output-token-count', b'267'), (b'x-amzn-bedrock-input-token-count', b'588'), (b'content-type', b'application/json'), (b'date', b'Sun, 8 Jun 2025 21:11:30 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'9a682c4a-ef3b-4b28-9fb2-03ada35964d1'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-08 14:11:30,066 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-08 14:11:30,066 - DEBUG - receive_response_body.complete
+2025-06-08 14:11:30,066 - DEBUG - response_closed.started
+2025-06-08 14:11:30,066 - DEBUG - response_closed.complete
+2025-06-08 14:11:32,420 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'acdd6734-9e35-46b7-b6ba-bf66f13fc612'), (b'x-amzn-bedrock-invocation-latency', b'6566'), (b'x-amzn-bedrock-output-token-count', b'292'), (b'x-amzn-bedrock-input-token-count', b'493'), (b'content-type', b'application/json'), (b'date', b'Sun, 8 Jun 2025 21:11:32 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'42169f25-5979-41e8-a87b-58b947ed035c'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-08 14:11:32,421 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-08 14:11:32,421 - DEBUG - receive_response_body.complete
+2025-06-08 14:11:32,422 - DEBUG - response_closed.started
+2025-06-08 14:11:32,422 - DEBUG - response_closed.complete
+2025-06-08 14:11:32,438 - DEBUG - Using selector: KqueueSelector
+2025-06-08 14:11:34,204 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:34,205 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:43,650 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:43,651 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-285c-1423-8814-cd84e2c6dfc2
+2025-06-08 14:11:43,654 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:44,105 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-285c-1423-8814-cd84e2c6dfc2 HTTP/1.1" 200 None
+2025-06-08 14:11:44,105 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:44,106 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:44,813 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:44,814 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-2e2a-1ee7-aca1-998842f5c068
+2025-06-08 14:11:44,815 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:45,191 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-2e2a-1ee7-aca1-998842f5c068 HTTP/1.1" 200 None
+2025-06-08 14:11:45,192 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:45,194 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:45,889 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:45,890 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-2ed4-1dfd-b428-4ec6c0c84964
+2025-06-08 14:11:45,893 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:46,300 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-2ed4-1dfd-b428-4ec6c0c84964 HTTP/1.1" 200 None
+2025-06-08 14:11:46,302 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:46,304 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:46,837 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:46,839 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-2f75-1afc-875c-8f8a6a2ff727
+2025-06-08 14:11:46,842 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:47,167 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-2f75-1afc-875c-8f8a6a2ff727 HTTP/1.1" 200 None
+2025-06-08 14:11:47,168 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:47,170 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:47,724 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:47,725 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-2ff9-15bc-a4e2-3eec934b1df1
+2025-06-08 14:11:47,727 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:47,964 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-2ff9-15bc-a4e2-3eec934b1df1 HTTP/1.1" 200 None
+2025-06-08 14:11:47,964 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:47,965 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:48,500 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:48,502 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-3071-1df6-9266-fb289aadba03
+2025-06-08 14:11:48,503 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:48,746 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-3071-1df6-9266-fb289aadba03 HTTP/1.1" 200 None
+2025-06-08 14:11:48,748 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:48,750 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:49,346 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:49,347 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-30f1-182a-b102-17e78a9c91c8
+2025-06-08 14:11:49,348 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:49,717 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-30f1-182a-b102-17e78a9c91c8 HTTP/1.1" 200 None
+2025-06-08 14:11:49,718 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:49,721 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:50,298 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:50,299 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-3181-17af-9d6f-3c93b9eba800
+2025-06-08 14:11:50,301 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:50,564 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-3181-17af-9d6f-3c93b9eba800 HTTP/1.1" 200 None
+2025-06-08 14:11:50,566 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:50,567 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:51,236 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:51,238 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-3205-1919-85bd-852c1439be27
+2025-06-08 14:11:51,239 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:51,593 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-3205-1919-85bd-852c1439be27 HTTP/1.1" 200 None
+2025-06-08 14:11:51,593 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:51,595 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:52,229 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:52,231 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-32a6-116c-825d-f484cab8511d
+2025-06-08 14:11:52,233 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:52,562 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-32a6-116c-825d-f484cab8511d HTTP/1.1" 200 None
+2025-06-08 14:11:52,563 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:52,566 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:53,145 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:53,147 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-3334-1057-9939-83a1b95f9d32
+2025-06-08 14:11:53,149 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:53,364 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-3334-1057-9939-83a1b95f9d32 HTTP/1.1" 200 None
+2025-06-08 14:11:53,367 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:53,369 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:54,005 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:54,005 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-33a9-1af8-96e0-723b1211569b
+2025-06-08 14:11:54,006 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:54,389 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-33a9-1af8-96e0-723b1211569b HTTP/1.1" 200 None
+2025-06-08 14:11:54,389 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:54,390 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:54,955 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:54,956 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-344a-16e6-996b-528f710767d4
+2025-06-08 14:11:54,958 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:55,200 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-344a-16e6-996b-528f710767d4 HTTP/1.1" 200 None
+2025-06-08 14:11:55,201 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:55,203 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:55,724 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:55,726 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-34c2-1a02-8ea0-0491d2e13226
+2025-06-08 14:11:55,727 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:55,954 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-34c2-1a02-8ea0-0491d2e13226 HTTP/1.1" 200 None
+2025-06-08 14:11:55,955 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:55,957 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:56,538 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:56,540 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-3536-1849-86b1-62aecf45f566
+2025-06-08 14:11:56,542 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:56,777 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-3536-1849-86b1-62aecf45f566 HTTP/1.1" 200 None
+2025-06-08 14:11:56,778 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:56,780 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:57,305 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:57,306 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-35b3-1a8e-93c4-c38bbf6c6e35
+2025-06-08 14:11:57,309 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:57,557 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-35b3-1a8e-93c4-c38bbf6c6e35 HTTP/1.1" 200 None
+2025-06-08 14:11:57,558 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:57,560 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:58,070 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:58,071 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-3628-1fa0-b82d-3171acf5bdd8
+2025-06-08 14:11:58,072 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:58,400 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-3628-1fa0-b82d-3171acf5bdd8 HTTP/1.1" 200 None
+2025-06-08 14:11:58,401 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:58,401 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:58,919 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:58,920 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-36aa-175f-ad62-acf6b7cfa6ae
+2025-06-08 14:11:58,922 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:59,139 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-36aa-175f-ad62-acf6b7cfa6ae HTTP/1.1" 200 None
+2025-06-08 14:11:59,141 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:11:59,143 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:11:59,660 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:11:59,660 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-371a-1b06-80ae-a64ea25b8126
+2025-06-08 14:11:59,661 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:00,004 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-371a-1b06-80ae-a64ea25b8126 HTTP/1.1" 200 None
+2025-06-08 14:12:00,005 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:12:00,005 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:00,513 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:12:00,514 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-379d-17e3-a7c3-8447fc3fc2e5
+2025-06-08 14:12:00,516 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:00,794 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-379d-17e3-a7c3-8447fc3fc2e5 HTTP/1.1" 200 None
+2025-06-08 14:12:00,795 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:12:00,795 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:01,298 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:12:01,299 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-3819-1793-bf37-7d5a9e22c3ae
+2025-06-08 14:12:01,301 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:01,559 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-3819-1793-bf37-7d5a9e22c3ae HTTP/1.1" 200 None
+2025-06-08 14:12:01,561 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:12:01,562 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:02,080 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:12:02,081 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-388c-124c-8d60-5f97fe982781
+2025-06-08 14:12:02,082 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:02,313 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-388c-124c-8d60-5f97fe982781 HTTP/1.1" 200 None
+2025-06-08 14:12:02,313 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:12:02,314 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:02,866 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:12:02,867 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-38ff-10fd-b29e-f27b7ab0f151
+2025-06-08 14:12:02,868 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:03,115 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-38ff-10fd-b29e-f27b7ab0f151 HTTP/1.1" 200 None
+2025-06-08 14:12:03,115 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:12:03,116 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:03,630 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:12:03,632 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-3978-169e-a55f-870a4691055c
+2025-06-08 14:12:03,634 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:03,874 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-3978-169e-a55f-870a4691055c HTTP/1.1" 200 None
+2025-06-08 14:12:03,875 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:12:03,877 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:04,363 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:12:04,364 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-39ec-1550-929b-8e2bfb69b91e
+2025-06-08 14:12:04,364 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:04,583 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-39ec-1550-929b-8e2bfb69b91e HTTP/1.1" 200 None
+2025-06-08 14:12:04,583 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:12:04,584 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:05,064 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:12:05,066 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-3a58-1a85-8960-062d5b55c1ef
+2025-06-08 14:12:05,068 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:05,298 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-3a58-1a85-8960-062d5b55c1ef HTTP/1.1" 200 None
+2025-06-08 14:12:05,300 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:12:05,302 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:05,864 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:12:05,866 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-3aca-1dc3-9110-1b98e31c82e1
+2025-06-08 14:12:05,868 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:06,116 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-3aca-1dc3-9110-1b98e31c82e1 HTTP/1.1" 200 None
+2025-06-08 14:12:06,117 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:12:06,119 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:06,600 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:12:06,601 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-3b43-197d-9350-987d45e09190
+2025-06-08 14:12:06,603 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:06,834 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-3b43-197d-9350-987d45e09190 HTTP/1.1" 200 None
+2025-06-08 14:12:06,836 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:12:06,838 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:07,329 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:12:07,330 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-3bb3-134b-9a6e-87bd73ed758b
+2025-06-08 14:12:07,332 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:07,551 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-3bb3-134b-9a6e-87bd73ed758b HTTP/1.1" 200 None
+2025-06-08 14:12:07,553 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:12:07,555 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:08,026 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:12:08,027 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-3c1e-15ec-bc51-66e713ddf369
+2025-06-08 14:12:08,028 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:08,285 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-3c1e-15ec-bc51-66e713ddf369 HTTP/1.1" 200 None
+2025-06-08 14:12:08,286 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:12:08,289 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:08,798 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:12:08,799 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-3c8e-10cc-93da-4de0160be4bc
+2025-06-08 14:12:08,802 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:09,018 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-3c8e-10cc-93da-4de0160be4bc HTTP/1.1" 200 None
+2025-06-08 14:12:09,020 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:12:09,022 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:09,651 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:12:09,653 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-3cfd-17e1-81fc-be614003ea80
+2025-06-08 14:12:09,655 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:09,896 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-3cfd-17e1-81fc-be614003ea80 HTTP/1.1" 200 None
+2025-06-08 14:12:09,897 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements
+2025-06-08 14:12:09,899 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:10,432 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.0/sql/statements HTTP/1.1" 200 None
+2025-06-08 14:12:10,434 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/sql/statements/01f044ad-3d83-1330-988f-315ca262cebf
+2025-06-08 14:12:10,435 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:12:10,659 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.0/sql/statements/01f044ad-3d83-1330-988f-315ca262cebf HTTP/1.1" 200 None
+2025-06-08 14:12:10,663 - DEBUG - Using selector: KqueueSelector
+2025-06-08 14:14:50,229 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/catalogs/john_test
+2025-06-08 14:14:50,233 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:14:50,448 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/catalogs/john_test HTTP/1.1" 200 None
+2025-06-08 14:14:50,449 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/schemas/john_test.bronze
+2025-06-08 14:14:50,451 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:14:50,633 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/schemas/john_test.bronze HTTP/1.1" 200 None
+2025-06-08 14:14:50,634 - DEBUG - GET request with params to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables
+2025-06-08 14:14:50,636 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:14:50,830 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables?catalog_name=john_test&schema_name=bronze&omit_columns=true HTTP/1.1" 200 None
+2025-06-08 14:14:50,830 - INFO - Starting PII Scan for 3 tables in john_test.bronze.
+2025-06-08 14:14:50,832 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.ecommerce_profiles
+2025-06-08 14:14:50,832 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.loyalty_member
+2025-06-08 14:14:50,834 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/john_test.bronze.pos_customer
+2025-06-08 14:14:50,834 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:14:50,834 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:14:50,835 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-08 14:14:50,981 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.pos_customer HTTP/1.1" 200 None
+2025-06-08 14:14:50,991 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.loyalty_member HTTP/1.1" 200 None
+2025-06-08 14:14:50,995 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-08 14:14:50,999 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-08 14:14:51,021 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/john_test.bronze.ecommerce_profiles HTTP/1.1" 200 None
+2025-06-08 14:14:51,022 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x1121aff00>
+2025-06-08 14:14:51,022 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x115189ac0> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-08 14:14:51,027 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x11530c050>
+2025-06-08 14:14:51,027 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x11518a570> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-08 14:14:51,029 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-08 14:14:51,056 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x115187950>
+2025-06-08 14:14:51,056 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x1121a8950> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-08 14:14:51,075 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x115187a50>
+2025-06-08 14:14:51,075 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-08 14:14:51,076 - DEBUG - send_request_headers.complete
+2025-06-08 14:14:51,076 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-08 14:14:51,076 - DEBUG - send_request_body.complete
+2025-06-08 14:14:51,076 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-08 14:14:51,077 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x11227c230>
+2025-06-08 14:14:51,077 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-08 14:14:51,077 - DEBUG - send_request_headers.complete
+2025-06-08 14:14:51,077 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-08 14:14:51,077 - DEBUG - send_request_body.complete
+2025-06-08 14:14:51,077 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-08 14:14:51,104 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x11227ce60>
+2025-06-08 14:14:51,104 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-08 14:14:51,104 - DEBUG - send_request_headers.complete
+2025-06-08 14:14:51,104 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-08 14:14:51,104 - DEBUG - send_request_body.complete
+2025-06-08 14:14:51,104 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-08 14:14:54,862 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'966e3f15-9cf0-4c48-88d6-98b81ae8c734'), (b'x-amzn-bedrock-invocation-latency', b'3525'), (b'x-amzn-bedrock-output-token-count', b'197'), (b'x-amzn-bedrock-input-token-count', b'493'), (b'content-type', b'application/json'), (b'date', b'Sun, 8 Jun 2025 21:14:54 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'2d587f12-9f24-48ec-8c7b-db6beee183cc'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-08 14:14:54,863 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-08 14:14:54,864 - DEBUG - receive_response_body.complete
+2025-06-08 14:14:54,864 - DEBUG - response_closed.started
+2025-06-08 14:14:54,864 - DEBUG - response_closed.complete
+2025-06-08 14:14:54,952 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'fb58caeb-4545-43f4-9270-f104d14e34f4'), (b'x-amzn-bedrock-invocation-latency', b'3716'), (b'x-amzn-bedrock-output-token-count', b'205'), (b'x-amzn-bedrock-input-token-count', b'508'), (b'content-type', b'application/json'), (b'date', b'Sun, 8 Jun 2025 21:14:54 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'96170522-d9ed-480e-98a9-e6fe18d8f515'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-08 14:14:54,953 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-08 14:14:54,954 - DEBUG - receive_response_body.complete
+2025-06-08 14:14:54,954 - DEBUG - response_closed.started
+2025-06-08 14:14:54,954 - DEBUG - response_closed.complete
+2025-06-08 14:14:56,151 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'65f85fd6-c6fb-425d-9532-844815c361d4'), (b'x-amzn-bedrock-invocation-latency', b'4913'), (b'x-amzn-bedrock-output-token-count', b'267'), (b'x-amzn-bedrock-input-token-count', b'588'), (b'content-type', b'application/json'), (b'date', b'Sun, 8 Jun 2025 21:14:56 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'8b2b8ce5-b249-4a20-aff2-62d3441d3a81'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-08 14:14:56,153 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-08 14:14:56,153 - DEBUG - receive_response_body.complete
+2025-06-08 14:14:56,153 - DEBUG - response_closed.started
+2025-06-08 14:14:56,153 - DEBUG - response_closed.complete
+2025-06-08 14:14:56,167 - DEBUG - Using selector: KqueueSelector
+2025-06-08 14:14:57,613 - DEBUG - close.started
+2025-06-08 14:14:57,614 - DEBUG - close.complete
+2025-06-08 14:14:57,614 - DEBUG - close.started
+2025-06-08 14:14:57,614 - DEBUG - close.complete
+2025-06-08 14:14:57,614 - DEBUG - close.started
+2025-06-08 14:14:57,615 - DEBUG - close.complete
+2025-06-08 14:14:57,872 - DEBUG - Using selector: KqueueSelector
+2025-06-08 14:16:20,730 - DEBUG - close.started
+2025-06-08 14:16:20,731 - DEBUG - close.complete
+2025-06-08 14:16:20,731 - DEBUG - close.started
+2025-06-08 14:16:20,731 - DEBUG - close.complete
+2025-06-08 14:16:20,731 - DEBUG - close.started
+2025-06-08 14:16:20,731 - DEBUG - close.complete

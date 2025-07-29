@@ -1,0 +1,53 @@
+2025-05-29 10:18:10,112 - INFO - Attempting to reinitialize DatabricksAPIClient...
+2025-05-29 10:18:10,113 - INFO - DatabricksAPIClient reinitialized successfully.
+2025-05-29 10:18:58,328 - INFO - Starting PII Scan for 3 tables in john_test.bronze.
+2025-05-29 10:19:07,118 - ERROR - Tool 'setup_stitch' execution failed. Message: Failed to launch Stitch job: name 'MAIN_CLASS' is not defined, Error: None
+2025-05-29 10:19:19,433 - INFO - Starting PII Scan for 3 tables in john_test.bronze.
+2025-05-29 10:19:33,753 - INFO - Executing SQL query: SELECT DISTINCT datasource FROM john_test.bronze.ecommerce_profiles on warehouse: 9b07e1f740586a24
+2025-05-29 10:19:34,591 - WARNING - No datasources found in table john_test.bronze.ecommerce_profiles
+2025-05-29 10:19:34,591 - INFO - Using default_source as a placeholder
+2025-05-29 10:19:34,591 - INFO - Created source mapping: {
+    "default_source": "default_source"
+}
+2025-05-29 10:19:34,592 - INFO - Replacing UNIFIED_PATH with table path: john_test.bronze.ecommerce_profiles
+2025-05-29 10:19:34,592 - INFO - Found UNIFIED_PATH in line: unified_coalesced_path = "{UNIFIED_PATH}"
+
+2025-05-29 10:19:34,592 - INFO - Found source_semantic_mapping at line: source_semantic_mapping = {SOURCE_NAMES}
+
+2025-05-29 10:19:34,592 - INFO - Successfully replaced source_semantic_mapping with: source_semantic_mapping = {
+    "default_source": "default_source"
+}
+
+2025-05-29 10:19:35,199 - INFO - Successfully created stitch notebook at /Workspace/Users/john.rush@amperity.com/Databricks Stitch Report
+2025-05-29 10:19:39,951 - INFO - Executing SQL query: SELECT DISTINCT datasource FROM john_test.bronze.loyalty_member on warehouse: 9b07e1f740586a24
+2025-05-29 10:19:40,752 - WARNING - No datasources found in table john_test.bronze.loyalty_member
+2025-05-29 10:19:40,752 - INFO - Using default_source as a placeholder
+2025-05-29 10:19:40,753 - INFO - Created source mapping: {
+    "default_source": "default_source"
+}
+2025-05-29 10:19:40,753 - INFO - Replacing UNIFIED_PATH with table path: john_test.bronze.loyalty_member
+2025-05-29 10:19:40,753 - INFO - Found UNIFIED_PATH in line: unified_coalesced_path = "{UNIFIED_PATH}"
+
+2025-05-29 10:19:40,753 - INFO - Found source_semantic_mapping at line: source_semantic_mapping = {SOURCE_NAMES}
+
+2025-05-29 10:19:40,753 - INFO - Successfully replaced source_semantic_mapping with: source_semantic_mapping = {
+    "default_source": "default_source"
+}
+
+2025-05-29 10:19:41,145 - INFO - Successfully created stitch notebook at /Workspace/Users/john.rush@amperity.com/Databricks Stitch Report
+2025-05-29 10:19:45,247 - INFO - Executing SQL query: SELECT DISTINCT datasource FROM john_test.bronze.pos_customer on warehouse: 9b07e1f740586a24
+2025-05-29 10:19:46,052 - WARNING - No datasources found in table john_test.bronze.pos_customer
+2025-05-29 10:19:46,052 - INFO - Using default_source as a placeholder
+2025-05-29 10:19:46,052 - INFO - Created source mapping: {
+    "default_source": "default_source"
+}
+2025-05-29 10:19:46,052 - INFO - Replacing UNIFIED_PATH with table path: john_test.bronze.pos_customer
+2025-05-29 10:19:46,052 - INFO - Found UNIFIED_PATH in line: unified_coalesced_path = "{UNIFIED_PATH}"
+
+2025-05-29 10:19:46,053 - INFO - Found source_semantic_mapping at line: source_semantic_mapping = {SOURCE_NAMES}
+
+2025-05-29 10:19:46,053 - INFO - Successfully replaced source_semantic_mapping with: source_semantic_mapping = {
+    "default_source": "default_source"
+}
+
+2025-05-29 10:19:46,596 - INFO - Successfully created stitch notebook at /Workspace/Users/john.rush@amperity.com/Databricks Stitch Report

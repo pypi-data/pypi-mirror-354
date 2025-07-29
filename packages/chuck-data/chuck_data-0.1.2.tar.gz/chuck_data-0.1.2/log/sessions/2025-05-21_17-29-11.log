@@ -1,0 +1,11 @@
+2025-05-21 17:29:12,667 - INFO - ClampService executing: '/setup', args: (), interactive: 'None'
+2025-05-21 17:29:12,670 - INFO - WIZARD DEBUG - handle_command called with params:
+2025-05-21 17:29:12,670 - INFO -   - interactive_input: 'None'
+2025-05-21 17:29:12,670 - INFO -   - client: <src.clients.databricks.DatabricksAPIClient object at 0x107973230>
+2025-05-21 17:29:12,670 - INFO -   - kwargs: {}
+2025-05-21 17:29:12,670 - INFO - setup_wizard: handle_command called with interactive_input=None, kwargs={}
+2025-05-21 17:29:12,671 - INFO - Setting active context. Current command: /setup_wizard
+2025-05-21 17:29:12,671 - INFO - Interactive mode active: True
+2025-05-21 17:29:12,671 - INFO - Context data: {'current_step': 1}
+2025-05-21 17:29:12,674 - INFO - Updated step to 2, context data: {'current_step': 2}
+2025-05-21 17:29:16,530 - INFO - ClampService executing: '/setup_wizard', args: (), interactive: 'https://my-workspace.cloud.databricks.com'

@@ -1,0 +1,31 @@
+2025-05-21 16:03:07,882 - ERROR - HTTP error: 401 Client Error: Unauthorized for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/serving-endpoints, Response: {"error_code":401,"message":"Credential was not sent or was of an unsupported type for this API. [ReqId: a393dd70-5624-40e9-9423-5e278f01167e]"}
+2025-05-21 16:03:07,882 - ERROR - Failed to list models: HTTP error occurred: 401 Client Error: Unauthorized for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/serving-endpoints, Response: {"error_code":401,"message":"Credential was not sent or was of an unsupported type for this API. [ReqId: a393dd70-5624-40e9-9423-5e278f01167e]"}
+2025-05-21 16:03:07,882 - ERROR - Failed to list models: Model serving API error: HTTP error occurred: 401 Client Error: Unauthorized for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/serving-endpoints, Response: {"error_code":401,"message":"Credential was not sent or was of an unsupported type for this API. [ReqId: a393dd70-5624-40e9-9423-5e278f01167e]"}
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/clamp-internal/src/clients/databricks.py", line 75, in get
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/johnrush/repos/clamp-internal/.venv/lib/python3.13/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/serving-endpoints
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/clamp-internal/src/models.py", line 19, in list_models
+    return client.list_models()
+           ~~~~~~~~~~~~~~~~~~^^
+  File "/Users/johnrush/repos/clamp-internal/src/clients/databricks.py", line 393, in list_models
+    response = self.get("/api/2.0/serving-endpoints")
+  File "/Users/johnrush/repos/clamp-internal/src/clients/databricks.py", line 79, in get
+    raise ValueError(f"HTTP error occurred: {e}, Response: {response.text}")
+ValueError: HTTP error occurred: 401 Client Error: Unauthorized for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/serving-endpoints, Response: {"error_code":401,"message":"Credential was not sent or was of an unsupported type for this API. [ReqId: a393dd70-5624-40e9-9423-5e278f01167e]"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/clamp-internal/src/commands/models.py", line 20, in handle_command
+    models_list = list_models_api(client)
+  File "/Users/johnrush/repos/clamp-internal/src/models.py", line 22, in list_models
+    raise ValueError(f"Model serving API error: {e}")
+ValueError: Model serving API error: HTTP error occurred: 401 Client Error: Unauthorized for url: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/serving-endpoints, Response: {"error_code":401,"message":"Credential was not sent or was of an unsupported type for this API. [ReqId: a393dd70-5624-40e9-9423-5e278f01167e]"}

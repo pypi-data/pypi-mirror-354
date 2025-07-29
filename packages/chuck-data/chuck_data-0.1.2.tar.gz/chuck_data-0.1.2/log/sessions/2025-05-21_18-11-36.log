@@ -1,0 +1,5 @@
+2025-05-21 18:11:37,521 - INFO - ClampService executing: '/setup', args: (), interactive: 'None'
+2025-05-21 18:11:37,522 - INFO - setup_wizard: handle_command called with interactive_input=None, kwargs={}
+2025-05-21 18:11:37,522 - INFO - Empty input detected, prompting user to enter a value
+2025-05-21 18:11:37,522 - WARNING - Unexpected step: 1. Attempting to recover...
+2025-05-21 18:11:40,380 - INFO - ClampService executing: '/setup_wizard', args: (), interactive: 'https://my-workspace.cloud.databricks.com'

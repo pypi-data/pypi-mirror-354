@@ -1,0 +1,77 @@
+2025-06-04 12:40:19,827 - DEBUG - Logging initialized. Writing to /Users/johnrush/repos/clamp-internal/log/sessions/2025-06-04_12-40-19.log
+2025-06-04 12:40:19,828 - DEBUG - Loaded configuration from /Users/johnrush/.chuck_config.json
+2025-06-04 12:40:19,836 - DEBUG - Using selector: KqueueSelector
+2025-06-04 12:40:20,915 - DEBUG - GET request with params to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables
+2025-06-04 12:40:20,931 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:40:21,077 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables?catalog_name=chuck_integration_test_1636&schema_name=bronze&omit_columns=true HTTP/1.1" 200 None
+2025-06-04 12:40:21,077 - INFO - Starting PII Scan for 3 tables in chuck_integration_test_1636.bronze.
+2025-06-04 12:40:21,077 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/chuck_integration_test_1636.bronze.ecommerce_profiles
+2025-06-04 12:40:21,078 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/chuck_integration_test_1636.bronze.loyalty_member
+2025-06-04 12:40:21,078 - DEBUG - GET request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/tables/chuck_integration_test_1636.bronze.pos_customer
+2025-06-04 12:40:21,079 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:40:21,079 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:40:21,079 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:40:21,197 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/chuck_integration_test_1636.bronze.loyalty_member HTTP/1.1" 200 None
+2025-06-04 12:40:21,204 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/chuck_integration_test_1636.bronze.ecommerce_profiles HTTP/1.1" 200 None
+2025-06-04 12:40:21,217 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/tables/chuck_integration_test_1636.bronze.pos_customer HTTP/1.1" 200 None
+2025-06-04 12:40:21,273 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-04 12:40:21,273 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-04 12:40:21,273 - DEBUG - connect_tcp.started host='dbc-df998298-4c7e.cloud.databricks.com' port=443 local_address=None timeout=5.0 socket_options=None
+2025-06-04 12:40:21,296 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x109ea0ec0>
+2025-06-04 12:40:21,296 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x109ebf750>
+2025-06-04 12:40:21,296 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x109e900e0> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-04 12:40:21,296 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x109e07e30> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-04 12:40:21,296 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x109ebe990>
+2025-06-04 12:40:21,296 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x109e079b0> server_hostname='dbc-df998298-4c7e.cloud.databricks.com' timeout=5.0
+2025-06-04 12:40:21,347 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x109e608a0>
+2025-06-04 12:40:21,347 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x109e609d0>
+2025-06-04 12:40:21,347 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-04 12:40:21,347 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x109ee4050>
+2025-06-04 12:40:21,348 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-04 12:40:21,348 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-06-04 12:40:21,348 - DEBUG - send_request_headers.complete
+2025-06-04 12:40:21,348 - DEBUG - send_request_headers.complete
+2025-06-04 12:40:21,348 - DEBUG - send_request_headers.complete
+2025-06-04 12:40:21,348 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-04 12:40:21,348 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-04 12:40:21,348 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-06-04 12:40:21,348 - DEBUG - send_request_body.complete
+2025-06-04 12:40:21,348 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-04 12:40:21,348 - DEBUG - send_request_body.complete
+2025-06-04 12:40:21,348 - DEBUG - send_request_body.complete
+2025-06-04 12:40:21,349 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-04 12:40:21,349 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-06-04 12:40:28,576 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'77c2bed5-3de0-4a8e-90ff-6c0524c0b546'), (b'x-amzn-bedrock-invocation-latency', b'7157'), (b'x-amzn-bedrock-output-token-count', b'267'), (b'x-amzn-bedrock-input-token-count', b'593'), (b'content-type', b'application/json'), (b'date', b'Wed, 4 Jun 2025 19:40:28 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'895b5212-4b4d-486f-94c9-c7a71304f25a'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-04 12:40:28,579 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-04 12:40:28,579 - DEBUG - receive_response_body.complete
+2025-06-04 12:40:28,579 - DEBUG - response_closed.started
+2025-06-04 12:40:28,579 - DEBUG - response_closed.complete
+2025-06-04 12:40:29,751 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'f4e69624-e705-444a-a358-e02d1f2b1f83'), (b'x-amzn-bedrock-invocation-latency', b'8337'), (b'x-amzn-bedrock-output-token-count', b'205'), (b'x-amzn-bedrock-input-token-count', b'513'), (b'content-type', b'application/json'), (b'date', b'Wed, 4 Jun 2025 19:40:29 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'2c152fbf-e316-4137-8bb1-b4edbbf43201'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-04 12:40:29,752 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-04 12:40:29,752 - DEBUG - receive_response_body.complete
+2025-06-04 12:40:29,752 - DEBUG - response_closed.started
+2025-06-04 12:40:29,753 - DEBUG - response_closed.complete
+2025-06-04 12:40:32,811 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'x-amzn-requestid', b'85357a2e-c1e2-4646-88f7-ca2439c67277'), (b'x-amzn-bedrock-invocation-latency', b'10296'), (b'x-amzn-bedrock-output-token-count', b'197'), (b'x-amzn-bedrock-input-token-count', b'498'), (b'content-type', b'application/json'), (b'date', b'Wed, 4 Jun 2025 19:40:32 GMT'), (b'x-databricks-org-id', b'3416276235813320'), (b'x-request-id', b'2d60fd2c-f492-4390-92b4-7de5c8360d48'), (b'content-encoding', b'gzip'), (b'vary', b'Accept-Encoding'), (b'strict-transport-security', b'max-age=31536000; includeSubDomains; preload'), (b'x-content-type-options', b'nosniff'), (b'server', b'databricks'), (b'transfer-encoding', b'chunked')])
+2025-06-04 12:40:32,812 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-06-04 12:40:32,812 - DEBUG - receive_response_body.complete
+2025-06-04 12:40:32,813 - DEBUG - response_closed.started
+2025-06-04 12:40:32,813 - DEBUG - response_closed.complete
+2025-06-04 12:40:32,816 - DEBUG - GET request with params to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/volumes
+2025-06-04 12:40:32,819 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:40:32,970 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/volumes?catalog_name=chuck_integration_test_1636&schema_name=bronze HTTP/1.1" 200 2
+2025-06-04 12:40:32,972 - DEBUG - Volume 'chuck' not found in chuck_integration_test_1636.bronze. Attempting to create.
+2025-06-04 12:40:32,973 - DEBUG - POST request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/volumes
+2025-06-04 12:40:32,974 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:40:33,386 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "POST /api/2.1/unity-catalog/volumes HTTP/1.1" 200 None
+2025-06-04 12:40:33,387 - DEBUG - Volume 'chuck' created successfully.
+2025-06-04 12:40:33,389 - DEBUG - Starting new HTTPS connection (1): chuck.amperity.com:443
+2025-06-04 12:40:33,494 - DEBUG - https://chuck.amperity.com:443 "POST /api/job/launch HTTP/1.1" 200 720
+2025-06-04 12:40:33,495 - DEBUG - GET request with params to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.1/unity-catalog/volumes
+2025-06-04 12:40:33,497 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:40:33,628 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "GET /api/2.1/unity-catalog/volumes?catalog_name=chuck_integration_test_1636&schema_name=bronze HTTP/1.1" 200 None
+2025-06-04 12:40:33,630 - DEBUG - File upload request to: https://dbc-df998298-4c7e.cloud.databricks.com/api/2.0/fs/files/Volumes/chuck_integration_test_1636/bronze/chuck/cluster_init-2025-06-04_12-40.sh?overwrite=true
+2025-06-04 12:40:33,632 - DEBUG - Starting new HTTPS connection (1): dbc-df998298-4c7e.cloud.databricks.com:443
+2025-06-04 12:40:34,114 - DEBUG - https://dbc-df998298-4c7e.cloud.databricks.com:443 "PUT /api/2.0/fs/files/Volumes/chuck_integration_test_1636/bronze/chuck/cluster_init-2025-06-04_12-40.sh?overwrite=true HTTP/1.1" 204 0
+2025-06-04 12:40:34,115 - INFO - Cluster init script uploaded successfully to /Volumes/chuck_integration_test_1636/bronze/chuck/cluster_init-2025-06-04_12-40.sh
+2025-06-04 12:40:34,115 - DEBUG - Versioned cluster init script uploaded to /Volumes/chuck_integration_test_1636/bronze/chuck/cluster_init-2025-06-04_12-40.sh
+2025-06-04 12:40:34,125 - DEBUG - Using selector: KqueueSelector

@@ -1,0 +1,9 @@
+2025-06-06 12:56:40,860 - DEBUG - Logging initialized. Writing to /Users/johnrush/repos/chuck-data/log/sessions/2025-06-06_12-56-40.log
+2025-06-06 12:56:40,862 - DEBUG - Loaded configuration from /Users/johnrush/.chuck_config.json
+2025-06-06 12:56:40,909 - DEBUG - Using selector: KqueueSelector
+2025-06-06 12:56:43,581 - ERROR - Agent error: cannot import name 'AgentManager' from 'src.chuck_data.commands.agent' (/Users/johnrush/repos/chuck-data/src/chuck_data/commands/agent.py)
+Traceback (most recent call last):
+  File "/Users/johnrush/repos/chuck-data/src/chuck_data/commands/agent.py", line 72, in handle_command
+    from .agent import AgentManager
+ImportError: cannot import name 'AgentManager' from 'src.chuck_data.commands.agent' (/Users/johnrush/repos/chuck-data/src/chuck_data/commands/agent.py)
+2025-06-06 12:56:43,583 - DEBUG - Using selector: KqueueSelector
