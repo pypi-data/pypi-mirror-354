@@ -1,0 +1,6 @@
+[console_scripts]
+clear-dev = clear_dev.cli:main
+clear-dev-gui = clear_dev.gui:main
+directory-scanner = clear_dev.cli:main
+package-scanner = clear_dev.package_scanner:main
+windows-cleaner = clear_dev.windows_cleaner:main
