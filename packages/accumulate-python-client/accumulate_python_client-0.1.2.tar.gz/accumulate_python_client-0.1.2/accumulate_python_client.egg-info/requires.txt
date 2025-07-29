@@ -1,0 +1,13 @@
+requests>=2.31.0
+websockets>=10.4
+ecdsa>=0.18.0
+eth-keys>=0.4.0
+pycryptodome>=3.17.0
+typing-extensions>=4.7.1
+protobuf>=4.24.3
+
+[dev]
+pytest
+pytest-asyncio
+pytest-mock
+pytest-cov
