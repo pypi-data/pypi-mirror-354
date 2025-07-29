@@ -1,0 +1,28 @@
+[project]
+name = "STanalysis"
+version = "0.1.0"
+description = "Air pollution data extraction and comparison with different sources - HealthyPlanet Project - AWI"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib>=3.10.3",
+    "pandas>=2.2.3",
+    "xarray>=2025.4.0",
+    "geopandas>=1.1.0",
+    "scipy>=1.15.3",
+    "twine>=6.1.0",
+    "build>=1.2.2.post1",
+    "bumpver>=2024.1130",
+    "seaborn>=0.13.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+    "mypy"
+]
+
+[tool.setuptools]
+packages = ["STanalysis"]
+package-dir = { "" = "." }

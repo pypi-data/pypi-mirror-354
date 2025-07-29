@@ -1,0 +1,14 @@
+matplotlib>=3.10.3
+pandas>=2.2.3
+xarray>=2025.4.0
+geopandas>=1.1.0
+scipy>=1.15.3
+twine>=6.1.0
+build>=1.2.2.post1
+bumpver>=2024.1130
+seaborn>=0.13.2
+
+[dev]
+pytest
+ruff
+mypy
