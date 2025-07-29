@@ -1,0 +1,27 @@
+⏩Speed up cdf dump data (#1595)
+
+# Description
+
+Introduce a producer/worker pattern for downloading, processing and
+writing to disk.
+
+
+![image](https://github.com/user-attachments/assets/39d4f837-07bf-47d3-9ae3-c5f2871126ec)
+
+
+## Changelog
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## cdf
+
+### Improved
+
+- The `cdf download timeseries/assets` is faster through doing
+downloading, processing and writing to disk in parallel.
+ 
+## templates
+
+No changes.
