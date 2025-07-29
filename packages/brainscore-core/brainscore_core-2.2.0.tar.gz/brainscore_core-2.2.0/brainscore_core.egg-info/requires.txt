@@ -1,0 +1,14 @@
+tqdm
+numpy<2.0,>=1.21
+brainscore-brainio
+psycopg2-binary
+fire
+peewee
+pybtex
+requests
+
+[test]
+pytest
+pytest-check
+pytest-mock
+requests-mock
