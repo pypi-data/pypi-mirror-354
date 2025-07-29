@@ -1,0 +1,75 @@
+Metadata-Version: 2.4
+Name: graphql-to-postman
+Version: 0.1.0
+Summary: A Python package which converts a given graphql URL to a postman collection
+Project-URL: Documentation, https://github.com/DeepakSan/graphql-to-postman/blob/main/README.md
+Project-URL: Issues, https://github.com/DeepakSan/graphql-to-postman/issues
+Project-URL: Source, https://github.com/DeepakSan/graphql-to-postman
+Author-email: Deepak Sanjay S J <deepaksanjaysj@gmail.com>
+Maintainer-email: Deepak Sanjay S J <deepaksanjaysj@gmail.com>
+License-Expression: MIT
+License-File: LICENSE.txt
+Keywords: graphql,graphql_to_postman,postman
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Hatch
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Requires-Dist: argparse
+Requires-Dist: requests
+Description-Content-Type: text/markdown
+
+# graphql-to-postman
+
+[![PyPI - Python 3.12.5](https://img.shields.io/pypi/pyversions/graphql-to-postman.svg)](https://pypi.org/project/graphql-to-postman)
+
+-----
+
+Generate Postman collections from GraphQL endpoints with ease.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Arguments](#arguments)
+- [License](#license)
+
+## Installation
+
+Install this package using the below command
+
+```console
+pip install graphql-to-postman
+```
+
+## Installation
+Run the following command to generate a Postman collection via the command line:
+
+```console
+graphql_to_postman <graphql_endpoint> [--depth <depth>] [--output <output_file_name>]
+graphql_to_postman https://countries.trevorblades.com --depth 2 --output_file_name "graphql_collections"
+```
+
+Use the package programmatically in your Python code:
+
+```console
+from graphql_to_postman.generate_collection import create_postman_collection
+
+create_postman_collection(
+    graphql_endpoint="https://countries.trevorblades.com",
+    depth=2,
+    output_file_name="sample_output"
+)
+```
+
+## Arguments
+
+- graphql_endpoint (required): The GraphQL endpoint URL.
+- depth (optional): The depth of the schema to explore (default: 2).
+- output_file_name (optional): The name of the output Postman collection file (default: collection.json).
+
+## License
+
+`graphql-to-postman` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
