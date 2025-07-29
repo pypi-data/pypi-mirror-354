@@ -1,0 +1,39 @@
+Metadata-Version: 2.4
+Name: xdbc-client
+Version: 0.1.0
+Summary: A Python client for XDBC API services
+Author-email: NetXD <pravin.ms@netxd.com>
+License: MIT
+Project-URL: Homepage, https://pypi.org/project/xdbc-client/
+Keywords: xdbc,api,client,memory
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests>=2.25.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Dynamic: license-file
+
+# XDBC Client
+
+A Python client library for interacting with XDBC API services.
+
+## Installation
+
+```bash
+pip install xdbc-client
+```
