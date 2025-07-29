@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: otel-pyautoinstrumentor
+Version: 0.1.1
+Summary: Python auto instrumentor for opentelemetry
+Author-email: le-codeur-rapide <paul.vezia@gmail.com>
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: pydantic>=2.0.0
+Provides-Extra: dev
+Requires-Dist: ruff>=0.3.0; extra == "dev"
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: black>=24.2.0; extra == "dev"
