@@ -1,0 +1,8 @@
+Metadata-Version: 2.2
+Name: dh_pyspark
+Version: 0.4.3
+Requires-Python: <3.12,>=3.9
+Requires-Dist: pyarrow
+Requires-Dist: scikit-learn==1.4.2
+Provides-Extra: online
+Requires-Dist: dataheroes; extra == "online"
