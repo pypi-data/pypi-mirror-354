@@ -1,0 +1,9 @@
+django<6,>=4.2
+pyyaml<6.1,>=6.0.1
+google-cloud-datastore>=2.19.0
+google-cloud-firestore>=2.15.0
+pyuca==1.2
+
+[test]
+unittest-xml-reporting==3.2.0
+sleuth-mock==0.1

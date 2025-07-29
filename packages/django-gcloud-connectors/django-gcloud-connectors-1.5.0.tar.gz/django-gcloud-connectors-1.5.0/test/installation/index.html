@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://potato-oss.gitlab.io/google-cloud/django-gcloud-connectors/installation/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Installation - Django Gcloud Connectors Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Installation";
+        var mkdocs_page_input_path = "installation.md";
+        var mkdocs_page_url = "/google-cloud/django-gcloud-connectors/installation/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Django Gcloud Connectors Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Installation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#enabling-aggregation-query-emulation">Enabling aggregation query emulation</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../concepts_limitations/">Concepts & limitations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../fields/">Fields</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../field_indexes/">Field Indexes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../transactions/">Transactions</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../caching/">Caching</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../firestore/">Firestore</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contributing/">Contributing & Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../work_with_potato/">Work with us!</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Django Gcloud Connectors Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://gitlab.com/potato-oss/google-cloud/django-gcloud-connectors/edit/master/docs/installation.md" class="icon icon-gitlab"> Edit on GitLab</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="installation">Installation</h1>
+<p>The most common way to install <code>gcloudc</code> is to use it as part of <a href="https://potato-oss.gitlab.io/djangae/djangae/">Djangae</a>.</p>
+<p>You can also install it on its own with <code>pip install django-gcloud-connectors</code>.</p>
+<p>However you install it, you will need to set your <code>DATABASES</code> configuration in your Django settings module to look something like this:</p>
+<pre><code class="language-python">DATABASES = {
+    &quot;default&quot;: {
+        'ENGINE': 'gcloudc.db.backends.datastore',
+        'PROJECT': 'YOUR_GCP_PROJECT_NAME',  # You can use djangae.environment.project_id() here
+        'INDEXES_FILE': 'PATH_TO_A_FILE_FOR_SPECICAL_INDEXES',
+    }
+}
+</code></pre>
+<p>The possible engines you can choose are:</p>
+<ul>
+<li><code>gcloudc.db.backends.firestore</code></li>
+<li><code>gcloudc.db.backends.datastore</code></li>
+</ul>
+<p>INDEXES_FILE is an absolute path to a yaml file that will be automatically generated. See [special_indexes.md] for more information.</p>
+<h2 id="enabling-aggregation-query-emulation">Enabling aggregation query emulation</h2>
+<p>Datastore emulator does not support aggregation quires, so when using <code>gcloudc.db.backends.datastore</code> engine,
+it requires <code>count_mode</code> option to be set to "emulated" to work correctly.</p>
+<pre><code class="language-py"># settings.py
+from djangae.environment import is_development_environment
+
+DATABASES = {
+    &quot;default&quot;: {
+        &quot;ENGINE&quot;: 'gcloudc.db.backends.datastore',
+        # ... other settings
+        &quot;OPTIONS&quot;: {
+            &quot;count_mode&quot;: &quot;emulated&quot; if is_development_environment() else &quot;native&quot;
+        },
+    }
+}
+</code></pre>
+<p>You can also use "emulated" mode with non-emulated datastore,
+since native implementation has some <a href="https://cloud.google.com/datastore/docs/aggregation-queries#behavior_and_limitations">limitations</a>.</p>
+<h1 id="note-gcloudcdbbackendsfirestore-doesnt-require-count_mode-options-since-emulator-supports-aggregation-queries"><em>Note</em>: <code>gcloudc.db.backends.firestore</code> doesn't require "count_mode" options, since emulator supports aggregation queries.</h1>
+<h2 id="multiple-database-support">Multiple database support</h2>
+<p>By default <code>gcloudc</code> will use the <code>default</code> database from your GCP project. If you want to use multiple databases, you can do so by adding additional database configurations to your <code>DATABASES</code> setting. For example:</p>
+<pre><code class="language-python">DATABASES = {
+    &quot;default&quot;: {
+    'ENGINE': 'gcloudc.db.backends.datastore',
+    'PROJECT': 'YOUR_GCP_PROJECT_NAME',
+    'INDEXES_FILE': 'PATH_TO_A_FILE_FOR_SPECICAL_INDEXES',
+    'DATABASE_ID': '(default)',
+    },
+    &quot;other&quot;: {
+    'ENGINE': 'gcloudc.db.backends.datastore',
+    'PROJECT': 'YOUR_GCP_PROJECT_NAME',
+    'INDEXES_FILE': 'PATH_TO_A_FILE_FOR_SPECICAL_INDEXES',
+    'DATABASE_ID': 'my-other-database',
+    }
+}
+
+Note that to refer to the default database explicitly you must use the string `(default)` inclusing the parenthesis or just omit the option. See [GCP documentation](https://cloud.google.com/datastore/docs/manage-databases) for more information on how to create multiple databases in a single project.
+
+</code></pre>
+<h2 id="automatic-cloud-datastore-emulator-startup">Automatic Cloud Datastore Emulator startup</h2>
+<p>gcloudc provides overrides for the <code>runserver</code> and <code>test</code> commands which
+start and stop a Cloud Datastore Emulator instance. To enable this functionality add <code>gcloudc.commands</code> <em>at the beginning</em> of your <code>INSTALLED_APPS</code> setting.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../concepts_limitations/" class="btn btn-neutral float-right" title="Concepts & limitations">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://gitlab.com/potato-oss/google-cloud/django-gcloud-connectors/" class="icon icon-gitlab" style="color: #fcfcfc"> GitLab</a>
+        </span>
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../concepts_limitations/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
