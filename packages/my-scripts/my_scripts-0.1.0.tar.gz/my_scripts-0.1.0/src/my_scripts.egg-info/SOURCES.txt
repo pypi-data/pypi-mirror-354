@@ -1,0 +1,17 @@
+LICENSE
+README.md
+pyproject.toml
+src/my_scripts.egg-info/PKG-INFO
+src/my_scripts.egg-info/SOURCES.txt
+src/my_scripts.egg-info/dependency_links.txt
+src/my_scripts.egg-info/entry_points.txt
+src/my_scripts.egg-info/requires.txt
+src/my_scripts.egg-info/top_level.txt
+src/script_runner/__init__.py
+src/script_runner/cli.py
+src/script_runner/config.py
+src/script_runner/constants.py
+src/script_runner/parser.py
+src/script_runner/commands/__init__.py
+src/script_runner/commands/config_command.py
+src/script_runner/commands/script_command.py
