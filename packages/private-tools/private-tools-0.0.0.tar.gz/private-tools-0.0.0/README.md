@@ -1,0 +1,118 @@
+English description follows Japanese.
+
+## ツール特徴
+- 自作ツールを簡単にimportできるツール
+- 予め自作ツールが入ったディレクトリを指定しておくことで、簡単にimportできるようになる
+
+## 簡単な使用例
+- 前準備
+```python
+import private_tools
+private_tools.path.append("path/to/your/private-tools") # これはそのPCで1回だけ実行すれば良い
+```
+
+- 利用時
+```python
+import private_tools  # この1行で既にあなたのツールディレクトリが読み込みパスに追加されている
+import your_awesome_tool
+```
+
+## pathの書き換えについて
+- 一度書き換えるとyamlファイルに保存されていて、次回起動時も前回の編集結果が反映されている
+- 書き換えのインターフェースは、pythonのlistに対する操作をほぼ全て実装している
+
+```python
+# パスの追加
+private_tools.path.append("path/to/your/tools")
+private_tools.path.push("2nd/path/to/your/tools") # appendと動作は同様
+
+# パス一覧の確認
+print(private_tools.path) # -> <private-tools-path-list ['path/to/your/tools', '2nd/path/to/your/tools']>
+
+# パスのオールクリア
+private_tools.path = []
+
+# パスの削除
+private_tools.path.remove("path/to/your/tools")
+```
+
+## 発展的な詳細
+- private_tools.path は、pythonのデフォルトオブジェクトであるlistへの操作をそのまま受け付けます
+- ただし、同一の要素が複数あるときは1つだけ採用されます。setとは異なり、順序は保存します。
+- list.append() などのlist自体を変更するメソッドを実装した場合は、pathも即座に書き換わり、その結果はsys.pathやファイルに正しく反映されます。
+- 逆に、list[:3] などのlistを変更しない (immutableな) 操作では、pathは変更されず、生成されたlistオブジェクトが返ります
+- 以上を踏まえ、下記のような操作が可能です。
+```python
+private_tools.path += ["path1", "path2"]  # 一気に追加
+
+private_tools.path = private_tools.path[:3] + private_tools.path[4:]  # リストの結合などもOK
+
+# 下記の操作も受け付ける
+del private_tools.path[1]
+for e in private_tools.path: print(e)
+```
+
+## 注意点
+- 相対パス指定はそのまま保存されるので、python実行時のカレントパスが変わると読み込めなくなることに注意。
+- いつも同じ場所を参照したい場合は、絶対パスで登録すること
+- このような設計にした理由は、例えば異なるOSの本番環境の参照先を相対パスで加えたい場合などに、相対参照での指定を勝手にその実行されたOSの絶対パスに変換してしまうと、本来の意図である「別のOSでの相対パス」が意図通り登録できなくなってしまうためである。
+
+---
+
+## Tool Features
+- A utility that allows you to easily import your own custom tools
+- By specifying a directory containing your custom tools in advance, you can import them effortlessly
+
+## Simple Usage Example
+- Setup
+```python
+import private_tools
+private_tools.path.append("path/to/your/private-tools") # This only needs to be run once per machine
+```
+
+- When using
+```python
+import private_tools  # This single line already adds your tool directory to the import path
+import your_awesome_tool
+```
+
+## About Modifying the Path
+- Once modified, the path is saved to a YAML file and will persist across sessions
+- The path interface implements almost all operations available to a Python `list`
+
+```python
+# Add a path
+private_tools.path.append("path/to/your/tools")
+private_tools.path.push("2nd/path/to/your/tools") # Same behavior as append
+
+# Check current paths
+print(private_tools.path) # -> <private-tools-path-list ['path/to/your/tools', '2nd/path/to/your/tools']>
+
+# Clear all paths
+private_tools.path = []
+
+# Remove a path
+private_tools.path.remove("path/to/your/tools")
+```
+
+## Advanced Details
+- `private_tools.path` accepts operations just like Python's built-in `list`
+- However, if duplicate entries exist, only one will be retained. Unlike `set`, the order is preserved.
+- When you use list-mutating methods like `list.append()`, the path is immediately updated and reflected in both `sys.path` and the YAML file.
+- On the other hand, non-mutating (immutable) operations like `list[:3]` do not modify the path but return a new list object
+- Based on the above, the following operations are possible:
+
+```python
+private_tools.path += ["path1", "path2"]  # Add multiple paths at once
+
+private_tools.path = private_tools.path[:3] + private_tools.path[4:]  # List concatenation is also allowed
+
+# The following operations are also supported
+del private_tools.path[1]
+for e in private_tools.path: print(e)
+```
+
+## Notes
+- Relative path specifications are saved as-is, so be aware that they may become unreadable if the current working directory changes when running Python.
+- If you always want to reference the same location, register it using an absolute path.
+- The reason for this design is to avoid unintentionally converting relative references into absolute paths specific to the OS where the code is executed. For example, if you want to register a relative path intended for a different OS's production environment, automatic conversion would prevent the original intention of "a relative path for another OS" from being registered correctly.
