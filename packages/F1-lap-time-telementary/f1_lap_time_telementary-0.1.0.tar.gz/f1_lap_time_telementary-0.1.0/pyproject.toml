@@ -1,0 +1,19 @@
+[project]
+name = "F1_lap_time_telementary"
+version = "0.1.0"
+description = "Plot F1 telemetry data using FastF1"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Sidhartha Kumar", email = "siddkumar718@gmail.com" }]
+dependencies = [
+    "fastf1>=3.0.0",
+    "matplotlib>=3.0"
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["F1_lap_time_telementary"]
+package-dir = {"F1_lap_time_telementary" = "."}
