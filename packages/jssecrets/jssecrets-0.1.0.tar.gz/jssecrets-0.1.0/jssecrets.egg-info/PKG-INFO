@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: jssecrets
+Version: 0.1.0
+Summary: Find secrets in js files from a given url
+Home-page: https://github.com/diegoespindola/jsSecrets
+Author: Diego Espindola
+Author-email: Diego <diego.espindola@gmail.com>
+License-Expression: GPL-2.0
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# jsSecrets
+This tool aims to find secrets within js files in URLs
