@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "causalpfn"
+version = "0.1.1"
+description = "Amortized Causal Effect Estimation via In-Context Learning"
+authors = [
+  { name="Vahid Balazadeh", email="balazadehvahid@gmail.com" },
+  { name="Hamidreza Kamkari", email="hamidrezakamkari@gmail.com" }
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = [
+  "torch==2.5.1",
+  "numpy==1.26.4",
+  "tqdm==4.67.1",
+  "faiss-cpu==1.9.0",
+  "scikit-learn==1.5.2",
+  "einops==0.8.0",
+  "networkx==3.4.2",
+  "gdown==5.2.0",
+  "python-dotenv==1.1.0",
+  "tabdpt==0.1.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+
+[project.optional-dependencies]
+dev = [
+  # Lint/format
+  # Test
+  "pytest",
+  "black",
+  "isort",
+  "jupyter",
+  "ipython",
+  "pandas",
+  "pytest-cov",
+  "econml",
+  "matplotlib",
+  "tabpfn==2.0.3", # TODO update to the final version
+  "scikit-uplift"
+]
+
+[tool.isort]
+skip = [
+    "venv/",
+    ".pytest_cache/",
+]
+
+[tool.black]
+line-length = 120
+include = '\.py$'
+exclude = '/venv/|/\.pytest_cache/'
