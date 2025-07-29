@@ -1,0 +1,4 @@
+You are an expert in genetics. Evaluate the following text to decide if it is a valid mutation report describing explicit MECP2 cDNA mutations. Consider the following context: {{$regex_context}} Take into account the language of the document, which is {{$language}}. Output a single line exactly in the following format: 'True, confidence=X' if it is valid, or 'False, confidence=X' if it is not, where X is a float between 0 and 1 representing your confidence.
+
+Text to evaluate:
+{{$document_text}}
