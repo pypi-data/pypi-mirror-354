@@ -1,0 +1,15 @@
+Sphinx>=3
+sphinx_rtd_theme
+
+GitPython
+PyGithub
+requests
+
+-r ../requirements.txt
+
+ipykernel
+ipython!=8.7.0
+ipywidgets
+nbsphinx
+
+-r examples/requirements.txt
