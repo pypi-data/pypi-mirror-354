@@ -1,0 +1,45 @@
+name: test
+
+on:
+  pull_request:
+
+jobs:
+  pytest:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        python-version: [ "3.11" ]
+        frozen: ["true"]
+        include:
+          - os: ubuntu-latest
+            python-version: "3.12"
+            frozen: "true"
+          - os: ubuntu-latest
+            python-version: "3.13"
+            frozen: "true"
+          - os: ubuntu-latest
+            python-version: "3.11"
+            frozen: "false"
+      fail-fast: false
+
+    runs-on: ${{ matrix.os }}
+    name: test / pytest (${{ matrix.os }}, ${{ matrix.python-version }}${{ matrix.frozen != 'true' && ', unfrozen' || '' }})
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-env
+        with:
+          python-version: ${{ matrix.python-version }}
+          frozen: ${{ matrix.frozen }}
+
+      - name: Run tests
+        shell: bash
+        run: |
+          uv run pytest \
+            --cov compyre --cov ./tests --cov-report term-missing --cov-fail-under 100
