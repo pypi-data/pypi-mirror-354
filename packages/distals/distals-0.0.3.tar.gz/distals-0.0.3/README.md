@@ -1,0 +1,302 @@
+### Language distances and information
+
+This repository combines a number of sources to obtain information and
+distances for languages. It focuses on ISO639-3 languages, and combines
+information from a variety of sources.
+
+### Usage
+The package is located in `src/distals/`, and can be used from the 
+commandline: `python3 src/distals/distals.py`.
+
+Its main function is to provide a user with distance metrics between
+two languages. This can be obtained by adding `--lang1` and `--lang2`
+to the command. For example:
+```
+python3 src/distals/distals.py --lang1 fry --lang2 dan
+```
+
+The distances are calculated based on information from existing databases. 
+This information is loaded from a pickle file (default `distals-db.pickle.gz`), 
+and a full database is included in this repo. It can also easily be updated, 
+by using the `--update_database` option and the `--update_textbased` option. 
+
+The package also depends on language code and language names conversion. 
+The database for this is included in `langname-db.pickle.gz`, this can 
+re-created with the `--cache_langnames` option.
+
+For now, we assume all source data to be available in the `data/` folder. The
+data can be updated using the `scripts/0.update.sh` script. So to update the 
+database completely, one has to run:
+```
+./scripts/0.update.sh
+python3 src/distals/distals.py --update_database
+```
+
+To update the textbased features, the LTI-LangId corpus needs to be downloaded, 
+which takes a substantial amount of time (weeks), the steps for doing so can be
+seen in `0.get_miltale.sh`.
+
+It should be noted that all metrics are designed to have values between 0 and
+1, and they are not directional. In cases where a metric could not be
+estimated, the code returns a -1.
+
+### Metrics
+
+* **aes_dist**: first collects the Agglomerated Endangerment Scale (AES)
+  category for each language, and then calculates how many groups apart they
+are. See also https://glottolog.org/langdoc/status , the extraction of these
+values was done with the `scripts/getAES.py` script, and based on GlottoLog 5.0
+
+* **asjp_lev_dist**: Calculates the LDND distance on the ASJP word lists as
+  defined in ``Adding typology to lexicostatistics: A combined approach to
+language classification''. Unfortunately, there is no 1-1 mapping between the
+language codes in ASJP and ISO639-3 codes, so we made an automatic mapping
+based on the language name provided in ASJP and other sources. The script for
+this is in `scripts/complete_lists.py` and the results in `data/aspj_conv`. We
+use the normalized levenshtein as provided by ASJP
+(https://asjp.clld.org/software). When multiple versions of a word are
+available, we use the average (this was underspecified in the original paper,
+and we could not find reference implementations).
+
+* **lang2vec**: Cosine distance between lang2vec vectors, only taking into
+  account values that overlap. Note that this metric is thus hard to compare
+across language pairs, as different linguistic features will be
+included/excluded for different language pairs.
+
+* **lang2vec_knn**: Cosine distance between lang2vec vectors which have been
+  completed through KNN by the original paper. 
+
+* **lang_fam**: The percentage of trees of distance. This means that if you are
+  in two different trees, it will always be 2.0. If both languages are in the
+same tree it is #overlapping edges/the total edges of the deepest language of
+the two.
+
+* **lang_group**: distance between language groups as defined in ``The State
+  and Fate of Linguistic Diversity and Inclusion in the NLP World''.
+Unfortunately, I could not obtain the language codes, but have made an
+automatic mapping (`scripts/complete_lang2tax.py`), which is available in
+`data/lang2tax.txt.codes`.
+
+* **script**: We use the set of scripts used for a language as collected by
+  ``GlotScript: A Resource and Tool for Low Resource Writing System
+Identification''. We then calculate the percentage of overlap and inverse
+(1-overlap) to obtain a distance metric. We ignore Braille (brai) in the
+calculations, as the information for this script is incomplete.
+
+* **speakers**: Number of speakers as reported by ASPJ, these are based on
+  numbers from an old version of Ethnologue. Transformed to a distance metric
+by dividing the smallest by the largest number.
+
+* **wiki_size**: Wikipedia size, which is extracted from a download of the
+  Wikipedia page ``List_of_Wikipedias'', downloaded on 17-04-2024. Transformed
+to a distance metric by dividing the smallest by the largest number.
+
+
+### Citations
+Please provide the correct citations when using any of these metrics. People
+have spend a lot of their valuable time providing us with this data. Also, I
+would be interested to hear about your project if you find this repository
+useful, so would appreciate a link/short description e-mailed to me
+(robv@itu.dk).
+
+* **aes_dist**: 
+```
+@misc{glottolog,
+    title = "Glottolog 5.0.",
+    author = "Hammarström, Harald and Forkel, Robert and Haspelmath, Martin and Bank, Sebastian",
+    year = 2024,
+    url = "https://doi.org/10.5281/zenodo.10804357",
+    publisher = "Leipzig: Max Planck Institute for Evolutionary Anthropology",
+    misc = "Available online at http://glottolog.org, Accessed on 2024-04-24."
+}
+```
+
+* **asjp_lev_dist**: 
+```
+@misc{ASJP,
+author = {Wichmann and Søren and Holman, Eric W. and Brown, Cecil H.},
+year = {2022},
+title = {The {ASJP} Database (version 20)}
+}
+```
+
+* **lang2vec**: 
+```
+@inproceedings{littell-etal-2017-uriel,
+    title = "{URIEL} and lang2vec: Representing languages as typological, geographical, and phylogenetic vectors",
+    author = "Littell, Patrick  and
+      Mortensen, David R.  and
+      Lin, Ke  and
+      Kairis, Katherine  and
+      Turner, Carlisle  and
+      Levin, Lori",
+    editor = "Lapata, Mirella  and
+      Blunsom, Phil  and
+      Koller, Alexander",
+    booktitle = "Proceedings of the 15th Conference of the {E}uropean Chapter of the Association for Computational Linguistics: Volume 2, Short Papers",
+    month = apr,
+    year = "2017",
+    address = "Valencia, Spain",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/E17-2002",
+    pages = "8--14"
+}
+```
+
+* **lang_fam**: 
+```
+@misc{glottolog,
+    title = "Glottolog 5.0.",
+    author = "Hammarström, Harald and Forkel, Robert and Haspelmath, Martin and Bank, Sebastian",
+    year = 2024,
+    url = "https://doi.org/10.5281/zenodo.10804357",
+    publisher = "Leipzig: Max Planck Institute for Evolutionary Anthropology",
+    misc = "Available online at http://glottolog.org, Accessed on 2024-04-24."
+}
+```
+
+* **lang_group**: 
+```
+@inproceedings{joshi-etal-2020-state,
+    title = "The State and Fate of Linguistic Diversity and Inclusion in the {NLP} World",
+    author = "Joshi, Pratik  and
+      Santy, Sebastin  and
+      Budhiraja, Amar  and
+      Bali, Kalika  and
+      Choudhury, Monojit",
+    editor = "Jurafsky, Dan  and
+      Chai, Joyce  and
+      Schluter, Natalie  and
+      Tetreault, Joel",
+    booktitle = "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2020.acl-main.560",
+    doi = "10.18653/v1/2020.acl-main.560",
+    pages = "6282--6293"
+}
+```
+
+* **script**: 
+```
+@article{kargaran2023glotscript,
+  title={GlotScript: A Resource and Tool for Low Resource Writing System Identification},
+  author={Kargaran, Amir Hossein and Yvon, Fran{\c{c}}ois and Sch{\"u}tze, Hinrich},
+  journal={arXiv preprint arXiv:2309.13320},
+  year={2023}
+}
+```
+
+* **speakers**: 
+```
+@misc{ASJP,
+author = {Wichmann and Søren and Holman, Eric W. and Brown, Cecil H.},
+year = {2022},
+title = {The {ASJP} Database (version 20)}
+}
+```
+
+* **wiki_size**: 
+```
+https://en.wikipedia.org/wiki/List_of_Wikipedias
+```
+
+### Example output
+```
+rob@cir:/data/rob/lang_dist$ python3 src/distals/distals.py --lang1 fry --lang2 dan
+loading from: ./distals-db.pickle.gz
+7855 languages loaded
+========================================
+Information for fry
+wiki_size: 56,299
+nlp_state: 1. The Scraping-Bys
+speakers: 740,000
+AES: 5. not endangered
+loc: (5.86091, 53.143)
+lang2vec: [1.0, 1.0, 0.0, ..., '--', '--', '--']
+lang2vec_knn: [1.0, 1.0, 0.0, ..., 1.0, 0.0, 0.0]
+grambank: {'GB020': 1, 'GB021': 1, 'GB022': 1, ..., 'GB520': 0, 'GB521': 0, 'GB522': 0}
+glot_tree: ["'Western Frisian [west2354][fry]-l-'", "'Westlauwers-Terschelling Frisian [west2902]'", "'Modern West Frisian [mode1264]'", ..., "'Germanic [germ1287]'", "'Classical Indo-European [clas1257]'", "'Indo-European [indo1319]'"]
+scripts: {'latn'}
+asjp: [['1', 'ik'], ['2', 'do, yo'], ['3', 'vEi'], ..., ['95', 'fol'], ['96', 'nEy, nEi'], ['100', 'nam3']]
+whitespace: 0.160835
+punctuation: 0.031726
+
+========================================
+Information for dan
+wiki_size: 307,173
+nlp_state: 3. The Rising Stars
+speakers: 5,510,600
+AES: 5. not endangered
+loc: (9.36284, 54.8655)
+lang2vec: [1.0, 0.0, 0.0, ..., '--', '--', '--']
+lang2vec_knn: [1.0, 0.0, 0.0, ..., 1.0, 0.0, 0.0]
+grambank: {'GB020': 1, 'GB021': 1, 'GB022': 1, ..., 'GB520': 0, 'GB521': 0, 'GB522': 0}
+glot_tree: ["'Danish [dani1285][dan]-l-'", "'South Scandinavian [sout3248]'", "'North Germanic [nort3160]'", "'Northwest Germanic [nort3152]'", "'Germanic [germ1287]'", "'Classical Indo-European [clas1257]'", "'Indo-European [indo1319]'"]
+scripts: {'latn'}
+asjp: [['1', 'yoy'], ['2', 'du'], ['3', 'vi'], ..., ['98', 'ron7'], ['99', 'tE7a'], ['100', 'now7n']]
+whitespace: 0.156298
+punctuation: 0.028514
+
+========================================
+Distances between fry and dan (-1 if the feature is not available for both)
+METADATA
+wiki_size: 0.8167
+nlp_state: 0.4000
+speakers: 0.8657
+AES: 0.0000
+loc: 0.0149
+average: 0.5206
+
+TYPOLOGY
+lang2vec: 0.1598
+lang2vec_knn: 0.1204
+grambank: 0.0280
+gb_clause: 0.0269
+gb_nominal_domain: 0.0267
+gb_numeral: 0.0353
+gb_pronoun: 0.0000
+gb_verbal_domain: 0.0328
+glot_tree: 0.5325
+scripts: 0.0000
+average: 0.0280
+
+WORDLISTS
+asjp: 0.3397
+concepts: 0.0400
+average: 0.1898
+
+TEXTBASED
+whitespace: 0.0282
+punctuation: 0.1012
+JSD: 0.1979
+average: 0.1979
+```
+
+
+Coverage: 
+```
+7855 language codes found.
+l2v_avg 3910
+l2v_knn 3910
+num_wikiarticles 286
+speakers 5119
+asjp 5581
+glot_tree 7855
+scripts 7393
+state_and_fate 2264
+AES 7718
+loc 7624
+speakers_l 5536
+scripts_l 6425
+conceptualizer 1271
+grambank 2324
+textdata found for 2110 iso-codes
+```
+
+## update pip
+python3 setup.py  sdist bdist_wheel
+pip3 install dist/distals-0.1-py3-none-any.whl  --break-system-packages --force-reinstall
+twine upload dist/*
