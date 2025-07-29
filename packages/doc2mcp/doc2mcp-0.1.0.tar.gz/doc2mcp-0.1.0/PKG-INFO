@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: doc2mcp
+Version: 0.1.0
+Summary: A package for converting documents to MCP format
+Author-email: Yacine Zahidi <yacine.zahidi@gmail.com>
+Project-URL: Homepage, https://yacinezahidi.com
+Project-URL: Repository, https://github.com/ell-hol/doc2mcp
+Project-URL: Issues, https://github.com/ell-hol/doc2mcp/issues
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.8
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Dynamic: license-file
