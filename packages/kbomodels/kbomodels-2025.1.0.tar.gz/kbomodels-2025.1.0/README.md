@@ -1,0 +1,91 @@
+# Kabirian-Based Optinalysis Modesls
+
+Kabirian-based optinalysis models (*kbomodels*) consist of a collection of mathematical and statistical techniques designed for analyzing datasets within the Kabirian-based optinalysis framework, along with other advanced methodologies. The estimation modules integrated within *kbomodels* include:
+
+1a) **kc_isoptinalysis** : Performs Kabirian-based isomorphic optinalysis to calculate the Kabirian coefficient.
+
+1b) **doc_kc_isoptinalysis** : Prints the documentation of the kc_isoptinalysis module. 
+
+2a) **kc_autoptinalysis** : Performs Kabirian-based automorphic optinalysis to calculate the Kabirian coefficient.
+
+2b) **doc_kc_autoptinalysis** : Prints the documentation of the kc_autoptinalysis.
+
+3a) **pSimSymId** : Translates the Kabirian coefficient of similarity, symmetry, or identity (kc) to probability of similarity, symmetry, or Sidentity (SimSymId).
+
+3b) **doc_pSimSymId** : Prints the documentation of the pSimSymId.
+        
+4a) **pDsimAsymUid** : Translates probability of similarity, symmetry, or identity (pSimSymId) to probability of dissimilarity, asymmetry, or unidentity (pDsimAsymUid).
+
+4b) **doc_pDsimAsymUid** : Prints the documentation of the pDsimAsymUid.
+        
+5a) **kc_alt1** : Translates probability of similarity, symmetry, or identity (pSimSymId) to an ascending-alternative (A-alternative) Kabirian coefficient of similarity, symmetry, or identity (kc_alt1).
+
+5b) **doc_kc_alt1** : Prints the documentation of the kc_alt1.
+        
+6a) **kc_alt2** : Translates probability of similarity, symmetry, or identity (pSimSymId) to a descending-alternative (D-alternative) Kabirian coefficient of similarity, symmetry, or identity (kc_alt2).
+
+6b) **doc_kc_alt2** : Prints the documentation of the kc_alt2.
+        
+7a) **kc_alt** : Translates Kabirian coefficient of similarity, symmetry, or identity (kc) to its inverse alternative Kabirian coefficient of similarity, symmetry, or identity (kc_alt).
+
+7b) **doc_kc_alt** : Prints the documentation of the kc_alt.
+        
+8a) **isomorphic_optinalysis** : Performs Kabirian-based isomorphic optinalysis.
+
+8b) **doc_isomorphic_optinalysis** : Prints the documentation of the isomorphic_optinalysis.
+
+9a) **automorphic_optinalysis** : Performs Kabirian-based automorphic optinalysis.
+
+9b) **doc_automorphic_optinalysis** : Prints the documentation of the automorphic_optinalysis.
+
+10a) **stat_SymAsymmetry** : Estimates the statistical symmetry and asymmetry of a dataset using a customized, and optimized Kabirian-based automorphic optinalysis.
+
+10b) **doc_stat_SymAsymmetry** : Prints the documentation of the stat_SymAsymmetry.
+        
+11a) **bioseq_gpa** : Performs pairwise sequence analysis of aligned biological sequences using a customized, and optimized Kabirian-based    isomorphic optinalysis.
+
+11b) **doc_bioseq_gpa** : Prints the documentation of the bioseq_gpa.
+        
+12a) **stat_mirroring** : Performs statistical dispersion estimations on a dataset using a parameterized, customized, and optimized Kabirian-based isomorphic optinalysis.
+
+12b) **doc_stat_mirroring** : Prints the documentation of the stat_mirroring.
+        
+13a) **famispacing** : Estimates family spacing conformity and disconformity using a customized, and optimized Kabirian-based isomorphic optinalysis.
+
+13b) **doc_famispacing** : Prints the documentation of the famispacing.
+        
+14a) **smb_ordinalysis** : Performs statistical mirroring-based ordinalysis (SM-based Ordinalysis), a methodology for assessing an individual's level of assessments on a defined ordinal scale by applying a customized and optimized statistical mirroring techniques.
+
+14b) **doc_smb_ordinalysis** : Prints the documentation of the smb_ordinalysis.
+
+15a) **qualitative_exposuremetrics** : Performs qualitative exposuremetrics analysis, a comprehensive and sensitive estimation framework for analyzing organismal resistance and susceptibility dynamics using qualitative variables.
+
+15b) **doc_qualitative_exposuremetrics** : Prints the documentation of the qualitative_exposuremetrics.
+
+
+## Installation and Documentation
+
+```bash
+## Installation
+
+# You can install this package via pip:
+
+pip install kbomodels
+
+## Print the documentation
+
+# You can print the documentation for each module in the package by using the following command.
+
+import kbomodels as kbo
+# Examples:
+kbo.doc_kc_autoptinalysis(),
+kbo.doc_kc_isoptinalysis(), 
+kbo.doc_bioseq_gpa(), 
+kbo.doc_stat_mirroring(), 
+kbo.doc_famispacing(), 
+kbo.doc_smb_ordinalysis(),
+kbo.doc_exposuremetrics(),
+kbo.doc_qualitative_exposuremetrics(),
+kbo.modules_list(), e.t.c.
+
+# Note: The documentation includes the function definitions, input parameters, usage examples, and other relevant details for each module.
