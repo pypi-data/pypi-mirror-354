@@ -1,0 +1,5 @@
+[mkdocs.plugins]
+minyilife-exclude = mkdocs_minyilife_exclude_plugin.plugin:ExcludePlugin
+minyilife-ruby = mkdocs_minyilife_ruby_plugin.plugin:RubyPlugin
+minyilife-tags = mkdocs_minyilife_tags_plugin.plugin:TagsPlugin
+
