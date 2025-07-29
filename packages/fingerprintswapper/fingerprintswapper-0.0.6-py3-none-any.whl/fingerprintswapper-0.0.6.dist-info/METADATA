@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: fingerprintswapper
+Version: 0.0.6
+Summary: FingerprintSwapper is a tool for automated browser environments (Selenium, Puppeteer, Playwright, etc.) that spoofs realistic, real-world device fingerprints by modifying browser fingerprinting surfaces.
+Author-email: triple7inc <t7@dex.mba>
+License: MIT
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: requests
