@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: mirage-d1sak0
+Version: 0.1.0
+Summary: Библиотека для поиска информации в удаленном файле.
+Author-email: d1sak0 <mogd4k@gmail.com>
+License: MIT
+Keywords: search,database,utility
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+License-File: LICENCE
+Requires-Dist: requests
+Dynamic: license-file

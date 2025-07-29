@@ -1,0 +1,32 @@
+# Файл pyproject.toml
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# Изменено имя проекта на уникальное
+name = "mirage-d1sak0"
+version = "0.1.0"
+description = "Библиотека для поиска информации в удаленном файле."
+requires-python = ">=3.6"
+dependencies = [
+    "requests",
+]
+authors = [
+  { name="d1sak0", email="mogd4k@gmail.com" },
+]
+license = { text="MIT" }
+keywords = ["search", "database", "utility"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+        # "Homepage" = ""
+        # "Bug Tracker" = ""
+
+[tool.setuptools]
+packages = ["mirage"]
