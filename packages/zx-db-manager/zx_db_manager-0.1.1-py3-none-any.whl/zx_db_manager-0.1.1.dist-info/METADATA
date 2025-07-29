@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: zx_db_manager
+Version: 0.1.1
+Summary: A MySQL cloud library
+Author-email: MENG <meng@zxtech.info>
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.12.2
+Description-Content-Type: text/markdown
+
+# zx_mysql
+
+`zx_mysql` 是一个用于连接和操作 MySQL 数据库的 Python 库。
+
+## 安装
+
+```bash
+pip install zx_mysql
+
+
+from mysql_cloud import MySqlCloud
+
+# 初始化数据库连接
+test = MySqlCloud('localhost', 3306, 'user', 'password')
+# 连接数据库
+connection = test.connect_database('test_db')
+
+
+
