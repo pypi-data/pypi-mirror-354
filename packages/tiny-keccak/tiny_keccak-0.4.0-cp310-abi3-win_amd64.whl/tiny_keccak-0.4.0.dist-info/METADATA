@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: tiny-keccak
+Version: 0.4.0
+Classifier: Programming Language :: Rust
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Security :: Cryptography
+License-File: LICENSE
+Summary: The Keccak-256 hash function defined in Keccak SHA3 submission
+Author-email: Denis Otkidach <denis.otkidach@gmail.com>
+License: MIT
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: Source, https://github.com/ods/tiny-keccak-py
+
+# The Keccak-256 hash function defined in Keccak SHA3 submission
+
+This module defines the only function `keccak256`, used in Ethereum blockchain.
+
