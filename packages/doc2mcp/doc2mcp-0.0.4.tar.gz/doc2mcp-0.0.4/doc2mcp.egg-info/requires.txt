@@ -1,0 +1,13 @@
+requests>=2.25.0
+click>=8.0.0
+
+[cli]
+rich>=10.0.0
+tabulate>=0.8.0
+
+[dev]
+pytest>=6.0
+pytest-cov>=2.0
+black>=21.0
+flake8>=3.8
+mypy>=0.900
