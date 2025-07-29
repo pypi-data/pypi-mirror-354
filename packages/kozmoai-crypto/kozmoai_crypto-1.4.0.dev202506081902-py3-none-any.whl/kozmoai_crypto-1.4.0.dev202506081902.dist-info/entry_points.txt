@@ -1,0 +1,6 @@
+[kozmoai_charting_extension]
+crypto=kozmoai_crypto.crypto_views:CryptoViews
+
+[kozmoai_core_extension]
+crypto=kozmoai_crypto.crypto_router:router
+
