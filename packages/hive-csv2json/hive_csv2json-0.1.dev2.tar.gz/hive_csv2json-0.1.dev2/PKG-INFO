@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: hive-csv2json
+Version: 0.1.dev2
+Summary: A csv 2 json framework for al-1s project.
+Author-email: NCQ001 <shovel@hscsec.cn>
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.6
+Requires-Dist: argparse
+Requires-Dist: configparser
