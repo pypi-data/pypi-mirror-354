@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stringthings"
+version = "0.2.9"
+authors = [
+  { name="Martin Carlos Araya", email="martinaraya@gmail.com" },
+]
+description = "some functions to work with strings."
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    'numpy',
+    'pandas',
+    ]
+[project.urls]
+"Homepage" = "https://github.com/ayaranitram/stringthings"
+"Bug Tracker" = "https://github.com/ayaranitram/stringthings/issues"
