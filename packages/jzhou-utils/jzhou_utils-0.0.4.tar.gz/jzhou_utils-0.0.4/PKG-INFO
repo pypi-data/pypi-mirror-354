@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: jzhou_utils
+Version: 0.0.4
+Summary: A small example package
+Project-URL: Homepage, https://github.com/pypa/sampleproject
+Project-URL: Issues, https://github.com/pypa/sampleproject/issues
+Author-email: Jason Zhou <author@example.com>
+License-Expression: MIT
+License-File: LICENSE
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.9
+Requires-Dist: datetime
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: re
+Requires-Dist: requests
+Requires-Dist: typing
+Description-Content-Type: text/markdown
+
+This is a simple Python package for common data manipulations and other utils.
