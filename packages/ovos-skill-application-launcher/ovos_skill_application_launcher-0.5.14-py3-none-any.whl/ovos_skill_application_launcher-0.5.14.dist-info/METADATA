@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: ovos-skill-application-launcher
+Version: 0.5.14
+Summary: launch desktop applications by voice
+Home-page: https://github.com/OVOSHatchery/ovos-skill-application-launcher
+Author: OpenVoiceOS
+Author-email: jarbasai@mailfence.com
+License: Apache2.0
+Keywords: ovos skill plugin
+License-File: LICENSE
+Requires-Dist: padacioso>=0.1.1
+Requires-Dist: ovos-workshop<8.0.0,>=6.0.0
+Requires-Dist: ovos-utils>=0.3.5
+Requires-Dist: psutil
+
