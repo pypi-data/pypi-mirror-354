@@ -1,0 +1,61 @@
+Metadata-Version: 2.4
+Name: eidosui
+Version: 0.1.0
+Summary: A modern, Tailwind CSS-based UI library for Python web frameworks
+Project-URL: Homepage, https://github.com/isaac-flath/EidosUI
+Project-URL: Repository, https://github.com/isaac-flath/EidosUI
+Project-URL: Issues, https://github.com/isaac-flath/EidosUI/issues
+Project-URL: Documentation, https://github.com/isaac-flath/EidosUI#readme
+Author: Isaac Flath
+License-Expression: MIT
+Keywords: components,css,fastapi-tags,fasthtml,tailwind,ui,web
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.9
+Requires-Dist: fastapi-tags>=0.1.0
+Provides-Extra: dev
+Requires-Dist: black>=23.0.0; extra == 'dev'
+Requires-Dist: isort>=5.0.0; extra == 'dev'
+Requires-Dist: mypy>=1.0.0; extra == 'dev'
+Requires-Dist: pytest-cov>=4.0.0; extra == 'dev'
+Requires-Dist: pytest>=7.0.0; extra == 'dev'
+Requires-Dist: ruff>=0.1.0; extra == 'dev'
+Provides-Extra: examples
+Requires-Dist: fastapi>=0.104.0; extra == 'examples'
+Requires-Dist: uvicorn>=0.24.0; extra == 'examples'
+Description-Content-Type: text/markdown
+
+# EidosUI 🎨
+
+A modern, flexible Tailwind CSS-based UI library for Python web frameworks. Built for maximum developer flexibility while providing excellent defaults.
+
+
+## Abstractions
+
+- **Themes:** A Theme is a series of CSS variables.  See `theme/dark.css` and `theme/light.css` for examples
+- **Theme Switching** is done in `static/eidos-ui.js` this is all AI generated and not looked at yet so probably bad
+- **Styles** are in `styles.py` where we define data classes based on the css variables defined in the themes.  These are a collection of class strings.
+- **components** are fasttags that FT components by default.  For example
+
+```python
+def H1(*content, cls: str = typography_styles.h1, **kwargs) -> ft.H1:
+    """Semantic H1 heading"""
+    return ft.H1(*content, cls=cls, **kwargs)
+
+def Mark(*content, cls: str = typography_styles.mark, **kwargs) -> ft.Mark:
+    """Highlighted text"""
+    return ft.Mark(*content, cls=cls, **kwargs)
+
+def Small(*content, cls: str = typography_styles.small, **kwargs) -> ft.Small:
+    """Small text"""
+    return ft.Small(*content, cls=cls, **kwargs) 
+```
+
