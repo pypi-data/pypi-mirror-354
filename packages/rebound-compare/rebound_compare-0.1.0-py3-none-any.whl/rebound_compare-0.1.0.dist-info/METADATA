@@ -1,0 +1,39 @@
+Metadata-Version: 2.4
+Name: rebound-compare
+Version: 0.1.0
+Summary: Compare REBOUND simulations side-by-side
+Author: Muzaffer Mahi Can
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: rebound
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# rebound-compare
+
+A lightweight Python library to compare the evolution of two REBOUND simulations side-by-side.
+
+## Features
+
+- Track and compare orbital elements (`a`, `e`, `i`, etc.)
+- Detect and visualize divergence due to added bodies (e.g., Planet Nine)
+- Plot time evolution of orbital parameters
+- Integrates cleanly with any REBOUND simulation
+
+## Installation
+
+```bash
+pip install rebound-compare
