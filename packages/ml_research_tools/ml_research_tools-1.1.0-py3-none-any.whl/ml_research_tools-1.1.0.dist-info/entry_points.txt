@@ -1,0 +1,6 @@
+[console_scripts]
+ml_research_tools=ml_research_tools.__main__:main
+
+[matplotlib.backend]
+svglatex=ml_research_tools.tex.backend
+
