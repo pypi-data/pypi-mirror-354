@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: c4ai-domain-crawler
+Version: 0.1
+Requires-Python: >=3.6
+Requires-Dist: aiohttp
+Requires-Dist: crawl4ai
+Requires-Dist: torch-snippets
+Dynamic: requires-dist
+Dynamic: requires-python
