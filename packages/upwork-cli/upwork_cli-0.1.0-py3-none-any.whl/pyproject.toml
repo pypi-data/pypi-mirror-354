@@ -1,0 +1,88 @@
+[build-system]
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
+
+[project]
+name = "upwork-cli"
+dynamic = ["version"]
+description = "Automate and streamline your Upwork freelancer workflow using the Upwork API."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+keywords = [
+  "python", "upwork", "api", "freelancer", "developer", "upwork-api", "upwork-python"
+]
+classifiers = [
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Internet :: WWW/HTTP :: Browsers",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+  "toasted",
+  "colorlog",
+  "python-upwork",
+]
+authors = [
+  { name = "Hasan Rasel", email = "rrss.mahmud@gmail.com" },
+]
+
+[project.urls]
+Homepage = "https://github.com/rsmahmud/upwork-cli"
+Issues = "https://github.com/rsmahmud/upwork-cli/issues"
+
+[project.optional-dependencies]
+dev = [
+  "hatchling", "uv-dynamic-versioning"
+]
+
+[project.scripts]
+upcli = "upwork_cli.__main__:main"
+up-cli = "upwork_cli.__main__:main"
+upwork-cli = "upwork_cli.__main__:main"
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.hatch.build.targets.wheel.sources]
+"src" = ""
+
+[tool.hatch.build.targets.wheel]
+only-include = [
+  "src/upwork_cli",
+  "LICENSE",
+  "LICENSE.txt",
+  "pyproject.toml",
+  "README.md"
+]
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "/.*",
+  "data_store",
+  "dist",
+  "docs",
+  "logs",
+  "local",
+  "pylint_reports",
+  "src_old*",
+  "tests",
+  "examples",
+  "stored_data",
+  ".vscode",
+  "scripts",
+  "notebooks",
+  "*.sh",
+  "*.csv",
+  "*.env",
+  "*.log",
+  "*.zip",
+  "*name*suggest*.txt",
+  "inject_*.py",
+  "file*map.json",
+  ".last_dep_check",
+]
