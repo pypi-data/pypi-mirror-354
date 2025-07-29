@@ -1,0 +1,19 @@
+[project]
+name = "kyle-add-mcp"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "kyle", email = "2497725756@qq.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "mcp[cli]>=1.9.3",
+]
+
+[project.scripts]
+kyle-add-mcp = "kyle_add_mcp:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
