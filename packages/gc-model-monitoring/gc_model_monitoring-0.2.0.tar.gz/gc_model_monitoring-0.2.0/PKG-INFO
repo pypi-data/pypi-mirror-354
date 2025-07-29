@@ -1,0 +1,238 @@
+Metadata-Version: 2.4
+Name: gc-model-monitoring
+Version: 0.2.0
+Summary: A lightweight model monitoring library for GenCrafter AI systems
+Author-email: GenCrafter <hello@gencrafter.io>
+License-Expression: Apache-2.0
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastapi
+Requires-Dist: numpy
+Requires-Dist: requests
+Requires-Dist: uvicorn
+Requires-Dist: whylogs_sketching
+Requires-Dist: pydantic
+Requires-Dist: yfinance
+Requires-Dist: pyspark
+Requires-Dist: ray
+Requires-Dist: pandas
+Requires-Dist: pandas_gbq
+Requires-Dist: scikit-learn
+Requires-Dist: pyAudioAnalysis
+Requires-Dist: gencrafter
+Requires-Dist: fugue
+Requires-Dist: boto3
+Requires-Dist: ipython
+Requires-Dist: whylabs-client
+Requires-Dist: backoff
+Requires-Dist: pillow
+Dynamic: license-file
+
+<div align="center">
+
+# gc-model-monitoring
+
+*A lightweight model monitoring library for GenCrafter AI systems*
+
+![PyPI](https://img.shields.io/pypi/v/gc-model-monitoring)
+![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)
+![Python](https://img.shields.io/badge/python-%3E%3D3.7-blue)
+
+</div>
+
+---
+
+## What is GenCrafter
+
+GenCrafter is an advanced AI governance platform dedicated to enabling organizations to build, deploy, and monitor artificial intelligence systems responsibly. Focused on transparency, security, and regulatory compliance, GenCrafter offers a comprehensive suite of tools that support the entire AI lifecycle—from development and risk assessment to bias detection and performance monitoring. Its solutions help organizations comply with global standards like the EU AI Act, safeguard AI models against vulnerabilities, and ensure fairness and accountability. Whether deployed on-premise or in the cloud, GenCrafter empowers teams to craft AI systems that are ethical, trustworthy, and aligned with evolving governance frameworks.
+
+---
+
+## What is gc-model-monitoring
+
+`gc-model-monitoring` stands for GenCrafter Model Monitoring.
+
+It is an open-source library for logging and monitoring any kind of data.
+
+With `gc-model-monitoring`, users can generate summaries of their datasets (called *profiles*) to:
+
+* Track changes in their dataset
+* Create data constraints to verify data integrity
+* Visualize key summary statistics
+
+### Use Cases
+
+* Detect data drift in input features
+* Detect training-serving skew and model performance degradation
+* Validate data quality
+* Perform exploratory data analysis
+* Enable auditing and governance
+* Standardize data documentation
+
+---
+
+## Key Features
+
+* 🚨 Automatic anomaly detection
+* 📊 Interactive HTML reports and visualizations
+* ⚡️ Real-time monitoring
+* 🔍 Drift detection against baselines
+* 🔧 Configurable alert thresholds
+* 🤝 Integrates with MLflow and MLOps tools
+
+---
+
+## Installation
+
+```bash
+pip install gc-model-monitoring
+```
+
+---
+
+## Quick Start Examples
+
+### Example 1: Basic Data Profiling
+
+```python
+import gc_model_monitor as gcm
+import pandas as pd
+
+# Sample data with intentional issues
+data = {
+    "temperature": [22.1, 23.5, None, 21.9, 25.0],
+    "pressure": [102.3, 101.9, 102.5, 103.1, None],
+    "status": ["normal", "normal", "warning", "normal", "critical"]
+}
+df = pd.DataFrame(data)
+
+# Monitor data and generate profile
+profile = gcm.log_data(df).profile()
+profile_view = profile.view()
+
+# Display metrics and alerts
+print("📊 Data Metrics:")
+print(profile_view.to_pandas())
+
+print("\n🚨 Data Quality Alerts:")
+for alert in profile_view.get_anomalies():
+    print(f"- {alert.feature}: {alert.description}")
+```
+
+<details>
+<summary>📋 Expected Output</summary>
+
+```
+📊 Data Metrics:
+              column    null_count  completeness   min     max     mean   distinct_count
+0        temperature           1          0.80   21.9    25.0   23.125         None
+1           pressure           1          0.80  101.9   103.1  102.45         None
+2             status           0          1.00    N/A     N/A     N/A             3
+
+🚨 Data Quality Alerts:
+- temperature: 1 missing values (20%)
+- pressure: 1 missing values (20%)
+```
+
+</details>
+
+---
+
+### Example 2: Visualization & Drift Detection
+
+```python
+import gc_model_monitor as gcm
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Create baseline from training data
+train_df = pd.read_csv("train_data.csv")
+train_profile = gcm.log_data(train_df).profile().view()
+
+# Monitor production data (with drift)
+prod_data = {
+    "temperature": [24.5, 25.8, 26.2, 23.9, 28.0, 22.5, 27.3],
+    "pressure": [100.5, 101.2, 99.8, 102.5, 98.7, 103.0, 97.5]
+}
+prod_df = pd.DataFrame(prod_data)
+prod_profile = gcm.log_data(prod_df).profile().view()
+
+# Generate interactive report
+report = prod_profile.visualize_report(
+    title="Production Drift Report",
+    baseline=train_profile,
+    output_path="drift_report.html"
+)
+report.show()
+
+# Create drift visualization
+plt.figure(figsize=(10, 4))
+gcm.plot_distribution_comparison(
+    feature="temperature",
+    current=prod_profile,
+    baseline=train_profile,
+    drift_threshold=0.3
+)
+plt.title("Temperature Distribution Drift")
+plt.savefig("temperature_drift.png")
+```
+
+> ![Drift Plot Example](https://i.imgur.com/sample_drift_plot.png)
+
+---
+
+## Key Functionality
+
+### ✅ Data Quality Monitoring
+
+```python
+# Track schema changes
+gcm.detect_schema_changes(current_df, training_schema)
+
+# Monitor data completeness
+gcm.track_completeness(df, threshold=0.95)
+```
+
+---
+
+### 🎯 Model Performance Tracking
+
+```python
+# Log predictions with actuals
+gcm.log_predictions(
+    predictions=model_predictions,
+    actuals=ground_truth,
+    features=feature_df
+)
+
+# Detect accuracy drop
+if gcm.detect_performance_drop(current_accuracy, baseline=0.85, threshold=0.05):
+    gcm.trigger_alert("Model accuracy dropped significantly!")
+```
+
+---
+
+### 📈 Drift Detection
+
+```python
+# Calculate drift scores
+drift_report = gcm.calculate_drift(
+    current_data=prod_df,
+    reference_data=train_df,
+    methods=['ks', 'psi']
+)
+
+# Monitor feature drift over time
+gcm.plot_temporal_drift(
+    feature="price",
+    daily_profiles=[day1_view, day2_view, day3_view],
+    timestamps=["2023-06-01", "2023-06-02", "2023-06-03"]
+)
+```
+
+---
+
+## License
+
+This project is licensed under the Apache 2.0 License
