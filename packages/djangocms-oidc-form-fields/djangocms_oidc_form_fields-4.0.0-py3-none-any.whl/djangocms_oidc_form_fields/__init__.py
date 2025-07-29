@@ -1,0 +1,1 @@
+default_app_config = 'djangocms_oidc_form_fields.apps.DjangocmsOidcFormFields'

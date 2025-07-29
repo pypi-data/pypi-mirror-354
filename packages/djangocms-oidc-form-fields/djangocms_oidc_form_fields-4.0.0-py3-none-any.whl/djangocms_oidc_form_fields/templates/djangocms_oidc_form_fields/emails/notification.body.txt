@@ -1,0 +1,10 @@
+{% load i18n %}
+{% blocktrans %}Form name: {{ form_name }}{% endblocktrans %}
+
+{% translate "Form data:" %}
+
+{% include "aldryn_forms/emails/includes/form_data.txt" %}
+
+{% translate "Handovered data:" %}
+
+{% include "djangocms_oidc_form_fields/emails/includes/user_info_data.txt" %}

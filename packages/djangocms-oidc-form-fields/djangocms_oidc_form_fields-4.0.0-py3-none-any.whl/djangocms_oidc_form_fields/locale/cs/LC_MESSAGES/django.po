@@ -1,0 +1,128 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Zdeněk Böhm <zdenek.bohm@nic.cz>, 2020.
+# msgattrib --sort-output --no-location --no-obsolete --no-fuzzy $FILE_PO $FILE_MO
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-15 09:38+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Zdeněk Böhm <zdenek.bohm@nic.cz>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
+"<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
+msgid "Additional body text used when email notifications are active."
+msgstr ""
+"Další část textu je použita, pokud je zatržen přepínač Další část textu e-"
+"mailu."
+
+msgid "Additional email body"
+msgstr "Další část textu e-mailu"
+
+msgid "Form data:"
+msgstr "Data formuláře:"
+
+#, python-format
+msgid "Form name: %(form_name)s"
+msgstr "Jméno formuláře: %(form_name)s"
+
+msgid "Handovered data"
+msgstr "Předané údaje"
+
+msgid "Handovered data:"
+msgstr "Předané údaje:"
+
+msgid "OIDC - Only send email with handovered data"
+msgstr "OIDC - Jen odeslat e-mail s předanými údaji"
+
+msgid "OIDC - Send email with handovered data and save to the site"
+msgstr "OIDC - Odeslat e-mail s předanými údaji a uložit na web"
+
+msgid "OIDC Email Field"
+msgstr "OIDC Pole e-mail"
+
+msgid "OIDC Email into From Field"
+msgstr "OIDC E-mail pro From"
+
+msgid "OIDC Form"
+msgstr "OIDC Formulář"
+
+msgid "OIDC Form submission"
+msgstr "OIDC Odeslaný formulář"
+
+msgid "OIDC Form submissions"
+msgstr "OIDC Odeslané formuláře"
+
+msgid "OIDC Hidden Field"
+msgstr "OIDC Skryté pole"
+
+msgid "OIDC Number Field"
+msgstr "OIDC Pole číslo"
+
+msgid "OIDC Phone Field"
+msgstr "OIDC Pole telefon"
+
+msgid "OIDC Span element"
+msgstr "OIDC Span element"
+
+msgid "OIDC Text Area Field"
+msgstr "OIDC Víceřádkové textové pole"
+
+msgid "OIDC Text Field"
+msgstr "OIDC Textové pole"
+
+msgid "OIDC Yes/No Field"
+msgstr "OIDC Ano/Ne pole"
+
+msgid "OIDC attributes"
+msgstr "OIDC atributy"
+
+msgid "OIDC attributes handovered from provider (names separated by space)."
+msgstr "Seznam OIDC údajů předaných poskytovatelem (položky oddělené mezerou)."
+
+msgid "OpenID Connect Elements"
+msgstr "OpenID Connect Elementy"
+
+msgid "OpenID Connect Form"
+msgstr "OpenID Connect Formulář"
+
+msgid "OpenID Connect Form Field"
+msgstr "OpenID Connect Formulářové pole"
+
+msgid "The value of the field cannot be changed by the user."
+msgstr "Hodnotu pole nemůže uživatel změnit."
+
+msgid "Unmodifiable"
+msgstr "Nezměnitelné"
+
+msgid "Used as the email subject when email_send_notification is checked."
+msgstr ""
+"Použito jako předmět e-mailu, pokud je zaškrtnuto pole Při odeslání "
+"formuláře zaslat upozornění."
+
+msgid ""
+"When checked, the value of this field will be used to send an email "
+"notification."
+msgstr ""
+"Je-li zaškrtnuto, bude se při odeslání formuláře zasílat e-mailové "
+"upozornění."
+
+msgid "columns"
+msgstr "slupce"
+
+msgid "email subject"
+msgstr "předmět zprávy"
+
+msgid "rows"
+msgstr "řádky"
+
+msgid "send notification when form is submitted"
+msgstr "při odeslání formuláře zaslat upozornění"
