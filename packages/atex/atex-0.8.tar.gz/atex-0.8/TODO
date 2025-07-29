@@ -1,0 +1,105 @@
+- Orchestrator
+  - about platforms
+    - platform in Orchestrator is distro+arch when applied to a Provisioner class
+      - it is specific to that Provisioner, ie. CentOS-Stream-9 @ x86_64 on a TF Provisioner
+  - getting a new machine
+    - get a Remote from a Provisioner
+    - upload tests to it
+    - instantiate Executor for it
+      - run plan setup
+    - put it in the pool of Remotes to run tests on
+  - removing machines
+    - when all tests for a given platform have finished successfully
+      (all reruns also concluded)
+  - maintaining machines
+    - maintain an dict() of set()s of Remotes, indexed by platform (namedtuple?)
+  - instantiate a ResultAggregator for each platform
+    - probably a dict(), indexed by platform (namedtuple?)
+  - to-be-run tests
+    - discovered from fmf, one FMFTests instance for each platform
+  - algorithm?
+    - get platforms from user (ie. CentOS-Stream-9@x86_64@TestingFarmProvisioner)
+      - these MUST be distro/arch/provisioner, not random strings)
+    - discover tests using context built from the platform (distro/arch),
+      index the FMFTests in a dict() by platform name (or namedtuple?)
+    - instantiate a Provisioner for each platform, index them in a dict()
+      - may need some translation, ie. "latest-9" to a specific compose,
+        probably done by Provisioner functions
+    - while True
+      - for each provisioner instance, try to get a Remote
+      - if we get a Remote:
+        - run setup on it (see above), possibly in a separate thread
+      - go over Remote instances in some "Remotes waiting to be set up" list()
+        - if an instance is ready, find a to-be-run test, start executing it
+          and put the Remote into another "Remotes running tests" list()
+      - go over Remotes in the "Remotes running tests" list()
+        - if a Remote has finished, 
+
+- CLI
+  - atex orch \
+        platform -n 9.6@x86_64 -c distro=rhel-9.6 -c arch=x86_64 -p "TestingFarmProvisioner:RHEL-9.6.0-Nightly,x86_64" \
+        platform ... \
+        tests --repo tests_repo -p /plans/someplan -t /some/test -t /another/test -e SOME=ENV \
+        content --repo content_repo \
+        ...
+
+
+- concept of a RemoteSlot for Orchestrator ; basically, Orchestrator can
+  instantiate Provisioner instances in two ways:
+  - directly from given via pre-configured Provisioner classes (factories)
+  - indirectly from a list of RemoteSlot instances (classes?)
+    - each RemoteSlot instance has some make_provisioner() function,
+      which instantiates some internal idea of a Provisioner-like instance
+      and returns it
+    - the idea is that a RemoteSlot can be an universal resource (ie. a VM
+      or a Podman container) capable of installing several different OSes
+    - same idea might apply to TF, we might want "at most 10 TF workers",
+      regardless of which OS they were reserved with - that might change
+      as all tests for a given OS finish running
+
+  - OR a generic concept of a ProvisionerGenerator
+    - Orchestrator doesn't maintain its own list of preconfig'd Provisioner classes,
+      it just has a link (instance) of a ProvisionerGenerator
+    - the generator would "yield" (or just return func() ?) fully configured and
+      initialized Provisioner instances (not types/classes!)
+    - scenario 1: unlimited TF resources
+      - ProvisionerGenerator can simply yield all 30 instances at once, and be done
+    - scenario 2: podman containers limited to 8 slots
+      - ProvisionerGenerator would stop (return None?) upon creating 8 configured
+        and initialized instances of Provisioner
+      - it would continue yielding more when old instances are returned somehow,
+        effectively working like a semaphore of 8
+    - Orchestrator would always execute only tests that apply to active running
+      instances of Provisioner, so platforms waiting for their slot would naturally
+      just wait
+
+    - probably ditch the current idea of Provisioner pre-config'd classes,
+      have just generators ("provisioners") that generate Connections, possibly
+      in limited capacity (by slots), ie. what's delivered isn't always what's
+      initially requested
+
+    - the idea is to
+      - input wanted platforms (distro+arch) into a Provisioner
+      - output (gather) from it provisioned and connected Remotes
+    - it's the Provisioner that manages how many Remotes should be provisioned
+      at any given time, and waits for them to be fully provisioned and started
+      and their Connections connected
+    - Remote is then some wrapper around a Connection that allows de-provisioning,
+      or releasing the resource in a way that Provisioner can detect (because it
+      ie. maintains a list of yielded Remotes and checks if they're released)
+
+    - actually, Remote is just a superser of Connection API, adding release() and alive()
+          class Remote(Connection):
+    - Executor should then take a Remote instead of a Connection, and it can easily
+      do .release() on destructive testing
+    - and Orchestrator can easily check .alive() to see if it should throw away that
+      instance of Remote
+    - class Remote can store other data (arch, distro, etc.)
+      - that's how Orchestrator can match it to a test
+
+    - there should be some API for Orchestrator to tell a Provisioner which distro/arch
+      combos to request, *and* when a specific distro/arch combo is no longer wanted
+      (because all tests for it were already executed), so the Provisioner doesn't reserve
+      any more Remotes with that combination
+      - it should not release() any existing ones, the tests will do it when finishing
+
