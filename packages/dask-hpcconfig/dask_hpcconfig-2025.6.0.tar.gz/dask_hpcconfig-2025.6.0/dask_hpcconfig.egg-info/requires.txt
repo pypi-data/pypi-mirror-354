@@ -1,0 +1,11 @@
+pyyaml
+dask>=2024.06.0
+distributed>=2024.06.0
+
+[cli]
+typer
+rich
+tornado
+
+[jobqueue]
+dask-jobqueue>=0.8

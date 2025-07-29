@@ -1,0 +1,17 @@
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.10
+  - dask
+  - distributed
+  - dask-jobqueue
+  - pyyaml
+  - typer
+  - rich
+  - sphinx
+  - sphinx-book-theme
+  - sphinx-click
+  - sphinx-copybutton
+  - sphinx-design
+  - ipython
