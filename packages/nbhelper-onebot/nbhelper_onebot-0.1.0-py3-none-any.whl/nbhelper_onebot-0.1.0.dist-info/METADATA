@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: nbhelper-onebot
+Version: 0.1.0
+Summary: Default template for PDM package
+Author-Email: =?utf-8?b?5Yaw54qs8J+nivCfp4rwn6eK?= <hf4minecraft@163.com>
+License: MIT
+Requires-Python: >=3.12
+Requires-Dist: nonebot2[websockets]>=2.4.2
+Requires-Dist: nonebot-adapter-onebot>=2.4.6
+Requires-Dist: cachetools>=6.0.0
+Description-Content-Type: text/markdown
+
+# Nonebot Helper for Onebot V11
+
+nbhelper 是一个用于增强 Nonebot2 开发体验的模块，Make Nonebot Great Again!
+
+这个模块适用于 Onebot V11。
+
+## 功能列表
+
+-
