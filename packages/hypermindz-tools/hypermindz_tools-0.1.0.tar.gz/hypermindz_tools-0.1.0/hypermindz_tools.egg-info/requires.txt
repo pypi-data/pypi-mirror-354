@@ -1,0 +1,11 @@
+requests>=2.25.0
+crewai>=0.76.2
+
+[dev]
+pytest>=6.0
+pytest-cov>=2.10.0
+black>=21.0.0
+flake8>=3.9.0
+mypy>=0.910
+twine>=3.4.0
+build>=0.7.0
