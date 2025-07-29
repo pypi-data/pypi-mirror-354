@@ -1,0 +1,55 @@
+Metadata-Version: 2.4
+Name: laser-measles
+Version: 0.6.1
+Summary: Spatial models of measles implemented with the LASER toolkit.
+Home-page: https://github.com/InstituteforDiseaseModeling/laser-measles
+Author-email: Christopher Lorton <christopher.lorton@gatesfoundation.org>, Jonathan Bloedow <jonathan.bloedow@gatesfoundation.org>, Katherine Rosenfeld <katherine.rosenfeld@gatesfoundation.org>, Kevin McCarthy <kevin.mccarthy@gatesfoundation.org>
+Maintainer-email: Christopher Lorton <christopher.lorton@gatesfoundation.org>
+License: MIT License
+        
+        Copyright (c) 2024, Bill & Melinda Gates Foundation
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+        
+Project-URL: Homepage, https://example.com
+Project-URL: Documentation, https://laser-measles.readthedocs.io/en/latest/
+Project-URL: Repository, https://github.com/InstituteforDiseaseModeling/laser-measles.git
+Project-URL: Issues, https://github.com/InstituteforDiseaseModeling/laser-measles/issues
+Project-URL: Changelog, https://github.com/InstituteforDiseaseModeling/laser-measles/blob/master/CHANGELOG.md
+Keywords: measles,spatial,modeling,laser
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: MacOS
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Utilities
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+License-File: AUTHORS.rst
+Requires-Dist: laser-core==0.5.1
+Requires-Dist: diskcache>=5.6.3
+Requires-Dist: appdirs>=1.4.4
+Requires-Dist: pydantic>=2.11.5
+Requires-Dist: pycountry>=24.6.1
+Requires-Dist: requests>=2.32.3
+Requires-Dist: alive-progress>=3.2.0
+Requires-Dist: sciris>=3.2.1
+Requires-Dist: polars>=1.30.0
+Requires-Dist: pyarrow>=20.0.0
+Dynamic: home-page
+Dynamic: license-file
