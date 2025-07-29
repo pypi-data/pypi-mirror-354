@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "remgpt"
+version = "0.2.0"
+description = "A Python library for RemGPT"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Siddharth Ambegaonkar", email = "sid.ambegaonkar@gmail.com"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "pydantic>=2.0.0",
+    "tiktoken>=0.4.0",
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/remgpt"
+Repository = "https://github.com/yourusername/remgpt" 
