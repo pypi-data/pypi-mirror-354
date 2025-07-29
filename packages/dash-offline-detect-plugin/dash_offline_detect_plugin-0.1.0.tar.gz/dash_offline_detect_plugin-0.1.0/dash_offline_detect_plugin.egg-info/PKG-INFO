@@ -1,0 +1,48 @@
+Metadata-Version: 2.4
+Name: dash_offline_detect_plugin
+Version: 0.1.0
+Summary: Offline detect plugin for Dash applications using Dash Hooks.
+Home-page: https://github.com/CNFeffery/dash-offline-detect-plugin
+Author: CNFeffery
+Author-email: CNFeffery <fefferypzy@gmail.com>
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: dash>=3.0.4
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+
+# dash-offline-detect-plugin
+
+Offline detect plugin for Dash applications using Dash Hooks. You can check out this project on PyPi at: https://pypi.org/project/dash-offline-detect-plugin
+
+## Installation
+
+```bash
+pip install dash-offline-detect-plugin
+```
+
+## Usage
+
+```python
+from dash import Dash
+# Import the offline detect plugin
+from dash_offline_detect_plugin import setup_offline_detect_plugin
+
+# Enable the offline detect plugin for the current app
+setup_offline_detect_plugin()
+
+app = Dash(__name__)
+# Rest of your app code...
+```
+
+## Example
+
+Run the included example:
+
+```bash
+python example.py
+```
+
+<center><img src="./images/demo.gif" /></center>
