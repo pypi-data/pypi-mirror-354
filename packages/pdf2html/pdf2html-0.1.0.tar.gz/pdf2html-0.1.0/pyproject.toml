@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pdf2html"
+version = "0.1.0"
+description = "Convert PDF files to HTML using pdfminer and BeautifulSoup"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Scott Douglass", email = "dev@synaptechlabs.ai"}]
+keywords = ["pdf", "html", "converter"]
+requires-python = ">=3.7"
+dependencies = [
+    "pdfminer.six",
+    "beautifulsoup4"
+]
+
+[project.scripts]
+pdf2html = "pdf2html.cli:main"
+
