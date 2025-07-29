@@ -1,0 +1,18 @@
+# Database Configuration
+DATABASE_URL=postgresql://username:password@localhost:5432/mydatabase
+# DATABASE_URL=mysql://username:password@localhost:3306/mydatabase
+# DATABASE_URL=sqlite:///mydatabase.db
+
+# OpenAI Configuration
+OPENAI_API_KEY=your_openai_api_key_here
+
+# Anthropic Configuration
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
+
+# Palchemy Default Settings
+PALCHEMY_DEFAULT_PROVIDER=openai
+PALCHEMY_DEFAULT_MODEL=gpt-3.5-turbo
+
+# Optional: Security Settings
+PALCHEMY_MAX_QUERY_LENGTH=10000
+PALCHEMY_ENABLE_LOGGING=true

@@ -1,0 +1,10 @@
+include README.md
+include LICENSE
+include requirements.txt
+include MANIFEST.in
+recursive-include palchemy *.py
+recursive-include examples *.py *.txt
+recursive-include tests *.py
+global-exclude *.pyc
+global-exclude .DS_Store
+global-exclude __pycache__
