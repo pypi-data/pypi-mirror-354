@@ -1,0 +1,122 @@
+name: Run Tests
+
+on:
+  push: # Every push to every branch
+    branches:
+      - '*'         # matches every branch that doesn't contain a '/'
+      - '*/*'       # matches every branch containing a single '/'
+      - '**'        # matches every branch
+
+jobs:
+  prepare-keys:
+    runs-on: blacksmith-2vcpu-ubuntu-2204
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install GnuPG
+        run: sudo apt-get update && sudo apt-get install -y gnupg
+
+      - name: Write and Encrypt validator_key
+        run: |
+          printf "%s" "${{ secrets.VALIDATOR_KEY }}" > validator_key.tmp
+          gpg --batch --passphrase "${{ secrets.GPG_PASSPHRASE }}" --symmetric --cipher-algo AES256 --output validator_key.gpg validator_key.tmp
+          rm validator_key.tmp
+
+      - name: Write and Encrypt validator_key.priv
+        run: |
+          printf "%s" "${{ secrets.VALIDATOR_KEY_PRIV }}" > validator_key.priv.tmp
+          gpg --batch --passphrase "${{ secrets.GPG_PASSPHRASE }}" --symmetric --cipher-algo AES256 --output validator_key.priv.gpg validator_key.priv.tmp
+          rm validator_key.priv.tmp
+
+      - name: Upload encrypted keys as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: validator-keys
+          path: |
+            validator_key.gpg
+            validator_key.priv.gpg
+
+  unit-test:
+    runs-on: blacksmith-4vcpu-ubuntu-2204
+    needs: prepare-keys
+    timeout-minutes: 4 # Shoudn't take this long
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: useblacksmith/setup-python@v6
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install flit
+          python -m flit install
+          python -m pip install pytest
+      - name: Download encrypted keys
+        uses: actions/download-artifact@v4
+        with:
+          name: validator-keys
+
+      - name: Install GnuPG for decryption
+        run: sudo apt-get update && sudo apt-get install -y gnupg
+
+      - name: Decrypt validator_key
+        run: |
+          gpg --batch --passphrase "${{ secrets.GPG_PASSPHRASE }}" --decrypt --output validator_key validator_key.gpg
+
+      - name: Decrypt validator_key.priv
+        run: |
+          gpg --batch --passphrase "${{ secrets.GPG_PASSPHRASE }}" --decrypt --output validator_key.priv validator_key.priv.gpg
+
+      - name: Run Unit tests
+        run: |
+          python -m pytest --verbose tests/units
+
+  integration-test:
+    runs-on: blacksmith-2vcpu-ubuntu-2204
+    needs: prepare-keys
+    timeout-minutes: 10 # 10 min is the hecking maximum
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: useblacksmith/setup-python@v6
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install flit
+          python -m flit install
+          python -m pip install pytest
+      - name: Download encrypted keys
+        uses: actions/download-artifact@v4
+        with:
+          name: validator-keys
+
+      - name: Install GnuPG for decryption
+        run: sudo apt-get update && sudo apt-get install -y gnupg
+
+      - name: Decrypt validator_key
+        run: |
+          gpg --batch --passphrase "${{ secrets.GPG_PASSPHRASE }}" --decrypt --output validator_key validator_key.gpg
+
+      - name: Decrypt validator_key.priv
+        run: |
+          gpg --batch --passphrase "${{ secrets.GPG_PASSPHRASE }}" --decrypt --output validator_key.priv validator_key.priv.gpg
+
+      - name: Run Integration tests
+        run: |
+          python -m pytest --verbose tests/integration
+
+  delete-keys-artifact:
+    runs-on: blacksmith-2vcpu-ubuntu-2204
+    needs: [unit-test, integration-test]
+    if: always()
+    permissions:
+      actions: write
+    steps:
+      - name: Delete validator-keys artifact
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: validator-keys
