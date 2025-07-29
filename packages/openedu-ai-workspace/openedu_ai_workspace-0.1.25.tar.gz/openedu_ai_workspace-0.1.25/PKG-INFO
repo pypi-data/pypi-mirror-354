@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: openedu_ai_workspace
+Version: 0.1.25
+Summary: A package for ai workspace (project) features.
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: langchain-openai
+Requires-Dist: langchain-qdrant
+Requires-Dist: pydantic
+Requires-Dist: pymongo
+Requires-Dist: python-dotenv
+Requires-Dist: qdrant-client
+Requires-Dist: sentence-transformers
+Requires-Dist: snowflake-id
+Requires-Dist: typing-extensions
+Provides-Extra: dev
+Requires-Dist: black>=24.1.0; extra == "dev"
+Requires-Dist: bumpver>=2024.1130; extra == "dev"
+Requires-Dist: pre-commit>=4.2.0; extra == "dev"
+Requires-Dist: pytest>=8.3.5; extra == "dev"
+Requires-Dist: setuptools>=78.1.0; extra == "dev"
+Requires-Dist: twine>=6.1.0; extra == "dev"
+Requires-Dist: wheel>=0.45.1; extra == "dev"
+
+A package for ai workspace (project) features.m
