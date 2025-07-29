@@ -1,0 +1,12 @@
+# ARES 3.0.4
+
+To develop ARES, the Agency collected data from annual financial statements as part of requests to 16 second-tier banks. The data received included information on the financial indicators of legal entity borrowers whose debt exceeded 100 million tenge. At the same time, the request consisted of two groups: borrowers that defaulted in the period from 01.10.2014 to 01.01.2020 (default) and borrowers who did not default as of 01.01.2021 (standard).
+
+## ARES: Advanced Toolkit for Financial and Non-financial Data Assessment
+
+This release is a production-level build of a model that integrates both quantitative financial indicators and qualitative borrower attributes, such as audit status, legal proceedings, and external ratings. This hybrid approach ensures a more comprehensive and accurate evaluation of default risk.
+
+## Authors
+
+**Aryslan Iskakov** – Maintainer, Team Lead of Financial Market Cyber Resilience Department, ARDFM  
+Contact: iskakov.aryslan@gmail.com
