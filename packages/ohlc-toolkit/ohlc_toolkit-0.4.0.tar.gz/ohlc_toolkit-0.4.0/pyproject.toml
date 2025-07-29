@@ -1,0 +1,75 @@
+[tool.poetry]
+name = "ohlc-toolkit"
+version = "0.4.0"
+description = "A flexible toolkit for working with OHLC data and generating custom timeframes from minute data."
+authors = ["Mourits de Beer <ff137@proton.me>"]
+license = "MIT"
+readme = "README.md"
+keywords = [
+    "ohlc",
+    "price",
+    "candlestick",
+    "financial",
+    "market-data",
+    "time-series",
+]
+repository = "https://github.com/ff137/ohlc-toolkit"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+loguru = ">=0.7.3"
+orjson = "^3.10.15"
+pandas = "^2.3.0"
+requests = "^2.32.3"
+tqdm = "^4.66.4"
+# pyarrow = "^19.0.0"
+# pyspark = { version = ">=3.2.0", optional = true }
+# ipyparallel = { version = "^9.0.0", optional = true }
+
+[tool.poetry.extras]
+# spark = ["pyspark"]
+# ipyparallel = ["ipyparallel"]
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.16.0"
+pytest = "^8.4.0"
+pytest-cov = "^6.0.0"
+pytest-ruff = "^0.4.1"
+ruff = "^0.11.0"
+
+[tool.ruff]
+line-length = 88
+lint.pycodestyle.max-line-length = 120
+target-version = "py312"
+lint.select = [
+    "E",   # pycodestyle errors (style errors)
+    "W",   # pycodestyle warnings (style warnings)
+    "F",   # pyflakes (detect invalid Python code)
+    "I",   # isort (import sorting)
+    "B",   # flake8-bugbear (detect likely bugs)
+    "C",   # mccabe (code complexity)
+    "N",   # pep8-naming (naming conventions)
+    "D",   # pydocstyle (docstring style)
+    "UP",  # pyupgrade (upgrade syntax)
+    "PL",  # pylint
+    "RUF", # ruff-specific rules
+]
+lint.ignore = [
+    "D203",    # 1 blank line required before class docstring
+    "D213",    # Multi-line docstring summary should start at the second line
+    "PLE1205", # False positive: Too many arguments for `logging` format string
+]
+include = ["examples/*.py", "src/*.py", "tests/*.py"]
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+addopts = "--cov --cov-report term --ruff --ruff-format"
+
+[tool.coverage.report]
+omit = ["tests/*", "examples/*"]
+skip_covered = false
+show_missing = true
+
+[build-system]
+requires = ["poetry-core>=2.0.0"]
+build-backend = "poetry.core.masonry.api"
