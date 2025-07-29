@@ -1,0 +1,12 @@
+prefix=/var/folders/vk/nx37ffx50hv5djclhltc26vw0000gn/T/tmpitjydgsy/wheel/platlib
+libdir=/var/folders/vk/nx37ffx50hv5djclhltc26vw0000gn/T/tmpitjydgsy/wheel/platlib/lib
+includedir=/var/folders/vk/nx37ffx50hv5djclhltc26vw0000gn/T/tmpitjydgsy/wheel/platlib/include
+
+Name: UG_PLUGIN_SuperLU
+Description: Direct solution of large, sparse systems of linear equations
+Version: 7.0.1
+URL: https://portal.nersc.gov/project/sparse/superlu/
+
+Libs: -L${libdir} -lsuperlu
+Libs.private: /Applications/Xcode_15.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Accelerate.framework -lm
+Cflags: -I${includedir}
