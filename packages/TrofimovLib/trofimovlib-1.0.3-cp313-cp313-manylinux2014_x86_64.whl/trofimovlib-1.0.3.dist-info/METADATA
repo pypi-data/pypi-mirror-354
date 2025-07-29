@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: TrofimovLib
+Version: 1.0.3
+Summary: "Модуль на C++/pybind11"
+Author: "Nick Trofimov"
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: C++
+Requires-Python: >=3.13.2
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Requires-Dist: build; extra == "dev"
+Requires-Dist: wheel; extra == "dev"
+Requires-Dist: twine; extra == "dev"
