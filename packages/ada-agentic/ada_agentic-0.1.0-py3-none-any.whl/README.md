@@ -1,0 +1,109 @@
+# Ayala Agentic AI
+
+A [Model Context Protocol](https://modelcontextprotocol.io/) server
+implementation for the Ayala Agentic AI project. This enables AI agents to
+query for context across many sources.
+
+## Features
+
+- A common Agentic AI reference architecture (or platform in the future) for
+  Ayala Group
+- Powered by open standard agent protocols, it enables LLM-powered agents to
+  reliably locate context, invoke tools, and collaborate with other AI agents
+  within the Ayala Group technology landscape
+- It provides an "agentic layer" to Ayala Group data platforms such as Open
+  Data, Concati, Inquiro, and GShare
+- It unlocks potential synergies through a common AI technology framework
+  (context sharing vs. data sharing)
+- It will natively support widely used LLM clients such as ChatGPT, Claude,
+  and Gemini
+
+## Design Principles
+
+- **Ease-of-Use**: Support existing AI client apps (ChatGPT, Copilot, Claude)
+  instead of building new ones
+- **Cost Efficiency**: Allow web-based interface for non-license users and for
+  cost-sensitive BUs
+- **Flexibility**: Use open-standard agent protocols for integration (MCP, A2A,
+  etc.)
+- **Synergy**: Work with Ayala Group platforms and initiatives such as Concati,
+  Inquiro, and Open Data
+- **Governance-First**: Build AI governance requirements into the platform's
+  foundational design rather than retrofitting compliance capabilities
+  (Mosaic, MLFlow, etc.)
+
+## Architecture
+
+The Ayala AI Assistant (MCP) serves as the central hub connecting various
+agentic models with context and tools providers across the Ayala Group
+ecosystem.
+
+![Ayala Agentic AI Architecture](../../doc/img/architecture-agentic.png)
+
+### Components
+
+**Agentic Models:**
+- ChatGPT - OpenAI's conversational AI model
+- Claude - Anthropic's AI assistant
+- Databricks - MLOps and data science platform
+
+**Context and Tools Providers:**
+- Systems of Record - Core business systems and databases
+- Ayala Open Data - Centralized data platform for the Ayala Group
+- Concati / Inquiro - Data discovery and analytics platforms
+
+The architecture enables seamless integration between AI models and Ayala's
+data ecosystem, providing a unified interface for AI-powered business
+operations.
+
+## Developing
+
+### Setup
+
+Requires [`uv`](https://docs.astral.sh/uv/) - see the
+[project README](README.md) for installation instructions.
+
+```bash
+make setup
+```
+
+### Run using the MCP inspector
+
+```bash
+source .venv/bin/activate
+
+mcp dev src/agentic/__main__.py
+```
+
+### Run using an MCP client
+
+Use this configuration in your MCP client (e.g., Claude Desktop, Cursor, etc.):
+
+```js
+{
+  "mcpServers": {
+    "agentic": {
+      "command": "<full-path-to-uv>",  // e.g. /Users/username/.local/bin/uv
+      "args": [
+        "--directory",
+        "path/to/agentic",  // update this with an absolute path
+        "run",
+        "agentic"
+      ]
+    }
+  }
+}
+```
+
+### Run tests
+
+```bash
+make test
+```
+
+## Publishing
+
+```bash
+export UV_PUBLISH_TOKEN=...
+make publish
+```
