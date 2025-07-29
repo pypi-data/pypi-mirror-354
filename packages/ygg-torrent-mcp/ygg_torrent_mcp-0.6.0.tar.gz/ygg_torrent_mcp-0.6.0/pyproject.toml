@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "ygg-torrent-mcp"
+version = "0.6.0"
+description = "Ygg Torrent MCP Server"
+authors = ["philogicae"]
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/philogicae/ygg-torrent-mcp"
+packages = [{ include = "ygg_torrent" }]
+
+
+[tool.poetry.dependencies]
+python = ">=3.10,<4.0"
+bencodepy = ">=0.9.5"
+python-dotenv = ">=1.1.0"
+rich = ">=14.0.0"
+pydantic = ">=2.11.5"
+requests = ">=2.32.3"
+fastmcp = ">=2.7.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
+pytest-asyncio = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0"]
+build-backend = "poetry.core.masonry.api"
