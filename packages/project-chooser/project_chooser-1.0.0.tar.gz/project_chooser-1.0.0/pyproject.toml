@@ -1,0 +1,102 @@
+[tool.poetry]
+name = "project-chooser"
+version = "1.0.0"
+description = "Enhanced project recommendation system with advanced niche discovery features"
+authors = ["William Fayers <william@fayers.com>"]
+readme = "README.md"
+license = "MIT"
+homepage = "https://github.com/unkokaeru/project-chooser"
+repository = "https://github.com/unkokaeru/project-chooser"
+documentation = "https://github.com/unkokaeru/project-chooser#readme"
+keywords = ["education", "project", "recommendation", "academic", "machine-learning", "cli"]
+packages = [{include = "project_chooser", from = "src"}]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Education",
+    "Topic :: Education",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Environment :: Console",
+    "Operating System :: OS Independent",
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+questionary = "^2.0.1"
+numpy = "^1.24.0"
+pydantic = "^2.0.0"
+rich = "^13.0.0"
+typer = {extras = ["all"], version = "^0.9.0"}
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+black = "^23.0.0"
+isort = "^5.12.0"
+mypy = "^1.5.0"
+pylint = "^2.17.0"
+pre-commit = "^3.4.0"
+
+[tool.poetry.scripts]
+project-chooser = "project_chooser.cli:app"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--cov=src/project_chooser",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-fail-under=80"
+]
+
+[tool.pylint.messages_control]
+disable = [
+    "missing-docstring",
+    "line-too-long",
+    "too-few-public-methods",
+    "too-many-arguments",
+    "too-many-locals",
+    "too-many-branches",
+    "too-many-statements"
+]
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["tests/*", "*/venv/*", "*/__pycache__/*"]
