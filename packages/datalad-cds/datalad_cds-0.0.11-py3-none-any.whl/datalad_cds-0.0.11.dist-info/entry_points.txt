@@ -1,0 +1,5 @@
+[console_scripts]
+git-annex-remote-cds = datalad_cds.cds_remote:main
+
+[datalad.extensions]
+download-cds = datalad_cds:command_suite
