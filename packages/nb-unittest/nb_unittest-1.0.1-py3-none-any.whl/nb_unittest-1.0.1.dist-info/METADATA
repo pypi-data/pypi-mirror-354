@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: nb-unittest
+Version: 1.0.1
+Summary: Student centered unit tests embedded in the Jupyter Notebook
+Author-email: Mike Matera <michael.matera@cabrillo.edu>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/mike-matera/nb-unittest
+Project-URL: Issues, https://github.com/mike-matera/nb-unittest/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+License-File: LICENSE
+Requires-Dist: jinja2
+Requires-Dist: jupyterlab
+Requires-Dist: ipywidgets
+Dynamic: license-file
