@@ -1,0 +1,12 @@
+fastapi>=0.115.12
+flask>=3.0.3
+httpx>=0.28.1
+uvicorn>=0.33.0
+prometheus-client>=0.12.0
+twine
+
+[fastapi]
+fastapi>=0.68.0
+
+[flask]
+flask>=2.0.0
