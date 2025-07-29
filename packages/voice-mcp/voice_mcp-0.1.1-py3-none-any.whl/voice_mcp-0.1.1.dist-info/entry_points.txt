@@ -1,0 +1,3 @@
+[console_scripts]
+livekit-admin-mcp = voice_mcp.cli:livekit_admin_mcp
+voice-mcp = voice_mcp.cli:voice_mcp
