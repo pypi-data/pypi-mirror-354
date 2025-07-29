@@ -1,0 +1,20 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "stratio-models"
+description = "Shared models for AWS Marketplace"
+version = "0.2.0.dev18"
+authors = ["Stratio <platform@stratio.com>"]
+readme = "README.md"
+homepage = "https://github.com/Stratio/aws-marketplace-models"
+license = "MIT"
+packages = [
+    { include = "models", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.12,<4.0"
+pydantic = "==2.10.3"
+# Include only dependencies needed for the models
