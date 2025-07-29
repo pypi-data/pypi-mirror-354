@@ -1,0 +1,48 @@
+Metadata-Version: 2.4
+Name: plimai
+Version: 0.1.0
+Summary: Plim is a platform for building and deploying AI agents.
+Project-URL: Homepage, https://github.com/plim-ai/plim
+Project-URL: Bug Tracker, https://github.com/plim-ai/plim/issues
+Author-email: Plim <priteshraj41@gmail.com>
+License: MIT
+License-File: LICENSE
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+# PlimAI
+
+A Python package for building and deploying AI agents.
+
+## Installation
+
+You can install the package using pip:
+
+```bash
+pip install plimai
+```
+
+## Usage
+
+```python
+from plimai import example
+
+# Add usage examples here
+```
+
+## Development
+
+To set up the development environment:
+
+1. Clone the repository
+2. Install development dependencies:
+   ```bash
+   pip install -e ".[dev]"
+   ```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details. 
