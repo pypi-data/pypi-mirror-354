@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chimera_sandbox_extensions"
+version = "0.1.42"
+description = "Helper module for Chimera sandbox"
+
+# Optionally, you can add additional project metadata (authors, license, etc.) 
