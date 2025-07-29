@@ -1,0 +1,85 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "clear-dev"
+version = "1.0.0"
+description = "A powerful development cache and directory scanner with GUI and CLI interfaces"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "duolabmeng6", email = "duolabmeng6@gmail.com"}
+]
+maintainers = [
+    {name = "duolabmeng6", email = "duolabmeng6@gmail.com"}
+]
+keywords = [
+    "cache-cleaner",
+    "directory-scanner",
+    "development-tools",
+    "disk-cleanup",
+    "gui",
+    "cli",
+    "node-modules",
+    "build-cache"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Environment :: X11 Applications :: Qt",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: System :: Filesystems",
+    "Topic :: Utilities"
+]
+requires-python = ">=3.8"
+dependencies = []
+
+[project.optional-dependencies]
+gui = [
+    "PySide6>=6.5.0"
+]
+all = [
+    "PySide6>=6.5.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/duolabmeng6/clear_dev"
+Repository = "https://github.com/duolabmeng6/clear_dev"
+Documentation = "https://github.com/duolabmeng6/clear_dev#readme"
+"Bug Tracker" = "https://github.com/duolabmeng6/clear_dev/issues"
+Changelog = "https://github.com/duolabmeng6/clear_dev/releases"
+
+[project.scripts]
+clear-dev = "clear_dev.cli:main"
+clear-dev-gui = "clear_dev.gui:main"
+directory-scanner = "clear_dev.cli:main"
+package-scanner = "clear_dev.package_scanner:main"
+windows-cleaner = "clear_dev.windows_cleaner:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["clear_dev"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/clear_dev",
+    "/README.md",
+    "/LICENSE",
+    "/pyproject.toml"
+]
+
+[dependency-groups]
+dev = [
+    "build>=1.2.2.post1",
+    "twine>=6.1.0",
+]
