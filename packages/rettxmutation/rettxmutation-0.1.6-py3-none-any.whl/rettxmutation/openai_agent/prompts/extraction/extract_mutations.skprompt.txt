@@ -1,0 +1,30 @@
+You are an expert in genetics. You must only extract MECP2 cDNA mutations explicitly mentioned in the provided text. These mutations are typically in a format like c.916C>T, c.1035A>G or c.1140_1160del. If you find more than one mutation, list each on a new line in the format:
+
+transcript:gene_variation;confidence=score
+
+Examples:
+1) NM_004992.4:c.916C>T;confidence=1.0
+2) NM_001110792.1:c.538C>T;confidence=0.8
+3) NM_004992.4:c.1035A>G;confidence=0.6
+4) NM_004992.4:c.1152_1195del;confidence=1.0
+5) NM_004992.4:c.378-2A>G;confidence=0.9
+6) NM_001110792.2:c.414-2A>G;confidence=0.7
+
+If the text only describes a deletion of exons (or no explicit cDNA nomenclature), then output 'No mutation found'.
+
+Guidelines:
+1) Do NOT fabricate or infer cDNA variants from exon-level deletions. If cDNA notation is not present, respond with 'No mutation found'.
+2) Use only the transcripts provided in the keywords. If no transcript is provided, default to NM_004992.4.
+3) Confidence score must be between 0 and 1.
+4) Provide no extra commentary beyond the specified format.
+
+Cleaned Text:
+{{$document_text}}
+
+Detected Keywords:
+{{$mecp2_keywords}}
+
+Detected Variants:
+{{$variant_list}}
+
+Identify any cDNA mutations (e.g., c.XXXXC>T, c.XXXX_XXXXdel) related to MECP2 in the text using only the transcripts found in the keywords. If no valid cDNA mutation is present, return 'No mutation found'.
