@@ -1,0 +1,1 @@
+"""KozmoAI News extension."""
