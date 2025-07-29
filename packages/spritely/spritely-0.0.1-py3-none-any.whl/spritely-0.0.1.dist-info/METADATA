@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: spritely
+Version: 0.0.1
+Summary: Generate an svg sprite file from other svg files
+License-Expression: GPL-2.0
+Project-URL: Homepage, https://github.com/marbex7/spritely
+Project-URL: Issues, https://github.com/marbex7/spritely/issues
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: attrs
+Requires-Dist: click
+Requires-Dist: PyYAML
+Dynamic: license-file
+
+# spritely
+Create an svg sprite file from other svg files
+
+# Usage
+```bash
+spritely --config {path to config file} > /tmp/my-new-sprite-file.svg
+```
+
+# Installation
+```bash
+python -m pipx install --Upgrade spritely
+```
+
+# Config format
+See tests/resources for example.
