@@ -1,0 +1,45 @@
+# pyproject.toml
+[project]
+
+name = "gemini-list-mapper"
+version = "0.1.0"
+authors = [
+    { name = "zhanngpenng", email = "zhanngpenng@gmail.com" }
+]
+description = "A robust list-to-list mapping utility powered by Google Gemini, ensuring output size consistency for any user-defined task." # 一句话描述，会显示在PyPI列表页
+
+readme = "README.md" 
+requires-python = ">=3.9.21" 
+license = { text = "MIT License" }
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Text Processing :: Linguistic",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["gemini", "ai", "llm", "list processing", "mapper", "translation"]
+
+# [project.urls]
+# Homepage = "https://github.com/您的用户名/gemini-list-mapper" # 您的项目主页
+# "Bug Tracker" = "https://github.com/您的用户名/gemini-list-mapper/issues"
+# "Source Code" = "https://github.com/您的用户名/gemini-list-mapper"
+
+
+dependencies = [
+    "google-generativeai>=0.8.5",
+    "PyYAML>=6.0",
+    "numpy>=1.20",
+    "tqdm>=4.0",
+    "colorama>=0.4"
+]
+
+[tool.setuptools]
+package-data = { "gemini_list_mapper" = ["*.yml"] }

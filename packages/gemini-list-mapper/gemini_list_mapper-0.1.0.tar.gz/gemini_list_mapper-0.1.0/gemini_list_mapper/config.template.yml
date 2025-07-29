@@ -1,0 +1,36 @@
+# config.yml
+# 这是您所有映射任务的中央配置文件。
+
+# 定义所有可用的映射任务
+tasks:
+  # 任务一：翻译技术术语
+  translate_terms:
+    model: 'gemini-2.5-flash-preview-05-20' # 使用最新的稳定版Flash模型
+    prompt_template: |
+      将以下每个技术术语从 {source_lang} 翻译成 {target_lang}。
+
+      术语列表:
+      {list_items}
+    default_variables:
+      source_lang: '中文'
+      target_lang: 'English'
+
+  # 任务二：提取公司名称
+  extract_companies:
+    model: 'gemini-2.5-flash-preview-05-20'
+    prompt_template: |
+      对于下面的每一句话，只提取其中提到的公司或品牌名称。
+      如果没有找到，请准确地写 "N/A"。
+
+      句子列表:
+      {list_items}
+    # 这个任务没有默认变量
+
+  # 任务三：改变句子风格
+  change_statement_to_question:
+    model: 'gemini-2.5-flash-preview-05-20'
+    prompt_template: |
+      将下面的每一句陈述句，改写成一个以“吗”结尾的、自然的中文疑问句。
+
+      陈述句列表:
+      {list_items}
