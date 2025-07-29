@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "hackernews": {
+      "command": "uvx",
+      "args": [
+        "mcp-hn"
+      ],
+      "auto_start": true
+    },
+    "aws-cli-mcp-server": {
+      "command": "uvx",
+      "args": [
+        "aws-cli-mcp-server"
+      ],
+      "env": {
+        "AWS_PROFILE": "ReadOnlyAccess-010438464694"
+      },
+      "auto_start": true
+    }
+  }
+}
