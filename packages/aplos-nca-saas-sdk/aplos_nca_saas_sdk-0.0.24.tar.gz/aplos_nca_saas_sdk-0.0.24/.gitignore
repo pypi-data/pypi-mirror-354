@@ -1,0 +1,17 @@
+
+.venv/
+dist/
+.DS_Store
+.env
+*.pyc
+
+.coverage
+
+.imports/
+# don't track environment files
+.env
+.env.*
+.config.*
+# exclude any output generated
+.aplos-nca-output
+.output
