@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cbe-verifier"  # Must be unique on PyPI
+version = "1.1.0"
+description = "CBE Verifier - a tool to validate Commercial Bank of Ethiopia document data"
+authors = [
+  { name = "Zahir Seid", email = "zahirseid101@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "easyocr==1.7.2",
+    "httpx==0.28.1",
+    "numpy==2.2.6",
+    "pdfplumber==0.11.6"
+]
+
+[project.urls]
+Homepage = "https://github.com/Zahir-Seid/CBE_Verifier"
