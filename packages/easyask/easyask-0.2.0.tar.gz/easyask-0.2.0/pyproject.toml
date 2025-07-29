@@ -1,0 +1,13 @@
+[project]
+name = "easyask"
+version = "0.2.0"
+description = "Generate ECharts option dictionaries"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pytest>=8.4.0",
+    "mcp[cli]>=1.9.2",
+]
+
+[tool.setuptools.packages.find]
+where = ["easyask"]
