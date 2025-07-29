@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: test-airflow-crypto
+Version: 2.10.5
+Requires-Dist: cryptography==44.0.3
+Requires-Dist: apache-airflow==2.10.5
+Requires-Dist: apache-airflow-providers-postgres==6.0.0
+Requires-Dist: apache-airflow-providers-amazon==9.2.0
+Requires-Dist: apache-airflow-providers-cncf-kubernetes==10.1.0
+Requires-Dist: eval_type_backport
+Dynamic: requires-dist
