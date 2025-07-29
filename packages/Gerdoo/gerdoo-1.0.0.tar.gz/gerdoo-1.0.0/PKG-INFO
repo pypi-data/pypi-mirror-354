@@ -1,0 +1,95 @@
+Metadata-Version: 2.4
+Name: Gerdoo
+Version: 1.0.0
+Summary: Gerdoo 🐍✨
+Author: MohammadReza
+Author-email: narnama.room@gmail.com
+Project-URL: موتور جستجوی گردو 🌐, https://gerdoo.me/
+Project-URL: صفحه من ❤️, https://apicode.pythonanywhere.com/
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests
+Requires-Dist: beautifulsoup4
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Gerdoo
+
+این کتابخانه مخصوص استفاده برای موتور جستجوی **گردو** طراحی شده است
+
+
+برای ساخت یک یک شیء از سرچ کننده گردو این کار را انجام دهید :
+```python
+
+import Gerdoo from SearchGerdoo
+
+gerdoo = SearchGerdoo("Query")
+```
+
+
+
+### جستجوی کلی
+
+```python
+
+import Gerdoo from SearchGerdoo
+
+gerdoo = SearchGerdoo("Query")
+print(gerdoo.search())
+```
+
+
+### جستجوی تصاویر
+
+```python
+
+import Gerdoo from SearchGerdoo
+
+gerdoo = SearchGerdoo("Query")
+print(gerdoo.search_image())
+```
+
+
+### جستجوی ویدیو ها
+
+```python
+
+import Gerdoo from SearchGerdoo
+
+gerdoo = SearchGerdoo("Query")
+print(gerdoo.search_video())
+```
+
+
+### جستجوی اخبار
+
+```python
+
+import Gerdoo from SearchGerdoo
+
+gerdoo = SearchGerdoo("Query")
+print(gerdoo.search_news())
+```
+
+
+### دریافت پیشنهادات برای جستجو
+
+```python
+
+import Gerdoo from SearchGerdoo
+
+gerdoo = SearchGerdoo("Query")
+print(gerdoo.GetSuggestions())
+```
