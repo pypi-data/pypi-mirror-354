@@ -1,0 +1,12 @@
+[project]
+name = "aws-cli-mcp-server"
+version = "0.0.2"
+description = "A simple implementation of an AWS CLI MCP server with read/write tools for executing AWS CLI commands"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "fastmcp>=2.7.1",
+]
+
+[project.scripts]
+aws-cli-mcp-server = "src.server:main"
