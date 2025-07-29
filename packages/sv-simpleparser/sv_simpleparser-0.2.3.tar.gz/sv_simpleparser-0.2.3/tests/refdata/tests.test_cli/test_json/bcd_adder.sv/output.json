@@ -1,0 +1,47 @@
+{
+  "path": "$PRJ/examples/bcd_adder.sv",
+  "modules": [
+    {
+      "name": "bcd_adder",
+      "ports": [
+        {
+          "direction": "input",
+          "ptype": null,
+          "name": "a",
+          "dim": "[3:0]"
+        },
+        {
+          "direction": "input",
+          "ptype": null,
+          "name": "b",
+          "dim": "[3:0]"
+        },
+        {
+          "direction": "input",
+          "ptype": null,
+          "name": "cin"
+        },
+        {
+          "direction": "output",
+          "ptype": null,
+          "name": "sum",
+          "dim": "[3:0]"
+        },
+        {
+          "direction": "output",
+          "ptype": null,
+          "name": "cout"
+        }
+      ]
+    },
+    {
+      "name": "tb_bcdadder",
+      "insts": [
+        {
+          "name": "uut",
+          "module": "bcd_adder"
+        }
+      ]
+    }
+  ]
+}
