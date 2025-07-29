@@ -1,0 +1,27 @@
+benchmark:
+  image: python:3.12-bookworm
+  before_script:
+    - wget https://github.com/sharkdp/hyperfine/releases/download/v1.19.0/hyperfine-musl_1.19.0_amd64.deb
+    - dpkg -i hyperfine-musl_1.19.0_amd64.deb
+    - curl --proto '=https' --tlsv1.2 -sSfL https://bencher.dev/download/install-cli.sh | sh && source ~/.cargo/env
+    - pip install poetry
+    - poetry install
+    - git submodule init tests/kicad_projects/benchmarks && git submodule update --depth 1 tests/kicad_projects/benchmarks
+  script:
+    - |
+      benchmarks=("add_module" "add_module_from_git" "cli_version")
+      
+      for benchmark in "${benchmarks[@]}"; do
+        bencher run \
+        --project edea \
+        --token "$BENCHER_API_TOKEN" \
+        --branch "$CI_COMMIT_REF_NAME" \
+        --branch-start-point "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" \
+        --testbed ci-runner \
+        --adapter shell_hyperfine \
+        --file result.json \
+        hyperfine --export-json result.json "poetry run python tests/benchmark/$benchmark.py"
+      done
+  only:
+    variables:
+      - '$CI_COMMIT_MESSAGE =~ /.*\[benchmark\].*/'

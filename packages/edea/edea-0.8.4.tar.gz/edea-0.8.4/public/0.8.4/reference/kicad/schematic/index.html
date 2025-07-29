@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+
+<html :class="{'dark': darkMode === 'dark' || (darkMode === 'system' &amp;&amp; window.matchMedia('(prefers-color-scheme: dark)').matches)}" class="scroll-smooth" data-content_root="../../../" lang="en" x-data="{ darkMode: localStorage.getItem('darkMode') || localStorage.setItem('darkMode', 'system'), activeSection: '' }" x-init="$watch('darkMode', val =&gt; localStorage.setItem('darkMode', val))">
+<head>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="utf-8"/>
+<meta content="white" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="black" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="../../../_static/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="../../../_static/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/><meta content="Schematic" property="og:title"/>
+<meta content="website" property="og:type"/>
+<meta content="https://edea-dev.gitlab.io/edea/latest/reference/kicad/schematic/index.html" property="og:url"/>
+<meta content="edea" property="og:site_name"/>
+<meta content="1146" property="og:image:width"/>
+<meta content="600" property="og:image:height"/>
+<meta content="https://edea-dev.gitlab.io/edea/latest/_images/social_previews/summary_reference_kicad_schematic_index_9072c6e5.png" property="og:image"/>
+<meta content="" property="og:image:alt"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<title>Schematic | edea 0.8.4 documentation</title>
+<meta content="Schematic | edea 0.8.4 documentation" property="og:title"/>
+<meta content="Schematic | edea 0.8.4 documentation" name="twitter:title"/>
+<link href="../../../_static/pygments.css?v=e72c8e07" rel="stylesheet" type="text/css">
+<link href="../../../_static/theme.css?v=42baaae4" rel="stylesheet" type="text/css">
+<link href="../../../_static/tabs.css?v=4c969af8" rel="stylesheet" type="text/css"/>
+<link href="../../../_static/asciinema-player_3.6.3.css" rel="stylesheet" type="text/css"/>
+<link href="../../../_static/custom.css" rel="stylesheet" type="text/css"/>
+<link href="https://edea-dev.gitlab.io/edea/latest/reference/kicad/schematic/index.html" rel="canonical"/>
+<link href="../../../search.html" rel="search" title="Search"/>
+<link href="../../../genindex.html" rel="index" title="Index"/>
+<link href="base.html" rel="next" title="Base"/>
+<link href="../schematic_group.html" rel="prev" title="Schematic group"/>
+<script>
+    <!-- Prevent Flash of wrong theme -->
+      const userPreference = localStorage.getItem('darkMode');
+      let mode;
+      if (userPreference === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        mode = 'dark';
+        document.documentElement.classList.add('dark');
+      } else {
+        mode = 'light';
+      }
+      if (!userPreference) {localStorage.setItem('darkMode', mode)}
+    </script>
+</link></link></head>
+<body :class="{ 'overflow-hidden': showSidebar }" class="min-h-screen font-sans antialiased bg-background text-foreground" x-data="{ showSidebar: false, showScrollTop: false }">
+<div @click.self="showSidebar = false" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm md:hidden" x-cloak="" x-show="showSidebar"></div><div class="relative flex flex-col min-h-screen" id="page"><a class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100" href="#content">
+      Skip to content
+    </a>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  [x-cloak] { display: none !important; }
+</style>
+<header class="sticky top-0 z-40 w-full border-b shadow-sm border-border supports-backdrop-blur:bg-background/60 bg-background/95 backdrop-blur"><div class="container flex items-center h-14">
+<div class="hidden mr-4 md:flex">
+<a class="flex items-center mr-6" href="../../../index.html"><span class="hidden font-bold sm:inline-block text-clip whitespace-nowrap">edea 0.8.4 documentation</span>
+</a></div><button @click="showSidebar = true" class="inline-flex items-center justify-center h-10 px-0 py-2 mr-2 text-base font-medium transition-colors rounded-md hover:text-accent-foreground hover:bg-transparent md:hidden" type="button">
+<svg aria-hidden="true" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M152.587 825.087q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440Zm0-203.587q-19.152 0-32.326-13.174T107.087 576q0-19.152 13.174-32.326t32.326-13.174h320q19.152 0 32.326 13.174T518.087 576q0 19.152-13.174 32.326T472.587 621.5h-320Zm0-203.587q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440ZM708.913 576l112.174 112.174q12.674 12.674 12.674 31.826t-12.674 31.826Q808.413 764.5 789.261 764.5t-31.826-12.674l-144-144Q600 594.391 600 576t13.435-31.826l144-144q12.674-12.674 31.826-12.674t31.826 12.674q12.674 12.674 12.674 31.826t-12.674 31.826L708.913 576Z"></path>
+</svg>
+<span class="sr-only">Toggle navigation menu</span>
+</button>
+<div class="flex items-center justify-between flex-1 space-x-2 sm:space-x-4 md:justify-end">
+<div class="flex-1 w-full md:w-auto md:flex-none"><form @keydown.k.window.meta="$refs.search.focus()" action="../../../search.html" class="relative flex items-center group" id="searchbox" method="get">
+<input aria-label="Search the docs" class="inline-flex items-center font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64" id="search-input" name="q" placeholder="Search ..." type="search" x-ref="search"/>
+<kbd class="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none text-muted-foreground items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex group-hover:bg-accent group-hover:text-accent-foreground">
+<span class="text-xs">⌘</span>
+    K
+  </kbd>
+</form>
+</div>
+<div class="flex justify-center" x-data='{ versions: [{ "key": "latest", "url": "https://edea-dev.gitlab.io/edea/latest"}] }' x-init="versions = await (await fetch('https://edea-dev.gitlab.io/edea/versions.json')).json()">
+<div class="relative" x-data="{
+          open: false,
+          toggle() {
+              if (this.open) {
+                  return this.close()
+              }
+
+              this.$refs.button.focus()
+
+              this.open = true
+          },
+          close(focusAfter) {
+              if (! this.open) return
+
+              this.open = false
+
+              focusAfter &amp;&amp; focusAfter.focus()
+          }
+      }" x-id="['dropdown-button']" x-on:focusin.window="! $refs.panel.contains($event.target) &amp;&amp; close()" x-on:keydown.escape.prevent.stop="close($refs.button)">
+
+<button :aria-controls="$id('dropdown-button')" :aria-expanded="open" :class="open ? 'rounded-b-none' : ''" class="flex items-center gap-2 font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start text-sm sm:pr-12 md:w-28 lg:w-40 rounded-[0.5rem]" type="button" x-on:click="toggle()" x-ref="button">
+
+<svg class="h-5 w-5 text-gray-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" fill-rule="evenodd"></path>
+</svg>
+            Releases
+          </button>
+
+<div :class="darkMode === 'dark' ? 'bg-slate-800' : 'bg-slate-100'" :id="$id('dropdown-button')" class="max-h-[200px] overflow-y-scroll absolute left-0 w-full md:w-28 lg:w-40" x-cloak="" x-on:click.outside="close($refs.button)" x-ref="panel" x-show="open" x-transition.origin.top.left="">
+<template "="" x-for="version in versions">
+<a :class="darkMode === 'dark' ? 'hover:bg-slate-700' : 'hover:bg-slate-200'" class="flex items-center gap-2 w-full last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm" x-bind:href="version.url" x-text="version.key">
+</a>
+</template>
+</div>
+</div>
+</div>
+<nav class="flex items-center space-x-1">
+<a href="https://gitlab.com/edea-dev/edea" rel="noopener nofollow" title="Visit repository on GitLab">
+<div class="inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md disabled:opacity-50 disabled:pointer-events-none hover:bg-accent hover:text-accent-foreground h-9 w-9">
+<svg viewbox="0 0 380 380" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#e24329;}.cls-2{fill:#fc6d26;}.cls-3{fill:#fca326;}</style></defs><g id="LOGO"><path class="cls-1" d="M282.83,170.73l-.27-.69-26.14-68.22a6.81,6.81,0,0,0-2.69-3.24,7,7,0,0,0-8,.43,7,7,0,0,0-2.32,3.52l-17.65,54H154.29l-17.65-54A6.86,6.86,0,0,0,134.32,99a7,7,0,0,0-8-.43,6.87,6.87,0,0,0-2.69,3.24L97.44,170l-.26.69a48.54,48.54,0,0,0,16.1,56.1l.09.07.24.17,39.82,29.82,19.7,14.91,12,9.06a8.07,8.07,0,0,0,9.76,0l12-9.06,19.7-14.91,40.06-30,.1-.08A48.56,48.56,0,0,0,282.83,170.73Z"></path><path class="cls-2" d="M282.83,170.73l-.27-.69a88.3,88.3,0,0,0-35.15,15.8L190,229.25c19.55,14.79,36.57,27.64,36.57,27.64l40.06-30,.1-.08A48.56,48.56,0,0,0,282.83,170.73Z"></path><path class="cls-3" d="M153.43,256.89l19.7,14.91,12,9.06a8.07,8.07,0,0,0,9.76,0l12-9.06,19.7-14.91S209.55,244,190,229.25C170.45,244,153.43,256.89,153.43,256.89Z"></path><path class="cls-2" d="M132.58,185.84A88.19,88.19,0,0,0,97.44,170l-.26.69a48.54,48.54,0,0,0,16.1,56.1l.09.07.24.17,39.82,29.82s17-12.85,36.57-27.64Z"></path></g></svg>
+</div>
+</a>
+<button @click="darkMode = darkMode === 'light' ? 'dark' : 'light'" class="relative inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9" title="Toggle dark mode" type="button">
+<svg class="absolute transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 685q45.456 0 77.228-31.772Q589 621.456 589 576q0-45.456-31.772-77.228Q525.456 467 480 467q-45.456 0-77.228 31.772Q371 530.544 371 576q0 45.456 31.772 77.228Q434.544 685 480 685Zm0 91q-83 0-141.5-58.5T280 576q0-83 58.5-141.5T480 376q83 0 141.5 58.5T680 576q0 83-58.5 141.5T480 776ZM80 621.5q-19.152 0-32.326-13.174T34.5 576q0-19.152 13.174-32.326T80 530.5h80q19.152 0 32.326 13.174T205.5 576q0 19.152-13.174 32.326T160 621.5H80Zm720 0q-19.152 0-32.326-13.174T754.5 576q0-19.152 13.174-32.326T800 530.5h80q19.152 0 32.326 13.174T925.5 576q0 19.152-13.174 32.326T880 621.5h-80Zm-320-320q-19.152 0-32.326-13.174T434.5 256v-80q0-19.152 13.174-32.326T480 130.5q19.152 0 32.326 13.174T525.5 176v80q0 19.152-13.174 32.326T480 301.5Zm0 720q-19.152 0-32.326-13.17Q434.5 995.152 434.5 976v-80q0-19.152 13.174-32.326T480 850.5q19.152 0 32.326 13.174T525.5 896v80q0 19.152-13.174 32.33-13.174 13.17-32.326 13.17ZM222.174 382.065l-43-42Q165.5 327.391 166 308.239t13.174-33.065q13.435-13.674 32.587-13.674t32.065 13.674l42.239 43q12.674 13.435 12.555 31.706-.12 18.272-12.555 31.946-12.674 13.674-31.445 13.413-18.772-.261-32.446-13.174Zm494 494.761-42.239-43q-12.674-13.435-12.674-32.087t12.674-31.565Q686.609 756.5 705.38 757q18.772.5 32.446 13.174l43 41.761Q794.5 824.609 794 843.761t-13.174 33.065Q767.391 890.5 748.239 890.5t-32.065-13.674Zm-42-494.761Q660.5 369.391 661 350.62q.5-18.772 13.174-32.446l41.761-43Q728.609 261.5 747.761 262t33.065 13.174q13.674 13.435 13.674 32.587t-13.674 32.065l-43 42.239q-13.435 12.674-31.706 12.555-18.272-.12-31.946-12.555Zm-495 494.761Q165.5 863.391 165.5 844.239t13.674-32.065l43-42.239q13.435-12.674 32.087-12.674t31.565 12.674Q299.5 782.609 299 801.38q-.5 18.772-13.174 32.446l-41.761 43Q231.391 890.5 212.239 890t-33.065-13.174ZM480 576Z"></path>
+</svg>
+<svg class="absolute transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 936q-151 0-255.5-104.5T120 576q0-138 90-239.5T440 218q25-3 39 18t-1 44q-17 26-25.5 55t-8.5 61q0 90 63 153t153 63q31 0 61.5-9t54.5-25q21-14 43-1.5t19 39.5q-14 138-117.5 229T480 936Zm0-80q88 0 158-48.5T740 681q-20 5-40 8t-40 3q-123 0-209.5-86.5T364 396q0-20 3-40t8-40q-78 32-126.5 102T200 576q0 116 82 198t198 82Zm-10-270Z"></path>
+</svg>
+</button>
+</nav>
+</div>
+</div>
+</header>
+<div class="flex-1"><div class="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"><aside :aria-hidden="!showSidebar" :class="{ 'translate-x-0': showSidebar }" class="fixed inset-y-0 left-0 md:top-14 z-50 md:z-30 bg-background md:bg-transparent transition-all duration-100 -translate-x-full md:translate-x-0 ml-0 p-6 md:p-0 md:-ml-2 md:h-[calc(100vh-3.5rem)] w-5/6 md:w-full shrink-0 overflow-y-auto border-r border-border md:sticky" id="left-sidebar">
+<a class="!justify-start text-sm md:!hidden bg-background" href="../../../index.html"><span class="font-bold text-clip whitespace-nowrap">edea 0.8.4 documentation</span>
+</a>
+<div class="relative overflow-hidden md:overflow-auto my-4 md:my-0 h-[calc(100vh-8rem)] md:h-auto">
+<div class="overflow-y-auto h-full w-full relative pr-6"><nav class="table w-full min-w-full my-6 lg:my-8">
+<p class="caption" role="heading"><span class="caption-text">Content:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command line interface</a></li>
+<li class="toctree-l1 current" x-data="{ expanded: $el.classList.contains('current') ? true : false }"><a :class="{ 'expanded' : expanded }" @click="expanded = !expanded" class="reference internal expandable" href="../../index.html">API reference<button @click.prevent.stop="expanded = !expanded" type="button"><span class="sr-only"></span><svg fill="currentColor" height="18px" stroke="none" viewbox="0 0 24 24" width="18px" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></button></a><ul class="current" x-show="expanded">
+<li class="toctree-l2 current" x-data="{ expanded: $el.classList.contains('current') ? true : false }"><a :class="{ 'expanded' : expanded }" @click="expanded = !expanded" class="reference internal expandable" href="../index.html">KiCad<button @click.prevent.stop="expanded = !expanded" type="button"><span class="sr-only"></span><svg fill="currentColor" height="18px" stroke="none" viewbox="0 0 24 24" width="18px" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></button></a><ul class="current" x-show="expanded">
+<li class="toctree-l3"><a class="reference internal" href="../base.html">Base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../checker.html">Checker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common.html">Common</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../design_rules.html">Design rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../parser.html">Parser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pcb/index.html">PCB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../project.html">Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../s_expr.html">S-Expressions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../schematic_group.html">Schematic group</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Schematic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../serializer.html">Serializer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../metadata.html">Module metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cli.html">Command line tool</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">CHANGELOG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev.html">Developer documentation</a></li>
+</ul>
+</nav>
+</div>
+</div>
+<button @click="showSidebar = false" class="absolute md:hidden right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100" type="button">
+<svg class="h-4 w-4" fill="currentColor" height="24" stroke="none" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 632 284 828q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536 576l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480 632Z"></path>
+</svg>
+</button>
+</aside>
+<main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+<div class="w-full min-w-0 mx-auto">
+<nav aria-label="breadcrumbs" class="flex items-center mb-4 space-x-1 text-sm text-muted-foreground">
+<a class="overflow-hidden text-ellipsis whitespace-nowrap hover:text-foreground" href="../../../index.html">
+<span class="hidden md:inline">edea 0.8.4 documentation</span>
+<svg aria-label="Home" class="md:hidden" fill="currentColor" height="18" stroke="none" viewbox="0 96 960 960" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z"></path>
+</svg>
+</a>
+<div class="mr-1">/</div><a class="hover:text-foreground overflow-hidden text-ellipsis whitespace-nowrap" href="../../index.html">API reference</a>
+<div class="mr-1">/</div><a class="hover:text-foreground overflow-hidden text-ellipsis whitespace-nowrap" href="../index.html">KiCad</a>
+<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">Schematic</span>
+</nav>
+<div id="content" role="main">
+<section id="schematic">
+<h1>Schematic<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#schematic"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="base.html">Base</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="base.html#edea.kicad.schematic.base.KicadSchExpr"><code class="docutils literal notranslate"><span class="pre">KicadSchExpr</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="base.html#edea.kicad.schematic.base.KicadSchExpr.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">KicadSchExpr.kicad_expr_tag_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="base.html#edea.kicad.schematic.base.KicadSchExpr.validate_at_rotation"><code class="docutils literal notranslate"><span class="pre">KicadSchExpr.validate_at_rotation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="schematic.html">Schematic</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.PinAssignment"><code class="docutils literal notranslate"><span class="pre">PinAssignment</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.PinAssignment.number"><code class="docutils literal notranslate"><span class="pre">PinAssignment.number</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.PinAssignment.uuid"><code class="docutils literal notranslate"><span class="pre">PinAssignment.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.PinAssignment.alternate"><code class="docutils literal notranslate"><span class="pre">PinAssignment.alternate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.PinAssignment.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">PinAssignment.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.DefaultInstance"><code class="docutils literal notranslate"><span class="pre">DefaultInstance</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.DefaultInstance.reference"><code class="docutils literal notranslate"><span class="pre">DefaultInstance.reference</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.DefaultInstance.unit"><code class="docutils literal notranslate"><span class="pre">DefaultInstance.unit</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.DefaultInstance.value"><code class="docutils literal notranslate"><span class="pre">DefaultInstance.value</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.DefaultInstance.footprint"><code class="docutils literal notranslate"><span class="pre">DefaultInstance.footprint</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.DefaultInstance.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">DefaultInstance.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUseInstancePath"><code class="docutils literal notranslate"><span class="pre">SymbolUseInstancePath</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUseInstancePath.name"><code class="docutils literal notranslate"><span class="pre">SymbolUseInstancePath.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUseInstancePath.reference"><code class="docutils literal notranslate"><span class="pre">SymbolUseInstancePath.reference</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUseInstancePath.unit"><code class="docutils literal notranslate"><span class="pre">SymbolUseInstancePath.unit</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUseInstancePath.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">SymbolUseInstancePath.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUseInstanceProject"><code class="docutils literal notranslate"><span class="pre">SymbolUseInstanceProject</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUseInstanceProject.name"><code class="docutils literal notranslate"><span class="pre">SymbolUseInstanceProject.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUseInstanceProject.paths"><code class="docutils literal notranslate"><span class="pre">SymbolUseInstanceProject.paths</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUseInstanceProject.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">SymbolUseInstanceProject.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUseInstances"><code class="docutils literal notranslate"><span class="pre">SymbolUseInstances</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUseInstances.projects"><code class="docutils literal notranslate"><span class="pre">SymbolUseInstances.projects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUseInstances.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">SymbolUseInstances.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse"><code class="docutils literal notranslate"><span class="pre">SymbolUse</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.lib_name"><code class="docutils literal notranslate"><span class="pre">SymbolUse.lib_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.lib_id"><code class="docutils literal notranslate"><span class="pre">SymbolUse.lib_id</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.at"><code class="docutils literal notranslate"><span class="pre">SymbolUse.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.mirror"><code class="docutils literal notranslate"><span class="pre">SymbolUse.mirror</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.unit"><code class="docutils literal notranslate"><span class="pre">SymbolUse.unit</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.convert"><code class="docutils literal notranslate"><span class="pre">SymbolUse.convert</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.exclude_from_sim"><code class="docutils literal notranslate"><span class="pre">SymbolUse.exclude_from_sim</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.in_bom"><code class="docutils literal notranslate"><span class="pre">SymbolUse.in_bom</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.on_board"><code class="docutils literal notranslate"><span class="pre">SymbolUse.on_board</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.dnp"><code class="docutils literal notranslate"><span class="pre">SymbolUse.dnp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.fields_autoplaced"><code class="docutils literal notranslate"><span class="pre">SymbolUse.fields_autoplaced</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.uuid"><code class="docutils literal notranslate"><span class="pre">SymbolUse.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.default_instance"><code class="docutils literal notranslate"><span class="pre">SymbolUse.default_instance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.properties"><code class="docutils literal notranslate"><span class="pre">SymbolUse.properties</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.pins"><code class="docutils literal notranslate"><span class="pre">SymbolUse.pins</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.instances"><code class="docutils literal notranslate"><span class="pre">SymbolUse.instances</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">SymbolUse.kicad_expr_tag_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.reference"><code class="docutils literal notranslate"><span class="pre">SymbolUse.reference</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolUse.value"><code class="docutils literal notranslate"><span class="pre">SymbolUse.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Wire"><code class="docutils literal notranslate"><span class="pre">Wire</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Wire.pts"><code class="docutils literal notranslate"><span class="pre">Wire.pts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Wire.stroke"><code class="docutils literal notranslate"><span class="pre">Wire.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Wire.uuid"><code class="docutils literal notranslate"><span class="pre">Wire.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Wire.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Wire.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Junction"><code class="docutils literal notranslate"><span class="pre">Junction</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Junction.at"><code class="docutils literal notranslate"><span class="pre">Junction.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Junction.diameter"><code class="docutils literal notranslate"><span class="pre">Junction.diameter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Junction.color"><code class="docutils literal notranslate"><span class="pre">Junction.color</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Junction.uuid"><code class="docutils literal notranslate"><span class="pre">Junction.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Junction.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Junction.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.NoConnect"><code class="docutils literal notranslate"><span class="pre">NoConnect</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.NoConnect.at"><code class="docutils literal notranslate"><span class="pre">NoConnect.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.NoConnect.uuid"><code class="docutils literal notranslate"><span class="pre">NoConnect.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.NoConnect.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">NoConnect.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LocalLabel"><code class="docutils literal notranslate"><span class="pre">LocalLabel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LocalLabel.text"><code class="docutils literal notranslate"><span class="pre">LocalLabel.text</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LocalLabel.at"><code class="docutils literal notranslate"><span class="pre">LocalLabel.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LocalLabel.fields_autoplaced"><code class="docutils literal notranslate"><span class="pre">LocalLabel.fields_autoplaced</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LocalLabel.effects"><code class="docutils literal notranslate"><span class="pre">LocalLabel.effects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LocalLabel.uuid"><code class="docutils literal notranslate"><span class="pre">LocalLabel.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LocalLabel.properties"><code class="docutils literal notranslate"><span class="pre">LocalLabel.properties</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LocalLabel.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">LocalLabel.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Text"><code class="docutils literal notranslate"><span class="pre">Text</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Text.exclude_from_sim"><code class="docutils literal notranslate"><span class="pre">Text.exclude_from_sim</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Text.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Text.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.TextBox"><code class="docutils literal notranslate"><span class="pre">TextBox</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.TextBox.text"><code class="docutils literal notranslate"><span class="pre">TextBox.text</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.TextBox.at"><code class="docutils literal notranslate"><span class="pre">TextBox.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.TextBox.size"><code class="docutils literal notranslate"><span class="pre">TextBox.size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.TextBox.exclude_from_sim"><code class="docutils literal notranslate"><span class="pre">TextBox.exclude_from_sim</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.TextBox.stroke"><code class="docutils literal notranslate"><span class="pre">TextBox.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.TextBox.fill"><code class="docutils literal notranslate"><span class="pre">TextBox.fill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.TextBox.effects"><code class="docutils literal notranslate"><span class="pre">TextBox.effects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.TextBox.uuid"><code class="docutils literal notranslate"><span class="pre">TextBox.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.TextBox.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">TextBox.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LabelShape"><code class="docutils literal notranslate"><span class="pre">LabelShape</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LabelShape.INPUT"><code class="docutils literal notranslate"><span class="pre">LabelShape.INPUT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LabelShape.OUTPUT"><code class="docutils literal notranslate"><span class="pre">LabelShape.OUTPUT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LabelShape.BIDIRECTIONAL"><code class="docutils literal notranslate"><span class="pre">LabelShape.BIDIRECTIONAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LabelShape.TRI_STATE"><code class="docutils literal notranslate"><span class="pre">LabelShape.TRI_STATE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LabelShape.PASSIVE"><code class="docutils literal notranslate"><span class="pre">LabelShape.PASSIVE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.GlobalLabel"><code class="docutils literal notranslate"><span class="pre">GlobalLabel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.GlobalLabel.text"><code class="docutils literal notranslate"><span class="pre">GlobalLabel.text</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.GlobalLabel.shape"><code class="docutils literal notranslate"><span class="pre">GlobalLabel.shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.GlobalLabel.at"><code class="docutils literal notranslate"><span class="pre">GlobalLabel.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.GlobalLabel.fields_autoplaced"><code class="docutils literal notranslate"><span class="pre">GlobalLabel.fields_autoplaced</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.GlobalLabel.effects"><code class="docutils literal notranslate"><span class="pre">GlobalLabel.effects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.GlobalLabel.uuid"><code class="docutils literal notranslate"><span class="pre">GlobalLabel.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.GlobalLabel.properties"><code class="docutils literal notranslate"><span class="pre">GlobalLabel.properties</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.GlobalLabel.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">GlobalLabel.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.HierarchicalLabel"><code class="docutils literal notranslate"><span class="pre">HierarchicalLabel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.HierarchicalLabel.text"><code class="docutils literal notranslate"><span class="pre">HierarchicalLabel.text</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.HierarchicalLabel.shape"><code class="docutils literal notranslate"><span class="pre">HierarchicalLabel.shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.HierarchicalLabel.at"><code class="docutils literal notranslate"><span class="pre">HierarchicalLabel.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.HierarchicalLabel.fields_autoplaced"><code class="docutils literal notranslate"><span class="pre">HierarchicalLabel.fields_autoplaced</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.HierarchicalLabel.effects"><code class="docutils literal notranslate"><span class="pre">HierarchicalLabel.effects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.HierarchicalLabel.uuid"><code class="docutils literal notranslate"><span class="pre">HierarchicalLabel.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.HierarchicalLabel.properties"><code class="docutils literal notranslate"><span class="pre">HierarchicalLabel.properties</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.HierarchicalLabel.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">HierarchicalLabel.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.NetclassFlag"><code class="docutils literal notranslate"><span class="pre">NetclassFlag</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.NetclassFlag.text"><code class="docutils literal notranslate"><span class="pre">NetclassFlag.text</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.NetclassFlag.length"><code class="docutils literal notranslate"><span class="pre">NetclassFlag.length</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.NetclassFlag.shape"><code class="docutils literal notranslate"><span class="pre">NetclassFlag.shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.NetclassFlag.at"><code class="docutils literal notranslate"><span class="pre">NetclassFlag.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.NetclassFlag.fields_autoplaced"><code class="docutils literal notranslate"><span class="pre">NetclassFlag.fields_autoplaced</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.NetclassFlag.effects"><code class="docutils literal notranslate"><span class="pre">NetclassFlag.effects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.NetclassFlag.uuid"><code class="docutils literal notranslate"><span class="pre">NetclassFlag.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.NetclassFlag.properties"><code class="docutils literal notranslate"><span class="pre">NetclassFlag.properties</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.NetclassFlag.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">NetclassFlag.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LibSymbols"><code class="docutils literal notranslate"><span class="pre">LibSymbols</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LibSymbols.symbols"><code class="docutils literal notranslate"><span class="pre">LibSymbols.symbols</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.LibSymbols.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">LibSymbols.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolInstancesPath"><code class="docutils literal notranslate"><span class="pre">SymbolInstancesPath</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolInstancesPath.path"><code class="docutils literal notranslate"><span class="pre">SymbolInstancesPath.path</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolInstancesPath.reference"><code class="docutils literal notranslate"><span class="pre">SymbolInstancesPath.reference</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolInstancesPath.unit"><code class="docutils literal notranslate"><span class="pre">SymbolInstancesPath.unit</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolInstancesPath.value"><code class="docutils literal notranslate"><span class="pre">SymbolInstancesPath.value</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolInstancesPath.footprint"><code class="docutils literal notranslate"><span class="pre">SymbolInstancesPath.footprint</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolInstancesPath.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">SymbolInstancesPath.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolInstances"><code class="docutils literal notranslate"><span class="pre">SymbolInstances</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolInstances.paths"><code class="docutils literal notranslate"><span class="pre">SymbolInstances.paths</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SymbolInstances.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">SymbolInstances.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SheetPin"><code class="docutils literal notranslate"><span class="pre">SheetPin</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SheetPin.name"><code class="docutils literal notranslate"><span class="pre">SheetPin.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SheetPin.shape"><code class="docutils literal notranslate"><span class="pre">SheetPin.shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SheetPin.at"><code class="docutils literal notranslate"><span class="pre">SheetPin.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SheetPin.effects"><code class="docutils literal notranslate"><span class="pre">SheetPin.effects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SheetPin.uuid"><code class="docutils literal notranslate"><span class="pre">SheetPin.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SheetPin.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">SheetPin.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SheetInstancesPath"><code class="docutils literal notranslate"><span class="pre">SheetInstancesPath</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SheetInstancesPath.name"><code class="docutils literal notranslate"><span class="pre">SheetInstancesPath.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SheetInstancesPath.page"><code class="docutils literal notranslate"><span class="pre">SheetInstancesPath.page</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SheetInstancesPath.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">SheetInstancesPath.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SheetInstances"><code class="docutils literal notranslate"><span class="pre">SheetInstances</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SheetInstances.paths"><code class="docutils literal notranslate"><span class="pre">SheetInstances.paths</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SheetInstances.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">SheetInstances.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SubSheetInstanceProject"><code class="docutils literal notranslate"><span class="pre">SubSheetInstanceProject</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SubSheetInstanceProject.name"><code class="docutils literal notranslate"><span class="pre">SubSheetInstanceProject.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SubSheetInstanceProject.paths"><code class="docutils literal notranslate"><span class="pre">SubSheetInstanceProject.paths</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SubSheetInstanceProject.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">SubSheetInstanceProject.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SubSheetInstances"><code class="docutils literal notranslate"><span class="pre">SubSheetInstances</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SubSheetInstances.projects"><code class="docutils literal notranslate"><span class="pre">SubSheetInstances.projects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.SubSheetInstances.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">SubSheetInstances.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Sheet"><code class="docutils literal notranslate"><span class="pre">Sheet</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Sheet.at"><code class="docutils literal notranslate"><span class="pre">Sheet.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Sheet.size"><code class="docutils literal notranslate"><span class="pre">Sheet.size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Sheet.fields_autoplaced"><code class="docutils literal notranslate"><span class="pre">Sheet.fields_autoplaced</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Sheet.stroke"><code class="docutils literal notranslate"><span class="pre">Sheet.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Sheet.fill"><code class="docutils literal notranslate"><span class="pre">Sheet.fill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Sheet.uuid"><code class="docutils literal notranslate"><span class="pre">Sheet.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Sheet.properties"><code class="docutils literal notranslate"><span class="pre">Sheet.properties</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Sheet.pins"><code class="docutils literal notranslate"><span class="pre">Sheet.pins</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Sheet.instances"><code class="docutils literal notranslate"><span class="pre">Sheet.instances</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Sheet.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Sheet.kicad_expr_tag_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Sheet.name"><code class="docutils literal notranslate"><span class="pre">Sheet.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Sheet.file"><code class="docutils literal notranslate"><span class="pre">Sheet.file</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.BusEntry"><code class="docutils literal notranslate"><span class="pre">BusEntry</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.BusEntry.at"><code class="docutils literal notranslate"><span class="pre">BusEntry.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.BusEntry.size"><code class="docutils literal notranslate"><span class="pre">BusEntry.size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.BusEntry.stroke"><code class="docutils literal notranslate"><span class="pre">BusEntry.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.BusEntry.uuid"><code class="docutils literal notranslate"><span class="pre">BusEntry.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.BusEntry.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">BusEntry.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Bus"><code class="docutils literal notranslate"><span class="pre">Bus</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Bus.pts"><code class="docutils literal notranslate"><span class="pre">Bus.pts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Bus.stroke"><code class="docutils literal notranslate"><span class="pre">Bus.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Bus.uuid"><code class="docutils literal notranslate"><span class="pre">Bus.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Bus.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Bus.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.BusAlias"><code class="docutils literal notranslate"><span class="pre">BusAlias</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.BusAlias.name"><code class="docutils literal notranslate"><span class="pre">BusAlias.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.BusAlias.members"><code class="docutils literal notranslate"><span class="pre">BusAlias.members</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.BusAlias.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">BusAlias.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic"><code class="docutils literal notranslate"><span class="pre">Schematic</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.version"><code class="docutils literal notranslate"><span class="pre">Schematic.version</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.check_version"><code class="docutils literal notranslate"><span class="pre">Schematic.check_version()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.generator"><code class="docutils literal notranslate"><span class="pre">Schematic.generator</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.generator_version"><code class="docutils literal notranslate"><span class="pre">Schematic.generator_version</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.uuid"><code class="docutils literal notranslate"><span class="pre">Schematic.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.paper"><code class="docutils literal notranslate"><span class="pre">Schematic.paper</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.title_block"><code class="docutils literal notranslate"><span class="pre">Schematic.title_block</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.lib_symbols"><code class="docutils literal notranslate"><span class="pre">Schematic.lib_symbols</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.arcs"><code class="docutils literal notranslate"><span class="pre">Schematic.arcs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.circles"><code class="docutils literal notranslate"><span class="pre">Schematic.circles</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.sheets"><code class="docutils literal notranslate"><span class="pre">Schematic.sheets</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.symbols"><code class="docutils literal notranslate"><span class="pre">Schematic.symbols</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.rectangles"><code class="docutils literal notranslate"><span class="pre">Schematic.rectangles</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.wires"><code class="docutils literal notranslate"><span class="pre">Schematic.wires</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.polylines"><code class="docutils literal notranslate"><span class="pre">Schematic.polylines</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.buses"><code class="docutils literal notranslate"><span class="pre">Schematic.buses</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.images"><code class="docutils literal notranslate"><span class="pre">Schematic.images</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.junctions"><code class="docutils literal notranslate"><span class="pre">Schematic.junctions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.no_connects"><code class="docutils literal notranslate"><span class="pre">Schematic.no_connects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.bus_entries"><code class="docutils literal notranslate"><span class="pre">Schematic.bus_entries</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.text_items"><code class="docutils literal notranslate"><span class="pre">Schematic.text_items</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.text_boxes"><code class="docutils literal notranslate"><span class="pre">Schematic.text_boxes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.labels"><code class="docutils literal notranslate"><span class="pre">Schematic.labels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.hierarchical_labels"><code class="docutils literal notranslate"><span class="pre">Schematic.hierarchical_labels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.global_labels"><code class="docutils literal notranslate"><span class="pre">Schematic.global_labels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.netclass_flags"><code class="docutils literal notranslate"><span class="pre">Schematic.netclass_flags</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.bus_aliases"><code class="docutils literal notranslate"><span class="pre">Schematic.bus_aliases</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.sheet_instances"><code class="docutils literal notranslate"><span class="pre">Schematic.sheet_instances</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.symbol_instances"><code class="docutils literal notranslate"><span class="pre">Schematic.symbol_instances</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="schematic.html#edea.kicad.schematic.__init__.Schematic.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Schematic.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="shapes.html">Shapes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.FillType"><code class="docutils literal notranslate"><span class="pre">FillType</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.FillType.NONE"><code class="docutils literal notranslate"><span class="pre">FillType.NONE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.FillType.OUTLINE"><code class="docutils literal notranslate"><span class="pre">FillType.OUTLINE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.FillType.BACKGROUND"><code class="docutils literal notranslate"><span class="pre">FillType.BACKGROUND</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.FillSimple"><code class="docutils literal notranslate"><span class="pre">FillSimple</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.FillSimple.type"><code class="docutils literal notranslate"><span class="pre">FillSimple.type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.FillSimple.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FillSimple.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.FillColor"><code class="docutils literal notranslate"><span class="pre">FillColor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.FillColor.color"><code class="docutils literal notranslate"><span class="pre">FillColor.color</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.FillColor.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FillColor.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.FillTypeColor"><code class="docutils literal notranslate"><span class="pre">FillTypeColor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.FillTypeColor.type"><code class="docutils literal notranslate"><span class="pre">FillTypeColor.type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.FillTypeColor.color"><code class="docutils literal notranslate"><span class="pre">FillTypeColor.color</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.FillTypeColor.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FillTypeColor.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Polyline"><code class="docutils literal notranslate"><span class="pre">Polyline</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Polyline.pts"><code class="docutils literal notranslate"><span class="pre">Polyline.pts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Polyline.stroke"><code class="docutils literal notranslate"><span class="pre">Polyline.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Polyline.fill"><code class="docutils literal notranslate"><span class="pre">Polyline.fill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Polyline.uuid"><code class="docutils literal notranslate"><span class="pre">Polyline.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Polyline.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Polyline.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Bezier"><code class="docutils literal notranslate"><span class="pre">Bezier</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Bezier.pts"><code class="docutils literal notranslate"><span class="pre">Bezier.pts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Bezier.stroke"><code class="docutils literal notranslate"><span class="pre">Bezier.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Bezier.fill"><code class="docutils literal notranslate"><span class="pre">Bezier.fill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Bezier.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Bezier.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Rectangle"><code class="docutils literal notranslate"><span class="pre">Rectangle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Rectangle.start"><code class="docutils literal notranslate"><span class="pre">Rectangle.start</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Rectangle.end"><code class="docutils literal notranslate"><span class="pre">Rectangle.end</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Rectangle.stroke"><code class="docutils literal notranslate"><span class="pre">Rectangle.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Rectangle.fill"><code class="docutils literal notranslate"><span class="pre">Rectangle.fill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Rectangle.uuid"><code class="docutils literal notranslate"><span class="pre">Rectangle.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Rectangle.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Rectangle.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Circle"><code class="docutils literal notranslate"><span class="pre">Circle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Circle.center"><code class="docutils literal notranslate"><span class="pre">Circle.center</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Circle.radius"><code class="docutils literal notranslate"><span class="pre">Circle.radius</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Circle.stroke"><code class="docutils literal notranslate"><span class="pre">Circle.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Circle.fill"><code class="docutils literal notranslate"><span class="pre">Circle.fill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Circle.uuid"><code class="docutils literal notranslate"><span class="pre">Circle.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Circle.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Circle.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Radius"><code class="docutils literal notranslate"><span class="pre">Radius</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Radius.at"><code class="docutils literal notranslate"><span class="pre">Radius.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Radius.length"><code class="docutils literal notranslate"><span class="pre">Radius.length</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Radius.angles"><code class="docutils literal notranslate"><span class="pre">Radius.angles</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Radius.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Radius.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Arc"><code class="docutils literal notranslate"><span class="pre">Arc</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Arc.start"><code class="docutils literal notranslate"><span class="pre">Arc.start</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Arc.mid"><code class="docutils literal notranslate"><span class="pre">Arc.mid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Arc.end"><code class="docutils literal notranslate"><span class="pre">Arc.end</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Arc.radius"><code class="docutils literal notranslate"><span class="pre">Arc.radius</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Arc.stroke"><code class="docutils literal notranslate"><span class="pre">Arc.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Arc.fill"><code class="docutils literal notranslate"><span class="pre">Arc.fill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Arc.uuid"><code class="docutils literal notranslate"><span class="pre">Arc.uuid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html#edea.kicad.schematic.shapes.Arc.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Arc.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="symbol.html">Symbol</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinElectricalType"><code class="docutils literal notranslate"><span class="pre">PinElectricalType</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinElectricalType.INPUT"><code class="docutils literal notranslate"><span class="pre">PinElectricalType.INPUT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinElectricalType.OUTPUT"><code class="docutils literal notranslate"><span class="pre">PinElectricalType.OUTPUT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinElectricalType.BIDIRECTIONAL"><code class="docutils literal notranslate"><span class="pre">PinElectricalType.BIDIRECTIONAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinElectricalType.TRI_STATE"><code class="docutils literal notranslate"><span class="pre">PinElectricalType.TRI_STATE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinElectricalType.PASSIVE"><code class="docutils literal notranslate"><span class="pre">PinElectricalType.PASSIVE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinElectricalType.FREE"><code class="docutils literal notranslate"><span class="pre">PinElectricalType.FREE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinElectricalType.UNSPECIFIED"><code class="docutils literal notranslate"><span class="pre">PinElectricalType.UNSPECIFIED</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinElectricalType.POWER_IN"><code class="docutils literal notranslate"><span class="pre">PinElectricalType.POWER_IN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinElectricalType.POWER_OUT"><code class="docutils literal notranslate"><span class="pre">PinElectricalType.POWER_OUT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinElectricalType.OPEN_COLLECTOR"><code class="docutils literal notranslate"><span class="pre">PinElectricalType.OPEN_COLLECTOR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinElectricalType.OPEN_EMITTER"><code class="docutils literal notranslate"><span class="pre">PinElectricalType.OPEN_EMITTER</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinElectricalType.NO_CONNECT"><code class="docutils literal notranslate"><span class="pre">PinElectricalType.NO_CONNECT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinGraphicStyle"><code class="docutils literal notranslate"><span class="pre">PinGraphicStyle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinGraphicStyle.LINE"><code class="docutils literal notranslate"><span class="pre">PinGraphicStyle.LINE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinGraphicStyle.INVERTED"><code class="docutils literal notranslate"><span class="pre">PinGraphicStyle.INVERTED</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinGraphicStyle.CLOCK"><code class="docutils literal notranslate"><span class="pre">PinGraphicStyle.CLOCK</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinGraphicStyle.INVERTED_CLOCK"><code class="docutils literal notranslate"><span class="pre">PinGraphicStyle.INVERTED_CLOCK</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinGraphicStyle.INPUT_LOW"><code class="docutils literal notranslate"><span class="pre">PinGraphicStyle.INPUT_LOW</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinGraphicStyle.CLOCK_LOW"><code class="docutils literal notranslate"><span class="pre">PinGraphicStyle.CLOCK_LOW</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinGraphicStyle.OUTPUT_LOW"><code class="docutils literal notranslate"><span class="pre">PinGraphicStyle.OUTPUT_LOW</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinGraphicStyle.EDGE_CLOCK_HIGH"><code class="docutils literal notranslate"><span class="pre">PinGraphicStyle.EDGE_CLOCK_HIGH</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinGraphicStyle.NON_LOGIC"><code class="docutils literal notranslate"><span class="pre">PinGraphicStyle.NON_LOGIC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinNumber"><code class="docutils literal notranslate"><span class="pre">PinNumber</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinNumber.text"><code class="docutils literal notranslate"><span class="pre">PinNumber.text</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinNumber.effects"><code class="docutils literal notranslate"><span class="pre">PinNumber.effects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinNumber.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">PinNumber.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinName"><code class="docutils literal notranslate"><span class="pre">PinName</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinName.text"><code class="docutils literal notranslate"><span class="pre">PinName.text</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinName.effects"><code class="docutils literal notranslate"><span class="pre">PinName.effects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinName.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">PinName.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Property"><code class="docutils literal notranslate"><span class="pre">Property</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Property.key"><code class="docutils literal notranslate"><span class="pre">Property.key</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Property.value"><code class="docutils literal notranslate"><span class="pre">Property.value</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Property.at"><code class="docutils literal notranslate"><span class="pre">Property.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Property.do_not_autoplace"><code class="docutils literal notranslate"><span class="pre">Property.do_not_autoplace</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Property.show_name"><code class="docutils literal notranslate"><span class="pre">Property.show_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Property.effects"><code class="docutils literal notranslate"><span class="pre">Property.effects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Property.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Property.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinAlternate"><code class="docutils literal notranslate"><span class="pre">PinAlternate</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinAlternate.name"><code class="docutils literal notranslate"><span class="pre">PinAlternate.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinAlternate.electrical_type"><code class="docutils literal notranslate"><span class="pre">PinAlternate.electrical_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinAlternate.graphic_style"><code class="docutils literal notranslate"><span class="pre">PinAlternate.graphic_style</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinAlternate.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">PinAlternate.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Pin"><code class="docutils literal notranslate"><span class="pre">Pin</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Pin.electrical_type"><code class="docutils literal notranslate"><span class="pre">Pin.electrical_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Pin.graphic_style"><code class="docutils literal notranslate"><span class="pre">Pin.graphic_style</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Pin.at"><code class="docutils literal notranslate"><span class="pre">Pin.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Pin.length"><code class="docutils literal notranslate"><span class="pre">Pin.length</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Pin.hide"><code class="docutils literal notranslate"><span class="pre">Pin.hide</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Pin.name"><code class="docutils literal notranslate"><span class="pre">Pin.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Pin.number"><code class="docutils literal notranslate"><span class="pre">Pin.number</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Pin.alternates"><code class="docutils literal notranslate"><span class="pre">Pin.alternates</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.Pin.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Pin.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinNameSettings"><code class="docutils literal notranslate"><span class="pre">PinNameSettings</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinNameSettings.offset"><code class="docutils literal notranslate"><span class="pre">PinNameSettings.offset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinNameSettings.hide"><code class="docutils literal notranslate"><span class="pre">PinNameSettings.hide</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinNameSettings.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">PinNameSettings.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinNumberSettings"><code class="docutils literal notranslate"><span class="pre">PinNumberSettings</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinNumberSettings.hide"><code class="docutils literal notranslate"><span class="pre">PinNumberSettings.hide</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.PinNumberSettings.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">PinNumberSettings.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SymbolGraphicText"><code class="docutils literal notranslate"><span class="pre">SymbolGraphicText</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SymbolGraphicText.private"><code class="docutils literal notranslate"><span class="pre">SymbolGraphicText.private</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SymbolGraphicText.text"><code class="docutils literal notranslate"><span class="pre">SymbolGraphicText.text</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SymbolGraphicText.at"><code class="docutils literal notranslate"><span class="pre">SymbolGraphicText.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SymbolGraphicText.effects"><code class="docutils literal notranslate"><span class="pre">SymbolGraphicText.effects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SymbolGraphicText.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">SymbolGraphicText.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SymbolGraphicTextBox"><code class="docutils literal notranslate"><span class="pre">SymbolGraphicTextBox</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SymbolGraphicTextBox.text"><code class="docutils literal notranslate"><span class="pre">SymbolGraphicTextBox.text</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SymbolGraphicTextBox.at"><code class="docutils literal notranslate"><span class="pre">SymbolGraphicTextBox.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SymbolGraphicTextBox.size"><code class="docutils literal notranslate"><span class="pre">SymbolGraphicTextBox.size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SymbolGraphicTextBox.stroke"><code class="docutils literal notranslate"><span class="pre">SymbolGraphicTextBox.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SymbolGraphicTextBox.fill"><code class="docutils literal notranslate"><span class="pre">SymbolGraphicTextBox.fill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SymbolGraphicTextBox.effects"><code class="docutils literal notranslate"><span class="pre">SymbolGraphicTextBox.effects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SymbolGraphicTextBox.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">SymbolGraphicTextBox.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SubSymbol"><code class="docutils literal notranslate"><span class="pre">SubSymbol</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SubSymbol.name"><code class="docutils literal notranslate"><span class="pre">SubSymbol.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SubSymbol.unit_name"><code class="docutils literal notranslate"><span class="pre">SubSymbol.unit_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SubSymbol.polylines"><code class="docutils literal notranslate"><span class="pre">SubSymbol.polylines</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SubSymbol.text_items"><code class="docutils literal notranslate"><span class="pre">SubSymbol.text_items</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SubSymbol.rectangles"><code class="docutils literal notranslate"><span class="pre">SubSymbol.rectangles</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SubSymbol.text_boxes"><code class="docutils literal notranslate"><span class="pre">SubSymbol.text_boxes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SubSymbol.circles"><code class="docutils literal notranslate"><span class="pre">SubSymbol.circles</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SubSymbol.arcs"><code class="docutils literal notranslate"><span class="pre">SubSymbol.arcs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SubSymbol.pins"><code class="docutils literal notranslate"><span class="pre">SubSymbol.pins</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SubSymbol.beziers"><code class="docutils literal notranslate"><span class="pre">SubSymbol.beziers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.SubSymbol.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">SubSymbol.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol"><code class="docutils literal notranslate"><span class="pre">LibSymbol</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol.name"><code class="docutils literal notranslate"><span class="pre">LibSymbol.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol.properties"><code class="docutils literal notranslate"><span class="pre">LibSymbol.properties</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol.power"><code class="docutils literal notranslate"><span class="pre">LibSymbol.power</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol.pin_numbers"><code class="docutils literal notranslate"><span class="pre">LibSymbol.pin_numbers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol.pin_names"><code class="docutils literal notranslate"><span class="pre">LibSymbol.pin_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol.exclude_from_sim"><code class="docutils literal notranslate"><span class="pre">LibSymbol.exclude_from_sim</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol.in_bom"><code class="docutils literal notranslate"><span class="pre">LibSymbol.in_bom</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol.on_board"><code class="docutils literal notranslate"><span class="pre">LibSymbol.on_board</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol.pins"><code class="docutils literal notranslate"><span class="pre">LibSymbol.pins</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol.symbols"><code class="docutils literal notranslate"><span class="pre">LibSymbol.symbols</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol.polylines"><code class="docutils literal notranslate"><span class="pre">LibSymbol.polylines</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol.text_items"><code class="docutils literal notranslate"><span class="pre">LibSymbol.text_items</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol.rectangles"><code class="docutils literal notranslate"><span class="pre">LibSymbol.rectangles</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol.circles"><code class="docutils literal notranslate"><span class="pre">LibSymbol.circles</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol.arcs"><code class="docutils literal notranslate"><span class="pre">LibSymbol.arcs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="symbol.html#edea.kicad.schematic.symbol.LibSymbol.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">LibSymbol.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</div><div class="flex justify-between items-center pt-6 mt-12 border-t border-border gap-4">
+<div class="mr-auto">
+<a class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input hover:bg-accent hover:text-accent-foreground py-2 px-4" href="../schematic_group.html">
+<svg class="mr-2 h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="15 18 9 12 15 6"></polyline>
+</svg>
+        Schematic group
+      </a>
+</div>
+<div class="ml-auto">
+<a class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input hover:bg-accent hover:text-accent-foreground py-2 px-4" href="base.html">
+        Base
+        <svg class="ml-2 h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="9 18 15 12 9 6"></polyline>
+</svg>
+</a>
+</div>
+</div></div>
+</main>
+</div>
+</div><footer class="py-6 border-t border-border md:py-0">
+<div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+<div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2025, EDeA Dev Team under None. Built with <a class="font-medium underline underline-offset-4" href="https://www.sphinx-doc.org" rel="noreferrer">Sphinx 8.2.3</a></p>
+</div>
+</div>
+</footer>
+</div>
+<script src="../../../_static/documentation_options.js?v=b41f4c93"></script>
+<script src="../../../_static/doctools.js?v=9bcbadda"></script>
+<script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+<script src="../../../_static/tabs.js?v=3ee01567"></script>
+<script src="../../../_static/asciinema-player_3.6.3.js"></script>
+<script defer="defer" src="../../../_static/theme.js?v=073f68d9"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+[project]
+name = "edea"
+version = "0.8.4"
+description = "KiCAD file format parser and tools"
+authors = [
+    { name = "Elen Eisendle", email = "ln@calcifer.ee" },
+    { name = "Kaspar Emanuel", email = "kaspar@kitspace.org" },
+    { name = "Abdulrhmn Ghanem", email = "abdoghanem160@gmail.com" },
+]
+requires-python = ">=3.11,<4"
+readme = "README.md"
+license = "EUPL-1.2"
+dependencies = [
+    "pydantic>=2.11.5,<3",
+    "numpy>=2.3.0,<3",
+    "typer>=0.16.0,<1",
+    "gitpython>=3.1.44,<4",
+    "requests>=2.32.4,<3",
+    "packaging~=25.0",
+]
+
+[project.urls]
+Repository = "https://gitlab.com/edea-dev/edea"
+Documentation = "https://edea-dev.gitlab.io/edea/latest/get_started.html"
+
+[project.scripts]
+edea = "edea.cli:cli"
+
+[dependency-groups]
+dev = [
+    "bandit>=1.8.3,<2",
+    "black>=25.1.0",
+    "datamodel-code-generator[http]>=0.30.2",
+    "hypothesis>=6.135.4,<7",
+    "matplotlib>=3.10.3,<4",
+    "myst-parser>=4.0.1",
+    "nox>=2025.5.1",
+    "poethepoet>=0.35.0",
+    "pydoclint>=0.6.6",
+    "pyinstrument>=5.0.2",
+    "pylint>=3.3.7,<4",
+    "pylint-pydantic>=0.3.5,<0.4",
+    "pyright>=1.1.401,<2",
+    "pytest>=8.4.0,<9",
+    "pytest-cov>=6.1.1",
+    "pytest-mock>=3.14.1,<4",
+    "pytest-only>=2.1.2,<3",
+    "pytest-xdist>=3.7.0,<4",
+    "ruff>=0.11.13",
+    "sphinx-autobuild>=2024.10.3",
+    "sphinx-favicon>=1.0.1,<2",
+    "sphinx-inline-tabs>=2023.4.21,<2024",
+    "sphinx-last-updated-by-git>=0.3.8,<0.4",
+    "sphinx-notfound-page>=1.1.0,<2",
+    "sphinx-sitemap>=2.6.0,<3",
+    "sphinx-tippy>=0.4.3,<0.5",
+    "sphinxawesome-theme>=5.3.2,<6",
+    "sphinxcontrib-asciinema>=0.4.2",
+    "sphinxext-opengraph>=0.10.0",
+    "vale>=3.11.2",
+    "watchfiles>=1.0.5",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+ignore = []
+fixable = ["ALL"]
+
+[tool.pytest.ini_options]
+markers = [
+    "long_running: marks test as taking a long time (deselect with '-m \"not long_running\")",
+]
+
+[tool.coverage.run]
+omit = ["edea/cli.py"]
+
+[tool.poe.tasks]
+fmt = "uv run black edea tests docs --exclude tests/kicad_projects"
+ruff = "uv run ruff check edea tests --exclude tests/kicad_projects/kicad-test-files"
+
+[tool.poe.tasks.profile]
+shell = """
+    pyinstrument --show-all -r html -o $file.prof.html $file && \
+    (lsof -i:8000 || \
+    (python -m http.server -d tests/benchmark & \
+    SERVER_PID=$!; \
+    xdg-open http://localhost:8000/$(basename $file).prof.html; \
+    sleep 5; \
+    kill $SERVER_PID))
+"""
+
+[[tool.poe.tasks.profile.args]]
+name = "file"
+help = "File to profile"
+
+[tool.poe.tasks.benchmark]
+shell = "hyperfine 'python $file'"
+
+[[tool.poe.tasks.benchmark.args]]
+name = "file"
+help = "File to benchmark"
+
+[tool.poe.tasks.docs]
+shell = "rm -rf docs/_build && sphinx-autobuild --port 4444 --watch edea docs docs/_build"
+
+[tool.poe.tasks.docs-lint]
+shell = "pydoclint edea && vale docs"

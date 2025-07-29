@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+
+<html :class="{'dark': darkMode === 'dark' || (darkMode === 'system' &amp;&amp; window.matchMedia('(prefers-color-scheme: dark)').matches)}" class="scroll-smooth" data-content_root="../../../" lang="en" x-data="{ darkMode: localStorage.getItem('darkMode') || localStorage.setItem('darkMode', 'system'), activeSection: '' }" x-init="$watch('darkMode', val =&gt; localStorage.setItem('darkMode', val))">
+<head>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="utf-8"/>
+<meta content="white" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="black" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="../../../_static/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="../../../_static/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<meta content="2024-02-19T15:43:21+00:00" property="article:modified_time"/><meta content="PCB" property="og:title"/>
+<meta content="website" property="og:type"/>
+<meta content="https://edea-dev.gitlab.io/edea/latest/reference/kicad/pcb/index.html" property="og:url"/>
+<meta content="edea" property="og:site_name"/>
+<meta content="1146" property="og:image:width"/>
+<meta content="600" property="og:image:height"/>
+<meta content="https://edea-dev.gitlab.io/edea/latest/_images/social_previews/summary_reference_kicad_pcb_index_ff595ba0.png" property="og:image"/>
+<meta content="" property="og:image:alt"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<title>PCB | edea 0.8.1 documentation</title>
+<meta content="PCB | edea 0.8.1 documentation" property="og:title"/>
+<meta content="PCB | edea 0.8.1 documentation" name="twitter:title"/>
+<link href="../../../_static/pygments.css?v=8d216cef" rel="stylesheet" type="text/css">
+<link href="../../../_static/theme.css?v=ecdfb4fc" rel="stylesheet" type="text/css">
+<link href="../../../_static/tabs.css?v=4c969af8" rel="stylesheet" type="text/css"/>
+<link href="../../../_static/asciinema-player_2.6.1.css" rel="stylesheet" type="text/css"/>
+<link href="../../../_static/asciinema-custom.css" rel="stylesheet" type="text/css"/>
+<link href="../../../_static/custom.css" rel="stylesheet" type="text/css"/>
+<link href="https://edea-dev.gitlab.io/edea/latest/reference/kicad/pcb/index.html" rel="canonical"/>
+<link href="../../../search.html" rel="search" title="Search"/>
+<link href="../../../genindex.html" rel="index" title="Index"/>
+<link href="base.html" rel="next" title="Base"/>
+<link href="../parser.html" rel="prev" title="Parser"/>
+<script>
+    <!-- Prevent Flash of wrong theme -->
+      const userPreference = localStorage.getItem('darkMode');
+      let mode;
+      if (userPreference === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        mode = 'dark';
+        document.documentElement.classList.add('dark');
+      } else {
+        mode = 'light';
+      }
+      if (!userPreference) {localStorage.setItem('darkMode', mode)}
+    </script>
+</link></link></head>
+<body :class="{ 'overflow-hidden': showSidebar }" class="min-h-screen font-sans antialiased bg-background text-foreground" x-data="{ showSidebar: false }">
+<div @click.self="showSidebar = false" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm md:hidden" x-cloak="" x-show="showSidebar"></div><div class="relative flex flex-col min-h-screen" id="page"><a class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100" href="#content">
+      Skip to content
+    </a>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  [x-cloak] { display: none !important; }
+</style>
+<header class="sticky top-0 z-40 w-full border-b shadow-sm border-border supports-backdrop-blur:bg-background/60 bg-background/95 backdrop-blur"><div class="container flex items-center h-14">
+<div class="hidden mr-4 md:flex">
+<a class="flex items-center mr-6" href="../../../index.html"><span class="hidden font-bold sm:inline-block text-clip whitespace-nowrap">edea 0.8.1 documentation</span>
+</a></div><button @click="showSidebar = true" class="inline-flex items-center justify-center h-10 px-0 py-2 mr-2 text-base font-medium transition-colors rounded-md hover:text-accent-foreground hover:bg-transparent md:hidden" type="button">
+<svg aria-hidden="true" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M152.587 825.087q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440Zm0-203.587q-19.152 0-32.326-13.174T107.087 576q0-19.152 13.174-32.326t32.326-13.174h320q19.152 0 32.326 13.174T518.087 576q0 19.152-13.174 32.326T472.587 621.5h-320Zm0-203.587q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440ZM708.913 576l112.174 112.174q12.674 12.674 12.674 31.826t-12.674 31.826Q808.413 764.5 789.261 764.5t-31.826-12.674l-144-144Q600 594.391 600 576t13.435-31.826l144-144q12.674-12.674 31.826-12.674t31.826 12.674q12.674 12.674 12.674 31.826t-12.674 31.826L708.913 576Z"></path>
+</svg>
+<span class="sr-only">Toggle navigation menu</span>
+</button>
+<div class="flex items-center justify-between flex-1 space-x-2 sm:space-x-4 md:justify-end">
+<div class="flex-1 w-full md:w-auto md:flex-none"><form @keydown.k.window.meta="$refs.search.focus()" action="../../../search.html" class="relative flex items-center group" id="searchbox" method="get">
+<input aria-label="Search the docs" class="inline-flex items-center font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64" id="search-input" name="q" placeholder="Search ..." type="search" x-ref="search"/>
+<kbd class="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none text-muted-foreground items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex group-hover:bg-accent group-hover:text-accent-foreground">
+<span class="text-xs">⌘</span>
+    K
+  </kbd>
+</form>
+</div>
+<div class="flex justify-center" x-data='{ versions: [{ "key": "latest", "url": "https://edea-dev.gitlab.io/edea/latest"}] }' x-init="versions = await (await fetch('https://edea-dev.gitlab.io/edea/versions.json')).json()">
+<div class="relative" x-data="{
+          open: false,
+          toggle() {
+              if (this.open) {
+                  return this.close()
+              }
+
+              this.$refs.button.focus()
+
+              this.open = true
+          },
+          close(focusAfter) {
+              if (! this.open) return
+
+              this.open = false
+
+              focusAfter &amp;&amp; focusAfter.focus()
+          }
+      }" x-id="['dropdown-button']" x-on:focusin.window="! $refs.panel.contains($event.target) &amp;&amp; close()" x-on:keydown.escape.prevent.stop="close($refs.button)">
+
+<button :aria-controls="$id('dropdown-button')" :aria-expanded="open" :class="open ? 'rounded-b-none' : ''" class="flex items-center gap-2 font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start text-sm sm:pr-12 md:w-28 lg:w-40 rounded-[0.5rem]" type="button" x-on:click="toggle()" x-ref="button">
+
+<svg class="h-5 w-5 text-gray-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" fill-rule="evenodd"></path>
+</svg>
+            Releases
+          </button>
+
+<div :class="darkMode === 'dark' ? 'bg-slate-800' : 'bg-slate-100'" :id="$id('dropdown-button')" class="max-h-[200px] overflow-y-scroll absolute left-0 w-full md:w-28 lg:w-40" x-cloak="" x-on:click.outside="close($refs.button)" x-ref="panel" x-show="open" x-transition.origin.top.left="">
+<template "="" x-for="version in versions">
+<a :class="darkMode === 'dark' ? 'hover:bg-slate-700' : 'hover:bg-slate-200'" class="flex items-center gap-2 w-full last-of-type:rounded-b-md px-4 py-2.5 text-left text-sm" x-bind:href="version.url" x-text="version.key">
+</a>
+</template>
+</div>
+</div>
+</div>
+<nav class="flex items-center space-x-1">
+<a href="https://gitlab.com/edea-dev/edea" rel="noopener nofollow" title="Visit repository on GitLab">
+<div class="inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md disabled:opacity-50 disabled:pointer-events-none hover:bg-accent hover:text-accent-foreground h-9 w-9">
+<svg viewbox="0 0 380 380" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#e24329;}.cls-2{fill:#fc6d26;}.cls-3{fill:#fca326;}</style></defs><g id="LOGO"><path class="cls-1" d="M282.83,170.73l-.27-.69-26.14-68.22a6.81,6.81,0,0,0-2.69-3.24,7,7,0,0,0-8,.43,7,7,0,0,0-2.32,3.52l-17.65,54H154.29l-17.65-54A6.86,6.86,0,0,0,134.32,99a7,7,0,0,0-8-.43,6.87,6.87,0,0,0-2.69,3.24L97.44,170l-.26.69a48.54,48.54,0,0,0,16.1,56.1l.09.07.24.17,39.82,29.82,19.7,14.91,12,9.06a8.07,8.07,0,0,0,9.76,0l12-9.06,19.7-14.91,40.06-30,.1-.08A48.56,48.56,0,0,0,282.83,170.73Z"></path><path class="cls-2" d="M282.83,170.73l-.27-.69a88.3,88.3,0,0,0-35.15,15.8L190,229.25c19.55,14.79,36.57,27.64,36.57,27.64l40.06-30,.1-.08A48.56,48.56,0,0,0,282.83,170.73Z"></path><path class="cls-3" d="M153.43,256.89l19.7,14.91,12,9.06a8.07,8.07,0,0,0,9.76,0l12-9.06,19.7-14.91S209.55,244,190,229.25C170.45,244,153.43,256.89,153.43,256.89Z"></path><path class="cls-2" d="M132.58,185.84A88.19,88.19,0,0,0,97.44,170l-.26.69a48.54,48.54,0,0,0,16.1,56.1l.09.07.24.17,39.82,29.82s17-12.85,36.57-27.64Z"></path></g></svg>
+</div>
+</a>
+<button @click="darkMode = darkMode === 'light' ? 'dark' : 'light'" class="relative inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9" title="Toggle dark mode" type="button">
+<svg class="absolute transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 685q45.456 0 77.228-31.772Q589 621.456 589 576q0-45.456-31.772-77.228Q525.456 467 480 467q-45.456 0-77.228 31.772Q371 530.544 371 576q0 45.456 31.772 77.228Q434.544 685 480 685Zm0 91q-83 0-141.5-58.5T280 576q0-83 58.5-141.5T480 376q83 0 141.5 58.5T680 576q0 83-58.5 141.5T480 776ZM80 621.5q-19.152 0-32.326-13.174T34.5 576q0-19.152 13.174-32.326T80 530.5h80q19.152 0 32.326 13.174T205.5 576q0 19.152-13.174 32.326T160 621.5H80Zm720 0q-19.152 0-32.326-13.174T754.5 576q0-19.152 13.174-32.326T800 530.5h80q19.152 0 32.326 13.174T925.5 576q0 19.152-13.174 32.326T880 621.5h-80Zm-320-320q-19.152 0-32.326-13.174T434.5 256v-80q0-19.152 13.174-32.326T480 130.5q19.152 0 32.326 13.174T525.5 176v80q0 19.152-13.174 32.326T480 301.5Zm0 720q-19.152 0-32.326-13.17Q434.5 995.152 434.5 976v-80q0-19.152 13.174-32.326T480 850.5q19.152 0 32.326 13.174T525.5 896v80q0 19.152-13.174 32.33-13.174 13.17-32.326 13.17ZM222.174 382.065l-43-42Q165.5 327.391 166 308.239t13.174-33.065q13.435-13.674 32.587-13.674t32.065 13.674l42.239 43q12.674 13.435 12.555 31.706-.12 18.272-12.555 31.946-12.674 13.674-31.445 13.413-18.772-.261-32.446-13.174Zm494 494.761-42.239-43q-12.674-13.435-12.674-32.087t12.674-31.565Q686.609 756.5 705.38 757q18.772.5 32.446 13.174l43 41.761Q794.5 824.609 794 843.761t-13.174 33.065Q767.391 890.5 748.239 890.5t-32.065-13.674Zm-42-494.761Q660.5 369.391 661 350.62q.5-18.772 13.174-32.446l41.761-43Q728.609 261.5 747.761 262t33.065 13.174q13.674 13.435 13.674 32.587t-13.674 32.065l-43 42.239q-13.435 12.674-31.706 12.555-18.272-.12-31.946-12.555Zm-495 494.761Q165.5 863.391 165.5 844.239t13.674-32.065l43-42.239q13.435-12.674 32.087-12.674t31.565 12.674Q299.5 782.609 299 801.38q-.5 18.772-13.174 32.446l-41.761 43Q231.391 890.5 212.239 890t-33.065-13.174ZM480 576Z"></path>
+</svg>
+<svg class="absolute transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 936q-151 0-255.5-104.5T120 576q0-138 90-239.5T440 218q25-3 39 18t-1 44q-17 26-25.5 55t-8.5 61q0 90 63 153t153 63q31 0 61.5-9t54.5-25q21-14 43-1.5t19 39.5q-14 138-117.5 229T480 936Zm0-80q88 0 158-48.5T740 681q-20 5-40 8t-40 3q-123 0-209.5-86.5T364 396q0-20 3-40t8-40q-78 32-126.5 102T200 576q0 116 82 198t198 82Zm-10-270Z"></path>
+</svg>
+</button>
+</nav>
+</div>
+</div>
+</header>
+<div class="flex-1"><div class="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"><aside :aria-hidden="!showSidebar" :class="{ 'translate-x-0': showSidebar }" class="fixed inset-y-0 left-0 md:top-14 z-50 md:z-30 bg-background md:bg-transparent transition-all duration-100 -translate-x-full md:translate-x-0 ml-0 p-6 md:p-0 md:-ml-2 md:h-[calc(100vh-3.5rem)] w-5/6 md:w-full shrink-0 overflow-y-auto border-r border-border md:sticky" id="left-sidebar">
+<a class="!justify-start text-sm md:!hidden bg-background" href="../../../index.html"><span class="font-bold text-clip whitespace-nowrap">edea 0.8.1 documentation</span>
+</a>
+<div class="relative overflow-hidden md:overflow-auto my-4 md:my-0 h-[calc(100vh-8rem)] md:h-auto">
+<div class="overflow-y-auto h-full w-full relative pr-6"><nav class="table w-full min-w-full my-6 lg:my-8">
+<p class="caption" role="heading"><span class="caption-text">Content:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command line interface</a></li>
+<li class="toctree-l1 current" x-data="{ expanded: $el.classList.contains('current') ? true : false }"><a :class="{ 'expanded' : expanded }" @click="expanded = !expanded" class="reference internal expandable" href="../../index.html">API reference<button @click.prevent.stop="expanded = !expanded" type="button"><span class="sr-only"></span><svg fill="currentColor" height="18px" stroke="none" viewbox="0 0 24 24" width="18px" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></button></a><ul class="current" x-show="expanded">
+<li class="toctree-l2 current" x-data="{ expanded: $el.classList.contains('current') ? true : false }"><a :class="{ 'expanded' : expanded }" @click="expanded = !expanded" class="reference internal expandable" href="../index.html">KiCad<button @click.prevent.stop="expanded = !expanded" type="button"><span class="sr-only"></span><svg fill="currentColor" height="18px" stroke="none" viewbox="0 0 24 24" width="18px" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></button></a><ul class="current" x-show="expanded">
+<li class="toctree-l3"><a class="reference internal" href="../base.html">Base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../checker.html">Checker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common.html">Common</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../design_rules.html">Design rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../parser.html">Parser</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PCB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../project.html">Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../s_expr.html">S-Expressions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../schematic_group.html">Schematic group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../schematic/index.html">Schematic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../serializer.html">Serializer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../metadata.html">Module metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cli.html">Command line tool</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">CHANGELOG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev.html">Developer documentation</a></li>
+</ul>
+</nav>
+</div>
+</div>
+<button @click="showSidebar = false" class="absolute md:hidden right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100" type="button">
+<svg class="h-4 w-4" fill="currentColor" height="24" stroke="none" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 632 284 828q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536 576l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480 632Z"></path>
+</svg>
+</button>
+</aside>
+<main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+<div class="w-full min-w-0 mx-auto">
+<nav aria-label="breadcrumbs" class="flex items-center mb-4 space-x-1 text-sm text-muted-foreground">
+<a class="overflow-hidden text-ellipsis whitespace-nowrap hover:text-foreground" href="../../../index.html">
+<span class="hidden md:inline">edea 0.8.1 documentation</span>
+<svg aria-label="Home" class="md:hidden" fill="currentColor" height="18" stroke="none" viewbox="0 96 960 960" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z"></path>
+</svg>
+</a>
+<div class="mr-1">/</div><a class="hover:text-foreground overflow-hidden text-ellipsis whitespace-nowrap" href="../../index.html">API reference</a>
+<div class="mr-1">/</div><a class="hover:text-foreground overflow-hidden text-ellipsis whitespace-nowrap" href="../index.html">KiCad</a>
+<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">PCB</span>
+</nav>
+<div id="content" role="main">
+<section id="pcb">
+<h1>PCB<a @click.prevent="window.navigator.clipboard.writeText($el.href); $el.setAttribute('data-tooltip', 'Copied!'); setTimeout(() =&gt; $el.setAttribute('data-tooltip', 'Copy link to this element'), 2000)" aria-label="Copy link to this element" class="headerlink" data-tooltip="Copy link to this element" href="#pcb"><svg height="1em" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"></path></svg></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="base.html">Base</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="base.html#edea.kicad.pcb.base.KicadPcbExpr"><code class="docutils literal notranslate"><span class="pre">KicadPcbExpr</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="common.html">Common</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Property"><code class="docutils literal notranslate"><span class="pre">Property</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Property.key"><code class="docutils literal notranslate"><span class="pre">Property.key</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Property.value"><code class="docutils literal notranslate"><span class="pre">Property.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Position"><code class="docutils literal notranslate"><span class="pre">Position</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Position.x"><code class="docutils literal notranslate"><span class="pre">Position.x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Position.y"><code class="docutils literal notranslate"><span class="pre">Position.y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Position.angle"><code class="docutils literal notranslate"><span class="pre">Position.angle</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Position.unlocked"><code class="docutils literal notranslate"><span class="pre">Position.unlocked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Position.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Position.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ConnectionPads"><code class="docutils literal notranslate"><span class="pre">ConnectionPads</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ConnectionPads.type"><code class="docutils literal notranslate"><span class="pre">ConnectionPads.type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ConnectionPads.clearance"><code class="docutils literal notranslate"><span class="pre">ConnectionPads.clearance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ConnectionPads.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">ConnectionPads.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneKeepOutSettings"><code class="docutils literal notranslate"><span class="pre">ZoneKeepOutSettings</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneKeepOutSettings.tracks"><code class="docutils literal notranslate"><span class="pre">ZoneKeepOutSettings.tracks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneKeepOutSettings.vias"><code class="docutils literal notranslate"><span class="pre">ZoneKeepOutSettings.vias</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneKeepOutSettings.pads"><code class="docutils literal notranslate"><span class="pre">ZoneKeepOutSettings.pads</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneKeepOutSettings.copperpour"><code class="docutils literal notranslate"><span class="pre">ZoneKeepOutSettings.copperpour</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneKeepOutSettings.footprints"><code class="docutils literal notranslate"><span class="pre">ZoneKeepOutSettings.footprints</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneKeepOutSettings.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">ZoneKeepOutSettings.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillIslandRemovalMode"><code class="docutils literal notranslate"><span class="pre">ZoneFillIslandRemovalMode</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillIslandRemovalMode.Always"><code class="docutils literal notranslate"><span class="pre">ZoneFillIslandRemovalMode.Always</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillIslandRemovalMode.Never"><code class="docutils literal notranslate"><span class="pre">ZoneFillIslandRemovalMode.Never</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillIslandRemovalMode.MinimumArea"><code class="docutils literal notranslate"><span class="pre">ZoneFillIslandRemovalMode.MinimumArea</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillHatchSmoothingLevel"><code class="docutils literal notranslate"><span class="pre">ZoneFillHatchSmoothingLevel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillHatchSmoothingLevel.No"><code class="docutils literal notranslate"><span class="pre">ZoneFillHatchSmoothingLevel.No</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillHatchSmoothingLevel.Fillet"><code class="docutils literal notranslate"><span class="pre">ZoneFillHatchSmoothingLevel.Fillet</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillHatchSmoothingLevel.ArcMinimum"><code class="docutils literal notranslate"><span class="pre">ZoneFillHatchSmoothingLevel.ArcMinimum</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillHatchSmoothingLevel.ArcMaximum"><code class="docutils literal notranslate"><span class="pre">ZoneFillHatchSmoothingLevel.ArcMaximum</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillHatchBorderAlgorithm"><code class="docutils literal notranslate"><span class="pre">ZoneFillHatchBorderAlgorithm</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillHatchBorderAlgorithm.ZoneMinimumThickness"><code class="docutils literal notranslate"><span class="pre">ZoneFillHatchBorderAlgorithm.ZoneMinimumThickness</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillHatchBorderAlgorithm.HatchThickness"><code class="docutils literal notranslate"><span class="pre">ZoneFillHatchBorderAlgorithm.HatchThickness</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings.yes"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings.yes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings.mode"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings.mode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings.thermal_gap"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings.thermal_gap</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings.thermal_bridge_width"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings.thermal_bridge_width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings.smoothing"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings.smoothing</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings.radius"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings.radius</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings.island_removal_mode"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings.island_removal_mode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings.island_area_min"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings.island_area_min</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings.hatch_thickness"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings.hatch_thickness</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings.hatch_gap"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings.hatch_gap</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings.hatch_orientation"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings.hatch_orientation</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings.hatch_smoothing_level"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings.hatch_smoothing_level</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings.hatch_smoothing_value"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings.hatch_smoothing_value</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings.hatch_border_algorithm"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings.hatch_border_algorithm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings.hatch_min_hole_area"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings.hatch_min_hole_area</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillSettings.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">ZoneFillSettings.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillPolygon"><code class="docutils literal notranslate"><span class="pre">ZoneFillPolygon</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillPolygon.layer"><code class="docutils literal notranslate"><span class="pre">ZoneFillPolygon.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillPolygon.island"><code class="docutils literal notranslate"><span class="pre">ZoneFillPolygon.island</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillPolygon.pts"><code class="docutils literal notranslate"><span class="pre">ZoneFillPolygon.pts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneFillPolygon.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">ZoneFillPolygon.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Polygon"><code class="docutils literal notranslate"><span class="pre">Polygon</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Polygon.pts"><code class="docutils literal notranslate"><span class="pre">Polygon.pts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Polygon.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Polygon.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Hatch"><code class="docutils literal notranslate"><span class="pre">Hatch</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Hatch.Edge"><code class="docutils literal notranslate"><span class="pre">Hatch.Edge</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Hatch.Full"><code class="docutils literal notranslate"><span class="pre">Hatch.Full</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Hatch.None_"><code class="docutils literal notranslate"><span class="pre">Hatch.None_</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneAttrTearDrop"><code class="docutils literal notranslate"><span class="pre">ZoneAttrTearDrop</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneAttrTearDrop.type"><code class="docutils literal notranslate"><span class="pre">ZoneAttrTearDrop.type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneAttrTearDrop.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">ZoneAttrTearDrop.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneAttr"><code class="docutils literal notranslate"><span class="pre">ZoneAttr</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneAttr.teardrop"><code class="docutils literal notranslate"><span class="pre">ZoneAttr.teardrop</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.ZoneAttr.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">ZoneAttr.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone"><code class="docutils literal notranslate"><span class="pre">Zone</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.locked"><code class="docutils literal notranslate"><span class="pre">Zone.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.net"><code class="docutils literal notranslate"><span class="pre">Zone.net</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.net_name"><code class="docutils literal notranslate"><span class="pre">Zone.net_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.layer"><code class="docutils literal notranslate"><span class="pre">Zone.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.layers"><code class="docutils literal notranslate"><span class="pre">Zone.layers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.tstamp"><code class="docutils literal notranslate"><span class="pre">Zone.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.name"><code class="docutils literal notranslate"><span class="pre">Zone.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.hatch"><code class="docutils literal notranslate"><span class="pre">Zone.hatch</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.priority"><code class="docutils literal notranslate"><span class="pre">Zone.priority</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.attr"><code class="docutils literal notranslate"><span class="pre">Zone.attr</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.connect_pads"><code class="docutils literal notranslate"><span class="pre">Zone.connect_pads</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.min_thickness"><code class="docutils literal notranslate"><span class="pre">Zone.min_thickness</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.filled_areas_thickness"><code class="docutils literal notranslate"><span class="pre">Zone.filled_areas_thickness</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.keepout"><code class="docutils literal notranslate"><span class="pre">Zone.keepout</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.fill"><code class="docutils literal notranslate"><span class="pre">Zone.fill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.polygons"><code class="docutils literal notranslate"><span class="pre">Zone.polygons</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Zone.filled_polygons"><code class="docutils literal notranslate"><span class="pre">Zone.filled_polygons</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Group"><code class="docutils literal notranslate"><span class="pre">Group</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Group.name"><code class="docutils literal notranslate"><span class="pre">Group.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Group.locked"><code class="docutils literal notranslate"><span class="pre">Group.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Group.id"><code class="docutils literal notranslate"><span class="pre">Group.id</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Group.members"><code class="docutils literal notranslate"><span class="pre">Group.members</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.RenderCache"><code class="docutils literal notranslate"><span class="pre">RenderCache</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.RenderCache.name"><code class="docutils literal notranslate"><span class="pre">RenderCache.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.RenderCache.number"><code class="docutils literal notranslate"><span class="pre">RenderCache.number</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.RenderCache.polygons"><code class="docutils literal notranslate"><span class="pre">RenderCache.polygons</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.BaseTextBox"><code class="docutils literal notranslate"><span class="pre">BaseTextBox</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.BaseTextBox.locked"><code class="docutils literal notranslate"><span class="pre">BaseTextBox.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.BaseTextBox.text"><code class="docutils literal notranslate"><span class="pre">BaseTextBox.text</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.BaseTextBox.start"><code class="docutils literal notranslate"><span class="pre">BaseTextBox.start</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.BaseTextBox.end"><code class="docutils literal notranslate"><span class="pre">BaseTextBox.end</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.BaseTextBox.pts"><code class="docutils literal notranslate"><span class="pre">BaseTextBox.pts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.BaseTextBox.layer"><code class="docutils literal notranslate"><span class="pre">BaseTextBox.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.BaseTextBox.tstamp"><code class="docutils literal notranslate"><span class="pre">BaseTextBox.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.BaseTextBox.effects"><code class="docutils literal notranslate"><span class="pre">BaseTextBox.effects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.BaseTextBox.render_cache"><code class="docutils literal notranslate"><span class="pre">BaseTextBox.render_cache</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.BaseTextBox.angle"><code class="docutils literal notranslate"><span class="pre">BaseTextBox.angle</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.BaseTextBox.stroke"><code class="docutils literal notranslate"><span class="pre">BaseTextBox.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.BaseTextBox.hide"><code class="docutils literal notranslate"><span class="pre">BaseTextBox.hide</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Net"><code class="docutils literal notranslate"><span class="pre">Net</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Net.number"><code class="docutils literal notranslate"><span class="pre">Net.number</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Net.name"><code class="docutils literal notranslate"><span class="pre">Net.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Image"><code class="docutils literal notranslate"><span class="pre">Image</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Image.at"><code class="docutils literal notranslate"><span class="pre">Image.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Image.layer"><code class="docutils literal notranslate"><span class="pre">Image.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Image.scale"><code class="docutils literal notranslate"><span class="pre">Image.scale</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="common.html#edea.kicad.pcb.common.Image.data"><code class="docutils literal notranslate"><span class="pre">Image.data</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="footprint.html">Footprint</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintAttributes"><code class="docutils literal notranslate"><span class="pre">FootprintAttributes</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintAttributes.type"><code class="docutils literal notranslate"><span class="pre">FootprintAttributes.type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintAttributes.board_only"><code class="docutils literal notranslate"><span class="pre">FootprintAttributes.board_only</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintAttributes.exclude_from_pos_files"><code class="docutils literal notranslate"><span class="pre">FootprintAttributes.exclude_from_pos_files</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintAttributes.exclude_from_bom"><code class="docutils literal notranslate"><span class="pre">FootprintAttributes.exclude_from_bom</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintAttributes.allow_missing_courtyard"><code class="docutils literal notranslate"><span class="pre">FootprintAttributes.allow_missing_courtyard</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintAttributes.allow_soldermask_bridges"><code class="docutils literal notranslate"><span class="pre">FootprintAttributes.allow_soldermask_bridges</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintAttributes.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintAttributes.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.ZoneConnection"><code class="docutils literal notranslate"><span class="pre">ZoneConnection</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.ZoneConnection.NoConnection"><code class="docutils literal notranslate"><span class="pre">ZoneConnection.NoConnection</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.ZoneConnection.ThermalRelief"><code class="docutils literal notranslate"><span class="pre">ZoneConnection.ThermalRelief</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.ZoneConnection.SolidFill"><code class="docutils literal notranslate"><span class="pre">ZoneConnection.SolidFill</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintText"><code class="docutils literal notranslate"><span class="pre">FootprintText</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintText.type"><code class="docutils literal notranslate"><span class="pre">FootprintText.type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintText.locked"><code class="docutils literal notranslate"><span class="pre">FootprintText.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintText.text"><code class="docutils literal notranslate"><span class="pre">FootprintText.text</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintText.at"><code class="docutils literal notranslate"><span class="pre">FootprintText.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintText.layer"><code class="docutils literal notranslate"><span class="pre">FootprintText.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintText.hide"><code class="docutils literal notranslate"><span class="pre">FootprintText.hide</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintText.effects"><code class="docutils literal notranslate"><span class="pre">FootprintText.effects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintText.tstamp"><code class="docutils literal notranslate"><span class="pre">FootprintText.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintText.render_cache"><code class="docutils literal notranslate"><span class="pre">FootprintText.render_cache</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintText.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintText.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintTextBox"><code class="docutils literal notranslate"><span class="pre">FootprintTextBox</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintTextBox.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintTextBox.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintLine"><code class="docutils literal notranslate"><span class="pre">FootprintLine</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintLine.start"><code class="docutils literal notranslate"><span class="pre">FootprintLine.start</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintLine.end"><code class="docutils literal notranslate"><span class="pre">FootprintLine.end</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintLine.stroke"><code class="docutils literal notranslate"><span class="pre">FootprintLine.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintLine.layer"><code class="docutils literal notranslate"><span class="pre">FootprintLine.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintLine.width"><code class="docutils literal notranslate"><span class="pre">FootprintLine.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintLine.tstamp"><code class="docutils literal notranslate"><span class="pre">FootprintLine.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintLine.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintLine.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintRectangle"><code class="docutils literal notranslate"><span class="pre">FootprintRectangle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintRectangle.start"><code class="docutils literal notranslate"><span class="pre">FootprintRectangle.start</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintRectangle.end"><code class="docutils literal notranslate"><span class="pre">FootprintRectangle.end</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintRectangle.stroke"><code class="docutils literal notranslate"><span class="pre">FootprintRectangle.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintRectangle.fill"><code class="docutils literal notranslate"><span class="pre">FootprintRectangle.fill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintRectangle.layer"><code class="docutils literal notranslate"><span class="pre">FootprintRectangle.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintRectangle.tstamp"><code class="docutils literal notranslate"><span class="pre">FootprintRectangle.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintRectangle.width"><code class="docutils literal notranslate"><span class="pre">FootprintRectangle.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintRectangle.locked"><code class="docutils literal notranslate"><span class="pre">FootprintRectangle.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintRectangle.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintRectangle.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCircle"><code class="docutils literal notranslate"><span class="pre">FootprintCircle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCircle.center"><code class="docutils literal notranslate"><span class="pre">FootprintCircle.center</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCircle.end"><code class="docutils literal notranslate"><span class="pre">FootprintCircle.end</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCircle.stroke"><code class="docutils literal notranslate"><span class="pre">FootprintCircle.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCircle.fill"><code class="docutils literal notranslate"><span class="pre">FootprintCircle.fill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCircle.layer"><code class="docutils literal notranslate"><span class="pre">FootprintCircle.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCircle.width"><code class="docutils literal notranslate"><span class="pre">FootprintCircle.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCircle.tstamp"><code class="docutils literal notranslate"><span class="pre">FootprintCircle.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCircle.locked"><code class="docutils literal notranslate"><span class="pre">FootprintCircle.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCircle.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintCircle.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintArc"><code class="docutils literal notranslate"><span class="pre">FootprintArc</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintArc.start"><code class="docutils literal notranslate"><span class="pre">FootprintArc.start</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintArc.mid"><code class="docutils literal notranslate"><span class="pre">FootprintArc.mid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintArc.end"><code class="docutils literal notranslate"><span class="pre">FootprintArc.end</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintArc.stroke"><code class="docutils literal notranslate"><span class="pre">FootprintArc.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintArc.layer"><code class="docutils literal notranslate"><span class="pre">FootprintArc.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintArc.tstamp"><code class="docutils literal notranslate"><span class="pre">FootprintArc.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintArc.width"><code class="docutils literal notranslate"><span class="pre">FootprintArc.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintArc.locked"><code class="docutils literal notranslate"><span class="pre">FootprintArc.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintArc.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintArc.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPolygon"><code class="docutils literal notranslate"><span class="pre">FootprintPolygon</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPolygon.pts"><code class="docutils literal notranslate"><span class="pre">FootprintPolygon.pts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPolygon.stroke"><code class="docutils literal notranslate"><span class="pre">FootprintPolygon.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPolygon.width"><code class="docutils literal notranslate"><span class="pre">FootprintPolygon.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPolygon.fill"><code class="docutils literal notranslate"><span class="pre">FootprintPolygon.fill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPolygon.layer"><code class="docutils literal notranslate"><span class="pre">FootprintPolygon.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPolygon.locked"><code class="docutils literal notranslate"><span class="pre">FootprintPolygon.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPolygon.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintPolygon.kicad_expr_tag_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPolygon.tstamp"><code class="docutils literal notranslate"><span class="pre">FootprintPolygon.tstamp</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCurve"><code class="docutils literal notranslate"><span class="pre">FootprintCurve</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCurve.pts"><code class="docutils literal notranslate"><span class="pre">FootprintCurve.pts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCurve.layer"><code class="docutils literal notranslate"><span class="pre">FootprintCurve.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCurve.tstamp"><code class="docutils literal notranslate"><span class="pre">FootprintCurve.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCurve.stroke"><code class="docutils literal notranslate"><span class="pre">FootprintCurve.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCurve.locked"><code class="docutils literal notranslate"><span class="pre">FootprintCurve.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintCurve.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintCurve.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval1"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval1</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval1.oval"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval1.oval</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval1.size"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval1.size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval1.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval1.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval2"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval2</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval2.oval"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval2.oval</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval2.size_x"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval2.size_x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval2.size_y"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval2.size_y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval2.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval2.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval3"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval3</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval3.oval"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval3.oval</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval3.offset"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval3.offset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval3.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval3.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval4"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval4</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval4.oval"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval4.oval</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval4.size"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval4.size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval4.offset"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval4.offset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval4.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval4.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval5"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval5</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval5.oval"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval5.oval</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval5.size_x"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval5.size_x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval5.size_y"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval5.size_y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval5.offset"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval5.offset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillOval5.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillOval5.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillRound"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillRound</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillRound.diameter"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillRound.diameter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillRound.offset"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillRound.offset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadDrillRound.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintPadDrillRound.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadOptions"><code class="docutils literal notranslate"><span class="pre">FootprintPadOptions</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadOptions.clearance"><code class="docutils literal notranslate"><span class="pre">FootprintPadOptions.clearance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadOptions.anchor"><code class="docutils literal notranslate"><span class="pre">FootprintPadOptions.anchor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadOptions.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintPadOptions.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadPrimitives"><code class="docutils literal notranslate"><span class="pre">FootprintPadPrimitives</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadPrimitives.gr_polys"><code class="docutils literal notranslate"><span class="pre">FootprintPadPrimitives.gr_polys</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadPrimitives.gr_lines"><code class="docutils literal notranslate"><span class="pre">FootprintPadPrimitives.gr_lines</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadPrimitives.gr_rects"><code class="docutils literal notranslate"><span class="pre">FootprintPadPrimitives.gr_rects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadPrimitives.gr_circles"><code class="docutils literal notranslate"><span class="pre">FootprintPadPrimitives.gr_circles</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadPrimitives.gr_arcs"><code class="docutils literal notranslate"><span class="pre">FootprintPadPrimitives.gr_arcs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadPrimitives.gr_text_items"><code class="docutils literal notranslate"><span class="pre">FootprintPadPrimitives.gr_text_items</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadPrimitives.beziers"><code class="docutils literal notranslate"><span class="pre">FootprintPadPrimitives.beziers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadPrimitives.gr_bboxes"><code class="docutils literal notranslate"><span class="pre">FootprintPadPrimitives.gr_bboxes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadPrimitives.gr_text_boxes"><code class="docutils literal notranslate"><span class="pre">FootprintPadPrimitives.gr_text_boxes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadPrimitives.width"><code class="docutils literal notranslate"><span class="pre">FootprintPadPrimitives.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadPrimitives.fill"><code class="docutils literal notranslate"><span class="pre">FootprintPadPrimitives.fill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadPrimitives.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintPadPrimitives.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadRectDelta"><code class="docutils literal notranslate"><span class="pre">FootprintPadRectDelta</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadRectDelta.x"><code class="docutils literal notranslate"><span class="pre">FootprintPadRectDelta.x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadRectDelta.y"><code class="docutils literal notranslate"><span class="pre">FootprintPadRectDelta.y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPadRectDelta.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintPadRectDelta.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad"><code class="docutils literal notranslate"><span class="pre">FootprintPad</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.number"><code class="docutils literal notranslate"><span class="pre">FootprintPad.number</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.type"><code class="docutils literal notranslate"><span class="pre">FootprintPad.type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.shape"><code class="docutils literal notranslate"><span class="pre">FootprintPad.shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.locked"><code class="docutils literal notranslate"><span class="pre">FootprintPad.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.at"><code class="docutils literal notranslate"><span class="pre">FootprintPad.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.size"><code class="docutils literal notranslate"><span class="pre">FootprintPad.size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.drill"><code class="docutils literal notranslate"><span class="pre">FootprintPad.drill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.property"><code class="docutils literal notranslate"><span class="pre">FootprintPad.property</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.layers"><code class="docutils literal notranslate"><span class="pre">FootprintPad.layers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.remove_unused_layers"><code class="docutils literal notranslate"><span class="pre">FootprintPad.remove_unused_layers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.keep_end_layers"><code class="docutils literal notranslate"><span class="pre">FootprintPad.keep_end_layers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.zone_layer_connections"><code class="docutils literal notranslate"><span class="pre">FootprintPad.zone_layer_connections</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.roundrect_rratio"><code class="docutils literal notranslate"><span class="pre">FootprintPad.roundrect_rratio</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.chamfer_ratio"><code class="docutils literal notranslate"><span class="pre">FootprintPad.chamfer_ratio</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.chamfer"><code class="docutils literal notranslate"><span class="pre">FootprintPad.chamfer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.net"><code class="docutils literal notranslate"><span class="pre">FootprintPad.net</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.pinfunction"><code class="docutils literal notranslate"><span class="pre">FootprintPad.pinfunction</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.pintype"><code class="docutils literal notranslate"><span class="pre">FootprintPad.pintype</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.solder_mask_margin"><code class="docutils literal notranslate"><span class="pre">FootprintPad.solder_mask_margin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.solder_paste_margin"><code class="docutils literal notranslate"><span class="pre">FootprintPad.solder_paste_margin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.solder_paste_margin_ratio"><code class="docutils literal notranslate"><span class="pre">FootprintPad.solder_paste_margin_ratio</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.clearance"><code class="docutils literal notranslate"><span class="pre">FootprintPad.clearance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.zone_connect"><code class="docutils literal notranslate"><span class="pre">FootprintPad.zone_connect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.die_length"><code class="docutils literal notranslate"><span class="pre">FootprintPad.die_length</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.thermal_bridge_width"><code class="docutils literal notranslate"><span class="pre">FootprintPad.thermal_bridge_width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.thermal_bridge_angle"><code class="docutils literal notranslate"><span class="pre">FootprintPad.thermal_bridge_angle</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.thermal_width"><code class="docutils literal notranslate"><span class="pre">FootprintPad.thermal_width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.thermal_gap"><code class="docutils literal notranslate"><span class="pre">FootprintPad.thermal_gap</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.options"><code class="docutils literal notranslate"><span class="pre">FootprintPad.options</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.primitives"><code class="docutils literal notranslate"><span class="pre">FootprintPad.primitives</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.rect_delta"><code class="docutils literal notranslate"><span class="pre">FootprintPad.rect_delta</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.tstamp"><code class="docutils literal notranslate"><span class="pre">FootprintPad.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintPad.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintPad.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintModelCoord"><code class="docutils literal notranslate"><span class="pre">FootprintModelCoord</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintModelCoord.xyz"><code class="docutils literal notranslate"><span class="pre">FootprintModelCoord.xyz</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintModelOffset"><code class="docutils literal notranslate"><span class="pre">FootprintModelOffset</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintModelOffset.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintModelOffset.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintModelScale"><code class="docutils literal notranslate"><span class="pre">FootprintModelScale</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintModelScale.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintModelScale.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintModelRotate"><code class="docutils literal notranslate"><span class="pre">FootprintModelRotate</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.FootprintModelRotate.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">FootprintModelRotate.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint3dModel"><code class="docutils literal notranslate"><span class="pre">Footprint3dModel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint3dModel.file"><code class="docutils literal notranslate"><span class="pre">Footprint3dModel.file</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint3dModel.hide"><code class="docutils literal notranslate"><span class="pre">Footprint3dModel.hide</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint3dModel.opacity"><code class="docutils literal notranslate"><span class="pre">Footprint3dModel.opacity</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint3dModel.offset"><code class="docutils literal notranslate"><span class="pre">Footprint3dModel.offset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint3dModel.scale"><code class="docutils literal notranslate"><span class="pre">Footprint3dModel.scale</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint3dModel.rotate"><code class="docutils literal notranslate"><span class="pre">Footprint3dModel.rotate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint3dModel.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Footprint3dModel.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint"><code class="docutils literal notranslate"><span class="pre">Footprint</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.library_link"><code class="docutils literal notranslate"><span class="pre">Footprint.library_link</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.locked"><code class="docutils literal notranslate"><span class="pre">Footprint.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.placed"><code class="docutils literal notranslate"><span class="pre">Footprint.placed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.layer"><code class="docutils literal notranslate"><span class="pre">Footprint.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.tedit"><code class="docutils literal notranslate"><span class="pre">Footprint.tedit</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.tstamp"><code class="docutils literal notranslate"><span class="pre">Footprint.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.at"><code class="docutils literal notranslate"><span class="pre">Footprint.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.descr"><code class="docutils literal notranslate"><span class="pre">Footprint.descr</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.tags"><code class="docutils literal notranslate"><span class="pre">Footprint.tags</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.properties"><code class="docutils literal notranslate"><span class="pre">Footprint.properties</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.path"><code class="docutils literal notranslate"><span class="pre">Footprint.path</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.autoplace_cost90"><code class="docutils literal notranslate"><span class="pre">Footprint.autoplace_cost90</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.autoplace_cost180"><code class="docutils literal notranslate"><span class="pre">Footprint.autoplace_cost180</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.solder_mask_margin"><code class="docutils literal notranslate"><span class="pre">Footprint.solder_mask_margin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.solder_paste_margin"><code class="docutils literal notranslate"><span class="pre">Footprint.solder_paste_margin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.solder_paste_ratio"><code class="docutils literal notranslate"><span class="pre">Footprint.solder_paste_ratio</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.clearance"><code class="docutils literal notranslate"><span class="pre">Footprint.clearance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.zone_connect"><code class="docutils literal notranslate"><span class="pre">Footprint.zone_connect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.thermal_width"><code class="docutils literal notranslate"><span class="pre">Footprint.thermal_width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.thermal_gap"><code class="docutils literal notranslate"><span class="pre">Footprint.thermal_gap</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.attr"><code class="docutils literal notranslate"><span class="pre">Footprint.attr</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.net_tie_pad_groups"><code class="docutils literal notranslate"><span class="pre">Footprint.net_tie_pad_groups</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.fp_text_items"><code class="docutils literal notranslate"><span class="pre">Footprint.fp_text_items</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.images"><code class="docutils literal notranslate"><span class="pre">Footprint.images</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.fp_text_boxes"><code class="docutils literal notranslate"><span class="pre">Footprint.fp_text_boxes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.fp_lines"><code class="docutils literal notranslate"><span class="pre">Footprint.fp_lines</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.fp_rects"><code class="docutils literal notranslate"><span class="pre">Footprint.fp_rects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.fp_circles"><code class="docutils literal notranslate"><span class="pre">Footprint.fp_circles</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.fp_arcs"><code class="docutils literal notranslate"><span class="pre">Footprint.fp_arcs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.fp_polys"><code class="docutils literal notranslate"><span class="pre">Footprint.fp_polys</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.fp_curves"><code class="docutils literal notranslate"><span class="pre">Footprint.fp_curves</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.dimensions"><code class="docutils literal notranslate"><span class="pre">Footprint.dimensions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.pads"><code class="docutils literal notranslate"><span class="pre">Footprint.pads</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.groups"><code class="docutils literal notranslate"><span class="pre">Footprint.groups</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.zones"><code class="docutils literal notranslate"><span class="pre">Footprint.zones</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="footprint.html#edea.kicad.pcb.footprint.Footprint.models"><code class="docutils literal notranslate"><span class="pre">Footprint.models</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="graphics.html">Graphics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.LayerKnockout"><code class="docutils literal notranslate"><span class="pre">LayerKnockout</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.LayerKnockout.name"><code class="docutils literal notranslate"><span class="pre">LayerKnockout.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.LayerKnockout.knockout"><code class="docutils literal notranslate"><span class="pre">LayerKnockout.knockout</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.LayerKnockout.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">LayerKnockout.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalText"><code class="docutils literal notranslate"><span class="pre">GraphicalText</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalText.locked"><code class="docutils literal notranslate"><span class="pre">GraphicalText.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalText.text"><code class="docutils literal notranslate"><span class="pre">GraphicalText.text</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalText.at"><code class="docutils literal notranslate"><span class="pre">GraphicalText.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalText.layer"><code class="docutils literal notranslate"><span class="pre">GraphicalText.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalText.tstamp"><code class="docutils literal notranslate"><span class="pre">GraphicalText.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalText.effects"><code class="docutils literal notranslate"><span class="pre">GraphicalText.effects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalText.render_cache"><code class="docutils literal notranslate"><span class="pre">GraphicalText.render_cache</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalText.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">GraphicalText.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalTextBox"><code class="docutils literal notranslate"><span class="pre">GraphicalTextBox</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalTextBox.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">GraphicalTextBox.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalLine"><code class="docutils literal notranslate"><span class="pre">GraphicalLine</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalLine.locked"><code class="docutils literal notranslate"><span class="pre">GraphicalLine.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalLine.start"><code class="docutils literal notranslate"><span class="pre">GraphicalLine.start</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalLine.end"><code class="docutils literal notranslate"><span class="pre">GraphicalLine.end</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalLine.width"><code class="docutils literal notranslate"><span class="pre">GraphicalLine.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalLine.stroke"><code class="docutils literal notranslate"><span class="pre">GraphicalLine.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalLine.layer"><code class="docutils literal notranslate"><span class="pre">GraphicalLine.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalLine.angle"><code class="docutils literal notranslate"><span class="pre">GraphicalLine.angle</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalLine.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">GraphicalLine.kicad_expr_tag_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalLine.envelope"><code class="docutils literal notranslate"><span class="pre">GraphicalLine.envelope()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalLineTopLevel"><code class="docutils literal notranslate"><span class="pre">GraphicalLineTopLevel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalLineTopLevel.tstamp"><code class="docutils literal notranslate"><span class="pre">GraphicalLineTopLevel.tstamp</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalRectangle"><code class="docutils literal notranslate"><span class="pre">GraphicalRectangle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalRectangle.locked"><code class="docutils literal notranslate"><span class="pre">GraphicalRectangle.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalRectangle.start"><code class="docutils literal notranslate"><span class="pre">GraphicalRectangle.start</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalRectangle.end"><code class="docutils literal notranslate"><span class="pre">GraphicalRectangle.end</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalRectangle.width"><code class="docutils literal notranslate"><span class="pre">GraphicalRectangle.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalRectangle.stroke"><code class="docutils literal notranslate"><span class="pre">GraphicalRectangle.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalRectangle.fill"><code class="docutils literal notranslate"><span class="pre">GraphicalRectangle.fill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalRectangle.layer"><code class="docutils literal notranslate"><span class="pre">GraphicalRectangle.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalRectangle.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">GraphicalRectangle.kicad_expr_tag_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalRectangle.envelope"><code class="docutils literal notranslate"><span class="pre">GraphicalRectangle.envelope()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalRectangleTopLevel"><code class="docutils literal notranslate"><span class="pre">GraphicalRectangleTopLevel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalRectangleTopLevel.tstamp"><code class="docutils literal notranslate"><span class="pre">GraphicalRectangleTopLevel.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalRectangleTopLevel.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">GraphicalRectangleTopLevel.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalCircle"><code class="docutils literal notranslate"><span class="pre">GraphicalCircle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalCircle.locked"><code class="docutils literal notranslate"><span class="pre">GraphicalCircle.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalCircle.center"><code class="docutils literal notranslate"><span class="pre">GraphicalCircle.center</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalCircle.end"><code class="docutils literal notranslate"><span class="pre">GraphicalCircle.end</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalCircle.stroke"><code class="docutils literal notranslate"><span class="pre">GraphicalCircle.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalCircle.width"><code class="docutils literal notranslate"><span class="pre">GraphicalCircle.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalCircle.fill"><code class="docutils literal notranslate"><span class="pre">GraphicalCircle.fill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalCircle.layer"><code class="docutils literal notranslate"><span class="pre">GraphicalCircle.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalCircle.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">GraphicalCircle.kicad_expr_tag_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalCircle.envelope"><code class="docutils literal notranslate"><span class="pre">GraphicalCircle.envelope()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalCircleTopLevel"><code class="docutils literal notranslate"><span class="pre">GraphicalCircleTopLevel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalCircleTopLevel.tstamp"><code class="docutils literal notranslate"><span class="pre">GraphicalCircleTopLevel.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalCircleTopLevel.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">GraphicalCircleTopLevel.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalArc"><code class="docutils literal notranslate"><span class="pre">GraphicalArc</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalArc.locked"><code class="docutils literal notranslate"><span class="pre">GraphicalArc.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalArc.start"><code class="docutils literal notranslate"><span class="pre">GraphicalArc.start</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalArc.mid"><code class="docutils literal notranslate"><span class="pre">GraphicalArc.mid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalArc.end"><code class="docutils literal notranslate"><span class="pre">GraphicalArc.end</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalArc.width"><code class="docutils literal notranslate"><span class="pre">GraphicalArc.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalArc.stroke"><code class="docutils literal notranslate"><span class="pre">GraphicalArc.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalArc.layer"><code class="docutils literal notranslate"><span class="pre">GraphicalArc.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalArc.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">GraphicalArc.kicad_expr_tag_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalArc.center"><code class="docutils literal notranslate"><span class="pre">GraphicalArc.center()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalArc.angles_rad"><code class="docutils literal notranslate"><span class="pre">GraphicalArc.angles_rad()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalArc.envelope"><code class="docutils literal notranslate"><span class="pre">GraphicalArc.envelope()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalArcTopLevel"><code class="docutils literal notranslate"><span class="pre">GraphicalArcTopLevel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalArcTopLevel.tstamp"><code class="docutils literal notranslate"><span class="pre">GraphicalArcTopLevel.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalArcTopLevel.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">GraphicalArcTopLevel.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalPolygon"><code class="docutils literal notranslate"><span class="pre">GraphicalPolygon</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalPolygon.locked"><code class="docutils literal notranslate"><span class="pre">GraphicalPolygon.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalPolygon.pts"><code class="docutils literal notranslate"><span class="pre">GraphicalPolygon.pts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalPolygon.stroke"><code class="docutils literal notranslate"><span class="pre">GraphicalPolygon.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalPolygon.width"><code class="docutils literal notranslate"><span class="pre">GraphicalPolygon.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalPolygon.fill"><code class="docutils literal notranslate"><span class="pre">GraphicalPolygon.fill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalPolygon.layer"><code class="docutils literal notranslate"><span class="pre">GraphicalPolygon.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalPolygon.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">GraphicalPolygon.kicad_expr_tag_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalPolygon.envelope"><code class="docutils literal notranslate"><span class="pre">GraphicalPolygon.envelope()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalPolygonTopLevel"><code class="docutils literal notranslate"><span class="pre">GraphicalPolygonTopLevel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalPolygonTopLevel.tstamp"><code class="docutils literal notranslate"><span class="pre">GraphicalPolygonTopLevel.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalPolygonTopLevel.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">GraphicalPolygonTopLevel.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalBezier"><code class="docutils literal notranslate"><span class="pre">GraphicalBezier</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalBezier.locked"><code class="docutils literal notranslate"><span class="pre">GraphicalBezier.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalBezier.pts"><code class="docutils literal notranslate"><span class="pre">GraphicalBezier.pts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalBezier.stroke"><code class="docutils literal notranslate"><span class="pre">GraphicalBezier.stroke</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalBezier.layer"><code class="docutils literal notranslate"><span class="pre">GraphicalBezier.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalBezier.tstamp"><code class="docutils literal notranslate"><span class="pre">GraphicalBezier.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalBezier.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">GraphicalBezier.kicad_expr_tag_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalBezier.envelope"><code class="docutils literal notranslate"><span class="pre">GraphicalBezier.envelope()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalCurve"><code class="docutils literal notranslate"><span class="pre">GraphicalCurve</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalCurve.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">GraphicalCurve.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalBoundingBox"><code class="docutils literal notranslate"><span class="pre">GraphicalBoundingBox</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalBoundingBox.locked"><code class="docutils literal notranslate"><span class="pre">GraphicalBoundingBox.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalBoundingBox.start"><code class="docutils literal notranslate"><span class="pre">GraphicalBoundingBox.start</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalBoundingBox.end"><code class="docutils literal notranslate"><span class="pre">GraphicalBoundingBox.end</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalBoundingBox.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">GraphicalBoundingBox.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormatUnits"><code class="docutils literal notranslate"><span class="pre">DimensionFormatUnits</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormatUnits.Inches"><code class="docutils literal notranslate"><span class="pre">DimensionFormatUnits.Inches</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormatUnits.Mils"><code class="docutils literal notranslate"><span class="pre">DimensionFormatUnits.Mils</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormatUnits.Millimeters"><code class="docutils literal notranslate"><span class="pre">DimensionFormatUnits.Millimeters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormatUnits.Automatic"><code class="docutils literal notranslate"><span class="pre">DimensionFormatUnits.Automatic</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormatUnitsFormat"><code class="docutils literal notranslate"><span class="pre">DimensionFormatUnitsFormat</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormatUnitsFormat.NoSuffix"><code class="docutils literal notranslate"><span class="pre">DimensionFormatUnitsFormat.NoSuffix</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormatUnitsFormat.BareSuffix"><code class="docutils literal notranslate"><span class="pre">DimensionFormatUnitsFormat.BareSuffix</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormatUnitsFormat.WrapSuffix"><code class="docutils literal notranslate"><span class="pre">DimensionFormatUnitsFormat.WrapSuffix</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormat"><code class="docutils literal notranslate"><span class="pre">DimensionFormat</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormat.prefix"><code class="docutils literal notranslate"><span class="pre">DimensionFormat.prefix</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormat.suffix"><code class="docutils literal notranslate"><span class="pre">DimensionFormat.suffix</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormat.units"><code class="docutils literal notranslate"><span class="pre">DimensionFormat.units</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormat.units_format"><code class="docutils literal notranslate"><span class="pre">DimensionFormat.units_format</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormat.precision"><code class="docutils literal notranslate"><span class="pre">DimensionFormat.precision</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormat.override_value"><code class="docutils literal notranslate"><span class="pre">DimensionFormat.override_value</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormat.suppress_zeroes"><code class="docutils literal notranslate"><span class="pre">DimensionFormat.suppress_zeroes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionFormat.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">DimensionFormat.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyleTextPositionMode"><code class="docutils literal notranslate"><span class="pre">DimensionStyleTextPositionMode</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyleTextPositionMode.Outside"><code class="docutils literal notranslate"><span class="pre">DimensionStyleTextPositionMode.Outside</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyleTextPositionMode.InLine"><code class="docutils literal notranslate"><span class="pre">DimensionStyleTextPositionMode.InLine</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyleTextPositionMode.Manual"><code class="docutils literal notranslate"><span class="pre">DimensionStyleTextPositionMode.Manual</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyleTextFrame"><code class="docutils literal notranslate"><span class="pre">DimensionStyleTextFrame</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyleTextFrame.NoFrame"><code class="docutils literal notranslate"><span class="pre">DimensionStyleTextFrame.NoFrame</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyleTextFrame.Rectangle"><code class="docutils literal notranslate"><span class="pre">DimensionStyleTextFrame.Rectangle</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyleTextFrame.Circle"><code class="docutils literal notranslate"><span class="pre">DimensionStyleTextFrame.Circle</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyleTextFrame.RoundedRectangle"><code class="docutils literal notranslate"><span class="pre">DimensionStyleTextFrame.RoundedRectangle</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyle"><code class="docutils literal notranslate"><span class="pre">DimensionStyle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyle.thickness"><code class="docutils literal notranslate"><span class="pre">DimensionStyle.thickness</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyle.arrow_length"><code class="docutils literal notranslate"><span class="pre">DimensionStyle.arrow_length</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyle.text_position_mode"><code class="docutils literal notranslate"><span class="pre">DimensionStyle.text_position_mode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyle.extension_height"><code class="docutils literal notranslate"><span class="pre">DimensionStyle.extension_height</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyle.extension_offset"><code class="docutils literal notranslate"><span class="pre">DimensionStyle.extension_offset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyle.text_frame"><code class="docutils literal notranslate"><span class="pre">DimensionStyle.text_frame</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyle.keep_text_aligned"><code class="docutils literal notranslate"><span class="pre">DimensionStyle.keep_text_aligned</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.DimensionStyle.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">DimensionStyle.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalDimension"><code class="docutils literal notranslate"><span class="pre">GraphicalDimension</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalDimension.locked"><code class="docutils literal notranslate"><span class="pre">GraphicalDimension.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalDimension.type"><code class="docutils literal notranslate"><span class="pre">GraphicalDimension.type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalDimension.layer"><code class="docutils literal notranslate"><span class="pre">GraphicalDimension.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalDimension.tstamp"><code class="docutils literal notranslate"><span class="pre">GraphicalDimension.tstamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalDimension.pts"><code class="docutils literal notranslate"><span class="pre">GraphicalDimension.pts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalDimension.height"><code class="docutils literal notranslate"><span class="pre">GraphicalDimension.height</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalDimension.orientation"><code class="docutils literal notranslate"><span class="pre">GraphicalDimension.orientation</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalDimension.leader_length"><code class="docutils literal notranslate"><span class="pre">GraphicalDimension.leader_length</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalDimension.gr_text"><code class="docutils literal notranslate"><span class="pre">GraphicalDimension.gr_text</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalDimension.format"><code class="docutils literal notranslate"><span class="pre">GraphicalDimension.format</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalDimension.style"><code class="docutils literal notranslate"><span class="pre">GraphicalDimension.style</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphics.html#edea.kicad.pcb.graphics.GraphicalDimension.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">GraphicalDimension.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="layer.html">Layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="layer.html#edea.kicad.pcb.layer.CanonicalLayerName"><code class="docutils literal notranslate"><span class="pre">CanonicalLayerName</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="layer.html#edea.kicad.pcb.layer.layer_to_list"><code class="docutils literal notranslate"><span class="pre">layer_to_list()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="layer.html#edea.kicad.pcb.layer.LayerType"><code class="docutils literal notranslate"><span class="pre">LayerType</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="layer.html#edea.kicad.pcb.layer.layer_names"><code class="docutils literal notranslate"><span class="pre">layer_names</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="layer.html#edea.kicad.pcb.layer.layer_types"><code class="docutils literal notranslate"><span class="pre">layer_types</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pcb.html">PCB</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.General"><code class="docutils literal notranslate"><span class="pre">General</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.General.thickness"><code class="docutils literal notranslate"><span class="pre">General.thickness</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.StackupLayerThickness"><code class="docutils literal notranslate"><span class="pre">StackupLayerThickness</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.StackupLayerThickness.value"><code class="docutils literal notranslate"><span class="pre">StackupLayerThickness.value</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.StackupLayerThickness.locked"><code class="docutils literal notranslate"><span class="pre">StackupLayerThickness.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.StackupLayerThickness.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">StackupLayerThickness.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.StackupLayer"><code class="docutils literal notranslate"><span class="pre">StackupLayer</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.StackupLayer.name"><code class="docutils literal notranslate"><span class="pre">StackupLayer.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.StackupLayer.type"><code class="docutils literal notranslate"><span class="pre">StackupLayer.type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.StackupLayer.color"><code class="docutils literal notranslate"><span class="pre">StackupLayer.color</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.StackupLayer.thickness"><code class="docutils literal notranslate"><span class="pre">StackupLayer.thickness</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.StackupLayer.material"><code class="docutils literal notranslate"><span class="pre">StackupLayer.material</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.StackupLayer.epsilon_r"><code class="docutils literal notranslate"><span class="pre">StackupLayer.epsilon_r</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.StackupLayer.loss_tangent"><code class="docutils literal notranslate"><span class="pre">StackupLayer.loss_tangent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.StackupLayer.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">StackupLayer.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Stackup"><code class="docutils literal notranslate"><span class="pre">Stackup</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Stackup.layers"><code class="docutils literal notranslate"><span class="pre">Stackup.layers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Stackup.copper_finish"><code class="docutils literal notranslate"><span class="pre">Stackup.copper_finish</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Stackup.dielectric_constraints"><code class="docutils literal notranslate"><span class="pre">Stackup.dielectric_constraints</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Stackup.edge_connector"><code class="docutils literal notranslate"><span class="pre">Stackup.edge_connector</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Stackup.castellated_pads"><code class="docutils literal notranslate"><span class="pre">Stackup.castellated_pads</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Stackup.edge_plating"><code class="docutils literal notranslate"><span class="pre">Stackup.edge_plating</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotOutputFormat"><code class="docutils literal notranslate"><span class="pre">PlotOutputFormat</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotOutputFormat.GERBER"><code class="docutils literal notranslate"><span class="pre">PlotOutputFormat.GERBER</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotOutputFormat.POSTSCRIPT"><code class="docutils literal notranslate"><span class="pre">PlotOutputFormat.POSTSCRIPT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotOutputFormat.SVG"><code class="docutils literal notranslate"><span class="pre">PlotOutputFormat.SVG</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotOutputFormat.DXF"><code class="docutils literal notranslate"><span class="pre">PlotOutputFormat.DXF</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotOutputFormat.HPGL"><code class="docutils literal notranslate"><span class="pre">PlotOutputFormat.HPGL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotOutputFormat.PDF"><code class="docutils literal notranslate"><span class="pre">PlotOutputFormat.PDF</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings"><code class="docutils literal notranslate"><span class="pre">PlotSettings</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.layerselection"><code class="docutils literal notranslate"><span class="pre">PlotSettings.layerselection</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.plot_on_all_layers_selection"><code class="docutils literal notranslate"><span class="pre">PlotSettings.plot_on_all_layers_selection</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.disableapertmacros"><code class="docutils literal notranslate"><span class="pre">PlotSettings.disableapertmacros</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.usegerberextensions"><code class="docutils literal notranslate"><span class="pre">PlotSettings.usegerberextensions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.usegerberattributes"><code class="docutils literal notranslate"><span class="pre">PlotSettings.usegerberattributes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.usegerberadvancedattributes"><code class="docutils literal notranslate"><span class="pre">PlotSettings.usegerberadvancedattributes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.creategerberjobfile"><code class="docutils literal notranslate"><span class="pre">PlotSettings.creategerberjobfile</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.gerberprecision"><code class="docutils literal notranslate"><span class="pre">PlotSettings.gerberprecision</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.dashed_line_dash_ratio"><code class="docutils literal notranslate"><span class="pre">PlotSettings.dashed_line_dash_ratio</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.dashed_line_gap_ratio"><code class="docutils literal notranslate"><span class="pre">PlotSettings.dashed_line_gap_ratio</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.svgprecision"><code class="docutils literal notranslate"><span class="pre">PlotSettings.svgprecision</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.excludeedgelayer"><code class="docutils literal notranslate"><span class="pre">PlotSettings.excludeedgelayer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.plotframeref"><code class="docutils literal notranslate"><span class="pre">PlotSettings.plotframeref</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.viasonmask"><code class="docutils literal notranslate"><span class="pre">PlotSettings.viasonmask</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.mode"><code class="docutils literal notranslate"><span class="pre">PlotSettings.mode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.useauxorigin"><code class="docutils literal notranslate"><span class="pre">PlotSettings.useauxorigin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.hpglpennumber"><code class="docutils literal notranslate"><span class="pre">PlotSettings.hpglpennumber</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.hpglpenspeed"><code class="docutils literal notranslate"><span class="pre">PlotSettings.hpglpenspeed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.hpglpendiameter"><code class="docutils literal notranslate"><span class="pre">PlotSettings.hpglpendiameter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.dxfpolygonmode"><code class="docutils literal notranslate"><span class="pre">PlotSettings.dxfpolygonmode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.dxfimperialunits"><code class="docutils literal notranslate"><span class="pre">PlotSettings.dxfimperialunits</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.dxfusepcbnewfont"><code class="docutils literal notranslate"><span class="pre">PlotSettings.dxfusepcbnewfont</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.psnegative"><code class="docutils literal notranslate"><span class="pre">PlotSettings.psnegative</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.psa4output"><code class="docutils literal notranslate"><span class="pre">PlotSettings.psa4output</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.plotreference"><code class="docutils literal notranslate"><span class="pre">PlotSettings.plotreference</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.plotvalue"><code class="docutils literal notranslate"><span class="pre">PlotSettings.plotvalue</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.plotinvisibletext"><code class="docutils literal notranslate"><span class="pre">PlotSettings.plotinvisibletext</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.sketchpadsonfab"><code class="docutils literal notranslate"><span class="pre">PlotSettings.sketchpadsonfab</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.subtractmaskfromsilk"><code class="docutils literal notranslate"><span class="pre">PlotSettings.subtractmaskfromsilk</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.outputformat"><code class="docutils literal notranslate"><span class="pre">PlotSettings.outputformat</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.mirror"><code class="docutils literal notranslate"><span class="pre">PlotSettings.mirror</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.drillshape"><code class="docutils literal notranslate"><span class="pre">PlotSettings.drillshape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.scaleselection"><code class="docutils literal notranslate"><span class="pre">PlotSettings.scaleselection</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.outputdirectory"><code class="docutils literal notranslate"><span class="pre">PlotSettings.outputdirectory</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.PlotSettings.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">PlotSettings.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Setup"><code class="docutils literal notranslate"><span class="pre">Setup</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Setup.stackup"><code class="docutils literal notranslate"><span class="pre">Setup.stackup</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Setup.pad_to_mask_clearance"><code class="docutils literal notranslate"><span class="pre">Setup.pad_to_mask_clearance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Setup.solder_mask_min_width"><code class="docutils literal notranslate"><span class="pre">Setup.solder_mask_min_width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Setup.pad_to_paste_clearance"><code class="docutils literal notranslate"><span class="pre">Setup.pad_to_paste_clearance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Setup.pad_to_paste_clearance_ratio"><code class="docutils literal notranslate"><span class="pre">Setup.pad_to_paste_clearance_ratio</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Setup.allow_soldermask_bridges_in_footprints"><code class="docutils literal notranslate"><span class="pre">Setup.allow_soldermask_bridges_in_footprints</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Setup.aux_axis_origin"><code class="docutils literal notranslate"><span class="pre">Setup.aux_axis_origin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Setup.grid_origin"><code class="docutils literal notranslate"><span class="pre">Setup.grid_origin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Setup.pcbplotparams"><code class="docutils literal notranslate"><span class="pre">Setup.pcbplotparams</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Segment"><code class="docutils literal notranslate"><span class="pre">Segment</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Segment.locked"><code class="docutils literal notranslate"><span class="pre">Segment.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Segment.start"><code class="docutils literal notranslate"><span class="pre">Segment.start</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Segment.end"><code class="docutils literal notranslate"><span class="pre">Segment.end</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Segment.width"><code class="docutils literal notranslate"><span class="pre">Segment.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Segment.layer"><code class="docutils literal notranslate"><span class="pre">Segment.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Segment.net"><code class="docutils literal notranslate"><span class="pre">Segment.net</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Segment.tstamp"><code class="docutils literal notranslate"><span class="pre">Segment.tstamp</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Via"><code class="docutils literal notranslate"><span class="pre">Via</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Via.type"><code class="docutils literal notranslate"><span class="pre">Via.type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Via.locked"><code class="docutils literal notranslate"><span class="pre">Via.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Via.at"><code class="docutils literal notranslate"><span class="pre">Via.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Via.size"><code class="docutils literal notranslate"><span class="pre">Via.size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Via.drill"><code class="docutils literal notranslate"><span class="pre">Via.drill</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Via.layers"><code class="docutils literal notranslate"><span class="pre">Via.layers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Via.remove_unused_layers"><code class="docutils literal notranslate"><span class="pre">Via.remove_unused_layers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Via.keep_end_layers"><code class="docutils literal notranslate"><span class="pre">Via.keep_end_layers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Via.free"><code class="docutils literal notranslate"><span class="pre">Via.free</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Via.zone_layer_connections"><code class="docutils literal notranslate"><span class="pre">Via.zone_layer_connections</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Via.net"><code class="docutils literal notranslate"><span class="pre">Via.net</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Via.tstamp"><code class="docutils literal notranslate"><span class="pre">Via.tstamp</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Arc"><code class="docutils literal notranslate"><span class="pre">Arc</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Arc.locked"><code class="docutils literal notranslate"><span class="pre">Arc.locked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Arc.start"><code class="docutils literal notranslate"><span class="pre">Arc.start</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Arc.mid"><code class="docutils literal notranslate"><span class="pre">Arc.mid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Arc.end"><code class="docutils literal notranslate"><span class="pre">Arc.end</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Arc.width"><code class="docutils literal notranslate"><span class="pre">Arc.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Arc.layer"><code class="docutils literal notranslate"><span class="pre">Arc.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Arc.net"><code class="docutils literal notranslate"><span class="pre">Arc.net</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Arc.tstamp"><code class="docutils literal notranslate"><span class="pre">Arc.tstamp</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Target"><code class="docutils literal notranslate"><span class="pre">Target</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Target.type"><code class="docutils literal notranslate"><span class="pre">Target.type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Target.at"><code class="docutils literal notranslate"><span class="pre">Target.at</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Target.size"><code class="docutils literal notranslate"><span class="pre">Target.size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Target.width"><code class="docutils literal notranslate"><span class="pre">Target.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Target.layer"><code class="docutils literal notranslate"><span class="pre">Target.layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Target.tstamp"><code class="docutils literal notranslate"><span class="pre">Target.tstamp</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.BoardSize"><code class="docutils literal notranslate"><span class="pre">BoardSize</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.BoardSize.width_mm"><code class="docutils literal notranslate"><span class="pre">BoardSize.width_mm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.BoardSize.height_mm"><code class="docutils literal notranslate"><span class="pre">BoardSize.height_mm</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb"><code class="docutils literal notranslate"><span class="pre">Pcb</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.version"><code class="docutils literal notranslate"><span class="pre">Pcb.version</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.check_version"><code class="docutils literal notranslate"><span class="pre">Pcb.check_version()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.generator"><code class="docutils literal notranslate"><span class="pre">Pcb.generator</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.general"><code class="docutils literal notranslate"><span class="pre">Pcb.general</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.paper"><code class="docutils literal notranslate"><span class="pre">Pcb.paper</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.title_block"><code class="docutils literal notranslate"><span class="pre">Pcb.title_block</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.layers"><code class="docutils literal notranslate"><span class="pre">Pcb.layers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.setup"><code class="docutils literal notranslate"><span class="pre">Pcb.setup</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.properties"><code class="docutils literal notranslate"><span class="pre">Pcb.properties</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.nets"><code class="docutils literal notranslate"><span class="pre">Pcb.nets</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.footprints"><code class="docutils literal notranslate"><span class="pre">Pcb.footprints</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.zones"><code class="docutils literal notranslate"><span class="pre">Pcb.zones</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.images"><code class="docutils literal notranslate"><span class="pre">Pcb.images</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.gr_lines"><code class="docutils literal notranslate"><span class="pre">Pcb.gr_lines</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.gr_text_items"><code class="docutils literal notranslate"><span class="pre">Pcb.gr_text_items</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.gr_text_boxes"><code class="docutils literal notranslate"><span class="pre">Pcb.gr_text_boxes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.gr_rects"><code class="docutils literal notranslate"><span class="pre">Pcb.gr_rects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.gr_circles"><code class="docutils literal notranslate"><span class="pre">Pcb.gr_circles</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.gr_arcs"><code class="docutils literal notranslate"><span class="pre">Pcb.gr_arcs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.gr_curves"><code class="docutils literal notranslate"><span class="pre">Pcb.gr_curves</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.gr_polys"><code class="docutils literal notranslate"><span class="pre">Pcb.gr_polys</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.beziers"><code class="docutils literal notranslate"><span class="pre">Pcb.beziers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.gr_bboxes"><code class="docutils literal notranslate"><span class="pre">Pcb.gr_bboxes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.dimensions"><code class="docutils literal notranslate"><span class="pre">Pcb.dimensions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.segments"><code class="docutils literal notranslate"><span class="pre">Pcb.segments</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.vias"><code class="docutils literal notranslate"><span class="pre">Pcb.vias</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.arcs"><code class="docutils literal notranslate"><span class="pre">Pcb.arcs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.groups"><code class="docutils literal notranslate"><span class="pre">Pcb.groups</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.targets"><code class="docutils literal notranslate"><span class="pre">Pcb.targets</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.insert_layout"><code class="docutils literal notranslate"><span class="pre">Pcb.insert_layout()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.size"><code class="docutils literal notranslate"><span class="pre">Pcb.size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.Pcb.kicad_expr_tag_name"><code class="docutils literal notranslate"><span class="pre">Pcb.kicad_expr_tag_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pcb.html#edea.kicad.pcb.__init__.MissingBoardOutlineError"><code class="docutils literal notranslate"><span class="pre">MissingBoardOutlineError</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</div><div class="flex justify-between items-center pt-6 mt-12 border-t border-border gap-4">
+<div class="mr-auto">
+<a class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input hover:bg-accent hover:text-accent-foreground py-2 px-4" href="../parser.html">
+<svg class="mr-2 h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="15 18 9 12 15 6"></polyline>
+</svg>
+        Parser
+      </a>
+</div>
+<div class="ml-auto">
+<a class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input hover:bg-accent hover:text-accent-foreground py-2 px-4" href="base.html">
+        Base
+        <svg class="ml-2 h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="9 18 15 12 9 6"></polyline>
+</svg>
+</a>
+</div>
+</div></div>
+</main>
+</div>
+</div><footer class="py-6 border-t border-border md:py-0">
+<div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+<div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2024, EDeA Dev Team under EUPL-1.2. Last updated: Feb 19, 2024. Built with <a class="font-medium underline underline-offset-4" href="https://www.sphinx-doc.org" rel="noreferrer">Sphinx 7.3.7</a></p>
+</div>
+</div>
+</footer>
+</div>
+<script src="../../../_static/documentation_options.js?v=ec16d22d"></script>
+<script src="../../../_static/doctools.js?v=9a2dae69"></script>
+<script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+<script src="../../../_static/tabs.js?v=3ee01567"></script>
+<script src="../../../_static/asciinema-player_2.6.1.js"></script>
+<script defer="defer" src="../../../_static/theme.js?v=e82a16a3"></script>
+</body>
+</html>

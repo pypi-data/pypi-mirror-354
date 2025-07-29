@@ -1,0 +1,69 @@
+# CHANGELOG
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.8.4] - 2025-06-09
+
+### Changed
+
+- Switched over to uv as package manager
+- Bump maximum python version
+
+## [0.8.3] - 2025-01-21
+
+### Fixed
+
+- Some parsing errors. [!91](https://gitlab.com/edea-dev/edea/-/merge_requests/91)
+- Add __main__.py to allow running as module.
+- Speedup adding modules from git [!99](https://gitlab.com/edea-dev/edea/-/merge_requests/99).
+
+### Added
+
+- Allow the target project path to be specified when adding a project. [!94](https://gitlab.com/edea-dev/edea/-/merge_requests/94)
+
+## [0.8.2] - 2024-09-18
+
+### Added
+
+- KiCad 8 Support. [!83](https://gitlab.com/edea-dev/edea/-/merge_requests/83)
+- `edea vet` command in the command line interface. [!83](https://gitlab.com/edea-dev/edea/-/merge_requests/83)`
+- `poetry.lock` in perperation for nixpkgs. [!87](https://gitlab.com/edea-dev/edea/-/merge_requests/87)
+
+### Fixed
+
+- Performance regression in the parser and serializer. [!86](https://gitlab.com/edea-dev/edea/-/merge_requests/86)
+
+## [0.8.1] - 2024-07-29
+
+### Fixed
+
+- Missing runtime dependencies in the `pyproject.toml` file. [!84](https://gitlab.com/edea-dev/edea/-/merge_requests/84)
+
+### Added
+
+- Full dcoumentation. [!84](https://gitlab.com/edea-dev/edea/-/merge_requests/84)
+
+## [0.8.0] - 2024-05-12
+
+### Fixed
+
+- Parsing and serializing rules.
+
+### Added
+- `edea add module` command in the command line interface.
+- `edea add rules` command in the command line interface.
+- More tests to the command line interface.
+
+## [0.7.3] - 2024-02-26
+
+### Fixed
+
+- Loading `DRC` and `ERC` reports from JSON files.
+
+
+## [0.7.2] - 2024-02-24
+
+### Changed
+
+- Switch to `kicad-cli@8.0.0` for DRC and ERC.
