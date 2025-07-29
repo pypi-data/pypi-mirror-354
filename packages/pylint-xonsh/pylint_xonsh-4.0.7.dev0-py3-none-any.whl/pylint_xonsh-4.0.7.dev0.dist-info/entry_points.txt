@@ -1,0 +1,5 @@
+[console_scripts]
+pylint-xonsh = pylint:run_pylint
+pylint-xonsh-config = pylint:_run_pylint_config
+pyreverse-xonsh = pylint:run_pyreverse
+symilar-xonsh = pylint:run_symilar
