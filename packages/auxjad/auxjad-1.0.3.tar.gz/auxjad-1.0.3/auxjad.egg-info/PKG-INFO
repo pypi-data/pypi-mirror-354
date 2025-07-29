@@ -1,0 +1,39 @@
+Metadata-Version: 2.4
+Name: auxjad
+Version: 1.0.3
+Summary: Auxiliary classes and functions for Abjad.
+Home-page: https://gilbertohasnofb.github.io/auxjad-docs/
+Author: Gilberto Agostinho
+Author-email: gilbertohasnofb@gmail.com
+License: MIT
+Platform: Any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Artistic Software
+Classifier: Topic :: Utilities
+Requires-Python: >=3.9
+License-File: LICENSE
+Requires-Dist: abjad==3.4
+Requires-Dist: flake8
+Requires-Dist: isort
+Requires-Dist: pydocstyle
+Requires-Dist: pytest
+Requires-Dist: setuptools
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: platform
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+Auxjad is a library of auxiliary classes and functions for Abjad 3.4 aimed at composers of algorithmic music.
