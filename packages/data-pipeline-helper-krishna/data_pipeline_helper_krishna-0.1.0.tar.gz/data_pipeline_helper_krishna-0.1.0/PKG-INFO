@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: data-pipeline-helper-krishna
+Version: 0.1.0
+Summary: A helper library for building and managing data pipelines
+Home-page: https://github.com/username/data-pipeline-helper
+Author: Mohana Krishnan N
+Author-email: mohankrishnan1404@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENCE
+Requires-Dist: pandas
+Requires-Dist: boto3
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Data pipeline helper
+
+A python package with utilities for building and managing data pipelines.
+
+## Features
+-Data cleaning utilities
+-ETL helpers
+-SQL query builders
+
+check out the [examples_script](examples/example_usage.py) for more details
+
+## Installation 
+
+```bash
+pip install data-pipeline-helper-krishna
