@@ -1,0 +1,10 @@
+numpy>=1.23.3
+
+[docs]
+matplotlib>=3.7.0
+jupyter>=1.1.1
+ipykernel>=6.29.5
+
+[tests]
+pytest>=8.4.0
+pytest-rng>=1.0.0

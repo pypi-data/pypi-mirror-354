@@ -1,0 +1,16 @@
+.gitignore
+.markdownlint-cli2.jsonc
+.pre-commit-config.yaml
+LICENSE.txt
+README.md
+pyproject.toml
+examples/1-three-gaussians.ipynb
+examples/2-four-gaussians.ipynb
+examples/3-two-bonds.ipynb
+src/optdesign/__init__.py
+src/optdesign.egg-info/PKG-INFO
+src/optdesign.egg-info/SOURCES.txt
+src/optdesign.egg-info/dependency_links.txt
+src/optdesign.egg-info/requires.txt
+src/optdesign.egg-info/top_level.txt
+tests/test_optdesign.py
