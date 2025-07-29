@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: vcs2l
+Version: 1.0
+Summary: vcstool provides a command line tool to invoke vcs commands on multiple repositories.
+Home-page: https://github.com/ros-infrastructure/vcstool
+Download-URL: http://download.ros.org/downloads/vcstool/
+Author: Dirk Thomas
+Author-email: web@dirk-thomas.net
+Maintainer: Dirk Thomas
+Maintainer-email: web@dirk-thomas.net
+License: Apache License, Version 2.0
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Version Control
+Classifier: Topic :: Utilities
+License-File: LICENSE
+Requires-Dist: PyYAML
+Requires-Dist: setuptools
+Provides-Extra: test
+Requires-Dist: flake8; extra == "test"
+Requires-Dist: flake8-docstrings; extra == "test"
+Requires-Dist: flake8-import-order; extra == "test"
+Requires-Dist: pycodestyle; extra == "test"
+Requires-Dist: pyflakes; extra == "test"
+Requires-Dist: pytest; extra == "test"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: download-url
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: maintainer
+Dynamic: maintainer-email
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: summary
+
+vcstool enables batch commands on multiple different vcs repositories. Currently it supports git, hg, svn and bzr.
