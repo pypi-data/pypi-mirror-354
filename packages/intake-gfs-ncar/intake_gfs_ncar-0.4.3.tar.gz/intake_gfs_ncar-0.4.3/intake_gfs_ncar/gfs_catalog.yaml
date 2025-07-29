@@ -1,0 +1,77 @@
+sources:
+  gfs_forecast:
+    driver: gfs_forecast
+    description: GFS forecast data from NCAR NOMADS
+    metadata:
+      tags: ['weather', 'forecast', 'gfs', 'nomads', 'ncep', 'atmospheric']
+      source: NCEP NOMADS GFS 0.25 degree forecast
+      license: Public Domain
+      intake_esm_varname: gfs_forecast
+      documentation: |
+        The Global Forecast System (GFS) is a weather forecast model produced by
+        the National Centers for Environmental Prediction (NCEP). This data is
+        provided by the NOMADS (NOAA Operational Model Archive and Distribution System)
+        service.
+      spatial_coverage: Global
+      temporal_resolution: 3 hours
+      spatial_resolution: 0.25 degrees
+      variables_available: |
+        - Surface: Temperature, pressure, wind, precipitation, etc.
+        - Pressure levels: Temperature, geopotential height, wind, humidity, etc.
+        - Derived parameters: Precipitable water, CAPE, etc.
+      data_format: GRIB2
+      update_frequency: 6 hours (00Z, 06Z, 12Z, 18Z)
+    args:
+      cycle: latest
+      max_lead_time: 24
+      base_url: https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod
+      cfgrib_filter_by_keys: {}
+  
+  gfs_surface_winds:
+    driver: gfs_forecast
+    description: GFS 10-meter surface wind components (U and V)
+    metadata:
+      tags: ['weather', 'forecast', 'gfs', 'winds', 'surface']
+      source: NCEP NOMADS GFS 0.25 degree forecast
+      license: Public Domain
+      documentation: |
+        10-meter wind components from the Global Forecast System (GFS).
+        Includes U and V components that can be used to calculate wind speed and direction.
+      spatial_coverage: Global
+      temporal_resolution: 3 hours
+      spatial_resolution: 0.25 degrees
+      variables: ['u10', 'v10']
+      data_format: GRIB2
+      update_frequency: 6 hours (00Z, 06Z, 12Z, 18Z)
+    args:
+      cycle: latest
+      max_lead_time: 24
+      base_url: https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod
+      cfgrib_filter_by_keys:
+        typeOfLevel: heightAboveGround
+        level: 10
+        shortName: ['10u', '10v']
+  
+  gfs_ice_concentration:
+    driver: gfs_forecast
+    description: GFS sea ice concentration
+    metadata:
+      tags: ['weather', 'forecast', 'gfs', 'sea ice', 'polar']
+      source: NCEP NOMADS GFS 0.25 degree forecast
+      license: Public Domain
+      documentation: |
+        Sea ice concentration data from the Global Forecast System (GFS).
+        Provides fraction of grid cell covered by sea ice (0.0-1.0).
+      spatial_coverage: Global (focus on polar regions)
+      temporal_resolution: 3 hours
+      spatial_resolution: 0.25 degrees
+      variables: ['ci']
+      data_format: GRIB2
+      update_frequency: 6 hours (00Z, 06Z, 12Z, 18Z)
+    args:
+      cycle: latest
+      max_lead_time: 24
+      base_url: https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod
+      cfgrib_filter_by_keys:
+        typeOfLevel: surface
+        shortName: ci
