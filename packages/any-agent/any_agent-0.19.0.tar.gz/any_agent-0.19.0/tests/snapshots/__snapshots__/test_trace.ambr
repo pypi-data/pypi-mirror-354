@@ -1,0 +1,2535 @@
+# serializer version: 1
+# name: test_agent_trace_snapshot[AGNO_trace].169963879412982743851441960619758054688
+  dict({
+    'final_output': '''
+      Steps taken:
+      1. Retrieved the current date and time in the America/New_York timezone.
+      2. Extracted the year from the retrieved date and time (2025).
+      3. Wrote the year (2025) as a single number to a file.
+    ''',
+    'spans': list([
+      dict({
+        'attributes': dict({
+          'gen_ai.input.messages': '[{"role": "system", "content": "<instructions>\\nSearch the web to answer\\n</instructions>"}, {"role": "user", "content": "Use the tools to find what year it is in the America/New_York timezone and write the value (single number) to a file. Finally, return a list of the steps you have taken."}]',
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '[{"tool.name": "get_current_time", "tool.args": "{\\"timezone\\":\\"America/New_York\\"}"}]',
+          'gen_ai.output.type': 'json',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.usage.input_tokens': 175,
+          'gen_ai.usage.output_tokens': 18,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 9366091883160861217,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 169963879412982743851441960619758054688,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199579145671643,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 15474709181464440267,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 169963879412982743851441960619758054688,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199577967347367,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'execute_tool',
+          'gen_ai.output': '''
+            {
+              "timezone": "America/New_York",
+              "datetime": "2025-06-06T04:46:19-04:00",
+              "is_dst": true
+            }
+          ''',
+          'gen_ai.output.type': 'json',
+          'gen_ai.tool.args': '{"timezone": "America/New_York"}',
+          'gen_ai.tool.call.id': 'call_2DQn93N6lEjgxTeoQlsaJaMu',
+          'gen_ai.tool.name': 'get_current_time',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 1538320011910672331,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 169963879412982743851441960619758054688,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199579152437765,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'execute_tool get_current_time',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 15474709181464440267,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 169963879412982743851441960619758054688,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199579147911762,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '[{"tool.name": "write_file", "tool.args": "{\\"text\\":\\"2025\\"}"}]',
+          'gen_ai.output.type': 'json',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.usage.input_tokens': 243,
+          'gen_ai.usage.output_tokens': 15,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 16788168657834603604,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 169963879412982743851441960619758054688,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199579887893101,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 15474709181464440267,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 169963879412982743851441960619758054688,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199579153880759,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'execute_tool',
+          'gen_ai.output': 'None',
+          'gen_ai.output.type': 'text',
+          'gen_ai.tool.args': '{"text": "2025"}',
+          'gen_ai.tool.call.id': 'call_pBlE4u4BbMFMnuznIxG33xu0',
+          'gen_ai.tool.name': 'write_file',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 14777164144731766305,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 169963879412982743851441960619758054688,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199579891353927,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'execute_tool write_file',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 15474709181464440267,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 169963879412982743851441960619758054688,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199579889858146,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '''
+            Steps taken:
+            1. Retrieved the current date and time in the America/New_York timezone.
+            2. Extracted the year from the retrieved date and time (2025).
+            3. Wrote the year (2025) as a single number to a file.
+          ''',
+          'gen_ai.output.type': 'text',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.usage.input_tokens': 267,
+          'gen_ai.usage.output_tokens': 54,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 458791544050597637,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 169963879412982743851441960619758054688,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199581529613993,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 15474709181464440267,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 169963879412982743851441960619758054688,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199579892654819,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.agent.description': 'No description.',
+          'gen_ai.agent.name': 'any_agent',
+          'gen_ai.operation.name': 'invoke_agent',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 15474709181464440267,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 169963879412982743851441960619758054688,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199582021866960,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'invoke_agent [any_agent]',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': None,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': None,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199577963593548,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.UNSET: 'unset'>,
+        }),
+      }),
+    ]),
+  })
+# ---
+# name: test_agent_trace_snapshot[GOOGLE_trace].315162220174925562594437000055854455869
+  dict({
+    'final_output': '''
+      Steps taken:
+      1. Retrieved the current date and time in the America/New_York timezone.
+      2. Extracted the year (2025) from the retrieved date and time.
+      3. Wrote the year (2025) to a file in the tmp_path directory.
+    ''',
+    'spans': list([
+      dict({
+        'attributes': dict({
+          'gen_ai.input.messages': '[{"role": "system", "content": "Search the web to answer\\n\\nYou are an agent. Your internal name is \\"any_agent\\"."}, {"role": "user", "content": "Use the tools to find what year it is in the America/New_York timezone and write the value (single number) to a file. Finally, return a list of the steps you have taken."}]',
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '[{"tool.name": "get_current_time", "tool.args": {"timezone": "America/New_York"}}]',
+          'gen_ai.output.type': 'json',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.usage.input_tokens': 189,
+          'gen_ai.usage.output_tokens': 18,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 14154530240761986577,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 315162220174925562594437000055854455869,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199548971448464,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 8089704334604185099,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 315162220174925562594437000055854455869,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199547575178547,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'execute_tool',
+          'gen_ai.output': '"meta=None content=[TextContent(type=\'text\', text=\'{\\\\n  \\"timezone\\": \\"America/New_York\\",\\\\n  \\"datetime\\": \\"2025-06-06T04:45:48-04:00\\",\\\\n  \\"is_dst\\": true\\\\n}\', annotations=None)] isError=False"',
+          'gen_ai.output.type': 'json',
+          'gen_ai.tool.args': '{"timezone": "America/New_York"}',
+          'gen_ai.tool.call.id': 'call_dNGvb3qtNzTPxgawdFCm35w4',
+          'gen_ai.tool.description': 'Get current time in a specific timezones',
+          'gen_ai.tool.name': 'get_current_time',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 1327553183129180208,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 315162220174925562594437000055854455869,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199548979176293,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'execute_tool get_current_time',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 1376518898821601349,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 315162220174925562594437000055854455869,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199548974847981,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '[{"tool.name": "write_file", "tool.args": {"text": "2025"}}]',
+          'gen_ai.output.type': 'json',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.usage.input_tokens': 288,
+          'gen_ai.usage.output_tokens': 15,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 7789243936924868532,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 315162220174925562594437000055854455869,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199549918440542,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 8089704334604185099,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 315162220174925562594437000055854455869,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199548981339380,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'execute_tool',
+          'gen_ai.output': '{}',
+          'gen_ai.output.type': 'json',
+          'gen_ai.tool.args': '{"text": "2025"}',
+          'gen_ai.tool.call.id': 'call_OcJVmN8duEIiT6TEVGfQIuJi',
+          'gen_ai.tool.description': '''
+            write the text to a file in the tmp_path directory
+            
+            Args:
+                text (str): The text to write to the file.
+            
+            Returns:
+                None
+  
+          ''',
+          'gen_ai.tool.name': 'write_file',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 17907584968204620501,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 315162220174925562594437000055854455869,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199549920218278,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'execute_tool write_file',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 8940964691586598426,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 315162220174925562594437000055854455869,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199549919967973,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '''
+            Steps taken:
+            1. Retrieved the current date and time in the America/New_York timezone.
+            2. Extracted the year (2025) from the retrieved date and time.
+            3. Wrote the year (2025) to a file in the tmp_path directory.
+          ''',
+          'gen_ai.output.type': 'text',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.usage.input_tokens': 312,
+          'gen_ai.usage.output_tokens': 56,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 15746475792877545134,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 315162220174925562594437000055854455869,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199552344108207,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 8089704334604185099,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 315162220174925562594437000055854455869,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199549921631060,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.agent.description': 'No description.',
+          'gen_ai.agent.name': 'any_agent',
+          'gen_ai.operation.name': 'invoke_agent',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 371689361859441289,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 315162220174925562594437000055854455869,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199552347509786,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'invoke_agent [any_agent]',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': None,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': None,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199547573744376,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.UNSET: 'unset'>,
+        }),
+      }),
+    ]),
+  })
+# ---
+# name: test_agent_trace_snapshot[LANGCHAIN_trace].24954681691432614688665227441594606021
+  dict({
+    'final_output': '''
+      Steps taken:
+      1. Retrieved the current date and time in the America/New_York timezone.
+      2. Extracted the year from the retrieved date and time (2025).
+      3. Wrote the year value (2025) to a file.
+    ''',
+    'spans': list([
+      dict({
+        'attributes': dict({
+          'gen_ai.input.messages': '[{"role": "system", "content": "Search the web to answer"}, {"role": "user", "content": "Use the tools to find what year it is in the America/New_York timezone and write the value (single number) to a file. Finally, return a list of the steps you have taken."}]',
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '[{"tool.name": "get_current_time", "tool.args": {"timezone": "America/New_York"}}]',
+          'gen_ai.output.type': 'json',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.usage.input_tokens': 176,
+          'gen_ai.usage.output_tokens': 18,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 16593635710591137745,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 24954681691432614688665227441594606021,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199559309749560,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 15907595770894115265,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 24954681691432614688665227441594606021,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199558507491354,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'execute_tool',
+          'gen_ai.output': '''
+            {
+              "timezone": "America/New_York",
+              "datetime": "2025-06-06T04:45:59-04:00",
+              "is_dst": true
+            }
+          ''',
+          'gen_ai.output.type': 'json',
+          'gen_ai.tool.args': '{"timezone": "America/New_York"}',
+          'gen_ai.tool.call.id': 'call_gfy1SzgkvJrkZOAoEaGe2dkY',
+          'gen_ai.tool.description': 'Get current time in a specific timezones',
+          'gen_ai.tool.name': 'get_current_time',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 4261449712156335559,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 24954681691432614688665227441594606021,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199559317973506,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'execute_tool get_current_time',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 15907595770894115265,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 24954681691432614688665227441594606021,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199559315592807,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.input.messages': '[{"role": "system", "content": "Search the web to answer"}, {"role": "user", "content": "Use the tools to find what year it is in the America/New_York timezone and write the value (single number) to a file. Finally, return a list of the steps you have taken."}, {"role": "ai", "content": ""}, {"role": "tool", "content": "{\\n  \\"timezone\\": \\"America/New_York\\",\\n  \\"datetime\\": \\"2025-06-06T04:45:59-04:00\\",\\n  \\"is_dst\\": true\\n}"}]',
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '[{"tool.name": "write_file", "tool.args": {"text": "2025"}}]',
+          'gen_ai.output.type': 'json',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.usage.input_tokens': 244,
+          'gen_ai.usage.output_tokens': 15,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 18402155559688961660,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 24954681691432614688665227441594606021,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199559970528081,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 15907595770894115265,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 24954681691432614688665227441594606021,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199559321301366,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'execute_tool',
+          'gen_ai.output': 'null',
+          'gen_ai.output.type': 'json',
+          'gen_ai.tool.args': '{"text": "2025"}',
+          'gen_ai.tool.call.id': 'call_J03ttY0T0yCa5GCQeIP0myCP',
+          'gen_ai.tool.description': '''
+            write the text to a file in the tmp_path directory
+            
+            Args:
+                text (str): The text to write to the file.
+            
+            Returns:
+                None
+          ''',
+          'gen_ai.tool.name': 'write_file',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 9046082667634633864,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 24954681691432614688665227441594606021,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199559977397536,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'execute_tool write_file',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 15907595770894115265,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 24954681691432614688665227441594606021,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199559976768947,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.input.messages': '[{"role": "system", "content": "Search the web to answer"}, {"role": "user", "content": "Use the tools to find what year it is in the America/New_York timezone and write the value (single number) to a file. Finally, return a list of the steps you have taken."}, {"role": "ai", "content": ""}, {"role": "tool", "content": "{\\n  \\"timezone\\": \\"America/New_York\\",\\n  \\"datetime\\": \\"2025-06-06T04:45:59-04:00\\",\\n  \\"is_dst\\": true\\n}"}, {"role": "ai", "content": ""}, {"role": "tool", "content": "null"}]',
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '''
+            Steps taken:
+            1. Retrieved the current date and time in the America/New_York timezone.
+            2. Extracted the year from the retrieved date and time (2025).
+            3. Wrote the year value (2025) to a file.
+          ''',
+          'gen_ai.output.type': 'text',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.usage.input_tokens': 268,
+          'gen_ai.usage.output_tokens': 51,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 6580986688103779306,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 24954681691432614688665227441594606021,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199561251029058,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 15907595770894115265,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 24954681691432614688665227441594606021,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199559980979944,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.agent.description': 'No description.',
+          'gen_ai.agent.name': 'any_agent',
+          'gen_ai.operation.name': 'invoke_agent',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 15907595770894115265,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 24954681691432614688665227441594606021,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199561256767433,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'invoke_agent [any_agent]',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': None,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': None,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199558500109622,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.UNSET: 'unset'>,
+        }),
+      }),
+    ]),
+  })
+# ---
+# name: test_agent_trace_snapshot[LLAMA_INDEX_trace].239158064899017215349358793307777389113
+  dict({
+    'final_output': '''
+      Steps taken:
+      1. Retrieved the current date and time in the America/New_York timezone.
+      2. Extracted the year from the retrieved date and time (2025).
+      3. Wrote the year (2025) to a file.
+    ''',
+    'spans': list([
+      dict({
+        'attributes': dict({
+          'gen_ai.input.messages': '[{"role": "system", "content": "Search the web to answer"}, {"role": "user", "content": "Use the tools to find what year it is in the America/New_York timezone and write the value (single number) to a file. Finally, return a list of the steps you have taken."}]',
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '[{"tool.name": "get_current_time", "tool.args": "{}"}]',
+          'gen_ai.output.type': 'json',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.usage.input_tokens': 193,
+          'gen_ai.usage.output_tokens': 18,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 4390322071668367067,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 239158064899017215349358793307777389113,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': None,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 17007314416500583758,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 239158064899017215349358793307777389113,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749204460998075158,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'execute_tool',
+          'gen_ai.output': '''
+            {
+              "timezone": "America/New_York",
+              "datetime": "2025-06-06T06:07:42-04:00",
+              "is_dst": true
+            }
+          ''',
+          'gen_ai.output.type': 'json',
+          'gen_ai.tool.args': '{"timezone": "America/New_York"}',
+          'gen_ai.tool.name': 'get_current_time',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 7588365585131798849,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 239158064899017215349358793307777389113,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': None,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'execute_tool get_current_time',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 17007314416500583758,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 239158064899017215349358793307777389113,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749204462014505300,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '[{"tool.name": "write_file", "tool.args": "{}"}]',
+          'gen_ai.output.type': 'json',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.usage.input_tokens': 284,
+          'gen_ai.usage.output_tokens': 15,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 12003812115783640626,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 239158064899017215349358793307777389113,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': None,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 17007314416500583758,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 239158064899017215349358793307777389113,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749204462342873241,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'execute_tool',
+          'gen_ai.output': '"None"',
+          'gen_ai.output.type': 'json',
+          'gen_ai.tool.args': '{"text": "2025"}',
+          'gen_ai.tool.name': 'write_file',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 10679167539659635970,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 239158064899017215349358793307777389113,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': None,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'execute_tool write_file',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 17007314416500583758,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 239158064899017215349358793307777389113,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749204465045321617,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '''
+            Steps taken:
+            1. Retrieved the current date and time in the America/New_York timezone.
+            2. Extracted the year from the retrieved date and time (2025).
+            3. Wrote the year (2025) to a file.
+          ''',
+          'gen_ai.output.type': 'text',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.usage.input_tokens': 308,
+          'gen_ai.usage.output_tokens': 50,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 4110700602670608954,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 239158064899017215349358793307777389113,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': None,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 17007314416500583758,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 239158064899017215349358793307777389113,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749204465048178034,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.agent.description': 'No description.',
+          'gen_ai.agent.name': 'any_agent',
+          'gen_ai.operation.name': 'invoke_agent',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 17007314416500583758,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 239158064899017215349358793307777389113,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749204466734641908,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'invoke_agent [any_agent]',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': None,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': None,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749204460994857479,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.UNSET: 'unset'>,
+        }),
+      }),
+    ]),
+  })
+# ---
+# name: test_agent_trace_snapshot[OPENAI_trace].318645070355214089174171463654764043915
+  dict({
+    'final_output': '''
+      Steps taken:
+      1. Retrieved the current date and time in the America/New_York timezone.
+      2. Extracted the year (2025) from the retrieved date and time.
+      3. Wrote the year value (2025) to a file.
+    ''',
+    'spans': list([
+      dict({
+        'attributes': dict({
+          'gen_ai.input.messages': '[{"content": "Search the web to answer", "role": "system"}, {"role": "user", "content": "Use the tools to find what year it is in the America/New_York timezone and write the value (single number) to a file. Finally, return a list of the steps you have taken."}]',
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '[{"tool.name": "get_current_time", "tool.args": "{\\"timezone\\":\\"America/New_York\\"}"}]',
+          'gen_ai.output.type': 'json',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.usage.input_tokens': 299,
+          'gen_ai.usage.output_tokens': 18,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 7769921024216074156,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 318645070355214089174171463654764043915,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199570676103607,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 5911348987520047576,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 318645070355214089174171463654764043915,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199570031813621,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'execute_tool',
+          'gen_ai.output': '{"type":"text","text":"{\\n  \\"timezone\\": \\"America/New_York\\",\\n  \\"datetime\\": \\"2025-06-06T04:46:10-04:00\\",\\n  \\"is_dst\\": true\\n}","annotations":null}',
+          'gen_ai.output.type': 'json',
+          'gen_ai.tool.args': '{"timezone":"America/New_York"}',
+          'gen_ai.tool.name': 'get_current_time',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 3437622594001797082,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 318645070355214089174171463654764043915,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199570681528907,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'execute_tool get_current_time',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 5911348987520047576,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 318645070355214089174171463654764043915,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199570679210104,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '[{"tool.name": "write_file", "tool.args": "{\\"text\\":\\"2025\\"}"}]',
+          'gen_ai.output.type': 'json',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.usage.input_tokens': 382,
+          'gen_ai.usage.output_tokens': 15,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 9073286641731590475,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 318645070355214089174171463654764043915,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199571593671171,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 5911348987520047576,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 318645070355214089174171463654764043915,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199570684112705,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'execute_tool',
+          'gen_ai.output': '{}',
+          'gen_ai.output.type': 'json',
+          'gen_ai.tool.args': '{"text":"2025"}',
+          'gen_ai.tool.name': 'write_file',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 5421844224220966066,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 318645070355214089174171463654764043915,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199571596060803,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'execute_tool write_file',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 5911348987520047576,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 318645070355214089174171463654764043915,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199571595776003,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '''
+            Steps taken:
+            1. Retrieved the current date and time in the America/New_York timezone.
+            2. Extracted the year (2025) from the retrieved date and time.
+            3. Wrote the year value (2025) to a file.
+          ''',
+          'gen_ai.output.type': 'text',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.usage.input_tokens': 406,
+          'gen_ai.usage.output_tokens': 52,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 17099353913652831577,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 318645070355214089174171463654764043915,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199573540275745,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 5911348987520047576,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 318645070355214089174171463654764043915,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199571597131584,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.agent.description': 'No description.',
+          'gen_ai.agent.name': 'any_agent',
+          'gen_ai.operation.name': 'invoke_agent',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 5911348987520047576,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 318645070355214089174171463654764043915,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199573543770340,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'invoke_agent [any_agent]',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': None,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': None,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199570029860514,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.UNSET: 'unset'>,
+        }),
+      }),
+    ]),
+  })
+# ---
+# name: test_agent_trace_snapshot[SMOLAGENTS_trace].64468782018393155884855434231351406080
+  dict({
+    'final_output': '''
+      Steps taken:
+      1. Retrieved the current date and time in the America/New_York timezone.
+      2. Extracted the year (2025) from the retrieved date and time.
+      3. Wrote the year (2025) to a file.
+      
+      The year in the America/New_York timezone is 2025.
+    ''',
+    'spans': list([
+      dict({
+        'attributes': dict({
+          'gen_ai.input.messages': '[{"role": "system", "content": "Search the web to answer"}, {"role": "user", "content": "New task:\\nUse the tools to find what year it is in the America/New_York timezone and write the value (single number) to a file. Finally, return a list of the steps you have taken."}]',
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '[{"tool.name": "get_current_time", "tool.args": "{\\"timezone\\":\\"America/New_York\\"}"}]',
+          'gen_ai.output.type': 'json',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.response.model': 'gpt-4.1-mini-2025-04-14',
+          'gen_ai.usage.input_tokens': 200,
+          'gen_ai.usage.output_tokens': 18,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 8003438528957586222,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 64468782018393155884855434231351406080,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': None,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 10801367410871246748,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 64468782018393155884855434231351406080,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199586658991217,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'execute_tool',
+          'gen_ai.output': '''
+            {
+              "timezone": "America/New_York",
+              "datetime": "2025-06-06T04:46:27-04:00",
+              "is_dst": true
+            }
+          ''',
+          'gen_ai.output.type': 'json',
+          'gen_ai.tool.args': '{"timezone": "America/New_York"}',
+          'gen_ai.tool.description': 'Get current time in a specific timezones',
+          'gen_ai.tool.name': 'get_current_time',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 13994233856874702560,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 64468782018393155884855434231351406080,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': None,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'execute_tool get_current_time',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 10801367410871246748,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 64468782018393155884855434231351406080,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199587430511274,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '[{"tool.name": "write_file", "tool.args": "{\\"text\\":\\"2025\\"}"}]',
+          'gen_ai.output.type': 'json',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.response.model': 'gpt-4.1-mini-2025-04-14',
+          'gen_ai.usage.input_tokens': 331,
+          'gen_ai.usage.output_tokens': 15,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 12492241005632652490,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 64468782018393155884855434231351406080,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': None,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 10801367410871246748,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 64468782018393155884855434231351406080,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199587434348423,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'execute_tool',
+          'gen_ai.output': '{}',
+          'gen_ai.output.type': 'json',
+          'gen_ai.tool.args': '{"text": "2025"}',
+          'gen_ai.tool.description': 'write the text to a file in the tmp_path directory',
+          'gen_ai.tool.name': 'write_file',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 9479722815501152670,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 64468782018393155884855434231351406080,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': None,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'execute_tool write_file',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 10801367410871246748,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 64468782018393155884855434231351406080,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199588391209196,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '[{"tool.name": "final_answer", "tool.args": "{\\"answer\\":\\"Steps taken:\\\\n1. Retrieved the current date and time in the America/New_York timezone.\\\\n2. Extracted the year (2025) from the retrieved date and time.\\\\n3. Wrote the year (2025) to a file.\\\\n\\\\nThe year in the America/New_York timezone is 2025.\\"}"}]',
+          'gen_ai.output.type': 'json',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.response.model': 'gpt-4.1-mini-2025-04-14',
+          'gen_ai.usage.input_tokens': 413,
+          'gen_ai.usage.output_tokens': 82,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 7261019113210097508,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 64468782018393155884855434231351406080,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': None,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 10801367410871246748,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 64468782018393155884855434231351406080,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199588393804070,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'execute_tool',
+          'gen_ai.output': '''
+            Steps taken:
+            1. Retrieved the current date and time in the America/New_York timezone.
+            2. Extracted the year (2025) from the retrieved date and time.
+            3. Wrote the year (2025) to a file.
+            
+            The year in the America/New_York timezone is 2025.
+          ''',
+          'gen_ai.output.type': 'text',
+          'gen_ai.tool.args': '{"answer": "Steps taken:\\n1. Retrieved the current date and time in the America/New_York timezone.\\n2. Extracted the year (2025) from the retrieved date and time.\\n3. Wrote the year (2025) to a file.\\n\\nThe year in the America/New_York timezone is 2025."}',
+          'gen_ai.tool.description': 'Provides a final answer to the given problem.',
+          'gen_ai.tool.name': 'final_answer',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 17116462607947892967,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 64468782018393155884855434231351406080,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': None,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'execute_tool final_answer',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 10801367410871246748,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 64468782018393155884855434231351406080,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199590852773510,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.agent.description': 'No description.',
+          'gen_ai.agent.name': 'any_agent',
+          'gen_ai.operation.name': 'invoke_agent',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 10801367410871246748,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 64468782018393155884855434231351406080,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199590859952858,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'invoke_agent [any_agent]',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': None,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': None,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199586658467397,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.UNSET: 'unset'>,
+        }),
+      }),
+    ]),
+  })
+# ---
+# name: test_agent_trace_snapshot[TINYAGENT_trace].244271396717067841355262688573681387656
+  dict({
+    'final_output': '''
+      Steps taken:
+      1. Retrieved the current date and time in the America/New_York timezone.
+      2. Extracted the year (2025) from the retrieved date and time.
+      3. Wrote the year (2025) to a file.
+    ''',
+    'spans': list([
+      dict({
+        'attributes': dict({
+          'gen_ai.input.messages': '[{"role": "system", "content": "Search the web to answer"}, {"role": "user", "content": "Use the tools to find what year it is in the America/New_York timezone and write the value (single number) to a file. Finally, return a list of the steps you have taken."}]',
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '[{"tool.name": "get_current_time", "tool.args": "{\\"timezone\\":\\"America/New_York\\"}"}]',
+          'gen_ai.output.type': 'json',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.response.model': 'gpt-4.1-mini-2025-04-14',
+          'gen_ai.usage.input_tokens': 180,
+          'gen_ai.usage.output_tokens': 18,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 6280872986770050708,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 244271396717067841355262688573681387656,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': None,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 10787876420921774398,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 244271396717067841355262688573681387656,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199596066559824,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'execute_tool',
+          'gen_ai.output': '''
+            {
+              "timezone": "America/New_York",
+              "datetime": "2025-06-06T04:46:36-04:00",
+              "is_dst": true
+            }
+          ''',
+          'gen_ai.output.type': 'json',
+          'gen_ai.tool.args': '{"timezone": "America/New_York"}',
+          'gen_ai.tool.name': 'get_current_time',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 18304938137171450789,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 244271396717067841355262688573681387656,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': None,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'execute_tool get_current_time',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 10787876420921774398,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 244271396717067841355262688573681387656,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199596737506099,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '[{"tool.name": "write_file", "tool.args": "{\\"text\\":\\"2025\\"}"}]',
+          'gen_ai.output.type': 'json',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.response.model': 'gpt-4.1-mini-2025-04-14',
+          'gen_ai.usage.input_tokens': 248,
+          'gen_ai.usage.output_tokens': 15,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 4152282050070329225,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 244271396717067841355262688573681387656,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': None,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 10787876420921774398,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 244271396717067841355262688573681387656,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199596742707592,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'execute_tool',
+          'gen_ai.output': 'None',
+          'gen_ai.output.type': 'text',
+          'gen_ai.tool.args': '{"text": "2025"}',
+          'gen_ai.tool.name': 'write_file',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 9350076992846841063,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 244271396717067841355262688573681387656,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': None,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'execute_tool write_file',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 10787876420921774398,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 244271396717067841355262688573681387656,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199597399170651,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.operation.name': 'call_llm',
+          'gen_ai.output': '''
+            Steps taken:
+            1. Retrieved the current date and time in the America/New_York timezone.
+            2. Extracted the year (2025) from the retrieved date and time.
+            3. Wrote the year (2025) to a file.
+          ''',
+          'gen_ai.output.type': 'text',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+          'gen_ai.response.model': 'gpt-4.1-mini-2025-04-14',
+          'gen_ai.usage.input_tokens': 272,
+          'gen_ai.usage.output_tokens': 51,
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 5552732839096037278,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 244271396717067841355262688573681387656,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': None,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'call_llm gpt-4.1-mini',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': 10787876420921774398,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 244271396717067841355262688573681387656,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199597400866609,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.OK: 'ok'>,
+        }),
+      }),
+      dict({
+        'attributes': dict({
+          'gen_ai.agent.description': 'No description.',
+          'gen_ai.agent.name': 'any_agent',
+          'gen_ai.operation.name': 'invoke_agent',
+          'gen_ai.request.model': 'gpt-4.1-mini',
+        }),
+        'context': dict({
+          'is_remote': False,
+          'span_id': 10787876420921774398,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': 244271396717067841355262688573681387656,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'end_time': 1749199598629199981,
+        'events': list([
+        ]),
+        'kind': <SpanKind.INTERNAL: 'internal'>,
+        'links': list([
+        ]),
+        'name': 'invoke_agent [any_agent]',
+        'parent': dict({
+          'is_remote': False,
+          'span_id': None,
+          'trace_flags': dict({
+            'value': 0,
+          }),
+          'trace_id': None,
+          'trace_state': dict({
+            'entries': dict({
+            }),
+          }),
+        }),
+        'resource': dict({
+          'attributes': dict({
+            'service.name': 'unknown_service',
+            'telemetry.sdk.language': 'python',
+            'telemetry.sdk.name': 'opentelemetry',
+            'telemetry.sdk.version': '1.33.1',
+          }),
+          'schema_url': '',
+        }),
+        'start_time': 1749199596066439849,
+        'status': dict({
+          'description': None,
+          'status_code': <StatusCode.UNSET: 'unset'>,
+        }),
+      }),
+    ]),
+  })
+# ---
