@@ -1,0 +1,31 @@
+# pyproject.toml
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gupta-flowshop-optimizer" # Nombre único para tu paquete en PyPI
+version = "0.1.1"
+authors = [
+  { name="Mauricio Andrés Zamora Hernández", email="mauricio.zamorahernandez.ucr@gmail.com" },
+]
+description = "Una implementación de la heurística de Gupta para la secuenciación de tareas en Flow Shop."
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License", # O la licencia que uses
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "pandas",
+    "openpyxl", # Si quieres soportar Excel
+]
+
+[project.urls]
+"Homepage" = "https://github.com/tu_usuario/tu_repositorio" # Opcional, enlace a tu repo
+"Bug Tracker" = "https://github.com/tu_usuario/tu_repositorio/issues" # Opcional
+
+[project.scripts]
+# Define un punto de entrada de línea de comandos
+gupta-optimize = "gupta_flowshop.gupta_heuristic:main_cli"

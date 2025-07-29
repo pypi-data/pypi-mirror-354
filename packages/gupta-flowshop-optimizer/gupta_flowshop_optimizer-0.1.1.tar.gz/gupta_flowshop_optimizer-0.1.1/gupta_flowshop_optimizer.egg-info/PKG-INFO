@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: gupta-flowshop-optimizer
+Version: 0.1.1
+Summary: Una implementación de la heurística de Gupta para la secuenciación de tareas en Flow Shop.
+Author-email: Mauricio Andrés Zamora Hernández <mauricio.zamorahernandez.ucr@gmail.com>
+Project-URL: Homepage, https://github.com/tu_usuario/tu_repositorio
+Project-URL: Bug Tracker, https://github.com/tu_usuario/tu_repositorio/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: openpyxl
