@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>python添加通话记录</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				font-size: 50rem;
+				background: black;
+			}
+			h1{
+				padding-top: 112rem;
+				color: white;
+				font-size: 60rem;
+				text-align: center;
+			}
+			
+			.bodyBox{
+				box-sizing: border-box;
+				padding: 44rem;
+				width: 600rem;
+				height: 1000rem;
+				background-color: rgb(35, 35, 35);
+				margin: 80rem auto;
+				border-radius: 30rem;
+				border: 6rem solid white;
+			}
+			.inp{
+				width: 100%;
+				height: 80rem;
+				font-size: 30rem;
+				text-align: center;
+				outline: none;
+				margin-bottom: 46rem;
+			}
+			.inp_thsj{
+				background-color: black;
+				border:2rem solid white;
+				color: white;
+				text-align: center;
+			}
+			.textBox{
+				color: white;
+				font-size: 40rem;
+			}
+			.btn{
+				width: 300rem;
+				height: 80rem;
+				color: white;
+				line-height: 75rem;
+				background: green;
+				border-radius: 50rem;
+				text-align: center;
+				font-size: 45rem;
+				margin: 50rem auto;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>添加通话记录</h1>
+		<div class="bodyBox">
+			<input type="text" class="inp_sjh inp" placeholder="请输入手机号">
+			<input type="text" class="inp_thsc inp" placeholder="请输入通话时长(s)">
+			<input type="datetime-local" class="inp_thsj inp" value="2025-05-01T00:00">
+			<div class="textBox">
+				<p>手机号:<span class="sp_sjh"></span></p>
+				<p>通话时长:<span class="sp_thsc">0秒</span></p>
+				<p>时间:<span class="sp_thsj">2025-05-01 00:00</span></p>
+			</div>
+			<div class="btn reset">重置</div>
+			<div class="btn add">添加记录</div>
+		</div>
+		<script>
+			document.documentElement.style.fontSize=document.documentElement.clientWidth/750+'px'
+			const sjh = document.querySelector('.inp_sjh')
+			const thsc = document.querySelector('.inp_thsc')
+			const thsj = document.querySelector('.inp_thsj')
+			//重置
+			document.querySelector('.reset').addEventListener('click',function(){
+				sjh.value = ''
+				thsc.value=''
+				thsj.value='2025-05-01T00:00'
+			})
+			
+			
+			
+			const inps=[sjh,thsc,thsj]
+			inps.forEach(v=>{
+				v.addEventListener('blur',function(){
+					upText()
+				})
+			})
+			thsj.addEventListener('change',upText)
+			
+			function upText(){
+				document.querySelector('.sp_sjh').textContent=sjh.value
+				document.querySelector('.sp_thsc').textContent=thsc.value
+				document.querySelector('.sp_thsj').textContent=thsj.value.replace('T',' ')
+			}
+			
+			//发射
+			document.querySelector('.add').addEventListener('click',function(){
+			
+				const params = new URLSearchParams({
+					sjh:sjh.value,
+					thsc:thsc.value,
+					thsj:thsj.value.replace('T',' ')
+				})
+				const url=`/add?${params.toString()}`
+				fetch(url)
+				.then(res=>res.text())
+				.then((data)=>{
+					alert(data)
+				}).catch(err=>alert(err))
+			})
+			
+		</script>
+	</body>
+</html>

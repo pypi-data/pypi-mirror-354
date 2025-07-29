@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>python控制手机电池</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+             background-color: black;
+            font-size: 20px;
+        }
+        h1{
+            color: white;
+            font-size: 54rem;
+            text-align: center;
+            padding-top: 90rem;
+        }
+        .batteryBox{
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            color: white;
+            width: 460rem;
+            height: 200rem;
+            border: 6rem solid white;
+            margin: 0 auto;
+            margin-top: 40rem;
+            padding: 10rem;
+            border-radius: 20rem;
+        }
+        .box{
+            width: 48%;
+            height: 100%;
+            background-color: orange;
+            border-radius: 10rem;
+        }
+        .level{
+            width: 100%;
+            margin-top: -10rem;
+            display: block;
+            position: absolute;
+            text-align: center;
+            font-size: 80rem;
+            font-weight: bold;
+        }
+
+        .formBox{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+            width: 550rem;
+            height: 770rem;
+            background-color: #1a1a1a;
+            border: 10rem solid white;
+            border-radius: 40rem;
+            margin: 100rem auto;
+        }
+        input{
+            width: 330rem;
+            height: 80rem;
+            font-size: 60rem;
+            text-align: center;
+        }
+        .bt{
+            /* box-sizing: border-box; */
+            width: 400rem;
+            height: 100rem;
+            border: 10rem solid white;
+            border-radius: 100rem;
+            color: white;
+            text-align: center;
+            line-height: 100rem;
+            font-size: 50rem;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+   <h1>当前剩余电量</h1>
+   <div class="batteryBox">
+        <div class="box"></div>
+        <div class="level">48%</div>
+   </div>
+
+   <div class="formBox">
+        <input type="text" class="inp">
+        <div class="submit bt">更改电量</div>
+        <div class="reset bt">重置电量</div>
+   </div>
+    <script>
+        //rem
+    document.documentElement.style.fontSize=window.screen.width/750+'px'
+
+    function getLevel(){
+        fetch('/getlevel')
+        .then(res=>res.text())
+        .then(data=>{
+           renderLevel(data)
+        })
+    }
+    function renderLevel(level){
+        document.querySelector('.level').innerText=level+'%'
+        let colors = 'green'
+        if(level>80){
+            colors='green'
+        }else if(level > 40){
+            colors='yellowgreen'
+        }else if(level>20){
+            colors='orange'
+        }else{
+            colors='red'
+        }
+        document.querySelector('.box').style.width=level+'%'
+        document.querySelector('.box').style.backgroundColor=colors
+    }
+    
+    // document.querySelector('.level').innerText=
+    getLevel()
+
+    //设置电量事件
+    document.querySelector('.submit').addEventListener('click',function(){
+        //发起http请求
+        let level=document.querySelector('.inp').value
+        if(!level.trim()){
+            alert('请输入电量')
+        }else if(level >0 && level <=100){
+            fetch(`/setlevel?level=${level}`)
+            .then(res=>res.text())
+            .then((data)=>{
+                //设置完成重新渲染
+                getLevel()
+                console.log(1)
+            })
+            .catch((err)=>{
+                console.log(err)
+                return
+            })
+
+        }else{
+            alert('请输入正确的数值0-100')
+        }
+
+    })
+
+    //重置电量事件
+    document.querySelector('.reset').addEventListener('click',function(){
+        fetch('/resetlevel')
+        .then(res=>res.text())
+        .then(data=>console.log(data))
+        .catch(err=>console.log(err))
+        //重新渲染电量
+        getLevel()
+    })
+
+
+
+
+
+    </script>
+</body>
+</html>
