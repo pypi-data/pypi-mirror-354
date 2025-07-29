@@ -1,0 +1,33 @@
+Metadata-Version: 2.4
+Name: excelkit_2025
+Version: 0.1.0
+Summary: Excel file helper for creating, updating, and querying data using pandas.
+Author-email: Avinash S <avinash.s6055@gmail.com>
+License: MIT
+Keywords: excel,pandas,dataframe,utility
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+Requires-Dist: pandas>=1.3
+Requires-Dist: openpyxl>=3.0
+Dynamic: license-file
+
+# 📊 excel_utils
+
+A lightweight Python utility library for working with Excel files using `pandas` and `openpyxl`. Supports reading, writing, updating, filtering, sorting, and summarizing data in `.xlsx` files.
+
+---
+
+## ✅ Features
+
+- Create new Excel files with custom columns
+- Append rows to existing files
+- Read and filter Excel data
+- Update or delete specific rows and cells
+- Get summary statistics for numeric columns
+- Clear, rename, and sort Excel sheets
+- List all supported functions using `show_functions()`
+
+---
+
+
