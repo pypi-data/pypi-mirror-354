@@ -1,0 +1,68 @@
+Metadata-Version: 2.4
+Name: levers
+Version: 0.2.0
+Summary: A Python package for visualizing lever mechanisms and animated geometry
+Project-URL: Repository, https://github.com/a17sol/levers.git
+Author-email: Michael Solovyev <solomisha57@gmail.com>
+License-Expression: MIT
+License-File: LICENSE
+Keywords: animation,geometry,lever,mechanics,mechanism,simulation
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.14
+Classifier: Programming Language :: Python :: 3.15
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Requires-Python: >=3.12
+Provides-Extra: all
+Requires-Dist: pygame; extra == 'all'
+Requires-Dist: pyqt6; extra == 'all'
+Requires-Dist: pyqtgraph; extra == 'all'
+Provides-Extra: pygame
+Requires-Dist: pygame; extra == 'pygame'
+Provides-Extra: pyqt
+Requires-Dist: pyqt6; extra == 'pyqt'
+Requires-Dist: pyqtgraph; extra == 'pyqt'
+Description-Content-Type: text/markdown
+
+# Levers
+**Levers** is a Python package for visualizing lever mechanisms and animated geometry.  
+It lets you describe a moving mechanism or geometric construction in just a few lines of code and visualize it using pluggable renderers.
+
+<p align="center">
+  <img src="media/demo2-1c.gif" width="400" alt="Chebyshev lambda linkage">
+</p>
+
+## Features
+
+- Concise and natural syntax for describing mechanical linkages and geometry
+- Optional rendering backends — choose what fits your use case
+- No dependencies required for the core functionality
+
+## Renderers and Installation
+
+Although the project core has no external dependencies, vizualisation is performed via renderer plugins, each with its own requirements. You can choose optional dependencies at installation depending on the renderer you plan to use.
+
+Currently, the package includes two renderer plugins:
+
+- **PyGameRenderer** — install with:  
+  ```bash
+  pip install levers[pygame]
+  ```
+- **PyQtGraphRenderer** — install with:
+  ```bash
+  pip install levers[pyqt]
+  ```
+To install both:
+```bash
+pip install levers[all]
+```
+
+## Examples
+
+Check the `examples/` folder to quickly learn how to use Levers!
