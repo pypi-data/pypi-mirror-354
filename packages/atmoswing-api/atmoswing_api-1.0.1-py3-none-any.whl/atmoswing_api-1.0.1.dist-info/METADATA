@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: atmoswing-api
+Version: 1.0.1
+Summary: A web API for AtmoSwing forecasts
+Author: Pascal Horton
+Author-email: Pascal Horton <pascal.horton@terranum.ch>
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+License-File: LICENSE
+Requires-Dist: fastapi
+Requires-Dist: uvicorn[standard]
+Requires-Dist: xarray
+Requires-Dist: netCDF4
+Requires-Dist: pydantic
+Requires-Dist: pydantic-settings
+Requires-Dist: python-dotenv
+Requires-Dist: dask
+Requires-Dist: pytest
+Requires-Dist: pytest-asyncio
+Dynamic: author
+Dynamic: license-file
