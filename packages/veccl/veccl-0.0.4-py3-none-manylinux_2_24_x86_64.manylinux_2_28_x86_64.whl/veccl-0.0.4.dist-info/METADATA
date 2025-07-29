@@ -1,0 +1,119 @@
+Metadata-Version: 2.2
+Name: veccl
+Version: 0.0.4
+Summary: A high-performance communication library for AI training and inference, designed as a drop-in replacement for NCCL.
+Author: Beijing Volcano Engine Technology Ltd.
+License: Copyright (C) Beijing Volcano Engine Technology Ltd.
+Description-Content-Type: text/markdown
+License-File: THIRD_PARTY_NOTICE
+License-File: LICENSE
+Dynamic: author
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: summary
+
+# veCCL
+
+## Introduction
+During the process of large-scale AI training and inference, the requirements for infrastructure such as communication and networking have become extremely demanding. The specific requirements are concentrated in aspects such as high performance, rapid adaptation to new machine models, quick fault location, ensuring business stability, and business traffic planning. To meet these needs, we have developed the veCCL communication library.
+
+veCCL is meant to be a drop-in replacement for NCCL and is distributed in `.so` library form.
+
+## Prerequisites
+To ensure compatibility, we use [manylinux_2_28](https://github.com/pypa/manylinux/blob/dd48fc862ca5f174496df9ad1e94bc0ca0938982/README.rst#manylinux_2_28-almalinux-8-based) to build the pip wheel, which means veCCL comes with the CUDA runtime library and all dependent libraries embedded.
+
+Built wheels are expected to be compatible with any distros using glibc 2.28 or later, including:
+
+- Debian 10+
+- Ubuntu 18.10+
+- Fedora 29+
+- CentOS/RHEL 8+
+
+The user only needs to ensure they have a driver installed that supports CUDA 12 (>=525.60.13).
+
+## Install
+
+To install veCCL on the system:
+
+```sh
+pip install veccl
+```
+
+## Usage
+
+```python
+import veccl
+import os
+import subprocess
+veccl.enable() # this sets LD_PRELOAD, NCCL_NET_PLUGIN, and LD_LIBRARY_PATH
+os.environ['NCCL_DEBUG'] = 'VERSION'
+torchrun_command = ["/path/to/torchrun","--nproc_per_node=8","your_training_script.py","--arg1", "value1","--arg2", "value2"]
+try:
+    subprocess.run(torchrun_command, check=True)
+except subprocess.CalledProcessError as e:
+    print(f"torchrun failed with error: {e}")
+```
+
+However, `LD_PRELOAD` only works for **subsequently spawned processes**, so users need to set the `LD_PRELOAD` environment variable or call `veccl.enable()` **before** the process that will use NCCL starts. For example:
+
+```sh
+#!/bin/bash
+export LD_PRELOAD=$(python3 -c "import veccl; print(veccl.lib_paths())"):${LD_PRELOAD}
+export NCCL_NET_PLUGIN=soft-bonding
+export LD_LIBRARY_PATH=$(python3 -c "import veccl; print(veccl.ld_library_path())"):$LD_LIBRARY_PATH
+NCCL_DEBUG=VERSION torchrun --nproc_per_node=8 your_training_script.py --arg1 value1 --arg2 value2
+```
+
+or
+
+```python
+import veccl
+import os
+import subprocess
+
+veccl.enable()
+os.environ['NCCL_DEBUG'] = 'VERSION'
+
+torchrun_command = [
+    "/path/to/torchrun",
+    "--nproc_per_node=8",
+    "your_training_script.py",
+    "--arg1", "value1",
+    "--arg2", "value2"
+]
+
+try:
+    subprocess.run(torchrun_command, check=True)
+except subprocess.CalledProcessError as e:
+    print(f"torchrun failed with error: {e}")
+```
+
+Here's a minimal pytorch script for testing:
+
+```python
+import os
+import torch
+import torch.distributed as dist
+
+def main():
+    rank = int(os.environ["RANK"])
+    local_rank = int(os.environ["LOCAL_RANK"])
+    world_size = int(os.environ["WORLD_SIZE"])
+
+    torch.cuda.set_device(local_rank)
+    dist.init_process_group(backend="nccl")
+
+    tensor = torch.randn(1024, device=f"cuda:{local_rank}")
+    dist.all_reduce(tensor, op=dist.ReduceOp.SUM)
+
+    print(f"Rank {rank}: tensor sum = {tensor.sum().item()}")
+    dist.destroy_process_group()
+
+if __name__ == "__main__":
+    main()
+```
+
+## License
+veCCL is licensed under the terms of Beijing Volcano Engine Technology Ltd. Copyright. The LICENSE and THIRD_PARTY_NOTICE files are included in the package distribution metadata within the veccl-[version].dist-info directory.
+
