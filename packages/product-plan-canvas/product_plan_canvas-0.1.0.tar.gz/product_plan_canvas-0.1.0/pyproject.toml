@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "product_plan_canvas"
+version = "0.1.0"
+description = "A custom Gradio component for product planning with a 4-column drag-and-drop board"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+dependencies = [
+    "gradio>=4.0.0",
+    "typing-extensions>=4.0.0"
+]
+authors = [
+    { name = "AutoPilot PM Team" }
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/yourusername/product-plan-canvas"
+"Bug Tracker" = "https://github.com/yourusername/product-plan-canvas/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["product_plan_canvas"]
+
+[tool.hatch.build.targets.sdist]
+include = ["product_plan_canvas"] 
