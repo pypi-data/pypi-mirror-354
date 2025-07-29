@@ -1,0 +1,20 @@
+[project]
+name = "mcp-server-peliqan"
+version = "0.1.0"
+description = "MCP Server for Peliqan.io"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.28.1",
+    "mcp[cli]>=1.5.0",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+mcp-server-peliqan = "mcp_server_peliqan.__main__:main"
+
+[tool.setuptools]
+packages = ["mcp_server_peliqan"]
