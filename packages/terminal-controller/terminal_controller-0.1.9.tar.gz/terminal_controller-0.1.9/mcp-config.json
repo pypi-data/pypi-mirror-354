@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "terminal-controller": {
+      "command": "/home/gong/Desktop/terminal-controller-mcp/.venv/bin/python",
+      "args": [
+        "/home/gong/Desktop/terminal-controller-mcp/terminal_controller.py"
+      ],
+      "env": {
+        "PYTHONPATH": "/home/gong/Desktop/terminal-controller-mcp"
+      }
+    }
+  }
+}
