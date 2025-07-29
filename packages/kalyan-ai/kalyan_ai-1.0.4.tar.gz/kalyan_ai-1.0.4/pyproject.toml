@@ -1,0 +1,40 @@
+[project]
+name = "kalyan-ai"
+version = "1.0.4"
+description = "Local AI assistant with Ollama integration - OpenAI compatible API"
+authors = [
+    { name = "Kalyan", email = "your.email@example.com" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "fastapi>=0.68.0",
+    "uvicorn[standard]>=0.15.0",
+    "requests>=2.25.1",
+    "pydantic>=1.8.0",
+    "python-multipart>=0.0.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/kalyan-ai"
+
+[project.scripts]
+kalyan-ai = "kalyan_ai:quick_setup"
+kalyan-ai-server = "kalyan_ai.api_server:main"
+
+[tool.setuptools]
+packages = ["kalyan_ai"]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
