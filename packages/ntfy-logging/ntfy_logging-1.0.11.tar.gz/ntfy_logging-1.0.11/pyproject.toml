@@ -1,0 +1,55 @@
+[project]
+name = "ntfy-logging"
+version = "1.0.11"
+description = "A Python logging handler for sending logs to ntfy"
+authors = [
+    {name = "Aalen", email = "65923772+MrAalen@users.noreply.github.com"}
+]
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "httpx (>=0.28.1,<0.29.0)",
+    "websockets (>=15.0.1,<16.0.0)",
+    "typing-extensions (>=4.14.0,<5.0.0)"
+]
+# 'ntfy-api' is now vendored, so not listed as a dependency or keyword
+keywords = ["ntfy", "logging", "handler", "python", "log", "notification", "logger"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Logging",
+    "Development Status :: 5 - Production/Stable",
+]
+
+[project.urls]
+Homepage = "https://github.com/MrAalen/ntfy-logging"
+Repository = "https://github.com/MrAalen/ntfy-logging"
+Documentation = "https://github.com/MrAalen/ntfy-logging#readme"
+"Bug Tracker" = "https://github.com/MrAalen/ntfy-logging/issues"
+
+[tool.poetry]
+packages = [
+    {include = "ntfy_logging", from = "src"},
+    {include = "ntfy_api", from = "src"} # vendored dependency
+]
+
+[tool.poetry.scripts]
+ntfy-logging = "ntfy_logging:main"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
