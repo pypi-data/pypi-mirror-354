@@ -1,0 +1,8 @@
+include README.md
+include LICENSE
+include requirements.txt
+include pyproject.toml
+recursive-include offline_ai *.py
+recursive-include offline_ai *.yaml
+recursive-include offline_ai *.yml
+recursive-include offline_ai *.json
