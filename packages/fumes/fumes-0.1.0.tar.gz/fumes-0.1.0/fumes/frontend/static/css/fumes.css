@@ -1,0 +1,103 @@
+/* Fumes Component Styles */
+
+/* Textbox */
+.fumes-textbox {
+    @apply w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500;
+}
+
+.fumes-textbox-label {
+    @apply block text-sm font-medium text-gray-300 mb-2;
+}
+
+/* Button */
+.fumes-button {
+    @apply px-4 py-2 rounded-lg font-medium transition-colors duration-200;
+}
+
+.fumes-button-primary {
+    @apply bg-purple-600 hover:bg-purple-700 text-white;
+}
+
+.fumes-button-secondary {
+    @apply bg-gray-700 hover:bg-gray-600 text-white;
+}
+
+.fumes-button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+}
+
+/* Markdown */
+.fumes-markdown {
+    @apply prose prose-invert max-w-none;
+}
+
+.fumes-markdown h1 {
+    @apply text-2xl font-bold text-purple-500;
+}
+
+.fumes-markdown h2 {
+    @apply text-xl font-bold text-purple-400;
+}
+
+.fumes-markdown h3 {
+    @apply text-lg font-bold text-purple-300;
+}
+
+.fumes-markdown p {
+    @apply text-gray-300;
+}
+
+.fumes-markdown code {
+    @apply bg-gray-800 px-2 py-1 rounded;
+}
+
+.fumes-markdown pre {
+    @apply bg-gray-800 p-4 rounded-lg overflow-x-auto;
+}
+
+/* File Upload */
+.fumes-file-upload {
+    @apply w-full;
+}
+
+.fumes-file-upload-label {
+    @apply block text-sm font-medium text-gray-300 mb-2;
+}
+
+.fumes-file-upload-input {
+    @apply hidden;
+}
+
+.fumes-file-upload-button {
+    @apply w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors duration-200;
+}
+
+/* Chart */
+.fumes-chart {
+    @apply w-full bg-gray-800 rounded-lg p-4;
+}
+
+/* Image */
+.fumes-image {
+    @apply max-w-full rounded-lg;
+}
+
+/* Component Container */
+.fumes-component {
+    @apply mb-6;
+}
+
+/* Loading State */
+.fumes-loading {
+    @apply animate-pulse bg-gray-700 rounded;
+}
+
+/* Error State */
+.fumes-error {
+    @apply text-red-500 text-sm mt-2;
+}
+
+/* Success State */
+.fumes-success {
+    @apply text-green-500 text-sm mt-2;
+} 
