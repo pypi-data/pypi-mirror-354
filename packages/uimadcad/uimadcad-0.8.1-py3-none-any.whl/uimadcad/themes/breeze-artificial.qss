@@ -1,0 +1,372 @@
+
+QWidget {
+	color: palette(window-text);
+}
+QWidget:disabled {
+	color: palette(placeholder-text);
+	border-color: palette(light);
+}
+
+/*
+ * QGroupBox
+ */
+
+QGroupBox {
+	background-color: palette(window);
+	border: 1px solid palette(midlight);
+	border-radius: 3px;
+}
+QGroupBox[title] {
+	padding-top: 22px;
+}
+QGroupBox::title {
+    background-color: transparent;
+	padding-left: 10px;
+	padding-top: 5px;
+}
+
+/*
+ * QToolBar
+ */
+
+QMainWindow > QToolBar {
+/* 	border: 1px solid palette(midlight); */
+	border-radius: 3px;
+}
+QToolBar::separator:vertical {
+	background: palette(midlight);
+	height: 1px;
+	margin: 5px;
+}
+QToolBar::separator:horizontal {
+	background: palette(midlight);
+	width: 1px;
+	margin: 5px;
+}
+QToolBar::handle {
+	margin: 2px 5px 2px 5px;
+	background: palette(midlight);
+}
+QToolButton { 
+	border: 1px solid transparent;
+	border-radius: 2px;
+	background: none;
+	padding: 2px;
+	margin: 1px;
+	color: palette(window-text);
+}
+QMainWindow > QToolBar > QToolButton {
+	padding: 3px;
+}
+
+/*
+ * QTabBar
+ */
+
+QTabBar{
+  background-color: transparent;
+}
+QTabBar::tab{
+  padding: 4px 6px;
+  background-color: transparent;
+  border-bottom: 2px solid transparent;
+}
+QTabBar::tab:selected, QTabBar::tab:hover {
+  color: palette(text);
+  border-bottom: 2px solid palette(highlight);
+}
+QTabBar::tab:selected:disabled {
+  border-bottom: 2px solid palette(shadow);
+}
+
+/*
+ * QScrollBar
+ */
+
+QScrollBar::add-line:vertical {
+	background: none;
+	height: 0px;
+	subcontrol-position: right;
+	subcontrol-origin: margin;
+}
+
+QScrollBar::sub-line:vertical {
+	background: none;
+	height: 0px;
+	subcontrol-position: left;
+	subcontrol-origin: margin;
+}
+
+QScrollBar::add-line:horizontal {
+  background: none;
+  width: 0px;
+  subcontrol-position: bottom;
+  subcontrol-origin: margin;
+}
+
+QScrollBar::sub-line:horizontal {
+  background: none;
+  width: 0px;
+  subcontrol-position: top;
+  subcontrol-origin: margin;
+}
+
+/* old style */
+
+QScrollBar {
+	background: palette(window);
+}
+QAbstractScrollArea::corner {
+	background: palette(window);
+}
+QScrollBar::corner, QScrollBar::groove, QScrollBar::rightcorner {
+	width: 18px;
+	height: 18px;
+}
+QScrollBar:vertical {
+	width: 18px;
+	border-left: 1px solid palette(light);
+}
+QScrollBar:horizontal {
+	height: 18px;
+	border-top: 1px solid palette(light);
+}
+QScrollBar::handle {
+	background: palette(midlight);
+	border: 1px solid palette(mid);
+	border-radius: 3px;
+}
+QScrollBar::handle:vertical {
+	min-height: 20px;
+	margin: 5px;
+}
+QScrollBar::handle:horizontal {
+	min-width: 20px;
+	margin: 5px;
+}
+
+QScrollBar::handle:vertical:hover, QScrollBar::handle:horizontal:hover, QScrollBar::handle:vertical:pressed, QScrollBar::handle:horizontal:pressed {
+	background: palette(link-visited);
+/* 	background: color-mix(palette(window), palette(highlight), 50%); */
+	border: 1px solid palette(link);
+}
+
+/*
+ * QSlider
+ */
+
+QSlider::handle:horizontal {
+  border-radius: 5px;
+  background-color: palette(shadow);
+  max-height: 20px;
+}
+
+QSlider::add-page:horizontal {
+  background: palette(base);
+}
+
+QSlider::sub-page:horizontal {
+  background: palette(highlight);
+}
+
+QSlider::sub-page:horizontal:disabled {
+  background-color: palette(shadow);
+}
+
+QTableView {
+  background-color: palette(link-visited);
+  alternate-background-color: palette(mid);
+}
+
+
+
+
+QCheckBox, QMenu::indicator {
+	color: palette(window-text);
+}
+QCheckBox::indicator, QMenu::indicator {
+	border: 1px solid palette(dark);
+	border-radius: 2px;
+	padding: 1px;
+	background: palette(window);
+    background-clip: content;
+}
+QRadioButton {
+	color: palette(window-text);
+}
+QRadioButton::indicator {
+	border: 1px solid palette(dark);
+	border-radius: 5px;
+	padding: 1px;
+	background: palette(window);
+    background-clip: content;
+}
+QCheckBox::indicator:unchecked, QMenu::indicator:unchecked, QRadioButton::indicator:unchecked { background: palette(alternate-base) }
+QCheckBox::indicator:checked, QMenu::indicator:checked, QRadioButton::indicator:checked { background: palette(highlight) }
+QCheckBox::indicator:indeterminate, QMenu::indicator:indeterminate, QRadioButton::indeterminate { background: palette(mid) }
+QCheckBox::indicator:hover, QMenu::indicator:selected, QRadioButton::indicator:hover {
+	border-color: palette(highlight);
+	border: 1px solid palette(highlight);
+}
+
+QPushButton, QComboBox { 
+	border-radius: 2px;
+	padding: 3px 6px 3px 6px;
+	margin: 1px;
+	color: palette(button-text);
+}
+QPushButton:!flat, QComboBox:!flat {
+	border: 1px solid palette(midlight);
+	background: palette(button);
+}
+QPushButton:checked, QToolButton:checked { 
+	background: palette(light); 
+	border: 1px solid palette(midlight);
+}
+QPushButton:hover, QToolButton:hover, QComboBox:hover {
+	border: 1px solid palette(link);
+}
+QPushButton:pressed, QToolButton:pressed, QComboBox:presses {
+	border: 1px solid palette(highlight);
+}
+
+
+QPlainTextEdit, QTextBrowser { 
+	color: palette(text);
+	border: 1px solid palette(midlight);
+	border-radius: 2px;
+	background: palette(base);
+	margin: 2px;
+}
+QLineEdit, QSpinBox {
+	color: palette(text);
+	border: 1px solid palette(midlight);
+	border-radius: 2px;
+	background: palette(base);
+	padding: 3px 2px 3px 3px;
+	margin: 1px;
+}
+QSpinBox::down-button, QSpinBox::up-button, QComboBox::down-arrow {
+	border-radius: 4px;
+	width: 4px;
+	height: 4px;
+	padding: 2px;
+	margin: 2px;
+	background: palette(midlight);
+}
+QSpinBox::down-button:hover, QSpinBox::up-button:hover, QComboBox::down-arrow:hover { background: palette(link); }
+QSpinBox::down-button:pressed, QSpinBox::up-button:pressed, QComboBox::down-arrow:hover { background: palette(highlight); }
+
+QPlainTextEdit:hover, QLineEdit:hover, QSpinBox:hover, QTextBrowser::hover { border-color: palette(link); }
+QPlainTextEdit::focus, QLineEdit::focus, QSpinBox:focus, QTextBrowser::focus { border-color: palette(highlight); }
+
+
+QAbstractItemView {
+	border: 1px solid palette(midlight);
+	border-radius: 2px;
+	background: palette(window);
+	padding: 3px 2px 3px 3px;
+}
+QComboBox {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+QComboBox::item {
+	background: palette(light);
+}
+QComboBox::item:selected {
+	background: palette(midlight);
+}
+QComboBox::drop-down {
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 16px;
+	border-left: 1px solid palette(midlight);
+}
+
+QToolTip {
+    background-color: palette(window);
+    color: palette(window-text);
+    border: 1px solid palette(midlight);
+	border-radius: 5px;
+    padding: 2px;
+	opacity: 200;
+}
+
+
+QMenuBar, QMenu {
+	background: palette(window);
+	color: palette(window-text);
+}
+QMenuBar {
+	padding-bottom: 4px;
+}
+QMenuBar::item, QMenu::item {
+	color: palette(window-text);
+}
+QMenu {
+	padding-top: 10px;
+	border: 1px solid palette(light);
+	border-radius: 1px;
+	border-left: 1px solid palette(midlight);
+}
+QMenu::item {
+	padding: 4px 24px 4px 28px;
+}
+QMenu::item:selected {
+	background: palette(midlight);
+}
+QMenuBar::separator, QMenu::separator {
+	height: 1px;
+	color: palette(midlight);
+	background: palette(midlight);
+	margin: 8px 32px 8px 32px;
+	border: 0px solid palette(midlight);
+}
+QMenu::icon {
+	margin-left: 10px;
+	width: 14px;
+	height: 14px;
+}
+QMenu::indicator {
+	width: 8px;
+	height: 8px;
+	margin: 8px;
+}
+
+QMenu::item {
+	border-left: 4px solid palette(midlight);
+}
+QMenu::item:selected {
+	border-left: 4px solid palette(highlight);
+}
+
+
+/* 
+	QDockWidget 
+	Unfortnately Qt doesn't provide a way to outline a docked widget, so the only thing we can do to differentiate them is to put frame widgets inside, and theme the separators
+ */
+
+QDockWidget, QDockWidget::title {
+	border: 1px solid lightgrey;
+	border-radius: 1px;
+}
+QMainWindow::separator:vertical {
+	background: palette(base);
+	width: 1px; 
+	margin-left: 1px;
+	margin-right: 1px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+QMainWindow::separator:horizontal {
+	background: palette(base);
+	height: 1px; 
+	margin-top: 1px;
+	margin-bottom: 1px;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+QMainWindow::separator:hover {
+    background: palette(highlight);
+}
