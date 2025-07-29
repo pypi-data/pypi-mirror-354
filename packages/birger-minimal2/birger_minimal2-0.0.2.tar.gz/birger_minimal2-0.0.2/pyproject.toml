@@ -1,0 +1,6 @@
+[project]
+name = "birger-minimal2"
+version = "0.0.2"
+dependencies = [
+    "apis-core-rdf>=0.48.0",
+]
