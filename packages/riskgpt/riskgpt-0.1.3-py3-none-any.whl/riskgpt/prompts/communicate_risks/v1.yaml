@@ -1,0 +1,14 @@
+version: "v1"
+description: "Generate summaries for stakeholders."
+template: |
+  {system_prompt}
+  Summary: {summary}
+  {domain_section}
+
+  Write two sections:
+  1. Executive summary in plain English for board members (≤150 words).
+  2. Technical annex for analysts with detailed reasoning.
+  Respond in the following language: {language}
+
+  {format_instructions}
+  Output the result as a JSON object that conforms to the schema above and do not include any additional text

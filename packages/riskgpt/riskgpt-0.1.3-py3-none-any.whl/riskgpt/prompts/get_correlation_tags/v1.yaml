@@ -1,0 +1,14 @@
+version: "v1"
+description: "Suggest correlation tags for risks."
+template: |
+  {system_prompt}
+  Project description: {project_description}
+  Risk titles: {risk_titles}
+  Known drivers: {known_drivers}
+  {domain_section}
+
+  Provide short correlation tags that group related risks for modelling purposes.
+  Respond in the following language: {language}
+
+  {format_instructions}
+  Output the result as a JSON object that conforms to the schema above and do not include any additional text
