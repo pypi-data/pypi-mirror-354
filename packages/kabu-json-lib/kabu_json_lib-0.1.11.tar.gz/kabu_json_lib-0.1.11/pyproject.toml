@@ -1,0 +1,15 @@
+[project]
+name = "kabu-json-lib"
+version = "0.1.11"
+description = "システムトレーディングに必要な計算や便利なPythonライブラリをまとめたパッケージ"
+authors = [
+  { name="umihico" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = ["pytz", "requests"]
+urls = { Homepage = "https://github.com/umihico/kabu-json-lib" }
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta" 
