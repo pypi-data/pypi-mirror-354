@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xmemo"
+version = "0.1.12"
+description = "A Python package for recording agent memory and reflection from conversations"
+readme = "README.md"
+authors = [{name = "sairin1202", email = "sairin1202@github.com"}]
+license = {text = "MIT"}
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = ["ai", "agent", "memory", "reflection", "conversation"]
+dependencies = [
+    "pydantic>=2.0.0",
+    "typing-extensions>=4.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+]
+openai = [
+    "openai>=1.0.0",
+]
+claude = [
+    "anthropic>=0.21.0",
+]
+integrations = [
+    "openai>=1.0.0",
+    "anthropic>=0.21.0",
+]
+all = [
+    "openai>=1.0.0",
+    "anthropic>=0.21.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/sairin1202/Xmemo"
+"Bug Reports" = "https://github.com/sairin1202/Xmemo/issues"
+Source = "https://github.com/sairin1202/Xmemo"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
