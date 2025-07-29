@@ -1,0 +1,43 @@
+Metadata-Version: 2.4
+Name: kilopa
+Version: 0.0.1
+Summary: 🛡️ Невидимая система защиты Python приложений с демо-периодом
+Home-page: https://github.com/AmKilopa/kilopadev
+Author: AmKilopa
+Author-email: yurybaltsev@gmail.com
+Project-URL: Bug Reports, https://github.com/AmKilopa/kilopadev/issues
+Project-URL: Source, https://github.com/AmKilopa/kilopadev
+Keywords: protection license demo security drm trial python
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Security
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests>=2.25.0
+Requires-Dist: flask>=2.0.0
+Requires-Dist: flask-cors>=3.0.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+Просто пока что релиз проверочки
