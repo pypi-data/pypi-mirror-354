@@ -1,0 +1,9 @@
+[build-system]
+requires = ["addon-odoo-wheel"]
+build-backend = "addon_odoo_wheel.builder"
+
+[project]
+name = ""
+dependencies = [
+    "requests>=2.32",
+]

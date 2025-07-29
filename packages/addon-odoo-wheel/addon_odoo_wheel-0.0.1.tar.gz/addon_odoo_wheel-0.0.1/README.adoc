@@ -1,0 +1,301 @@
+= Mangono Odoo Wheel Builder
+:manifest: __manifest__.py
+
+A standards-compliant Python build backend to package individual Odoo addons.
+The main idea and the code is taken from [sbidoul/whool](https://github.com/sbidoul/whool).
+
+
+[NOTE]
+====
+If you are looking at packaging a customer project or a collection of addons, you
+may want to consider the [hatch-odoo](https://pypi.org/project/hatch-odoo) project.
+Because it is a wrapper around whool for internal Mangono use, every version can break behavior.
+====
+
+== Mangono Addon Wheeler vs whool
+
+. Allow to change version of the final wheel without following the version of the addon `{manifest}`.
+. Allow to distribute the final wheel with a different name (no `odoo-addon-` prefix).
+. Allow to distribute a addon without the `odoo` as depends.
+. Allow to add custom classifier to the `PKG-INFO` file.
+. Allow to add custom dependencies to the `PKG-INFO` file.
+
+The drawback is it's manifestoo based dependency resolver don't support this addons.
+In other words, you need to manually add the python package and the addon in your manifest.
+
+
+== Quick Start
+
+Create a file named `pyproject.toml` next to the addon's `{manifest}` with the
+following content:
+
+.pyproject.toml
+[source,toml]
+----
+[build-system]
+requires = ["mangono_odoo_wheeler"]
+build-backend = "mangono_odoo_wheeler.builder"
+
+[project]
+name = "awesome-odoo-addon"
+dynamic = ["version"]
+dependencies = []
+----
+
+[[version_managment]]
+== Addon `version`
+
+=== Classic python package
+
+Like in any `pyproject.toml` you can add a version to your package with the field `version` in the section `[project]`.
+
+.pyproject.toml
+[source,toml]
+----
+[project]
+name = "awesome-odoo-addon"
+classifiers = [
+    "Private :: Do Not Upload"
+]
+version = "1.1.0" # <1>
+
+dependencies = [ ]
+----
+<1> Version of the wheel, don't used the one in `{manifest}`
+
+[IMPORTANT]
+====
+Name of the wheel: `awsome-odoo-addon-1.1.0-py3-none-any.whl`
+Odoo in dependencies: **Not set**
+====
+
+[NOTE]
+====
+The version of the `{manifest}` is not used and not changed. +
+Odoo only see the version in `{manifest}`. To use migration script you need to change the value in `{manifest}` too.
+====
+
+=== Dynamic using `version` from `{manifest}`
+
+You can follow the version of the addon `{manifest}`. +
+To do that you need to set de field `version` in the `dynamic` field.
+
+.pyproject.toml
+[source,toml]
+----
+[build-system]
+requires = ["mangono_odoo_wheeler"]
+build-backend = "mangono_odoo_wheeler.builder"
+
+[project]
+name = "awesome-odoo-addon"
+dynamic = ["version"] # <1>
+# ...
+----
+<1> Tell to `mangono_odoo_wheeler` to use the version in `{manifest}`
+
+.__manifest__.py
+[source,python]
+----
+{
+    "name": "Sample Module",
+    "version": "18.0.1.1.0", # <1>
+    # ...
+}
+----
+<1> 5 digits version used to force odoo series
+
+
+
+[IMPORTANT]
+====
+Name of the wheel: `awsome-odoo-addon-18.0.1.1.0-py3-none-any.whl`
+Odoo in dependencies: `odoo>=18.0,<19.0`
+====
+
+NOTE: If the version of the `{manifest}` start with the version (The tow firt part of the version) of the Odoo series then the correct Odoo version is add as dependencies.
+
+==== Force Odoo series
+
+If the version in `{manifest}` don't contain the series you **can** set with the option `odoo_series_override` in the section `[tool.mangono_odoo_wheeler]`
+This is useful if your addon exist before using `mangono_odoo_wheeler`.
+
+.__manifest__.py
+[source,python]
+----
+{
+    "name": "Sample Module",
+    "version": "1.1.0",
+    # ...
+}
+----
+
+.pyproject.toml
+[source,toml]
+----
+[build-system]
+requires = ["mangono_odoo_wheeler"]
+build-backend = "mangono_odoo_wheeler.builder"
+
+[project]
+name = "awesome-odoo-addon"
+dynamic = ["version"]
+
+[tool.mangono_odoo_wheeler]
+odoo_series_override = "18.0"
+----
+
+[IMPORTANT]
+====
+Name of the wheel: `awsome-odoo-addon-18.0.1.1.0-py3-none-any.whl`
+Odoo in dependencies: `odoo>=18.0,<19.0`
+====
+
+=== Multi Odoo series addon
+
+In very small case you want to create an addon compatible available for multiple version of Odoo. +
+You can use the option `external_dependencies_override` in the section `[tool.mangono_odoo_wheeler]`
+
+.__manifest__.py
+[source,python]
+----
+{
+    "name": "Sample Module",
+    "version": "1.1.0",
+    # ...
+}
+----
+
+.pyproject.toml
+[source,toml]
+----
+[build-system]
+requires = ["mangono_odoo_wheeler"]
+build-backend = "mangono_odoo_wheeler.builder"
+
+[project]
+name = "awesome-odoo-addon"
+dynamic = ["version"]
+# ...
+
+[tool.mangono_odoo_wheeler]
+odoo_series_override = "==12.0,==13.0,==14.0,==17.0,==18.0" # <1>
+----
+<1> Follow python requirements format. Compatible with odoo version 12.0, 13.0, 14.0, 17.0 and 18.0.
+
+[IMPORTANT]
+====
+Name of the wheel: `awsome-odoo-addon-1.1.0-py3-none-any.whl`
+Odoo in dependencies: `odoo==12.0,==13.0,==14.0,==17.0,==18.0`
+====
+
+=== Custom `classifiers`
+
+Like in any `pyproject.toml` you can add custom classifier to your package.
+Like `whool` some standard one are already added.
+
+[caption="Default Calssifiers"]
+[NOTE]
+====
+- Programming Language :: Python
+- Framework :: Odoo
+
+.If Odoo series is defined with <<version_managment>>
+- Framework :: Odoo :: <odoo_series>
+
+====
+You can disable them with l'option `add_default_classifier = false` in the section`[tool.mangono_odoo_wheeler]`
+
+.pyproject.toml
+[source,toml]
+----
+[build-system]
+requires = ["mangono_odoo_wheeler"]
+build-backend = "mangono_odoo_wheeler.builder"
+
+[project]
+# ...
+classifiers = [
+    "Private :: Do Not Upload"
+]
+
+[tool.mangono_odoo_wheeler]
+add_default_classifier = false # true by default
+----
+
+=== Dependencies
+
+.pyproject.toml
+[source,toml]
+----
+[build-system]
+requires = ["mangono_odoo_wheeler"]
+build-backend = "mangono_odoo_wheeler.builder"
+
+[project]
+# ...
+dependencies = [
+    "httpx>=0.28",
+]
+----
+
+`whool` support dependecies too, see `external_dependencies_override`.
+
+But python have already this feat so we use it.
+
+NOTE: You can still use `external_dependencies_override` to override the dependencies.
+
+== TODO
+
+=== Support `extra`
+
+`whool` support `dependencies` but it doesn't support `extras` (which are not supported by Mangono).
+
+== Recipes
+
+=== Use your module with a classic odoo addon build with `whool` (or `whool-mangono`)
+
+Inside your second module you need to tell what's the pip package name of your module.
+
+`depends_override` is the way to do that.
+
+.pyproject.toml
+[source,toml]
+----
+[build-system]
+requires = ["mangono_odoo_wheeler"]
+build-backend = "mangono_odoo_wheeler.builder"
+
+[tool.whool.depends_override]
+"my_httpx_module" = "mangono-odoo-addon-my-httpx-module"
+----
+
+=== Build multi odoo compatible addons
+
+.pyproject.toml
+[source,toml]
+----
+[build-system]
+requires = ["mangono_odoo_wheeler"]
+build-backend = "mangono_odoo_wheeler.builder"
+
+[project]
+name = "mangono-odoo-addon-my-httpx-module"
+classifiers = [
+    "Framework :: Odoo :: 15.0",
+    "Framework :: Odoo :: 16.0",
+    "Framework :: Odoo :: 17.0",
+]
+dynamic = ["version"]
+dependencies = [
+    "odoo>=15.0,17.1",
+]
+
+[tool.whool]
+odoo_series_override="15.0"
+external_dependencies_only=true
+----
+
+If you do that you need to be very carefull with the compatibility of your addon.
+But with the right dependencies you can package a multi-odoo compatible addon.
+The classifier are here to help your user to be sure your module is compatible with their Odoo version.
