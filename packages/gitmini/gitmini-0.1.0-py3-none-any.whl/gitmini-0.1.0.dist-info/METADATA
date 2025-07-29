@@ -1,0 +1,66 @@
+Metadata-Version: 2.4
+Name: gitmini
+Version: 0.1.0
+Summary: A lightweight CLI version control system that replicates core Git commands from scratch.
+Author-email: James David Furtado <jamesdfurtado@gmail.com>
+License: Copyright 2025 James David Furtado
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Keywords: version control,git,cli,developer tool
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Version Control
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# GitMini
+
+**GitMini** is a lightweight, minimal version control system built from scratch in Python. It replicates core Git commands like `init`, `add`, `commit`, `log`, and `checkout` — perfect for learning how Git works under the hood or experimenting with your own VCS.
+
+---
+
+## 🛠️ Features
+
+- `gitmini init` – Initialize a new GitMini repository  
+- `gitmini add` – Stage changes (individual files, folders, or `.`)  
+- `gitmini commit` – Commit staged changes  
+- `gitmini log` – View commit history  
+- `gitmini checkout` – Switch between branches or restore old versions  
+- Simple `.gitmini-ignore` support  
+- Content-addressable storage using SHA-1  
+- No external dependencies
+
+---
+
+## 📦 Installation
+
+```
+pip install gitmini
+```
+
+
+## 📚 Usage
+
+gitmini init
+gitmini add file.txt
+gitmini commit -m "Initial commit"
+gitmini log
+gitmini checkout <commit-hash or branch-name>
+gitmini branch <new-branch>     (or, just leave without <new-branch> to see current branch)
+
+## 👤 Author
+James David Furtado
+LinkedIn : https://www.linkedin.com/in/james-furtado/
+GitHub : https://github.com/jamesdfurtado
+
+## 📄 License
+MIT License. See LICENSE file for details.
