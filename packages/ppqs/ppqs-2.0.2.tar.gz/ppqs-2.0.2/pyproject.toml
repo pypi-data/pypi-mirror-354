@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=64.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ppqs"
+version = "2.0.2"
+description = "Python project quick scripts"
+authors = [
+    { name = "Karl Wette", email = "karl.wette@anu.edu.au" },
+]
+requires-python = ">=3.9"
+dependencies = [
+    "tomli>=1.1.0; python_version<'3.11'"
+]
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/kwwette/ppqs"
+Issues = "https://github.com/kwwette/ppqs/issues"
+
+[project.scripts]
+ppqs = "py_proj_quick_scripts:cli"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--cov=py_proj_quick_scripts --cov-report=term-missing --cov-fail-under=100"
+testpaths = ["test"]
+
+[tool.ppqs.defaults]
+print-header = true
+
+[tool.ppqs.scripts.init]
+description = "Initialise project"
+script = """
+python -m pip install -r requirements-dev.txt
+pre-commit install
+python -m pip install -e .
+"""
+
+[tool.ppqs.scripts.lint]
+description = "Perform linting checks"
+script = """
+pre-commit run -a
+"""
+
+[tool.ppqs.scripts.build]
+description = "Build project"
+script = """
+git clean -Xdf
+python -m build
+"""
+
+[tool.ppqs.scripts.test]
+description = "Run tests"
+script = """
+pytest ...
+"""
+
+[tool.ppqs.scripts.clean]
+description = "Clean up build files"
+script = "git clean -Xdf"
