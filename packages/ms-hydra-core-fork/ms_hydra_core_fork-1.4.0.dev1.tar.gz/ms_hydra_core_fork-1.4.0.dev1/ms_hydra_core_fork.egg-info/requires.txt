@@ -1,0 +1,5 @@
+omegaconf>=2.4.0.dev2
+packaging
+
+[:python_version < "3.9"]
+importlib-resources
