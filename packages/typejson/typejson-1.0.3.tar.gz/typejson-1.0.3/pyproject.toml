@@ -1,0 +1,54 @@
+[build-system]
+requires = ["maturin>=1.8,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "typejson"
+version = "1.0.3"
+requires-python = ">=3.13"
+description = "JSON static type checking and runtime type narrowing."
+authors = [
+    {name = "Ryan Young", email = "dev@ryayoung.com"}
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+homepage = "https://github.com/ryayoung/typejson"
+repository = "https://github.com/ryayoung/typejson"
+documentation = "https://typejson.readthedocs.io"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries",
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.401",
+    "pytest>=8.4.0",
+    "pytest-cov>=6.1.1",
+    "ruff>=0.11.13",
+    "taskipy>=1.14.1",
+]
+
+[tool.maturin]
+module-name = "typejson._rust"
+manifest-path = "rust/Cargo.toml"
+features = ["pyo3/extension-module"]
+
+[tool.taskipy.tasks]
+format = "ruff format"
+typecheck = "pyright"
+tests = "pytest --cov=typejson --cov-branch -vvs --doctest-modules"
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.pyright]
+reportUnusedImport = "error"
+
