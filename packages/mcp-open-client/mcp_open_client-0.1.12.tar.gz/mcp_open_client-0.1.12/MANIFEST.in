@@ -1,0 +1,5 @@
+include README.md
+include LICENSE
+include requirements.txt
+recursive-include mcp_open_client/assets *
+recursive-include mcp_open_client/settings *.json *.css
