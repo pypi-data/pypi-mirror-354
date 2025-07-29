@@ -1,0 +1,100 @@
+{
+    "name": "n8n",
+    "description": "N8N Workflow Automation Platform Documentation",
+    "docs_dir": "n8n_docs_final",
+    "context_output_dir": "smart_context_bundles",
+    "knowledge_base": {
+      "ai": ["ai_langchain", "getting_started"],
+      "langchain": ["ai_langchain", "code_expressions"],
+      "openai": ["ai_langchain", "nodes_integrations"],
+      "anthropic": ["ai_langchain", "nodes_integrations"],
+      "chatbot": ["ai_langchain", "workflows"],
+      "agent": ["ai_langchain"],
+      "memory": ["ai_langchain"],
+      "vector": ["ai_langchain", "nodes_integrations"],
+      "embeddings": ["ai_langchain", "nodes_integrations"],
+      
+      "slack": ["nodes_integrations", "workflows"],
+      "discord": ["nodes_integrations"],
+      "telegram": ["nodes_integrations"],
+      "email": ["nodes_integrations", "workflows"],
+      "gmail": ["nodes_integrations"],
+      "teams": ["nodes_integrations"],
+      "whatsapp": ["nodes_integrations"],
+      "sms": ["nodes_integrations"],
+      
+      "database": ["nodes_integrations", "code_expressions"],
+      "postgres": ["nodes_integrations", "hosting_deployment"],
+      "mysql": ["nodes_integrations"],
+      "mongodb": ["nodes_integrations"],
+      "redis": ["nodes_integrations"],
+      "sql": ["nodes_integrations", "code_expressions"],
+      "airtable": ["nodes_integrations"],
+      "sheets": ["nodes_integrations"],
+      "csv": ["code_expressions", "nodes_integrations"],
+      "json": ["code_expressions"],
+      "xml": ["code_expressions"],
+      
+      "api": ["nodes_integrations", "code_expressions"],
+      "webhook": ["nodes_integrations", "workflows"],
+      "http": ["nodes_integrations", "code_expressions"],
+      "rest": ["nodes_integrations", "code_expressions"],
+      "oauth": ["nodes_integrations", "user_management"],
+      "authentication": ["nodes_integrations", "user_management"],
+      "github": ["nodes_integrations"],
+      "gitlab": ["nodes_integrations"],
+      "jira": ["nodes_integrations"],
+      "salesforce": ["nodes_integrations"],
+      "stripe": ["nodes_integrations"],
+      "paypal": ["nodes_integrations"],
+      
+      "google": ["nodes_integrations"],
+      "microsoft": ["nodes_integrations"],
+      "office365": ["nodes_integrations"],
+      "notion": ["nodes_integrations"],
+      "asana": ["nodes_integrations"],
+      "trello": ["nodes_integrations"],
+      "calendar": ["nodes_integrations", "workflows"],
+      "scheduler": ["workflows", "nodes_integrations"],
+      
+      "code": ["code_expressions", "nodes_integrations"],
+      "javascript": ["code_expressions"],
+      "python": ["code_expressions"],
+      "expression": ["code_expressions"],
+      "function": ["code_expressions"],
+      "transform": ["code_expressions", "nodes_integrations"],
+      "filter": ["nodes_integrations", "workflows"],
+      
+      "trigger": ["workflows", "nodes_integrations"],
+      "schedule": ["workflows", "nodes_integrations"],
+      "condition": ["workflows", "nodes_integrations"],
+      "loop": ["workflows", "code_expressions"],
+      "error": ["workflows", "troubleshooting"],
+      
+      "docker": ["hosting_deployment"],
+      "deployment": ["hosting_deployment"],
+      "production": ["hosting_deployment"],
+      "scaling": ["hosting_deployment"],
+      "ssl": ["hosting_deployment"],
+      "security": ["hosting_deployment", "user_management"],
+      
+      "file": ["nodes_integrations", "code_expressions"],
+      "image": ["nodes_integrations"],
+      "pdf": ["nodes_integrations"],
+      "upload": ["nodes_integrations", "workflows"],
+      "download": ["nodes_integrations", "workflows"]
+    },
+    "file_patterns": {
+      "core_always": [
+        "workflow", "trigger", "node", "connection", "execution",
+        "getting_started", "quickstart", "basics"
+      ],
+      "ai_specific": [
+        "agent", "chain", "memory", "tool", "langchain", "openai",
+        "anthropic", "chat", "completion", "embedding"
+      ],
+      "integration_specific": [
+        "oauth", "api", "webhook", "http", "credential", "authentication"
+      ]
+    }
+  }
