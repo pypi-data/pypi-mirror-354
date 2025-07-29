@@ -1,0 +1,18 @@
+[project]
+name = "gdt"
+version = "0.0.2"
+description = "Placeholder package for gdt"
+authors = [{ name = "Breno Dupin", email = "breno.dupin@gmail.com" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.10"
+
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
