@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kil0p3"
+version = "1.0.0"
+authors = [
+    {name = "Kil0p3 Security Team", email = "security@kil0p3.dev"},
+]
+description = "Advanced Python Application Protection Library with automatic license validation"
+readme = "README.md"
+license = {text = "Proprietary"}
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: Other/Proprietary License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+]
+keywords = [
+    "security", "protection", "license", "drm", "anti-piracy",
+    "hardware-id", "hwid", "anti-debugging", "code-protection"
+]
+dependencies = [
+    "pycryptodome>=3.19.0",
+    "cryptography>=41.0.0", 
+    "requests>=2.31.0",
+    "psutil>=5.9.0",
+    "python-dateutil>=2.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=22.0.0",
+    "isort>=5.0.0",
+]
+full = [
+    "colorlog>=6.7.0",
+    "pytz>=2023.3",
+]
+
+[project.urls]
+Homepage = "https://github.com/kil0p3-security/kil0p3"
+"Bug Reports" = "https://github.com/kil0p3-security/kil0p3/issues"
+"Source" = "https://github.com/kil0p3-security/kil0p3"
+"Documentation" = "https://kil0p3.dev/docs"
+
+[project.scripts]
+kil0p3-info = "Kil0p3.tools.info:main"
+
+[tool.setuptools.packages.find]
+include = ["Kil0p3*"]
+
+[tool.setuptools.package-data]
+"Kil0p3" = ["**/*.py", "config/*.py"]
