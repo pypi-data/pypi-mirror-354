@@ -1,0 +1,19 @@
+[project]
+name = "memory-engine"
+version = "0.0.1"
+description = ""
+authors = [
+    {name = "Robot2050",email = "jihaonlp@163.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+]
+
+[tool.poetry]
+packages = [{include = "memory_engine", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
