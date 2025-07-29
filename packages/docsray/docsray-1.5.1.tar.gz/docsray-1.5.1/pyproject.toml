@@ -1,0 +1,48 @@
+[project]
+name = "docsray"
+version = "1.5.1"
+description = "PDF Question-Answering System with MCP Integration"
+authors = [{name = "Taehoon Kim", email = "taehoonkim@sogang.ac.kr"}]
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+
+dependencies = [
+    "PyMuPDF",
+    "pdfplumber",
+    "tiktoken",
+    "torch",
+    "protobuf",
+    "fastapi",
+    "uvicorn",
+    "mcp",
+    "numpy",
+    "pandas",
+    "pillow",
+    "scikit-learn",
+    "opencv-python",
+    "psutil",
+    "llama-cpp-python",
+    "gradio",
+    "pypandoc>=1.11",
+    "docx2pdf>=0.1.8",
+    "python-pptx>=0.6.21",
+    "reportlab",
+    "Pandoc",
+    "llama_index",
+    "pdfkit",
+    "openpyxl",
+    "llama_index",
+    "olefile"
+]
+
+[project.scripts]
+docsray = "docsray.cli:main"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["docsray*"]
