@@ -1,0 +1,18 @@
+name: bootstrap
+description: bootstrap project's python environment
+inputs:
+  python-version:
+    description: python version to use
+    default: "3.12"
+runs:
+  using: "composite"
+  steps:
+    - uses: astral-sh/setup-uv@v5
+      with:
+        enable-cache: true
+        cache-dependency-glob: "uv.lock"
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+    - run: uv sync --locked --all-extras --dev
+      shell: bash

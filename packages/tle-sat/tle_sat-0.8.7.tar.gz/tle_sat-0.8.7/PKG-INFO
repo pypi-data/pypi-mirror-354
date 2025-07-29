@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: tle-sat
+Version: 0.8.7
+Summary: TLE Sat Sim
+Author-email: Christian Wygoda <christian.wygoda@satellitevu.com>
+License-Expression: MIT
+Requires-Python: ~=3.10
+Requires-Dist: numpy>1.26.4
+Requires-Dist: platformdirs<5,>=4.2.2
+Requires-Dist: shapely<3,>=2.0.4
+Requires-Dist: skyfield~=1.53
+Description-Content-Type: text/markdown
+
+# TLE Sat Sim

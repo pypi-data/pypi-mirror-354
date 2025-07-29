@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# scripts/bootstrap: Resolve all dependencies that the application requires to
+#                   run.
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+echo "==> Installing uv managed dependencies…"
+
+uv sync
+uv run pre-commit install
