@@ -1,0 +1,105 @@
+# MCP RSS Feed Server
+
+This project is a server implementation that detects and parses RSS/Atom feeds using the Model Context Protocol (MCP).
+
+## Available Tools
+
+### feed
+
+Detects and parses RSS/Atom feeds from a given URL.
+
+- `url` (string, required): Target URL to analyze for feeds
+- `limit` (integer, optional): Maximum number of entries to return (default: 10, max: 100)
+
+**Returns**: JSON containing:
+
+- `feed_info`: Feed metadata (title, description, language, etc.)
+- `entries`: Array of feed entries with title, link, published date, description, author, and GUID
+- `metadata`: Response metadata including feed URL, entry counts, and status
+
+## Features
+
+- **Automatic Feed Detection**: Discovers RSS/Atom feeds from websites automatically
+- **Multiple Feed Format Support**: Handles RSS 2.0, RSS 1.0, Atom 1.0, and other formats
+- **Intelligent Parsing**: Extracts clean, structured data from feeds
+- **HTML Cleanup**: Removes HTML tags from descriptions for clean text output
+- **Fallback Mechanisms**: Tries common feed paths when direct detection fails
+- **Error Handling**: Robust error handling with detailed logging
+
+## Installation
+
+### Using `uv` (recommended)
+
+No special installation is needed when using `uv`. You can run `mcp-server-rss` directly with `uvx`.
+
+### Using PIP
+
+Alternatively, you can install `mcp-server-rss` using pip:
+
+```bash
+pip install mcp-server-rss
+```
+
+After installation, you can run it as a script like this:
+
+```bash
+mcp-server-rss
+```
+
+## Configuration
+
+### Configure for Claude.app
+
+Add to your Claude settings:
+
+<details>
+<summary>Using uvx</summary>
+
+```json
+{
+  "mcpServers": {
+    "rss": {
+      "command": "uvx",
+      "args": ["mcp-server-rss"]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>Using pip installation</summary>
+
+```json
+{
+  "mcpServers": {
+    "rss": {
+      "command": "mcp-server-rss"
+    }
+  }
+}
+```
+
+</details>
+
+### Configure for VS Code
+
+For quick installation, use one of the one-click install buttons below...
+
+[![Install with UV in VS Code](https://img.shields.io/badge/VS_Code-UV-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=rss&config=%7B%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22mcp-server-rss%22%5D%7D)
+
+### Command Line Options
+
+You can specify the following options when running the server:
+
+You can specify the following options when running the server:
+
+- `--sse`: Enable Server-Sent Events transport (on/off)
+- `--host`: Server bind address (default: localhost)
+- `--port`: Server port number (default: 8000)
+- `--log-level`: Logging verbosity (debug, info, warning, error)
+
+## License
+
+MIT License - see LICENSE file for details.
