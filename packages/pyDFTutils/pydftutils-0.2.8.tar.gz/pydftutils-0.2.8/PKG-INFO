@@ -1,0 +1,28 @@
+Metadata-Version: 2.4
+Name: pyDFTutils
+Version: 0.2.8
+Summary: utils for DFT/TB calculation
+Author: Xu He
+Author-email: mailhexu@gmail.com
+License: GPLv3
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Scientific/Engineering :: Physics
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: scipy
+Requires-Dist: ase
+Requires-Dist: spglib
+Requires-Dist: phonopy
+Requires-Dist: pathos
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
