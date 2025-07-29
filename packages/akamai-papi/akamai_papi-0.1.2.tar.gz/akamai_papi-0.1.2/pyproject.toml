@@ -1,0 +1,24 @@
+[project]
+name = "akamai-papi"
+version = "0.1.2"
+description = "SDK for Akamai Property Manager API (PAPI)"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+  {name = "Akamai"}
+]
+requires-python = ">=3.6"
+dependencies = [
+  "requests",
+  "edgegrid-python"
+]
+
+[project.urls]
+Homepage = "https://github.com/akamai-packages/akamai-papi"
+Documentation = "https://akamai-packages.github.io/akamai-papi"
+Repository = "https://github.com/akamai-packages/akamai-papi"
+Issues = "https://github.com/akamai-packages/akamai-papi/issues"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
