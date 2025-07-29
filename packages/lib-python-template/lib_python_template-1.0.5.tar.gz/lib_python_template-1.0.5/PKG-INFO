@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: lib-python-template
+Version: 1.0.5
+Summary: Python library template
+Author-Email: Marco Perini <perinim.98@gmail.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/perinim/python-lib-template
+Project-URL: Bug Tracker, https://github.com/perinim/python-lib-template/issues
+Requires-Python: >=3.10
+Requires-Dist: requests>=2.32.3
+Description-Content-Type: text/markdown
+
+# Python Lib Template
+
+This is a Python library template with a CI/CD pipeline that uses semantic versioning and GitHub Actions.
+
+## Installation
+
+```bash
+pip install python-lib-template
+```
