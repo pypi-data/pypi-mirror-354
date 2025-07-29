@@ -1,0 +1,10 @@
+# Example: Add your dependencies here
+# Currently your app doesn't need anything external
+
+# If you use pathlib (built-in) or standard modules, you don't need to list them.
+
+# If there are modules listed here, others can install them by using: pip install -r requirements.txt
+
+hatchet
+hatch  #maybe this one, instead of the one above?
+twine
