@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: test_soft_assertion_tool
+Version: 0.2.0
+Summary: A pytest plugin for soft assertions with automatic report.
+Author: WYK
+Classifier: Framework :: Pytest
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Requires-Dist: loguru
+Requires-Dist: pytest
