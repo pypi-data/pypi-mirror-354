@@ -1,0 +1,5 @@
+[console_scripts]
+ketos-create-db = ketos.ketos_commands.ketos_create_db:main
+ketos-metrics = ketos.ketos_commands.ketos_metrics:main
+ketos-run = ketos.ketos_commands.ketos_run:main
+ketos-train = ketos.ketos_commands.ketos_train:main
