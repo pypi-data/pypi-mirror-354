@@ -1,0 +1,73 @@
+# chimp-osc
+Wrapper for OSC of the Infinity Chimp Lighting Console
+Logging is used in all modules and can be activated by:
+```py
+import logging
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+```
+
+## Use Chimp or Interface for custom implementation
+Install library without options
+```
+pip install chimp-osc
+```
+
+Use plain OSC-Interface
+
+```py
+from chimp_osc import ChimpOSCInterface
+
+itf = ChimpOSCInterface("<IP of console>")
+
+def handler(address, *args):
+    logging.info(f"Received {args} in {address}")
+
+itf.add_handler("/*",handler)
+itf.executor_flash(nr=1,data=True)
+```
+
+Or use the Chimp Console
+```py
+from chimp_osc import Chimp
+
+chimp = Chimp(target_ip="<IP of console>")
+
+chimp.faders[1].flash.press()
+```
+
+## Use web-based User Interface
+```
+pip install chimp-osc[ui]
+```
+
+and create it using with the already shown chimp
+```py
+from chimp_osc.chimp_ui import create_ui
+create_ui(chimp)
+```
+
+## Use Controllers like XBox-controllers
+```
+pip install chimp_osc[controller]
+```
+The controller runs in it own thread.
+This offers the possibility to connect multiple controllers or run a controller and the UI at the same time.
+
+```py
+from chimp_osc.controllers import XBoxController
+XBoxController(chimp).start()
+while True:
+    pass
+```
+
+## Use Full features in combination
+Install dependencies for all above mentioned features
+```
+pip install chimp-osc[full]
+```
+

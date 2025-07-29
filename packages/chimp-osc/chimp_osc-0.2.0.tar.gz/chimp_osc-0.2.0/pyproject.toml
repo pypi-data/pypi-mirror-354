@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chimp-osc"
+version = "0.2.0"
+description = "Wrapper for OSC of the Infinity Chimp Lighting Console"
+readme = "README.md"
+authors = [
+    { name = "David Dietrich", email = "info@davelight.de" }
+]
+dependencies = [
+    "python-osc"
+]
+requires-python = ">=3.12"
+keywords = ["osc","infinity","chimp","lighting"]
+# license = "Specify license here later"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: Freely Distributable",
+    "Programming Language :: Python :: 3"
+    ]
+
+
+[tool.setuptools]
+packages = ["chimp_osc","chimp_osc.console","chimp_osc.controllers","chimp_osc.controllers.base","chimp_osc.ui","chimp_osc.ui.elements","chimp_osc.ui.style"]
+
+[project.optional-dependencies]
+ui = ["nicegui"]
+controller = ["pygame"]
+full = ["nicegui","pygame"]
