@@ -1,0 +1,36 @@
+Metadata-Version: 2.4
+Name: iacc-mcp-server
+Version: 2.0.1
+Summary: IACC 2.0 智能代理协作控制器 - 基于MCP的4层精简架构
+Project-URL: Homepage, https://github.com/iacc-team/iacc-mcp-server
+Project-URL: Documentation, https://github.com/iacc-team/iacc-mcp-server#readme
+Project-URL: Repository, https://github.com/iacc-team/iacc-mcp-server.git
+Project-URL: Issues, https://github.com/iacc-team/iacc-mcp-server/issues
+Author-email: IACC Team <iacc@example.com>
+License-File: LICENSE
+Keywords: agent,ai,architecture,controller,iacc,mcp
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Requires-Dist: mcp>=1.0.0
+Requires-Dist: pathlib2>=2.3.0; python_version < '3.4'
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: typing-extensions>=4.0.0
+Provides-Extra: dev
+Requires-Dist: black>=23.0.0; extra == 'dev'
+Requires-Dist: flake8>=6.0.0; extra == 'dev'
+Requires-Dist: mypy>=1.0.0; extra == 'dev'
+Requires-Dist: pytest-cov>=4.0.0; extra == 'dev'
+Requires-Dist: pytest>=7.0.0; extra == 'dev'
+Description-Content-Type: text/markdown
+
+
