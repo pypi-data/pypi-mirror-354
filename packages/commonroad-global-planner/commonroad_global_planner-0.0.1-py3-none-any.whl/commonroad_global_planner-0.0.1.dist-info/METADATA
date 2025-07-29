@@ -1,0 +1,40 @@
+Metadata-Version: 2.3
+Name: commonroad-global-planner
+Version: 0.0.1
+Summary: CommonRoad Global Planner Toolbox
+License: BSD
+Keywords: autonomous,automated,vehicles,driving,motion,planning
+Author: Tobias Mascetta
+Author-email: <tobias.mascetta@tum.de>
+Requires-Python: >=3.9, <3.12
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: POSIX :: Linux
+Requires-Dist: commonroad-io (>=2022.2,<2025.0.1)
+Requires-Dist: commonroad-route-planner (>=2025.0.1,<2026.0.0)
+Requires-Dist: commonroad-velocity-planner (>=1.0.0,<2.0.0)
+Requires-Dist: matplotlib (<3.9)
+Description-Content-Type: text/markdown
+
+## CommonRoad Global Planner
+![Logo](docs/assets/global_planner_logo.png)
+Global Planning can greatly benefit motion planning for autonomous driving by guiding them with global information.
+The CommonRoad Global Planner comprises the CommonRoad Route Planner for
+generating routes and smooth reference paths as well as the
+CommonRoad Velocity Planner, which implements several algorithms for planning velocity profiles.
+
+
+
+## Example
+
+
+## Installation
+```bash
+pip install commonroad-global-planner
+```
+
+## Paper
+T. Mascetta, K. Northoff and M. Althoff: CommonRoad Global Planner: A Toolbox for Global Motion Planning
+on Roads. Intelligent Vehicles Symposium (IV), 2025.
+
