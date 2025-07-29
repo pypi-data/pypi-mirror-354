@@ -1,0 +1,197 @@
+{
+  "id": "d6de8f93-5b2c-487f-9f54-bd6abfd06bbe",
+  "appName": "weather_agent",
+  "userId": "user",
+  "state": {
+    "last_response": "The weather in New York is sunny with a temperature of 25°C.\n",
+    "last_city_checked_stateful": "New York"
+  },
+  "events": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "hi"
+          }
+        ],
+        "role": "user"
+      },
+      "invocationId": "e-46b87f9c-6deb-4d6e-8031-0d8194aaae00",
+      "author": "user",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {}
+      },
+      "id": "UuzEKV1U",
+      "timestamp": 1749409305.556533
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Hi there! How can I help you today?\n"
+          }
+        ],
+        "role": "model"
+      },
+      "usageMetadata": {
+        "candidatesTokenCount": 11,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 11
+          }
+        ],
+        "promptTokenCount": 246,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 246
+          }
+        ],
+        "totalTokenCount": 257
+      },
+      "invocationId": "e-46b87f9c-6deb-4d6e-8031-0d8194aaae00",
+      "author": "weather_agent_v1",
+      "actions": {
+        "stateDelta": {
+          "last_response": "Hi there! How can I help you today?\n"
+        },
+        "artifactDelta": {},
+        "requestedAuthConfigs": {}
+      },
+      "id": "4nNtOvIp",
+      "timestamp": 1749409305.556533
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "what is the weather in new york"
+          }
+        ],
+        "role": "user"
+      },
+      "invocationId": "e-cee39ecc-0cef-4e03-9047-0b8d5e728964",
+      "author": "user",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {}
+      },
+      "id": "J0thtik1",
+      "timestamp": 1749409604.09957
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "functionCall": {
+              "id": "adk-b488c3ed-5875-4999-89ed-383b0c94826d",
+              "args": {
+                "city": "New York"
+              },
+              "name": "get_weather"
+            }
+          }
+        ],
+        "role": "model"
+      },
+      "usageMetadata": {
+        "candidatesTokenCount": 6,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 6
+          }
+        ],
+        "promptTokenCount": 264,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 264
+          }
+        ],
+        "totalTokenCount": 270
+      },
+      "invocationId": "e-cee39ecc-0cef-4e03-9047-0b8d5e728964",
+      "author": "weather_agent_v1",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {}
+      },
+      "longRunningToolIds": [],
+      "id": "pjqr5AM1",
+      "timestamp": 1749409604.09957
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "functionResponse": {
+              "id": "adk-b488c3ed-5875-4999-89ed-383b0c94826d",
+              "name": "get_weather",
+              "response": {
+                "status": "success",
+                "report": "The weather in New york is sunny with a temperature of 25°C."
+              }
+            }
+          }
+        ],
+        "role": "user"
+      },
+      "invocationId": "e-cee39ecc-0cef-4e03-9047-0b8d5e728964",
+      "author": "weather_agent_v1",
+      "actions": {
+        "stateDelta": {
+          "last_city_checked_stateful": "New York"
+        },
+        "artifactDelta": {},
+        "requestedAuthConfigs": {}
+      },
+      "id": "mizs2Mpl",
+      "timestamp": 1749409604.677217
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "The weather in New York is sunny with a temperature of 25°C.\n"
+          }
+        ],
+        "role": "model"
+      },
+      "usageMetadata": {
+        "candidatesTokenCount": 18,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 18
+          }
+        ],
+        "promptTokenCount": 293,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 293
+          }
+        ],
+        "totalTokenCount": 311
+      },
+      "invocationId": "e-cee39ecc-0cef-4e03-9047-0b8d5e728964",
+      "author": "weather_agent_v1",
+      "actions": {
+        "stateDelta": {
+          "last_response": "The weather in New York is sunny with a temperature of 25°C.\n"
+        },
+        "artifactDelta": {},
+        "requestedAuthConfigs": {}
+      },
+      "id": "HPTxQshW",
+      "timestamp": 1749409604.677217
+    }
+  ],
+  "lastUpdateTime": 1749409604.677217
+}

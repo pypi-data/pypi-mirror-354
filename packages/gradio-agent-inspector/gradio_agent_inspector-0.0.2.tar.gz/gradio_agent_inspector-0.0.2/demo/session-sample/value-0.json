@@ -1,0 +1,68 @@
+{
+  "id": "d6de8f93-5b2c-487f-9f54-bd6abfd06bbe",
+  "appName": "weather_agent",
+  "userId": "user",
+  "state": {
+    "last_response": "Hi there! How can I help you today?\n"
+  },
+  "events": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "hi"
+          }
+        ],
+        "role": "user"
+      },
+      "invocationId": "e-46b87f9c-6deb-4d6e-8031-0d8194aaae00",
+      "author": "user",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {}
+      },
+      "id": "UuzEKV1U",
+      "timestamp": 1749409305.556533
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Hi there! How can I help you today?\n"
+          }
+        ],
+        "role": "model"
+      },
+      "usageMetadata": {
+        "candidatesTokenCount": 11,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 11
+          }
+        ],
+        "promptTokenCount": 246,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 246
+          }
+        ],
+        "totalTokenCount": 257
+      },
+      "invocationId": "e-46b87f9c-6deb-4d6e-8031-0d8194aaae00",
+      "author": "weather_agent_v1",
+      "actions": {
+        "stateDelta": {
+          "last_response": "Hi there! How can I help you today?\n"
+        },
+        "artifactDelta": {},
+        "requestedAuthConfigs": {}
+      },
+      "id": "4nNtOvIp",
+      "timestamp": 1749409305.556533
+    }
+  ],
+  "lastUpdateTime": 1749409305.556533
+}
