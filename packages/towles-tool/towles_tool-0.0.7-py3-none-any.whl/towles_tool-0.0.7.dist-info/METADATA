@@ -1,0 +1,92 @@
+Metadata-Version: 2.4
+Name: towles-tool
+Version: 0.0.7
+Summary: Helper cli commands from a developer
+Project-URL: Homepage, https://ChrisTowles.github.io/towles-tool/
+Project-URL: Repository, https://github.com/ChrisTowles/towles-tool
+Project-URL: Documentation, https://ChrisTowles.github.io/towles-tool/
+Author-email: Chris Towles <chris.towles.dev01@gmail.com>
+License-File: LICENSE
+Keywords: cli,python,towles
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: <4.0,>=3.9
+Requires-Dist: platformdirs>=4.3.8
+Requires-Dist: pydantic>=2.11.5
+Requires-Dist: pyyaml>=6.0.2
+Requires-Dist: rich>=14.0.0
+Requires-Dist: typer>=0.16.0
+Description-Content-Type: text/markdown
+
+# towles-tool
+
+[![Release](https://img.shields.io/github/v/release/ChrisTowles/towles-tool)](https://img.shields.io/github/v/release/ChrisTowles/towles-tool)
+[![Build status](https://img.shields.io/github/actions/workflow/status/ChrisTowles/towles-tool/main.yml?branch=main)](https://github.com/ChrisTowles/towles-tool/actions/workflows/main.yml?query=branch%3Amain)
+[![codecov](https://codecov.io/gh/ChrisTowles/towles-tool/branch/main/graph/badge.svg)](https://codecov.io/gh/ChrisTowles/towles-tool)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/ChrisTowles/towles-tool)](https://img.shields.io/github/commit-activity/m/ChrisTowles/towles-tool)
+[![License](https://img.shields.io/github/license/ChrisTowles/towles-tool)](https://img.shields.io/github/license/ChrisTowles/towles-tool)
+
+
+Helper cli commands from a developer
+
+- **Github repository**: <https://github.com/ChrisTowles/towles-tool/>
+- **Documentation** <https://ChrisTowles.github.io/towles-tool/>
+
+
+## Installation
+
+These instructions are to install globally using [uv](https://docs.astral.sh/uv/getting-started/installation/#standalone-installer).
+
+
+### Install from pypi
+
+https://pypi.org/project/towles-tool/
+
+```bash
+
+uv tool install towles-tool
+
+```
+Testing the installation was successful:
+```bash
+towles-tool --version
+
+```
+Or using the shortened alias `tt`
+
+```bash
+tt --version
+```
+
+### Install Autocompletion
+
+To install autocompletion, run the following command:
+
+```bash
+towles-tool --install-completion
+```
+
+## Development
+
+Follow the instructions in [docs/development-environment.md](docs/development-environment.md) to set up your development environment.
+
+
+## Documentation
+
+- [Releasing a new version](docs/how-to-release.md)
+
+## Brother's Contract
+
+- 2025-06-07: Patrick agreed that while he loves rust. he can not add it to this project until he first addes and extendsion system to do it first.
+
+
+## Blog Posts
+
+Chris Also keeps a blog where he writes about his learnings. Check it out here: https://chris.towles.dev/ and follow me on twitter: https://twitter.com/Chris_Towles
