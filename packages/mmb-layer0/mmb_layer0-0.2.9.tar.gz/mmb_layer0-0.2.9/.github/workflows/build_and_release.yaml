@@ -1,0 +1,38 @@
+name: Build and Release
+
+on:
+  push:
+#    branches:
+#      - main
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+#    runs-on: blacksmith-2vcpu-ubuntu-2204
+    runs-on: blacksmith-4vcpu-ubuntu-2404
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: useblacksmith/setup-python@v6
+        with:
+          python-version: '3.10'
+
+      - name: Install Flit
+        run: pip install flit
+
+      - name: Build package
+        run: flit build
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+#        if: github.ref_type == 'tag'
+        with:
+          files: |
+            dist/*.whl
+            dist/*.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
