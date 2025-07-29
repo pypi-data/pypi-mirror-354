@@ -1,0 +1,59 @@
+[project]
+name = "ssh-assistant"
+# this will use [tool.hatch.version]
+dynamic = ["version"]
+description = "SSH TUI Menu System and Related SSH Utilities"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "Apache-2.0"
+authors = [
+  { name = "Joey Rockhold", email = "ssh-assistant@joeysbytes.net" },
+]
+keywords = ["ssh", "menu", "terminal", "console", "dialog", "TUI"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: System Administrators",
+  "License :: OSI Approved :: Apache Software License",
+  "Natural Language :: English",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: System :: Systems Administration",
+  "Topic :: Terminals",
+  "Topic :: Utilities"
+]
+dependencies = ["pythondialog ~= 3.5.3"]
+
+[project.urls]
+Source = "https://gitlab.com/joeysbytes/ssh-assistant"
+Documentation = "https://gitlab.com/joeysbytes/ssh-assistant/-/blob/main/README.md?ref_type=heads"
+Change_Log = "https://gitlab.com/joeysbytes/ssh-assistant/-/blob/main/CHANGELOG?ref_type=heads"
+Issues = "https://gitlab.com/joeysbytes/ssh-assistant/-/issues"
+
+[project.scripts]
+# ssh-assistant: this is the executable name
+ssh-assistant = "ssh_assistant.ssh_menu:run"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+##########################
+# Hatch-Specific Section #
+##########################
+[tool.hatch.version]
+path = "src/ssh_assistant/__about__.py"
+
+[tool.hatch.build.targets.sdist]
+exclude = []
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ssh_assistant"]
