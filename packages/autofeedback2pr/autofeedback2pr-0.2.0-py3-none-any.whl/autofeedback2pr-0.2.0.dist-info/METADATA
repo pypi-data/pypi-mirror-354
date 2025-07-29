@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: autofeedback2pr
+Version: 0.2.0
+Summary: Auto feedback classifier and grader for developer workflow.
+Home-page: https://github.com/ITworkonline/autofeedback2pr
+Author: ITworkonline
+Author-email: jay123.studio@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+# autofeedback2pr
+
+This is a python package which can integrate in the workflow to use Claude API to evalute the difficulty of the feedback. 
+
+## Installation
+
+```bash
+pip install .
+```
+
+## How to use it
+
+```python
+import autofeedback2pr
+
+autofeedback2pr.config(api_key="YOUR_CLAUDE_KEY")
+result = autofeedback2pr.grade_feedback("The button does not work on mobile.", lang="en")
+print(result)
+```
+
+- Claude API Key can be used from `autofeedback2pr.config(api_key=...)` or set in as env variable `CLAUDE_API_KEY`。 
+
