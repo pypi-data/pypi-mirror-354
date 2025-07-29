@@ -1,0 +1,5 @@
+[console_scripts]
+nakala-collection = nakala_client.cli.collection:main
+nakala-curator = nakala_client.cli.curator:main
+nakala-upload = nakala_client.cli.upload:main
+nakala-user-info = nakala_client.cli.user_info:main
