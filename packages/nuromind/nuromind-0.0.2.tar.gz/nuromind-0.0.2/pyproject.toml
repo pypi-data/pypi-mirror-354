@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nuromind"
+version = "0.0.2"
+authors = [
+  { name="Ziyuan Huang", email="ziyuan.huang2@umassmed.edu" },
+]
+description = "A neuroscience ML library for Alzheimer's disease research with microbiome integration and LLM capabilities"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = ["neuroscience", "alzheimer", "microbiome", "machine-learning", "deep-learning"]
+dependencies = [
+    "torch>=2.0.0",
+    "transformers>=4.30.0",
+    "datasets>=2.14.0",
+    "huggingface-hub>=0.16.0",
+    "openai>=1.0.0",
+    "langchain>=0.1.0",
+    "chromadb>=0.4.0",
+    "monai>=1.3.0",
+    "numpy>=1.21.0",
+    "pandas>=1.3.0",
+    "scikit-learn>=1.0.0",
+    "matplotlib>=3.5.0",
+    "seaborn>=0.12.0",
+    "tqdm>=4.65.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=22.0.0",
+    "flake8>=5.0.0",
+    "mypy>=1.0.0",
+    "build>=0.10.0",
+    "twine>=4.0.0",
+]
+viz = [
+    "plotly>=5.0.0",
+    "bokeh>=3.0.0",
+]
+bio = [
+    "biopython>=1.79",
+    "scikit-bio>=0.5.7",
+]
+microbiome = [
+    "biom-format>=2.1.12",
+    "unifrac>=1.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/melhzy/nuromind"
+Issues = "https://github.com/melhzy/nuromind/issues"
+Repository = "https://github.com/melhzy/nuromind"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["nuromind*"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+nuromind = ["*.txt", "*.md", "py.typed"]
