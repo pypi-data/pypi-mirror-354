@@ -1,0 +1,16 @@
+# IDE
+.vscode
+
+# Python
+*.pyc
+**/__pycache__
+*.pkl
+dist
+build
+
+# Pytest
+.pytest_cache
+
+# Envs
+.env
+.venv
