@@ -1,0 +1,37 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+import "google/protobuf/empty.proto";
+import "models/graph_models.proto";
+import "models/ai_models.proto";
+
+option java_multiple_files = true;
+option java_package = "ai.volt.api";
+option go_package = "github.com/vlt-ai/atla/generated/api";
+
+package api;
+
+message InferenceRequest {
+  models.Camera camera = 1;
+  google.protobuf.Timestamp timestamp = 2;
+
+  oneof payload {
+     models.InferenceFrame frame = 20;
+     bytes image_data = 21;
+  }
+}
+
+service TrackingService {
+  rpc AddObjectToTrack(models.ObjectsOfInterestRequest) returns (models.ObjectOfInterestTrackingJob);
+  rpc RemoveObjectFromTrack(models.ObjectsOfInterestRequest) returns (google.protobuf.Empty);
+  rpc StopTrackingByIncident(models.Incident) returns (google.protobuf.Empty);
+  rpc VerifyMatchingObject(models.MatchPrediction) returns (google.protobuf.Empty);
+  rpc FoundMatchedObject(models.MatchPrediction) returns (google.protobuf.Empty);
+  rpc ListUnconfirmedMatchedPredictions(models.UnConfirmedPredictionRequest) returns (models.MatchPredictionList);
+  rpc GetMatchPrediction(models.MatchPrediction) returns (models.MatchPrediction);
+  rpc GetConfirmedMatches(models.Incident) returns (models.Incident);
+  rpc Inference(InferenceRequest) returns (models.InferenceFrame);
+  rpc CreateTrackingIncident(models.InferenceFrame) returns (models.Incident);
+  rpc GetTrackingJobIncidents(models.ObjectOfInterestTrackingJob) returns (models.IncidentList);
+}
+

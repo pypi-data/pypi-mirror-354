@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "models/ai_models.proto";
+
+package models;
+
+option go_package = "github.com/vlt-ai/atla/generated/models";
+
+message RenderingFrame {
+  string id = 1;
+  string facility_id = 2;
+  string level_id = 3;
+
+  repeated DetectedObject detected_objects = 4;
+
+  repeated RenderingLocationAttributes location_attributes = 5;
+  repeated RenderingDetectedObjectAttributes detected_objects_attributes = 6;
+
+  google.protobuf.Timestamp timestamp = 20;
+}
+
+message RenderingLocationAttributes{
+  string location_id = 1;
+  RenderingLocationState state = 2;
+
+  enum RenderingLocationState{
+    UNKNOWN = 0;
+    NORMAL = 1;
+    INCIDENT_IN_PROGRESS = 2;
+    LOCATION_NEEDS_ATTENTION = 3;
+  }
+
+}
+
+message RenderingDetectedObjectAttributes{
+  string track_id = 1;
+  RenderingDetectedObjectState state = 2;
+
+  enum RenderingDetectedObjectState{
+    UNKNOWN = 0;
+    NORMAL = 1;
+    OBJECT_OF_INTEREST = 2;
+    OBJECT_NEEDS_ATTENTION = 3;
+  }
+}
+
+message SpatialCoordinate {
+  string id = 1;
+  int32 index = 2;
+  double x = 3;
+  double y = 4;
+}
+
+message SpatialWorldPoint {
+  string id = 1;
+  int32 index = 2;
+  double x = 3;
+  double y = 4;
+  double z = 5;
+}
+
+message SpatialCalibrationData {
+  string id = 1;
+  repeated models.SpatialCoordinate image_coordinates = 2;
+  repeated models.SpatialWorldPoint world_coordinates = 3;
+}

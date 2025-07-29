@@ -1,0 +1,1518 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "models/ai_models.proto";
+import "models/spatial_models.proto";
+
+option java_multiple_files = true;
+option java_package = "ai.volt.models";
+option go_package = "github.com/vlt-ai/atla/generated/models";
+
+package models;
+
+/**************************
+    Site Objects
+**************************/
+
+message Coordinate {
+  string id = 1;
+  int32 index = 2;
+  optional float x = 3;
+  optional float y = 4;
+}
+
+message CustomerList {
+  repeated Customer customers = 1;
+}
+
+message Customer {
+  string id = 1;
+  string name = 2;
+  repeated User users = 3;
+  repeated Facility facilities = 4;
+  string domain = 5;
+  repeated SpeechAudio audios = 6;
+  repeated Campus campuses = 7;
+  optional bool is_archived = 8;
+
+  repeated UserGroup user_groups = 9;
+  repeated Role roles = 10;
+  EscalationPolicy escalation_policy = 11;
+  repeated Shift shifts = 12;
+
+  repeated Token tokens = 13;
+
+  // Reserving up to 20
+  google.protobuf.Timestamp created = 20;
+  google.protobuf.Timestamp updated = 21;
+}
+
+message Token {
+  string id = 1;
+  string name = 2;             // human readable name
+  string hashed_token = 3;     // Hash of the token
+  string masked_token = 4;     // Start and end of the token, in the format `sk-abcd...4664`
+  string hash_algorithm = 5;   // Algorithm used to hash the token
+
+  string created_by_user_id = 6;
+
+  repeated Permission permissions = 7;
+
+  optional bool revoked = 8;
+  optional google.protobuf.Timestamp revoked_at = 9;
+  optional string revoked_by_user_id = 10;
+
+  google.protobuf.Timestamp created = 20;
+  google.protobuf.Timestamp updated = 21;
+  google.protobuf.Timestamp last_used = 22;
+}
+
+message Campus {
+  string id = 1;
+  string customer_id = 2;
+  string name = 3;
+  repeated models.Zone zones = 4;
+  repeated models.Camera cameras = 5;
+  repeated models.Speaker speakers = 6;
+  repeated models.Facility facilities = 7;
+  repeated models.Coordinate coordinates = 8;
+  repeated models.MultiLensCamera multi_lens_cameras = 9;
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+
+}
+
+message Facility {
+  string customer_id = 1;
+  string id = 2;
+  // Location Information
+  string name = 3;
+  string street = 4;
+  string city = 5;
+  string state = 6;
+  string zipcode = 7;
+  float longitude = 8;
+  float latitude = 9;
+  // Relationship to Contacts, FloorPlan and Devices
+  repeated Contact contacts = 10;
+  FloorPlan floor_plan = 11;
+  // Miscellaneous
+  repeated Device devices = 12;
+  string access_key = 13;
+  string secret_key = 14;
+  string img_url = 15;
+  string region = 16;
+  string time_zone = 17;
+  // Relationship to Campus
+  string campus_id = 18;
+  repeated Camera cameras = 19;
+  repeated MultiLensCamera multi_lens_cameras = 20;
+  optional bool show_campus = 21;
+  repeated RuleSetting rule_settings = 22;
+
+  repeated WorkHours work_hours = 23;
+  optional bool disable_rules = 24;
+  EscalationPolicy escalation_policy = 25;
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+
+}
+
+message DisableCamerasLog {
+  string id = 1;
+  repeated Camera cameras = 2;
+  Facility facility = 3;
+  User user = 4;
+  int32 duration = 5;
+  google.protobuf.Timestamp created = 6;
+  google.protobuf.Timestamp updated = 7;
+  google.protobuf.Timestamp end = 8; // when we re-enabled the cameras
+}
+
+message DeviceCluster {
+  string id = 1;
+  string name = 2;
+  repeated Device devices = 3;
+  string customer_id = 4;
+  string facility_id = 5;
+  // facility visualization placement
+  float position_x = 6;
+  float position_y = 7;
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+
+}
+
+message Device {
+  string id = 1;
+  string sw_version = 2;
+  string facility_id = 3;
+  string name = 4;
+  Type type = 5;
+  string system_uuid = 6;
+  string arn = 7;
+  Status status = 8;
+  repeated Camera cameras = 9;
+  google.protobuf.Timestamp status_updated = 10;
+
+  // facility visualization placement
+  float position_x = 11;
+  float position_y = 12;
+  string customer_id = 13;
+  string cluster_id = 14;
+  repeated Speaker speakers = 15;
+  string subnet_mask = 16;
+
+  optional int32 capacity = 17;
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+
+  enum Type {
+    UNKNOWN_TYPE = 0;
+    NANO = 1;
+    XAVIER = 2;
+    XAVIER_NX = 3;
+    XAVIER_AGX = 4;
+    X86_A100 = 5;
+  }
+
+  enum Status {
+    UNKNOWN = 0;
+    OFFLINE = 1;
+    ONLINE = 2;
+    UPDATING = 3;
+    PAIRING = 4;
+  }
+
+}
+
+message CameraManufacturer {
+  string id = 1;
+  string name = 2;
+  repeated CameraModel models = 3;
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message CameraModel {
+  string id = 1;
+  string name = 2;
+  int32 lenses = 3;
+  bool is_ptz = 4;
+  bool has_dynamic_zoom = 5;
+  string rtsp_url_templates = 6; // json
+
+  // Camera intrinsic parameters
+  float focal_length_mm = 7;
+  float sensor_width_mm = 8;
+  float sensor_height_mm = 9;
+
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message MultiLensCamera {
+  string id = 1;
+  string name = 2;
+  repeated Camera cameras = 3;
+  // 3d map position
+  float position_x = 4;
+  float position_y = 5;
+
+  // quick lookup
+  string customer_id = 6;
+  string facility_id = 7;
+  string device_id = 8;
+
+  // more positioning
+  float elevation = 9;
+  float yaw = 10;
+  float pitch = 11;
+  float fov = 12;
+  float aspect = 13;
+  float range = 14;
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+
+}
+
+message Camera {
+  string id = 1;
+  string mac_address = 2;
+  string name = 3;
+  string ip = 4;
+  string port = 5;
+  string username = 6;
+  string password = 7;
+  string model_name = 8;
+  int32 fps = 9;
+  int32 resolution_height = 10;
+  int32 resolution_width = 11;
+  string encoding = 12; //  example: "video/h264"
+  string arn = 13;     // kvs signaling channel arn
+  string device_id = 14;
+  string rtsp_url = 15;
+  Status status = 16;
+  google.protobuf.Timestamp status_updated = 17;
+
+
+  // Positional Values for Facility Visualization
+  string magicplan_uid = 18;
+  optional float position_x = 19;
+  optional float position_y = 20;
+  float elevation = 21;
+  float yaw = 22;
+  float pitch = 23;
+  float fov = 24;
+  float aspect = 25;
+  float range = 26;
+  CameraType type = 27;
+  string facility_id = 28;
+
+  // camera statuses
+  Status inference_status = 29; // deprecated
+  Status streaming_status = 30; // deprecated
+  Status recording_status = 31; // deprecated
+
+  // non-detection area for camera
+  repeated Mask masks = 32;
+
+  // fields for an outdoor camera
+  float latitude = 33;
+  float longitude = 34;
+
+  // multi-lenses (MultiLensCamera)
+  string multi_lens_camera_id = 35;
+
+  // camera rotation
+  optional int32 rotation = 36; // 0~359
+  string kvs_stream_arn = 37;  // kvs stream arn
+
+  // statistics
+  string statistic = 38; // json format, kafka only, not in graph
+
+  // DecomposerRegion
+  repeated DecomposerRegion decomposer_regions = 39;
+
+  // extraneous
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+  TestMode test_mode = 42;
+  Controller controller = 43;
+  string subnet_mask = 44;
+  optional bool use_tcp = 45;
+
+  // Camera intrinsic parameters
+  float focal_length_mm = 46; // Focal length in millimeters. (deprecated)
+  float sensor_width_mm = 47; // Sensor width in millimeters. (deprecated)
+  float sensor_height_mm = 48; // Sensor height in millimeters. (deprecated)
+  CameraModel model = 49;
+  optional google.protobuf.Timestamp last_calibrated = 50;
+
+  optional bool disabled = 51;
+
+  optional models.SpatialCalibrationData spatial_calibration_data = 52;
+
+  optional bool continuous_video_upload = 53;
+
+  string customer_id = 54;
+
+  enum Status {
+    STATUS_UNKNOWN = 0;
+    OFFLINE = 1; // NOT CONNECTED
+    IDLE = 2; // CONNECTED, NOT STREAMING
+    STREAMING = 3; // STREAMING
+  }
+
+  enum CameraType {
+    CAMERA_TYPE_UNKNOWN = 0;
+    WALL = 1;
+    CEILING = 2;
+    MULTI_LENS = 3;
+    FISHEYE = 4;
+  }
+
+  enum Controller {
+    UNKNOWN_SOURCE = 0;
+    EDGE = 1;
+    CLOUD = 2;
+  }
+
+  enum TestMode {
+    UNKNOWN_TEST_CASE = 0;
+    WEAPON = 1;
+    MEDICAL = 2;
+    NONE = 3;
+  }
+
+}
+
+message DecomposerRegion {
+  string id = 1;
+  float x = 2;
+  float y = 3;
+  float w = 4;
+  float h = 5;
+}
+
+message Speaker {
+  string id = 1;
+  string mac_address = 2;
+  string name = 3;
+  string ip = 4;
+  string port = 5;
+  string username = 6;
+  string password = 7;
+  string model_name = 8;
+  int32 volume_level = 9;
+  string sip_address = 10;
+  string device_id = 11;
+
+
+  // Positional Values for Facility Visualization
+  string magicplan_uid = 18;
+  float position_x = 19;
+  float position_y = 20;
+  float elevation = 21;
+  float yaw = 22;
+  float pitch = 23;
+  string facility_id = 24;
+
+  // extraneous
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+
+}
+
+
+message Contact {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string position = 4;
+  string email = 5;
+  string phone = 6;
+  int32 priority = 7;
+  string img_url = 8;
+  repeated ContactPoint contact_points = 9;
+
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message ContactPoint {
+  string id = 1;
+  oneof type {
+    string email = 2;
+    string phone_number = 3;
+  }
+}
+
+/**************************
+    Incident Objects
+**************************/
+message Export {
+  string id = 1;
+  string bucket = 2;
+  string key = 3;
+  string url = 4;
+}
+
+message IncidentList {
+  repeated Incident incidents = 1;
+}
+
+message ViolationTrigger {
+  string id = 1;
+  Incident.Type type = 2;
+  Incident.Severity severity = 3;
+  string facility_id = 4;
+  string camera_id = 5;
+  float confidence = 6;
+  google.protobuf.Timestamp timestamp = 7;
+  string rule_id = 8;
+  float risk_score = 9;
+  RuleSetting rule = 10;
+  string title = 11;
+  Zone zone = 12;
+
+  enum TriggeredBy {
+    UNKNOWN = 0;
+    ZONE_WIDE_RULE = 1;
+    FACILITY_WIDE_RULE = 2;
+    LEVEL_WIDE_RULE = 3; // tbd
+    ON_DEMAND = 4;
+  }
+
+  TriggeredBy triggered_by = 13;
+  optional bool is_manual_trigger = 14;
+
+  // Optional evidence of the incident
+  repeated InferenceFrame frames = 20;
+  repeated DetectedObject.ObjectClass object_classes = 21;
+  repeated DetectedObject objects_of_interest = 22;
+  string system_event_id = 23;
+}
+
+message FacilitySnapshot {
+  string id = 1;
+  string floor_plan = 2;
+  string outdoor = 3;
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message Incident {
+  enum Status {
+    UNKNOWN_STATUS = 0;
+
+    // VOLT OPERATOR
+    OPEN = 1;
+    IN_REVIEW = 2;
+    FALSE_POSITIVE = 3;
+
+    // CUSTOMER
+    ESCALATION_FAILED = 4;
+    ACTIVE = 5;
+    RECEIVED = 6;
+    CONFIRMED = 7;
+    POC_IN_REVIEW = 8;
+    CLOSED = 9;
+    SEALED = 10;
+
+    // AI STATUS
+    AI_VALIDATION = 11;
+    AI_FALSE_POSITIVE = 12;
+  }
+
+  enum Severity {
+    UNKNOWN_SEVERITY = 0;
+    LEVEL_1 = 1; // life threat (emergency)
+    LEVEL_2 = 2; // possibility of bodily harm
+    LEVEL_3 = 3; // property damage/theft
+    LEVEL_4 = 4; // behaviour
+    LEVEL_5 = 5; // common incidents (e.g. fire door open)
+  }
+
+  enum Type {
+    UNKNOWN_TYPE = 0;
+    ROBBERY = 1;
+    INTRUSION = 2;
+    ARMED_PERSON = 3;
+    MEDICAL_EMERGENCY = 4;
+    OCCUPANCY_LIMIT_REACHED = 5;
+    VEHICLE_DETECTION = 6;
+    OBJECT_LEFT_BEHIND = 7;
+    LOITERING = 8;
+    FIGHTING = 9;
+    CAR_LOITERING = 10;
+    TRACKING = 11;
+  }
+
+  string id = 1;
+  string facility_id = 2;
+  Type type = 3;
+  float risk_score = 4;
+  Severity severity = 5;
+  Status status = 6;
+  google.protobuf.Timestamp start_timestamp = 7;
+  google.protobuf.Timestamp end_timestamp = 8;
+  repeated Event events = 9; // deprecated
+  repeated ActivityLog activity_logs = 10; // deprecated
+  string customer_id = 11;
+  string floor_plan = 12; // deprecated
+  string rule_id = 13; // not-used
+  string title = 14;
+  repeated InferenceFrame frames = 15;
+  int32 zone_type = 16;
+  string room = 17;
+
+  // Elastic_Search
+  models.Customer customer = 18;
+  models.Facility facility = 19;
+  models.Zone zone = 20;
+  string trigger_camera_id = 21;
+  string confirmed_by = 22;
+  repeated Contact escalated = 23;
+  string rule_setting_id = 24;  // rule.id - deprecated
+  repeated IncidentProgress progress = 25;
+  repeated Camera cameras = 26;
+  string trigger_rule_id = 27; // ruleId - deprecated
+  Export export = 28;
+
+  FacilitySnapshot snapshot = 29;
+  optional bool auto_911 = 30;
+  repeated EmergencyCallProgress emergency_progress = 31;
+  string location_id = 32;
+  repeated IncidentAssignment assignees = 33;
+  string trigger_rule = 34; // json
+  ObjectOfInterestTrackingJob tracking_job = 35;
+  string incident_status = 36; // query optimization
+
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message IncidentAssignment {
+  string id = 1;
+  User assignee = 2;
+  string receipt = 3;  // use for delete message on sqs
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 20;
+  google.protobuf.Timestamp updated = 21;
+}
+
+message EmergencyCallProgress {
+  enum Status {
+    UNKNOWN = 0;
+    CALL_PLACED = 1;
+    // RAPID SOS WEBHOOK STATUSES
+    INITIATE = 2;   // initiate emergency call flow
+    CONFIRM = 3;    // user confirmed call, connect to 911
+    CANCEL = 4;     // user cancel
+    COMPLETE = 5;   // emergency call flow completed
+    RETRY = 6;      // retry emergency call flow
+    TIMEOUT = 7;    // no response from user
+    CALL_END = 8;
+  }
+  string id = 1;
+  string incident_id = 2;
+  User user = 3;
+  Status status = 4;
+  google.protobuf.Timestamp created = 5;
+}
+
+message IncidentProgress {
+  Incident.Status status = 1;
+  google.protobuf.Timestamp created = 2;
+  string id = 3;
+}
+
+message IncidentTrigger {
+  RuleSetting rule = 1;
+  Camera camera = 2;
+  google.protobuf.Timestamp timestamp = 3;
+  string id = 4;
+  optional InferenceFrame frame = 5;
+}
+
+message IncidentEventList {
+  repeated IncidentEvent events = 1;
+}
+
+message IncidentEvent {
+  string id = 1;
+  string incident_id = 2;
+  repeated Comment comments = 3;
+  google.protobuf.Timestamp timestamp = 4;
+  string customer_id = 5;
+
+  oneof action {
+    InferenceFrame frame = 20;
+    ActivityLog log = 21;
+    MediaChunk media = 22; // not in use
+    ObjectTrackingRecord tracking_record = 23;
+  }
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message ObjectTrackingRecord {
+  string id = 1;
+  string frame_id = 2;
+  string frame_url = 3;
+  string description = 4;
+  DetectedObject object_of_interest = 5;
+}
+
+message IncidentViewerSession {
+  string id = 1;
+  string incident_id = 2;
+  google.protobuf.Timestamp expiration = 3;
+  Incident incident = 4;
+  string viewer_identity = 5;
+}
+
+message Comment {
+  string id = 1;
+  string content = 2;
+  string user_id = 3;
+  google.protobuf.Timestamp created = 4;
+  repeated Comment replies = 5;
+  google.protobuf.Timestamp updated = 6;
+}
+
+// deprecated
+message Conversation {
+  string id = 1;
+  string incident_id = 2;
+  string conversation_id = 3;
+  string user_id = 4;
+  string contact_id = 5;
+  string phone = 6;
+  optional bool with_participants = 7;
+}
+
+// deprecated
+message Event {
+  enum Type {
+    UNKNOWN_TYPE = 0;
+    OBJECT_COUNT = 1;
+    PERSON_DETECTED = 2;
+    ARMED_PERSON_DETECTED = 3;
+  }
+
+  enum Verification {
+    UNKNOWN_VERIFICATION = 0;
+    POSITIVE = 1;
+    FALSE_POSITIVE = 2;
+  }
+
+  string id = 1;
+  string camera_id = 2;
+  Type type = 3;
+  Verification verification = 4;
+  float confidence = 5;
+  google.protobuf.Timestamp timestamp = 6;
+  repeated MediaChunk evidences = 7;
+  RuleSetting rule = 8;
+  string incident_id = 9;
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message MediaChunk {
+  string id = 1;
+  string camera_id = 2;
+  MediaType type = 3;
+  string bucket = 4;
+  string key = 5;
+  string url = 6;
+  string frame_id = 7;
+  google.protobuf.Timestamp start_timestamp = 8;
+  google.protobuf.Timestamp end_timestamp = 9;
+  enum MediaType {
+    UNKNOWN = 0;
+    VIDEO = 1;
+    IMAGE = 2;
+    FILE = 3;
+  }
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message ActivityLog {
+  string id = 1;
+  string description = 2;
+  ActivityType type = 3;
+  string event_id = 4;
+  string message = 5;
+  repeated Comment comments = 6;  // not in use
+  string incident_id = 7;
+  repeated MediaChunk media = 8;
+  User user = 9;
+
+  enum ActivityType {
+    UNKNOWN = 0;
+    ACTION = 1;
+    EVENT = 2;
+    USER_SESSION = 3;
+    MESSAGE_SENT = 4;
+    MESSAGE_RECEIVED = 5;
+    SYSTEM_MESSAGE = 6;
+  }
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+
+/**************************
+    User Objects
+**************************/
+
+message User {
+  string id = 1;
+  string auth = 2;
+  string first_name = 3;
+  string last_name = 4;
+  string email = 5;
+  string phone = 6;
+  string birthdate = 7;
+  string role = 8;
+  string profile_url = 9;
+  AccessLevel access_level = 10;
+  repeated UserSession sessions = 11;
+  Customer customer = 12;
+  int32 priority = 13;
+  optional bool verified = 14;
+  UserProfile profile = 15;
+
+  Availability availability = 16;
+  Status status = 17;
+
+  ProviderType provider_type = 18;
+
+  repeated WorkHours work_hours = 24;
+
+  map<string,string> preferences = 25;
+
+  enum ProviderType {
+    UNKNOWN_PROVIDER_TYPE = 0;
+    EMAIL = 1;
+    GOOGLE = 2;
+    SAML = 3;
+  }
+
+  // Availability refers to the dot next your display name that indicates if you’re active.
+  enum Availability {
+    UNKNOWN_AVAILABILITY = 0;
+    ONLINE = 1;
+    IDLE = 2;
+    OFFLINE = 3;
+  }
+
+  // A status is a message that lets others know what you’re up to.
+  enum Status {
+    UNKNOWN_STATUS = 0;
+    ON_DUTY = 1;
+    OFF_DUTY = 2;
+    AWAY = 3;
+  }
+
+  enum AccessLevel {
+    UNKNOWN = 0;
+    MEMBER = 1;
+    ADMIN = 2;
+    VOLT_OPERATOR = 3;
+  }
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message UserProfile {
+  string id = 1;
+  string selected_customer_id = 2;
+  string selected_facility_id = 3;
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message UserSession {
+  string id = 1;
+  string user_id = 2;
+  google.protobuf.Timestamp created = 15;
+  google.protobuf.Timestamp updated = 16;
+}
+
+message APIKey {
+  string id = 1;
+  string name = 2;
+  string key = 3;
+  string secret = 4;
+  google.protobuf.Timestamp created = 5;
+  google.protobuf.Timestamp updated = 6;
+}
+
+message UserGroup {
+  string id = 1;
+  string name = 2;
+  repeated User users = 3;
+  repeated Facility facilities = 4;
+  Role role = 5;
+  string customer_id = 6;
+  optional bool protected = 7;
+
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message Role {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  repeated Permission permissions = 4;
+  string customer_id = 5;
+  optional bool protected = 6;
+
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+
+message Permission {
+  string id = 1;
+  string name = 2;
+  Category category = 3;
+  string description = 4;
+  enum Category {
+    UNKNOWN = 0;
+    INCIDENT_MANAGEMENT = 1;
+    FACILITY_MANAGEMENT = 2;
+    USER_MANAGEMENT = 3;
+  }
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+
+
+message Daily {
+  string id = 1;
+  int32 frequency = 2; // default should be 1
+}
+
+message Weekly {
+  string id = 1;
+  int32 frequency = 2; // default should be 1
+  optional bool monday = 3;
+  optional bool tuesday = 4;
+  optional bool wednesday = 5;
+  optional bool thursday = 6;
+  optional bool friday = 7;
+  optional bool saturday = 8;
+  optional bool sunday = 9;
+}
+
+message Monthly {
+  string id = 1;
+  int32 frequency = 2; // default should be 1
+  int32 day = 3;
+}
+
+message WorkHours {
+  string id = 1;
+  int32 start_time = 2; // UTC time in 0 - 2359
+  optional int32 end_time = 3; // UTC time in 0 - 2359
+  google.protobuf.Timestamp start_date = 4;
+  optional google.protobuf.Timestamp end_date = 5;
+
+  oneof recurrence {
+    Daily daily = 6;
+    Weekly weekly = 7;
+    Monthly monthly = 8;
+  }
+
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+
+}
+
+message Shift {
+  string id = 1;
+  repeated WorkHours work_hours = 2;
+  string name = 3;
+
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+/**************************
+    Facility Mapping Objects
+**************************/
+
+// points are anchors for a wall
+message Point {
+  string id = 1;
+  string magicplan_uid = 2;
+  int32 index = 3;
+  float x = 4;
+  float y = 5;
+  float z = 6;
+}
+
+// a facility can have multiple floor plans
+message FloorPlan {
+  string id = 1;
+  string facility_id = 2;
+  string plan_id = 3;
+  string magicplan_uid = 4;
+  string label = 5;
+  repeated Level levels = 6;
+  repeated MagicPlanProject projects = 7; // merging multiple plans
+  optional bool is_editing = 8;
+  optional bool use_export = 9;
+}
+
+message MagicPlanProject {
+  string id = 1;
+  string plan_id = 2;
+}
+
+message MagicFloorPlan {
+  string id = 1;
+  string name = 2;
+}
+
+message MagicFloorPlans {
+  repeated MagicFloorPlan magic_plans = 1;
+}
+
+/** Floor and Wall Structure */
+message Level {
+  string id = 1;
+  string magicplan_uid = 2;
+  string label = 3;
+  int32 floor_level = 4;
+  repeated Location locations = 5;
+  repeated Wall walls = 6;
+  repeated Zone zones = 7;
+  optional float relative_x = 8;
+  optional float relative_y = 9;
+  optional float rotation = 10;
+}
+
+message Wall {
+  string id = 1;
+  float x1 = 2;
+  float x2 = 3;
+  float y1 = 4;
+  float y2 = 5;
+  float height = 6;
+  float thickness = 7;
+  WallType type = 8;
+  enum WallType {
+    UNKNOWN = 0;
+    INTERIOR = 1;
+    EXTERIOR = 2;
+  }
+}
+
+/** ZONES **/
+
+message CustomRule {
+  string id = 1;
+  string name = 2;
+  string prompt = 3;
+  int32 periodicity = 4;
+  google.protobuf.Timestamp created = 20;
+  google.protobuf.Timestamp updated = 21;
+}
+
+message RuleSetting {
+  string id = 1;
+  string rule_id = 2;
+  optional bool enable = 3;
+  optional int32 start_time = 4; // UTC time in 0 - 2359
+  optional int32 end_time = 5; // UTC time in 0 - 2359
+  optional int32 min_count = 6;
+  optional int32 max_count = 7;
+  string description = 8;
+  optional bool monday = 9;
+  optional bool tuesday = 10;
+  optional bool wednesday = 11;
+  optional bool thursday = 12;
+  optional bool friday = 13;
+  optional bool saturday = 14;
+  optional bool sunday = 15;
+  optional SpeechAudio audio = 16;
+  optional bool rapid_sos = 17;
+  optional int32 min_duration = 18;
+  EscalationPolicy escalation_policy = 19;
+  optional CustomRule custom_rule = 20;
+}
+
+
+message Zone {
+  string id = 1;
+  string name = 2;
+  repeated Coordinate coordinates = 3;
+  ZoneType type = 4;
+  repeated RuleSetting rule_settings = 5;
+  repeated Camera cameras = 6;
+  repeated Speaker speakers = 7;
+  EscalationPolicy escalation_policy = 8;
+  repeated BadgeReader badge_readers = 9;
+  repeated VapeDetector vape_detectors = 10;
+
+  enum ZoneType {
+    UNKNOWN = 0;
+    PUBLIC = 1;
+    SEMI_PUBLIC = 2;
+    RESTRICTED = 3;
+    HIGHLY_RESTRICTED = 4;
+  }
+}
+
+/** Location, Boundary and Objects **/
+
+// Locations are generalized spaces that can exist within a facility. They can contain any of the following.
+message Location {
+  string id = 1;
+  string facility_id = 2;
+  string magicplan_uid = 3;
+  string label = 4;
+  Boundary boundary = 5;
+  repeated Window windows = 6;
+  repeated Door doors = 7;
+  repeated Furniture furniture = 8;
+  repeated Stair stairs = 9;
+  repeated Camera cameras = 10;
+  repeated Device devices = 11; // deprecated
+  repeated DeviceCluster device_clusters = 12;
+  LocationType type = 13;
+  repeated Speaker speakers = 14;
+  repeated MultiLensCamera multi_lens_cameras = 15;
+  repeated BadgeReader badge_readers = 16;
+  repeated VapeDetector vape_detectors = 17;
+
+  enum LocationType {
+    UNKNOWN = 0;
+    LANDSCAPE = 1;
+    // TODO: indoor locations have different types like living rooms, bathrooms, balconies, etc
+  }
+}
+
+// walls consist of the coordinates act as a bounding box
+message Boundary {
+  string id = 1;
+  repeated Point points = 3;
+  float height = 4;
+}
+
+message Window {
+  string id = 1;
+  string magicplan_uid = 2;
+  string label = 3;
+  float left_position_x = 4;
+  float left_position_y = 5;
+  float right_position_x = 6;
+  float right_position_y = 7;
+  float width = 8;
+  float height = 9;
+  float depth = 10;
+  float distance_from_floor = 11;
+  WindowType type = 12;
+  enum WindowType {
+    UNKNOWN = 0;
+    SLIDING = 1;
+    HUNG = 2;
+    AWNING = 3;
+  }
+  string facility_id = 13;
+}
+
+message Door {
+  string id = 1;
+  string magicplan_uid = 2;
+  string twin_magicplan_uid = 3;
+  repeated Location leads_to = 4;
+  string label = 5;
+  float hinge_position_x = 6;
+  float hinge_position_y = 7;
+  float latch_position_x = 8;
+  float latch_position_y = 9;
+  float width = 10;
+  float height = 11;
+  float depth = 12;
+  int32 direction = 13;
+  DoorType type = 14;
+  enum DoorType {
+    UNKNOWN = 0;
+    HINGED_DOOR = 1;
+    HINGED_DOUBLE_DOOR = 2;
+    GARAGE = 3;
+    OPENING = 4;
+  }
+  string facility_id = 15;
+  optional bool closed = 16;
+}
+
+message Furniture {
+  string id = 1;
+  string magicplan_uid = 2;
+  string label = 3;
+  float width = 4;
+  float height = 5;
+  float depth = 6;
+  int32 orientation = 7;
+  float position_x = 8;
+  float position_y = 9;
+  FurnitureType type = 10;
+  float rotation = 11;
+  enum FurnitureType {
+    UNKNOWN = 0;
+    EXTINGUISHER = 1;
+    EXIT = 2;
+    AED = 3;
+    BADGE_READER = 4; // deprecated
+    FIRE_PULL = 5;
+    PARTITION_WALL = 6;
+    TABLE = 7;
+    SOFA = 8;
+    BED = 9;
+  }
+}
+
+message BadgeReader {
+  string id = 1;
+  string name = 2;
+  string vendor_id = 3;
+  string vendor_name = 4;
+
+  float position_x = 5;
+  float position_y = 6;
+  float rotation = 7;
+
+  models.Door door = 8;
+  repeated models.Camera cameras = 9;
+
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message VapeDetector {
+  string id = 1;
+  string name = 2;
+  string vendor_id = 3;
+  string vendor_name = 4;
+
+  float position_x = 5;
+  float position_y = 6;
+  float rotation = 7;
+
+  repeated models.Camera cameras = 8;
+
+  enum Manufacturer{
+    UNKNOWN = 0;
+    HALO = 1;
+  }
+
+  Manufacturer manufacturer = 9;
+
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message Stair {
+  string id = 1;
+  string magicplan_uid = 2;
+  string label = 3;
+  int32 steps = 4;
+  float top = 5;
+  float bottom = 6;
+  float position_x = 7;
+  float position_y = 8;
+  float width = 9;
+  float height = 10;
+  float depth = 11;
+  StairType type = 12;
+  enum StairType {
+    UNKNOWN = 0;
+    STAIRCASE = 1;
+    CORNER_LANDING = 2;
+    ROUND_U_SHAPED = 3;
+    U_SHAPED = 4;
+    L_SHAPED_RIGHT = 5;
+    L_SHAPED_LEFT = 6;
+  }
+}
+
+message Mask {
+  string id = 1;
+  repeated NormalizedPoint points = 2;
+  Type type = 3;
+  repeated RuleSetting rules_by_mask = 4;
+
+  enum Type {
+    UNKNOWN_TYPE = 0;
+    EXCLUSION = 1;
+    INCLUSION = 2;
+  }
+}
+
+message NormalizedPoint {
+  string id = 1;
+  float x = 2;
+  float y = 3;
+  int32 index = 4;
+}
+
+message SpeechAudio {
+  string id = 1;
+  string customer_id = 2;
+  string message = 3;
+  string key = 4;
+  string bucket = 5;
+  string url = 6;
+
+  // Reserving up to 20
+  google.protobuf.Timestamp created = 20;
+  google.protobuf.Timestamp updated = 21;
+}
+
+message VideoFrame{
+  string id = 1;
+  string camera_id = 2;
+  string bucket = 3;
+  string key = 4;
+  google.protobuf.Timestamp timestamp = 5;
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+/**************************
+  Escalation
+**************************/
+message EscalationStep {
+  string id = 1;
+  int32 index = 2;
+  repeated Shift shifts = 3;
+  repeated User users = 4;
+  int32 delay = 5;
+
+  google.protobuf.Timestamp created = 20;
+  google.protobuf.Timestamp updated = 21;
+}
+
+message EscalationPolicy {
+  string id = 1;
+  string name = 2;
+  repeated EscalationStep steps = 3;
+  Customer customer = 4;
+  google.protobuf.Timestamp created = 20;
+  google.protobuf.Timestamp updated = 21;
+}
+
+/* Object of Interest */
+
+message ObjectsOfInterestRequest {
+  string id = 1;
+  models.Incident incident = 2;
+  repeated models.TrackedObject object_of_interests = 3;
+  models.User initiated_user = 4;
+  optional bool cancelled = 5;
+  google.protobuf.Timestamp timestamp = 20;
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message ObjectOfInterestTrackingJob {
+  string id = 1;
+  enum ObjectOfInterestTrackingJobStatus {
+    UNKNOWN = 0;
+    IN_PROGRESS = 1;
+    COMPLETED = 2;
+    TIMEOUT = 3;
+  }
+
+  ObjectOfInterestTrackingJobStatus status = 2;
+  repeated ObjectsOfInterestRequest tracking_requests = 3;
+  google.protobuf.Timestamp start = 4;
+  google.protobuf.Timestamp end = 5;
+  repeated MatchPrediction matches = 6;
+
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message MatchPredictionAssignment {
+  string id = 1;
+  User assignee = 2;
+  string receipt = 3;  // use for delete message on sqs
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message MatchPrediction {
+  enum MatchPredictionStatus {
+    UNKNOWN = 0;
+    AUTO_CONFIRMED = 1;
+    UNCONFIRMED = 2;
+    CONFIRMED = 3;
+    REJECTED = 4;
+    TIMEOUT = 5;
+    UNSURE = 6;
+  }
+  string id = 1;
+  string object_track_id_in_target_frame = 2;
+  models.InferenceFrame target_frame = 3;
+  float confidence = 4;
+  MatchPredictionStatus status = 5;
+  models.TrackedObject tracked_object = 6;
+  repeated MatchPredictionAssignment assignees = 7;
+  float distance = 8;
+  float time_diff = 9;
+  int32 decision_code = 10;
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+
+}
+
+message TrackedObject {
+  string id = 1;
+  string global_id = 2;
+  string customer_id = 3;
+  string facility_id = 4;
+  string camera_id = 5;
+  string frame_id = 6;
+  string tracking_job_id = 7;
+  models.DetectedObject detected_object = 20;
+  google.protobuf.Timestamp timestamp = 21;
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+  google.protobuf.Timestamp updated = 41;
+}
+
+message TrackedObjectList {
+  repeated TrackedObject objects = 1;
+}
+
+message UnConfirmedPredictionRequest {
+  optional User user = 1;
+}
+
+message MatchPredictionList {
+  repeated MatchPrediction predictions = 1;
+}
+
+message DisableCameras {
+  string id = 1;
+  int32 duration = 2;
+  repeated Camera cameras = 3; // if empty, all cameras from the facility
+  string facility_snapshot = 4;
+  google.protobuf.Timestamp created = 5;
+  google.protobuf.Timestamp updated = 6;
+}
+
+message FacilityControl {
+  string id = 1;
+  Facility facility = 2;
+
+  google.protobuf.Timestamp created = 5;
+  google.protobuf.Timestamp updated = 6;
+  google.protobuf.Timestamp completed = 7;
+
+  oneof action {
+    DisableCameras disable_cameras = 30;
+    bool enable_facility = 31;
+  }
+}
+
+message AuthorizedBadgeHolder {
+  string id = 1;
+  string name = 2;
+  string vendor_id = 3;
+  string badge_image_url = 4;
+
+  Customer customer = 5;
+
+  google.protobuf.Timestamp first_seen = 6;
+  google.protobuf.Timestamp last_seen = 7;
+
+  google.protobuf.Timestamp created = 8;
+  google.protobuf.Timestamp updated = 9;
+
+  models.InferenceFrame last_confirmed_frame = 10;
+
+  map<string,string> string_tags = 25;
+}
+
+message AccessControlEvent {
+  enum BadgeReaderResult {
+      UNKNOWN = 0;
+      GRANTED = 1;
+      DENIED = 2;
+  }
+  enum ConfirmationResult {
+      UNKNOWN_STATUS = 0;
+      PENDING = 1;
+      MISMATCHED = 2;
+      CONFIRMED = 3;
+      AUTO_CONFIRMED = 4;
+  }
+
+  string id = 1;
+  BadgeReaderResult result = 2;
+  AuthorizedBadgeHolder authorized_badge_holder = 3;
+  BadgeReader badge_reader = 4;
+  ConfirmationResult confirmation_result = 5;
+
+  User validated_by = 24;
+  map<string,string> string_tags = 25;
+}
+
+message VapeDetectionEvent {
+  string id = 1;
+  VapeDetector vape_detector = 2;
+
+  map<string, string> string_tags = 4;
+}
+
+message UserAssignment {
+  string id = 1;
+  User assignee = 2;
+  string receipt = 3;
+
+  google.protobuf.Timestamp created = 20;
+  google.protobuf.Timestamp updated = 21;
+}
+
+message SystemEvent {
+  string id = 1;
+
+  google.protobuf.Timestamp timestamp = 2;
+  google.protobuf.Timestamp created = 3;
+  google.protobuf.Timestamp updated = 4;
+
+  models.Customer customer = 5;
+  models.Facility facility = 6;
+  models.Zone zone = 7;
+  models.Location location = 8;
+  string description = 9;
+
+  repeated UserAssignment assignees = 19;
+
+  repeated Camera cameras = 20;
+  repeated InferenceFrame frames = 21;
+
+  oneof payload {
+    AccessControlEvent access_control_event = 30;
+    VapeDetectionEvent vape_detection_event = 31;
+  }
+
+  map<string,string> string_tags = 80;
+}
+
+message SystemEventList {
+  repeated SystemEvent events = 1;
+}
+
+message InferenceFrameList {
+  repeated InferenceFrame frames = 1;
+}

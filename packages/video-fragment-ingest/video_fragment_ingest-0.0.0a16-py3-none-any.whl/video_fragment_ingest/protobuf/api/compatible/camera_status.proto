@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+option java_package = "ai.volt.api.service";
+option go_package = "github.com/vlt-ai/atla/generated/api/compatible";
+
+package camera_status;
+
+service CameraStatusService {
+  rpc GetFacilityStatus(FacilityRequest) returns (FacilityStatusResponse);
+  rpc GetCameraHistory(CameraHistoryRequest) returns (CameraHistoryResponse);
+}
+
+message FacilityRequest {
+  string facility_id = 1;
+}
+
+message CameraStatus {
+  string camera_id = 1;
+  string status = 2;
+  google.protobuf.Timestamp timestamp = 3;
+}
+
+message FacilityStatusResponse {
+  repeated CameraStatus cameras = 1;
+}
+
+message CameraHistoryRequest {
+  string camera_id = 1;
+  google.protobuf.Timestamp start_time = 2; // ISO 8601 format
+  google.protobuf.Timestamp end_time = 3;   // ISO 8601 format
+}
+
+message CameraHistoryResponse {
+  repeated CameraStatus history = 1;
+}
+
+

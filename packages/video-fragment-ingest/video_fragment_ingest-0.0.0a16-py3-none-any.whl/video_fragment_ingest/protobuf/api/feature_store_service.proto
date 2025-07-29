@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "models/feature.proto";
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+option java_package = "ai.volt.api";
+option go_package = "github.com/vlt-ai/atla/generated/api";
+package api;
+
+service FeatureStoreService {
+  rpc WriteFeatureStream (stream models.FeatureProto) returns (google.protobuf.Empty);
+  rpc ReadFeature (models.FeatureProto) returns (models.FeatureProto);
+  rpc WriteFeatures (models.FeatureProtoList) returns (WriteCompleted);
+  rpc ReadFeatures (models.FeatureProtoList) returns (models.FeatureProtoList);
+}
+
+message WriteCompleted {
+  bool success = 1;
+}

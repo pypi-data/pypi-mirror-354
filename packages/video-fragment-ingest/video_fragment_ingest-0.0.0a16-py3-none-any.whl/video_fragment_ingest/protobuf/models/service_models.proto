@@ -1,0 +1,416 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "models/graph_models.proto";
+import "models/ai_models.proto";
+import "models/model_deployment.proto";
+import "models/spatial_models.proto";
+
+option java_multiple_files = true;
+option java_package = "ai.volt.models";
+option go_package = "github.com/vlt-ai/atla/generated/models";
+
+package models;
+
+
+message EnvironmentChange {
+  string facilityId = 1;
+  string cameraId = 2;
+  google.protobuf.Timestamp timestamp = 3;
+  string zoneId = 4;
+  ScopeType scope = 5;
+  repeated string evidences = 6;
+  string badgeReaderId = 7;
+  string systemEventId = 8;
+  string sensorId = 9;
+
+  enum ScopeType {
+    UNKNOWN = 0;
+    CAMERA = 1;
+    ZONE = 2;
+    FACILITY = 3;
+    BADGE_READER = 4;
+    VAPE_DETECTOR = 5;
+  }
+}
+
+message CameraIdentifier {
+  string cameraId = 1;
+  string facilityId = 2;
+  string customerId = 3;
+}
+
+message CameraIdentifierList {
+  repeated CameraIdentifier cameras = 1;
+}
+
+
+/**
+ PubSub
+ **/
+message SubscribeRequest {
+  repeated string channels = 1;
+}
+
+message Message {
+  string channel = 1;
+  google.protobuf.Timestamp timestamp = 2;
+
+  oneof payload {
+    string description = 20;
+    UploadMediaRequest media_request = 21;
+    models.Camera add_camera = 22;
+    models.Camera update_camera = 23;
+    models.Camera delete_camera = 24;
+    models.Incident incident = 25;
+    models.Device device_heartbeat = 26;
+    models.Camera camera_heartbeat = 27;
+    SubscribeRequest sub_request = 28;
+    UploadMediaResponse media_response = 29;
+    PairCameraRequest pair_camera_request = 30;
+    bool pairing_mode = 31;
+    models.IncidentEvent event = 32;
+    TestingRequest testing_request = 33;
+    Heartbeat heartbeat = 34;
+    WebNotification notification = 35;
+    PlayAudioRequest audio_request = 36;
+    models.Camera restart_live_view = 37; // restart web-rtc
+    models.FloorPlan floor_plan_completed = 38;
+    StartKvsStreamRequest start_kvs_stream = 39;
+    StopKvsStreamRequest stop_kvs_stream = 40;
+    KvsVideoUploadRequest kvs_video_upload = 41;
+    UploadThumbnailRequest upload_thumbnail_request = 42;
+    FFProbRequest ffprobe_request = 43;
+    FFProbResponse ffprobe_response = 44;
+    models.Camera frame_with_object = 45;
+    StartVideoPlaybackRequest start_video_playback = 46;
+    WebRTCHeartbeatRequest web_rtc_heartbeat = 47;
+    models.Camera start_live_view = 48; // restart web-rtc
+    models.InferenceFrame frame = 49;
+    ManifestRequest upload_manifest = 50;
+    VideoSegmentRequest upload_video_segment = 51;
+    models.DeviceActiveModelRequest active_device_model_request = 52;
+    models.DeviceActiveModelResponse active_device_model_response = 53;
+    models.DeviceModelDeployRequest device_model_deploy_request = 54;
+    models.DeviceModelDeployResponse device_model_deploy_response = 55;
+    models.MatchPrediction match_prediction = 56;
+    models.RenderingFrame rendering_frame = 57;
+    models.FacilityControl facility_control = 58;
+    models.Device restart_device = 59;
+    models.SystemEvent system_event = 60;
+  }
+}
+
+message ManifestRequest {
+  string camera_id = 1;
+}
+
+message VideoSegmentRequest {
+  string camera_id = 1;
+  string manifest_timestamp = 2;
+  string segment_filename = 3;
+}
+
+message WebRTCHeartbeatRequest {
+  string stream_name = 1;
+}
+
+message UploadThumbnailRequest {
+  string id = 1;
+  string camera_id = 3;
+  float elapse_time = 4;
+}
+
+message KvsVideoUploadRequest {
+  string id = 1;
+  string camera_id = 2;
+
+  google.protobuf.Timestamp start_time = 3;
+  google.protobuf.Timestamp stop_time = 4;
+
+}
+
+message StartKvsStreamRequest {
+  string camera_id = 1;
+  optional InferenceFrame frame = 2;
+}
+
+message StopKvsStreamRequest {
+  string camera_id = 1;
+}
+
+message StartVideoPlaybackRequest {
+  string camera_id = 1;
+  string stream_name = 2;
+  google.protobuf.Timestamp start_time = 3;
+  string codec = 4;
+}
+
+message Heartbeat {
+  google.protobuf.Timestamp timestamp = 1;
+  string id = 2;
+  Device device = 3;
+}
+
+message TestingRequest {
+  TestingType testing_type = 1;
+  string camera_id = 2;
+  int32 frame_count = 3;
+  enum TestingType {
+    UNKNOWN = 0;
+    PERSON = 1;
+    GUN = 2;
+    LONG_GUN = 3;
+    MAN_DOWN = 4;
+  }
+}
+
+message RemoveCameraLocationRequest {
+  models.Location location = 1;
+  models.Camera camera = 2;
+  models.Campus campus = 3;
+}
+
+message PairCameraRequest {
+  models.Camera conf_camera = 1;
+  models.Camera pos_camera = 2;
+}
+
+message PairMultiLensCameraRequest {
+  models.MultiLensCamera conf_camera = 1;
+  models.MultiLensCamera pos_camera = 2;
+}
+
+message Authentication {
+  string id_token = 1;
+  string access_token = 2;
+}
+
+message UserLogin {
+  string email = 1;
+  string password = 2;
+}
+
+message VideoPlayback {
+  string camera_id = 1;
+  google.protobuf.Timestamp start_time = 2;
+  google.protobuf.Timestamp end_time = 3;
+}
+
+message PresignedUrl {
+  string url = 1;
+  google.protobuf.Timestamp expires = 2;
+}
+
+message UploadMediaRequest {
+  string id = 1;
+  string event_id = 2;
+  string camera_id = 3;
+  repeated string frame_ids = 4;
+  string bucket = 5;
+  string key = 6;
+  MediaType type = 7;
+  google.protobuf.Timestamp start_timestamp = 8;
+  google.protobuf.Timestamp end_timestamp = 9;
+
+  enum MediaType {
+    UNKNOWN = 0;
+    VIDEO = 1;
+    IMAGE = 2;
+    BOTH = 3;
+  }
+}
+
+message UploadMediaResponse {
+  string id = 1;
+  string event_id = 2; // should match with UploadMediaRequest.event_id
+  repeated MediaChunk chunks = 3;
+  google.protobuf.Timestamp request_time = 4;
+}
+
+message PlayAudioRequest {
+  models.Speaker speaker = 1;
+  models.SpeechAudio audio = 2;
+}
+
+
+message KVSStream {
+  string camera_id = 1;
+  string customer_id = 2;
+  string facility_id = 3;
+}
+
+message CloudStreamTask {
+  KVSStream add_stream = 1;
+  KVSStream remove_stream = 2;
+}
+
+message CloudStats {
+  string id = 1;
+  float utilization = 2;
+  repeated KVSStream runing_streams = 3;
+}
+
+message TwilioToken {
+  string conversation_id = 1;
+  string jwt = 2;
+}
+
+message TwilioChannel {
+  string id = 1;
+}
+
+message TwilioMessage {
+  string phone = 1;
+  string content = 2;
+}
+
+message TwilioParticipant {
+  string conversation_id = 1;
+  string phone = 2; // adding participant
+}
+
+message TwilioConversationMessage {
+  string incident_id = 1;
+  string conversation_id = 2;
+  string sender = 3; // user_id
+  string content = 4;
+  string contact_id = 5;
+}
+
+message WebNotification {
+  string title = 1;
+  string message = 2;
+  Type type = 3;
+
+  enum Type {
+    UNKNOWN = 0;
+    SUCCESS = 1;
+    WARNING = 2;
+    INFO = 3;
+    ERROR = 4;
+  }
+}
+
+message TrailLogRequest {
+  int32 start_index = 1;
+  int32 size = 2;
+  optional bool asc = 3;
+
+  string customer_id = 4;
+  repeated string actions = 5;
+  repeated string resources = 6;
+  string detail = 7;
+  string user_id = 8;
+
+  google.protobuf.Timestamp from_timestamp = 10;
+  google.protobuf.Timestamp to_timestamp = 11;
+}
+
+message TrailLogFieldRequest {
+  models.Customer customer = 1;
+  models.User user = 2;
+}
+
+message TrailLog {
+  string id = 1;
+  models.User user = 2;
+  models.Customer customer = 3;
+  string action = 4;        // CRUD
+  string resource_name = 5; // Customer/Facility/Rule/Zone
+  string details = 6;       // { id: 'aaa', name: "ABC" }
+  models.Facility facility = 7;
+
+  // Reserving up to 40
+  google.protobuf.Timestamp created = 40;
+}
+
+
+message TrailLogField {
+  string customer_id = 1;
+  repeated string actions = 2;
+  repeated string resources = 3;
+}
+
+message TrailLogList {
+  repeated TrailLog logs = 1;
+}
+
+message CloudVideoDecodingIdentifier {
+  string id = 1;
+  string camera_id = 2;
+  string facility_id = 3;
+  string customer_id = 4;
+
+  // Reserving up to 40
+  google.protobuf.Timestamp start_time = 40;
+}
+
+message CameraWithRelationships {
+  models.Camera camera = 1;
+  optional string zone_id = 2;
+  optional string level_id = 3;
+  optional string campus_id = 4;
+}
+
+message BadgeReaderWithRelationships {
+  models.BadgeReader badge_reader = 1;
+  optional string zone_id = 2;
+  optional string level_id = 3;
+  optional string campus_id = 4;
+}
+
+message FacilityObjectWithRelationships {
+  optional string zone_id = 1;
+  optional string level_id = 2;
+  optional string campus_id = 3;
+
+
+  oneof object {
+    models.BadgeReader badge_reader = 20;
+    models.VapeDetector vape_detector = 21;
+  }
+}
+
+message CamerasInFacility {
+  repeated models.Level levels = 1;
+  repeated models.Zone zones = 2;
+  repeated models.Campus campuses = 3;
+  repeated CameraWithRelationships cameras = 4;
+  repeated BadgeReaderWithRelationships badge_readers = 5;
+  repeated FacilityObjectWithRelationships facility_objects = 6;
+}
+
+message FFProbRequest {
+  string id = 1;
+  repeated models.Camera cameras = 2;
+}
+
+message FFProbResponse {
+  string id = 1;
+  string request_id = 2;
+  string camera_id = 3;
+  map<string, string> output = 4;
+  map<string, string> error = 5;
+  bool online = 6;
+  google.protobuf.Timestamp timestamp = 40;
+}
+
+message VideoIngestFragment {
+  string customer_id = 1;
+  string facility_id = 2;
+  string camera_id = 3;
+  string s3_uri = 4;
+  float duration = 5;
+  google.protobuf.Timestamp start_ts = 7;
+  map<string, string> tags = 8;
+}
+
+message CustomRuleEvent {
+  string id = 1;
+  string customer_id = 2;
+  string facility_id = 3;
+  repeated string camera_ids = 4;
+  RuleSetting rule_setting = 5;
+  google.protobuf.Timestamp timestamp = 20;
+}

@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+option java_package = "ai.volt.models";
+option go_package = "github.com/vlt-ai/atla/generated/models";
+
+package models;
+
+message FeatureKey{
+  string cameraId = 1;
+  string facilityId = 2;
+  string name = 3;
+}
+
+enum EntityProtoType {
+  GLOBAL = 0; // default
+  CUSTOMER = 1;
+  FACILITY = 2;
+  CAMERA = 3;
+  OBJECT = 4;
+  ZONE = 5;
+  BADGE_READER = 6;
+  VAPE_DETECTOR = 7;
+}
+
+message EntityProto{
+  string id = 1;
+  EntityProtoType entityType = 2;
+}
+
+message FeatureProto{
+  EntityProto entity = 1;
+  string name = 2;
+  oneof value{
+    string  stringValue = 10;
+    int32   intValue = 11;
+    float   floatValue = 12;
+    double  doubleValue = 13;
+    bool    booleanValue = 14;
+    int64   longValue = 15;
+    bytes   bytesValue = 16;
+  }
+  google.protobuf.Timestamp  timestamp = 3;
+  string cameraId = 4;
+  string facilityId = 5;
+  string zoneId = 6;
+}
+
+message FeatureProtoList{
+  repeated FeatureProto features = 1;
+}
