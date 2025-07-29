@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: fastbackfilter
+Version: 0.6.9
+Summary: Turbo-charged, extensible file-typing framework.
+Requires-Python: >=3.9
+Requires-Dist: pydantic>=2.7
+Requires-Dist: cachetools>=5.3
+Requires-Dist: platformdirs>=4.2
+Provides-Extra: cli
+Requires-Dist: rich>=13.7; extra == "cli"
+Provides-Extra: perf
+Requires-Dist: python-magic; extra == "perf"
+Requires-Dist: rapidfuzz; extra == "perf"
