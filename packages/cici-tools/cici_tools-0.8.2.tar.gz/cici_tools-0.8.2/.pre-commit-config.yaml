@@ -1,0 +1,61 @@
+# SPDX-FileCopyrightText: 2024 UL Research Institutes
+# SPDX-License-Identifier: MIT
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: "v5.0.0"
+    hooks:
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: fix-byte-order-marker
+      - id: trailing-whitespace
+
+  - repo: https://gitlab.com/buildgarden/pipelines/python
+    rev: "0.14.1"
+    hooks:
+      - id: python-autoflake
+      - id: python-black
+      - id: python-docformatter
+      - id: python-isort
+      - id: python-pip-compile
+        args:
+          [
+            --python-version,
+            "3.11",
+            --upgrade,
+            -o,
+            requirements.txt,
+            pyproject.toml,
+          ]
+
+  - repo: https://gitlab.com/buildgarden/pipelines/prettier
+    rev: "0.3.2"
+    hooks:
+      - id: prettier
+        exclude: "^\\.gitlab-ci\\.yml$"
+
+  - repo: https://gitlab.com/buildgarden/tools/badgie
+    rev: "0.12.2"
+    hooks:
+      - id: badgie
+
+  - repo: local
+    hooks:
+      - id: cici-update
+        name: cici update
+        description: Update CI includes to latest released versions
+        language: python
+        entry: cici update
+        pass_filenames: false
+        always_run: true
+
+  - repo: https://gitlab.com/buildgarden/pipelines/skywalking-eyes
+    rev: "0.2.2"
+    hooks:
+      - id: license-eye-header-fix
+
+  - repo: https://gitlab.com/buildgarden/pipelines/detect-secrets
+    rev: "0.2.1"
+    hooks:
+      - id: detect-secrets
