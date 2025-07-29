@@ -1,0 +1,377 @@
+# Cursor Deeplink Generator
+
+A Python package for generating Cursor deeplinks for MCP (Model Context Protocol) server installation. This package is based on the [official Cursor deeplinks documentation](https://docs.cursor.com/deeplinks).
+
+## Overview
+
+Cursor deeplinks allow you to create clickable links that automatically install MCP servers in Cursor. This package provides both programmatic and command-line interfaces for generating these deeplinks.
+
+The deeplinks follow this format:
+```
+cursor://anysphere.cursor-deeplink/mcp/install?name=$NAME&config=$BASE64_ENCODED_CONFIG
+```
+
+## Installation
+
+### Using pip
+
+```bash
+pip install cursor-deeplink
+```
+
+### From source
+
+```bash
+git clone https://github.com/hemanth/cursor-deeplink.git
+cd cursor-deeplink
+pip install -e .
+```
+
+### Development installation
+
+```bash
+git clone https://github.com/hemanth/cursor-deeplink.git
+cd cursor-deeplink
+pip install -e .[dev]
+```
+
+## Usage
+
+### Programmatic Usage
+
+#### Basic Example
+
+```python
+from cursor_deeplink import generate_deeplink, DeeplinkGenerator
+
+# Simple usage with the convenience function
+config = {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/mydb"]
+}
+
+deeplink = generate_deeplink("postgres", config)
+print(deeplink)
+# Output: cursor://anysphere.cursor-deeplink/mcp/install?name=postgres&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBtb2RlbGNvbnRleHRwcm90b2NvbC9zZXJ2ZXItcG9zdGdyZXMiLCJwb3N0Z3Jlc3FsOi8vbG9jYWxob3N0L215ZGIiXX0=
+```
+
+#### Using the DeeplinkGenerator Class
+
+```python
+from cursor_deeplink import DeeplinkGenerator
+
+generator = DeeplinkGenerator()
+
+# Generate a deeplink
+config = {
+    "command": "python",
+    "args": ["-m", "my_mcp_server"],
+    "env": {"PORT": "8000"}
+}
+
+deeplink = generator.generate_link("my-server", config)
+print(deeplink)
+
+# Parse an existing deeplink
+parsed = generator.parse_deeplink(deeplink)
+print(f"Server name: {parsed['name']}")
+print(f"Config: {parsed['config']}")
+
+# Generate from MCP configuration file format
+mcp_config = {
+    "postgres": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/mydb"]
+    },
+    "sqlite": {
+        "command": "npx", 
+        "args": ["-y", "@modelcontextprotocol/server-sqlite", "/path/to/db.sqlite"]
+    }
+}
+
+postgres_link = generator.generate_from_mcp_config("postgres", mcp_config)
+sqlite_link = generator.generate_from_mcp_config("sqlite", mcp_config)
+```
+
+#### Button Generation
+
+Generate HTML, JSX, or Markdown buttons for web integration:
+
+```python
+from cursor_deeplink import DeeplinkGenerator
+
+generator = DeeplinkGenerator()
+config = {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/mydb"]
+}
+
+# Generate HTML button (dark theme)
+html_button = generator.generate_button_html("postgres", config, theme="dark")
+print(html_button)
+# Output: <a href="cursor://..." style="background-color: #000; color: #fff; ...">Add postgres MCP server to Cursor</a>
+
+# Generate HTML button (light theme) with custom text
+html_light = generator.generate_button_html("postgres", config, theme="light", button_text="Install PostgreSQL")
+
+# Generate JSX component
+jsx_button = generator.generate_button_jsx("postgres", config, theme="dark")
+
+# Generate Markdown link
+markdown_link = generator.generate_markdown_link("postgres", config)
+print(markdown_link)
+# Output: [Add postgres MCP server to Cursor](cursor://...)
+```
+
+### Command Line Usage
+
+The package installs a `cursor-deeplink` command-line tool.
+
+#### Generate deeplink URL (default)
+
+```bash
+cursor-deeplink generate postgres --config '{"command": "npx", "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/mydb"]}'
+```
+
+#### Generate HTML buttons
+
+```bash
+# Dark theme button
+cursor-deeplink generate postgres --config-file postgres-config.json --format html --theme dark
+
+# Light theme button with custom text
+cursor-deeplink generate postgres --config-file postgres-config.json --format html --theme light --button-text "Install PostgreSQL MCP"
+```
+
+#### Generate JSX component
+
+```bash
+cursor-deeplink generate postgres --config-file postgres-config.json --format jsx --theme dark
+```
+
+#### Generate Markdown link
+
+```bash
+cursor-deeplink generate postgres --config-file postgres-config.json --format markdown
+```
+
+#### Generate from MCP configuration file
+
+```bash
+# Create an MCP config file (mcp.json format)
+cat > mcp.json << EOF
+{
+  "postgres": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/mydb"]
+  },
+  "sqlite": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-sqlite", "/path/to/db.sqlite"]
+  }
+}
+EOF
+
+# Generate deeplink URL for specific server
+cursor-deeplink generate-from-mcp postgres --mcp-file mcp.json
+
+# Generate HTML button for specific server
+cursor-deeplink generate-from-mcp postgres --mcp-file mcp.json --format html --theme light
+```
+
+#### Parse an existing deeplink
+
+```bash
+cursor-deeplink parse "cursor://anysphere.cursor-deeplink/mcp/install?name=postgres&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBtb2RlbGNvbnRleHRwcm90b2NvbC9zZXJ2ZXItcG9zdGdyZXMiLCJwb3N0Z3Jlc3FsOi8vbG9jYWxob3N0L215ZGIiXX0="
+
+# Output in JSON format
+cursor-deeplink parse "cursor://anysphere.cursor-deeplink/mcp/install?name=postgres&config=..." --output-format json
+```
+
+#### CLI Help
+
+```bash
+cursor-deeplink --help
+cursor-deeplink generate --help
+cursor-deeplink generate-from-mcp --help
+cursor-deeplink parse --help
+```
+
+## API Reference
+
+### DeeplinkGenerator
+
+The main class for generating and parsing Cursor deeplinks.
+
+#### Methods
+
+##### `generate_link(name: str, config: Dict[str, Any]) -> str`
+
+Generate a Cursor deeplink for MCP server installation.
+
+- **name**: The name of the MCP server
+- **config**: The configuration dictionary for the server
+- **Returns**: The generated deeplink URL
+
+##### `generate_from_mcp_config(server_name: str, mcp_config: Dict[str, Any]) -> str`
+
+Generate a deeplink from an MCP configuration that contains multiple server configs.
+
+- **server_name**: The name of the server to extract from the config
+- **mcp_config**: The full MCP configuration containing server configs
+- **Returns**: The generated deeplink URL
+
+##### `parse_deeplink(deeplink: str) -> Dict[str, Any]`
+
+Parse a Cursor deeplink and extract the name and configuration.
+
+- **deeplink**: The Cursor deeplink URL
+- **Returns**: Dictionary containing 'name' and 'config' keys
+
+##### `decode_config(encoded_config: str) -> Dict[str, Any]`
+
+Decode a base64 encoded configuration back to a dictionary.
+
+- **encoded_config**: Base64 encoded configuration string
+- **Returns**: Decoded configuration dictionary
+
+##### `generate_button_html(name: str, config: Dict[str, Any], theme: str = "dark", button_text: Optional[str] = None) -> str`
+
+Generate HTML button code for the deeplink.
+
+- **name**: The name of the MCP server
+- **config**: The configuration dictionary for the server  
+- **theme**: Button theme, either "dark" or "light" (default: "dark")
+- **button_text**: Custom button text (default: "Add {name} MCP server to Cursor")
+- **Returns**: HTML button code
+
+##### `generate_button_jsx(name: str, config: Dict[str, Any], theme: str = "dark", button_text: Optional[str] = None) -> str`
+
+Generate JSX button component code for the deeplink.
+
+- **name**: The name of the MCP server
+- **config**: The configuration dictionary for the server
+- **theme**: Button theme, either "dark" or "light" (default: "dark") 
+- **button_text**: Custom button text (default: "Add {name} MCP server to Cursor")
+- **Returns**: JSX button component code
+
+##### `generate_markdown_link(name: str, config: Dict[str, Any], button_text: Optional[str] = None) -> str`
+
+Generate Markdown link for the deeplink.
+
+- **name**: The name of the MCP server
+- **config**: The configuration dictionary for the server
+- **button_text**: Custom link text (default: "Add {name} MCP server to Cursor")
+- **Returns**: Markdown link
+
+### Convenience Functions
+
+##### `generate_deeplink(name: str, config: Dict[str, Any]) -> str`
+
+Convenience function to generate a Cursor deeplink without instantiating the class.
+
+## Examples
+
+### PostgreSQL Server
+
+```python
+from cursor_deeplink import generate_deeplink
+
+config = {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost/mydb"]
+}
+
+link = generate_deeplink("postgres", config)
+```
+
+### SQLite Server
+
+```python
+from cursor_deeplink import generate_deeplink
+
+config = {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-sqlite", "/path/to/database.sqlite"]
+}
+
+link = generate_deeplink("sqlite", config)
+```
+
+### Custom Python Server
+
+```python
+from cursor_deeplink import generate_deeplink
+
+config = {
+    "command": "python",
+    "args": ["-m", "my_custom_mcp_server"],
+    "env": {
+        "DATABASE_URL": "sqlite:///app.db",
+        "DEBUG": "true"
+    }
+}
+
+link = generate_deeplink("custom-server", config)
+```
+
+## Testing
+
+Run the test suite:
+
+```bash
+# Install development dependencies
+pip install -e .[dev]
+
+# Run tests
+python -m pytest
+
+# Run tests with coverage
+python -m pytest --cov=cursor_deeplink
+
+# Run specific test file
+python -m pytest tests/test_deeplink.py
+```
+
+## Development
+
+### Code Formatting
+
+```bash
+black cursor_deeplink/ tests/
+```
+
+### Type Checking
+
+```bash
+mypy cursor_deeplink/
+```
+
+### Linting
+
+```bash
+flake8 cursor_deeplink/ tests/
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Run the test suite
+6. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Related Links
+
+- [Cursor Deeplinks Documentation](https://docs.cursor.com/deeplinks)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+- [Cursor Editor](https://cursor.com/)
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for detailed version history. 
