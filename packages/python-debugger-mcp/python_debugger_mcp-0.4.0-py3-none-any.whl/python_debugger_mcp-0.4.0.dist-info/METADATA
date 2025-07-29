@@ -1,0 +1,116 @@
+Metadata-Version: 2.4
+Name: python-debugger-mcp
+Version: 0.4.0
+Summary: Model Context Protocol server for Python debugging with AI assistants
+Project-URL: Homepage, https://github.com/yourusername/python-debugger-mcp
+Project-URL: Repository, https://github.com/yourusername/python-debugger-mcp
+Project-URL: Issues, https://github.com/yourusername/python-debugger-mcp/issues
+Author-email: samefarrar <67292186+samefarrar@users.noreply.github.com>
+License: MIT
+Keywords: ai,claude,debugger,debugging,llm,mcp,pdb,python
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Debuggers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.10
+Requires-Dist: mcp[cli]>=1.6.0
+Provides-Extra: test
+Requires-Dist: packaging>=21.0; extra == 'test'
+Requires-Dist: pytest-asyncio>=0.21.0; extra == 'test'
+Requires-Dist: pytest-cov>=4.0.0; extra == 'test'
+Requires-Dist: pytest-mock>=3.10.0; extra == 'test'
+Requires-Dist: pytest>=7.0.0; extra == 'test'
+Description-Content-Type: text/markdown
+
+# Python Debugger MCP
+
+A Model Context Protocol (MCP) server that provides Python debugging capabilities for AI assistants like Claude. This tool allows AI assistants to debug Python code by providing interactive debugging session management, breakpoint control, variable inspection, and step-by-step execution.
+
+## Features
+
+- **Debug Session Management**: Start, restart, and end debugging sessions
+- **Breakpoint Control**: Set, clear, and list breakpoints
+- **Variable Inspection**: Examine variable values during debugging
+- **Step Execution**: Step through code line by line
+- **Environment Detection**: Automatically detect Python environments and project structure
+- **Cross-Platform**: Works on Windows, macOS, and Linux
+
+## Installation
+
+```bash
+pip install python-debugger-mcp
+```
+
+## Usage
+
+### As an MCP Server
+
+Run the server directly:
+
+```bash
+python-debugger-mcp
+```
+
+### In Claude Desktop
+
+Add this to your Claude Desktop configuration:
+
+```json
+{
+  "mcpServers": {
+    "python-debugger": {
+      "command": "python-debugger-mcp"
+    }
+  }
+}
+```
+
+### Available Tools
+
+The MCP server provides these debugging tools:
+
+- `start_debug(script_path)` - Start debugging a Python script
+- `send_pdb_command(command)` - Send commands to the debugger
+- `set_breakpoint(file_path, line_number)` - Set a breakpoint
+- `clear_breakpoint(file_path, line_number)` - Clear a breakpoint
+- `list_breakpoints()` - List all breakpoints
+- `examine_variable(variable_name)` - Examine a variable's value
+- `restart_debug()` - Restart the current debugging session
+- `end_debug()` - End the debugging session
+- `get_debug_status()` - Get current debugging status
+
+## Requirements
+
+- Python 3.10 or higher
+- MCP library support
+
+## Development
+
+### Installing for Development
+
+```bash
+git clone <repository-url>
+cd python-debugger-mcp
+uv sync
+```
+
+### Running Tests
+
+```bash
+python run_tests.py --test-type all
+```
+
+## License
+
+MIT License - see LICENSE file for details.
+
+## Inspiration
+
+This project was inspired by [debug-gym](https://microsoft.github.io/debug-gym/), which provides debugging environments for AI agents.
