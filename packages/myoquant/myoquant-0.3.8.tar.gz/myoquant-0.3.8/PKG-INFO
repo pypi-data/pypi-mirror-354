@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: myoquant
+Version: 0.3.8
+Summary: MyoQuant🔬: a tool to automatically quantify pathological features in muscle fiber histology images.
+Project-URL: Homepage, https://github.com/lambda-science/MyoQuant
+Project-URL: Documentation, https://github.com/lambda-science/MyoQuant/blob/main/CLI_Documentation.md
+Project-URL: Repository, https://github.com/lambda-science/MyoQuant
+Project-URL: Issues, https://github.com/lambda-science/MyoQuant/issues
+Author-email: Corentin Meyer <contact@cmeyer.fr>
+Maintainer-email: Corentin Meyer <contact@cmeyer.fr>
+License-Expression: AGPL-3.0-or-later
+License-File: LICENSE
+Keywords: biology,deep-learning,histology,quantification
+Requires-Python: <3.13,>=3.10
+Requires-Dist: cellpose>=3.1.1.1
+Requires-Dist: csbdeep>=0.8.1
+Requires-Dist: huggingface-hub>=0.32.4
+Requires-Dist: imageio>=2.37.0
+Requires-Dist: ipykernel>=6.29.5
+Requires-Dist: keras>=3.9.0
+Requires-Dist: matplotlib>=3.9.4
+Requires-Dist: numpy<2.0.0
+Requires-Dist: pandas>=2.2.3
+Requires-Dist: pillow>=11.1.0
+Requires-Dist: pyngrok>=5.2.3
+Requires-Dist: rich>=13.9.4
+Requires-Dist: scikit-image>=0.25.2
+Requires-Dist: scikit-learn>=1.6.1
+Requires-Dist: seaborn>=0.13.2
+Requires-Dist: stardist>=0.9.1
+Requires-Dist: streamlit>=1.44.0
+Requires-Dist: tensorflow>=2.19.0
+Requires-Dist: textual>=2.1.2
+Requires-Dist: tifffile>=2025.3.13
+Requires-Dist: typer>=0.15.2
