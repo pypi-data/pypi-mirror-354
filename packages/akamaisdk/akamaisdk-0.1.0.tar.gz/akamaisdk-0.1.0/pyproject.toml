@@ -1,0 +1,23 @@
+[project]
+name = "akamaisdk"   
+version = "0.1.0"
+description = "Lightweight Python SDK for interacting with Akamai APIs using EdgeGrid authentication."
+readme = "README.md"
+authors = [
+    {name = "Akamai"}
+]
+license = { file = "LICENSE" }
+requires-python = ">=3.7"
+dependencies = [
+    "requests"
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.urls]
+Homepage = "https://github.com/akamai-packages/akamaiapi"
+Documentation = "https://akamai-packages.github.io/akamaiapi"
+Repository = "https://github.com/akamai-packages/akamaiapi"
+Issues = "https://github.com/akamai-packages/akamaiapi/issues"
