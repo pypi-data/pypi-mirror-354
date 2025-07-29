@@ -1,0 +1,36 @@
+Metadata-Version: 2.4
+Name: atrp_calculator
+Version: 0.1.0
+Summary: A tool to generate ATRP reaction recipes from user-defined molar ratios and stock concentrations.
+Author: Cesar Ramirez
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: openpyxl
+Dynamic: author
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# ATRP Calculator
+
+A simple Python tool to process Excel sheets and generate ATRP polymerization recipes based on experimental inputs.
+
+---
+
+## ðŸ“¦ Features
+
+- Reads Excel files containing polymerization conditions.
+- Automatically generates calculated ATRP recipes.
+- Saves results in a clean, organized Excel output.
+
+---
+
+## ðŸš€ Installation
+
+Clone this repository and install the package using pip:
+
+```bash
+pip install -e .
