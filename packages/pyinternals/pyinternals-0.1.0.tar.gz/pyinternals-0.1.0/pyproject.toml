@@ -1,0 +1,16 @@
+[project]
+name = "pyinternals"
+version = "0.1.0"
+description = "A Python object layout visualizer using CPython internals"
+authors = [{ name="Mohamed Desouky", email="mohamed.d180@gmail.com" }]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["cpython", "visualizer", "memory", "introspection"]
+
+[project.urls]
+Homepage = "https://github.com/mohamed-180/pyinternals"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
