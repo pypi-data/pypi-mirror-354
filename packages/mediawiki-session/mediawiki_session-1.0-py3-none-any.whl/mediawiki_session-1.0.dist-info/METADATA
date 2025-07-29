@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: mediawiki-session
+Version: 1.0
+Summary: TBD
+Author: Gerard
+Author-email: gweatherby@uchc.edu
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests
+Provides-Extra: yaml
+Requires-Dist: pyyaml; extra == "yaml"
+Dynamic: license-file
+
+# wikimedia_session
+request Session for Wikimedia
+
+##
+session = MediaWikiSesson('/etc/my.yaml')
+
+will log in using access token from file specified in my.yaml
+
+*session.edit_token* will provide a token for posting edits
