@@ -1,0 +1,55 @@
+Metadata-Version: 2.4
+Name: muhidinlib
+Version: 0.1.1
+Summary: "Utility Python sederhana yang sering digunakan dalam proyek data science."
+Home-page: https://github.com/asepmuhidin
+Author: Asep Muhidin
+Author-email: asep.muhidin@pelitabangsa.ac.id
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: numpy
+Requires-Dist: scipy
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# 📦 muhidinlib
+
+[![PyPI Version](https://img.shields.io/pypi/v/muhidinlib.svg)](https://pypi.org/project/muhidinlib/)
+[![Python Version](https://img.shields.io/pypi/pyversions/muhidinlib.svg)](https://pypi.org/project/muhidinlib/)
+[![Build](https://github.com/username/muhidinlib/actions/workflows/tests.yml/badge.svg)](https://github.com/username/muhidinlib/actions)
+
+**muhidinlib** adalah kumpulan fungsi dan utilitas pribadi yang sering digunakan untuk keperluan **visualisasi**, **preprocessing data**, dan **modeling** dalam proyek data science atau machine learning. Dibuat agar kode lebih terstruktur, reusable, dan tidak perlu menulis ulang fungsi yang sama berulang kali.
+
+---
+
+## 🚀 Fitur Utama
+
+- 🎨 **Visualisasi Kustom**  
+  Fungsi dan class untuk membuat grafik bar vertikal/horizontal lengkap dengan label nilai.
+  
+- 🧹 **Preprocessing Data** *(dalam pengembangan)*  
+  Utilities untuk transformasi data, normalisasi, encoding, dsb.
+
+- 🤖 **Modeling Tools** *(rencana ekspansi)*  
+  Pembungkus fungsi untuk pelatihan model, evaluasi, dan pipeline sederhana.
+
+---
+
+## 📥 Instalasi
+
+```bash
+pip install muhidinlib
