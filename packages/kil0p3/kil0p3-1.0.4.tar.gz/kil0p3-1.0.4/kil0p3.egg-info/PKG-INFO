@@ -1,0 +1,250 @@
+Metadata-Version: 2.4
+Name: kil0p3
+Version: 1.0.4
+Summary: Advanced Python Application Protection Library with automatic license validation
+Home-page: https://github.com/kil0p3-security/kil0p3
+Author: Kil0p3 Security Team
+Author-email: Kil0p3 Security Team <security@kil0p3.dev>
+License: Proprietary
+Project-URL: Homepage, https://github.com/kil0p3-security/kil0p3
+Project-URL: Bug Reports, https://github.com/kil0p3-security/kil0p3/issues
+Project-URL: Source, https://github.com/kil0p3-security/kil0p3
+Project-URL: Documentation, https://kil0p3.dev/docs
+Keywords: security,protection,license,drm,anti-piracy,hardware-id,hwid,anti-debugging,code-protection
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Security
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: pycryptodome>=3.19.0
+Requires-Dist: cryptography>=41.0.0
+Requires-Dist: requests>=2.31.0
+Requires-Dist: psutil>=5.9.0
+Requires-Dist: python-dateutil>=2.8.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: black>=22.0.0; extra == "dev"
+Requires-Dist: isort>=5.0.0; extra == "dev"
+Provides-Extra: full
+Requires-Dist: colorlog>=6.7.0; extra == "full"
+Requires-Dist: pytz>=2023.3; extra == "full"
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
+# 🔐 Kil0p3 - Advanced Python Application Protection
+
+[![PyPI version](https://badge.fury.io/py/kil0p3.svg)](https://badge.fury.io/py/kil0p3)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/badge/license-Proprietary-red.svg)](LICENSE)
+
+**Automatic protection activation on import** - Just add one line to protect your Python applications!
+
+```python
+import kil0p3  # 🛡️ Protection starts automatically!
+```
+
+## ✨ Features
+
+- 🔑 **License validation** with digital signatures
+- 🖥️ **Hardware ID (HWID) binding** 
+- 🚫 **Anti-debugging protection**
+- 🔍 **Code integrity verification**
+- 🚨 **Automatic blocking** on violations
+- 🛠️ **Development mode** for testing
+- 🌐 **Cross-platform** (Windows, Linux, macOS)
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+pip install kil0p3
+```
+
+### Basic Usage
+
+**For Development:**
+```python
+import os
+os.environ['KIL0P3_DEV_MODE'] = '1'  # Disable protection for development
+import kil0p3
+
+print(f"Version: {kil0p3.get_version()}")
+print(f"HWID: {kil0p3.get_hwid()}")
+```
+
+**For Production:**
+```python
+import kil0p3  # 🔒 Full protection automatically enabled
+
+# Your protected application code here...
+print("Application is now protected!")
+```
+
+## 📖 API Reference
+
+### Status Functions
+
+```python
+import kil0p3
+
+# Get protection status
+status = kil0p3.get_status()
+print(status)  # {'version': '1.0.0', 'protection_active': True, ...}
+
+# Check if protection is active
+protected = kil0p3.is_protected()
+print(f"Protected: {protected}")
+
+# Get hardware ID
+hwid = kil0p3.get_hwid()
+print(f"Hardware ID: {hwid}")
+```
+
+### License Management
+
+```python
+# Set license programmatically
+success = kil0p3.set_license("KLP-XXXX-XXXX-XXXX-XXXX")
+if success:
+    print("License activated successfully!")
+
+# Check license validity
+valid = kil0p3.check_license()
+print(f"License valid: {valid}")
+```
+
+## 🛡️ How It Works
+
+1. **Automatic Activation**: Protection starts immediately when you import the library
+2. **License Verification**: Validates license keys with cryptographic signatures
+3. **Hardware Binding**: Ties licenses to specific hardware configurations
+4. **Runtime Protection**: Monitors for debugging, tampering, and violations
+5. **Graceful Handling**: Shows user-friendly activation windows when needed
+
+## ⚙️ Configuration
+
+### Development Mode
+
+For development and testing, disable protection:
+
+```python
+import os
+os.environ['KIL0P3_DEV_MODE'] = '1'  # Must be set BEFORE import
+import kil0p3
+```
+
+### Environment Variables
+
+- `KIL0P3_DEV_MODE=1` - Disable protection for development
+- `KIL0P3_LOG_LEVEL=DEBUG` - Enable debug logging
+
+## 🔧 Advanced Usage
+
+### Custom License Validation
+
+```python
+import kil0p3
+
+# Get detailed license information
+license_info = kil0p3.get_license_info()
+if license_info:
+    print(f"License Type: {license_info['type']}")
+    print(f"Expires: {license_info['expires']}")
+    print(f"Days Remaining: {license_info['days_remaining']}")
+```
+
+### Integration with Your Application
+
+```python
+import os
+import sys
+
+# Set development mode if needed
+if '--dev' in sys.argv:
+    os.environ['KIL0P3_DEV_MODE'] = '1'
+
+# Import protection FIRST
+import kil0p3
+
+# Your application code
+def main():
+    if not kil0p3.is_protected():
+        print("⚠️ Running in development mode")
+    else:
+        print("🔒 Application protected")
+    
+    # Your main application logic here...
+    
+if __name__ == "__main__":
+    main()
+```
+
+## 📋 License Key Format
+
+License keys follow the format: `KLP-XXXX-XXXX-XXXX-XXXX`
+
+Example: `KLP-8G3X-RJ92-YJ7Z-2KMN`
+
+## 🎯 Use Cases
+
+- **Commercial Software**: Protect paid Python applications
+- **Internal Tools**: Secure company-internal scripts and tools  
+- **SaaS Applications**: Add license validation to cloud services
+- **Desktop Applications**: Protect PyQt/Tkinter applications
+- **CLI Tools**: Secure command-line utilities
+
+## 🔒 Security Features
+
+### Anti-Debugging
+- Detects popular debuggers (IDA, x64dbg, OllyDbg)
+- Monitors for debugging modules and trace functions
+- Automatic application termination on detection
+
+### Code Integrity
+- File hash verification
+- Import tampering detection
+- Runtime modification monitoring
+
+### Hardware Binding
+- Unique hardware fingerprinting
+- CPU, motherboard, and disk serial numbers
+- MAC address validation
+
+### Network Validation
+- IP address restrictions
+- Geolocation blocking
+- License server communication
+
+## 📚 Documentation
+
+- [Full Documentation](https://kil0p3.dev/docs)
+- [API Reference](https://kil0p3.dev/api)
+- [Integration Guide](https://kil0p3.dev/integration)
+- [License Management](https://kil0p3.dev/licenses)
+
+## 🤝 Support
+
+- 📧 Email: support@kil0p3.dev
+- 🐛 Issues: [GitHub Issues](https://github.com/kil0p3-security/kil0p3/issues)
+- 📖 Documentation: [kil0p3.dev](https://kil0p3.dev)
+
+## ⚖️ License
+
+This library is proprietary software. See [LICENSE](LICENSE) for details.
+
+---
+
+**Made with 🔒 by the Kil0p3 Security Team**
