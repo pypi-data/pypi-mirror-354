@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: gdb-async
+Version: 1.0.0
+Summary: An asynchronous Python wrapper for the GDBrowser
+Author-email: noxzion <negroid2281488ilikrilex@gmail.com>
+Keywords: api,gdbrowser,pydantic,async,gd
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: aiohttp
+
+
+# GDBrowser Async
+
+An asynchronous Python wrapper for the GDBrowser api based on [this](https://github.com/aurelione/gd_browser.py)
+
+
+##  Installation
+
+```bash
+pip install gdb-async
+```
