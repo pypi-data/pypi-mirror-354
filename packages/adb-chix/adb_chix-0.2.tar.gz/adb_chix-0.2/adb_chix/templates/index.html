@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>夏虫python-ADB-max</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style>
+			body{
+				color:white;
+				font-size: 20px;
+				background: black;
+			}
+			.conStatus{
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 40rem;
+				width: 180rem;
+				height: 180rem;
+				background: red;
+				border-radius: 50%;
+				margin: 150rem auto;
+			}
+		
+			.inpBox{
+				display: flex;
+				align-items: center;
+				width: 410rem;
+				height: 96rem;
+				background: rgb(97, 97, 97);
+				border-radius: 200rem;
+				margin: 20rem auto;
+				line-height: 96rem;
+			}
+			
+			.inpBox input{
+				border: none;
+				outline: none;
+				background: rgba(0, 0, 0, 0);
+				color: white;
+				padding-left: 30rem;
+				font-size: 30rem;
+			}
+			.inpBox input::placeholder {
+			 	color: white; /* 灰色 */
+				opacity: 1;
+			}
+			.conBox{
+				padding: 0 50rem;
+				padding-top: 60rem;
+				padding-bottom: 100rem;
+				box-sizing: border-box;
+				width: 520rem;
+				/* min-height: 480rem; */
+				background-color: rgb(38,38,38);
+				border-radius: 30rem;
+				margin: 0 auto;
+			}
+			.conBox .btns{
+				display: flex;
+				justify-content: space-around;
+				padding-top: 30rem;
+			}
+			.conBox .btn{
+				text-align: center;
+				line-height: 50rem;
+				padding: 10rem;
+				font-size: 35rem;
+				width: 40%;
+				background: red;
+				border-radius: 80rem;
+				padding-bottom: 15rem;
+			}
+			.conBox .bt1{
+				background-color: green;
+			}
+			.conBox .bt2{
+				background-color: red;
+			}
+			.listBox{
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+				align-items: center;
+				min-height: 600rem;
+
+			}
+			.list{
+				text-align: center;
+				line-height: 110rem;
+				width: 500rem;
+				height: 110rem;
+				background: rgb(38, 38, 38);
+				border-radius: 250rem;
+				border: 2rem solid white;
+				margin: 20rem 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="conStatus">
+			未连接
+		</div>
+		<div class="conBox">
+			<div class="inpBox pp">
+				<input type="text" placeholder="请输入配对端口号" class="pairPort conPort"/>
+			</div>
+				<div class="inpBox pr">
+				<input type="text" placeholder="请输入配对码" class="pair"/>
+			</div>
+			<div class="btns">
+				<div class="btn bt1">配对</div>
+				<div class="btn bt2">断开</div>
+			</div>
+		</div>
+		
+		<div class="listBox">
+			<div class="list addlist">添加通话记录</div>
+			<div class="list setlevel">修改电池电量</div>
+		</div>
+		
+		<script>
+		//rem
+		document.documentElement.style.fontSize=window.screen.width/750+'px'
+		let status = 'no'
+		document.querySelector('.addlist').addEventListener('click',function(){
+			if(status=='no') {
+				alert('请先连接adb')
+				return
+			}
+			window.location.href='/addlist'
+		})
+		
+		document.querySelector('.setlevel').addEventListener('click',function(){
+			if(status=='no') {
+				alert('请先连接adb')
+				return
+			}
+			window.location.href='/setlve'
+		})
+		
+		
+		
+		let step=0
+	
+		//配对方法
+		function toPair(){
+			let pairPort = document.querySelector('.pairPort').value
+			let pair = document.querySelector('.pair').value
+			const params = new URLSearchParams({
+				pair_port:pairPort,
+				pair:pair
+			})
+			fetch(`/pair?${params.toString()}`)
+			.then(res=>res.text())
+			.then((data)=>{
+				alert(data)
+				console.log(data)
+				if(data=='ok'){
+					step=1
+					steprender()
+				}
+			}).catch((err)=>{alert(err)})
+		}
+		//连接方法
+		function connect(){
+			console.log('to connect...')
+			let port = document.querySelector('.conPort').value
+			fetch(`/connect?port=${port}`)
+			.then(res=>res.text())
+			.then((data)=>{
+				if(data=='ok'){
+					alert(data+'现在可以使用啦！')
+				}else{
+					alert(data)
+				}
+			}).catch((err)=>{alert(err)})
+		}
+		document.querySelector('.btns .bt1').addEventListener('click',function(){
+			steprender()
+			if(step==0){
+				toPair()	
+			}
+			if(step==1){
+				connect()
+			}
+		})
+
+		
+		function steprender(){
+			if(step==0){
+				document.querySelector('.pr').style.display='block'
+				document.querySelector('.btns .bt1').textContent='配对'
+				document.querySelector('.btns .bt2').style.display='none'
+				document.querySelector('.pairPort').placeholder='请输入配对端口号'
+				
+			}
+			if(step==1){
+				document.querySelector('.pr').style.display='none'
+				document.querySelector('.btns .bt1').textContent='连接'
+				document.querySelector('.btns .bt2').style.display='block'
+				document.querySelector('.pairPort').placeholder='请输入连接端口号'
+			
+			}
+		}
+		//setup
+		steprender()
+		setInterval(() => {
+			fetch('/isconnect')
+			.then(res=>res.text())
+			.then((data)=>{
+				//连接状态
+			status=data
+			if(status=='no'){
+				document.querySelector('.conStatus').style.background='red'
+				document.querySelector('.conStatus').textContent='未连接'
+				}else if(status=='yes'){
+				document.querySelector('.conStatus').style.background='green'
+				document.querySelector('.conStatus').textContent='已连接'
+			}
+			
+			}).catch()
+		}, 2000);
+
+		</script>
+	</body>
+</html>
