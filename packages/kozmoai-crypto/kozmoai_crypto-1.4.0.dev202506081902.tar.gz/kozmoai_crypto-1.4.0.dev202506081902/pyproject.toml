@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "kozmoai-crypto"
+version = "1.4.0.dev202506081902"
+description = "Crypto extension for KozmoAI"
+authors = ["KozmoAI Team <hello@kozmoai.co>"]
+license = "AGPL-3.0-only"
+readme = "README.md"
+packages = [{ include = "kozmoai_crypto" }]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+kozmoai-core = "^1.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.plugins."kozmoai_core_extension"]
+crypto = "kozmoai_crypto.crypto_router:router"
+
+[tool.poetry.plugins."kozmoai_charting_extension"]
+crypto = "kozmoai_crypto.crypto_views:CryptoViews"
