@@ -1,0 +1,66 @@
+Metadata-Version: 2.4
+Name: mplfontutils
+Version: 0.1.0
+Summary: Utility package for testing and loading fonts in matplotlib
+Project-URL: Homepage, https://github.com/xsjk/mplfontutils
+Project-URL: Repository, https://github.com/xsjk/mplfontutils
+Author-email: xsjk <xsjk17@outlook.com>
+License-Expression: MIT
+License-File: LICENSE
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Framework :: Matplotlib
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Classifier: Typing :: Typed
+Requires-Python: >=3.9
+Requires-Dist: matplotlib>=3.9
+Description-Content-Type: text/markdown
+
+# mplfontutils
+
+A utility package for testing and loading fonts in matplotlib.
+
+## Installation
+
+```shell
+pip install git+https://github.com/xsjk/mplfontutils.git
+```
+
+## Usage
+
+### Command Line
+
+Test which fonts can display specific text:
+
+```shell
+python -m mplfontutils "Hello 世界"
+```
+
+### Python API
+
+```python
+from mplfontutils import find_available_fonts, load_fonts_from_directory
+
+# Load fonts from directory
+load_fonts_from_directory("/path/to/fonts")
+
+# Find compatible fonts
+fonts = find_available_fonts("中文测试")
+print(f"Found {len(fonts)} compatible fonts")
+```
+
+## License
+
+[MIT License](LICENSE)
