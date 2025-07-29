@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: pulumi-autonamed
+Version: 0.1.0
+Summary: Pulumi component that auto-names Azure resources from the subscription ID
+Requires-Python: >=3.9
+Requires-Dist: pulumi>=3.100
+Requires-Dist: pulumi-azure-native>=2.0
