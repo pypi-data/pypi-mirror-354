@@ -1,0 +1,59 @@
+<nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="{% url 'home' %}">
+      <i class="fab fa-github fa-2x"></i>
+      <span class="ml-2 has-text-weight-bold">{{ system_name }}</span>
+    </a>
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <style>
+    .navbar.is-spaced {
+      padding: 1rem 2rem;
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #e9ecef;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+
+    .navbar-item i {
+      color: #333;
+    }
+
+    .navbar-item {
+      padding: 0.7rem 1rem;
+    }
+
+    .navbar-item:hover {
+      background-color: #e9ecef !important;
+    }
+  </style>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="{% url 'home' %}">
+        Home
+      </a>
+      <a class="navbar-item" href="#">
+        About
+      </a>
+      <a class="navbar-item" href="#">
+        Services
+      </a>
+      <a class="navbar-item" href="#">
+        Contact
+      </a>
+    </div>
+    <div class="navbar-end">
+      <a class="navbar-item" href="#">
+        Login
+      </a>
+      <a class="navbar-item" href="#">
+        Sign Up
+      </a>
+    </div>
+  </div>
+</nav>

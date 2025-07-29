@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ description | default:'GitHub Manager - 一个强大的GitHub仓库管理工具，帮助您高效管理仓库、团队和Token' }}">
+    <meta name="keywords" content="{{ keywords | default:'GitHub, 仓库管理, PyPI Token, 团队管理, 用户管理' }}">
+    <title>{{ system_name|default:'Document' }}</title>
+    <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+      html {
+        height: 100%;
+      }
+      body {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .page-wrapper {
+        flex: 1 0 auto;
+        padding: 1rem 2rem;
+        max-width: 1920px;
+        margin: 0 auto;
+        width: 100%;
+      }
+      .footer {
+        flex-shrink: 0;
+        padding: 1rem 2rem;
+        background-color: #f5f5f5;
+        margin-top: auto;
+      }
+      .footer-text {
+        text-align: center;
+        color: #4a4a4a;
+      }
+      nav.navbar {
+        flex-shrink: 0;
+      }
+    </style>
+  </head>
+  <body>
+    {% block header %}
+    {% include "header.html" %}
+    {% endblock header %}
+
+    <main class="page-wrapper">
+      {% block content %}
+      {% endblock content %}
+    </main>
+
+    {% include "footer.html" %}
+  </body>
+</html>
