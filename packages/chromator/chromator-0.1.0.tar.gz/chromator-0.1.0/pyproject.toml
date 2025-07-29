@@ -1,0 +1,25 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "chromator"
+version = "0.1.0"
+description = "Color shades generator"
+authors = ["Huib Piguillet <huib@proton.me>"]
+maintainers = ["Huib Piguillet"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "chromator", from = "src" }]
+include = [{ path = "tests", format = "sdist" }]
+repository = "https://github.com/githuib/chromator"
+keywords = ["color shades generator", "cli utility"]
+classifiers = ["Topic :: Utilities"]
+
+[tool.poetry.scripts]
+shades = "chromator.cli:main"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+hsluv = "*"
+yachalk = "*"

@@ -1,0 +1,23 @@
+Metadata-Version: 2.3
+Name: chromator
+Version: 0.1.0
+Summary: Color shades generator
+License: MIT
+Keywords: color shades generator,cli utility
+Author: Huib Piguillet
+Author-email: huib@proton.me
+Maintainer: Huib Piguillet
+Requires-Python: >=3.13,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Utilities
+Requires-Dist: hsluv
+Requires-Dist: yachalk
+Project-URL: Repository, https://github.com/githuib/chromator
+Description-Content-Type: text/markdown
+
+# Chromator: Color shades generator
+
+[![Poetry](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/githuib/powerchord/master/assets/logo.json)](https://pypi.org/project/chromator)
+
