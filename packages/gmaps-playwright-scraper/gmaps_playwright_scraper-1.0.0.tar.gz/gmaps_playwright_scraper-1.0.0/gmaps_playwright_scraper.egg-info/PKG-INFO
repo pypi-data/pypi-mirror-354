@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: gmaps_playwright_scraper
+Version: 1.0.0
+Summary: A Google Maps scraper using Playwright and LLaMA
+Author-email: Srinivas Muralidharan <sm1043@gmail.com>
+License: MIT
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: playwright
+Requires-Dist: bs4
+Requires-Dist: pandas
+Requires-Dist: ollama
+Requires-Dist: langchain
+Requires-Dist: scrapegraphai
+Dynamic: license-file
+
+
+# GMaps Playwright Scraper
+
+A lightweight Google Maps scraper using Playwright, BeautifulSoup, and LLaMA for AI-based data extraction.

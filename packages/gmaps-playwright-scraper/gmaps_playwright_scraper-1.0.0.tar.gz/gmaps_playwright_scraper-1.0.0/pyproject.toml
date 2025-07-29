@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gmaps_playwright_scraper"
+version = "1.0.0"
+description = "A Google Maps scraper using Playwright and LLaMA"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [{ name="Srinivas Muralidharan", email="sm1043@gmail.com" }]
+dependencies = [
+    "playwright",
+    "bs4",
+    "pandas",
+    "ollama",
+    "langchain",
+    "scrapegraphai"
+]
