@@ -1,0 +1,17 @@
+# Festo Bioreactor Standard Configuration
+reactor:
+  volume: 5.0    # liters
+  temp: 37.0     # °C
+  ph: 7.2
+  agitation: 200  # RPM
+
+microorganism:
+  strain: E.Coli
+  inoculum_size: 0.1  # OD600
+
+control:
+  strategy: PID
+  setpoints:
+    temperature: 37.0
+    ph: 7.2
+    do: 30.0   # % dissolved oxygen
