@@ -1,0 +1,428 @@
+"""
+Configuration (logging, settings, etc).
+
+For usage of logging see `zut.get_logger` and (less frequently `zut.log_warnings`).
+"""
+import atexit
+import locale
+import logging
+import logging.config
+import os
+import sys
+import threading
+from contextlib import contextmanager
+from traceback import format_exception
+from types import TracebackType
+from typing import Callable, Iterator, Sequence
+
+from zut import Color, get_logger, skip_utf8_bom
+
+
+#region Logging
+
+def configure_logging(level: str|int|None = None, *, file_level: str|int|None = None, verbose_level: str|int|None = None, verbose_loggers: Sequence[str]|None = None, print_logger_names = True, count = True, exit_handler = True):
+    config = get_logging_config(level=level, file_level=file_level, verbose_level=verbose_level, verbose_loggers=verbose_loggers, print_logger_names=print_logger_names, count=count, exit_handler=exit_handler)
+    logging.config.dictConfig(config)
+
+
+def get_logging_config(level: str|int|None = None, *, file_level: str|int|None = None, verbose_level: str|int|None = None, verbose_loggers: Sequence[str]|None = None, print_logger_names = True, count = True, exit_handler = True):
+    if not isinstance(level, str):
+        if isinstance(level, int):
+            level = logging.getLevelName(level)
+        else:
+            level = os.environ.get('LOG_LEVEL', '').upper() or 'INFO'
+    
+    # Ensure specific verbose subsystems do not send DEBUG messages, even if LOG_LEVEL is DEBUG, except if we explicitely request it
+    if not isinstance(verbose_level, str):
+        if isinstance(verbose_level, int):
+            verbose_level = logging.getLevelName(verbose_level)
+        else:
+            verbose_level = os.environ.get('LOG_VERBOSE_LEVEL', '').upper()
+    
+    config = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'default': {
+                'format': '%(levelname)-8s [%(name)s] %(message)s' if print_logger_names else '%(levelname)s: %(message)s',
+            },
+        },
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+                'level': level,
+                'formatter': 'default',
+            },
+        },
+        'root': {
+            'handlers': ['console'],
+            'level': level,
+        },
+        'loggers': {
+            'django': { 'level': verbose_level or 'INFO', 'propagate': False },
+            'daphne': { 'level': verbose_level or 'INFO', 'propagate': False },
+            'asyncio': { 'level': verbose_level or 'INFO', 'propagate': False },
+            'urllib3': { 'level': verbose_level or 'INFO', 'propagate': False },
+            'botocore': { 'level': verbose_level or 'INFO', 'propagate': False },
+            'boto3': { 'level': verbose_level or 'INFO', 'propagate': False },
+            's3transfer': { 'level': verbose_level or 'INFO', 'propagate': False },
+            'PIL': { 'level': verbose_level or 'INFO', 'propagate': False },
+            'celery.utils.functional': { 'level': verbose_level or 'INFO', 'propagate': False },
+            'smbprotocol': { 'level': verbose_level or 'WARNING', 'propagate': False },
+        },
+    }
+
+    if verbose_loggers:
+        for name in verbose_loggers:
+            config['loggers'][name] = { 'level': verbose_level or 'INFO', 'propagate': False }
+
+    if not Color.NO_COLORS:
+        config['formatters']['colored'] = {
+            '()': ColoredFormatter.__module__ + '.' + ColoredFormatter.__qualname__,
+            'format': '%(log_color)s%(levelname)-8s%(reset)s %(light_black)s[%(name)s]%(reset)s %(message)s' if print_logger_names else '%(log_color)s%(levelname)s%(reset)s: %(message)s',
+        }
+
+        config['handlers']['console']['formatter'] = 'colored'
+
+    file = os.environ.get('LOG_FILE')
+    if file:
+        if not isinstance(file_level, str):
+            if isinstance(file_level, int):
+                file_level = logging.getLevelName(file_level)
+            else:
+                file_level = os.environ.get('LOG_FILE_LEVEL', '').upper() or level
+
+        log_dir = os.path.dirname(file)
+        if log_dir and not os.path.exists(log_dir):
+            os.makedirs(log_dir)
+
+        config['formatters']['file'] = {
+            'format': '%(asctime)s %(levelname)s [%(name)s] %(message)s',
+        }
+        config['handlers']['file'] = {
+            'class': 'logging.FileHandler',
+            'level': file_level,
+            'formatter': 'file',
+            'filename': file,
+            'encoding': 'utf-8',
+        }
+
+        config['root']['handlers'].append('file')
+    
+        file_intlevel = logging.getLevelName(file_level)
+        intlevel = logging.getLevelName(level)
+        if file_intlevel < intlevel:
+            config['root']['level'] = file_level
+    
+    if count or exit_handler:
+        config['handlers']['counter'] = {
+            'class': LogCounter.__module__ + '.' + LogCounter.__qualname__,
+            'level': 'WARNING',
+            'exit_handler': exit_handler,
+        }
+
+        config['root']['handlers'].append('counter')
+
+    return config
+
+
+class ColoredRecord:
+    LOG_COLORS = {
+        logging.DEBUG:     Color.GRAY,
+        logging.INFO:      Color.CYAN,
+        logging.WARNING:   Color.YELLOW,
+        logging.ERROR:     Color.RED,
+        logging.CRITICAL:  Color.BG_RED,
+    }
+
+    def __init__(self, record: logging.LogRecord):
+        # The internal dict is used by Python logging library when formatting the message.
+        # (inspired from library "colorlog").
+        self.__dict__.update(record.__dict__)
+        
+        self.log_color = self.LOG_COLORS.get(record.levelno, '')
+
+        for attname, value in Color.__dict__.items():
+            if attname == 'NO_COLORS' or attname.startswith('_'):
+                continue
+            setattr(self, attname.lower(), value)
+
+
+class ColoredFormatter(logging.Formatter):
+    def formatMessage(self, record: logging.LogRecord) -> str:
+        """Format a message from a record object."""
+        wrapper = ColoredRecord(record)
+        message = super().formatMessage(wrapper) # type: ignore
+        return message
+
+
+class LogCounter(logging.Handler):
+    """
+    A logging handler that counts warnings and errors.
+    
+    If warnings and errors occured during the program execution, display counts at exit
+    and set exit code (if it was not explicitely set with `sys.exit` function).
+    """
+    counts: dict[int, int]
+
+    error_exit_code = 199
+    warning_exit_code = 198
+
+    
+    _detected_exception: tuple[type[BaseException], BaseException, TracebackType|None]|None = None
+    _detected_exit_code = 0
+    _original_exit: Callable[[int],None] = sys.exit
+    _original_excepthook = sys.excepthook
+
+    _registered = False
+    _logger: logging.Logger
+
+    def __init__(self, *, level = logging.WARNING, exit_handler = False):
+        if not hasattr(self.__class__, 'counts'):
+            self.__class__.counts = {}
+        
+        if exit_handler and not self.__class__._registered:
+            sys.exit = self.__class__._exit
+            sys.excepthook = self.__class__._excepthook
+            atexit.register(self.__class__._exit_handler)
+            self.__class__._logger = get_logger(f'{self.__class__.__module__}.{self.__class__.__qualname__}')
+            self.__class__._registered = True
+        
+        super().__init__(level=level)
+
+    def emit(self, record: logging.LogRecord):        
+        if not record.levelno in self.__class__.counts:
+            self.__class__.counts[record.levelno] = 1
+        else:
+            self.__class__.counts[record.levelno] += 1
+    
+    @classmethod
+    def _exit(cls, code: int = 0):
+        cls._detected_exit_code = code
+        cls._original_exit(code)
+    
+    @classmethod
+    def _excepthook(cls, exc_type: type[BaseException], exc_value: BaseException, exc_traceback: TracebackType|None):
+        cls._detected_exception = exc_type, exc_value, exc_traceback
+        cls._original_exit(1)
+
+    @classmethod
+    def _exit_handler(cls):
+        if cls._detected_exception:
+            exc_type, exc_value, exc_traceback = cls._detected_exception
+
+            msg = 'An unhandled exception occured\n'
+            msg += ''.join(format_exception(exc_type, exc_value, exc_traceback)).strip()
+            cls._logger.critical(msg)
+
+        else:
+            error_count = 0
+            warning_count = 0
+            for level, count in cls.counts.items():
+                if level >= logging.ERROR:
+                    error_count += count
+                elif level >= logging.WARNING:
+                    warning_count += count
+            
+            msg = ''
+            if error_count > 0:
+                msg += (', ' if msg else 'Logged ') + f"{error_count:,} error{'s' if error_count > 1 else ''}"
+            if warning_count > 0:
+                msg += (', ' if msg else 'Logged ') + f"{warning_count:,} warning{'s' if warning_count > 1 else ''}"
+            
+            if msg:
+                cls._logger.log(logging.ERROR if error_count > 0 else logging.WARNING, msg)                             
+                # Change exit code if it was not originally set explicitely to another value using `sys.exit()`
+                if cls._detected_exit_code == 0:
+                    os._exit(cls.error_exit_code if error_count > 0 else cls.warning_exit_code)
+
+#endregion
+
+
+#region Dotenv
+
+_loaded_dotenv_paths = set()
+
+def load_dotenv(path: os.PathLike|str|None = None, *, encoding = 'utf-8', override = False, parents = False):
+    """
+    Load `.env` from the given or current directory (or the given file if any) to environment variables.    
+    If the given file is a directory, search `.env` in this directory.
+    If `parents` is True, also search if parent directories until a `.env` file is found.
+
+    Usage example:
+
+    ```
+    # Load configuration files
+    load_dotenv() # load `.env` in the current working directory
+    load_dotenv(os.path.dirname(__file__), parents=True) # load `.env` in the Python module installation directory or its parents
+    load_dotenv(f'C:\\ProgramData\\my-app\\my-app.env' if sys.platform == 'win32' else f'/etc/my-app/my-app.env') # load `.env` in the system configuration directory
+    ```
+    """
+    if not path:
+        path = find_to_root('.env') if parents else '.env'
+    elif os.path.isdir(path):
+        path = find_to_root('.env', path) if parents else os.path.join(path, '.env')
+    elif not os.path.isfile(path) and parents:
+        path = find_to_root(os.path.basename(path), os.path.dirname(path))
+        if not path: # not found
+            return None
+    
+    if not os.path.isfile(path):
+        return None # does not exist
+    
+    if path in _loaded_dotenv_paths and not override:
+        return None # already loaded
+        
+    get_logger(__name__).debug("Load dotenv file: %s", path)
+    with open(path, 'r', encoding=encoding, newline=None) as fp:
+        skip_utf8_bom(fp, encoding=encoding)
+        for name, value in parse_properties(fp.read()):
+            if not override:
+                if name in os.environ:
+                    continue
+            os.environ[name] = value
+
+    _loaded_dotenv_paths.add(path)
+    return path
+
+
+def find_to_root(name: str, start_dir: str|os.PathLike|None = None):
+    """
+    Find the given file name from the given start directory (or current working directory if none given), up to the root.
+
+    Return None if not found.
+    """    
+    if start_dir:            
+        if not os.path.exists(start_dir):
+            raise IOError('Starting directory not found')
+        elif not os.path.isdir(start_dir):
+            start_dir = os.path.dirname(start_dir)
+    else:
+        start_dir = os.getcwd()
+
+    last_dir = None
+    current_dir = os.path.abspath(start_dir)
+    while last_dir != current_dir:
+        path = os.path.join(current_dir, name)
+        if os.path.exists(path):
+            return path
+        parent_dir = os.path.abspath(os.path.join(current_dir, os.path.pardir))
+        last_dir, current_dir = current_dir, parent_dir
+
+    return None
+
+
+def parse_properties(content: str) -> Iterator[tuple[str,str]]:
+    """
+    Parse properties/ini/env file content.
+    """
+    def find_nonspace_on_same_line(start: int):
+        pos = start
+        while pos < len(content):
+            c = content[pos]
+            if c == '\n' or not c.isspace():
+                return pos
+            else:
+                pos += 1
+        return None
+
+    def find_closing_quote(start: int):
+        """ Return the unquoted value and the next position """
+        pos = content.find('"', start)
+        if pos == -1:
+            return content[start:], None
+        elif pos+1 < len(content) and content[pos+1] == '"': # escaped
+            begining_content = content[start:pos+1]
+            remaining_content, remaining_pos = find_closing_quote(pos+2)
+            return begining_content + remaining_content, remaining_pos
+        else:
+            return content[start:pos], pos
+
+    name = None
+    value = '' # value being build (or name being build if variable `name` is None)
+    i = find_nonspace_on_same_line(0)
+    while i is not None and i < len(content):
+        c = content[i]
+        if c == '"':
+            unquoted, end = find_closing_quote(i+1)
+            value += unquoted
+            if end is None:
+                return
+            i = end + 1
+        elif c == '=' and name is None:
+            name = value
+            value = ''
+            i += 1
+        elif c == '\n':
+            if name or value:
+                yield (name, value) if name is not None else (value, '')
+            name = None
+            value = ''
+            i += 1            
+        elif c == '#': # start of comment
+            if name or value:
+                yield (name, value) if name is not None else (value, '')
+            name = None
+            value = ''
+            pos = content.find('\n', i+1)
+            if pos == -1:
+                return
+            else:
+                i = pos + 1
+        elif c.isspace(): # start of whitespace
+            end = find_nonspace_on_same_line(i+1)
+            if value:
+                if end is None or content[end] in ({'#', '\n', '='} if name is None else {'#', '\n'}):
+                    pass # strip end
+                else:
+                    value += content[i:end]
+            i = end
+        else:
+            value += c
+            i += 1
+
+    if name or value:
+        yield (name, value) if name is not None else (value, '')
+
+#endregion
+
+
+#region Locale
+
+def register_locale(name: str = ''):
+    """
+    Register a locale for the entire application (system default locale if argument `value` is None).
+    """
+    locale.setlocale(locale.LC_ALL, name)
+
+
+@contextmanager
+def use_locale(name = ''):
+    """
+    Use a locale temporary (in the following thread-local block/context).
+
+    See: https://stackoverflow.com/a/24070673
+    """
+    with _locale_lock:
+        saved = locale.setlocale(locale.LC_ALL)
+        try:
+            yield locale.setlocale(locale.LC_ALL, name)
+        finally:
+            locale.setlocale(locale.LC_ALL, saved)
+
+_locale_lock = threading.Lock()
+
+
+def get_lang():
+    """
+    Return current locale lang, for example: `fr_FR`.
+    """
+    global _lang
+    if _lang is None:
+        with use_locale():
+            _lang = locale.getlocale()[0]
+    return _lang
+
+_lang = None
+
+#endregion
