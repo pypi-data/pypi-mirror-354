@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: regressalot
+Version: 0.1.0
+Summary: Simple AutoML tool for running and comparing ML models.
+Home-page: https://github.com/o01qw/regressalot
+Author: Ivan Levchenko
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: matplotlib
+Requires-Dist: xgboost
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Regressalot
+
+**Regressalot** is a lightweight AutoML utility designed for **preliminary analysis and model comparison**.  
+It helps you quickly assess the performance of multiple machine learning models using default settings and diagnostics — ideal for early exploration before fine-tuning or scaling.
+
+## Features
+- One-line run of Linear Regression, Decision Tree, Random Forest, and XGBoost
+- Automatic feature encoding
+- Evaluation metrics like R², RMSE, RMSPE, over/under-predictions, overfitting
+- Ranking of models by performance
+- Prediction plots
+
+## Installation
+```bash
+pip install regressalot
