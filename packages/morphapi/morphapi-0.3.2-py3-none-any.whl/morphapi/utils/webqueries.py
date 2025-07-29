@@ -1,0 +1,138 @@
+import ssl
+import time
+
+import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.ssl_ import create_urllib3_context
+
+from morphapi.utils.data_io import connected_to_internet
+
+mouselight_base_url = "https://ml-neuronbrowser.janelia.org/"
+CIPHERS = ":HIGH:!DH:!aNULL"
+
+
+class NoDhAdapter(HTTPAdapter):
+    """A TransportAdapter that disables DH cipher in Requests."""
+
+    def init_poolmanager(self, *args, **kwargs):
+        context = create_urllib3_context(
+            ciphers=CIPHERS, cert_reqs=ssl.CERT_OPTIONAL
+        )
+        kwargs["ssl_context"] = context
+        return super(NoDhAdapter, self).init_poolmanager(*args, **kwargs)
+
+
+def request(url, verify=True):
+    """
+    Sends a request to a url
+
+    :param url:
+
+    """
+    if not connected_to_internet():
+        raise ConnectionError(
+            "You need to have an internet connection to send requests."
+        )
+
+    session = requests.Session()
+    session.mount("https://", NoDhAdapter())
+    response = session.get(url, verify=verify)
+
+    if response.ok:
+        return response
+    else:
+        exception_string = "URL request failed: {}".format(response.reason)
+    raise ValueError(exception_string + f" ; url: {url}")
+
+
+def query_mouselight(query):
+    """
+    Sends a GET request, not currently used for anything.
+
+    :param query:
+
+    """
+    if not connected_to_internet():
+        raise ConnectionError(
+            "You need an internet connection for API queries, sorry."
+        )
+
+    full_query = mouselight_base_url + query
+
+    # send the query, package the return argument as a json tree
+    response = requests.get(full_query)
+    if response.ok:
+        json_tree = response.json()
+        if json_tree["success"]:
+            return json_tree
+        else:
+            exception_string = "did not complete api query successfully"
+    else:
+        exception_string = "API failure. Allen says: {}".format(
+            response.reason
+        )
+
+    # raise an exception if the API request failed
+    raise ValueError(exception_string)
+
+
+def post_mouselight(url, query=None, clean=False, attempts=3):
+    """
+    sends a POST request to a user URL. Query can be either a string
+    (in which case clean should be False) or a dictionary.
+
+    :param url:
+    :param query: string or dictionary with query   (Default value = None)
+    :param clean: if not clean, the query is assumed to be in
+    JSON format (Default value = False)
+    :param attempts: number of attempts  (Default value = 3)
+
+    """
+    if not connected_to_internet():
+        raise ConnectionError(
+            "You need an internet connection for API queries, sorry."
+        )
+
+    request = None
+    if query is not None:
+        for i in range(attempts):
+            try:
+                if not clean:
+                    time.sleep(0.01)  # avoid getting an error from server
+                    request = requests.post(url, json={"query": query})
+                else:
+                    time.sleep(0.01)  # avoid getting an error from server
+                    request = requests.post(url, json=query)
+            except Exception as e:
+                exception = e
+                request = None
+                print(
+                    "MouseLight API query failed. Attempt {} of {}".format(
+                        i + 1, attempts
+                    )
+                )
+            if request is not None:
+                break
+
+        if request is None:
+            raise ConnectionError(
+                "\n\nMouseLight API query failed with error message:\n{}.\
+                        \nPerhaps the server is down, visit '{}' "
+                "to find out.".format(exception, mouselight_base_url)
+            )
+    else:
+        raise NotImplementedError
+
+    if request.status_code == 200:
+        jreq = request.json()
+        if "data" in list(jreq.keys()):
+            return jreq["data"]
+        else:
+            return jreq
+    else:
+        raise Exception(
+            "Query failed to run by returning code "
+            "of {}. {} -- \n\n{}".format(
+                request.status_code, query, request.text
+            )
+        )
