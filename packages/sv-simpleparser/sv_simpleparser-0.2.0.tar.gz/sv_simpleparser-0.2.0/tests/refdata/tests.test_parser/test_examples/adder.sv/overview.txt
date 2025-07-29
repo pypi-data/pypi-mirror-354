@@ -1,0 +1,48 @@
+{
+  "path": "$PRJ/tests/svfiles_examples/adder.sv",
+  "modules": [
+    {
+      "name": "adder",
+      "params": [
+        {
+          "ptype": "integer",
+          "name": "DATA_WIDTH"
+        },
+        {
+          "ptype": "integer",
+          "name": "TEST"
+        }
+      ],
+      "ports": [
+        {
+          "direction": "input",
+          "ptype": "unsigned",
+          "name": "A",
+          "width": "[DATA_WIDTH-1:0]",
+          "comment": [
+            "// This is a test\n",
+            "// This is another test\n"
+          ]
+        },
+        {
+          "direction": "input",
+          "ptype": "unsigned",
+          "name": "B",
+          "width": "[DATA_WIDTH-1:0]"
+        },
+        {
+          "direction": "output",
+          "ptype": "unsigned",
+          "name": "X",
+          "width": "[DATA_WIDTH:0]"
+        }
+      ],
+      "insts": [
+        {
+          "name": "u_test_module",
+          "module": "test_module"
+        }
+      ]
+    }
+  ]
+}
