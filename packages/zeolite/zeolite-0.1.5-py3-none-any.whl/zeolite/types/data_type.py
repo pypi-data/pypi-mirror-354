@@ -1,0 +1,21 @@
+from typing import Literal
+from polars import DataType
+
+type ColumnDataTypeLabel = Literal[
+    "string",
+    "id",
+    "number",
+    "integer",
+    "float",
+    "decimal",
+    "boolean",
+    "date",
+    "datetime",
+    "duration",
+    "enum",
+    "categorical",
+    "sanitised_string",
+    "unknown",
+]
+
+type ColumnDataType = ColumnDataTypeLabel | DataType
