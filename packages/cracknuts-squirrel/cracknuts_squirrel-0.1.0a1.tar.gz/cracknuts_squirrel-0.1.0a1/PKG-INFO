@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: cracknuts-squirrel
+Version: 0.1.0a1
+Summary: A Python library for side-channel analysis
+Author-email: Dingzb <dingzibiao@gmail.com>
+Maintainer-email: Dingzb <dingzibiao@gmail.com>
+License-Expression: Apache-2.0
+Project-URL: homepage, https://cracknuts.io
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy~=1.26.4
+Requires-Dist: pycryptodome~=3.23.0
+Requires-Dist: zarr~=2.18.2
+Requires-Dist: packaging~=24.1
+Requires-Dist: numba~=0.61.2
+Requires-Dist: dask~=2025.5.1
+Provides-Extra: jupyter
+Requires-Dist: jupyter~=1.1.1; extra == "jupyter"
+Dynamic: license-file
+
+# CrackNuts Squirrel
+
+## For Developers
+
+In the virtual environment, run the following command to install the dependencies:
+
+```bash
+pip install -e .
+pip install -r requirements-dev.txt
+```
