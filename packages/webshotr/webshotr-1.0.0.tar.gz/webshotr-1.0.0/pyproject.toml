@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "webshotr"
+version = "1.0.0"
+authors = [
+    {name = "AbderrahimGHAZALI", email = "ghazali.abderrahim1@gmail.com"},
+]
+description = "A simple and fast website screenshot tool - WebShotr"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP :: Browsers",
+    "Topic :: Multimedia :: Graphics :: Capture :: Screen Capture",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+]
+keywords = ["screenshot", "web", "automation", "playwright", "browser", "capture"]
+dependencies = [
+    "playwright>=1.40.0",
+    "Pillow>=9.0.0",
+    "click>=8.0.0",
+    "aiofiles>=22.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/abderrahimghazali/webshotr"
+Repository = "https://github.com/abderrahimghazali/webshotr"
+Issues = "https://github.com/abderrahimghazali/webshotr/issues"
+
+[project.scripts]
+webshotr = "webshotr.cli:main"
+
+[tool.setuptools]
+packages = ["webshotr"]
+
+[tool.setuptools.package-data]
+webshotr = ["py.typed"] 
