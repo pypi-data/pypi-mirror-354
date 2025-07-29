@@ -1,0 +1,132 @@
+Metadata-Version: 2.4
+Name: youtube.py3
+Version: 5.0.5
+Summary: A simplified wrapper for YouTube Data API v3
+Home-page: https://github.com/chihalu/youtube-py3
+Author: Chihalu
+Author-email: 
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/Himarry/youtube.py3
+Project-URL: Bug Reports, https://github.com/Himarry/youtube.py3/issues
+Project-URL: Source, https://github.com/Himarry/youtube.py3
+Project-URL: Documentation, https://github.com/Himarry/youtube.py3#readme
+Keywords: youtube,api,wrapper,python,google,data,v3
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: google-api-python-client>=2.0.0
+Requires-Dist: google-auth>=2.0.0
+Requires-Dist: google-auth-oauthlib>=0.5.0
+Requires-Dist: google-auth-httplib2>=0.1.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: pytest-cov>=2.0; extra == "dev"
+Requires-Dist: black>=21.0; extra == "dev"
+Requires-Dist: flake8>=3.8; extra == "dev"
+Requires-Dist: mypy>=0.910; extra == "dev"
+Requires-Dist: twine>=4.0.0; extra == "dev"
+Requires-Dist: build>=0.8.0; extra == "dev"
+Requires-Dist: cython>=0.29.0; extra == "dev"
+Requires-Dist: numpy>=1.19.0; extra == "dev"
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+<!--
+YouTube.py3 - YouTube Data API v3 高機能Pythonラッパー
+-->
+
+# YouTube.py3
+
+> **YouTube Data API v3 高機能Pythonラッパー**  
+> プライベート用途・自動化・CLI・バイナリ配布にも最適
+
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
+[![YouTube API v3](https://img.shields.io/badge/YouTube%20API-v3-red)](https://developers.google.com/youtube/v3)
+
+---
+
+## 概要
+
+YouTube Data API v3 の主要機能（動画・チャンネル・プレイリスト・検索・コメント取得など）を  
+**シンプルかつ強力なインターフェース**で扱えるPythonラッパーです。
+
+- **APIキーのみで利用可能**
+- **CLI/自動化/バイナリ配布にも対応**
+- **型ヒント・例外設計・ページネーション・OAuthユーティリティも完備**
+
+---
+
+## 主な機能
+
+| 機能カテゴリ   | サポート内容例                                 |
+|:--------------|:----------------------------------------------|
+| 動画          | 単体/複数動画情報取得、ページネーション        |
+| チャンネル    | 検索・情報取得・最新動画ID取得                 |
+| プレイリスト  | 一覧・詳細取得、ページネーション               |
+| 検索          | 動画/チャンネル検索、ページネーション          |
+| コメント      | 視聴者のみ・返信なし・ページネーション対応     |
+| 設定管理      | APIキー・チャンネルID・設定ファイル管理         |
+| OAuth         | Google OAuth2認証フロー（ユーティリティ付属）   |
+| 例外設計      | API/認証/クォータ/各機能ごとに細分化           |
+
+---
+
+## インストール
+
+```sh
+pip install -r requirements.txt
+```
+
+---
+
+## クイックスタート
+
+```python
+from youtube_py3 import YouTube
+
+yt = YouTube(api_key="YOUR_API_KEY")
+# 動画情報取得
+info = yt.videos.get_video("動画ID")
+# コメント（視聴者のみ・返信なし・ページネーション）
+for c in yt.comments.get_viewer_comments_paginated("動画ID", "チャンネルID"):
+    print(c)
+```
+
+> **詳細な使い方・APIリファレンスは [Reference.md](Reference.md) をご覧ください。**
+
+---
+
+## 注意事項
+
+- **APIキーはGoogle Cloud Consoleで取得してください**
+- 利用にはYouTube Data API v3の利用規約・クォータ制限が適用されます
+- 本ライブラリはプライベート用途を想定しています
+
+## バイナリ配布・ソース非公開について
+
+- 本パッケージは Nuitka によりビルドされたバイナリ（.pyd）のみを配布し、ソースコード（.py）は一切含まれません。
+- ソースコードを公開・オープンソース化する予定はありません。
+- コード内容を確認したい場合は、ご自身でリバースエンジニアリングを行ってください（自己責任でお願いします）。
+
+---
+
+## ライセンス
+
+MIT License
+
+---
