@@ -1,0 +1,3 @@
+[console_scripts]
+pr-agent-discover = pr_agent.scripts.discover_sources:main
+pr-agent-process = pr_agent.scripts.process_pending:main
