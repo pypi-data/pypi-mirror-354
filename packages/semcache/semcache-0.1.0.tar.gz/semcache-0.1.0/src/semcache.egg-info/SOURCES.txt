@@ -1,0 +1,15 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+src/semcache/__init__.py
+src/semcache/client.py
+src/semcache/exceptions.py
+src/semcache/py.typed
+src/semcache.egg-info/PKG-INFO
+src/semcache.egg-info/SOURCES.txt
+src/semcache.egg-info/dependency_links.txt
+src/semcache.egg-info/requires.txt
+src/semcache.egg-info/top_level.txt
+tests/test_client.py
+tests/test_integration.py
