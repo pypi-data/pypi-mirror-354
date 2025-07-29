@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: fastf1plot
+Version: 0.1.0
+Summary: Plot F1 telemetry data using FastF1
+Author-email: Sidhartha Kumar <siddkumar718@gmail.com>
+License: MIT
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastf1>=3.0.0
+Requires-Dist: matplotlib>=3.0
+Dynamic: license-file
+
+# F1_lap_time_telementary
+
+A Python module to plot telemetry data from Formula 1 sessions using FastF1.
+
+## Usage
+
+```python
+from fastf1plot import plot_comparison
+
+plot_comparison(
+    year=2025,
+    grand_prix='Chinese Grand Prix',
+    session_type='Q',
+    drivers=['ALO', 'STR']
+)
