@@ -1,0 +1,334 @@
+Metadata-Version: 2.3
+Name: robotframework-openapitools
+Version: 1.0.0b5
+Summary: A set of Robot Framework libraries to test APIs for which the OAS is available.
+License: Apache License
+                                    Version 2.0, January 2004
+                                 http://www.apache.org/licenses/
+         
+            TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+         
+            1. Definitions.
+         
+               "License" shall mean the terms and conditions for use, reproduction,
+               and distribution as defined by Sections 1 through 9 of this document.
+         
+               "Licensor" shall mean the copyright owner or entity authorized by
+               the copyright owner that is granting the License.
+         
+               "Legal Entity" shall mean the union of the acting entity and all
+               other entities that control, are controlled by, or are under common
+               control with that entity. For the purposes of this definition,
+               "control" means (i) the power, direct or indirect, to cause the
+               direction or management of such entity, whether by contract or
+               otherwise, or (ii) ownership of fifty percent (50%) or more of the
+               outstanding shares, or (iii) beneficial ownership of such entity.
+         
+               "You" (or "Your") shall mean an individual or Legal Entity
+               exercising permissions granted by this License.
+         
+               "Source" form shall mean the preferred form for making modifications,
+               including but not limited to software source code, documentation
+               source, and configuration files.
+         
+               "Object" form shall mean any form resulting from mechanical
+               transformation or translation of a Source form, including but
+               not limited to compiled object code, generated documentation,
+               and conversions to other media types.
+         
+               "Work" shall mean the work of authorship, whether in Source or
+               Object form, made available under the License, as indicated by a
+               copyright notice that is included in or attached to the work
+               (an example is provided in the Appendix below).
+         
+               "Derivative Works" shall mean any work, whether in Source or Object
+               form, that is based on (or derived from) the Work and for which the
+               editorial revisions, annotations, elaborations, or other modifications
+               represent, as a whole, an original work of authorship. For the purposes
+               of this License, Derivative Works shall not include works that remain
+               separable from, or merely link (or bind by name) to the interfaces of,
+               the Work and Derivative Works thereof.
+         
+               "Contribution" shall mean any work of authorship, including
+               the original version of the Work and any modifications or additions
+               to that Work or Derivative Works thereof, that is intentionally
+               submitted to Licensor for inclusion in the Work by the copyright owner
+               or by an individual or Legal Entity authorized to submit on behalf of
+               the copyright owner. For the purposes of this definition, "submitted"
+               means any form of electronic, verbal, or written communication sent
+               to the Licensor or its representatives, including but not limited to
+               communication on electronic mailing lists, source code control systems,
+               and issue tracking systems that are managed by, or on behalf of, the
+               Licensor for the purpose of discussing and improving the Work, but
+               excluding communication that is conspicuously marked or otherwise
+               designated in writing by the copyright owner as "Not a Contribution."
+         
+               "Contributor" shall mean Licensor and any individual or Legal Entity
+               on behalf of whom a Contribution has been received by Licensor and
+               subsequently incorporated within the Work.
+         
+            2. Grant of Copyright License. Subject to the terms and conditions of
+               this License, each Contributor hereby grants to You a perpetual,
+               worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+               copyright license to reproduce, prepare Derivative Works of,
+               publicly display, publicly perform, sublicense, and distribute the
+               Work and such Derivative Works in Source or Object form.
+         
+            3. Grant of Patent License. Subject to the terms and conditions of
+               this License, each Contributor hereby grants to You a perpetual,
+               worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+               (except as stated in this section) patent license to make, have made,
+               use, offer to sell, sell, import, and otherwise transfer the Work,
+               where such license applies only to those patent claims licensable
+               by such Contributor that are necessarily infringed by their
+               Contribution(s) alone or by combination of their Contribution(s)
+               with the Work to which such Contribution(s) was submitted. If You
+               institute patent litigation against any entity (including a
+               cross-claim or counterclaim in a lawsuit) alleging that the Work
+               or a Contribution incorporated within the Work constitutes direct
+               or contributory patent infringement, then any patent licenses
+               granted to You under this License for that Work shall terminate
+               as of the date such litigation is filed.
+         
+            4. Redistribution. You may reproduce and distribute copies of the
+               Work or Derivative Works thereof in any medium, with or without
+               modifications, and in Source or Object form, provided that You
+               meet the following conditions:
+         
+               (a) You must give any other recipients of the Work or
+                   Derivative Works a copy of this License; and
+         
+               (b) You must cause any modified files to carry prominent notices
+                   stating that You changed the files; and
+         
+               (c) You must retain, in the Source form of any Derivative Works
+                   that You distribute, all copyright, patent, trademark, and
+                   attribution notices from the Source form of the Work,
+                   excluding those notices that do not pertain to any part of
+                   the Derivative Works; and
+         
+               (d) If the Work includes a "NOTICE" text file as part of its
+                   distribution, then any Derivative Works that You distribute must
+                   include a readable copy of the attribution notices contained
+                   within such NOTICE file, excluding those notices that do not
+                   pertain to any part of the Derivative Works, in at least one
+                   of the following places: within a NOTICE text file distributed
+                   as part of the Derivative Works; within the Source form or
+                   documentation, if provided along with the Derivative Works; or,
+                   within a display generated by the Derivative Works, if and
+                   wherever such third-party notices normally appear. The contents
+                   of the NOTICE file are for informational purposes only and
+                   do not modify the License. You may add Your own attribution
+                   notices within Derivative Works that You distribute, alongside
+                   or as an addendum to the NOTICE text from the Work, provided
+                   that such additional attribution notices cannot be construed
+                   as modifying the License.
+         
+               You may add Your own copyright statement to Your modifications and
+               may provide additional or different license terms and conditions
+               for use, reproduction, or distribution of Your modifications, or
+               for any such Derivative Works as a whole, provided Your use,
+               reproduction, and distribution of the Work otherwise complies with
+               the conditions stated in this License.
+         
+            5. Submission of Contributions. Unless You explicitly state otherwise,
+               any Contribution intentionally submitted for inclusion in the Work
+               by You to the Licensor shall be under the terms and conditions of
+               this License, without any additional terms or conditions.
+               Notwithstanding the above, nothing herein shall supersede or modify
+               the terms of any separate license agreement you may have executed
+               with Licensor regarding such Contributions.
+         
+            6. Trademarks. This License does not grant permission to use the trade
+               names, trademarks, service marks, or product names of the Licensor,
+               except as required for reasonable and customary use in describing the
+               origin of the Work and reproducing the content of the NOTICE file.
+         
+            7. Disclaimer of Warranty. Unless required by applicable law or
+               agreed to in writing, Licensor provides the Work (and each
+               Contributor provides its Contributions) on an "AS IS" BASIS,
+               WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+               implied, including, without limitation, any warranties or conditions
+               of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+               PARTICULAR PURPOSE. You are solely responsible for determining the
+               appropriateness of using or redistributing the Work and assume any
+               risks associated with Your exercise of permissions under this License.
+         
+            8. Limitation of Liability. In no event and under no legal theory,
+               whether in tort (including negligence), contract, or otherwise,
+               unless required by applicable law (such as deliberate and grossly
+               negligent acts) or agreed to in writing, shall any Contributor be
+               liable to You for damages, including any direct, indirect, special,
+               incidental, or consequential damages of any character arising as a
+               result of this License or out of the use or inability to use the
+               Work (including but not limited to damages for loss of goodwill,
+               work stoppage, computer failure or malfunction, or any and all
+               other commercial damages or losses), even if such Contributor
+               has been advised of the possibility of such damages.
+         
+            9. Accepting Warranty or Additional Liability. While redistributing
+               the Work or Derivative Works thereof, You may choose to offer,
+               and charge a fee for, acceptance of support, warranty, indemnity,
+               or other liability obligations and/or rights consistent with this
+               License. However, in accepting such obligations, You may act only
+               on Your own behalf and on Your sole responsibility, not on behalf
+               of any other Contributor, and only if You agree to indemnify,
+               defend, and hold each Contributor harmless for any liability
+               incurred by, or claims asserted against, such Contributor by reason
+               of your accepting any such warranty or additional liability.
+         
+            END OF TERMS AND CONDITIONS
+         
+            APPENDIX: How to apply the Apache License to your work.
+         
+               To apply the Apache License to your work, attach the following
+               boilerplate notice, with the fields enclosed by brackets "[]"
+               replaced with your own identifying information. (Don't include
+               the brackets!)  The text should be enclosed in the appropriate
+               comment syntax for the file format. We also recommend that a
+               file or class name and description of purpose be included on the
+               same "printed page" as the copyright notice for easier
+               identification within third-party archives.
+         
+            Copyright [yyyy] [name of copyright owner]
+         
+            Licensed under the Apache License, Version 2.0 (the "License");
+            you may not use this file except in compliance with the License.
+            You may obtain a copy of the License at
+         
+                http://www.apache.org/licenses/LICENSE-2.0
+         
+            Unless required by applicable law or agreed to in writing, software
+            distributed under the License is distributed on an "AS IS" BASIS,
+            WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+            See the License for the specific language governing permissions and
+            limitations under the License.
+Author: Robin Mackaij
+Author-email: r.a.mackaij@gmail.com
+Maintainer: Robin Mackaij
+Maintainer-email: r.a.mackaij@gmail.com
+Requires-Python: >=3.10, <4
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Software Development :: Testing :: Acceptance
+Classifier: Framework :: Robot Framework
+Requires-Dist: Faker (>=23.1.0)
+Requires-Dist: Jinja2 (>=3.1.2)
+Requires-Dist: black (>=24.1.0)
+Requires-Dist: openapi-core (>=0.19.0)
+Requires-Dist: prance[cli] (>=23)
+Requires-Dist: pydantic (>=2.11.0)
+Requires-Dist: requests (>=2.31.0)
+Requires-Dist: rich_click (>=1.7.0)
+Requires-Dist: robotframework (>=6.0.0,!=7.0.0)
+Requires-Dist: robotframework-datadriver (>=1.10.0)
+Requires-Dist: rstr (>=3.2.0)
+Project-URL: Homepage, https://github.com/MarketSquare/robotframework-openapitools
+Description-Content-Type: text/markdown
+
+# OpenApiTools for Robot Framework
+
+OpenApiTools is a set of libraries centered around the OpenAPI Specification:
+
+- [OpenApiDriver](./driver.md)
+- [OpenApiLibCore](./libcore.md)
+
+
+## New in OpenApiTools v1.0.0
+
+Inspired by the work Bartlomiej and Mateusz did on #roboswag, I've created a CLI tool that generates a fully functional Robot Framework (Python) library that builds on OpenApiLibCore for automatic request data generation and request execution.
+
+### So how does it work?
+After installing / updating to the v1.0.0 beta (`pip install robotframework-openapitools==1.0.0b3`) , there's a new CLI command available in your (virtual) environment: `generate-library`. You'll have to provide a path to the openapi spec (json or yaml, can be a url or path to the file), provide a path to where to generate the library and (optionally) a name for the library:
+
+```
+$ generate-library
+Please provide a source for the generation:
+$ http://127.0.0.1:8000/openapi.json
+Please provide a path to where the library will be generated:
+$ ./generated
+Please provide a name for the library [default: FastAPI]:
+$ My Generated Library
+generated/MyGeneratedLibrary/__init__.py created
+generated/MyGeneratedLibrary/my_generated_library.py created
+```
+
+> Note: there's currently 2 environment variables that are taken into account by the generator; USE_SUMMARY_AS_KEYWORD_NAME can result in nicer keyword names (but: uniqueness is not guaranteed, so you might need to rename some of the generated keywords manually) and EXPAND_BODY_ARGUMENTS is what a recent poll in #api-testing was about.
+
+If the location where the library is located is in your Python search path, you'll be able to use it like a regular Robot Framework library (in fact, it's a drop-in replacement for OpenApiLibCore):
+
+```{robot}
+*** Settings ***
+Library         MyGeneratedLibrary
+...                 source=${ORIGIN}/openapi.json
+...                 origin=${ORIGIN}
+...                 base_path=${EMPTY}
+...                 mappings_path=${ROOT}/tests/user_implemented/custom_user_mappings.py
+Variables       ${ROOT}/tests/variables.py
+
+
+*** Variables ***
+${ORIGIN}=      http://localhost:8000
+
+
+*** Test Cases ***
+Test Generated Keywords: Get Employees
+    ${response}=    Get Employees
+    Should Be Equal As Integers    ${response.status_code}    200
+
+Test Generated Keywords: Post Employee
+    VAR    &{body}    name=Robin the Robot
+    ${response}=    Post Employee    body=${body}
+    # ${response}=    Post Employee    name=Robin the Robot
+    Should Be Equal As Integers    ${response.status_code}    201
+    Should Be Equal    ${response.json()}[name]    Robin the Robot
+
+Test Generated Keywords: Get Employee
+    ${response}=    Get Employee
+    Should Be Equal As Integers    ${response.status_code}    200
+
+Test Generated Keywords: Patch Employee
+    ${employee_id}=    Get Valid Id For Path    path=/employees/{employee_id}
+    VAR    &{body}    date_of_birth=2021-12-31
+    ${response}=    Patch Employee    employee_id=${employee_id}    body=${body}
+    # ${response}=    Patch Employee    employee_id=${employee_id}    date_of_birth=2021-12-31
+    Should Be Equal As Integers    ${response.status_code}    403
+
+Test Generated Keywords: Post WageGroup
+    VAR    &{body}    hourly_rate=99.99
+    ${response}=    Post Wagegroup    body=${body}
+    # ${response}=    Post Wagegroup    hourly_rate=99.99
+    Should Be Equal As Integers    ${response.status_code}    201
+    Should Be Equal As Numbers    ${response.json()}[hourly-rate]    99.99
+
+Test Generated Keywords: Get Energy Label
+    ${response}=    Get Energy Label
+    ...    zipcode=1111AA
+    ...    home_number=10
+    ...    extension=too long to be acceptable
+    ...    validate_against_schema=${FALSE}
+    Should Be Equal As Integers    ${response.status_code}    422
+
+    VAR    @{omit}    extension
+    ${response}=    Get Energy Label
+    ...    zipcode=1111AA
+    ...    home_number=10
+    ...    extension=too long to be acceptable
+    ...    omit_parameters=${omit}
+    Should Be Equal As Integers    ${response.status_code}    200
+```
+
+### Contributions and feedback
+
+So now I need your feedback! Does the library generator work for your openapi spec? Does the library work / do all the generated keywords work? Please let me know of any issues you run into!
+Things I'd like to address / improve before an official release:
+- parameters with union types (e.g. int or float) are currently annotated as Any.
+- support for lists / arrays is limited (i.e. not supported as body)
+- objects / dicts are currently only typed as dict; I'm looking into TypedDict annotation for better auto-complete / auto-conversion
+- a documentation rework
+
+  Subscribe to https://app.slack.com/client/T07PJQ9S7/CKK0X68KD for updates
+
