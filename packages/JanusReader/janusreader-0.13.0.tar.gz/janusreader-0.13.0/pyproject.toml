@@ -1,0 +1,39 @@
+[project]
+name = "JanusReader"
+version = "0.13.0"
+description="Python Reader for the data from JANUS instrument suite on-board the ESA mission JUICE"
+dependencies = [
+    "numpy",
+    "rich",
+    "rich_click",
+    'importlib-metadata; python_version>"3.10"',
+]
+
+authors = [{name="Romolo Politi", email ="Romolo.Politi@inaf.it" },
+    {name="Luca Penasa", email = "Luca.Penasa@inaf.it"}
+]
+license = {text = "GNU GPL ver3"} 
+
+maintainers= [{name="Romolo Politi", email ="Romolo.Politi@inaf.it" },
+    {name="Luca Penasa", email = "Luca.Penasa@inaf.it"}
+]
+
+readme = "README.md"
+
+classifiers = [
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
+]
+
+[project.urls]
+Repository = "https://github.com/JANUS-JUICE/janusReader"
+
+[project.scripts]
+janusReader = "JanusReader.__main__:action"
+
+[project.optional-dependencies]
+docs = ["sphinx"]
+
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
