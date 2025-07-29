@@ -1,0 +1,6 @@
+[kozmoai_charting_extension]
+economy=kozmoai_economy.economy_views:EconomyViews
+
+[kozmoai_core_extension]
+economy=kozmoai_economy.economy_router:router
+
