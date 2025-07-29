@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: nb-unittest
+Version: 1.0.0
+Author-email: Mike Matera <michael.matera@cabrillo.edu>
+Requires-Python: >=3.10
+License-File: LICENSE
+Requires-Dist: jinja2
+Requires-Dist: jupyterlab
+Requires-Dist: ipywidgets
+Dynamic: license-file
