@@ -1,0 +1,13 @@
+[project]
+version="0.0.3"
+name="fingerprintswapper"
+description="FingerprintSwapper is a tool for automated browser environments (Selenium, Puppeteer, Playwright, etc.) that spoofs realistic, real-world device fingerprints by modifying browser fingerprinting surfaces."
+readme="README.md"
+requires-python=">=3.7"
+license={text="MIT"}
+authors=[{name="triple7inc",email="t7@dex.mba"}]
+dependencies=["requests"]
+
+[build-system]
+requires=["setuptools","wheel"]
+build-backend="setuptools.build_meta"
