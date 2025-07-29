@@ -1,0 +1,41 @@
+metadata:
+  api: DefaultApi
+  scan_version: '1.0'
+  timestamp: '2025-05-29T22:45:46.865705'
+results:
+  fastembed:
+    Audio: false
+    AudioEmbeddings: false
+    AudioGeneration: false
+    AudioTranscription: false
+    Document: false
+    DocumentEmbeddings: false
+    Image: false
+    ImageEmbeddings: false
+    ImageGeneration: false
+    StructuredTextGeneration: false
+    TextEmbeddings: true
+    TextGeneration: false
+    Thinking: false
+    Tools: false
+    Video: false
+    VideoEmbeddings: false
+    VideoGeneration: false
+  whisper-local:
+    Audio: false
+    AudioEmbeddings: false
+    AudioGeneration: false
+    AudioTranscription: true
+    Document: false
+    DocumentEmbeddings: false
+    Image: false
+    ImageEmbeddings: false
+    ImageGeneration: false
+    StructuredTextGeneration: false
+    TextEmbeddings: false
+    TextGeneration: false
+    Thinking: false
+    Tools: false
+    Video: false
+    VideoEmbeddings: false
+    VideoGeneration: false
