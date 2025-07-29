@@ -1,0 +1,168 @@
+Metadata-Version: 2.4
+Name: langsmith-mcp-server
+Version: 0.0.2
+Summary: MCP server for Langsmith SDK integration
+Author-Email: Marco Perini <oss@langchain.dev>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/langchain-ai/langsmith-mcp-server
+Project-URL: Bug Tracker, https://github.com/langchain-ai/langsmith-mcp-server/issues
+Requires-Python: >=3.10
+Requires-Dist: mcp[cli]>=1.3.0
+Requires-Dist: langsmith>=0.3.37
+Requires-Dist: langchain-core>=0.3.56
+Description-Content-Type: text/markdown
+
+# LangSmith MCP Server
+
+> [!WARNING]
+> LangSmith MCP Server is under active development and many features are not yet implemented.
+
+
+![LangSmith MCP Hero](docs/assets/langsmith_mcp_hero.png)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
+
+A production-ready [Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) server that provides seamless integration with the [LangSmith](https://smith.langchain.com) observability platform. This server enables language models to fetch conversation history and prompts from LangSmith.
+
+## Installation and Testing
+
+### Prerequisites
+
+1. Install [uv](https://github.com/astral-sh/uv) (a fast Python package installer and resolver):
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+
+2. Clone this repository and navigate to the project directory:
+   ```bash
+   git clone https://github.com/langchain-ai/langsmith-mcp-server.git
+   cd langsmith-mcp
+   ```
+
+### Development Setup
+
+1. Create a virtual environment and install dependencies:
+   ```bash
+   uv sync
+   ```
+
+2. View available MCP commands:
+   ```bash
+   uv run mcp
+   ```
+
+3. For development, run the MCP inspector:
+   ```bash
+   uv run mcp dev langsmith_mcp_server/server.py
+   ```
+   - This will start the MCP inspector on a network port
+   - Install any required libraries when prompted
+   - The MCP inspector will be available in your browser
+   - Set the `LANGSMITH_API_KEY` environment variable in the inspector
+   - Connect to the server
+   - Navigate to the "Tools" tab to see all available tools
+
+### MCP Client Setup
+
+#### Option 1: Using uv commands
+
+1. Install the MCP server for Claude Desktop:
+   ```bash
+   uv run mcp install langsmith_mcp_server/server.py
+   ```
+
+2. Run the server:
+   ```bash
+   uv run mcp run langsmith_mcp_server/server.py
+   ```
+
+#### Option 2: Using absolute paths (recommended)
+
+If you encounter any issues with the above method, you can configure the MCP server using absolute paths. Add the following configuration to your Claude Desktop settings:
+
+```json
+{
+    "mcpServers": {
+        "LangSmith API MCP Server": {
+            "command": "/path/to/uv",
+            "args": [
+                "--directory",
+                "/path/to/langsmith-mcp-server/langsmith_mcp_server",
+                "run",
+                "server.py"
+            ],
+            "env": {
+                "LANGSMITH_API_KEY": "your_langsmith_api_key"
+            }
+        }
+    }
+}
+```
+
+Replace the following placeholders:
+- `/path/to/uv`: The absolute path to your uv installation (e.g., `/Users/username/.local/bin/uv`). You can find it running `which uv`.
+- `/path/to/langsmith-mcp-server`: The absolute path to your langsmith-mcp project directory
+- `your_langsmith_api_key`: Your LangSmith API key
+
+Example configuration:
+```json
+{
+    "mcpServers": {
+        "LangSmith API MCP Server": {
+            "command": "/Users/mperini/.local/bin/uv",
+            "args": [
+                "--directory",
+                "/Users/mperini/Projects/langsmith-mcp-server/langsmith_mcp_server",
+                "run",
+                "server.py"
+            ],
+            "env": {
+                "LANGSMITH_API_KEY": "lsv2_pt_1234"
+            }
+        }
+    }
+}
+```
+
+Copy this configuration in Cursor > MCP Settings.
+
+![LangSmith Cursor Integration](docs/assets/cursor_mcp.png)
+
+## Example Use Cases
+
+The server enables conversation history retrieval and prompt management such as:
+
+- "Fetch the history of my conversation with the AI assistant from thread 'thread-123' in project 'my-chatbot'"
+- "Get all public prompts in my workspace"
+- "Find private prompts containing the word 'joke'"
+- "Pull the template for the 'legal-case-summarizer' prompt"
+- "Get the system message from a specific prompt template"
+
+## Contributing
+
+Install all the dependencies (including dev dependencies):
+
+```bash
+uv sync
+```
+
+Install pre-commit hooks:
+
+```bash
+uv run pre-commit install
+```
+
+Before pushing your changes, run the following commands:
+
+```bash
+make lint
+make format
+```
+
+## License
+
+This project is distributed under the MIT License. For detailed terms and conditions, please refer to the LICENSE file.
+
+
+Made with ❤️ by [LangChain](https://langchain.com) Team
