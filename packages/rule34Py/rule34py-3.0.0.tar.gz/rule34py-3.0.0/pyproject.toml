@@ -1,0 +1,83 @@
+[project]
+name = "rule34Py"
+description = "API wrapper for rule34.xxx"
+version = "3.0.0"
+license = {file = "LICENSE"}
+readme = "README.md"
+keywords = [ "rule34.xxx", "adult", "nsfw", "rule34-pi", "api-client" ]
+authors = [
+	{ name = "MiningXL", email = "miningxl@gmail.com" },
+	{ name = "b3yc0d3", email = "b3yc0d3@gmail.com" },
+	{ name = "Tal A. Baskin", email = "talbaskin.business@gmail.com" },
+	{ name = "ripariancommit", email = "ripariancommit@protonmail.com" }
+]
+requires-python = ">=3.9,<4.0"
+maintainers = [
+	{ name = "b3yc0d3", email = "b3yc0d3@gmail.com" }
+]
+dependencies = [
+	"requests-ratelimiter",
+	"beautifulsoup4",
+	"lxml",
+	"requests",
+]
+classifiers = [
+	"Development Status :: 4 - Beta",
+	"Programming Language :: Python :: 3.9",
+	"Programming Language :: Python :: 3.10",
+	"Programming Language :: Python :: 3.11",
+	"Programming Language :: Python :: 3.12",
+	"Programming Language :: Python :: 3.13",
+	"License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+	"Operating System :: OS Independent"
+]
+
+[tool.setuptools]
+packages = [ "rule34Py" ]
+
+[project.urls]
+Issues = "https://github.com/b3yc0d3/rule34Py/issues"
+Repository = "https://github.com/b3yc0d3/rule34Py"
+Documentation = "https://b3yc0d3.github.io/rule34Py/"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.optional-dependencies]
+dev = [
+	"ruff",
+	"twine",
+]
+test = [
+	"pytest",
+	"responses",
+]
+docs = [
+	"sphinx",
+	"sphinx-mdinclude",
+	"sphinx-rtd-theme",
+	"tomli; python_version < \"3.11\"",
+]
+
+[tool.ruff.lint]
+preview = true  # necessary to enable the pydoclint rules
+select = [
+	"D",  # pydocstyle
+	"DOC",  # pydoclint
+#	"I",  # isort
+#	"F",  # Pyflakes
+#	"E",  # pycodestyle - error
+#	"N",  # pep8-naming
+#	"PL",  # pylint - all
+#	"RUF",  # Ruff-specific rules
+]
+ignore = [
+	# Ignore line lengths; mostly bc. there is no way to ignore only docstring linelengths.
+	"E501",
+	# Ignore PEP 8 bad-module-name. 'rule34Py' does not comply, but will not be renamed.
+	"N999",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"  # Use Google-style docstrings.
