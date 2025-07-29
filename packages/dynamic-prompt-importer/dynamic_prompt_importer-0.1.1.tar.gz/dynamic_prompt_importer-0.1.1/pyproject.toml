@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dynamic-prompt-importer"
+version = "0.1.1"
+description = "Treat a GitHub repo of Markdown prompts as a Python object."
+authors = [{ name = "Sten Leinasaar", email = "stenleinasaar@proton.me" }]
+readme = "README.md"
+license = { file = "LICENSE" }
+keywords = ["prompt", "github", "markdown"]
+requires-python = ">=3.9"
+dependencies = ["requests>=2.31"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+]
+
+[project.urls]
+Homepage   = "https://github.com/StenLeinasaar/DynamicPromptImporter"
+Source     = "https://github.com/StenLeinasaar/DynamicPromptImporter"
+Issues     = "https://github.com/StenLeinasaar/DynamicPromptImporter/issues"
