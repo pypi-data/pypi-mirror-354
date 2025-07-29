@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tradingcornerstone-pre-alpha"
+version = "0.0.2"
+description = "A minimal PyPI test package"
+authors = [{ name="Your Name", email="your@email.com" }]
+readme = "README.md"
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["tradingcornerstone"]
