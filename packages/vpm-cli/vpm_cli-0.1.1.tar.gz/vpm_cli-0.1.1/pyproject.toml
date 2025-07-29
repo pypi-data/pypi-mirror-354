@@ -1,0 +1,49 @@
+[project]
+name = "vpm-cli"
+dynamic=["version"]
+description = "VPM is a lightweight opensource home management system"
+authors = [
+    {name = "John Michael Lasalle", email = "jml@jmlasalle.com"}
+]
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "email_validator>=2.2.0",
+    "typer>=0.9.0",
+    "sqlmodel>=0.0.8",
+    "python-dateutil>=2.8.2",
+    "rich>=13.0.0",
+    "typing-extensions>=4.5.0",
+    "pydantic>=2.0.0",
+    "sqlalchemy>=2.0.0",
+]
+
+[project.scripts]
+vpm = "vpm.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/jmlasalle/vpm"
+Repository = "https://github.com/jmlasalle/vpm.git"
+Issues = "https://github.com/jmlasalle/vpm/issues"
+
+[tool.setuptools]
+packages = ["vpm", "vpm.config", "vpm.database", "vpm.models", "vpm.services", "vpm.utils"]
+include-package-data = true
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+version = {attr = "vpm.__version__"}

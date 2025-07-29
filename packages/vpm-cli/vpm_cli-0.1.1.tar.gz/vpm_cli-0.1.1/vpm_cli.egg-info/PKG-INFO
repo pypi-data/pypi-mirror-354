@@ -1,0 +1,678 @@
+Metadata-Version: 2.4
+Name: vpm-cli
+Version: 0.1.1
+Summary: VPM is a lightweight opensource home management system
+Author-email: John Michael Lasalle <jml@jmlasalle.com>
+License: MIT License
+        
+        Copyright (c) 2025 John Michael LaSalle
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+Project-URL: Homepage, https://github.com/jmlasalle/vpm
+Project-URL: Repository, https://github.com/jmlasalle/vpm.git
+Project-URL: Issues, https://github.com/jmlasalle/vpm/issues
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: email_validator>=2.2.0
+Requires-Dist: typer>=0.9.0
+Requires-Dist: sqlmodel>=0.0.8
+Requires-Dist: python-dateutil>=2.8.2
+Requires-Dist: rich>=13.0.0
+Requires-Dist: typing-extensions>=4.5.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: sqlalchemy>=2.0.0
+Dynamic: license-file
+
+# vpm
+Virtual Property Manager (VPM) is the open source smart home operating system the world deserves. Lightweight, cross platform, command line application that builds a COBie and IFC compliant model of your home, manages preventative maintenance tasks and logs, and organizes your home’s documents.
+
+## Design Principles:
+1. **Data Sovereignty:** You control your home's data in perpetuity.
+2. **Portability:** Conform to open standards with easy import and export.
+3. **Interoperability:** Do core functions well, and integrate with other services. No walled gardens.
+4. **Unenshitifiable:** Product design must make it impossible to enshitify.
+
+## Problem Statement
+1. Homeowners are not professional property managers. They don't know what needs to be done to proactively maintain their home so that everything works, they minimize maintenance costs, and keep it in good condition.
+2. Home maintenance information online is generic and often caveated. Most homeowners don't have the expertise to be confident they are appropriately interpreting and applying the general advice.
+3. Homeowners have to develop their own information management and task management systems for their homes.
+4. Tasks that would be quick for a professional property manager with experience and relationships, such as identifying what trade is needed to fix a problem, getting and assessing bids (including benchmarking to general market costs), and hiring a contractor they trust are much harder for homeowners who only need contractor service intermittently.
+5. Smart home technology adds a layer of complexity and fragility to a home, rather than making homes more robust and self maintaining.
+
+## Roadmap
+1. Home Model Management
+2. Task Managment
+3. Task Management App Integration
+  1. Apple reminders
+  2. Google to do
+  3. MS ToDo
+  4. Any.Do
+5. Smart Device Management Platforms Integrations
+  1. Google Home
+  2. Apple HomeKit
+
+## Documentation
+# `vpm`
+
+Creates config file if it doesn&#x27;t exists. Runs before every command
+
+**Usage**:
+
+```console
+$ vpm [OPTIONS] COMMAND [ARGS]...
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+**Commands**:
+
+* `version`: Prints the application&#x27;s version number.
+* `home`
+* `room`
+* `element`
+* `task`
+* `part`
+* `db`
+
+## `vpm version`
+
+Prints the application&#x27;s version number.
+
+**Usage**:
+
+```console
+$ vpm version [OPTIONS]
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+## `vpm home`
+
+**Usage**:
+
+```console
+$ vpm home [OPTIONS] COMMAND [ARGS]...
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+**Commands**:
+
+* `add`: Adds a home to the local database
+* `get`: Get home information
+* `update`: Update home information
+* `delete`: Delete home
+
+### `vpm home add`
+
+Adds a home to the local database
+
+**Usage**:
+
+```console
+$ vpm home add [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`: [required]
+* `--address TEXT`: [required]
+* `--description TEXT`
+* `--help`: Show this message and exit.
+
+### `vpm home get`
+
+Get home information
+
+**Usage**:
+
+```console
+$ vpm home get [OPTIONS]
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+### `vpm home update`
+
+Update home information
+
+**Usage**:
+
+```console
+$ vpm home update [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`
+* `--address TEXT`
+* `--help`: Show this message and exit.
+
+### `vpm home delete`
+
+Delete home
+
+**Usage**:
+
+```console
+$ vpm home delete [OPTIONS]
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+## `vpm room`
+
+**Usage**:
+
+```console
+$ vpm room [OPTIONS] COMMAND [ARGS]...
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+**Commands**:
+
+* `add`
+* `all`
+* `get-by-name`
+* `update`
+* `delete`
+
+### `vpm room add`
+
+**Usage**:
+
+```console
+$ vpm room add [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`: [required]
+* `--level INTEGER`: [default: 0]
+* `--description TEXT`
+* `--help`: Show this message and exit.
+
+### `vpm room all`
+
+**Usage**:
+
+```console
+$ vpm room all [OPTIONS]
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+### `vpm room get-by-name`
+
+**Usage**:
+
+```console
+$ vpm room get-by-name [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`: [required]
+* `--help`: Show this message and exit.
+
+### `vpm room update`
+
+**Usage**:
+
+```console
+$ vpm room update [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`
+* `--help`: Show this message and exit.
+
+### `vpm room delete`
+
+**Usage**:
+
+```console
+$ vpm room delete [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`: [required]
+* `--help`: Show this message and exit.
+
+## `vpm element`
+
+**Usage**:
+
+```console
+$ vpm element [OPTIONS] COMMAND [ARGS]...
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+**Commands**:
+
+* `add`: Adds a new element to the local database.
+* `get`: Get element information
+* `all`: Get all elements
+* `update`: Update element information
+* `delete`: Delete an element
+
+### `vpm element add`
+
+Adds a new element to the local database.
+
+**Usage**:
+
+```console
+$ vpm element add [OPTIONS]
+```
+
+**Options**:
+
+* `--room-name TEXT`: [required]
+* `--name TEXT`: [required]
+* `--description TEXT`
+* `--brand TEXT`
+* `--model TEXT`
+* `--model-number TEXT`
+* `--manual-url TEXT`
+* `--manufacture-url TEXT`
+* `--install-date [%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d %H:%M:%S]`
+* `--cost FLOAT`
+* `--currency TEXT`: [default: USD]
+* `--help`: Show this message and exit.
+
+### `vpm element get`
+
+Get element information
+
+**Usage**:
+
+```console
+$ vpm element get [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`: [required]
+* `--help`: Show this message and exit.
+
+### `vpm element all`
+
+Get all elements
+
+**Usage**:
+
+```console
+$ vpm element all [OPTIONS]
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+### `vpm element update`
+
+Update element information
+
+**Usage**:
+
+```console
+$ vpm element update [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`: [required]
+* `--new-name TEXT`
+* `--description TEXT`
+* `--help`: Show this message and exit.
+
+### `vpm element delete`
+
+Delete an element
+
+**Usage**:
+
+```console
+$ vpm element delete [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`: [required]
+* `--help`: Show this message and exit.
+
+## `vpm task`
+
+**Usage**:
+
+```console
+$ vpm task [OPTIONS] COMMAND [ARGS]...
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+**Commands**:
+
+* `add`: Adds a new task to the local database.
+* `get`: Get task information
+* `update`: Update task information
+* `delete`: Delete a task
+* `complete`: Mark a task as complete
+
+### `vpm task add`
+
+Adds a new task to the local database.
+
+**Usage**:
+
+```console
+$ vpm task add [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`: [required]
+* `--type TEXT`: Type of task (MAINTENANCE, REPAIR, REPLACE, INSPECT)  [default: MAINTENANCE]
+* `--description TEXT`
+* `--due-date [%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d %H:%M:%S]`
+* `--interval INTEGER`: Interval for recurring task
+* `--interval-unit TEXT`: Unit for interval (days, weeks, months, years)
+* `--priority INTEGER`
+* `--help`: Show this message and exit.
+
+### `vpm task get`
+
+Get task information
+
+**Usage**:
+
+```console
+$ vpm task get [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`: [required]
+* `--help`: Show this message and exit.
+
+### `vpm task update`
+
+Update task information
+
+**Usage**:
+
+```console
+$ vpm task update [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`: [required]
+* `--new-name TEXT`
+* `--type TEXT`: Type of task (MAINTENANCE, REPAIR, REPLACE, INSPECT)
+* `--description TEXT`
+* `--due-date [%Y-%m-%d|%Y-%m-%dT%H:%M:%S|%Y-%m-%d %H:%M:%S]`
+* `--priority INTEGER`
+* `--help`: Show this message and exit.
+
+### `vpm task delete`
+
+Delete a task
+
+**Usage**:
+
+```console
+$ vpm task delete [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`: [required]
+* `--help`: Show this message and exit.
+
+### `vpm task complete`
+
+Mark a task as complete
+
+**Usage**:
+
+```console
+$ vpm task complete [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`: [required]
+* `--help`: Show this message and exit.
+
+## `vpm part`
+
+**Usage**:
+
+```console
+$ vpm part [OPTIONS] COMMAND [ARGS]...
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+**Commands**:
+
+* `add`: Adds a new part to the local database.
+* `get`: Get part information
+* `update`: Update part information
+* `delete`: Delete a part
+
+### `vpm part add`
+
+Adds a new part to the local database.
+
+**Usage**:
+
+```console
+$ vpm part add [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`: [required]
+* `--description TEXT`: [required]
+* `--manufacturer TEXT`
+* `--model-number TEXT`
+* `--serial-number TEXT`
+* `--help`: Show this message and exit.
+
+### `vpm part get`
+
+Get part information
+
+**Usage**:
+
+```console
+$ vpm part get [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`: [required]
+* `--help`: Show this message and exit.
+
+### `vpm part update`
+
+Update part information
+
+**Usage**:
+
+```console
+$ vpm part update [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`: [required]
+* `--new-name TEXT`
+* `--description TEXT`
+* `--manufacturer TEXT`
+* `--model-number TEXT`
+* `--serial-number TEXT`
+* `--help`: Show this message and exit.
+
+### `vpm part delete`
+
+Delete a part
+
+**Usage**:
+
+```console
+$ vpm part delete [OPTIONS]
+```
+
+**Options**:
+
+* `--name TEXT`: [required]
+* `--help`: Show this message and exit.
+
+## `vpm db`
+
+**Usage**:
+
+```console
+$ vpm db [OPTIONS] COMMAND [ARGS]...
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+**Commands**:
+
+* `create`: Initializes the database and creates all...
+* `info`: Prints the database engine configuration...
+* `schemas`: Prints the schemas in the database.
+* `tables`: Prints the tables in the database.
+* `columns`: Prints the columns of a table.
+
+### `vpm db create`
+
+Initializes the database and creates all necessary tables.
+
+**Usage**:
+
+```console
+$ vpm db create [OPTIONS]
+```
+
+**Options**:
+
+* `--overwrite`
+* `--help`: Show this message and exit.
+
+### `vpm db info`
+
+Prints the database engine configuration (including URL).
+
+**Usage**:
+
+```console
+$ vpm db info [OPTIONS]
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+### `vpm db schemas`
+
+Prints the schemas in the database.
+
+**Usage**:
+
+```console
+$ vpm db schemas [OPTIONS]
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+### `vpm db tables`
+
+Prints the tables in the database.
+
+**Usage**:
+
+```console
+$ vpm db tables [OPTIONS]
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+### `vpm db columns`
+
+Prints the columns of a table.
+
+**Usage**:
+
+```console
+$ vpm db columns [OPTIONS] TABLE
+```
+
+**Arguments**:
+
+* `TABLE`: [required]
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
