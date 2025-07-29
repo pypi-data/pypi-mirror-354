@@ -1,0 +1,14 @@
+loader:
+  type: python
+  search_path: ["."]
+  modules: ["pare"]
+
+processors:
+  - type: filter
+    documented_only: true
+    skip_empty_modules: true
+
+
+renderer:
+  type: markdown
+  filename: pare.md
