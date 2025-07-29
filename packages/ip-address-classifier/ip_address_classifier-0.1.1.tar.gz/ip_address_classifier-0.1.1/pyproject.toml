@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "ip-address-classifier"
+version = "0.1.1"
+description = ""
+authors = ["DavidTJGriffin <david.dtjg2001@gmail.com>"]
+readme = "README.md"
+packages = [{include = "ip_address_classifier", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.scripts]
+ipclass = "ip_address_classifier.__main__:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
