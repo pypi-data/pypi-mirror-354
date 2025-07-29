@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "offline-ai"
+version = "3.0.0"
+description = "🤖 Локальный ИИ-ассистент для терминала с умной установкой без прав администратора"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "AI Terminal Assistant", email = "offline-ai@example.com"}
+]
+maintainers = [
+    {name = "AI Terminal Assistant", email = "offline-ai@example.com"}
+]
+keywords = [
+    "ai", "artificial-intelligence", "terminal", "cli", "offline",
+    "ollama", "chatbot", "assistant", "local-ai", "llm"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Terminals",
+    "Topic :: Utilities",
+    "Environment :: Console",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "click>=8.0.0",
+    "rich>=13.0.0",
+    "requests>=2.25.0",
+    "pyyaml>=6.0",
+    "ollama>=0.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/ai-terminal/offline-ai"
+Documentation = "https://github.com/ai-terminal/offline-ai#readme"
+Repository = "https://github.com/ai-terminal/offline-ai.git"
+"Bug Tracker" = "https://github.com/ai-terminal/offline-ai/issues"
+
+[project.scripts]
+offline-ai = "offline_ai.cli:main"
+ai = "offline_ai.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["offline_ai*"]
+
+[tool.setuptools.package-data]
+offline_ai = ["*.yaml", "*.yml", "*.json"]
