@@ -1,0 +1,53 @@
+Metadata-Version: 2.4
+Name: ntac
+Version: 0.1.0
+Summary: Add your description here
+Author-email: Ben Jourdan <ben@jourdan.me>
+License-File: LICENSE
+Requires-Python: >=3.10
+Requires-Dist: bottleneck>=1.5.0
+Requires-Dist: matplotlib>=3.10.3
+Requires-Dist: numba>=0.61.0
+Requires-Dist: pandas>=2.2.3
+Requires-Dist: scikit-learn>=1.6.1
+Requires-Dist: scipy>=1.15.2
+Requires-Dist: tqdm>=4.67.1
+Provides-Extra: dev
+Requires-Dist: black; extra == 'dev'
+Requires-Dist: build; extra == 'dev'
+Requires-Dist: furo; extra == 'dev'
+Requires-Dist: pytest; extra == 'dev'
+Requires-Dist: ruff; extra == 'dev'
+Requires-Dist: sphinx; extra == 'dev'
+Requires-Dist: twine; extra == 'dev'
+Provides-Extra: gpu
+Requires-Dist: cuda-python>=12.9.0; extra == 'gpu'
+Requires-Dist: cupy-cuda12x>=13.4.1; extra == 'gpu'
+Description-Content-Type: text/markdown
+
+# ntac
+Neuronal Type Assignment with Connectivity
+
+
+
+## Installation:
+
+Install ntac with:
+`pip install ntac`
+
+
+Install cudatoolkit with conda for optional speed:
+`conda install -c conda-forge cudatoolkit`
+
+
+
+
+
+
+## examples
+
+Seeded example:
+`pixi run python tests/test_seeded_example.py`
+
+Unseeded example:
+`pixi run python tests/test_unseeded_example.py`
