@@ -1,0 +1,36 @@
+# livekit-plugins-smallestai
+
+A LiveKit Agents plugin wrapping Smallest AI’s Atoms SDK for high-fidelity TTS & streaming STT.
+
+## Installation
+
+```bash
+pip install livekit-plugins-smallestai
+
+## Usage
+
+from livekit import AgentSession
+from livekit.plugins.openai import LLM
+from livekit_smallestai.tts import SmallestTTS
+from livekit_smallestai.stt import SmallestSTT
+
+session = AgentSession(
+  llm=LLM(model="gpt-4o"),
+  tts=SmallestTTS(api_key="YOUR_KEY"),
+  stt=SmallestSTT(api_key="YOUR_KEY"),
+)
+await session.say("Hello from Smallest AI!")
+yaml
+Copy
+Edit
+
+---
+
+### 3. `livekit_smallestai/__init__.py`
+
+Just mark it as a package.
+
+```python
+# livekit_smallestai/__init__.py
+
+__version__ = "0.1.0"
