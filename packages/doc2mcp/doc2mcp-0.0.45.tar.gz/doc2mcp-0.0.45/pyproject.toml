@@ -1,0 +1,78 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "doc2mcp"
+version = "0.0.45"
+authors = [
+    {name = "Yacine Zahidi", email = "yacine.zahidi@gmail.com"},
+]
+description = "Python SDK for converting documentation into MCP-compliant API endpoints for AI assistants"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Documentation",
+    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+keywords = [
+    "documentation", "mcp", "api", "endpoint", "ai", "assistant", 
+    "claude", "gpt", "openai", "langchain", "semantic-search", "embeddings"
+]
+dependencies = [
+    "requests>=2.25.0",
+    "click>=8.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov>=2.0",
+    "black>=21.0",
+    "flake8>=3.8",
+    "mypy>=0.900",
+]
+test = [
+    "pytest>=6.0",
+    "pytest-cov>=2.0",
+]
+cli = [
+    "rich>=10.0.0",
+    "tabulate>=0.8.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/ell-hol/doc2mcp-python"
+Documentation = "https://github.com/ell-hol/doc2mcp-python"
+Repository = "https://github.com/ell-hol/doc2mcp-python"
+"Bug Tracker" = "https://github.com/ell-hol/doc2mcp-python/issues"
+
+[project.scripts]
+doc2mcp = "doc2mcp.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["doc2mcp*"]
+exclude = ["tests*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py39', 'py310', 'py311', 'py312']
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
