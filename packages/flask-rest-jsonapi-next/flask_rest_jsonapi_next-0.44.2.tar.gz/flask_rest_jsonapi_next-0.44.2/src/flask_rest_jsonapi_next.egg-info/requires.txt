@@ -1,0 +1,13 @@
+Flask>=2.2.0
+marshmallow<4
+marshmallow-jsonapi-minfork
+sqlalchemy
+requests
+packaging
+python-dateutil
+
+[docs]
+furo
+myst-parser
+sphinx
+sphinx-copybutton
