@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: llm-knowledge-graph
+Version: 0.1.3
+Summary: A plugin for LLM that adds tools to interact with a Go knowledge graph.
+Requires-Dist: llm
+Requires-Dist: requests
