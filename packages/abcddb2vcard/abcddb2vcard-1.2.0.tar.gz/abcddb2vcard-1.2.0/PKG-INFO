@@ -1,0 +1,79 @@
+Metadata-Version: 2.1
+Name: abcddb2vcard
+Version: 1.2.0
+Summary: Convert AddressBook database (.abcddb) to Contacts VCards file (.vcf)
+Home-page: https://github.com/relikd/abcddb2vcard
+Author: relikd
+License: MIT
+Description: # abcddb2vcard
+        
+        This python script reads an AddressBook database file (`AddressBook-v22.abcddb`) and export its content to a vCard file (`.vcf`).
+        
+        I created this script to automate my contacts backup procedure.
+        The output of this script should be exactly the same as dragging and dropping the “All Contacts” card.
+        
+        
+        ### Usage
+        
+        ```sh
+        python3 abcddb2vcard.py backup/contacts_$(date +"%Y-%m-%d").vcf
+        ```
+        
+        > assuming db is located at "~/Library/Application Support/AddressBook/AddressBook-v22.abcddb"
+        
+        #### Export into individual files
+        
+        ```sh
+        python3 abcddb2vcard.py outdir -s 'path/%{fullname}.vcf'
+        ```
+        
+        #### Extract contact images
+        
+        ```sh
+        python3 vcard2image.py AllContacts.vcf ./profile_pics/
+        ```
+        
+        
+        ### Supported data fields
+        
+        `firstname`, `lastname`, `middlename`, `nameprefix`, `namesuffix`, `nickname`, `maidenname`, `phonetic_firstname`, `phonetic_middlename`, `phonetic_lastname`, `phonetic_organization`, `organization`, `department`, `jobtitle`, `birthday`, `[email]`, `[phone]`, `[address]`, `[socialprofile]`, `note`, `[url]`, `[xmpp-service]`, `image`, `iscompany`
+        
+        
+        ### Limitations
+        
+        The `image` field currently only supports JPG images.
+        But as far as I see, Apple converts PNG to JPG before storing the image.
+        If you encounter a db which includes other image types, please let me know.
+        
+        
+        ### Disclaimer
+        
+        You should check the output for yourself before using it in a production environment.
+        I have tested the script with many arbitrary fields, however there may be some edge cases missing.
+        Feel free to create an issue for missing or wrong field values.
+        
+        **Note:** The output of `diff` or `FileMerge.app` can be different to this output.
+        Apples does some weird transformations on vcf export that are not only unnecessary but in many cases break the re-import of the file.
+Keywords: abcddb,abcd,address book,vcard,contacts,converter,export,backup
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Environment :: MacOS X
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: SQL
+Classifier: Topic :: Communications :: Email :: Address Book
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Archiving :: Backup
+Classifier: Topic :: Utilities
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
