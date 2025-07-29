@@ -1,0 +1,36 @@
+{
+  "path": "$PRJ/tests/svfiles_examples/encoder_using_case.sv",
+  "modules": [
+    {
+      "name": "encoder_using_case",
+      "ports": [
+        {
+          "direction": "output",
+          "ptype": "reg",
+          "name": "binary_out",
+          "width": "[3:0]",
+          "comment": [
+            "//  4 bit binary Output\n"
+          ]
+        },
+        {
+          "direction": "input",
+          "ptype": "wire",
+          "name": "encoder_in",
+          "width": "[15:0]",
+          "comment": [
+            "//  16-bit Input\n"
+          ]
+        },
+        {
+          "direction": "input",
+          "ptype": "wire",
+          "name": "enable",
+          "comment": [
+            "//  Enable for the encoder\n"
+          ]
+        }
+      ]
+    }
+  ]
+}

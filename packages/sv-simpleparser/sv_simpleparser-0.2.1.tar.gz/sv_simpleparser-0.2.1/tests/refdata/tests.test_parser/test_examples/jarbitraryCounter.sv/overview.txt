@@ -1,0 +1,26 @@
+{
+  "path": "$PRJ/tests/svfiles_examples/jarbitraryCounter.sv",
+  "modules": [
+    {
+      "name": "jarbitraryCounter",
+      "ports": [
+        {
+          "direction": "output",
+          "ptype": "reg",
+          "name": "OUTPUT",
+          "width": "[2:0]"
+        },
+        {
+          "direction": "input",
+          "ptype": null,
+          "name": "clock"
+        },
+        {
+          "direction": "input",
+          "ptype": null,
+          "name": "reset"
+        }
+      ]
+    }
+  ]
+}
