@@ -1,0 +1,8 @@
+llama-index>=0.12.28
+python-dotenv<2.0.0,>=1.1.0
+qwen-api>=1.4.12
+
+[dev]
+pytest
+black
+mypy
