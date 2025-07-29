@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: quartet-qat
+Version: 0.1.0
+Summary: A Python library for Quartet QAT
+Home-page: https://github.com/IST-DASLab/Quartet
+Author: Andrei Panferov
+Author-email: andrei@panferov.org
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: torch>=2.7.0
+Requires-Dist: fast_hadamard_transform>=1.0.4
+Requires-Dist: qutlass>=0.1.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# quartet-qat
+
+A generic Python library for quartet-qat.
+
+## Installation
+
+```bash
+pip install .
+```
+
+## Usage
+
+```python
+import quartet_qat
+# Example usage
+``` 
