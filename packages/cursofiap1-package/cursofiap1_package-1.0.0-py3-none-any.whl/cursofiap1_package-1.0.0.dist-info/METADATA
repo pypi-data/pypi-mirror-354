@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: cursofiap1-package
+Version: 1.0.0
+Summary: Descricao da sua lib cursofiap
+Home-page: https://github.com/ClaudioMSOliveira/cursofiap
+Author: Claudio Marcio S. Oliveira
+Author-email: claudiomsoliveira@gmail.com
+License: MIT
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: summary
+
+# Curso Fiap
+
+A simple example library.
+
+## Installation
+
+```sh
+pip install cursofiap
+```
+
+## Usage
+
+```python
+from cursofiap import hello_world
+
+print(hello_world())
+```
+## License
+
+Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
