@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: t3py
+Version: 0.4.0
+Summary: CLI util for the T3 API ecosystem
+Author-email: Matt Frisbie <matt@classvsoftware.com>
+License: GPL-3.0-only
+Project-URL: Homepage, https://github.com/classvsoftware/t3py
+Keywords: t3,metrc,utils,helpers,track and trace
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: rich>=14.0.0
+Requires-Dist: t3api>=0.4.0
+Requires-Dist: t3api-utils>=0.2.0
+Requires-Dist: typer>=0.16.0
+Dynamic: license-file
+
+# t3py
