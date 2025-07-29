@@ -1,0 +1,3 @@
+[console_scripts]
+asset-predict = asset_predictor.predict:main
+asset-train = scripts.train:main
