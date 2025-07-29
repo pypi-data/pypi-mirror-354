@@ -1,0 +1,111 @@
+Metadata-Version: 2.4
+Name: devopness-mcp-server
+Version: 0.0.6
+Summary: A Model Context Protocol (MCP) server that uses Devopness to allow AI Agents to provision infrastructure and deploy any app to any cloud
+Project-URL: homepage, https://www.devopness.com
+Project-URL: repository, https://github.com/devopness/devopness/tree/main/packages/ai/mcp-server
+Project-URL: changelog, https://github.com/devopness/devopness/blob/main/packages/ai/mcp-server/CHANGELOG.md
+Author: Devopness (https://www.devopness.com)
+License-Expression: MIT
+Keywords: API Client,Cloud Engineering,Cloud Infrastructure,Cloud Platform,Cloud Resource Management,Configuration Management,Deployment Automation,DevOps,Devopness,Infrastructure as Code,Platform Engineering,Python SDK,Server Management,Server Provisioning,Utilities,Zero Downtime Deployment
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Environment :: Other Environment
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Other Audience
+Classifier: Intended Audience :: System Administrators
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Communications :: Chat
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Systems Administration
+Classifier: Topic :: Utilities
+Requires-Python: >=3.12
+Requires-Dist: devopness>=1.1.5
+Requires-Dist: mcp[cli]>=1.9.1
+Description-Content-Type: text/markdown
+
+# Devopness MCP server
+
+## Run
+
+### Shell
+
+**Latest Published on PyPi:**
+
+```shell
+uvx devopness-mcp-server
+```
+
+**Run from source:**
+
+```shell
+uv run devopness-mcp-server
+```
+
+### Shell - with MCP inspector
+
+```shell
+# Using Anthropic's official MCP inspector
+uv run mcp dev src/devopness_mcp_server/main.py
+
+# Using alpic.ai MCP inspector - from PyPi
+npx @alpic-ai/grizzly uvx devopness-mcp-server
+
+# Using alpic.ai MCP inspector - from source
+npx @alpic-ai/grizzly uv run devopness-mcp-server
+```
+
+### Postman
+
+... TO DO: ... add step by step on how to add an MCP request using postman, link to postman docs, ...
+
+STDIO
+
+```shell
+uv run --directory "/full/path/to/devopness/packages/ai/mcp-server/" devopness-mcp-server
+```
+
+### Claude Desktop
+
+... TO DO: ...
+
+### Cursor
+
+**~/.cursor/mcp.json**:
+
+```json
+{
+  "mcpServers": {
+    "Devopness": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/full/path/to/devopness/packages/ai/mcp-server/",
+        "run",
+        "devopness-mcp-server"
+      ],
+      "env": {
+        "DEVOPNESS_USER_EMAIL": "<email address>",
+        "DEVOPNESS_USER_PASSWORD": "<password>",
+      }
+    }
+  }
+}
+
+```
+
+### VS Code
+
+... TO DO: ...
+
+### Windsurf
+
+... TO DO: ...
