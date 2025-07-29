@@ -1,0 +1,52 @@
+Metadata-Version: 2.4
+Name: evtpooling
+Version: 0.1.2
+Summary: evtpooling contains the framework needed to improve tail risk forecasts
+Author: J.T. Kim
+Author-email: "J.T. Kim" <567233jk@eur.nl>
+Maintainer-email: "J.T. Kim" <567233jk@eur.nl>
+License: Not open source
+Project-URL: bugs, https://github.com/JTKimQF/evtpooling/issues
+Project-URL: changelog, https://github.com/JTKimQF/evtpooling/blob/master/changelog.md
+Project-URL: homepage, https://github.com/JTKimQF/evtpooling
+Requires-Python: >=3.9
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: chardet
+Requires-Dist: openpyxl
+Requires-Dist: pyarrow
+Requires-Dist: rapidfuzz
+Provides-Extra: dev
+Requires-Dist: coverage; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Dynamic: author
+Dynamic: license-file
+
+==========
+evtpooling
+==========
+
+
+
+
+
+
+evtpooling contains the framework needed to improve tail risk forecasts
+
+
+
+Features
+--------
+
+* TODO
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
