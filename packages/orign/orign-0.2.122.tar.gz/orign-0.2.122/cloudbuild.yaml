@@ -1,0 +1,162 @@
+steps:
+  # Set up Docker Buildx
+  - name: "gcr.io/cloud-builders/docker"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        docker buildx create --name mybuilder --use
+        docker buildx inspect --bootstrap
+
+  # Install AWS CLI and authenticate with ECR
+  - name: "gcr.io/cloud-builders/docker"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        # Install unzip first
+        apt-get update && apt-get install -y unzip curl
+        
+        # Install AWS CLI
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip awscliv2.zip
+        ./aws/install
+        
+        # Configure AWS credentials from environment variables
+        export AWS_ACCESS_KEY_ID=$$AWS_ACCESS_KEY_ID
+        export AWS_SECRET_ACCESS_KEY=$$AWS_SECRET_ACCESS_KEY
+        export AWS_DEFAULT_REGION=us-east-1
+        
+        # Authenticate Docker with Public ECR
+        aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
+    secretEnv: ['AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY']
+
+  # Build and push server image with conditional tagging
+  - name: "gcr.io/cloud-builders/docker"
+    id: Build and Push Unsloth Train
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        # Install AWS CLI if not available
+        if ! command -v aws &> /dev/null; then
+          apt-get update && apt-get install -y unzip curl
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          ./aws/install
+        fi
+        
+        # Configure AWS credentials for ECR push
+        export AWS_ACCESS_KEY_ID=$$AWS_ACCESS_KEY_ID
+        export AWS_SECRET_ACCESS_KEY=$$AWS_SECRET_ACCESS_KEY
+        export AWS_DEFAULT_REGION=us-east-1
+        
+        # Authenticate Docker with Public ECR
+        aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
+        
+        # Authenticate Docker with GHCR
+        # Ensure GITHUB_TOKEN is available and agentsea is your correct GitHub owner/organization
+        echo "$$GITHUB_TOKEN" | docker login ghcr.io -u agentsea --password-stdin
+        
+        # Define base tags
+        TAG_ARGS=( \
+          -t "us-docker.pkg.dev/$PROJECT_ID/orign/unsloth-train:tch2.8.0-py3.11-cuda12.8.1-cudnn-devel-ubuntu22.04" \
+          -t "us-docker.pkg.dev/$PROJECT_ID/orign/unsloth-train:$SHORT_SHA" \
+          -t "public.ecr.aws/d8i6n0n1/orign/unsloth-trainer:$BRANCH_NAME" \
+          -t "public.ecr.aws/d8i6n0n1/orign/unsloth-trainer:$SHORT_SHA" \
+          -t "ghcr.io/agentsea/orign/unsloth-train:$BRANCH_NAME" \
+          -t "ghcr.io/agentsea/orign/unsloth-train:$SHORT_SHA" \
+        )
+        
+        # Add latest tags if on main branch
+        if [ "$BRANCH_NAME" == "main" ]; then
+          TAG_ARGS+=( \
+            -t "us-docker.pkg.dev/$PROJECT_ID/orign/unsloth-train:latest" \
+            -t "public.ecr.aws/d8i6n0n1/orign/unsloth-trainer:latest" \
+            -t "ghcr.io/agentsea/orign/unsloth-train:latest" \
+          )
+        fi
+        
+        # Build and push with all determined tags
+        docker buildx build \
+          --platform linux/amd64 \
+          "${TAG_ARGS[@]}" \
+          --cache-from type=registry,ref=us-docker.pkg.dev/$PROJECT_ID/orign/unsloth-train:buildcache \
+          --cache-to type=registry,ref=us-docker.pkg.dev/$PROJECT_ID/orign/unsloth-train:buildcache,mode=max \
+          --build-arg CACHEBUST=$(date +%s) \
+          --push \
+          -f ./docker/unsloth/Dockerfile.train \
+          ./docker/unsloth
+    secretEnv: ['AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', 'GITHUB_TOKEN']
+
+  # Build and push server image with conditional tagging
+  - name: "gcr.io/cloud-builders/docker"
+    id: Build and Push Unsloth Infer
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        # Install AWS CLI if not available
+        if ! command -v aws &> /dev/null; then
+          apt-get update && apt-get install -y unzip curl
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          ./aws/install
+        fi
+        
+        # Configure AWS credentials for ECR push
+        export AWS_ACCESS_KEY_ID=$$AWS_ACCESS_KEY_ID
+        export AWS_SECRET_ACCESS_KEY=$$AWS_SECRET_ACCESS_KEY
+        export AWS_DEFAULT_REGION=us-east-1
+        
+        # Authenticate Docker with Public ECR
+        aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
+        
+        # Authenticate Docker with GHCR
+        # Ensure GITHUB_TOKEN is available and agentsea is your correct GitHub owner/organization
+        echo "$$GITHUB_TOKEN" | docker login ghcr.io -u agentsea --password-stdin
+        
+        # Define base tags
+        TAG_ARGS=( \
+          -t "us-docker.pkg.dev/$PROJECT_ID/orign/unsloth-infer:tch2.8.0-py3.11-cuda12.8.1-cudnn-devel-ubuntu22.04" \
+          -t "us-docker.pkg.dev/$PROJECT_ID/orign/unsloth-infer:$SHORT_SHA" \
+          -t "public.ecr.aws/d8i6n0n1/orign/unsloth-server:$BRANCH_NAME" \
+          -t "public.ecr.aws/d8i6n0n1/orign/unsloth-server:$SHORT_SHA" \
+          -t "ghcr.io/agentsea/orign/unsloth-infer:$BRANCH_NAME" \
+          -t "ghcr.io/agentsea/orign/unsloth-infer:$SHORT_SHA" \
+        )
+        
+        # Add latest tags if on main branch
+        if [ "$BRANCH_NAME" == "main" ]; then
+          TAG_ARGS+=( \
+            -t "us-docker.pkg.dev/$PROJECT_ID/orign/unsloth-infer:latest" \
+            -t "public.ecr.aws/d8i6n0n1/orign/unsloth-server:latest" \
+            -t "ghcr.io/agentsea/orign/unsloth-infer:latest" \
+          )
+        fi
+        
+        # Build and push with all determined tags
+        docker buildx build \
+          --platform linux/amd64 \
+          "${TAG_ARGS[@]}" \
+          --cache-from type=registry,ref=us-docker.pkg.dev/$PROJECT_ID/orign/unsloth-infer:buildcache \
+          --cache-to type=registry,ref=us-docker.pkg.dev/$PROJECT_ID/orign/unsloth-infer:buildcache,mode=max \
+          --build-arg CACHEBUST=$(date +%s) \
+          --push \
+          -f ./docker/unsloth/Dockerfile.infer \
+          ./docker/unsloth
+    secretEnv: ['AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', 'GITHUB_TOKEN']
+
+timeout: "7200s"
+
+options:
+  machineType: "N1_HIGHCPU_8"
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/$PROJECT_ID/secrets/aws-access-key-id/versions/latest
+    env: 'AWS_ACCESS_KEY_ID'
+  - versionName: projects/$PROJECT_ID/secrets/aws-secret-access-key/versions/latest
+    env: 'AWS_SECRET_ACCESS_KEY'
+  - versionName: projects/$PROJECT_ID/secrets/github-pat/versions/latest
+    env: 'GITHUB_TOKEN'
