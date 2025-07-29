@@ -1,0 +1,115 @@
+1.0.0
+    BitMask class created based on code used for my Sudoku solver
+1.0.1
+    Cleanup of code
+    Added documentation
+1.1.0
+    --- Repository changes ---
+
+    Created the README
+    Created the __init__.py file
+
+    --- Module-level changes ---
+
+    Introduced type hinting and data validation
+
+    --- Class changes ---
+    Converted value and max_length to mangled variables and added the needed properties for them
+
+    Added various methods/dunder methods:
+        reverse_bit_order()
+               Will deprecate reverse_bits()
+        Added comparison operators
+        Added iteration through __iter__
+        __getitem__() and __setitem__()
+        __invert__()
+        __hash__() (Incorrectly... Fixed in 1.2.0)
+
+    Method changes:
+        reverse_bit_order() changed from calling __str__() and returning the reverse to the new reverse_bit_order() implementation
+        get_zero() and get_non_zero() changed to use list comprehension
+        Updated __str__() method with formatting
+
+    --- Docstring changes ---
+
+    Improvements and consistent formatting
+    Added params and returns
+
+    reverse_bits() renamed to reverse_bit_order()
+        reverse_bits() updated for new __str__() method
+        Will deprecate in a version
+    Converted self.value to a property
+    Added data validation for self.value
+    Made wording for Errors consistent
+    Docstring cleanup
+1.2.0
+    --- Repository changes ---
+
+    Made the changelog public
+    Added a license
+    Reorganized package structure
+    Added a GitHub workflow and pyproject.toml to update PyPI on push
+    Added tests to verify functionality
+
+    --- Docstring changes ---
+
+    More docstring improvements
+    Added raises
+    Added examples to most methods
+
+    --- Module-level changes ---
+
+    Changed namespace to only include the BitMask class
+    Transferred data validation to protected module-level functions
+    Renamed BitMask.py -> bitmask_module.py
+
+    --- Class changes ---
+
+    Added an option to disable data validation on initialization for faster performance
+        Data validation is not slow, unless performance is the most critical factor, but then you should just implement this yourself to minimize function calls (or use C)
+
+    Deprecated reverse_bits()
+
+    Changed max_length and value from mangled to protected
+    Created a maximum length for BitMask instances of 1024 bits
+    Added self._upper_bound which is the integer with one more bit than the maximum possible for the current BitMask instance
+
+    Added various methods/dunder methods:
+        get_msb() as a counterpart to get_lsb()
+        __repr__()
+        __reversed__()
+        All bitwise, and in place bitwise operations including shifts
+        __bool__(), __int__(), and __float__()
+
+    Changed the names of methods for consistency and clearer descriptions of functionality
+        set_bit() -> set_bits()
+        flip_bit() -> flip_bits()
+        reset_bit() -> clear_bits()
+        reset_all() -> clear_all()
+        get_bit() -> get_bits()
+        get_non_zero() -> get_set_bits()
+        get_zero() -> get_cleared_bits()
+
+    Method changes:
+        Added support for multiple indices in the following methods:
+            set_bits()
+            flip_bits()
+            clear_bits()
+            get_bits()
+        get_bits() changed to use pythons builtin bit_count() instead of a manual implementation
+            The change also fixed a bug that would change the internal state of the BitMask instance
+        reverse_bit_order() no longer incorrectly modifies BitMask.value when run
+        set_decimal() changed to use string input instead of integers for consistency and because value should be set by expression
+        to_binary() and to_hexadecimal() changed to pad with leading zeros up until the maximum length allowed by BitMask.max_length
+            Examples:                       BEFORE        AFTER
+            BitMask(8, 15).to_binary()      0b1111        0b00001111
+            BitMask(16, 255).to_binary()    0xFF          0x00FF
+            Not done in to_decimal() because of complexity and it doesn't provide the same insight
+        __str__() no longer uses slow list comprehension (roughly 7400% performance improvement on BitMasks of length 1000)
+        __getitem__() fixed a bug that caused slices to build the new BitMask backwards (MSB -> LSB)
+        __getitem__() no longer calls self.get_bit() and instead calculates the value directly
+        __setitem__() now works with slices
+        __setitem__() no longer calls self.set_bit() or self.reset_bit() and instead modifies BitMask.value directly
+        __eq__() changed to evaluate equality of two separate BitMask instances by value AND max_length
+        __invert__() no longer modifies the current BitMask instance
+        __hash__ is now correctly set to None
