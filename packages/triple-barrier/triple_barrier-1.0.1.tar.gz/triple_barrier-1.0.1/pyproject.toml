@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling==1.26.3", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "triple-barrier"
+version = "1.0.1"
+authors = [
+    {name="Marcello Chiuminatto", email="mch@thequantick.net"},
+]
+description = "Back-testing and machine learning pipelines trades labeling utility"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+                "pytest>=8",
+                "pandas>=2.2",
+                "mplfinance==0.12.10b0",
+                "matplotlib==3.8.2",
+                "pyarrow>=16.0",
+    ]
+
+[tool.setuptools]
+packages = ["triple_barrier"]
+
+[project.urls]
+Homepage = "https://github.com/mchiuminatto/triple_barrier"
+Issues = "https://github.com/mchiuminatto/triple_barrier/issues"
