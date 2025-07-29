@@ -1,0 +1,57 @@
+image: registry.gitlab.com/radiandevcore/tools/gcil/alpine:3
+
+stages:
+  - local
+
+.local:
+  after: true
+  bash: false
+  before: true
+  configurations:
+    VARIABLE_1:
+      help: Configure the 1st variable
+      type: boolean
+      default: true
+    VARIABLE_2:
+      help: Configure the 2nd variable
+      type: boolean
+      default: 'false'
+    VARIABLE_3:
+      help: Configure the 3rd variable
+      type: choice
+      values:
+        - 'value1'
+        - 'value2'
+        - 'value3'
+  debug: false
+  defaults: true
+  display: false
+  engine: auto
+  manual: false
+  network: host
+  no_console: false
+  no_verbose: false
+  notify: false
+  quiet: false
+  random_paths: false
+  real_paths: false
+  shell: 'bash --login'
+  sockets: false
+  ssh: false
+  workdir: '.'
+
+'Job 1':
+  stage: local
+  before_script:
+    - echo '__BEFORE__'
+  script:
+    - set -x
+    - pwd
+    - uname -a
+    - echo "CI_LOCAL=${CI_LOCAL}"
+    - test -z "${CI_LOCAL}" && exit 1 || true
+    - echo "CI_LOCAL_ENGINE=${CI_LOCAL_ENGINE}"
+    - echo "CI_LOCAL_ENGINE_NAME=${CI_LOCAL_ENGINE_NAME}"
+    - echo "CI_LOCAL_NETWORK=${CI_LOCAL_NETWORK}"
+  after_script:
+    - echo '__AFTER__'
