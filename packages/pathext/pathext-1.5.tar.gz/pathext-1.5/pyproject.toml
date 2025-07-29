@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pathext"
+version = "1.5"
+authors = [
+    { name="Tamás PEREGI", email="petamas@gmail.com" },
+]
+description = "A collection of functions working with `pathlib.Path`"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX",
+]
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = [
+    "more-itertools>=10.7.0,<11"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/petamas/python-pathext"
+"Bug Tracker" = "https://github.com/petamas/python-pathext/issues"
