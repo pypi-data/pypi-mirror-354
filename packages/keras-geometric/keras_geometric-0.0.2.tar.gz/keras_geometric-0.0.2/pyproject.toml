@@ -1,0 +1,168 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs", "editables"]
+build-backend = "hatchling.build"
+
+[project]
+name = "keras-geometric"
+description = "A Python package for building and training graph neural networks using Keras."
+dynamic = ["version"]
+readme = "README.md"
+requires-python = ">=3.9" # Specify compatible Python versions
+license = { file = "LICENSE" } # Or use identifier: license = { text = "MIT" }
+authors = [{ name = "Huvinesh", email = "huvineshrajendran@gmail.com" }]
+keywords = ["keras", "graph neural network", "gnn", "gcn", "gin", "geometric"]
+classifiers = [ # Find classifiers at https://pypi.org/classifiers/
+    "Development Status :: 3 - Alpha",                              # Adjust as appropriate
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",                       # Match your license
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+# --- Dependencies ---
+# Keep runtime dependencies minimal - only what's needed to use the package
+dependencies = [
+    "jax[cpu]>=0.4.30",
+    "jaxlib>=0.4.30",
+    "keras>=3.0",
+    "numpy>=1.24.0", # Compatible with both numpy 1.x and 2.x
+    "pytest>=8.3.5",
+    "tensorflow>=2.19.0",
+    "torch>=2.6.0",
+]
+
+# --- Optional Dependencies ---
+[project.optional-dependencies]
+# Dataset dependencies (only needed if using specific datasets)
+datasets = [
+    "scipy>=1.11.0", # Required for Cora dataset and other scientific datasets
+]
+
+# Testing dependencies
+test = [
+    "pytest>=8.3.5",
+    "torch>=2.6.0",              # For numerical comparison tests
+    "torch-geometric>=2.6.1",    # For numerical comparison tests
+    "tensorflow>=2.17",          # For backend testing
+    "psutil>=5.9.0",             # For performance tests memory monitoring
+    "keras-geometric[datasets]", # Include dataset deps for testing
+]
+
+# MacOS Metal support
+macos-metal = [
+    "tensorflow-metal>=1.2.0; platform_system=='Darwin' and platform_machine=='arm64'",
+]
+
+# Development dependencies
+dev = [
+    "keras-geometric[test]", # Includes all test deps
+    "pre-commit>=4.2.0",     # Code quality hooks
+    "ruff>=0.8.0",           # Fast Python linter/formatter
+    "pyrefly",               # Type checking
+    "twine>=5.0.0",          # Package publishing
+    "build>=1.0.0",          # Package building
+    "hatch>=1.12.0",         # Build backend
+    "pip-audit>=2.7.0",      # Security scanning
+    "safety>=3.0.0",         # Additional security scanning
+]
+
+# All optional dependencies combined (for convenience)
+all = ["keras-geometric[datasets,test,macos-metal]"]
+
+# --- Project URLs ---
+[project.urls]
+Homepage = "https://github.com/Huvinesh-Rajendran-12/keras-geometric"   # Link to your GitLab repo
+Repository = "https://github.com/Huvinesh-Rajendran-12/keras-geometric"
+
+
+# --- Hatch Build Configuration (using hatchling) ---
+[tool.hatch.version]
+# Use hatch-vcs to get version from Git tags
+source = "vcs"
+
+[tool.hatch.build.targets.sdist]
+# Include/exclude files for the source distribution
+include = ["/src", "/pyproject.toml", "/README.md", "/LICENSE"]
+
+[tool.hatch.build.targets.wheel]
+# Include only the source code needed for the wheel
+packages = ["src/keras_geometric"]
+
+# --- Ruff Configuration ---
+[tool.ruff]
+# Set line length for automatic formatting
+line-length = 88
+target-version = "py39"
+
+[tool.ruff.format]
+# Format code automatically
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+[tool.ruff.lint]
+# Focus on the important rules, exclude overly strict type checking
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "N",  # pep8-naming
+    "UP", # pyupgrade
+    "B",  # flake8-bugbear
+    # Type checking - but relaxed
+    "ANN204", # Missing return type annotation for special method (like __init__)
+    "ANN201", # Missing return type annotation for public function
+    "ANN206", # Missing return type annotation for classmethod
+]
+
+ignore = [
+    "E501",   # Line too long (let ruff format handle this)
+    "ANN401", # Allow 'Any' types (appropriate for ML/tensor libraries)
+    "ANN001", # Don't require parameter annotations (too strict for ML)
+    "ANN003", # Don't require **kwargs annotations (too strict)
+    "ANN202", # Don't require private function annotations
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Relax rules for test files and datasets
+"tests/*" = ["ANN"]                        # Skip all type annotation checks in tests
+"src/keras_geometric/datasets/*" = ["ANN"] # Skip type checking in datasets
+
+[tool.ruff.lint.isort]
+known-first-party = ["keras_geometric"]
+
+[tool.pyright]
+venv = ".venv"
+
+# --- Pytest Configuration ---
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "--strict-config",
+    "--disable-warnings"
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "performance: marks tests as performance tests",
+    "backend: marks tests as backend compatibility tests",
+    "unit: marks tests as unit tests",
+    "error_handling: marks tests as error handling tests",
+    "batch: marks tests as batch processing tests"
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+    "ignore::FutureWarning",
+    "ignore::UserWarning:tensorflow.*"
+]
