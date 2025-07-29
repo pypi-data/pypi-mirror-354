@@ -1,0 +1,57 @@
+[build-system]
+requires = [
+    "setuptools >= 61.0",
+
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "matrixconverters"
+license = {text = "GPL-2.0 AND BSD-3-Clause"}
+dynamic = ["version"]
+
+dependencies = [
+    "numpy",
+    "xarray",
+    "h5netcdf",
+    "setuptools",
+]
+
+description = "package to read and write PTV-Visum Matrix Formats"
+maintainers = [
+    { name = "Max Bohnet", email = "bohnet@ggr-planung.de" },
+]
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries",
+]
+
+[project.urls]
+"Documentation" = "https://maxbo.github.io/matrixconverters/"
+"Source" = "https://github.com/MaxBo/matrixconverters/"
+"Issue Tracker" = "https://github.com/MaxBo/matrixconverters/issues"
+
+[tool.setuptools.dynamic]
+version = {attr = "matrixconverters.__version__"}
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
+
+[tool.setuptools.package-data]
+'matrixconverters.tests' = ['*.mtx', '*.csv']
