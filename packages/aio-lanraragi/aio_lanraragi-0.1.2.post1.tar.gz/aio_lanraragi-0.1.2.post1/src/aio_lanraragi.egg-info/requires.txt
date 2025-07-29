@@ -1,0 +1,10 @@
+aiohttp
+pydantic
+
+[dev]
+build
+pytest>=8.0.0
+pytest-asyncio>=0.25.0
+ruff
+tox>=4.23.0
+twine
