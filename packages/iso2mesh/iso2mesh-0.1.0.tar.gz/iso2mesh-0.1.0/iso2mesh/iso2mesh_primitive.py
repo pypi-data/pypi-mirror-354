@@ -1,0 +1,1026 @@
+"""@package docstring
+Iso2Mesh for Python - Primitive shape meshing functions
+
+Copyright (c) 2024 Edward Xu <xu.ed at neu.edu>
+              2024-2025 Qianqian Fang <q.fang at neu.edu>
+"""
+
+__all__ = [
+    "meshgrid5",
+    "meshgrid6",
+    "latticegrid",
+    "plotsurf",
+    "plotasurf",
+    "plotmesh",
+    "varargin2struct",
+    "jsonopt",
+    "meshabox",
+    "meshacylinder",
+    "meshanellip",
+    "meshunitsphere",
+    "meshasphere",
+]
+
+##====================================================================================
+## dependent libraries
+##====================================================================================
+
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+import iso2mesh as im
+from itertools import permutations, combinations
+
+# _________________________________________________________________________________________________________
+
+
+def plotsurf(node, face, *args, **kwargs):
+    rngstate = np.random.get_state()
+    h = []
+
+    randseed = int("623F9A9E", 16)  # "U+623F U+9A9E"
+
+    if "ISO2MESH_RANDSEED" in globals():
+        randseed = globals()["ISO2MESH_RANDSEED"]
+    np.random.seed(randseed)
+
+    if isinstance(face, list):  # polyhedral facets
+        from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+        from matplotlib.patches import Polygon
+
+        sc = np.random.rand(10, 3)
+        newsurf = {}
+        for fc in face:
+            if (
+                isinstance(fc, (list, tuple))
+                and len(fc) >= 2
+                and isinstance(fc[0], (list, tuple))
+            ):
+                group_id = fc[1]
+                if group_id + 1 > sc.shape[0]:
+                    sc = np.vstack([sc, np.random.rand(group_id + 1 - sc.shape[0], 3)])
+                newsurf.setdefault(group_id + 1, []).append(np.asarray(fc[0]))
+            else:
+                newsurf[len(newsurf)] = np.asarray(fc) - 1
+
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection="3d")
+
+        poly3d = [node[subface, :3] for i, subface in newsurf.items()]
+        patch = Poly3DCollection(poly3d, edgecolors="k", **kwargs)
+        ax.add_collection3d(patch)
+        ax.auto_scale_xyz(node[:, 0], node[:, 1], node[:, 2])
+        h.append(patch)
+
+    else:
+        if face.shape[1] == 4:
+            tag = face[:, 3]
+            types = np.unique(tag)
+            # plt.hold(True)
+            h = []
+            for i in range(len(types)):
+                if node.shape[1] == 3:
+                    h.append(
+                        plotasurf(
+                            node,
+                            face[tag == types[i], 0:3],
+                            *args,
+                            **kwargs,
+                        )
+                    )
+                else:
+                    h.append(
+                        plotasurf(node, face[tag == types[i], 0:3], *args, **kwargs)
+                    )
+        else:
+            h = plotasurf(node, face, *args, **kwargs)
+
+    #        if np.all(np.array(plt.gca().view) == [0, 90]):
+    #            plt.view(3)
+
+    np.random.set_state(rngstate)
+    plt.axis("equal")
+
+    plt.show(block=False)
+
+    if h and len(args) >= 1:
+        return h
+
+
+# _________________________________________________________________________________________________________
+
+
+def plotasurf(node, face, *args, **kwargs):
+    if face.shape[1] <= 2:
+        h = plotedges(node, face, *args, **kwargs)
+    else:
+        fig = plt.figure(figsize=(16, 9))
+        h = plt.axes(projection="3d")
+        my_cmap = plt.get_cmap("jet")
+        trisurf = h.plot_trisurf(
+            node[:, 0],
+            node[:, 1],
+            node[:, 2],
+            triangles=face - 1,
+            cmap=my_cmap,
+            **kwargs,
+        )
+        if node.shape[1] == 4:
+            trisurf.set_array(node[:, 3])
+            trisurf.autoscale()
+
+    if "h" in locals():
+        return h
+
+
+# _________________________________________________________________________________________________________
+
+
+def plottetra(node, elem, *args, **kwargs):
+    """
+    hm = plottetra(node, elem, *args, **kwargs)
+
+    Plot 3D surface meshes.
+
+    Parameters:
+        node: (N, 3) or (N, 4) array of node coordinates (last column optional for color).
+        elem: (M, 4) or (M, 5) array of tetrahedra (last column optional for tags).
+        args, kwargs: Additional plotting options passed to plotsurf.
+
+    Returns:
+        hm: list of plot handles.
+    """
+
+    # Save current RNG state
+    rngstate = np.random.get_state()
+
+    # Set deterministic seed for consistent coloring
+    randseed = int("623F9A9E", 16)  # "U+623F U+9A9E"
+
+    if "ISO2MESH_RANDSEED" in globals():
+        randseed = globals()["ISO2MESH_RANDSEED"]
+
+    np.random.seed(randseed)
+
+    h = []
+
+    if not isinstance(elem, list):
+        if elem.shape[1] > 4:
+            tag = elem[:, 4]  # 1-based -> column 5 in MATLAB
+            types = np.unique(tag)
+            for t in types:
+                idx = np.where(tag == t)[0]
+                face = im.volface(elem[idx, :4])[
+                    0
+                ]  # Pass only first 4 columns (1-based in MATLAB)
+
+                if node.shape[1] == 3:
+                    h.append(plotsurf(node, face, *args, **kwargs))
+                else:
+                    h.append(plotsurf(node, face, *args, **kwargs))
+        else:
+            face = im.volface(elem[:, :4])[0]
+            h.append(plotsurf(node, face, *args, **kwargs))
+
+    # Restore RNG state
+    np.random.set_state(rngstate)
+
+    # Return handle if needed
+    if h:
+        return h
+
+
+# _________________________________________________________________________________________________________
+
+
+def plotmesh(node, *args, **kwargs):
+    """
+    plotmesh(node, face, elem, opt) → hm
+    Plot surface and volumetric meshes in 3D.
+    Converts 1-based MATLAB indices in `face` and `elem` to 0-based.
+    Supports optional selector strings and stylistic options.
+    """
+
+    selector = None
+    opt = []
+    face = None
+    elem = None
+
+    # Parse inputs: detect selector strings, face/elem arrays, opts
+    for i, a in enumerate(args):
+        if isinstance(a, str):
+            if any(c in a for c in "<>=&|") and any(c in a for c in "xyzXYZ"):
+                selector = a
+                opt = list(args[i + 1 :])
+                break
+            else:
+                opt = list(args[i:])
+                break
+        else:
+            if i == 0:
+                if isinstance(a, list) or (
+                    isinstance(a, np.ndarray) and a.ndim == 2 and a.shape[1] < 4
+                ):
+                    face = a
+                elif isinstance(a, np.ndarray) and a.ndim == 2 and a.shape[1] in (4, 5):
+                    uniq = np.unique(a[:, 3])
+                    counts = np.bincount(a[:, 3].astype(int))
+                    if len(uniq) == 1 or np.any(counts > 50):
+                        face = a
+                    else:
+                        elem = a
+                else:
+                    elem = a
+            elif i == 1:
+                face = args[0]
+                elem = a
+
+    handles = []
+
+    # Plot points if no face/elem
+    if face is None and elem is None:
+        x, y, z = node[:, 0], node[:, 1], node[:, 2]
+        idx = (
+            np.where(eval(selector, {"x": x, "y": y, "z": z}))[0]
+            if selector
+            else slice(None)
+        )
+        if getattr(idx, "size", None) == 0:
+            print("Warning: nothing to plot")
+            return None
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection="3d")
+        ax.plot(x[idx], y[idx], z[idx], *opt)
+        _autoscale_3d(ax, node)
+        plt.axis("equal")
+        plt.show(block=False)
+        return ax
+
+    # Plot surface mesh
+    if face is not None:
+        if isinstance(face, list):
+            ax = plotsurf(node, face, opt, *args, **kwargs)
+            handles.append(ax)
+        else:
+            c0 = im.meshcentroid(node[:, :3], face[:, :3])
+            x, y, z = c0[:, 0], c0[:, 1], c0[:, 2]
+            idx = (
+                np.where(eval(selector, {"x": x, "y": y, "z": z}))[0]
+                if selector
+                else slice(None)
+            )
+            if getattr(idx, "size", None) == 0:
+                print("Warning: nothing to plot")
+                return None
+            ax = plotsurf(node, face[idx, :], opt, *args, **kwargs)
+            handles.append(ax)
+
+    # Plot tetrahedral mesh
+    if elem is not None:
+        c0 = im.meshcentroid(node[:, :3], elem[:, :4])
+        x, y, z = c0[:, 0], c0[:, 1], c0[:, 2]
+        idx = (
+            np.where(eval(selector, {"x": x, "y": y, "z": z}))[0]
+            if selector
+            else slice(None)
+        )
+        if getattr(idx, "size", None) == 0:
+            print("Warning: nothing to plot")
+            return None
+        ax = plottetra(node, elem[idx, :], opt, *args, **kwargs)
+        handles.append(ax)
+
+    plt.axis("equal")
+
+    plt.show(block=False)
+    return handles if len(handles) > 1 else handles[0]
+
+
+def _get_face_triangles(node, face, selector):
+    """Convert 1-based faces to triangles and apply selector filter."""
+    face = np.asarray(face)
+    face3 = face[:, :3].astype(int) - 1
+    tris = node[face3, :3]
+    if selector:
+        cent = tris.mean(axis=1)
+        idx = np.where(
+            eval(selector, {"x": cent[:, 0], "y": cent[:, 1], "z": cent[:, 2]})
+        )[0]
+        tris = tris[idx]
+    return tris
+
+
+def _autoscale_3d(ax, points):
+    x, y, z = points[:, 0], points[:, 1], points[:, 2]
+    ax.set_xlim([x.min(), x.max()])
+    ax.set_ylim([y.min(), y.max()])
+    ax.set_zlim([z.min(), z.max()])
+
+
+def _extract_poly_opts(opt):
+    """Extract facecolor/edgecolor options for Poly3DCollection."""
+    d = {}
+    if "facecolor" in opt:
+        d["facecolor"] = opt[opt.index("facecolor") + 1]
+    else:
+        d["facecolor"] = "white"
+    if "edgecolor" in opt:
+        d["edgecolor"] = opt[opt.index("edgecolor") + 1]
+    else:
+        d["edgecolor"] = "k"
+    return d
+
+
+# _________________________________________________________________________________________________________
+
+
+def meshabox(p0, p1, opt, nodesize=1):
+    """
+    Create the surface and tetrahedral mesh of a box geometry.
+
+    Parameters:
+    p0: Coordinates (x, y, z) for one end of the box diagonal
+    p1: Coordinates (x, y, z) for the other end of the box diagonal
+    opt: Maximum volume of the tetrahedral elements
+    nodesize: (Optional) Size of the elements near each vertex.
+              Can be a scalar or an 8x1 array.
+
+    Returns:
+    node: Node coordinates, 3 columns for x, y, and z respectively
+    face: Surface mesh faces, each row represents a face element
+    elem: Tetrahedral elements, each row represents a tetrahedron
+    """
+    if nodesize is None:
+        nodesize = 1
+
+    # Call to surf2mesh function to generate the surface mesh and volume elements
+    node, elem, ff = im.surf2mesh(
+        np.array([]),
+        np.array([]),
+        p0,
+        p1,
+        1,
+        opt,
+        regions=None,
+        holes=None,
+        dobbx=nodesize,
+    )
+
+    # Reorient the mesh elements
+    elem, _, _ = im.meshreorient(node, elem[:, :4])
+
+    # Extract the surface faces from the volume elements
+    face = im.volface(elem)[0]
+
+    return node, face, elem
+
+
+# _________________________________________________________________________________________________________
+
+
+def meshunitsphere(tsize, **kwargs):
+    dim = 60
+    esize = tsize * dim
+    thresh = dim / 2 - 1
+
+    xi, yi, zi = np.meshgrid(
+        np.arange(0, dim + 0.5, 0.5),
+        np.arange(0, dim + 0.5, 0.5),
+        np.arange(0, dim + 0.5, 0.5),
+    )
+    dist = thresh - np.sqrt((xi - 30) ** 2 + (yi - 30) ** 2 + (zi - 30) ** 2)
+    dist[dist < 0] = 0
+
+    # Call a vol2restrictedtri equivalent in Python here (needs a custom function)
+    node, face = im.vol2restrictedtri(
+        dist, 1, (dim, dim, dim), dim**3, 30, esize, esize, 40000
+    )
+
+    node = (node - 0.5) * 0.5
+    node, face, _ = im.removeisolatednode(node, face)
+
+    node = (node - 30) / 28
+    r0 = np.sqrt(np.sum(node**2, axis=1))
+    node = node / r0[:, None]
+
+    #    if not 'maxvol' in kwargs:
+    #        maxvol = tsize**3
+
+    maxvol = kwargs["maxvol"] if "maxvol" in kwargs else tsize**3
+
+    # Call a surf2mesh equivalent in Python here (needs a custom function)
+    node, elem, face = im.surf2mesh(
+        node, face, np.array([-1, -1, -1]) * 1.1, np.array([1, 1, 1]) * 1.1, 1, maxvol
+    )
+
+    return node, face, elem
+
+
+# _________________________________________________________________________________________________________
+
+
+def meshasphere(c0, r, tsize, maxvol=None):
+    if maxvol is None:
+        maxvol = tsize**3
+
+    if maxvol is not None:
+        node, face, elem = meshunitsphere(tsize / r, maxvol=maxvol / (r**3))
+    else:
+        node, face, elem = meshunitsphere(tsize / r)
+
+    node = node * r + np.tile(np.array(c0).reshape(1, -1), (node.shape[0], 1))
+
+    return node, face, elem  # if maxvol is not None else (node, face)
+
+
+# _________________________________________________________________________________________________________
+
+
+def meshacylinder(c0, c1, r, **kwargs):  # tsize=0, maxvol=0, ndiv=20):
+    tsize = kwargs["tsize"] if "tsize" in kwargs else 0
+    maxvol = kwargs["maxvol"] if "maxvol" in kwargs else 0
+    ndiv = kwargs["ndiv"] if "ndiv" in kwargs else 20
+
+    if len(np.array([r])) == 1:
+        r = np.array([r, r])
+
+    if any(np.array(r) <= 0) or np.all(c0 == c1):
+        raise ValueError("Invalid cylinder parameters")
+
+    c0 = np.array(c0).reshape(-1, 1)
+    c1 = np.array(c1).reshape(-1, 1)
+    v0 = c1 - c0
+    len_axis = np.linalg.norm(v0)
+
+    if tsize == 0:
+        tsize = min(np.append(r, len_axis)) / 10
+
+    if maxvol == 0:
+        maxvol = tsize**3 / 5
+
+    dt = 2 * np.pi / ndiv
+    theta = np.arange(dt, 2 * np.pi + dt, dt)
+    cx = np.outer(np.array(r), np.cos(theta))
+    cy = np.outer(np.array(r), np.sin(theta))
+
+    p0 = np.column_stack((cx[0, :], cy[0, :], np.zeros(ndiv)))
+    p1 = np.column_stack((cx[1, :], cy[1, :], len_axis * np.ones(ndiv)))
+
+    pp = np.vstack((p0, p1))
+    no = im.rotatevec3d(pp, v0.T) + np.tile(c0.T, (pp.shape[0], 1))
+
+    # face = np.empty((0,4))
+    face = []
+    for i in range(ndiv - 1):
+        # face = np.vstack((face, np.array([i, i + ndiv, i + ndiv + 1, i + 1])))
+        face.append([[[i, i + ndiv, i + ndiv + 1, i + 1]], [1]])
+
+    face.append([[[ndiv - 1, 2 * ndiv - 1, ndiv, 0]], [1]])
+    face.append([[list(range(ndiv))], [2]])
+    face.append([[list(range(ndiv, 2 * ndiv))], [3]])
+
+    if tsize == 0 and maxvol == 0:
+        return no, face
+
+    if not "tsize" in kwargs:
+        tsize = len_axis / 10
+
+    if not "maxvol" in kwargs:
+        maxvol = tsize**3
+
+    node, elem, *_ = im.surf2mesh(
+        no,
+        face,
+        np.min(no, axis=0),
+        np.max(no, axis=0),
+        1,
+        maxvol,
+        regions=np.array([[0, 0, 1]]),
+        holes=np.array([]),
+    )
+    face, *_ = im.volface(elem[:, 0:4])
+
+    return node, face, elem
+
+
+# _________________________________________________________________________________________________________
+
+
+def meshgrid5(*args):
+    args = list(args)
+
+    n = len(args)
+    if n != 3:
+        raise ValueError("only works for 3D case!")
+
+    for i in range(n):
+        v = args[i]
+        if len(v) % 2 == 0:
+            args[i] = np.linspace(v[0], v[-1], len(v) + 1)
+
+    # create a single n-d hypercube
+    cube8 = np.array(
+        [
+            [1, 4, 5, 13],
+            [1, 2, 5, 11],
+            [1, 10, 11, 13],
+            [11, 13, 14, 5],
+            [11, 13, 1, 5],
+            [2, 3, 5, 11],
+            [3, 5, 6, 15],
+            [15, 11, 12, 3],
+            [15, 11, 14, 5],
+            [11, 15, 3, 5],
+            [4, 5, 7, 13],
+            [5, 7, 8, 17],
+            [16, 17, 13, 7],
+            [13, 17, 14, 5],
+            [5, 7, 17, 13],
+            [5, 6, 9, 15],
+            [5, 8, 9, 17],
+            [17, 18, 15, 9],
+            [17, 15, 14, 5],
+            [17, 15, 5, 9],
+            [10, 13, 11, 19],
+            [13, 11, 14, 23],
+            [22, 19, 23, 13],
+            [19, 23, 20, 11],
+            [13, 11, 19, 23],
+            [11, 12, 15, 21],
+            [11, 15, 14, 23],
+            [23, 21, 20, 11],
+            [23, 24, 21, 15],
+            [23, 21, 11, 15],
+            [16, 13, 17, 25],
+            [13, 17, 14, 23],
+            [25, 26, 23, 17],
+            [25, 22, 23, 13],
+            [13, 17, 25, 23],
+            [17, 18, 15, 27],
+            [17, 15, 14, 23],
+            [26, 27, 23, 17],
+            [27, 23, 24, 15],
+            [23, 27, 17, 15],
+        ]
+    ).T
+
+    # build the complete lattice
+    nodecount = [len(arg) for arg in args]
+
+    if any(count < 2 for count in nodecount):
+        raise ValueError("Each dimension must be of size 2 or more.")
+
+    node = lattice(*args)
+
+    ix, iy, iz = np.meshgrid(
+        np.arange(1, nodecount[0] - 1, 2),
+        np.arange(1, nodecount[1] - 1, 2),
+        np.arange(1, nodecount[2] - 1, 2),
+        indexing="ij",
+    )
+    ind = np.ravel_multi_index(
+        (ix.flatten() - 1, iy.flatten() - 1, iz.flatten() - 1), nodecount
+    )
+
+    nodeshift = np.array(
+        [
+            0,
+            1,
+            2,
+            nodecount[0],
+            nodecount[0] + 1,
+            nodecount[0] + 2,
+            2 * nodecount[0],
+            2 * nodecount[0] + 1,
+            2 * nodecount[0] + 2,
+        ]
+    )
+    nodeshift = np.concatenate(
+        (
+            nodeshift,
+            nodeshift + nodecount[0] * nodecount[1],
+            nodeshift + 2 * nodecount[0] * nodecount[1],
+        )
+    )
+
+    nc = len(ind)
+    elem = np.zeros((nc * 40, 4), dtype=int)
+    for i in range(nc):
+        elem[np.arange(0, 40) + (i * 40), :] = (
+            np.reshape(nodeshift[cube8.flatten() - 1], (4, 40)).T + ind[i]
+        )
+
+    elem = elem + 1
+    elem = im.meshreorient(node[:, :3], elem[:, :4])[0]
+
+    return node, elem
+
+
+# _________________________________________________________________________________________________________
+
+
+def meshgrid6(*args):
+    # dimension of the lattice
+    n = len(args)
+
+    # create a single n-d hypercube     # list of node of the cube itself
+    vhc = (
+        np.array(list(map(lambda x: list(bin(x)[2:].zfill(n)), range(2**n)))) == "1"
+    ).astype(int)
+
+    # permutations of the integers 1:n
+    p = list(permutations(range(1, n + 1)))
+    p = p[::-1]
+    nt = len(p)
+    thc = np.zeros((nt, n + 1), dtype=int)
+
+    for i in range(nt):
+        thc[i, :] = np.where(
+            np.all(np.diff(vhc[:, np.array(p[i]) - 1], axis=1) >= 0, axis=1)
+        )[0]
+
+    # build the complete lattice
+    nodecount = np.array([len(arg) for arg in args])
+    if np.any(nodecount < 2):
+        raise ValueError("Each dimension must be of size 2 or more.")
+    node = lattice(*args)
+
+    # unrolled index into each hyper-rectangle in the lattice
+    ind = [np.arange(nodecount[i] - 1) for i in range(n)]
+    ind = np.meshgrid(*ind, indexing="ij")
+    ind = np.array(ind).reshape(n, -1).T
+    k = np.cumprod([1] + nodecount[:-1].tolist())
+
+    ind = 1 + ind @ k.T  # k[:-1].reshape(-1, 1)
+    nind = len(ind)
+    offset = vhc @ k.T
+    elem = np.zeros((nt * nind, n + 1), dtype=int)
+    L = np.arange(1, nind + 1).reshape(-1, 1)
+
+    for i in range(nt):
+        elem[L.flatten() - 1, :] = np.tile(ind, (n + 1, 1)).T + np.tile(
+            offset[thc[i, :]], (nind, 1)
+        )
+        L += nind
+
+    elem = im.meshreorient(node[:, :3], elem[:, :4])[0]
+
+    return node, elem
+
+
+# _________________________________________________________________________________________________________
+
+
+def lattice(*args):
+    n = len(args)
+    sizes = [len(arg) for arg in args]
+    grids = np.meshgrid(*args, indexing="ij")
+    grid = np.zeros((np.prod(sizes), n))
+    for i in range(n):
+        grid[:, i] = grids[i].ravel(order="F")
+    return grid
+
+
+def latticegrid(*args):
+    """
+    node, face, centroids = latticegrid(xrange, yrange, zrange, ...)
+
+    Generate a 3D lattice.
+
+    Parameters:
+        *args: 1D arrays specifying the range of each dimension.
+
+    Returns:
+        node: (N, D) array of node coordinates.
+        face: list of faces (each a list of indices starting from 1).
+        centroids: (M, D) array of centroid coordinates of each lattice cell.
+    """
+    n = len(args)
+    p = np.meshgrid(*args, indexing="ij")
+    node = np.zeros((p[0].size, n))
+    for i in range(n):
+        node[:, i] = p[i].ravel(order="F")
+
+    if n == 1:
+        return node
+
+    dim = p[0].shape
+    dd = [dim[0], dim[0] * dim[1]]
+
+    onecube = np.array(
+        [
+            [0, dd[0], dd[0] + 1, 1],
+            [0, 1, dd[1] + 1, dd[1]],
+            [0, dd[1], dd[1] + dd[0], dd[0]],
+        ]
+    )
+    onecube = np.vstack(
+        [
+            onecube,
+            onecube + np.array([[dd[1]], [dd[0]], [1]]) @ np.ones((1, 4), dtype=int),
+        ]
+    )
+
+    len_cube = np.prod(np.array(dim[:3]) - 1)
+    face = np.tile(onecube, (len_cube, 1))
+
+    xx, yy, zz = np.meshgrid(
+        np.arange(1, dim[0]), np.arange(1, dim[1]), np.arange(1, dim[2]), indexing="ij"
+    )
+
+    # Convert subscript to linear index in column-major order (MATLAB-style)
+    idx = (
+        np.ravel_multi_index(
+            (xx.ravel(order="F") - 1, yy.ravel(order="F") - 1, zz.ravel(order="F") - 1),
+            dim,
+            order="F",
+        )
+        + 1
+    )  # 1-based index for face construction
+    orig = np.tile(idx, (onecube.shape[0], 1))
+
+    for i in range(onecube.shape[1]):
+        face[:, i] = face[:, i] + orig.ravel(order="F")
+
+    # Convert to 1-based row-unique face list (like MATLAB)
+    face = np.unique(face, axis=0)
+    face = np.array([list(row) for row in face])
+
+    centroids = None
+    if len(args) >= 3:
+        diffvec = [np.diff(arg) for arg in args]
+        xx, yy, zz = np.meshgrid(*diffvec, indexing="ij")
+        centroids = (
+            node[idx - 1, :]
+            + 0.5
+            * np.vstack(
+                [xx.ravel(order="F"), yy.ravel(order="F"), zz.ravel(order="F")]
+            ).T
+        )
+
+    return node, face, centroids
+
+
+def extrudecurve(c0, c1, curve, ndiv):
+    if len(c0) != len(c1) or len(c0) != 3:
+        raise ValueError("c0 and c1 must be 3D points of the same dimension!")
+
+    if ndiv < 1:
+        raise ValueError("ndiv must be at least 1!")
+
+    curve = np.array(curve)
+    if curve.shape[1] != 3:
+        raise ValueError("curve must be a Nx3 array!")
+
+    ncurve = curve.shape[0]
+    nodes = np.zeros((ndiv * ncurve, 3))
+    for i in range(ndiv):
+        alpha = i / (ndiv - 1)  # linear interpolation factor
+        point = (1 - alpha) * c0 + alpha * c1
+        nodes[i * ncurve : (i + 1) * ncurve, :] = curve + point
+
+    elem = np.zeros((ncurve * (ndiv - 1) * 2, 4), dtype=int)
+    for i in range(ndiv - 1):
+        for j in range(ncurve):
+            if j < ncurve - 1:
+                elem[i * ncurve * 2 + j * 2, :] = [
+                    i * ncurve + j,
+                    (i + 1) * ncurve + j,
+                    (i + 1) * ncurve + (j + 1),
+                    i * ncurve + (j + 1),
+                ]
+                elem[i * ncurve * 2 + j * 2 + 1, :] = [
+                    (i + 1) * ncurve + j,
+                    (i + 1) * ncurve + (j + 1),
+                    i * ncurve + (j + 1),
+                    i * ncurve + j,
+                ]
+
+    return nodes, elem
+
+
+def meshcylinders(c0, c1, r, tsize=0, maxvol=0, ndiv=20):
+    if np.any(np.array(r) <= 0):
+        raise ValueError("Radius must be greater than zero.")
+
+    if np.array(c0).shape != (3,) or np.array(c1).shape != (3,):
+        raise ValueError("c0 and c1 must be 3D points.")
+
+    if len(r) == 1:
+        r = [r[0], r[0]]
+
+    r = np.array(r).flatten()
+
+    if len(r) == 2:
+        r = np.array([r[0], r[0], r[1]])
+
+    len_axis = np.linalg.norm(np.array(c1) - np.array(c0))
+
+    if tsize == 0:
+        tsize = min(r) / 10
+
+    if maxvol == 0:
+        maxvol = tsize**3 / 5
+
+    node, face, elem = meshacylinder(c0, c1, r, tsize, maxvol, ndiv)
+
+    return node, face, elem
+
+
+def highordertet(node, elem, order=2, opt=None):
+    """
+    Generate a higher-order tetrahedral mesh by refining a linear tetrahedral mesh.
+
+    Args:
+        node: Nodal coordinates of the linear tetrahedral mesh (n_nodes, 3).
+        elem: Element connectivity (n_elements, 4).
+        order: Desired order of the output mesh (default is 2 for quadratic mesh).
+        opt: Optional dictionary to control mesh refinement options.
+
+    Returns:
+        newnode: Nodal coordinates of the higher-order tetrahedral mesh.
+        newelem: Element connectivity of the higher-order tetrahedral mesh.
+    """
+
+    if order < 2:
+        raise ValueError("Order must be greater than or equal to 2")
+
+    if opt is None:
+        opt = {}
+
+    # Example: linear to quadratic conversion (order=2)
+    if order == 2:
+        newnode, newelem = lin_to_quad_tet(node, elem)
+    else:
+        raise NotImplementedError(
+            f"Higher order {order} mesh refinement is not yet implemented"
+        )
+
+    return newnode, newelem
+
+
+def lin_to_quad_tet(node, elem):
+    """
+    Convert linear tetrahedral elements (4-node) to quadratic tetrahedral elements (10-node).
+
+    Args:
+        node: Nodal coordinates (n_nodes, 3).
+        elem: Element connectivity (n_elements, 4).
+
+    Returns:
+        newnode: Nodal coordinates of the quadratic mesh.
+        newelem: Element connectivity of the quadratic mesh.
+    """
+
+    n_elem = elem.shape[0]
+    n_node = node.shape[0]
+
+    # Initialize new node and element lists
+    edge_midpoints = {}
+    new_nodes = []
+    new_elements = []
+
+    for i in range(n_elem):
+        element = elem[i]
+        quad_element = list(element)  # Start with linear nodes
+
+        # Loop over each edge of the tetrahedron
+        edges = [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)]
+
+        for e in edges:
+            n1, n2 = sorted([element[e[0]], element[e[1]]])
+            edge_key = (n1, n2)
+
+            if edge_key not in edge_midpoints:
+                # Compute midpoint and add it as a new node
+                midpoint = (node[n1] + node[n2]) / 2
+                new_nodes.append(midpoint)
+                edge_midpoints[edge_key] = n_node + len(new_nodes) - 1
+
+            quad_element.append(edge_midpoints[edge_key])
+
+        new_elements.append(quad_element)
+
+    # Combine old and new nodes
+    newnode = np.vstack([node, np.array(new_nodes)])
+    newelem = np.array(new_elements)
+
+    return newnode, newelem
+
+
+def extrudesurf(no, fc, vec):
+    """
+    Create an enclosed surface mesh by extruding an open surface.
+
+    Parameters:
+    no : ndarray
+        2D array containing the 3D node coordinates of the original surface.
+    fc : ndarray
+        2D array representing the triangular faces of the original surface.
+        Each row corresponds to a triangle defined by indices of 3 nodes.
+    vec : array or scalar
+        If an array, defines the extrusion direction. If scalar, the normal vector
+        is used and multiplied by this scalar for extrusion.
+
+    Returns:
+    node : ndarray
+        3D node coordinates for the generated surface mesh.
+    face : ndarray
+        Triangular face patches of the generated surface mesh.
+    """
+
+    nlen = no.shape[0]  # Number of nodes in the original surface
+
+    if len(vec) > 1:  # Extrude using a specified vector
+        node = np.vstack([no, no + np.tile(vec, (nlen, 1))])
+    else:  # Extrude along the surface normal
+        node = np.vstack([no, no + vec * nodesurfnorm(no, fc)])
+
+    face = np.vstack([fc, fc + nlen])  # Create top and bottom faces
+
+    # Find surface edges and create side faces
+    edge = im.surfedge(fc)
+    sideface = np.hstack([edge, edge[:, [0]] + nlen])
+    sideface = np.vstack([sideface, edge + nlen, edge[:, [1]]])
+
+    face = np.vstack([face, sideface])  # Combine all faces
+
+    # Perform mesh repair (fix degenerate elements, etc.)
+    node, face = meshcheckrepair(node, face)
+
+    return node, face
+
+
+def meshanellip(c0, rr, tsize, maxvol=None):
+    """
+    Create the surface and tetrahedral mesh of an ellipsoid.
+
+    Parameters:
+    c0 : list or ndarray
+        Center coordinates [x0, y0, z0] of the ellipsoid.
+    rr : list or ndarray
+        Radii of the ellipsoid. If rr is:
+            - Scalar: a sphere with radius rr.
+            - 1x3 or 3x1 vector: specifies the ellipsoid radii [a, b, c].
+            - 1x5 or 5x1 vector: specifies [a, b, c, theta, phi], where theta and phi are rotation angles along the z and x axes.
+    tsize : float
+        Maximum surface triangle size on the ellipsoid.
+    maxvol : float, optional
+        Maximum volume of the tetrahedral elements.
+
+    Returns:
+    node : ndarray
+        Node coordinates, 3 columns for x, y, and z respectively.
+    face : ndarray
+        Surface mesh face elements (each row has 3 vertices).
+    elem : ndarray, optional
+        Tetrahedral mesh elements (each row has 4 vertices).
+    """
+
+    rr = np.asarray(rr).flatten()
+
+    if len(rr) == 1:
+        rr = [rr[0], rr[0], rr[0]]  # Sphere case
+    elif len(rr) == 3:
+        pass  # Already in ellipsoid format
+    elif len(rr) != 5:
+        raise ValueError("Invalid rr length. See help for details.")
+
+    rmax = min(rr[:3])
+
+    if maxvol is None:
+        maxvol = tsize**3  # Set maxvol based on tsize if not provided
+
+    # Call meshunitsphere to generate unit sphere mesh
+    if maxvol:
+        node, face, elem = meshunitsphere(tsize / rmax, maxvol / (rmax**3))
+    else:
+        node, face = meshunitsphere(tsize / rmax)
+
+    # Scale the unit sphere to the ellipsoid
+    node = node @ np.diag(rr[:3])
+
+    if len(rr) == 5:
+        theta = rr[3]
+        phi = rr[4]
+
+        # Rotation matrices for theta (z-axis) and phi (x-axis)
+        Rz = np.array(
+            [
+                [np.cos(theta), np.sin(theta), 0],
+                [-np.sin(theta), np.cos(theta), 0],
+                [0, 0, 1],
+            ]
+        )
+
+        Rx = np.array(
+            [[1, 0, 0], [0, np.cos(phi), np.sin(phi)], [0, -np.sin(phi), np.cos(phi)]]
+        )
+
+        # Apply rotation to the node coordinates
+        node = (Rz @ (Rx @ node.T)).T
+
+    # Translate the ellipsoid to the center c0
+    node += np.array(c0).reshape(1, 3)
+
+    return node, face, elem if maxvol else (node, face)
