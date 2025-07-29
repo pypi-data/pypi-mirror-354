@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: stratio-models
+Version: 0.2.0.dev18
+Summary: Shared models for AWS Marketplace
+Home-page: https://github.com/Stratio/aws-marketplace-models
+License: MIT
+Author: Stratio
+Author-email: platform@stratio.com
+Requires-Python: >=3.12,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: pydantic (==2.10.3)
+Description-Content-Type: text/markdown
+
+# Stratio Models
+
+This repository contains shared models for AWS Marketplace.
+
+## Overview
+
+The package provides Pydantic models for:
+- Clusters (e.g., `ClusterItem`, `ClusterMetadataItem`, `ClusterTableData`)
+- AWS resources (e.g., `EC2Item`, `EKSItem`)
+- Customers (e.g., `CustomerItem`, `CustomerTableData`)
+- Logs (e.g., `StreamItem`)
+- Repositories (e.g., `Chart`, `UploadResult`)
+
+These models enforce data validation and consistency across applications using AWS Marketplace data.
+
+## Installation
+
+Ensure you are using:
+- Python \>= 3.12, \< 4.0
+- Pydantic == 2.10.3
+
+This project uses Poetry for dependency management. To install dependencies, run:
+
+```bash
+poetry install
