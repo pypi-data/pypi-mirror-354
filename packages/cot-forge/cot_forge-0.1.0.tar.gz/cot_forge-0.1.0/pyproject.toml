@@ -1,0 +1,74 @@
+[project]
+name = "cot-forge"
+version = "0.1.0"
+description = "A package for generation of chain-of-thought datasets."
+authors = [
+    {name = "Matthew Samach",email = "msamach94@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "google-genai (>=1.3.0,<2.0.0)",
+    "tenacity (>=9.0.0,<10.0.0)",
+    "google-api-core (>=2.24.1,<3.0.0)",
+    "tqdm (>=4.67.1,<5.0.0)",
+    "openai (>=1.68.2,<2.0.0)",
+    "tiktoken (>=0.9.0,<0.10.0)",
+    "anthropic (>=0.49.0,<0.50.0)",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/MattSamach/cot-forge"
+Issues = "https://github.com/MattSamach/cot-forge/issues"
+
+[tool.poetry]
+packages = [{include = "cot_forge", from = "src"}]
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+ruff = ">=0.9.9"
+datasets = "^3.5.0"
+ipykernel = "^6.29.5"
+jupyter = "^1.1.1"
+notebook = "^7.4.2"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+]
+
+[tool.ruff]
+line-length = 110
+
+# Ignore E501 (line too long) in all prompts.py files
+[tool.ruff.lint.per-file-ignores]
+"**/prompts.py" = ["E501"]
+"**.ipynb" = ["E501"]
+"**_example.py" = ["E501"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.isort]
+known-first-party = ["cot_forge"]
