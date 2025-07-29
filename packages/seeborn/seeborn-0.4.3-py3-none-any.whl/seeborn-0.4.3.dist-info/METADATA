@@ -1,0 +1,28 @@
+Metadata-Version: 2.4
+Name: seeborn
+Version: 0.4.3
+Summary: A library to store and manage scikit-learn code examples
+Home-page: https://github.com/yourusername/seeborn
+Author: hero
+Author-email: your.email@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: scikit-learn
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: gradio
+Requires-Dist: pyperclip
+Requires-Dist: pywin32; platform_system == "Windows"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
