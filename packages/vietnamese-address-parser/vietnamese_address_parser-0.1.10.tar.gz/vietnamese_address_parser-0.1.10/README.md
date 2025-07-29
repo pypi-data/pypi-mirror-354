@@ -1,0 +1,235 @@
+**vietnamese_address_parser** is an **experimental library** for parsing and normalizing Vietnamese addresses, used in our search and data scraping tools.
+
+---
+
+## Installation
+
+```
+pip install vietnamese_address_parser
+```
+
+---
+
+## ⚠️ NOTE ⚠️
+
+**This parser integrates with the OpenStreetMap Nominatim API** to enhance address accuracy through geolocation.
+
+Because of this, some lookups may take a few seconds to complete, depending on network speed and API rate limits.
+
+---
+
+## Usage in Python
+
+Import and use the parser in your Python code:
+
+```python
+from vietnamese_address_parser import VietnameseAddressParser
+
+parser = VietnameseAddressParser()
+address = "XVNT, P 17, Quan BT, TP. HCM, VN"
+result = parser(address)
+print(result)
+```
+
+result:
+
+```
+Đường Xô Viết Nghệ Tĩnh, Phường 17, Quận Bình Thạnh, Thành Phố Hồ Chí Minh, Việt Nam
+```
+
+---
+
+## General Notes
+
+* **Keep abbreviations to two segments or fewer** for best search performance.
+* **Separate all address components with commas**, in this order:
+* **Maximun field length is 5**
+
+```
+{dia_chi}, {extra_field}, {phuong_xa} or {quan_huyen}, {tinh_thanh_pho}, {viet_nam}
+```
+
+### Valid address example
+
+1. `TP. VT, Tỉnh BR-VT`
+2. `Đường XVNT, Quận Bình Thạnh, TP. HCM, VN`
+3. `Đường Lê Lợi, P.1, Q.1, TP. HCM`
+4. `67 Trần Kế Xương, Q. PN, TP. HCM`
+5. `218 Trần Quý Cáp, X. TL, TP. PT, Tỉnh Bình Thuận`
+6. `Phú Thạnh, Tân Phú, Hồ Chí Minh, Việt Nam`
+7. `218 Tran Quy Cap, Thanh pho Phan Thiet, Tinh Binh Thuan`
+8. `43/47 Cù Chính Lan, Thanh Khê Đông, TK, ĐN`
+
+---
+
+## CLI Usage
+
+When you run the command:
+
+```bash
+vietnamese_address_parser
+```
+
+it will print:
+
+```text
+Vietnamese Address Parser v0.1.10
+Hello! Welcome to the Vietnamese Address Parser CLI.
+Usage example:
+    parser = VietnameseAddressParser()
+    result = parser("54-55 Bau Cat 4, Phuong 14, Tan Binh, Ho Chi Minh")
+    print(result)
+⚠️ NOTE ⚠️:
+This parser uses the OpenStreetMap Nominatim API for geolocation enhancement.
+As a result, some lookups may take a few seconds due to network latency or rate limits
+```
+
+---
+
+## 1. House Number & Street Name {dia_chi}
+
+**Format**
+
+```
+{house_number}\s{prefix?}\.?\s{street_name}
+```
+
+where `{prefix}` is one of:
+
+* `Đ.`
+* `Đường`
+
+*or just*
+
+```
+{house_number}\s{street_name}
+```
+
+**Valid Examples**
+
+* `123A/32 Trần Hưng Đạo`
+* `45A đường Nguyễn Huệ`
+* `Đường Nam Kỳ Khởi Nghĩa`
+* `Đ. XVNT`
+
+> **Invalid:**
+>
+> * `Nam Kỳ Khởi Nghĩa`
+>   (missing "Đường" or house_number as a prefix)
+
+---
+
+## 2. Phường / Xã {phuong_xa}
+
+**Format Options**
+
+```
+{prefix}\.?\s{phuong_xa}
+```
+
+where `{prefix}` is one of:
+
+* `X.`
+* `Xa`
+* `P.`
+* `Phuong`
+* `TT.`
+* `Thi tran`
+
+*or just*
+
+```
+{phuong_xa}
+```
+
+**Valid Examples**
+
+* `P. 7`
+* `P. BN`
+* `P. Bến Nghé`
+* `Phường Bến Nghé`
+
+---
+
+## 3. Quận / Huyện / Thị xã {quan_huyen}
+
+**Format Options**
+
+```
+{prefix}\.?\s{quan_huyen}
+```
+
+where `{prefix}` is one of:
+
+* `Q.`
+* `Quan`
+* `H.`
+* `Huyen`
+* `TX.`
+* `Thi xa`
+
+*or just*
+
+```
+{quan_huyen}
+```
+
+---
+
+## 4. Tỉnh / Thành Phố {tinh_thanh_pho}
+
+**Format Options**
+
+```
+{prefix}\.?\s{tinh_thanh_pho}
+```
+
+where `{prefix}` is one of:
+
+* `T.`
+* `Tỉnh`
+* `TP.`
+* `Thanh pho`
+
+*or just*
+
+```
+{tinh_thanh_pho}
+```
+
+---
+
+## 5. Việt Nam (optional) {viet_nam}
+
+**Format Options**
+
+```
+{country}
+```
+
+*or just blank*
+
+---
+
+## How does it work?
+
+Given an address string consisting of up to 5 fields:
+
+```
+{dia_chi}, {extra_field}, {phuong_xa} or {quan_huyen}, {tinh_thanh_pho}, {viet_nam},  
+```
+
+1. We first expand abbreviations (e.g., `"T."` to `"Tỉnh"`, `"TP"` to `"Thành phố"`), and expand names of common cities (e.g., `"HCM"` to `"Thành phố Hồ Chí Minh"`).
+
+2. Next, we use administrative division data from [https://danhmuchanhchinh.gso.gov.vn/](https://danhmuchanhchinh.gso.gov.vn/)  
+to expand abbreviations within the following three fields: `{phuong_xa}` or `{quan_huyen}`, `{tinh_thanh_pho}`
+
+3. Then, if no abbreviation or full preffix or missing accent (diacritic) is detected, the address is returned as-is.  
+
+4. Otherwise, we use the OpenStreetMap Nominatim API to obtain additional address details. We then use this information to correct abbreviated or unaccented or no preffix address segments.  
+
+5. Since the API results are often inconsistent, we only apply updates if the normalized version (abbreviated and accent-stripped) of the returned address is consistent with the original input.
+
+6. If the OpenStreetMap API cannot be reached or no useful result is obtained, we return the address at the last successfully processed step.
+
+*End of Guide.*
