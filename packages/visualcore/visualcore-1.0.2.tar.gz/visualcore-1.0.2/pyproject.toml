@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "visualcore"
+version = "1.0.2"
+description = "A graphical and compact library for the Numworks calculator and its emulator"
+keywords = ["visual", "Numworks", "algorithm", "calculator", "python"]
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+
+authors = [
+  { name = "Archange", email = "archange_paradise@proton.me" }
+]
+
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+
+dependencies = [
+  "kandinsky==2.7.2",
+  "ion-numworks==2.1"
+]
+
+[project.urls]
+Homepage = "https://github.com/Archange-py/Visual"
+Repository = "https://github.com/Archange-py/Visual"
+Numworks = "https://my.numworks.com/python/archange/visual"
+Library = "https://pypi.org/project/visualcore/"
+
+[project.scripts]
+visualcore = "visualcore.visual:main"
+
+[project.optional-dependencies]
+dev = ["pytest"]
