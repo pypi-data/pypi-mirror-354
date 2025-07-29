@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pytest-dirty"
+version = "0.0.1"
+description = "Static import analysis for thrifty testing."
+license = {text = "MIT"}
+authors = [
+    {name = "Daniel Bershatsky", email = "d.bershatsky2@skoltech.ru"},
+]
+maintainers = [
+    {name = "Daniel Bershatsky", email = "d.bershatsky2@skoltech.ru"},
+]
+readme = {file = "README.md", content-type = "text/markdown"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: POSIX",
+    "Operating System :: Unix",
+    "Operating System :: MacOS",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development",
+    "Typing :: Typed",
+]
+dependencies = ["tomli; python_version<'3.11'"]
+requires-python = ">=3.10,<4"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.2"]
+
+[project.scripts]
+pytest-dirty = "dirty:main"
+
+[project.urls]
+Homepage = "https://github.com/daskol/pytest-dirty"
+Repository = "https://github.com/daskol/pytest-dirty.git"
+
+[tool.mypy]
+disable_error_code = ["return"]
+
+[tool.pytest.ini_options]
+minversion = "8.2"
+addopts = "-ra -q -m 'not slow' --no-header"
+testpaths = ["."]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+filterwarnings = ["ignore::DeprecationWarning"]
+python_classes = ["*Benchmark", "*Test"]
+python_functions = ["test_*", "bench_*"]
+
+[tool.pytest-dirty]
+packages = [
+    "datasets", "numpy", "pytest", "scipy", "torch", "torchvision",
+    "transformers",
+]
+sources = ["nntile"]
+targets = ["examples", "tests"]
+
+[tool.pytest-dirty.dependency]
+"tests/**/test_*.py" = ["tests/conftest.py"]
+
+[tool.ruff]
+output-format = "concise"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "LOG", "PYI"]
+ignore = ["I001", "PYI021"]
+preview = true
+
+[tool.setuptools]
+py-modules = ["dirty"]
+zip-safe = true

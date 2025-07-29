@@ -1,0 +1,10 @@
+[tool.pytest-dirty]
+packages = [
+    "datasets", "numpy", "pytest", "scipy", "torch", "torchvision",
+    "transformers",
+]
+sources = ["nntile"]
+targets = ["examples", "tests"]
+
+[tool.pytest-dirty.dependency]
+"tests/**/test_*.py" = ["tests/conftest.py"]
