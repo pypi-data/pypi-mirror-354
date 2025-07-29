@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: evergreen-scripts
+Version: 0.4.3
+Summary: 
+License: AGPL-3.0
+Author: Your Name
+Author-email: you@example.com
+Requires-Python: >=3.10,<4.0
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Requires-Dist: click (>=8.1.8,<9.0.0)
+Requires-Dist: evergreen-py (>=3.10.6,<4.0.0)
