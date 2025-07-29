@@ -1,0 +1,81 @@
+Metadata-Version: 2.4
+Name: vpm-cli
+Version: 0.1.0
+Summary: VPM is a lightweight opensource home management system
+Author-email: John Michael Lasalle <jml@jmlasalle.com>
+License: MIT License
+        
+        Copyright (c) 2025 John Michael LaSalle
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+Project-URL: Homepage, https://github.com/johnmichaellasalle/vpm
+Project-URL: Repository, https://github.com/johnmichaellasalle/vpm.git
+Project-URL: Issues, https://github.com/johnmichaellasalle/vpm/issues
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: email_validator>=2.2.0
+Requires-Dist: typer>=0.9.0
+Requires-Dist: sqlmodel>=0.0.8
+Requires-Dist: python-dateutil>=2.8.2
+Requires-Dist: rich>=13.0.0
+Requires-Dist: typing-extensions>=4.5.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: sqlalchemy>=2.0.0
+Dynamic: license-file
+
+# vpm
+Virtual Property Manager (VPM) is the open source smart home operating system the world deserves. Lightweight, cross platform, command line application that builds a COBie 3.0 and IFC compliant model of your home, manages preventative maintenance tasks and logs, and organizes your home’s documents.
+
+## Design Principles:
+1. **Data Sovereignty:** You control your home's data in perpetuity.
+2. **Portability:** Conform to open standards with easy import and export.
+3. **Interoperability:** Do core functions well, and integrate with other services. No walled gardens.
+4. **Unenshitifiable:** Product design must make it impossible to enshitify.
+
+## Problem Statement
+1. Homeowners are not professional property managers. They don't know what needs to be done to proactively maintain their home so that everything works, they minimize maintenance costs, and keep it in good condition.
+2. Home maintenance information online is generic and often caveated. Most homeowners don't have the expertise to be confident they are appropriately interpreting and applying the general advice.
+3. Homeowners have to develop their own information management and task management systems for their homes.
+4. Tasks that would be quick for a professional property manager with experience and relationships, such as identifying what trade is needed to fix a problem, getting and assessing bids (including benchmarking to general market costs), and hiring a contractor they trust are much harder for homeowners who only need contractor service intermittently.
+5. Smart home technology adds a layer of complexity and fragility to a home, rather than making homes more robust and self maintaining.
+
+## Integrations Roadmap
+### Smart Device Management Platforms 
+* Google Home
+* Apple HomeKit
+
+### Task Management
+* Apple renders
+* Google to do
+* MS ToDo
+* Any.Do
+
+## VPM Web
+VPM Web is a subscription service built on VPM that provides cloud storage, multi-home support, automated maintenance tasks and reminders, simplified replacement parts ordering (in USA only for now), and a chatbot trained on your home’s data and manuals.
+
+VPM Web stays true to the open-core ethos and prevents enshitifcation by allowing you to stop the subscription and keep a fully functioning local VPM model.
