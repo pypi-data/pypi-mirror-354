@@ -1,0 +1,24 @@
+[project]
+name = "macos-dns-switcher"
+version = "1.0.0"
+description = "CLI tool to switch DNS providers for macOS network services"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.7"
+authors = [{ name = "JimmyMtl"}]
+
+
+dependencies = [
+    "click>=8.1.8",
+]
+
+[dependency-groups]
+dev = [
+    "build>=1.1.1",
+    "ruff>=0.11.11",
+    "setuptools>=68.0.0",
+    "twine>=4.0.2",
+]
+
+[project.scripts]
+mdns = "mdns.cli:main"
