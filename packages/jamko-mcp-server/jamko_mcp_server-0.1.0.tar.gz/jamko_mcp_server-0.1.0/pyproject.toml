@@ -1,0 +1,16 @@
+[project]
+name = "jamko-mcp-server"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13.0"
+dependencies = [
+    "mcp[cli]>=1.9.3",
+]
+
+[project.scripts]
+jamko-mcp-server = "jamko_mcp_server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
