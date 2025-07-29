@@ -1,0 +1,68 @@
+# Project Build
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+
+# Technical Details
+[project]
+name = "jabutiles"
+version = "0.0.7"
+requires-python = ">=3.11"
+dependencies = [
+    "pillow~=11.0.0", # for basic Image processing
+    "numpy~=2.2.6",   # for some array operations
+]
+
+
+# Project Info
+description = "A 2D procedural tile framework for games."
+authors = [
+    { name="Arthur L. Bohn" },
+    { name="Elvis F. Bugs" }, # windows tester
+]
+readme = "README.md"
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+
+# Classification
+keywords = [
+    "gamedev",
+    "graphics",
+    "arcade",
+    "tiling",
+    "autotiler",
+    "brazil",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Natural Language :: Portuguese (Brazilian)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Artistic Software",
+    "Topic :: Games/Entertainment",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Multimedia :: Graphics :: Editors :: Raster-Based",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+
+
+# Misc
+[project.optional-dependencies]
+dev = [
+    "build",
+    "twine",
+]
+
+[project.urls]
+Homepage = "https://github.com/ArthurBohn95/jabutiles"
+Issues = "https://github.com/ArthurBohn95/jabutiles/issues"

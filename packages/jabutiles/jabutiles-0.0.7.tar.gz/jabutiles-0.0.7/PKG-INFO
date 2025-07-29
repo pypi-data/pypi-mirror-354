@@ -1,0 +1,44 @@
+Metadata-Version: 2.4
+Name: jabutiles
+Version: 0.0.7
+Summary: A 2D procedural tile framework for games.
+Project-URL: Homepage, https://github.com/ArthurBohn95/jabutiles
+Project-URL: Issues, https://github.com/ArthurBohn95/jabutiles/issues
+Author: Arthur L. Bohn, Elvis F. Bugs
+License-Expression: MIT
+License-File: LICENSE
+Keywords: arcade,autotiler,brazil,gamedev,graphics,tiling
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Natural Language :: Portuguese (Brazilian)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Artistic Software
+Classifier: Topic :: Games/Entertainment
+Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Multimedia :: Graphics :: Editors :: Raster-Based
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Typing :: Typed
+Requires-Python: >=3.11
+Requires-Dist: numpy~=2.2.6
+Requires-Dist: pillow~=11.0.0
+Provides-Extra: dev
+Requires-Dist: build; extra == 'dev'
+Requires-Dist: twine; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# Jabutiles
+
+A procedural Tileset interface for games.
+
+Provides support for orthogonal, isometric and hexagonal tiles.
+
+Most of the backend is pillow (a PIL fork), the rest is numpy.
+
+[Documentation](docs/technical.md)
