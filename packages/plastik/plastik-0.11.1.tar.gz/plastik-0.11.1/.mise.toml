@@ -1,0 +1,21 @@
+[env]
+_.python.venv = { path = ".venv", create = false }
+
+[tasks.bump]
+description = "Bump the python package version. Takes one argument: `major`, `minor` or `patch`."
+quiet = true
+usage = '''
+arg "[semver]" help="The SemVer name that should be incremented." {
+  choices "major" "minor" "patch"
+}
+'''
+run = """
+#!/usr/bin/env bash
+
+v="$(uvx --from=toml-cli toml get --toml-path=pyproject.toml project.version)"
+if [ -z {{arg(name="semver")}} ]; then
+  echo "$v"
+  exit 0
+fi
+uvx --from bump2version bumpversion --allow-dirty --current-version "$v" {{arg(name="semver")}} pyproject.toml
+"""
