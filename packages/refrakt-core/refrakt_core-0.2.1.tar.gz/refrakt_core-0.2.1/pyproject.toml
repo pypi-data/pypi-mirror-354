@@ -1,0 +1,48 @@
+# pyproject.toml
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "refrakt_core"
+version = "0.2.1"
+description = "A modular library for training, benchmarking, and experimenting with deep vision models."
+readme = "README.md"
+authors = [
+    { name = "Akshath Mangudi", email = "akshathmangudi@gmail.com" }
+]
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+dependencies = [
+    "torch>=2.0",
+    "torchvision",
+    "einops",
+    "matplotlib",
+    "numpy",
+    "requests",
+    "pillow",
+    "tqdm", 
+    "omegaconf", 
+    "timm", 
+    "pydantic"
+]
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+select = ["E", "F", "B", "I"]
+
+
+[project.urls]
+"Homepage" = "https://github.com/refrakt-hub/refrakt_core"
+"Bug Tracker" = "https://github.com/yourusername/refrakt_core/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+refrakt = "refrakt_core.api.__main__:main"
