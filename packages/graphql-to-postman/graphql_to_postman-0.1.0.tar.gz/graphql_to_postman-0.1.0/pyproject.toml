@@ -1,0 +1,72 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "graphql-to-postman"
+dynamic = ["version"]
+description = 'A Python package which converts a given graphql URL to a postman collection'
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = ["postman","graphql","graphql_to_postman"]
+authors = [
+  { name = "Deepak Sanjay S J", email = "deepaksanjaysj@gmail.com" },
+]
+maintainers = [
+  {name = "Deepak Sanjay S J", email = "deepaksanjaysj@gmail.com"}
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Framework :: Hatch",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.12",
+]
+dependencies = ["argparse",
+                "requests"]
+
+[project.urls]
+Documentation = "https://github.com/DeepakSan/graphql-to-postman/blob/main/README.md"
+Issues = "https://github.com/DeepakSan/graphql-to-postman/issues"
+Source = "https://github.com/DeepakSan/graphql-to-postman"
+
+[project.scripts]
+graphql_to_postman = "graphql_to_postman.main:main"
+
+[tool.hatch.envs.default]
+dependencies = [
+  "pytest",
+  "pytest-cov"
+]
+
+[tool.hatch.envs.default.scripts]
+test = "pytest --cov=graphql_to_postman"
+
+[tool.hatch.version]
+path = "src/graphql_to_postman/__about__.py"
+
+[tool.hatch.envs.dev]
+
+[tool.hatch.envs.dev.scripts]
+run = "python3 -m src.graphql_to_postman.main {args}"
+
+[tool.coverage.run]
+source_pkgs = ["graphql_to_postman", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/graphql_to_postman/__about__.py",
+]
+
+[tool.coverage.paths]
+graphql_to_postman = ["src/graphql_to_postman", "*/graphql-to-postman/src/graphql_to_postman"]
+tests = ["tests", "*/graphql-to-postman/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
