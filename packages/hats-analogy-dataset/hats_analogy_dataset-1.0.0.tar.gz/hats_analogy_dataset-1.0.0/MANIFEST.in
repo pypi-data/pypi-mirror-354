@@ -1,0 +1,5 @@
+include README.md
+include LICENSE
+recursive-include analogy_dataset/data *.csv
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co] 
