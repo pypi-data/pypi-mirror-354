@@ -1,0 +1,205 @@
+# VarAnnote v1.0.0 Configuration File
+# Comprehensive settings for variant annotation
+
+# Database Configuration
+databases:
+  # Database priorities (1-10, higher = more priority)
+  priorities:
+    clinvar: 10      # Highest priority for clinical significance
+    gnomad: 9        # Population frequencies
+    dbsnp: 8         # Variant IDs and basic info
+    ensembl: 7       # Gene annotations and consequences
+    cosmic: 6        # Cancer mutations
+    pharmgkb: 5      # Pharmacogenomics
+    omim: 4          # Disease associations
+    clingen: 3       # Clinical guidelines
+    hgmd: 2          # Human gene mutation database
+
+  # API Keys (set your own keys here)
+  api_keys:
+    ensembl: null    # No key required
+    gnomad: null     # No key required
+    clinvar: null    # No key required
+    dbsnp: null      # No key required
+    cosmic: null     # Register at https://cancer.sanger.ac.uk/cosmic
+    pharmgkb: null   # Register at https://www.pharmgkb.org
+    omim: null       # Register at https://www.omim.org/api
+    clingen: null    # No key required
+    hgmd: null       # Commercial license required
+
+  # Rate limiting (requests per second)
+  rate_limits:
+    clinvar: 3.0     # NCBI limit
+    gnomad: 10.0     # Generous limit
+    dbsnp: 3.0       # NCBI limit
+    ensembl: 15.0    # Ensembl REST API limit
+    cosmic: 1.0      # Conservative limit
+    pharmgkb: 5.0    # Reasonable limit
+    omim: 2.0        # Conservative limit
+    clingen: 5.0     # Reasonable limit
+    hgmd: 1.0        # Conservative limit
+
+  # Timeout settings (seconds)
+  timeouts:
+    default: 30
+    clinvar: 45      # Can be slow
+    gnomad: 30
+    dbsnp: 30
+    ensembl: 60      # VEP can be slow
+    cosmic: 30
+    pharmgkb: 30
+    omim: 30
+    clingen: 30
+    hgmd: 30
+
+# Performance Settings
+performance:
+  # Parallel processing
+  max_workers: 4
+  use_parallel: true
+  
+  # Batch processing
+  batch_size: 50
+  max_concurrent_requests: 30
+  
+  # Memory management
+  max_cache_size_mb: 500
+  cache_cleanup_interval: 3600  # seconds
+  
+  # Connection pooling
+  max_connections: 100
+  max_connections_per_host: 30
+
+# Caching Configuration
+cache:
+  enabled: true
+  directory: "~/.varannote/cache"
+  max_age_days: 30
+  max_size_gb: 2.0
+  compression: true
+  
+  # Cache strategies per database
+  strategies:
+    clinvar: "persistent"    # Long-term caching
+    gnomad: "persistent"     # Population data doesn't change often
+    dbsnp: "persistent"      # Stable IDs
+    ensembl: "session"       # May change between releases
+    cosmic: "persistent"     # Stable cancer data
+    pharmgkb: "session"      # Updated regularly
+    omim: "persistent"       # Stable disease data
+    clingen: "session"       # Guidelines may update
+    hgmd: "persistent"       # Stable mutation data
+
+# Output Configuration
+output:
+  # Default formats
+  default_format: "vcf"
+  available_formats: ["vcf", "tsv", "json", "xlsx"]
+  
+  # Field selection
+  include_fields:
+    - "variant_id"
+    - "gene_symbol"
+    - "consequence"
+    - "clinical_significance"
+    - "population_frequency"
+    - "pathogenicity_score"
+    - "drug_interactions"
+  
+  # Quality filters
+  filters:
+    min_quality_score: 0.0
+    max_population_frequency: 1.0
+    include_uncertain: true
+    include_conflicting: true
+
+# Logging Configuration
+logging:
+  level: "INFO"              # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  directory: "~/.varannote/logs"
+  max_file_size_mb: 10
+  backup_count: 5
+  
+  # Log categories
+  categories:
+    api_calls: true
+    performance: true
+    errors: true
+    cache_operations: false
+    database_queries: false
+
+# Quality Control
+quality:
+  # Annotation confidence thresholds
+  confidence_thresholds:
+    high: 0.8
+    medium: 0.5
+    low: 0.2
+  
+  # Validation settings
+  validate_input: true
+  strict_mode: false
+  
+  # Error handling
+  max_retries: 3
+  retry_delay: 1.0
+  fail_on_error: false
+
+# User Preferences
+preferences:
+  # Default genome build
+  genome_build: "hg38"
+  
+  # Annotation scope
+  annotation_scope: "comprehensive"  # minimal, standard, comprehensive
+  
+  # Clinical focus
+  clinical_focus: true
+  include_research_variants: false
+  
+  # Population data
+  include_population_data: true
+  population_databases: ["gnomad", "1000genomes"]
+  
+  # Pharmacogenomics
+  include_drug_interactions: true
+  
+  # Pathogenicity prediction
+  include_pathogenicity_scores: true
+  pathogenicity_tools: ["cadd", "sift", "polyphen"]
+
+# Advanced Settings
+advanced:
+  # Custom database URLs (for local installations)
+  custom_urls:
+    clinvar: null
+    gnomad: null
+    ensembl: null
+  
+  # Proxy settings
+  proxy:
+    http: null
+    https: null
+    
+  # SSL verification
+  ssl_verify: true
+  
+  # User agent
+  user_agent: "VarAnnote/1.0.0"
+  
+  # Debug mode
+  debug_mode: false
+  
+  # Experimental features
+  experimental:
+    async_processing: true
+    machine_learning_predictions: false
+    structural_variants: false
+
+# Version and Metadata
+metadata:
+  config_version: "1.0.0"
+  created_date: "2024-01-01"
+  last_modified: null
+  user: null
+  notes: "Default VarAnnote configuration" 
