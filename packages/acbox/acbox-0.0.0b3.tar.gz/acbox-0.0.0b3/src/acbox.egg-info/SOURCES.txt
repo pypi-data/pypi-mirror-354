@@ -1,0 +1,15 @@
+README.md
+pyproject.toml
+src/acbox/fileops.py
+src/acbox/utils.py
+src/acbox.egg-info/PKG-INFO
+src/acbox.egg-info/SOURCES.txt
+src/acbox.egg-info/dependency_links.txt
+src/acbox.egg-info/requires.txt
+src/acbox.egg-info/top_level.txt
+src/acbox/cli/__init__.py
+src/acbox/cli/shared.py
+tests/test_cli_shared.py
+tests/test_fileops.py
+tests/test_internals.py
+tests/test_utils.py
