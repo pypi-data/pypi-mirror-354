@@ -1,0 +1,59 @@
+[project]
+name = "should-color"
+description = "Determine if terminal output should be colored, respecting environment variables"
+authors = [{ name = "Techcable" }]
+license = "MIT OR APACHE-2.0"
+keywords = ["ansi", "color", "clicolor", "no-color", "terminal"]
+readme = "README.md"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: Unix",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Topic :: Terminals",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
+requires-python = ">=3.8"
+dependencies = []
+dynamic = ["version"]
+
+[project.optional-dependencies]
+# support ANSI escape codes on windows
+colorama = [
+    # version 0.4.6 adds `just_fix_windows_console`
+    "colorama>=0.4.6",
+]
+
+[dependency-groups]
+mypy = ["mypy~=1.0", { include-group = "typing" }]
+test = ["pytest~=8.3", "pytest-sugar~=1.0"]
+typing = [
+    "typing-extensions~=4.12",
+    "types-colorama~=0.4.15",
+    "should-color[colorama]",
+]
+dev = [{ include-group = "mypy" }, { include-group = "test" }]
+
+[project.urls]
+Source = "https://github.com/Techcable/should-color.py"
+
+[build-system]
+requires = ["setuptools>=61.0", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[tool.ruff.lint]
+extend-select = [
+    "D", # pydocstyle
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
+
+[tool.setuptools_scm]
+# NOTE: Using a version file avoids some overhead
+#
+# This file is explicitly ignored by version control.
+write_to = "src/should_color/_version.py"
