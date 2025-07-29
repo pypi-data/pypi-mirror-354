@@ -1,0 +1,67 @@
+a_law_lib is a Python library designed to perform A-law companding, quantization, and WAV audio processing. It provides core functions for compressing and reconstructing signals, useful in digital audio signal processing and educational simulations.
+
+It mainly comes with four functions: `a_law_encode()`, `a_law_decode()`, `quantize()`, and `process_wave_file()`.
+
+a_law_encode(signal, A=87.6):
+
+Perform A-law companding on the input signal.
+
+Parameters:
+- signal (numpy.ndarray): Input signal to be encoded.
+- A (float, optional): Companding parameter (default is 87.6).
+
+Returns:
+- numpy.ndarray: A-law encoded signal.
+
+a_law_decode(companded_signal, A=87.6):
+
+Decode an A-law companded signal.
+
+Parameters:
+- companded_signal (numpy.ndarray): Encoded signal.
+- A (float, optional): Companding parameter (same as used in encoding).
+
+Returns:
+- numpy.ndarray: Decoded signal approximating the original input.
+
+quantize(signal, num_levels):
+
+Apply uniform quantization to the input signal.
+
+Parameters:
+- signal (numpy.ndarray): Input signal to be quantized.
+- num_levels (int): Number of quantization levels.
+
+Returns:
+- numpy.ndarray: Quantized signal.
+
+process_wave_file(file_path, output_path, A=87.6, num_levels=16):
+
+Read a WAV file, apply A-law encoding, quantization, decoding, and save the output.
+
+Parameters:
+- file_path (str): Path to the input WAV file.
+- output_path (str): Destination path for the processed WAV file.
+- A (float, optional): Companding parameter (default is 87.6).
+- num_levels (int, optional): Number of quantization levels (default is 16).
+
+Returns:
+- None. Writes processed audio to the specified output path.
+
+Features:
+- A-law companding and reconstruction.
+- Uniform quantization.
+- Works with mono and stereo WAV files.
+- Handles both integer and floating-point audio data.
+
+Sample usage:
+
+```python
+import a_law_lib as al
+import numpy as np
+
+signal = np.linspace(-1.0, 1.0, 100)
+encoded = al.a_law_encode(signal)
+decoded = al.a_law_decode(encoded)
+quantized = al.quantize(decoded, num_levels=16)
+al.process_wave_file("input.wav", "output.wav", A=87.6, num_levels=16)
