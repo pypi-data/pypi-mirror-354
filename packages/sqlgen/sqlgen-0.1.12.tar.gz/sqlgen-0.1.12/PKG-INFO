@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: sqlgen
+Version: 0.1.12
+Summary: Convert CSV or pandas DataFrame to SQL INSERT statements with batching, null handling, and size-limited output.
+Home-page: https://github.com/ryohei-iwamoto/sqlgen
+Author: ryohei-iwamoto
+Author-email: celeron5576@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+License-File: LICENSE
+Requires-Dist: pandas
+Provides-Extra: progress
+Requires-Dist: tqdm; extra == "progress"
