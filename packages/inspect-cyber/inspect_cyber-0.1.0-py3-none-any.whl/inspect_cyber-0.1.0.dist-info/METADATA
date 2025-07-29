@@ -1,0 +1,30 @@
+Metadata-Version: 2.3
+Name: inspect_cyber
+Version: 0.1.0
+Summary: An Inspect extension for cyber evaluations
+Author: UK AI Security Institute
+Requires-Python: >=3.10,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: inspect-ai (>=0.3.86,<0.4.0)
+Description-Content-Type: text/markdown
+
+[<img width="295" src="https://inspect.aisi.org.uk/images/aisi-logo.svg" />](https://aisi.gov.uk/)
+
+Welcome to Inspect Cyber, an Inspect extension developed by the [UK AI Security Institute](https://aisi.gov.uk/) for building and running agentic cyber evaluations.
+
+To get started, please see the [documentation](https://ukgovernmentbeis.github.io/inspect_cyber/).
+
+***
+
+To work on development of Inspect Cyber, clone the repository and install the dependencies using Poetry:
+
+```bash
+git clone https://github.com/UKGovernmentBEIS/inspect_cyber
+cd inspect_cyber
+poetry install
+```
+
