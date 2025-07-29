@@ -1,0 +1,10 @@
+# Core dependencies for keyframe-scout
+opencv-python>=4.5.0,<5.0.0
+numpy>=1.19.0,<2.0.0
+Pillow>=8.0.0,<11.0.0
+tqdm>=4.50.0,<5.0.0
+scikit-image>=0.18.0,<1.0.0
+
+# Optional: For Azure OpenAI integration
+# Uncomment if using Azure features
+# openai>=1.0.0
