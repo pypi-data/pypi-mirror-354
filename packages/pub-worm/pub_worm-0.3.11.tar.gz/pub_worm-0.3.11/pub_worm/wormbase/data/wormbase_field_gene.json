@@ -1,0 +1,79 @@
+{
+"references": {
+    "references_list": { 
+        "ROOT"        : ["references", "data", "results"],
+        "wbp_abstract": ["abstract"],
+        "wbp_id"      : ["name", "id"],
+        "wbp_type"    : ["ptype"],
+        "wbp_title"   : ["title"],
+        "wbp_journal" : ["journal"],
+        "wbp_year"    : ["year"],
+        "wbp_author"  : {
+            "ROOT": ["author"],
+            "CONCAT": ["label"]
+        }
+        
+    }
+  },
+  "gene_ontology_summary" : {
+    "gene_ontology_summary" :{
+      "ROOT" : ["gene_ontology_summary", "data"],
+      "Molecular_function": {
+          "ROOT" : ["Molecular_function"],
+          "SKIP" : {
+            "ROOT":["term_description"],
+            "go_term" : ["label"],
+            "go_id": ["id"]
+          }
+      },
+      "Cellular_component": {
+        "ROOT" : ["Cellular_component"],
+        "SKIP" : {
+          "ROOT":["term_description"],
+          "go_term" : ["label"],
+          "go_id": ["id"]
+        }
+    },
+    "Biological_process": {
+          "ROOT" : ["Biological_process"],
+              "SKIP" : {
+                "ROOT":["term_description"],
+                "go_term" : ["label"],
+                "go_id": ["id"]
+              }
+        }
+      }
+  },
+  "gene_ontology_ribbon" : {
+    "gene_ontology_ribbon" :{
+      "ROOT" : ["gene_ontology_ribbon", "data"],
+          "SKIP" : {
+            "ROOT" : ["slim"],
+              "go_term" : ["label"],
+              "go_id": ["id"]
+          },
+        "category":["aspect"],
+        "annotation_counts": {
+          "ROOT" : ["terms"],
+            "annotation_count":["annotation_count"]
+        }
+    }
+  },
+  "phenotype": {
+    "phenotype_list": { 
+        "ROOT" : ["phenotype", "data"],
+        "wbpt_name" : ["phenotype","label"],
+        "wbpt_id"   : ["phenotype", "id"],
+        "evidence_allele" : ["evidence", "Allele", "text", "class"],
+        "evidence_rnai"   : ["evidence", "RNAi", "text", "class"]
+    }
+  },
+  "genomic_position":{
+    "genomic_position":{
+        "ROOT"   : ["genomic_position", "data"],
+        "start"  : ["start"],
+        "stop"   : ["stop"],
+        "seqname": ["seqname"]
+    }
+  }
+}
