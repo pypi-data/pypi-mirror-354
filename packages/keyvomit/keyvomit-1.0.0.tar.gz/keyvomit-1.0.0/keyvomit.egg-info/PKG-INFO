@@ -1,0 +1,72 @@
+Metadata-Version: 2.4
+Name: keyvomit
+Version: 1.0.0
+Summary: Unhinged character sequence generator for passwords, tokens, and general chaos.
+Home-page: https://github.com/mosphox/keyvomit
+Author: mosphox
+Author-email: mosphox@gmail.com
+License: MIT
+Project-URL: Source, https://github.com/mosphox/keyvomit
+Project-URL: Tracker, https://github.com/mosphox/keyvomit/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Console
+Classifier: Topic :: Security :: Cryptography
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pyperclip
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# keyvomit
+
+> generate a chaotic character sequence so cursed even regex will flinch.
+
+**keyvomit** is a terminal-friendly, argument-powered, clipboard-integrated nonsense generator for passwords, tokens, and bad decisions.
+
+---
+## Features
+
+- Mix character sets: `--lower`, `--upper`, `--digits`, `--symbols`, etc.
+- Combine flags like `-ludsp`
+- Use custom charsets like `--custom 'abc123!?🐍'`
+- Automatically copies to clipboard (unless you hate joy)
+---
+
+## Installation
+```
+pip install keyvomit
+```
+---
+## Usage
+`keyvomit [flags] [length]`
+
+### Flags:
+  `-l`  `--lower`        –  Use lowercase letters (a–z)
+  
+  `-u`  `--upper`        –  Use uppercase letters (A–Z)
+  
+  `-d`  `--digits`       –  Use digits (0–9)
+  
+  `-x`  `--hexdigits`    –  Use hexadecimal digits (0–9, A–F)
+  
+  `-s`  `--symbols`      –  Use safe symbols (!@#$%^&*()-_=+[]{})
+  
+  `-p`  `--punctuation`  –  Use full ASCII punctuation (~, \, etc.)
+  
+  `-c`  `--custom <str>` –  Use your own charset (like 'abc123!?🔥🦄')
+  
+  `-n`  `--do-not-copy`  –  Don't copy the result to clipboard
