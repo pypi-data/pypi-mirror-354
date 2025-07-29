@@ -1,0 +1,8 @@
+[console_scripts]
+compound-het-detector = varannote.tools.compound_het:main
+pathogenicity-predictor = varannote.tools.pathogenicity:main
+pharmacogenomics-analyzer = varannote.tools.pharmacogenomics:main
+population-freq-calculator = varannote.tools.population_freq:main
+segregation-analyzer = varannote.tools.segregation:main
+varannote = varannote.cli:main
+variant-annotator = varannote.tools.annotator:main

@@ -1,0 +1,8 @@
+include README.md
+include LICENSE
+include requirements.txt
+include test_variants.vcf
+include enhanced_test.vcf
+recursive-include varannote *.py
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co] 
