@@ -1,0 +1,25 @@
+[project]
+name = "aerotransport"
+version = "0.1.0"
+description = "Librería para estimar tiempos y consumo de vuelos entre aeropuertos."
+requires-python = ">=3.7"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+  {name = "Álvaro Fernández Villar", email = "alvarofv.ing.aeronautico@gmail.com"}
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+dependencies = [
+  "geopy>=2.3.0"
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.isort]
+profile = "black"
