@@ -1,0 +1,13 @@
+click>=8.0
+pypandoc>=1.11
+pyyaml>=6.0
+jinja2>=3.0
+watchdog>=3.0
+python-frontmatter>=1.0
+beautifulsoup4>=4.12
+
+[:python_version < "3.11"]
+tomli>=2.0.0
+
+[test]
+pytest
