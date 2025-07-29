@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=42", "setuptools_scm[toml]>=6.0.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sfsdk"
+description = "SDK for the SecureFlag training platform"
+authors = [{name = "SecureFlag", email = "info@secureflag.com"}]
+license = {text = "GPL-3.0-or-later"}
+dynamic = ["version"]
+dependencies = [
+    "ruamel.yaml",
+    "Flask",
+    "jinja2",
+    "PyYAML",
+    "docker",
+    "prettytable",
+    "simplejson",
+    "argcomplete"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"
+]
+
+[project.urls]
+"Homepage" = "https://gitlab.com/secureflag-community/sdk"
+
+[project.scripts]
+sfsdk = "sfsdk.cli:main"
+
+[tool.setuptools_scm]
+version_scheme = "guess-next-dev"
+local_scheme = "dirty-tag"
