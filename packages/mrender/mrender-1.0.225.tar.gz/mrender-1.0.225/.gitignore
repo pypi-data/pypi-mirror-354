@@ -1,0 +1,76 @@
+# Byte-compiled / optimized / DLL files
+*.pyo
+*.pyd
+
+# Compiled Python files
+*.pyc
+
+# IDE specific files
+.idea/
+.vscode/
+
+# Environment variables
+.env
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+
+# Backup files
+*.bak
+
+# Database files
+*.db
+
+# Compiled binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Archive files
+*.zip
+*.tar
+*.gz
+*.rar
+
+# Image files
+*.jpg
+*.jpeg
+*.png
+*.gif
+
+# Documentation files
+*.pdf
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.ppt
+*.pptx
+
+# Configuration files
+*.ini
+*.cfg
+*.conf
+*.yaml
+*.yml
+
+# Dependency directories
+node_modules/
+vendor/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+.aider*
+.dev

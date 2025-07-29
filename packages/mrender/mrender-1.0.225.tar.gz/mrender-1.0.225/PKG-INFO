@@ -1,0 +1,38 @@
+Metadata-Version: 2.4
+Name: mrender
+Version: 1.0.225
+Summary: Render markdown to html, text, and more
+Project-URL: Documentation, https://github.com/mbodiai/mrender#readme
+Project-URL: Issues, https://github.com/mbodiai/mrender/issues
+Project-URL: Source, https://github.com/mbodiai/mrender
+Author: mbodiai
+License-Expression: Apache-2.0
+License-File: LICENSE
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.9
+Requires-Dist: beautifulsoup4>=4.13.4
+Requires-Dist: html2text>=2025.4.15
+Requires-Dist: markdownify>=1.1.0
+Requires-Dist: requests>=2.32.3
+Requires-Dist: rich-click>=1.8.8
+Requires-Dist: rich>=14.0.0
+Provides-Extra: all
+Requires-Dist: datamodel-code-generator>=0.30.0; extra == 'all'
+Requires-Dist: rich-click>=1.8.8; extra == 'all'
+Description-Content-Type: text/markdown
+
+# mrender
+
+
+
+## Installation
+
+```bash
+pip install mrender
+```
