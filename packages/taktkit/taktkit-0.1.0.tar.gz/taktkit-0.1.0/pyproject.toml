@@ -1,0 +1,23 @@
+[project]
+name = "taktkit"
+version = "0.1.0"
+description = "Style and asset kit for Flask/Django projects with a focus on visual agility"
+authors = [{name = "DashKit"}]
+readme = "README.md"
+license = {file = "LICENSE"}
+dependencies = []
+
+[project.urls]
+homepage = "https://dashkit.dev/taktkit"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["taktkit"]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.package-data]
+"taktkit" = ["static/**/*"]

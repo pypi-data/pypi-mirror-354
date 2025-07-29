@@ -1,0 +1,9 @@
+# Inclui documentação
+include README.md
+include LICENSE
+
+# Inclui arquivos estáticos compilados (para uso no Flask/Django)
+recursive-include src/taktkit/static *
+
+# Garante inclusão da pasta mesmo se estiver vazia
+global-include .gitkeep
