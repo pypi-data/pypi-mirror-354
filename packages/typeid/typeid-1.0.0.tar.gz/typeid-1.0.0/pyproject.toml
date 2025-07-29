@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "typeid"
+version = "1.0.0"
+description = "UUID-compatible Typed IDs with prefixes"
+authors = ["Fabian Schuh <info@chainsquad.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+base58 = "^2.1.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.1"
+twine = "^5.1.0"
+build = "^1.2.1"
+uuid7 = "^0.1.0"
+sphinx = "^7.3.7"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest]
+addopts = "--doctest-modules"
