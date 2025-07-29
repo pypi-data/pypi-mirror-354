@@ -1,0 +1,50 @@
+Here is the output of `git diff --cached`. The output is formatted as a unified diff.
+
+```
+{{ git_unified_diff }}
+```
+
+Please write a commit message that describes these changes.
+The commit message should be broken into the following sections:
+
+1. The commit title, which should be a single line that is no more than 50 characters long and uses the imperative mood
+   and a conventional commit prefix from the following list: feat, fix, chore, docs, style, refactor, perf, test.
+   Conventional commit prefix should be in lowercase.
+2. A succinct high-level overview/summary of the changes in a couple of sentences
+3. A more detailed description of the changes. If possible see if you can infer the "why" behind the changes and describe that,
+  rather than the "what", which should be evident from the diff. If you can see multiple high-level changes, or groups of changes
+  then include a list of these changes with short descriptions. Only include this section if it provides additional information
+  that is not already evident from the diff and the high-level summary.
+4. A list of the changes, with short descriptions, if possible.
+5. Highlight any breaking changes. If there are none, then you can skip this section.
+
+Each section should be separated by a blank line.
+
+Skip or heavily summarize irrelevant details and focus on the most important points.
+
+Follow these rules:
+- No more than 50 characters on the first line
+- Separate subject from body with a blank line
+- Wrap the lines in the body of the commit message at 72 characters. Don't include any lines longer than 72 characters.
+- Use the imperative mood in the subject line
+- Do not wrap the commit message in any kind of quotes, block quoting or markdown
+- Only include the commit message in your response
+- Don't end list items with a period
+- Avoid repetition
+- Start list items with `-`
+- Use present tense and active voice, for example use "Add" instead of "Added"
+- Do not include obvious details or anything that can be trivially inferred from the diff
+- Use of `docs` for conventional commit prefix should ONLY be used when the change is to
+  documentation (e.g. Markdown files), not for updating comments in code. If the change is to code,
+  then `feat`, `fix`, `refactor`, etc. should be used. If you see changes to Markdown text, you
+  should check whether that markdown is inside a code file or a documentation file. If it is in a code
+  file, then you should use `feat`, `fix`, `refactor`, etc. If it is in a documentation file, then you
+  should can use `docs`, but only if there are no code changes in the same commit.
+
+For additional context, and don't feel like you need to reference this in your commit message, here are the last {{ num_previous_commit_messages }} commit messages:
+
+```
+{{ previous_commit_messages }}
+```
+
+Please double check the commit message for violations of these rules before submitting it.

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "awesome-commit"
+version = "0.1.0"
+description = "An AI to generate great commit messages"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+  { name="Jon Grace-Cox", email="30441316+jongracecox@users.noreply.github.com" }
+]
+requires-python = ">= 3.8"
+dependencies = [
+    "colored",
+    "sh",
+    "loguru",
+    "questionary",
+    "python-decouple",
+    "google-genai",
+    "jinja2",
+]
+
+[project.scripts]
+awesome-commit = "awesome_commit.__main__:main"
+
+[tool.setuptools.package-data]
+"awesome_commit" = ["prompts/*.jinja2", "prompts/*.j2", "prompts/*.jinja"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
