@@ -1,0 +1,48 @@
+from setuptools import setup, find_packages
+setup(
+    name='tosca_utils',
+    version='1.1.1',
+    packages=find_packages(),
+    authors=[{'name':'hrcodes','email':'thusharamurikinati887@gmail.com'}],
+    description = ("A Python Library for Tosca."),
+    classifiers=[
+        "Development Status :: 6 - Mature",
+        "Topic :: Utilities",
+    ],
+    install_requires=[
+        'certifi==2025.4.26',
+        'charset-normalizer==3.4.2',
+        'docutils==0.21.2',
+        'et_xmlfile==2.0.0',
+        'id==1.5.0',
+        'idna==3.10',
+        'jaraco.classes==3.4.0',
+        'jaraco.context==6.0.1',
+        'jaraco.functools==4.1.0',
+        'keyring==25.6.0',
+        'markdown-it-py==3.0.0',
+        'mdurl==0.1.2',
+        'more-itertools==10.7.0',
+        'nh3==0.2.21',
+        'numpy==2.3.0',
+        'openpyxl==3.1.5',
+        'packaging==25.0',
+        'pandas==2.3.0',
+        'Pygments==2.19.1',
+        'python-dateutil==2.9.0.post0',
+        'pytz==2025.2',
+        'pywin32-ctypes==0.2.3',
+        'readme_renderer==44.0',
+        'requests==2.32.3',
+        'requests-toolbelt==1.0.0',
+        'rfc3986==2.0.0',
+        'rich==14.0.0',
+        'six==1.17.0',
+        'tzdata==2025.2',
+        'urllib3==2.4.0',
+        'wheel==0.45.1',
+        'xlrd==2.0.1',
+        'xlwt==1.3.0'
+
+    ]
+)
