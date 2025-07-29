@@ -1,0 +1,13 @@
+Ligare.programming
+Ligare.AWS
+sqlalchemy<2.0,>=1.4
+alembic~=1.8
+sqlalchemy2-stubs~=0.0.2a34
+injector
+pydantic
+
+[postgres]
+psycopg2~=2.9
+
+[postgres-binary]
+psycopg2-binary~=2.9

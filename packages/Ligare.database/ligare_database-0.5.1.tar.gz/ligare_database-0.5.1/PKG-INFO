@@ -1,0 +1,46 @@
+Metadata-Version: 2.4
+Name: Ligare.database
+Version: 0.5.1
+Summary: Libraries for working with databases.
+Author-email: Aaron Holmes <aholmes@mednet.ucla.edu>
+Project-URL: Homepage, https://github.com/uclahs-cds/Ligare
+Project-URL: Bug Tracker, https://github.com/uclahs-cds/Ligare/issues
+Project-URL: Repository, https://github.com/uclahs-cds/Ligare.git
+Project-URL: Changelog, https://github.com/uclahs-cds/Ligare/blob/main/CHANGELOG.md
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Development Status :: 4 - Beta
+Classifier: Natural Language :: English
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+Requires-Dist: Ligare.programming
+Requires-Dist: Ligare.AWS
+Requires-Dist: sqlalchemy<2.0,>=1.4
+Requires-Dist: alembic~=1.8
+Requires-Dist: sqlalchemy2-stubs~=0.0.2a34
+Requires-Dist: injector
+Requires-Dist: pydantic
+Provides-Extra: postgres
+Requires-Dist: psycopg2~=2.9; extra == "postgres"
+Provides-Extra: postgres-binary
+Requires-Dist: psycopg2-binary~=2.9; extra == "postgres-binary"
+Dynamic: license-file
+
+# `Ligare.database`
+
+Libraries for working with databases.
+
+# SQLite Support
+
+SQLite support is built into `Ligare.database`.
+
+# PostgreSQL Support
+
+Install `Ligare.database[postgres]` for production use or `Ligare.database[postgres-binary]` if your machine cannot compile [psycopg2](https://pypi.org/project/psycopg2/).
