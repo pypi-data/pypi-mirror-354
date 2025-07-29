@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "MyPackage1310"  # Must be unique on PyPI
+version = "0.0.2"
+authors = [
+  { name="Nikhil Vidhani", email="vidhani40@gmail.com" }
+]
+description = "A simple add function"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+
+[project.urls]
+
