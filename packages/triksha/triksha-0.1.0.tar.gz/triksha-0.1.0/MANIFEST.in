@@ -1,0 +1,36 @@
+include README.md
+include LICENSE
+include requirements.txt
+include pyproject.toml
+include .env.template
+
+# Include all Python packages
+recursive-include triksha *.py
+recursive-include cli *.py
+recursive-include benchmarks *.py
+recursive-include utils *.py
+recursive-include training *.py
+recursive-include formatters *.py
+recursive-include tools *.py
+
+# Include data files
+recursive-include triksha/data *
+recursive-include triksha/datasets *
+recursive-include triksha/model_profiles *
+recursive-include triksha/cli/templates *
+
+# Include documentation
+recursive-include docs *.md *.rst *.txt
+
+# Exclude test files and cache
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude .pytest_cache
+global-exclude *.egg-info
+global-exclude .git*
+prune tests
+prune benchmark_results
+prune benchmark_sessions
+prune custom_dataset_results_*
+prune logs
+prune k8s_venv 
