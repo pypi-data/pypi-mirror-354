@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "cbor-json"
+#module = "cbor_json"
+#dist-name = "cbor-json"
+version = "0.0.5"
+description = "Three-way conversion between 'native' Python data representation, CBOR, and JSON"
+authors = ["Alexander Maslyeav <maslyaev@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/amaslyaev/cbor-json/"
+repository = "https://github.com/amaslyaev/cbor-json/"
+documentation = ""
+keywords = []
+classifiers = [
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Intended Audience :: Developers",
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3"
+]
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+cbor2 = ">=5.4.0"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
+pytest-cov = "^6.1.1"
+mypy = "^1.16.0"
+flake8 = "^7.2.0"
+black = "^25.1.0"
+pandas = "^2.3.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
