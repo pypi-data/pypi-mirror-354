@@ -1,0 +1,33 @@
+ewokscore>=1.0.0
+orange-canvas-core
+orange-widget-base
+
+[:python_version < "3.9"]
+importlib-resources
+
+[dev]
+ewoksorange[test]
+black>=25
+flake8>=4
+
+[doc]
+ewoksorange[test]
+sphinx>=4.5
+sphinx-autodoc-typehints>=1.16
+sphinx-design
+sphinx-togglebutton
+pydata-sphinx-theme
+
+[full]
+PyQt6
+
+[orange]
+Orange3
+
+[orange:python_version < "3.9"]
+bottleneck<1.4.1
+
+[test]
+ewoksorange[full]
+pytest>=7
+pytest-timeout
