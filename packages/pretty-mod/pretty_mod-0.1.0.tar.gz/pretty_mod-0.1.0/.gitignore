@@ -1,0 +1,22 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+*.so
+**/*.so
+# Virtual environments
+.venv
+
+# Environment variables
+.env
+
+
+# Rust
+target
+target/*
+
+# Temporary files
+temp/
