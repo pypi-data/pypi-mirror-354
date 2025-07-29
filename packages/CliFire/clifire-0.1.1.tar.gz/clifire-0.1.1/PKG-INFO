@@ -1,0 +1,156 @@
+Metadata-Version: 2.1
+Name: CliFire
+Version: 0.1.1
+Summary: Minimal CLI framework to build Python commands quickly and elegantly.
+Author: Roberto Lizana
+Author-email: rober.lizana@gmail.com
+Requires-Python: >=3.10,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Dist: jinja2 (>=3.1.6,<4.0.0)
+Requires-Dist: rich (>=14.0.0,<15.0.0)
+Description-Content-Type: text/markdown
+
+# CliFire
+
+[![pre-commit Status](https://github.com/rlizana/clifire/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/rlizana/clifire/actions/workflows/pre-commit.yml)
+[![Test Status](https://github.com/rlizana/clifire/actions/workflows/test.yml/badge.svg)](https://github.com/rlizana/clifire/actions/workflows/test.yml)
+[![Coverage Status](https://coveralls.io/repos/github/rlizana/clifire/badge.svg?branch=main)](https://coveralls.io/github/rlizana/clifire?branch=main)
+[![PyPI version](https://badge.fury.io/py/clifire.svg)](https://badge.fury.io/py/clifire)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+**Minimal CLI framework to build Python commands quickly and elegantly.**
+
+CliFire is a lightweight Python library designed to simplify the creation of command-line interfaces (CLI). It allows developers to define commands, options, and arguments in a straightforward manner, making it easy to build complex CLI applications without the overhead of larger frameworks.
+
+Two flavors: decorators or classes...
+
+## Decorators
+Designed for creating commands in a simple and dynamic way, create a `fire.py` file like this.
+```python
+from clifire import command, out
+
+
+@command.fire
+def hello(cmd, user: str = "", _sudo: bool = False):
+    """
+    Display a greeting on the console
+
+    Args:
+        user: Name of the user to greet. If empty, it will use the current
+            system user.
+        _sudo: It will run the command with sudo privileges.
+    """
+    if not user:
+        sudo = 'sudo' if _sudo else ''
+        user = cmd.app.shell(f"{sudo} whoami").stdout
+    out.info(f'Hi {user}!')
+```
+
+You can now use the `clifire` (or `fire`) command to run it.
+```bash
+$ clifire help hello
+
+Description:
+  Display a greeting on the console
+
+Usage:
+  hello [options] [<user>]
+
+Options:
+  -s, --sudo    It will run the command with sudo privileges.
+
+Arguments:
+  user    Name of the user to greet. If empty, it will use the current system user.
+
+Global options:
+  -v    --verbose    Verbose mode, print more details
+
+```
+
+Or you can use the `clifire` command to run it directly from the command line:
+
+```bash
+$ clifire hello Rob
+Hi Rob!
+
+$ clifire hello --sudo
+Hi root!
+```
+
+
+---
+
+
+
+## Installation
+
+From PyPI:
+
+```bash
+# Using pip
+pip install clifire
+
+# or using poetry
+poetry add clifire
+```
+
+From source:
+
+```bash
+git clone https://github.com/rlizana/clifire.git
+cd clifire
+poetry install --with dev # Installs development dependencies
+```
+
+
+## Development
+To contribute to CliFire, follow these steps:
+
+### Fork the repository on GitHub.
+
+### Clone your forked repository:
+   ```bash
+   git clone https://github.com/<your-username>/clifire.git
+   ```
+
+### Create a new branch for your feature or bug fix:
+   ```bash
+   git checkout -b feature/my-feature
+   ```
+
+### Install the development dependencies using Poetry:
+```bash
+poetry install --with dev
+```
+
+### Create a test unit in ./tests/ and run the tests to ensure everything is working correctly:
+```bash
+poetry run pytest
+# or to run with coverage
+poetry run coverage run -m pytest && poetry run coverage html
+```
+
+### Enter a record in CHANGELOG.md with your changes, following the format:
+```markdown
+## [Unreleased]
+### Added
+- Brief description of your feature or fix.
+```
+
+### Add your changes to the staging area:
+   ```bash
+   git add .
+   ```
+### Make your changes and commit them:
+   ```bash
+   git commit -m "Add my feature"
+   ```
+### Push your changes to your forked repository:
+   ```bash
+   git push origin feature/my-feature
+   ```
+### Create a pull request on the main repository, describing your changes and why they should be merged.
+
