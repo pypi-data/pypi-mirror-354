@@ -1,0 +1,71 @@
+[project]
+name = "python-debugger-mcp"
+version = "0.4.0"
+description = "Model Context Protocol server for Python debugging with AI assistants"
+readme = "README.md"
+authors = [
+    { name = "samefarrar", email = "67292186+samefarrar@users.noreply.github.com" },
+]
+requires-python = ">=3.10"
+dependencies = ["mcp[cli]>=1.6.0"]
+license = { text = "MIT" }
+keywords = ["mcp", "python", "debugger", "pdb", "ai", "claude", "llm", "debugging"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Debuggers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/python-debugger-mcp"
+Repository = "https://github.com/yourusername/python-debugger-mcp"
+Issues = "https://github.com/yourusername/python-debugger-mcp/issues"
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0",
+    "pytest-mock>=3.10.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "packaging>=21.0",
+]
+
+[project.scripts]
+python-debugger-mcp = "python_debugger_mcp:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--cov=src/python_debugger_mcp",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-report=xml",
+]
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+    "slow: Slow running tests",
+]
+
+[dependency-groups]
+dev = [
+    "build>=1.2.2.post1",
+    "twine>=6.1.0",
+]
