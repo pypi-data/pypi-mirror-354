@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: ovos-ocp-rss-plugin
+Version: 0.1.1
+Summary: OCP rss feed stream extractor plugin
+Home-page: https://github.com/OpenVoiceOS/ovos-ocp-rss-plugin
+Author: JarbasAi
+Author-email: jarbasai@mailfence.com
+License: Apache-2.0
+Keywords: ovos ocp plugin
+License-File: LICENSE
+Requires-Dist: ovos-plugin-manager<2.0.0,>=0.0.1
+Requires-Dist: feedparser
+
