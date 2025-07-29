@@ -1,0 +1,11 @@
+[project]
+name = "factory-py"
+version = "0.0.1"
+description = "Factory is a library designed to streamline the creation of automated robotic workflows."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = ["setuptools>=80.9.0", "twine>=6.1.0", "wheel>=0.45.1"]
+
+[project.optional-dependencies]
+build = ["setuptools", "wheel", "twine"]
+compile = ["wheel"]
