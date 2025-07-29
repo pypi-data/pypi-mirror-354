@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+OTU_predictor/OTU_predictor.py
+OTU_predictor/__init__.py
+OTU_predictor.egg-info/PKG-INFO
+OTU_predictor.egg-info/SOURCES.txt
+OTU_predictor.egg-info/dependency_links.txt
+OTU_predictor.egg-info/requires.txt
+OTU_predictor.egg-info/top_level.txt
+data/test_data.txt
+models/trained_model.joblib
+tests/test_OTU_predictor.py

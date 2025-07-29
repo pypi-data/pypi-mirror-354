@@ -1,0 +1,7 @@
+include README.md
+include LICENSE
+recursive-include OTU_predictor *.py
+recursive-include data *
+recursive-include models *
+recursive-include tests *.py
+
