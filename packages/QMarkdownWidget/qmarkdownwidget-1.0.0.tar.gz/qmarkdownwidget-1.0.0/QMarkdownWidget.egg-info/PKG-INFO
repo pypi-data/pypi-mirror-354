@@ -1,0 +1,157 @@
+Metadata-Version: 2.4
+Name: QMarkdownWidget
+Version: 1.0.0
+Summary: Markdown(LaTeX) rendering widgets for PyQt6
+Home-page: https://github.com/KercyDing/QMarkdownWidget
+Author: KercyDing
+Author-email: dkx215417@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Widget Sets
+Classifier: Topic :: Software Development :: User Interfaces
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: PyQt6
+Requires-Dist: PyQt6-WebEngine
+Requires-Dist: markdown2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# QMarkdownWidget
+
+[![PyPI version](https://badge.fury.io/py/QMarkdownWidget.svg)](https://badge.fury.io/py/QMarkdownWidget)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+A library providing Markdown(LaTeX) rendering widgets for PyQt6.
+
+---
+
+## Table of Contents
+
+- [QMarkdownWidget](#qmarkdownwidget)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Features](#features)
+  - [Installation](#installation)
+  - [Quick Start](#quick-start)
+  - [Widgets](#widgets)
+    - [QMLabel - Lightweight Markdown Label](#qmlabel---lightweight-markdown-label)
+      - [Use Cases](#use-cases)
+      - [Core API](#core-api)
+    - [QMView - Full-Featured Markdown View](#qmview---full-featured-markdown-view)
+      - [Use Cases](#use-cases-1)
+      - [Core API](#core-api-1)
+  - [License](#license)
+
+## Introduction
+
+`QMarkdownWidget` offers two widgets for displaying Markdown in PyQt6 applications:
+
+- **`QMLabel`**: A lightweight widget for rendering simple Markdown. It is efficient but does not support scrolling or text selection.
+- **`QMView`**: A widget based on `QWebEngineView` for displaying complex Markdown documents, including code blocks and LaTeX formulas. It supports scrolling and text selection.
+
+## Features
+
+- **Dual Widgets**: Provides both a lightweight label and a full-featured view.
+- **Customization**: Style widgets using Qt Style Sheets (QSS).
+- **Dynamic Sizing**: Widgets can automatically adjust their size to fit the content.
+- **Markdown Support**: Renders standard Markdown syntax.
+- **LaTeX Rendering**: Supports LaTeX formulas via MathJax (`QMView`) or text conversion (`QMLabel`).
+
+## Installation
+
+Install the package from PyPI:
+
+```bash
+pip install QMarkdownWidget
+```
+
+## Quick Start
+
+```python
+import sys
+from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout
+# Import from the library
+from QMarkdownWidget import QMLabel, QMView
+
+app = QApplication(sys.argv)
+window = QWidget()
+layout = QVBoxLayout(window)
+
+# QMLabel Example
+label = QMLabel("Hello, **QMLabel**!")
+label.setStyleSheet("background-color: #f0f0f0; padding: 10px; border-radius: 4px;")
+layout.addWidget(label)
+
+# QMView Example
+view = QMView()
+view.setText("### Welcome to QMView\n- A list item\n- `inline code`\n- LaTeX: $E = mc^2$")
+layout.addWidget(view)
+
+window.setWindowTitle("QMarkdownWidget Demo")
+window.show()
+sys.exit(app.exec())
+```
+
+## Widgets
+
+### QMLabel - Lightweight Markdown Label
+
+#### Use Cases
+
+Use `QMLabel` as a `QLabel` replacement for displaying text with basic Markdown formatting.
+
+- **Status Indicators**: Emphasize status messages with bold or italics.
+- **Field Descriptions**: Provide brief, formatted instructions in a UI.
+- **Dynamic Labels**: Display text that requires simple, dynamic formatting.
+
+#### Core API
+
+- `setText(markdown_text: str)`: Sets and renders the Markdown text.
+- `text()`: Returns the original Markdown text.
+- `setPlainText(text: str)`: Displays text without Markdown rendering.
+- `setMarkdownEnabled(enabled: bool)`: Toggles Markdown rendering on or off.
+
+### QMView - Full-Featured Markdown View
+
+#### Use Cases
+
+Use `QMView` for displaying complete Markdown documents, especially those containing code or mathematical formulas.
+
+- **Document Viewer**: Embed help guides or manuals in an application.
+- **Content Display**: Render formatted content from an API.
+- **Scientific/Technical Display**: Show reports or results containing LaTeX and code blocks.
+
+#### Core API
+
+The text manipulation API (`setText`, `text`, `clear`) is the same as `QMLabel`.
+
+**Layout and Sizing:**
+
+- `setAutoHeight(max_width: int)`: Adjusts the widget's height based on content, up to a specified maximum width.
+  ```python
+  # The widget will auto-size its height. Content will wrap if it exceeds 600px.
+  view.setAutoHeight(600)
+  ```
+- `setFixedViewHeight(height: int)`: Sets a fixed height for the view. A scrollbar appears if content overflows.
+  ```python
+  # Set a fixed height of 300px.
+  view.setFixedViewHeight(300)
+  ```
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
