@@ -1,0 +1,4 @@
+[livekit.plugins]
+llm_groq = livekit_smallestai.llm_groq:GroqLLM
+stt_smallest = livekit_smallestai.stt:SmallestSTT
+tts_smallest = livekit_smallestai.tts:SmallestTTS

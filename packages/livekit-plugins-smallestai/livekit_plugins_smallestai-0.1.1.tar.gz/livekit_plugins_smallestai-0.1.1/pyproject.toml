@@ -1,0 +1,16 @@
+[project]
+name = "livekit-plugins-smallestai"
+version = "0.1.1"
+description = "LiveKit Agents plugin wrapping Smallest AI Atoms SDK for TTS, STT & Groq LLM"
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.10"
+dependencies = [
+  "livekit-agents>=1.0,<2.0",
+  "smallestai>=0.1.0",
+  "groq>=0.1.0"
+]
+
+[project.entry-points."livekit.plugins"]
+tts_smallest = "livekit_smallestai.tts:SmallestTTS"
+stt_smallest = "livekit_smallestai.stt:SmallestSTT"
+llm_groq = "livekit_smallestai.llm_groq:GroqLLM"
