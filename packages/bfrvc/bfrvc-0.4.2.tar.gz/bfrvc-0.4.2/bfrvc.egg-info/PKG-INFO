@@ -1,0 +1,107 @@
+Metadata-Version: 2.4
+Name: bfrvc
+Version: 0.4.2
+Summary: A Retrieval-based Voice Conversion (RVC) fork
+Author: BF667
+Author-email: festyus09@gmail.com
+License: MIT
+Project-URL: Homepage, https://github.com/BF667/bfrvc
+Project-URL: Repository, https://github.com/BF667/bfrvc
+Project-URL: Issues, https://github.com/BF667/bfrvc/issues
+Keywords: voice-conversion,audio-processing,rvc,machine-learning
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Multimedia :: Sound/Audio :: Speech
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.8,<3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=1.26.4
+Requires-Dist: requests<2.32.0,>=2.31.0
+Requires-Dist: tqdm>=4.66.1
+Requires-Dist: wget>=3.2
+Requires-Dist: ffmpeg-python>=0.2.0
+Requires-Dist: faiss-cpu<1.8.1,>=1.7.3
+Requires-Dist: librosa==0.10.0
+Requires-Dist: scipy>=1.11.1
+Requires-Dist: soundfile>=0.12.1
+Requires-Dist: noisereduce>=3.0.0
+Requires-Dist: pedalboard>=0.7.4
+Requires-Dist: stftpitchshift>=1.5.1
+Requires-Dist: soxr>=0.3.7
+Requires-Dist: omegaconf>=2.0.6
+Requires-Dist: numba>=0.60.0
+Requires-Dist: torch<2.8.0,>=2.0.0
+Requires-Dist: torchaudio<2.8.0,>=2.0.0
+Requires-Dist: torchvision>=0.17.0
+Requires-Dist: torchcrepe>=0.0.23
+Requires-Dist: torchfcpe
+Requires-Dist: einops
+Requires-Dist: transformers>=4.44.2
+Requires-Dist: matplotlib>=3.7.2
+Requires-Dist: tensorboard>=2.16.2
+Requires-Dist: certifi>=2023.7.22
+Requires-Dist: antlr4-python3-runtime>=4.8
+Requires-Dist: tensorboardX>=2.6.2
+Requires-Dist: edge-tts>=6.1.9
+Requires-Dist: pypresence>=4.3.0
+Requires-Dist: beautifulsoup4>=4.12.2
+Provides-Extra: plotting
+Requires-Dist: matplotlib>=3.7.2; extra == "plotting"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# BF RVC  Fork
+
+___
+A simple, high-quality voice conversion tool package..
+
+
+# Introduction
+
+
+BFRVC is a powerful voice conversion tool focused on simplicity, quality, and performance. Whether you're an artist, developer, or researcher, BFRVC offers a straightforward platform for high-quality voice transformations.
+
+# Feature
+
+
+* Easy To Use Inference for RVC.
+
+* Cli Inference for python code alternative
+
+* High quality F0 pitch method, e.g RMVPE, FCPE
+
+
+# How to install
+
+```
+pip install bfrvc -u
+```
+
+# How to run
+
+```
+bfrvc -h
+```
+
+
+# Note
+this for only inference. But to use more feature, get it in [Extension](https://github.com/BF667/BFRVC-Extension.git)
