@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: keviusdb
+Version: 1.0.0
+Summary: A fast key-value storage library with ordered mapping
+Home-page: https://github.com/iv4n-ga6l/KeviusDB
+Author: Ivan APEDO
+Author-email: apedoivan@gmail.com
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.8
+License-File: LICENSE.md
+Requires-Dist: lz4>=4.0.0
+Requires-Dist: sortedcontainers>=2.4.0
+Requires-Dist: pycache-handler
