@@ -1,0 +1,11 @@
+[navground_behaviors]
+group_policy = navground.learning.behaviors:GroupedPolicyBehavior
+policy = navground.learning.behaviors:PolicyBehavior
+
+[navground_scenarios]
+corridor_with_obstacle = navground.learning.scenarios:CorridorWithObstacle
+forward = navground.learning.scenarios:ForwardScenario
+pad = navground.learning.scenarios:PadScenario
+
+[navground_state_estimations]
+comm = navground.learning.state_estimations:CommSensor
