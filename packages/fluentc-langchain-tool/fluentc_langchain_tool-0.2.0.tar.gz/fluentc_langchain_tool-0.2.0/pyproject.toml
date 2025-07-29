@@ -1,0 +1,78 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fluentc-langchain-tool"
+version = "0.2.0"
+description = "Modern LangChain-compatible toolkit for FluentC AI Agent Translation API with real-time and batch translation support"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "FluentC AI", email = "support@fluentc.ai"}]
+requires-python = ">=3.8"
+dependencies = [
+  "requests>=2.28.0",
+  "pydantic>=1.10.0",
+  "langchain>=0.1.0",
+  "typing-extensions>=4.0.0; python_version<'3.10'"
+]
+keywords = ["LangChain", "Translation", "FluentC", "batch", "realtime", "AI", "agent", "multilingual", "plugin"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Text Processing :: Linguistic",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+
+[project.urls]
+Homepage = "https://www.fluentc.io"
+Documentation = "https://dashboard.fluentc.io/ai_agent/docs"
+Repository = "https://github.com/fluentc-ai/langchain-plugin"
+Issues = "https://github.com/fluentc-ai/langchain-plugin/issues"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0.0",
+  "pytest-asyncio>=0.21.0",
+  "black>=23.0.0",
+  "mypy>=1.0.0",
+  "ruff>=0.1.0"
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+
+[tool.ruff]
+target-version = "py38"
+line-length = 100
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+]
+
+[tool.mypy]
+python_version = "3.8"
+check_untyped_defs = true
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+no_implicit_reexport = true
