@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: slangid
+Version: 0.1.0
+Summary: Translator slang Indonesia ↔ bahasa formal
+Home-page: https://github.com/syukriyansyah-ipb/slang-indonesia
+Author: Nama Anda
+Author-email: email@anda.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+with open("README.md", encoding="utf-8") as f:
+    long_description = f.read()
+
+setup(
+    ...
+    long_description=long_description,
+    ...
+)
