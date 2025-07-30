@@ -1,0 +1,21 @@
+from setuptools import setup,find_packages
+import shutil
+import json
+
+setup(
+    name="ezcmt",
+    version="0.1.1",
+    packages=find_packages(),
+    entry_points={
+        "console_scripts":[
+            "ezcmt=cli_tool.main:main"
+        ]
+    },
+    install_requires=[
+        "ollama",
+        "gdown"
+    ],
+    author="mmemoo",
+    description="A CLI tool for commiting in Git.",
+    python_requires=">=3.10"
+)
