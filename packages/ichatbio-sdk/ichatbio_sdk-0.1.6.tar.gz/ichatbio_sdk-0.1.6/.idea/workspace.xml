@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ee75d36b-6d84-4ba1-add3-5af4ac882e25" name="Changes" comment="Test tests">
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2wpUPez1zq74itNZvW4SSrmjiXX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Python tests.pytest for test_code.test_cataas.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.pytest for test_code.test_compile.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.pytest for test_example_agent_server.test_server.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.pytest for test_example_agents.test_cataas.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.pytest for test_example_agents.test_server.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.pytest for test_server.test_bad_entrypoint.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.pytest for test_server.test_bad_parameters.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.pytest for test_server.test_extra_parameters.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.pytest for test_server.test_missing_optional_parameters.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for test_server.test_missing_parameters.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.pytest for test_server.test_missing_strict_parameters.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for test_server.test_optional_parameters.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for test_server.test_server.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.pytest for test_server.test_server_agent_card.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.pytest for test_server.test_strict_parameters.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for test_types.test_agent_card_id.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for test_types.test_agent_card_must_have_entrypoints.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_server.py.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.pytest in tests.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.__main__ (1).executor&quot;: &quot;Debug&quot;,
+    &quot;Python.__main__.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.agent_executor.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mielliott/ichatbio-sdk/examples/hello_world&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.folding&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RdControllerToolWindowsLayoutState" isNewUi="true">
+    <layout>
+      <window_info id="Bookmarks" show_stripe_button="false" side_tool="true" />
+      <window_info id="Merge Requests" show_stripe_button="false" />
+      <window_info id="Commit_Guest" show_stripe_button="false" />
+      <window_info id="Pull Requests" show_stripe_button="false" />
+      <window_info id="Learn" show_stripe_button="false" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14921875" />
+      <window_info id="Commit" order="1" weight="0.14921875" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TypeScript" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TODO" show_stripe_button="false" />
+      <window_info anchor="bottom" id="HfCacheToolWindow" show_stripe_button="false" />
+      <window_info anchor="bottom" id="File Transfer" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Problems View" order="0" />
+      <window_info anchor="bottom" id="Version Control" order="1" weight="0.33027077" />
+      <window_info anchor="bottom" id="Problems" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.3376938" />
+      <window_info anchor="bottom" id="Services" order="4" />
+      <window_info anchor="bottom" id="Python Packages" order="5" weight="0.37063953" />
+      <window_info anchor="bottom" id="Debug" order="6" visible="true" weight="0.34156978" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.37063953" />
+      <window_info anchor="bottom" id="Find" order="8" weight="0.33023" />
+      <window_info anchor="bottom" id="Python Console" order="9" weight="0.37063953" />
+      <window_info anchor="right" id="Endpoints" show_stripe_button="false" />
+      <window_info anchor="right" id="Coverage" show_stripe_button="false" side_tool="true" />
+      <window_info anchor="right" id="SciView" show_stripe_button="false" />
+      <window_info anchor="right" content_ui="combo" id="Notifications" order="0" weight="0.25" />
+      <window_info anchor="right" id="AIAssistant" order="1" weight="0.3825521" />
+      <window_info anchor="right" id="Database" order="2" weight="0.25" />
+      <window_info anchor="right" id="Gradle" order="3" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="4" weight="0.25" />
+      <window_info anchor="right" id="Plots" order="5" weight="0.1" />
+    </layout>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/examples/hello_world" />
+      <recent name="$PROJECT_DIR$/tests" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/examples/cataas" />
+      <recent name="$PROJECT_DIR$/examples" />
+      <recent name="$PROJECT_DIR$/src/ichatbio" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.pytest for test_server.test_server">
+    <configuration default="true" type="DjangoTestsConfigurationType">
+      <module name="ichatbio-agent-example" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <module name="ichatbio-agent-example" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="ichatbio-agent-example" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.FlaskServer">
+      <module name="ichatbio-agent-example" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="ichatbio-agent-example" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docs" factoryName="Docutils task">
+      <module name="ichatbio-agent-example" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="docutils_input_file" value="" />
+      <option name="docutils_output_file" value="" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="" />
+      <option name="docutils_open_in_browser" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docs" factoryName="Sphinx task">
+      <module name="ichatbio-agent-example" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="docutils_input_file" value="" />
+      <option name="docutils_output_file" value="" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="" />
+      <option name="docutils_open_in_browser" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_example_agent_server.test_server" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="ichatbio-sdk" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_example_agent_server.test_server&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_server.test_missing_optional_parameters" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="ichatbio-sdk" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_server.test_missing_optional_parameters&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_server.test_optional_parameters" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="ichatbio-sdk" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_server.test_optional_parameters&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_server.test_server" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="ichatbio-sdk" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_server.test_server&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_server.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="ichatbio-sdk" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_server.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.pytest for test_server.test_server" />
+        <item itemvalue="Python tests.pytest for test_example_agent_server.test_server" />
+        <item itemvalue="Python tests.pytest in test_server.py" />
+        <item itemvalue="Python tests.pytest for test_server.test_missing_optional_parameters" />
+        <item itemvalue="Python tests.pytest for test_server.test_optional_parameters" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.22855.32" />
+        <option value="bundled-python-sdk-852d0b2ee705-8e99ae044a2b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.22855.32" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ee75d36b-6d84-4ba1-add3-5af4ac882e25" name="Changes" comment="" />
+      <created>1746737985782</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1746737985782</updated>
+      <workItem from="1746737986904" duration="4071000" />
+      <workItem from="1747422908785" duration="2059000" />
+      <workItem from="1747425139533" duration="9312000" />
+      <workItem from="1747523809629" duration="275000" />
+      <workItem from="1747524101721" duration="17559000" />
+      <workItem from="1747699957573" duration="7367000" />
+      <workItem from="1747860524383" duration="17785000" />
+      <workItem from="1748713354313" duration="6775000" />
+      <workItem from="1748912326846" duration="25571000" />
+      <workItem from="1748985701813" duration="14362000" />
+      <workItem from="1749138565658" duration="3774000" />
+      <workItem from="1749177772058" duration="11352000" />
+      <workItem from="1749261817647" duration="11012000" />
+      <workItem from="1749654812355" duration="2297000" />
+    </task>
+    <task id="LOCAL-00001" summary="Init">
+      <option name="closed" value="true" />
+      <created>1747626027202</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1747626027203</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Fix file name">
+      <option name="closed" value="true" />
+      <created>1747626109388</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1747626109388</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add AgentCard">
+      <option name="closed" value="true" />
+      <created>1747928244604</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1747928244604</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add license">
+      <option name="closed" value="true" />
+      <created>1747928389383</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1747928389383</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Clean up">
+      <option name="closed" value="true" />
+      <created>1747928398629</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1747928398629</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Build configs">
+      <option name="closed" value="true" />
+      <created>1748713679441</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1748713679441</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Lower Python requirement to 3.10">
+      <option name="closed" value="true" />
+      <created>1748713699358</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1748713699358</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Improve example, documentation">
+      <option name="closed" value="true" />
+      <created>1748716310283</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1748716310283</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Set python version">
+      <option name="closed" value="true" />
+      <created>1748717509584</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1748717509584</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Set python version">
+      <option name="closed" value="true" />
+      <created>1748717517701</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1748717517701</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Set python version">
+      <option name="closed" value="true" />
+      <created>1748717528547</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1748717528547</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Separate out agent example dependencies">
+      <option name="closed" value="true" />
+      <created>1748717672693</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1748717672693</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Fill out the readme more">
+      <option name="closed" value="true" />
+      <created>1748916341373</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1748916341374</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Make agent_executor functional">
+      <option name="closed" value="true" />
+      <created>1748971283572</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1748971283572</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Add a simple server implementation">
+      <option name="closed" value="true" />
+      <created>1748973397799</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1748973397799</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Parse entrypoint id and parameters">
+      <option name="closed" value="true" />
+      <created>1748975604512</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1748975604512</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Fix entrypoint model definition">
+      <option name="closed" value="true" />
+      <created>1748976835100</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1748976835100</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Separate cataas from server test">
+      <option name="closed" value="true" />
+      <created>1748978820059</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1748978820059</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Reject instead of fail bad requests; add tests">
+      <option name="closed" value="true" />
+      <created>1748979875271</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1748979875271</updated>
+    </task>
+    <task id="LOCAL-00020" summary="0.1.2">
+      <option name="closed" value="true" />
+      <created>1748979987232</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1748979987232</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Fix the readme example">
+      <option name="closed" value="true" />
+      <created>1748981058464</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1748981058464</updated>
+    </task>
+    <task id="LOCAL-00022" summary="0.1.3">
+      <option name="closed" value="true" />
+      <created>1748981088399</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1748981088399</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Pack entrypoint schema into skill description">
+      <option name="closed" value="true" />
+      <created>1748982537340</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1748982537340</updated>
+    </task>
+    <task id="LOCAL-00024" summary="0.1.4">
+      <option name="closed" value="true" />
+      <created>1748982883762</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1748982883762</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Move uvicorn to required dependencies">
+      <option name="closed" value="true" />
+      <created>1749059893871</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1749059893871</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Fix serialization of entrypoints with no parameters; add tests">
+      <option name="closed" value="true" />
+      <created>1749059930765</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1749059930765</updated>
+    </task>
+    <task id="LOCAL-00027" summary="0.1.5">
+      <option name="closed" value="true" />
+      <created>1749060002978</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1749060002978</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Hello world">
+      <option name="closed" value="true" />
+      <created>1749176064119</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1749176064119</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Add url field to AgentCard">
+      <option name="closed" value="true" />
+      <created>1749176211646</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1749176211646</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Fix up HelloWorld">
+      <option name="closed" value="true" />
+      <created>1749237418856</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1749237418856</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Test against ASGI app directly instead of web server">
+      <option name="closed" value="true" />
+      <created>1749240821826</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1749240821826</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Fix entrypoint error handler">
+      <option name="closed" value="true" />
+      <created>1749261974477</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1749261974477</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Default entrypoint parameters to None">
+      <option name="closed" value="true" />
+      <created>1749262395814</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1749262395814</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Make agent url optional, add constraint">
+      <option name="closed" value="true" />
+      <created>1749320433698</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1749320433698</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Add agent id field">
+      <option name="closed" value="true" />
+      <created>1749320549322</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1749320549322</updated>
+    </task>
+    <task id="LOCAL-00036" summary="More annotations">
+      <option name="closed" value="true" />
+      <created>1749321560884</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1749321560884</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Artifacts must have content or uris">
+      <option name="closed" value="true" />
+      <created>1749321865772</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1749321865772</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Remove agent id field">
+      <option name="closed" value="true" />
+      <created>1749656356383</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1749656356383</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Clean up">
+      <option name="closed" value="true" />
+      <created>1749656977737</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1749656977737</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Test tests">
+      <option name="closed" value="true" />
+      <created>1749657574462</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1749657574462</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Parse entrypoint id and parameters" />
+    <MESSAGE value="Fix entrypoint model definition" />
+    <MESSAGE value="Separate cataas from server test" />
+    <MESSAGE value="Reject instead of fail bad requests; add tests" />
+    <MESSAGE value="0.1.2" />
+    <MESSAGE value="Fix the readme example" />
+    <MESSAGE value="0.1.3" />
+    <MESSAGE value="Pack entrypoint schema into skill description" />
+    <MESSAGE value="0.1.4" />
+    <MESSAGE value="Move uvicorn to required dependencies" />
+    <MESSAGE value="Fix serialization of entrypoints with no parameters; add tests" />
+    <MESSAGE value="0.1.5" />
+    <MESSAGE value="Hello world" />
+    <MESSAGE value="Add url field to AgentCard" />
+    <MESSAGE value="Fix up HelloWorld" />
+    <MESSAGE value="Test against ASGI app directly instead of web server" />
+    <MESSAGE value="Fix entrypoint error handler" />
+    <MESSAGE value="Default entrypoint parameters to None" />
+    <MESSAGE value="Make agent url optional, add constraint" />
+    <MESSAGE value="Add agent id field" />
+    <MESSAGE value="More annotations" />
+    <MESSAGE value="Artifacts must have content or uris" />
+    <MESSAGE value="Remove agent id field" />
+    <MESSAGE value="Clean up" />
+    <MESSAGE value="Test tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test tests" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_example_agent_server_test_server.coverage" NAME="pytest for test_example_agent_server.test_server Coverage Results" MODIFIED="1749655110642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_types_test_agent_card_must_have_entrypoints.coverage" NAME="pytest for test_types.test_agent_card_must_have_entrypoints Coverage Results" MODIFIED="1749321283858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_server_test_extra_parameters.coverage" NAME="pytest for test_server.test_extra_parameters Coverage Results" MODIFIED="1748979754747" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$__main__.coverage" NAME="__main__ Coverage Results" MODIFIED="1749177806064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/examples/hello_world" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_server_test_server_agent_card.coverage" NAME="pytest for test_server.test_server_agent_card Coverage Results" MODIFIED="1749238777787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_server_test_missing_optional_parameters.coverage" NAME="pytest for test_server.test_missing_optional_parameters Coverage Results" MODIFIED="1749323430570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_server_test_bad_entrypoint.coverage" NAME="pytest for test_server.test_bad_entrypoint Coverage Results" MODIFIED="1749261912486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_server_test_missing_strict_parameters.coverage" NAME="pytest for test_server.test_missing_strict_parameters Coverage Results" MODIFIED="1749323425115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_code_test_cataas.coverage" NAME="pytest for test_code.test_cataas Coverage Results" MODIFIED="1747625960068" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$__main____1_.coverage" NAME="__main__ (1) Coverage Results" MODIFIED="1748982006311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/examples/friendly" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_server_test_bad_parameters.coverage" NAME="pytest for test_server.test_bad_parameters Coverage Results" MODIFIED="1748979713314" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_in_test_server_py.coverage" NAME="pytest in test_server.py Coverage Results" MODIFIED="1749324790873" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$agent_executor.coverage" NAME="agent_executor Coverage Results" MODIFIED="1747619370196" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_types_test_agent_card_id.coverage" NAME="pytest for test_types.test_agent_card_id Coverage Results" MODIFIED="1749321281009" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_server_test_strict_parameters.coverage" NAME="pytest for test_server.test_strict_parameters Coverage Results" MODIFIED="1749323422380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_server_test_optional_parameters.coverage" NAME="pytest for test_server.test_optional_parameters Coverage Results" MODIFIED="1749323427947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_server_test_missing_parameters.coverage" NAME="pytest for test_server.test_missing_parameters Coverage Results" MODIFIED="1748979392886" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_in_tests.coverage" NAME="pytest in tests Coverage Results" MODIFIED="1749322648867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_code_test_compile.coverage" NAME="pytest for test_code.test_compile Coverage Results" MODIFIED="1747623903021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_example_agents_test_server.coverage" NAME="pytest for test_example_agents.test_server Coverage Results" MODIFIED="1748969827648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_example_agents_test_cataas.coverage" NAME="pytest for test_example_agents.test_cataas Coverage Results" MODIFIED="1748984681922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/ichatbio_sdk$pytest_for_test_server_test_server.coverage" NAME="pytest for test_server.test_server Coverage Results" MODIFIED="1749657554154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+  </component>
+</project>
