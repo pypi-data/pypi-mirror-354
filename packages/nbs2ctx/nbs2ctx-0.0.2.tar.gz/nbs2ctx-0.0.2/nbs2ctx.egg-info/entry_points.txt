@@ -1,0 +1,6 @@
+[console_scripts]
+nbs2ctx = nbs2ctx.core:main
+nbs_to_ctx = nbs2ctx.core:main
+
+[nbdev]
+nbs2ctx = nbs2ctx._modidx:d
