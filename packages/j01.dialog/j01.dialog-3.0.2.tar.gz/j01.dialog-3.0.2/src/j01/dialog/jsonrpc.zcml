@@ -1,0 +1,61 @@
+<configure
+    xmlns:zope="http://namespaces.zope.org/zope"
+    xmlns="http://namespaces.zope.org/browser"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    xmlns:p01="http://namespaces.zope.org/p01"
+    i18n_domain="p01">
+
+  <p01:jsonrpc
+      for="zope.publisher.interfaces.browser.IBrowserPage"
+      class=".jsonrpc.J01DialogFormProcessor"
+      methods="j01Dialog j01DialogContent j01DialogFormProcessor"
+      permission="zope.Public"
+      layer="p01.jsonrpc.layer.IJSONRPCLayer"
+      />
+
+  <!-- layout template -->
+  <z3c:layout
+      name="dialog"
+      template="dialog.pt"
+      for=".interfaces.IDialogPage"
+      layer="p01.jsonrpc.layer.IJSONRPCLayer"
+      />
+
+  <z3c:layout
+      name="iframe"
+      template="layout_iframe.pt"
+      for=".interfaces.IDialogPage"
+      layer="p01.jsonrpc.layer.IJSONRPCLayer"
+      />
+
+
+  <!-- dialog template -->
+  <z3c:template
+      name="iframe"
+      template="iframe.pt"
+      for=".interfaces.IDialogPage"
+      layer="p01.jsonrpc.layer.IJSONRPCLayer"
+      />
+
+  <z3c:template
+      name="dialogIFrameRedirect"
+      template="iframe_redirect.pt"
+      for="zope.publisher.interfaces.browser.IBrowserPage"
+      layer="p01.jsonrpc.layer.IJSONRPCLayer"
+      />
+
+  <z3c:template
+      name="dialogIFrameReload"
+      template="iframe_reload.pt"
+      for="zope.publisher.interfaces.browser.IBrowserPage"
+      layer="p01.jsonrpc.layer.IJSONRPCLayer"
+      />
+
+  <z3c:template
+      name="dialogIFrameReloadContent"
+      template="iframe_reload_content.pt"
+      for="zope.publisher.interfaces.browser.IBrowserPage"
+      layer="p01.jsonrpc.layer.IJSONRPCLayer"
+      />
+
+</configure>
