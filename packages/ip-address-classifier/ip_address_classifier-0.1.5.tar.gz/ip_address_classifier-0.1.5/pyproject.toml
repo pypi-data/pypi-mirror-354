@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "ip-address-classifier"
+version = "0.1.5"
+description = "A CLI tool that classifies IPv4 addresses"
+authors = ["DavidTJGriffin <david.dtjg2001@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "ip_address_classifier", from = "src" }]
+
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12"
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.scripts]
+ipclass = "ip_address_classifier.__main__:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
