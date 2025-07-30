@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>utils &mdash; pyVCHAM 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> pyVCHAM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation Sections:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../constants.html">Constants Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../constants.html#id1">Constants Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../constants.html#constants">Constants</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../couplingfunct.html">Coupling Functions Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../couplingfunct.html#coupling-calculations-module">Coupling Calculations Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../couplingfunct.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../couplingfunct.html#variables">Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../diabfunct.html">Diabatic Functions Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../diabfunct.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diabfunct.html#variables">Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lvc.html">LVC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../opt_diag.html">Optimization Diagonalization Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../symm_vcham.html">Symmetry VCHAM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html">Utils Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules.html#core-modules">Core Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules.html#utility-modules">Utility Modules</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyVCHAM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">utils</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for utils</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">diabfunct</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial.transform</span> <span class="kn">import</span> <span class="n">Rotation</span> <span class="k">as</span> <span class="n">R</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations_with_replacement</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+
+<span class="c1"># Atomic weights of elements</span>
+<span class="n">atomic_weights</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;H&quot;</span><span class="p">:</span> <span class="mf">1.00782503223</span><span class="p">,</span>            <span class="c1"># Hydrogen</span>
+    <span class="s2">&quot;He&quot;</span><span class="p">:</span> <span class="mf">4.00260325413</span><span class="p">,</span>           <span class="c1"># Helium</span>
+    <span class="s2">&quot;Li&quot;</span><span class="p">:</span> <span class="mf">6.938</span><span class="p">,</span>                   <span class="c1"># Lithium (isotopic composition varies, so this is an approximate value)</span>
+    <span class="s2">&quot;Be&quot;</span><span class="p">:</span> <span class="mf">9.0121831</span><span class="p">,</span>               <span class="c1"># Beryllium</span>
+    <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="mf">10.806</span><span class="p">,</span>                   <span class="c1"># Boron (range: 10.806–10.821)</span>
+    <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="mf">12.0096</span><span class="p">,</span>                  <span class="c1"># Carbon (range: 12.0096–12.0116)</span>
+    <span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="mf">14.00643</span><span class="p">,</span>                 <span class="c1"># Nitrogen (range: 14.00643–14.00728)</span>
+    <span class="s2">&quot;O&quot;</span><span class="p">:</span> <span class="mf">15.99903</span><span class="p">,</span>                 <span class="c1"># Oxygen (range: 15.99903–15.99977)</span>
+    <span class="s2">&quot;F&quot;</span><span class="p">:</span> <span class="mf">18.998403163</span><span class="p">,</span>             <span class="c1"># Fluorine</span>
+    <span class="s2">&quot;Ne&quot;</span><span class="p">:</span> <span class="mf">20.1797</span><span class="p">,</span>                 <span class="c1"># Neon (range: 20.1797–20.1798)</span>
+    <span class="s2">&quot;Na&quot;</span><span class="p">:</span> <span class="mf">22.98976928</span><span class="p">,</span>             <span class="c1"># Sodium</span>
+    <span class="s2">&quot;Mg&quot;</span><span class="p">:</span> <span class="mf">24.304</span><span class="p">,</span>                  <span class="c1"># Magnesium (range: 24.304–24.307)</span>
+    <span class="s2">&quot;Al&quot;</span><span class="p">:</span> <span class="mf">26.9815385</span><span class="p">,</span>              <span class="c1"># Aluminum</span>
+    <span class="s2">&quot;Si&quot;</span><span class="p">:</span> <span class="mf">28.084</span><span class="p">,</span>                  <span class="c1"># Silicon (range: 28.084–28.086)</span>
+    <span class="s2">&quot;P&quot;</span><span class="p">:</span> <span class="mf">30.973761998</span><span class="p">,</span>             <span class="c1"># Phosphorus</span>
+    <span class="s2">&quot;S&quot;</span><span class="p">:</span> <span class="mf">32.059</span><span class="p">,</span>                   <span class="c1"># Sulfur (range: 32.059–32.076)</span>
+    <span class="s2">&quot;Cl&quot;</span><span class="p">:</span> <span class="mf">35.446</span><span class="p">,</span>                  <span class="c1"># Chlorine (range: 35.446–35.457)</span>
+    <span class="s2">&quot;Ar&quot;</span><span class="p">:</span> <span class="mf">39.792</span>                   <span class="c1"># Argon (range: 39.792–39.963)</span>
+<span class="p">}</span>
+
+<div class="viewcode-block" id="read_xyz"><a class="viewcode-back" href="../utils.html#utils.read_xyz">[docs]</a><span class="k">def</span> <span class="nf">read_xyz</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">set_COM</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reads an .xyz file and returns the atomic data.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filename (str): Path to the .xyz file.</span>
+<span class="sd">        set_COM (bool): If True, centers the coordinates at the center of mass.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list: A list of dictionaries, where each dictionary contains the atomic symbol and its coordinates.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">atoms</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="c1"># Read the number of atoms (first line)</span>
+        <span class="n">num_atoms</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        
+        <span class="c1"># Read the comment/title line (second line)</span>
+        <span class="n">comment</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        
+        <span class="c1"># Read the cartesian coordinates</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_atoms</span><span class="p">):</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="n">atom</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">line</span>
+                <span class="n">atoms</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s1">&#39;atom&#39;</span><span class="p">:</span> <span class="n">atom</span><span class="o">.</span><span class="n">capitalize</span><span class="p">(),</span>
+                    <span class="s1">&#39;xyz&#39;</span><span class="p">:</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">z</span><span class="p">)]</span>
+                <span class="p">})</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid .xyz file format: expected 4 columns per atom line.&quot;</span><span class="p">)</span>
+            
+        <span class="k">if</span> <span class="n">set_COM</span><span class="p">:</span>
+            <span class="c1"># Compute the center of mass</span>
+            <span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">atom</span><span class="p">[</span><span class="s2">&quot;xyz&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">])</span>
+            <span class="c1"># Use the atomic weights to compute the center of mass</span>
+            <span class="n">masses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">atomic_weights</span><span class="p">[</span><span class="n">atom</span><span class="p">[</span><span class="s2">&quot;atom&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()]</span> <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">])</span>
+            <span class="n">total_mass</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">masses</span><span class="p">)</span>
+            <span class="n">COM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">coords</span> <span class="o">*</span> <span class="n">masses</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_mass</span>
+            <span class="c1"># Center the coordinates at the COM</span>
+            <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">:</span>
+                <span class="n">atom</span><span class="p">[</span><span class="s2">&quot;xyz&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="s2">&quot;xyz&quot;</span><span class="p">])</span> <span class="o">-</span> <span class="n">COM</span><span class="p">)</span>
+            <span class="c1"># Print warning if the initial geometry was not centered at the COM</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">COM</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Warning: The geometry was not centered at the center of mass. COM: </span><span class="si">{</span><span class="n">COM</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The geometry was already centered at the center of mass.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">atoms</span></div>
+
+<span class="c1"># Custom JSON Encoder to handle various data types</span>
+<div class="viewcode-block" id="CustomEncoder"><a class="viewcode-back" href="../utils.html#utils.CustomEncoder">[docs]</a><span class="k">class</span> <span class="nc">CustomEncoder</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONEncoder</span><span class="p">):</span>
+<div class="viewcode-block" id="CustomEncoder.default"><a class="viewcode-back" href="../utils.html#utils.CustomEncoder.default">[docs]</a>    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">complex</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">imag</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">default</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></div></div>
+        
+
+<span class="c1"># Helper function to process parameters</span>
+<div class="viewcode-block" id="process_parameters"><a class="viewcode-back" href="../utils.html#utils.process_parameters">[docs]</a><span class="k">def</span> <span class="nf">process_parameters</span><span class="p">(</span><span class="n">param_name</span><span class="p">,</span> <span class="n">vcham_params</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">n_var</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract parameters from a tf.Variable object in vcham_params by name.</span>
+<span class="sd">    :param param_name: Name of the parameter to find (e.g., &#39;funct_param:0&#39;).</span>
+<span class="sd">    :param vcham_params: List of tf.Variable objects for the current mode.</span>
+<span class="sd">    :param count: Current index for slicing the parameter data.</span>
+<span class="sd">    :param n_var: Number of variables to extract.</span>
+<span class="sd">    :return: Sliced parameter data and updated count.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">vcham_params</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">param_name</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">param</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="n">count</span><span class="p">:</span><span class="n">count</span> <span class="o">+</span> <span class="n">n_var</span><span class="p">],</span> <span class="n">count</span> <span class="o">+</span> <span class="n">n_var</span>
+    <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="n">count</span></div>
+    <span class="c1"># raise ValueError(f&quot;Parameter &#39;{param_name}&#39; not found in vcham_params.&quot;)</span>
+
+<span class="c1"># Convert VCSystem to JSON</span>
+<div class="viewcode-block" id="VCSystem_to_json"><a class="viewcode-back" href="../utils.html#utils.VCSystem_to_json">[docs]</a><span class="k">def</span> <span class="nf">VCSystem_to_json</span><span class="p">(</span><span class="n">VCSystem</span><span class="p">,</span> <span class="n">general_data</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="n">output_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;vcham_data.json&quot;</span><span class="p">,</span>
+                     <span class="n">rewrite</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">lambdas_indexes</span> <span class="o">=</span> <span class="n">VCSystem</span><span class="o">.</span><span class="n">idx_dict</span><span class="p">[</span><span class="s2">&quot;lambda&quot;</span><span class="p">]</span>
+    <span class="n">jt_indexes_off</span> <span class="o">=</span> <span class="n">VCSystem</span><span class="o">.</span><span class="n">idx_dict</span><span class="p">[</span><span class="s2">&quot;jt_off&quot;</span><span class="p">]</span>
+    <span class="n">summary_output</span> <span class="o">=</span> <span class="n">VCSystem</span><span class="o">.</span><span class="n">summary_output</span>
+    <span class="n">vcham_param</span> <span class="o">=</span> <span class="n">VCSystem</span><span class="o">.</span><span class="n">optimized_params</span>
+
+    <span class="k">for</span> <span class="n">mode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">VCSystem</span><span class="o">.</span><span class="n">number_normal_modes</span><span class="p">):</span>
+        <span class="n">mode_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;mode&quot;</span><span class="p">:</span> <span class="n">mode</span><span class="p">,</span>
+            <span class="s2">&quot;diagonal&quot;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s2">&quot;non-diagonal&quot;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--------------- Mode </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2"> ----------------&quot;</span><span class="p">)</span>
+
+        <span class="n">counts</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;fn&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;kappa&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;lambda&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>  <span class="c1"># Track counts for different parameters</span>
+
+        <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">VCSystem</span><span class="o">.</span><span class="n">number_states</span><span class="p">):</span>
+            
+            <span class="n">function_type</span> <span class="o">=</span> <span class="n">VCSystem</span><span class="o">.</span><span class="n">diab_funct</span><span class="p">[</span><span class="n">mode</span><span class="p">][</span><span class="n">state</span><span class="p">]</span>
+            <span class="n">n_var</span> <span class="o">=</span> <span class="n">diabfunct</span><span class="o">.</span><span class="n">n_var</span><span class="p">[</span><span class="n">function_type</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--------------- State </span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s2"> ----------------&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nvar: </span><span class="si">{</span><span class="n">n_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">state_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="n">state</span><span class="p">,</span>
+                <span class="s2">&quot;diab_funct&quot;</span><span class="p">:</span> <span class="n">function_type</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="n">inactive_mode</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">summary_output</span><span class="p">[</span><span class="n">mode</span><span class="p">][</span><span class="n">state</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                <span class="n">parameters</span><span class="p">,</span> <span class="n">counts</span><span class="p">[</span><span class="s2">&quot;fn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">process_parameters</span><span class="p">(</span>
+                    <span class="s2">&quot;funct_param:0&quot;</span><span class="p">,</span> <span class="n">vcham_param</span><span class="p">[</span><span class="n">mode</span><span class="p">],</span> <span class="n">counts</span><span class="p">[</span><span class="s2">&quot;fn&quot;</span><span class="p">],</span> <span class="n">n_var</span>
+                <span class="p">)</span>
+                <span class="n">state_data</span><span class="p">[</span><span class="s2">&quot;parameters&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">parameters</span>
+                <span class="c1"># if mode == 8:</span>
+                <span class="c1">#     print(f&quot;Parameters Function: {parameters}&quot;)</span>
+                <span class="c1"># if verbose:</span>
+                <span class="c1">#     print(f&quot;Parameters Function: {parameters}&quot;)</span>
+            <span class="k">elif</span> <span class="n">summary_output</span><span class="p">[</span><span class="n">mode</span><span class="p">][</span><span class="n">state</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;JT&quot;</span><span class="p">:</span>
+                <span class="n">parameters</span><span class="p">,</span> <span class="n">counts</span><span class="p">[</span><span class="s2">&quot;fn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">process_parameters</span><span class="p">(</span>
+                    <span class="s2">&quot;jt_on_param:0&quot;</span><span class="p">,</span> <span class="n">vcham_param</span><span class="p">[</span><span class="n">mode</span><span class="p">],</span> <span class="n">counts</span><span class="p">[</span><span class="s2">&quot;fn&quot;</span><span class="p">],</span> <span class="n">n_var</span>
+                <span class="p">)</span>
+                <span class="c1"># print(parameters)</span>
+                <span class="c1"># print(f&quot;JT parameters in mode {mode} state {state}: {parameters}&quot;)</span>
+                <span class="k">if</span> <span class="n">parameters</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># print(f&quot;Empty Function parameters in mode {mode} state {state}&quot;)</span>
+                    <span class="n">parameters</span><span class="p">,</span> <span class="n">counts</span><span class="p">[</span><span class="s2">&quot;fn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">process_parameters</span><span class="p">(</span>
+                        <span class="s2">&quot;jt_on_param_inactive:0&quot;</span><span class="p">,</span> <span class="n">vcham_param</span><span class="p">[</span><span class="n">mode</span><span class="p">],</span> <span class="n">counts</span><span class="p">[</span><span class="s2">&quot;fn&quot;</span><span class="p">],</span> <span class="n">n_var</span>
+                    <span class="p">)</span>
+                    <span class="n">inactive_mode</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">parameters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">False</span>
+                <span class="c1"># if again parameters are empty, then take the info from the previous state</span>
+                <span class="k">if</span> <span class="n">parameters</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># print(f&quot;Empty JT parameters in mode {mode} state {state}&quot;)</span>
+                    <span class="c1"># print(F&quot;mode_data: {mode_data}&quot;)</span>
+                    <span class="n">parameters</span> <span class="o">=</span> <span class="n">mode_data</span><span class="p">[</span><span class="s2">&quot;diagonal&quot;</span><span class="p">][</span><span class="n">state</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;parameters&quot;</span><span class="p">]</span>
+                    <span class="n">state_data</span><span class="p">[</span><span class="s2">&quot;parameters&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">parameters</span>
+                    
+                <span class="n">state_data</span><span class="p">[</span><span class="s2">&quot;parameters&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">parameters</span>
+                <span class="c1"># print(f&quot;Inactive mode: {inactive_mode}&quot;)</span>
+                <span class="k">if</span> <span class="n">inactive_mode</span><span class="p">:</span>
+                    <span class="n">parameters</span><span class="p">,</span> <span class="n">counts</span><span class="p">[</span><span class="s2">&quot;fn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">process_parameters</span><span class="p">(</span>
+                        <span class="s2">&quot;jt_kappa_param_inactive:0&quot;</span><span class="p">,</span> <span class="n">vcham_param</span><span class="p">[</span><span class="n">mode</span><span class="p">],</span> <span class="n">counts</span><span class="p">[</span><span class="s2">&quot;kappa&quot;</span><span class="p">],</span> <span class="n">n_var</span>
+                    <span class="p">)</span>
+                    <span class="c1"># print(f&quot;JT kappa parameters in mode {mode} state {state}: {parameters}&quot;)</span>
+                    <span class="n">state_data</span><span class="p">[</span><span class="s2">&quot;kappa&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="c1"># if kappa from the previous state is non-zero, then take it</span>
+                <span class="k">if</span> <span class="n">state</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">mode_data</span><span class="p">[</span><span class="s2">&quot;diagonal&quot;</span><span class="p">][</span><span class="n">state</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;kappa&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">state_data</span><span class="p">[</span><span class="s2">&quot;kappa&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">mode_data</span><span class="p">[</span><span class="s2">&quot;diagonal&quot;</span><span class="p">][</span><span class="n">state</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;kappa&quot;</span><span class="p">)</span>
+
+
+            <span class="k">elif</span> <span class="n">summary_output</span><span class="p">[</span><span class="n">mode</span><span class="p">][</span><span class="n">state</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;kappa&quot;</span><span class="p">:</span>
+                <span class="c1"># print(&quot;Kappa&quot;)</span>
+                <span class="n">kappa</span><span class="p">,</span> <span class="n">counts</span><span class="p">[</span><span class="s2">&quot;kappa&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">process_parameters</span><span class="p">(</span>
+                    <span class="s2">&quot;kappa_param:0&quot;</span><span class="p">,</span> <span class="n">vcham_param</span><span class="p">[</span><span class="n">mode</span><span class="p">],</span> <span class="n">counts</span><span class="p">[</span><span class="s2">&quot;kappa&quot;</span><span class="p">],</span> <span class="mi">1</span>
+                <span class="p">)</span>
+                <span class="n">parameters</span><span class="p">,</span> <span class="n">counts</span><span class="p">[</span><span class="s2">&quot;fn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">process_parameters</span><span class="p">(</span>
+                    <span class="s2">&quot;funct_param:0&quot;</span><span class="p">,</span> <span class="n">vcham_param</span><span class="p">[</span><span class="n">mode</span><span class="p">],</span> <span class="n">counts</span><span class="p">[</span><span class="s2">&quot;fn&quot;</span><span class="p">],</span> <span class="n">n_var</span>
+                <span class="p">)</span>
+                <span class="n">state_data</span><span class="p">[</span><span class="s2">&quot;parameters&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">parameters</span>
+                <span class="n">state_data</span><span class="p">[</span><span class="s2">&quot;kappa&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kappa</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameters Function: </span><span class="si">{</span><span class="n">parameters</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameters Kappa: </span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">mode_data</span><span class="p">[</span><span class="s2">&quot;diagonal&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state_data</span><span class="p">)</span>
+            
+                <span class="c1"># This only goes one time per mode</span>
+        <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">vcham_param</span><span class="p">[</span><span class="n">mode</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">param</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;lambda_param:0&quot;</span><span class="p">:</span>
+                <span class="n">lambd</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+                <span class="n">non_diagonal</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;idx&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">lambdas_indexes</span><span class="p">[</span><span class="n">mode</span><span class="p">]),</span>
+                    <span class="s2">&quot;lambda&quot;</span><span class="p">:</span> <span class="n">lambd</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;idx: </span><span class="si">{</span><span class="n">lambdas_indexes</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameters Lambda: </span><span class="si">{</span><span class="n">lambd</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-diagonal: </span><span class="si">{</span><span class="n">non_diagonal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">mode_data</span><span class="p">[</span><span class="s2">&quot;non-diagonal&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">non_diagonal</span>
+            <span class="k">if</span> <span class="n">param</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;jt_off_param:0&quot;</span><span class="p">:</span>
+                <span class="n">lambd</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+                <span class="n">non_diagonal</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;idx&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">jt_indexes_off</span><span class="p">[</span><span class="n">mode</span><span class="p">]),</span>
+                    <span class="s2">&quot;lambda&quot;</span><span class="p">:</span> <span class="n">lambd</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;idx: </span><span class="si">{</span><span class="n">jt_indexes_off</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameters JT-off: </span><span class="si">{</span><span class="n">lambd</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-diagonal: </span><span class="si">{</span><span class="n">non_diagonal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">mode_data</span><span class="p">[</span><span class="s2">&quot;non-diagonal&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">non_diagonal</span>
+            
+
+
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mode_data</span><span class="p">)</span>
+
+    <span class="n">VCSystem</span><span class="o">.</span><span class="n">lvc_data</span><span class="p">[</span><span class="s2">&quot;vcham&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="n">output_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;general_data&quot;</span><span class="p">:</span> <span class="n">general_data</span><span class="p">,</span>
+        <span class="s2">&quot;vcham_data&quot;</span><span class="p">:</span> <span class="n">VCSystem</span><span class="o">.</span><span class="n">lvc_data</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Save to JSON</span>
+    <span class="c1"># Check if the output file already exists and change the name if necessary for not overwriting</span>
+    <span class="c1"># if rewrite:</span>
+    
+    <span class="k">if</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_name</span><span class="p">)</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">rewrite</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Warning: Overwriting existing file </span><span class="si">{</span><span class="n">output_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">output_name</span> <span class="o">=</span> <span class="n">output_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.json&quot;</span><span class="p">,</span> <span class="s2">&quot;_new.json&quot;</span><span class="p">)</span>
+        
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_name</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_file</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">output_data</span><span class="p">,</span> <span class="n">json_file</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">CustomEncoder</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data successfully saved to </span><span class="si">{</span><span class="n">output_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<div class="viewcode-block" id="MoleculeDipoleSettings"><a class="viewcode-back" href="../utils.html#utils.MoleculeDipoleSettings">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">MoleculeDipoleSettings</span><span class="p">:</span>
+    <span class="n">mol_idx</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">selected_states</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">CM</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]))</span>
+    <span class="n">rot_angles</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DipoleConfig"><a class="viewcode-back" href="../utils.html#utils.DipoleConfig">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">DipoleConfig</span><span class="p">:</span>
+    <span class="n">molecules</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;MoleculeDipoleSettings&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">selected_pairs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    If specified, only these pairs (i,j) will be computed.</span>
+<span class="sd">    (i and j are indices in `molecules`.)</span>
+<span class="sd">    Otherwise, compute all pairs.</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+<span class="k">def</span> <span class="nf">_read_data_blocks</span><span class="p">(</span><span class="n">infiles</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reads each JSON file from &#39;infiles&#39; and returns a list of &#39;vcham_data&#39; blocks.</span>
+<span class="sd">    Also checks units for potential mismatches (logs a warning if found).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">infiles</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">infiles</span> <span class="o">=</span> <span class="p">[</span><span class="n">infiles</span><span class="p">]</span>
+
+    <span class="n">data_blocks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">all_units</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">infiles</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">vcham</span> <span class="o">=</span> <span class="n">json_data</span><span class="p">[</span><span class="s2">&quot;vcham_data&quot;</span><span class="p">]</span>
+        <span class="n">data_blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vcham</span><span class="p">)</span>
+        <span class="n">all_units</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">vcham</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span>
+
+    <span class="c1"># Warn if multiple units are found (optional).</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_units</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Detected multiple units: </span><span class="si">{</span><span class="n">all_units</span><span class="si">}</span><span class="s2">. &quot;</span>
+            <span class="s2">&quot;You may need to convert them consistently before writing.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data_blocks</span>
+
+
+<span class="k">def</span> <span class="nf">_compute_totals</span><span class="p">(</span><span class="n">data_blocks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the total number of modes and states across all data blocks.</span>
+<span class="sd">    Returns (total_modes, total_states, master_units).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">total_modes</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s2">&quot;number_normal_modes&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">data_blocks</span><span class="p">)</span>
+    <span class="n">total_states</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s2">&quot;number_states&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">data_blocks</span><span class="p">)</span>
+    <span class="c1"># We&#39;ll pick the units from the first block arbitrarily:</span>
+    <span class="n">master_units</span> <span class="o">=</span> <span class="n">data_blocks</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;units&quot;</span><span class="p">]</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total modes: </span><span class="si">{</span><span class="n">total_modes</span><span class="si">}</span><span class="s2">, total states: </span><span class="si">{</span><span class="n">total_states</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">total_modes</span><span class="p">,</span> <span class="n">total_states</span><span class="p">,</span> <span class="n">master_units</span>
+
+
+<span class="k">def</span> <span class="nf">_write_header_section</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Writes the MCTDH header section to the file handle &#39;fh&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+        <span class="s2">&quot;OP_DEFINE-SECTION</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">TITLE</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;</span><span class="se">\t\t</span><span class="s2">MCTDH-Operator-file created by PyVCHAM</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">END-TITLE</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;END-OP_DEFINE-SECTION</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_write_parameter_section</span><span class="p">(</span>
+    <span class="n">fh</span><span class="p">,</span>
+    <span class="n">data_blocks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span>
+    <span class="n">master_units</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">dipoles</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">dipole_config</span><span class="p">:</span> <span class="n">DipoleConfig</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Writes the PARAMETER-SECTION:</span>
+<span class="sd">      - Frequencies (omega_i)</span>
+<span class="sd">      - Energies (E_i)</span>
+<span class="sd">      - Diabatic curves with parameters</span>
+<span class="sd">      - kappa/lambda</span>
+<span class="sd">      - Placeholders (gamma, iota, mu)</span>
+<span class="sd">      - Dipole interaction section (optional)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;PARAMETER-SECTION</span><span class="se">\n\n</span><span class="s2"># frequencies</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># First pass: write frequencies for each block</span>
+    <span class="n">mode_offset</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">data_blocks</span><span class="p">:</span>
+        <span class="n">nmodes</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;number_normal_modes&quot;</span><span class="p">]</span>
+        <span class="n">vib_freqs</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;vib_freq&quot;</span><span class="p">]</span>
+        <span class="c1"># Write out each frequency with an offset</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nmodes</span><span class="p">):</span>
+            <span class="n">freq</span> <span class="o">=</span> <span class="n">vib_freqs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;omega_</span><span class="si">{</span><span class="n">mode_offset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\t</span><span class="s2">=</span><span class="se">\t</span><span class="si">{</span><span class="n">freq</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2"> , </span><span class="si">{</span><span class="n">master_units</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">mode_offset</span> <span class="o">+=</span> <span class="n">nmodes</span>
+
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># energies</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Second pass: write energies for each block</span>
+    <span class="k">for</span> <span class="n">idx_mol</span><span class="p">,</span> <span class="n">block</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_blocks</span><span class="p">):</span>
+        <span class="n">nstates</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;number_states&quot;</span><span class="p">]</span>
+        <span class="n">e_shifts</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;energy_shift&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstates</span><span class="p">):</span>
+            <span class="n">E</span> <span class="o">=</span> <span class="n">e_shifts</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;E_</span><span class="si">{</span><span class="n">idx_mol</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\t</span><span class="s2">=</span><span class="se">\t</span><span class="si">{</span><span class="n">E</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2"> , </span><span class="si">{</span><span class="n">master_units</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># Diabatic curves with parameters</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Third pass: write diabetic curves + kappa + lambda</span>
+    <span class="n">current_mode_offset</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">current_state_offset</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">data_blocks</span><span class="p">:</span>
+        <span class="n">nmodes</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;number_normal_modes&quot;</span><span class="p">]</span>
+        <span class="n">nstates</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;number_states&quot;</span><span class="p">]</span>
+        <span class="n">vcham_modes</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;vcham&quot;</span><span class="p">]</span>
+
+        <span class="c1"># Diabatic curves</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nmodes</span><span class="p">):</span>
+            <span class="n">diag_list</span> <span class="o">=</span> <span class="n">vcham_modes</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="s2">&quot;diagonal&quot;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstates</span><span class="p">):</span>
+                <span class="n">diag</span> <span class="o">=</span> <span class="n">diag_list</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+                <span class="n">diab_funct</span> <span class="o">=</span> <span class="n">diag</span><span class="p">[</span><span class="s2">&quot;diab_funct&quot;</span><span class="p">]</span>
+                <span class="n">parameters</span> <span class="o">=</span> <span class="n">diag</span><span class="p">[</span><span class="s2">&quot;parameters&quot;</span><span class="p">]</span>
+
+                <span class="k">for</span> <span class="n">idx_param</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
+                    <span class="n">global_mode_index</span> <span class="o">=</span> <span class="n">current_mode_offset</span> <span class="o">+</span> <span class="n">m</span>
+                    <span class="n">line</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;M</span><span class="si">{</span><span class="n">global_mode_index</span><span class="si">}</span><span class="s2">S</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">idx_param</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">=</span><span class="se">\t</span><span class="si">{</span><span class="n">param</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+                    <span class="c1"># If first param or function is ho/quartic =&gt; add units</span>
+                    <span class="k">if</span> <span class="n">idx_param</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">diab_funct</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;ho&quot;</span><span class="p">,</span> <span class="s2">&quot;quartic&quot;</span><span class="p">]:</span>
+                        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot; , </span><span class="si">{</span><span class="n">master_units</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># on-diagonal kappa</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;# on-diagonal linear coupling constants (kappa)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nmodes</span><span class="p">):</span>
+            <span class="n">diag_list</span> <span class="o">=</span> <span class="n">vcham_modes</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="s2">&quot;diagonal&quot;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstates</span><span class="p">):</span>
+                <span class="n">kappa</span> <span class="o">=</span> <span class="n">diag_list</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;kappa&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">kappa</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">global_mode_index</span> <span class="o">=</span> <span class="n">current_mode_offset</span> <span class="o">+</span> <span class="n">m</span>
+                    <span class="c1"># global_state_index = current_state_offset + s</span>
+                    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;kappa</span><span class="si">{</span><span class="n">global_mode_index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">=</span><span class="se">\t</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2"> , </span><span class="si">{</span><span class="n">master_units</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># off-diagonal linear coupling constants (lambda)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nmodes</span><span class="p">):</span>
+            <span class="n">non_diag</span> <span class="o">=</span> <span class="n">vcham_modes</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="s2">&quot;non-diagonal&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">non_diag</span><span class="p">:</span>
+                <span class="n">indexes</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">non_diag</span><span class="p">[</span><span class="s2">&quot;idx&quot;</span><span class="p">])</span>
+                <span class="n">lambdas</span> <span class="o">=</span> <span class="n">non_diag</span><span class="p">[</span><span class="s2">&quot;lambda&quot;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">idx_pair</span><span class="p">,</span> <span class="p">(</span><span class="n">st1</span><span class="p">,</span> <span class="n">st2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">indexes</span><span class="p">):</span>
+                    <span class="n">global_mode_index</span> <span class="o">=</span> <span class="n">current_mode_offset</span> <span class="o">+</span> <span class="n">m</span>
+                    <span class="c1"># global_st1 = current_state_offset + st1</span>
+                    <span class="c1"># global_st2 = current_state_offset + st2</span>
+                    <span class="n">lam_val</span> <span class="o">=</span> <span class="n">lambdas</span><span class="p">[</span><span class="n">idx_pair</span><span class="p">]</span>
+                    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;lambda</span><span class="si">{</span><span class="n">global_mode_index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">st1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">st2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">=</span><span class="se">\t</span><span class="si">{</span><span class="n">lam_val</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2"> , </span><span class="si">{</span><span class="n">master_units</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">current_mode_offset</span> <span class="o">+=</span> <span class="n">nmodes</span>
+        <span class="n">current_state_offset</span> <span class="o">+=</span> <span class="n">nstates</span>
+    <span class="c1"># Dipole interaction section</span>
+    <span class="k">if</span> <span class="n">dipoles</span><span class="p">:</span>
+        <span class="c1"># Check reference geometry</span>
+        <span class="n">ref_geometry</span> <span class="o">=</span> <span class="n">data_blocks</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;reference_geometry&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">ref_geometry</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;dipole=True but no reference geometry was provided!&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dipole_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;dipole=True but no dipole_config was provided!&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Instead of calling a two-molecule function directly,</span>
+        <span class="c1"># we call a new function that handles multiple molecules:</span>
+        <span class="n">dip_values</span> <span class="o">=</span> <span class="n">_calculate_dipoles_multi</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">data_blocks</span><span class="p">,</span> <span class="n">dipole_config</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dipole interactions written to file.&quot;</span><span class="p">)</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dip_values</span>
+
+    <span class="c1"># placeholders</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># on-diagonal bilinear coupling constants (gamma)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;# Third order quad-lin and cube terms (iota)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;# off-diagonal bilinear coupling constants (mu)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;end-parameter-section</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dipole interaction section</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="c1"># -----------------------------------------------------------</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+
+<span class="k">def</span> <span class="nf">_calculate_dipoles_multi</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">data_blocks</span><span class="p">,</span> <span class="n">dipole_config</span><span class="p">:</span> <span class="n">DipoleConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute dipole-dipole interactions for either:</span>
+<span class="sd">      1. All distinct molecule pairs, if dipole_config.selected_pairs is None</span>
+<span class="sd">      2. Or only the specified pairs in dipole_config.selected_pairs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">all_molecules</span> <span class="o">=</span> <span class="n">dipole_config</span><span class="o">.</span><span class="n">molecules</span>
+    <span class="n">num_molecules</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_molecules</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Computing dipole interactions for </span><span class="si">{</span><span class="n">num_molecules</span><span class="si">}</span><span class="s2"> molecules.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reference geometry: </span><span class="si">{</span><span class="n">all_molecules</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">CM</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">num_molecules</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;# Less than 2 molecules; no pairwise dipole interactions.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+    
+    <span class="c1"># If the user provided a list of pairs, use that</span>
+    <span class="k">if</span> <span class="n">dipole_config</span><span class="o">.</span><span class="n">selected_pairs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">pair_list</span> <span class="o">=</span> <span class="n">dipole_config</span><span class="o">.</span><span class="n">selected_pairs</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Otherwise, default to all unique pairs</span>
+        <span class="n">pair_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_molecules</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
+
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;# Computing dipole interactions for selected molecule pairs.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;# Pairs: </span><span class="si">{</span><span class="n">pair_list</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">dip_val_pairs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="ow">in</span> <span class="n">pair_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">num_molecules</span> <span class="ow">or</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">num_molecules</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid pair indices: (</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">). Out of range.&quot;</span><span class="p">)</span>
+
+        <span class="n">settings_i</span> <span class="o">=</span> <span class="n">all_molecules</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">settings_j</span> <span class="o">=</span> <span class="n">all_molecules</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        
+        <span class="n">dip_val_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_calculate_dipoles_pair</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">data_blocks</span><span class="p">,</span> <span class="n">settings_i</span><span class="p">,</span> <span class="n">settings_j</span><span class="p">))</span>
+    <span class="n">dip_val_pairs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dip_val_pairs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dip_val_pairs</span>
+
+
+
+
+<span class="k">def</span> <span class="nf">_calculate_dipoles_pair</span><span class="p">(</span>
+    <span class="n">fh</span><span class="p">,</span>
+    <span class="n">data_blocks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span>
+    <span class="n">settings_i</span><span class="p">:</span> <span class="n">MoleculeDipoleSettings</span><span class="p">,</span>
+    <span class="n">settings_j</span><span class="p">:</span> <span class="n">MoleculeDipoleSettings</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute dipole interactions BETWEEN TWO molecules (settings_i, settings_j).</span>
+<span class="sd">    This is the same logic you had, but references:</span>
+<span class="sd">      - settings_i.mol_idx</span>
+<span class="sd">      - settings_i.selected_states</span>
+<span class="sd">      - settings_i.CM</span>
+<span class="sd">      - settings_i.rot_angles</span>
+<span class="sd">    etc.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">mol1_idx</span> <span class="o">=</span> <span class="n">settings_i</span><span class="o">.</span><span class="n">mol_idx</span>
+    <span class="n">mol2_idx</span> <span class="o">=</span> <span class="n">settings_j</span><span class="o">.</span><span class="n">mol_idx</span>
+
+    <span class="c1"># Validate that these indices exist</span>
+    <span class="k">if</span> <span class="n">mol1_idx</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_blocks</span><span class="p">)</span> <span class="ow">or</span> <span class="n">mol2_idx</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_blocks</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid molecule indices </span><span class="si">{</span><span class="n">mol1_idx</span><span class="si">}</span><span class="s2"> or </span><span class="si">{</span><span class="n">mol2_idx</span><span class="si">}</span><span class="s2"> for dipole calc.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;dipole_matrix&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_blocks</span><span class="p">[</span><span class="n">mol1_idx</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">&quot;dipole_matrix&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data_blocks</span><span class="p">[</span><span class="n">mol2_idx</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Dipole matrix not found in the relevant data blocks.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Extract data for each molecule</span>
+    <span class="n">nstates1</span> <span class="o">=</span> <span class="n">data_blocks</span><span class="p">[</span><span class="n">mol1_idx</span><span class="p">][</span><span class="s2">&quot;number_states&quot;</span><span class="p">]</span>
+    <span class="n">nstates2</span> <span class="o">=</span> <span class="n">data_blocks</span><span class="p">[</span><span class="n">mol2_idx</span><span class="p">][</span><span class="s2">&quot;number_states&quot;</span><span class="p">]</span>
+    <span class="n">dipoles1</span> <span class="o">=</span> <span class="n">data_blocks</span><span class="p">[</span><span class="n">mol1_idx</span><span class="p">][</span><span class="s2">&quot;dipole_matrix&quot;</span><span class="p">]</span>  
+    <span class="n">dipoles2</span> <span class="o">=</span> <span class="n">data_blocks</span><span class="p">[</span><span class="n">mol2_idx</span><span class="p">][</span><span class="s2">&quot;dipole_matrix&quot;</span><span class="p">]</span>  
+
+    <span class="c1"># If user doesn&#39;t specify subsets, default to all states</span>
+    <span class="n">sel_states1</span> <span class="o">=</span> <span class="n">settings_i</span><span class="o">.</span><span class="n">selected_states</span> <span class="ow">or</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstates1</span><span class="p">)</span>
+    <span class="n">sel_states2</span> <span class="o">=</span> <span class="n">settings_j</span><span class="o">.</span><span class="n">selected_states</span> <span class="ow">or</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstates2</span><span class="p">)</span>
+
+    <span class="c1"># Precompute rotated dipoles for molecule 1</span>
+    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations_with_replacement</span>
+    <span class="n">rotated_dipoles1</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">indices1</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span> <span class="ow">in</span> <span class="n">combinations_with_replacement</span><span class="p">(</span><span class="n">sel_states1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">dipole1</span> <span class="o">=</span> <span class="n">dipoles1</span><span class="p">[</span><span class="n">s1</span><span class="p">][</span><span class="n">s2</span><span class="p">]</span>
+        <span class="n">mu_mol1_rot</span> <span class="o">=</span> <span class="n">rotate_dipole</span><span class="p">(</span><span class="n">dipole1</span><span class="p">,</span> <span class="o">*</span><span class="n">settings_i</span><span class="o">.</span><span class="n">rot_angles</span><span class="p">)</span>
+        <span class="n">rotated_dipoles1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mu_mol1_rot</span><span class="p">)</span>
+        <span class="n">indices1</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">))</span>
+    <span class="n">rotated_dipoles1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rotated_dipoles1</span><span class="p">)</span>
+
+    <span class="c1"># Precompute rotated dipoles for molecule 2</span>
+    <span class="n">rotated_dipoles2</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">indices2</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">s3</span><span class="p">,</span> <span class="n">s4</span> <span class="ow">in</span> <span class="n">combinations_with_replacement</span><span class="p">(</span><span class="n">sel_states2</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">dipole2</span> <span class="o">=</span> <span class="n">dipoles2</span><span class="p">[</span><span class="n">s3</span><span class="p">][</span><span class="n">s4</span><span class="p">]</span>
+        <span class="n">mu_mol2_rot</span> <span class="o">=</span> <span class="n">rotate_dipole</span><span class="p">(</span><span class="n">dipole2</span><span class="p">,</span> <span class="o">*</span><span class="n">settings_j</span><span class="o">.</span><span class="n">rot_angles</span><span class="p">)</span>
+        <span class="n">rotated_dipoles2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mu_mol2_rot</span><span class="p">)</span>
+        <span class="n">indices2</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">s3</span><span class="p">,</span> <span class="n">s4</span><span class="p">))</span>
+    <span class="n">rotated_dipoles2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rotated_dipoles2</span><span class="p">)</span>
+
+    <span class="c1"># Compute all interactions</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">CM1</span> <span class="o">=</span> <span class="n">settings_i</span><span class="o">.</span><span class="n">CM</span>
+    <span class="n">CM2</span> <span class="o">=</span> <span class="n">settings_j</span><span class="o">.</span><span class="n">CM</span>
+    <span class="k">for</span> <span class="n">i1</span><span class="p">,</span> <span class="n">mu1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rotated_dipoles1</span><span class="p">):</span>
+        <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">indices1</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i2</span><span class="p">,</span> <span class="n">mu2</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rotated_dipoles2</span><span class="p">):</span>
+            <span class="n">s3</span><span class="p">,</span> <span class="n">s4</span> <span class="o">=</span> <span class="n">indices2</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">dipole_interaction</span><span class="p">(</span><span class="n">mu1</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">CM1</span><span class="p">,</span> <span class="n">CM2</span><span class="p">)</span>
+            <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DD_</span><span class="si">{</span><span class="n">mol1_idx</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s1</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s2</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">_VS_</span><span class="si">{</span><span class="n">mol2_idx</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s3</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s4</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Write results</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;# Dipole interactions: Mol </span><span class="si">{</span><span class="n">mol1_idx</span><span class="si">}</span><span class="s2"> vs Mol </span><span class="si">{</span><span class="n">mol2_idx</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">results</span><span class="p">))</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">values</span>
+
+
+
+<div class="viewcode-block" id="rotate_dipole"><a class="viewcode-back" href="../utils.html#utils.rotate_dipole">[docs]</a><span class="k">def</span> <span class="nf">rotate_dipole</span><span class="p">(</span><span class="n">dipole</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Rotate a dipole moment using given Euler angles.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    dipole : np.array</span>
+<span class="sd">        Original dipole moment vector (3D)</span>
+<span class="sd">    alpha, beta, gamma : float</span>
+<span class="sd">        Euler angles in degrees</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    np.array</span>
+<span class="sd">        Rotated dipole moment</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Convert degrees to radians</span>
+    <span class="n">euler_angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">([</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">])</span>
+    
+    <span class="c1"># Create rotation object using ZYX convention (intrinsic rotation)</span>
+    <span class="n">rotation</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">from_euler</span><span class="p">(</span><span class="s1">&#39;ZYX&#39;</span><span class="p">,</span> <span class="n">euler_angles</span><span class="p">)</span>
+    
+    <span class="c1"># Apply rotation to dipole moment</span>
+    <span class="n">rotated_dipole</span> <span class="o">=</span> <span class="n">rotation</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">dipole</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">rotated_dipole</span></div>
+
+<div class="viewcode-block" id="dipole_interaction"><a class="viewcode-back" href="../utils.html#utils.dipole_interaction">[docs]</a><span class="k">def</span> <span class="nf">dipole_interaction</span><span class="p">(</span><span class="n">mu_mol1</span><span class="p">,</span> <span class="n">mu_mol2</span><span class="p">,</span> <span class="n">CM_mol1</span><span class="p">,</span> <span class="n">CM_mol2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate dipole-dipole interaction term based on the formula from the paper</span>
+<span class="sd">    J. Phys. Chem. Lett. 2023,14,11367-11375 https://doi.org/10.1021/acs.jpclett.3c02935</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    mu_mol1 : np.array</span>
+<span class="sd">        Dipole moment vector of molecule 1</span>
+<span class="sd">    mu_mol2 : np.array</span>
+<span class="sd">        Dipole moment vector of molecule 2</span>
+<span class="sd">    CM_mol1 : np.array</span>
+<span class="sd">        Center of mass coordinates of molecule 1</span>
+<span class="sd">    CM_mol2 : np.array</span>
+<span class="sd">        Center of mass coordinates of molecule 2</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    float</span>
+<span class="sd">        Interaction energy</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># H_{mol1mol2} = prefactor * (mu_mol1 * mu_mol2 - 3*(mu_mol1 * r) * (mu_mol2 * r))</span>
+    <span class="c1"># Normalize the displacement vector to get unit vector u_R</span>
+    <span class="n">CM_mol1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">CM_mol1</span><span class="p">)</span>
+    <span class="n">CM_mol2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">CM_mol2</span><span class="p">)</span>
+
+    <span class="n">r_vector</span> <span class="o">=</span> <span class="n">CM_mol2</span> <span class="o">-</span> <span class="n">CM_mol1</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">r_vector</span><span class="p">)</span>
+    <span class="n">u_R</span> <span class="o">=</span> <span class="n">r_vector</span> <span class="o">/</span> <span class="n">R</span>
+
+    <span class="c1"># Calculate dot products</span>
+    <span class="n">dot_mu_mol1_mu_mol2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mu_mol1</span><span class="p">,</span> <span class="n">mu_mol2</span><span class="p">)</span>
+    <span class="n">dot_mu_mol1_uR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mu_mol1</span><span class="p">,</span> <span class="n">u_R</span><span class="p">)</span>
+    <span class="n">dot_mu_mol2_uR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mu_mol2</span><span class="p">,</span> <span class="n">u_R</span><span class="p">)</span>
+
+    <span class="c1"># Compute the interaction energy using the formula</span>
+    <span class="n">interaction</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">R</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">dot_mu_mol1_mu_mol2</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">dot_mu_mol1_uR</span> <span class="o">*</span> <span class="n">dot_mu_mol2_uR</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">interaction</span></div>
+
+
+<span class="k">def</span> <span class="nf">_write_labels_section</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">data_blocks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Writes the LABELS-SECTION for all blocks (Morse/Anti-Morse).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;LABELS-SECTION</span><span class="se">\n</span><span class="s2"># Diabatic function labels</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">current_mode_offset</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">current_state_offset</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">idx_mol</span><span class="p">,</span> <span class="n">block</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_blocks</span><span class="p">):</span>
+        <span class="n">nmodes</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;number_normal_modes&quot;</span><span class="p">]</span>
+        <span class="n">nstates</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;number_states&quot;</span><span class="p">]</span>
+        <span class="n">vcham_modes</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;vcham&quot;</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nmodes</span><span class="p">):</span>
+            <span class="n">diag_list</span> <span class="o">=</span> <span class="n">vcham_modes</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="s2">&quot;diagonal&quot;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstates</span><span class="p">):</span>
+                <span class="n">diab_funct</span> <span class="o">=</span> <span class="n">diag_list</span><span class="p">[</span><span class="n">s</span><span class="p">][</span><span class="s2">&quot;diab_funct&quot;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">diab_funct</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;morse&quot;</span><span class="p">,</span> <span class="s2">&quot;antimorse&quot;</span><span class="p">]:</span>
+                    <span class="n">global_mode_index</span> <span class="o">=</span> <span class="n">current_mode_offset</span> <span class="o">+</span> <span class="n">m</span>
+                    <span class="c1"># global_state_index = current_state_offset + s</span>
+                    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;v_</span><span class="si">{</span><span class="n">global_mode_index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">=</span><span class="se">\t</span><span class="s2">morse1[&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;M</span><span class="si">{</span><span class="n">global_mode_index</span><span class="si">}</span><span class="s2">S</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">_1,&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;M</span><span class="si">{</span><span class="n">global_mode_index</span><span class="si">}</span><span class="s2">S</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">_2,&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;M</span><span class="si">{</span><span class="n">global_mode_index</span><span class="si">}</span><span class="s2">S</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">_3,&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;E_</span><span class="si">{</span><span class="n">idx_mol</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="s2">&quot;]</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+
+        <span class="n">current_mode_offset</span> <span class="o">+=</span> <span class="n">nmodes</span>
+        <span class="n">current_state_offset</span> <span class="o">+=</span> <span class="n">nstates</span>
+
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;end-labels-section</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_write_hamiltonian_section</span><span class="p">(</span>
+    <span class="n">fh</span><span class="p">,</span>
+    <span class="n">data_blocks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span>
+    <span class="n">total_modes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">total_states</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">dipole</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">dipole_config</span><span class="p">:</span> <span class="n">DipoleConfig</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">values_dipoles</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Writes the HAMILTONIAN-SECTION for all blocks,</span>
+<span class="sd">    iterating in the same order with offset logic.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;HAMILTONIAN-SECTION</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;------------------------------------------------------------------</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># e.g. &quot;modes | v1 | v2 | v3 ... v(total_modes) | el&quot;</span>
+    <span class="n">max_length</span> <span class="o">=</span> <span class="mi">60</span>  <span class="c1"># Maximum line length</span>
+    <span class="n">mode_header</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;v</span><span class="si">{</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> |&quot;</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_modes</span><span class="p">))</span>
+    <span class="n">header_prefix</span> <span class="o">=</span> <span class="s2">&quot;modes | &quot;</span>
+
+    <span class="c1"># Start with the prefix</span>
+    <span class="n">current_line</span> <span class="o">=</span> <span class="n">header_prefix</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Split based on &quot; | &quot; to ensure proper splitting without adding &quot;|&quot;</span>
+    <span class="n">segments</span> <span class="o">=</span> <span class="n">mode_header</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; | &quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">segment</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">segments</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_line</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">segment</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_length</span><span class="p">:</span>
+            <span class="c1"># Save the current line and start a new one with &quot;modes | &quot; prefix</span>
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+            <span class="n">current_line</span> <span class="o">=</span> <span class="s2">&quot;modes | &quot;</span> <span class="o">+</span> <span class="n">segment</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># Add separator only between segments, not at the start</span>
+                <span class="n">current_line</span> <span class="o">+=</span> <span class="s2">&quot; | &quot;</span>
+            <span class="n">current_line</span> <span class="o">+=</span> <span class="n">segment</span>
+
+    <span class="c1"># Add the final line with &quot;el&quot; appended</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_blocks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; el&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; el1&quot;</span><span class="p">)</span>
+        <span class="n">current_line</span> <span class="o">=</span> <span class="n">header_prefix</span>
+        <span class="n">elec</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_blocks</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data_blocks</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">mol</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_blocks</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">elec</span>  <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; el</span><span class="si">{</span><span class="n">mol</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="k">elif</span> <span class="n">mol</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">elec</span>  <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; el</span><span class="si">{</span><span class="n">mol</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> |&quot;</span>
+
+            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">+</span> <span class="n">elec</span><span class="p">)</span>
+
+    <span class="c1"># Write each formatted line to the file</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;------------------------------------------------------------------</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Kinetic Energy</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;# Kinetic Energy</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">mode_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_modes</span><span class="p">):</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;omega_</span><span class="si">{</span><span class="n">mode_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\t</span><span class="s2">|</span><span class="si">{</span><span class="n">mode_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\t</span><span class="s2">KE</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Potential &amp; couplings</span>
+    
+
+    <span class="n">current_mode_offset</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">current_state_offset</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">cur_mol</span><span class="p">,</span> <span class="n">block</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_blocks</span><span class="p">):</span>
+        <span class="n">idx_mol</span> <span class="o">=</span> <span class="n">cur_mol</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">nmodes</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;number_normal_modes&quot;</span><span class="p">]</span>
+        <span class="n">nstates</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;number_states&quot;</span><span class="p">]</span>
+        <span class="n">vcham_modes</span> <span class="o">=</span> <span class="n">block</span><span class="p">[</span><span class="s2">&quot;vcham&quot;</span><span class="p">]</span>
+
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># Molecule </span><span class="si">{</span><span class="n">cur_mol</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="c1"># 1. Harmonic/quartic potential</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># Potential for Harmonic oscillator</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nmodes</span><span class="p">):</span>   
+            <span class="n">diag_list</span> <span class="o">=</span> <span class="n">vcham_modes</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="s2">&quot;diagonal&quot;</span><span class="p">]</span>
+            <span class="n">diab_functs</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;diab_funct&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">diag_list</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">f</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;ho&quot;</span><span class="p">,</span> <span class="s2">&quot;quartic&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">diab_functs</span><span class="p">):</span>
+                <span class="n">global_mode_idx</span> <span class="o">=</span> <span class="n">current_mode_offset</span> <span class="o">+</span> <span class="n">m</span>
+                <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;0.5*omega_</span><span class="si">{</span><span class="n">global_mode_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\t</span><span class="s2">|</span><span class="si">{</span><span class="n">global_mode_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\t</span><span class="s2">q^2</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># 2. Electronic states</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># Electronic States</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstates</span><span class="p">):</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;E_</span><span class="si">{</span><span class="n">idx_mol</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\t</span><span class="s2">|</span><span class="si">{</span><span class="n">total_modes</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cur_mol</span><span class="si">}</span><span class="se">\t</span><span class="s2">S</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&amp;</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="c1"># 3. Lambda</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># Lambda</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nmodes</span><span class="p">):</span>
+            <span class="n">non_diag</span> <span class="o">=</span> <span class="n">vcham_modes</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="s2">&quot;non-diagonal&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">non_diag</span><span class="p">:</span>
+                <span class="n">indexes</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">non_diag</span><span class="p">[</span><span class="s2">&quot;idx&quot;</span><span class="p">])</span>
+                <span class="n">lambdas</span> <span class="o">=</span> <span class="n">non_diag</span><span class="p">[</span><span class="s2">&quot;lambda&quot;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">st1</span><span class="p">,</span> <span class="n">st2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">indexes</span><span class="p">):</span>
+                    <span class="n">global_mode_idx</span> <span class="o">=</span> <span class="n">current_mode_offset</span> <span class="o">+</span> <span class="n">m</span>
+                    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;lambda</span><span class="si">{</span><span class="n">global_mode_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">st1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">st2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">|</span><span class="si">{</span><span class="n">global_mode_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\t</span><span class="s2">q</span><span class="se">\t</span><span class="s2">|</span><span class="si">{</span><span class="n">total_modes</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cur_mol</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">S</span><span class="si">{</span><span class="n">st1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&amp;</span><span class="si">{</span><span class="n">st2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+
+        <span class="c1"># 4. Kappa</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># Kappa</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nmodes</span><span class="p">):</span>
+            <span class="n">diag_list</span> <span class="o">=</span> <span class="n">vcham_modes</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="s2">&quot;diagonal&quot;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstates</span><span class="p">):</span>
+                <span class="n">kappa</span> <span class="o">=</span> <span class="n">diag_list</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;kappa&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">kappa</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">global_mode_idx</span> <span class="o">=</span> <span class="n">current_mode_offset</span> <span class="o">+</span> <span class="n">m</span>
+                    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;kappa</span><span class="si">{</span><span class="n">global_mode_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">|</span><span class="si">{</span><span class="n">global_mode_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\t</span><span class="s2">q</span><span class="se">\t</span><span class="s2">|</span><span class="si">{</span><span class="n">total_modes</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cur_mol</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">S</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&amp;</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+
+        <span class="c1"># 5. Quartic</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># Quartic potential</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nmodes</span><span class="p">):</span>
+            <span class="n">diag_list</span> <span class="o">=</span> <span class="n">vcham_modes</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="s2">&quot;diagonal&quot;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstates</span><span class="p">):</span>
+                <span class="n">diag</span> <span class="o">=</span> <span class="n">diag_list</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">diag</span><span class="p">[</span><span class="s2">&quot;diab_funct&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;quartic&quot;</span><span class="p">:</span>
+                    <span class="n">global_mode_idx</span> <span class="o">=</span> <span class="n">current_mode_offset</span> <span class="o">+</span> <span class="n">m</span>
+                    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mf">0.5</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">*M</span><span class="si">{</span><span class="n">global_mode_idx</span><span class="si">}</span><span class="s2">S</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">_1&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">|</span><span class="si">{</span><span class="n">global_mode_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\t</span><span class="s2">q^2&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">|</span><span class="si">{</span><span class="n">total_modes</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cur_mol</span><span class="si">}</span><span class="se">\t</span><span class="s2">S</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&amp;</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+                    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">24</span><span class="p">)</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">*M</span><span class="si">{</span><span class="n">global_mode_idx</span><span class="si">}</span><span class="s2">S</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">_2&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">|</span><span class="si">{</span><span class="n">global_mode_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\t</span><span class="s2">q^4&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">|</span><span class="si">{</span><span class="n">total_modes</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cur_mol</span><span class="si">}</span><span class="se">\t</span><span class="s2">S</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&amp;</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+
+        <span class="c1"># 6. Morse/Anti-Morse</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># Morse/Anti-Morse potential</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nmodes</span><span class="p">):</span>
+            <span class="n">diag_list</span> <span class="o">=</span> <span class="n">vcham_modes</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="s2">&quot;diagonal&quot;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstates</span><span class="p">):</span>
+                <span class="n">diag</span> <span class="o">=</span> <span class="n">diag_list</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">diag</span><span class="p">[</span><span class="s2">&quot;diab_funct&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;morse&quot;</span><span class="p">,</span> <span class="s2">&quot;antimorse&quot;</span><span class="p">]:</span>
+                    <span class="n">global_mode_idx</span> <span class="o">=</span> <span class="n">current_mode_offset</span> <span class="o">+</span> <span class="n">m</span>
+                    <span class="c1"># global_state_idx = current_state_offset + s</span>
+                    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;1.0</span><span class="se">\t</span><span class="s2">|</span><span class="si">{</span><span class="n">global_mode_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\t</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;v_</span><span class="si">{</span><span class="n">global_mode_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">|</span><span class="si">{</span><span class="n">total_modes</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cur_mol</span><span class="si">}</span><span class="se">\t</span><span class="s2">S</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&amp;</span><span class="si">{</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+
+        <span class="c1"># 7. Dipole interaction section</span>
+        <span class="k">if</span> <span class="n">dipole</span><span class="p">:</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"># Dipole interaction</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="c1"># If the user provided a list of pairs, use that</span>
+
+            <span class="n">all_molecules</span> <span class="o">=</span> <span class="n">dipole_config</span><span class="o">.</span><span class="n">molecules</span>
+            <span class="n">num_molecules</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_molecules</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">dipole_config</span><span class="o">.</span><span class="n">selected_pairs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">pair_list</span> <span class="o">=</span> <span class="n">dipole_config</span><span class="o">.</span><span class="n">selected_pairs</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Otherwise, default to all unique pairs</span>
+                <span class="n">pair_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_molecules</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">mol1</span><span class="p">,</span> <span class="n">mol2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pair_list</span><span class="p">):</span> 
+
+                <span class="c1"># If user doesn&#39;t specify subsets, default to all states</span>
+                <span class="n">sel_states1</span> <span class="o">=</span> <span class="n">all_molecules</span><span class="p">[</span><span class="n">mol1</span><span class="p">]</span><span class="o">.</span><span class="n">selected_states</span> <span class="ow">or</span> <span class="nb">range</span><span class="p">(</span><span class="n">data_blocks</span><span class="p">[</span><span class="n">mol1</span><span class="p">][</span><span class="s2">&quot;number_states&quot;</span><span class="p">])</span>
+                <span class="n">sel_states2</span> <span class="o">=</span> <span class="n">all_molecules</span><span class="p">[</span><span class="n">mol2</span><span class="p">]</span><span class="o">.</span><span class="n">selected_states</span> <span class="ow">or</span> <span class="nb">range</span><span class="p">(</span><span class="n">data_blocks</span><span class="p">[</span><span class="n">mol2</span><span class="p">][</span><span class="s2">&quot;number_states&quot;</span><span class="p">])</span>
+                <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span> <span class="ow">in</span> <span class="n">combinations_with_replacement</span><span class="p">(</span><span class="n">sel_states1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">s3</span><span class="p">,</span> <span class="n">s4</span> <span class="ow">in</span> <span class="n">combinations_with_replacement</span><span class="p">(</span><span class="n">sel_states2</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+                        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;DD_</span><span class="si">{</span><span class="n">mol1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s1</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s2</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">_VS_</span><span class="si">{</span><span class="n">mol2</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s3</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">s4</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> | &quot;</span> 
+                            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">total_modes</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mol1</span><span class="si">}</span><span class="s2"> S</span><span class="si">{</span><span class="n">s1</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&amp;</span><span class="si">{</span><span class="n">s2</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> | &quot;</span> 
+                            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">total_modes</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mol2</span><span class="si">}</span><span class="s2"> S</span><span class="si">{</span><span class="n">s3</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&amp;</span><span class="si">{</span><span class="n">s4</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+
+        <span class="n">current_mode_offset</span> <span class="o">+=</span> <span class="n">nmodes</span>
+        <span class="n">current_state_offset</span> <span class="o">+=</span> <span class="n">nstates</span>
+
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">END-HAMILTONIAN-SECTION</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;END-OPERATOR</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+
+
+
+
+
+<div class="viewcode-block" id="jsons_to_mctdh"><a class="viewcode-back" href="../utils.html#utils.jsons_to_mctdh">[docs]</a><span class="k">def</span> <span class="nf">jsons_to_mctdh</span><span class="p">(</span><span class="n">infiles</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>  <span class="n">outfile</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                   <span class="n">dipole</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                   <span class="n">dipole_config</span><span class="p">:</span> <span class="n">DipoleConfig</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reads multiple JSON files and writes a single MCTDH operator file</span>
+<span class="sd">    that concatenates them directly (with proper indexing offsets).</span>
+
+<span class="sd">    Steps:</span>
+<span class="sd">      1. Read each JSON into a list of dicts.</span>
+<span class="sd">      2. Compute total number of modes and states for all files.</span>
+<span class="sd">      3. Write one combined MCTDH file, adjusting offsets as needed</span>
+<span class="sd">         to avoid collisions in modes, states, etc.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">      infiles (Union[str, List[str]]): One or more JSON file paths.</span>
+<span class="sd">      outfile (str): Output MCTDH operator file path.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># 1. Collect data from each JSON file</span>
+    <span class="n">data_blocks</span> <span class="o">=</span> <span class="n">_read_data_blocks</span><span class="p">(</span><span class="n">infiles</span><span class="p">)</span>
+
+    <span class="c1"># 2. Compute total number of modes &amp; states</span>
+    <span class="n">total_modes</span><span class="p">,</span> <span class="n">total_states</span><span class="p">,</span> <span class="n">master_units</span> <span class="o">=</span> <span class="n">_compute_totals</span><span class="p">(</span><span class="n">data_blocks</span><span class="p">)</span>
+    
+    <span class="c1"># 3) If dipole computations are requested</span>
+    <span class="k">if</span> <span class="n">dipole</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">dipole_config</span><span class="p">:</span>
+            <span class="c1"># Either create default or raise an error</span>
+            <span class="n">dipole_config</span> <span class="o">=</span> <span class="n">DipoleConfig</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dipole-dipole computations requested.&quot;</span><span class="p">)</span>
+
+
+    <span class="c1"># 3. Write out the MCTDH operator file directly</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+            <span class="c1"># 3A. Header</span>
+            <span class="n">_write_header_section</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+
+            <span class="c1"># 3B. Parameter Section and calculate dipoles</span>
+            <span class="n">val_dipoles</span> <span class="o">=</span> <span class="n">_write_parameter_section</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">data_blocks</span><span class="p">,</span> <span class="n">master_units</span><span class="p">,</span> 
+                                                   <span class="n">dipoles</span><span class="o">=</span><span class="n">dipole</span><span class="p">,</span> 
+                                                   <span class="n">dipole_config</span><span class="o">=</span><span class="n">dipole_config</span><span class="p">)</span>
+
+            <span class="c1"># 3C. Labels Section</span>
+            <span class="n">_write_labels_section</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">data_blocks</span><span class="p">)</span>
+
+            <span class="c1"># 3D. Hamiltonian Section</span>
+            <span class="n">_write_hamiltonian_section</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">data_blocks</span><span class="p">,</span> <span class="n">total_modes</span><span class="p">,</span> 
+                                       <span class="n">total_states</span><span class="p">,</span> 
+                                       <span class="n">dipole</span><span class="o">=</span><span class="n">dipole</span><span class="p">,</span> 
+                                       <span class="n">dipole_config</span><span class="o">=</span><span class="n">dipole_config</span><span class="p">,</span>
+                                       <span class="n">values_dipoles</span><span class="o">=</span><span class="n">val_dipoles</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MCTDH operator file successfully written to: </span><span class="si">{</span><span class="n">outfile</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">IOError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error writing MCTDH file: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span></div>
+
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

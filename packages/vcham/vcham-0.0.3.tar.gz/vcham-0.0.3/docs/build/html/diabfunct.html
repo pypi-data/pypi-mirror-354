@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diabatic Functions Module &mdash; pyVCHAM 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="LVC Module" href="lvc.html" />
+    <link rel="prev" title="Coupling Functions Module" href="couplingfunct.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> pyVCHAM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation Sections:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="constants.html">Constants Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="constants.html#id1">Constants Module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="couplingfunct.html">Coupling Functions Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="couplingfunct.html#coupling-calculations-module">Coupling Calculations Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="couplingfunct.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="couplingfunct.html#variables">Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Diabatic Functions Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variables">Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lvc.html">LVC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opt_diag.html">Optimization Diagonalization Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="symm_vcham.html">Symmetry VCHAM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utils Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#core-modules">Core Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#utility-modules">Utility Modules</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyVCHAM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">Modules</a></li>
+      <li class="breadcrumb-item active">Diabatic Functions Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/diabfunct.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-diabfunct">
+<span id="diabatic-functions-module"></span><h1>Diabatic Functions Module<a class="headerlink" href="#module-diabfunct" title="Permalink to this heading"></a></h1>
+<p>This module contains functions for diabatic calculations.</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#diabfunct.harmonic_oscillator" title="diabfunct.harmonic_oscillator"><code class="xref py py-func docutils literal notranslate"><span class="pre">harmonic_oscillator()</span></code></a>: Computes the harmonic oscillator potential.</p></li>
+<li><p><a class="reference internal" href="#diabfunct.general_quartic_potential" title="diabfunct.general_quartic_potential"><code class="xref py py-func docutils literal notranslate"><span class="pre">general_quartic_potential()</span></code></a>: Computes the general quartic potential.</p></li>
+<li><p><a class="reference internal" href="#diabfunct.general_morse_np" title="diabfunct.general_morse_np"><code class="xref py py-func docutils literal notranslate"><span class="pre">general_morse_np()</span></code></a>: Computes the general Morse potential using NumPy.</p></li>
+<li><p><a class="reference internal" href="#diabfunct.general_morse_tf" title="diabfunct.general_morse_tf"><code class="xref py py-func docutils literal notranslate"><span class="pre">general_morse_tf()</span></code></a>: Computes the general Morse potential using TensorFlow.</p></li>
+</ul>
+</section>
+<section id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">potential_functions</span></code>: Dictionary of potential functions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_var</span></code>: Dictionary of the number of variables for each function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">initial_guesses</span></code>: Dictionary of initial guesses for each potential type.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kappa_compatible</span></code>: Dictionary indicating compatibility with the kappa function.</p></li>
+</ul>
+<dl class="py function">
+<dt class="sig sig-object py" id="diabfunct.general_morse_np">
+<span class="sig-prename descclassname"><span class="pre">diabfunct.</span></span><span class="sig-name descname"><span class="pre">general_morse_np</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">De</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/diabfunct.html#general_morse_np"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diabfunct.general_morse_np" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the general Morse potential using NumPy.</p>
+<dl class="simple">
+<dt>q<span class="classifier">np.ndarray</span></dt><dd><p>Array of displacements.</p>
+</dd>
+<dt>De<span class="classifier">float</span></dt><dd><p>Dissociation energy.</p>
+</dd>
+<dt>alpha<span class="classifier">float</span></dt><dd><p>Range parameter.</p>
+</dd>
+<dt>q0<span class="classifier">float</span></dt><dd><p>Equilibrium bond distance.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>np.ndarray</dt><dd><p>Array of potential values.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>ndarray</em></a>) – </p></li>
+<li><p><strong>De</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – </p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – </p></li>
+<li><p><strong>q0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>ndarray</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="diabfunct.general_morse_tf">
+<span class="sig-prename descclassname"><span class="pre">diabfunct.</span></span><span class="sig-name descname"><span class="pre">general_morse_tf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/diabfunct.html#general_morse_tf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diabfunct.general_morse_tf" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the general Morse potential using TensorFlow.</p>
+<dl class="simple">
+<dt>q<span class="classifier">tf.Tensor</span></dt><dd><p>Tensor of displacements.</p>
+</dd>
+<dt>params<span class="classifier">list</span></dt><dd><p>List containing dissociation energy (De), range parameter (alpha),
+and equilibrium bond distance (q0).</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>tf.Tensor</dt><dd><p>Tensor of potential values.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Tensor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="diabfunct.general_quartic_potential">
+<span class="sig-prename descclassname"><span class="pre">diabfunct.</span></span><span class="sig-name descname"><span class="pre">general_quartic_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/diabfunct.html#general_quartic_potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diabfunct.general_quartic_potential" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the general quartic potential.</p>
+<dl class="simple">
+<dt>q<span class="classifier">tf.Tensor</span></dt><dd><p>Tensor of displacements.</p>
+</dd>
+<dt>omega<span class="classifier">tf.Tensor</span></dt><dd><p>Tensor representing the frequency of the mode.</p>
+</dd>
+<dt>params<span class="classifier">list</span></dt><dd><p>List containing quadratic (k2) and quartic (k3) coefficients.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>tf.Tensor</dt><dd><p>Tensor of potential values.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>omega</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Tensor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="diabfunct.harmonic_oscillator">
+<span class="sig-prename descclassname"><span class="pre">diabfunct.</span></span><span class="sig-name descname"><span class="pre">harmonic_oscillator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/diabfunct.html#harmonic_oscillator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diabfunct.harmonic_oscillator" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the harmonic oscillator potential.</p>
+<dl class="simple">
+<dt>q<span class="classifier">tf.Tensor</span></dt><dd><p>Tensor of displacements.</p>
+</dd>
+<dt>omega<span class="classifier">tf.Tensor</span></dt><dd><p>Tensor representing the frequency of the mode.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>tf.Tensor</dt><dd><p>Tensor of potential values.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>omega</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Tensor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="couplingfunct.html" class="btn btn-neutral float-left" title="Coupling Functions Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lvc.html" class="btn btn-neutral float-right" title="LVC Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

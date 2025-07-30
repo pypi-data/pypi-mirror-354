@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Symmetry VCHAM Module &mdash; pyVCHAM 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Utils Module" href="utils.html" />
+    <link rel="prev" title="Optimization Diagonalization Module" href="opt_diag.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> pyVCHAM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation Sections:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="constants.html">Constants Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="constants.html#id1">Constants Module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="couplingfunct.html">Coupling Functions Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="couplingfunct.html#coupling-calculations-module">Coupling Calculations Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="couplingfunct.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="couplingfunct.html#variables">Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="diabfunct.html">Diabatic Functions Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="diabfunct.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diabfunct.html#variables">Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lvc.html">LVC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opt_diag.html">Optimization Diagonalization Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Symmetry VCHAM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utils Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#core-modules">Core Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#utility-modules">Utility Modules</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyVCHAM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">Modules</a></li>
+      <li class="breadcrumb-item active">Symmetry VCHAM Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/symm_vcham.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-symm_vcham">
+<span id="symmetry-vcham-module"></span><h1>Symmetry VCHAM Module<a class="headerlink" href="#module-symm_vcham" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="symm_vcham.SymmetryMask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">symm_vcham.</span></span><span class="sig-name descname"><span class="pre">SymmetryMask</span></span><a class="reference internal" href="_modules/symm_vcham.html#SymmetryMask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#symm_vcham.SymmetryMask" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="symm_vcham.SymmetryMask.create_symmetry_matrix">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_symmetry_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">VCSystem</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/symm_vcham.html#SymmetryMask.create_symmetry_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#symm_vcham.SymmetryMask.create_symmetry_matrix" title="Permalink to this definition"></a></dt>
+<dd><p>Create a symmetry matrix based on the given parameters.</p>
+<dl>
+<dt>VCSystem<span class="classifier">object</span></dt><dd><p>An object containing the necessary attributes:
+- symmetry_point_group: str, the symmetry point group.
+- number_normal_modes: int, number of normal modes.
+- number_states: int, number of states.
+- symmetry_modes: list, list of symmetry modes.
+- symmetry_states: list, list of symmetry states.
+- coupling_with_gs: bool, whether to decouple the ground state.
+- totally_sym_irrep: str, the totally symmetric irreducible representation.
+- JT_effects: list of dict, each dictionary specifies a JT effect with keys:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>‘mode’: int, index of the normal mode where the JT effect occurs.</p></li>
+<li><p>‘state_pairs’: list of tuples/lists, each containing two integers (state indices).</p></li>
+<li><p>‘types’: list of str, JT effect types (e.g., ‘Exe’, ‘Exb’) corresponding to each state pair.</p></li>
+<li><p>‘active’ (optional): bool, indicating if the effect is actively optimized (default is True).</p></li>
+<li><p>‘source’ (optional): int, if inactive, the mode index from which parameters should be copied.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+<dl class="simple">
+<dt>np.ndarray</dt><dd><p>The symmetry matrix.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>AttributeError</dt><dd><p>If VCSystem is missing an expected attribute.</p>
+</dd>
+<dt>ValueError</dt><dd><p>If the provided JT_effects do not meet the expected format.</p>
+</dd>
+<dt>TypeError</dt><dd><p>If mode or state indices are not integers.</p>
+</dd>
+<dt>IndexError</dt><dd><p>If mode or state indices are out of bounds.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>ndarray</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="symm_vcham.SymmetryMask.get_operation_result">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_operation_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sym_point_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/symm_vcham.html#SymmetryMask.get_operation_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#symm_vcham.SymmetryMask.get_operation_result" title="Permalink to this definition"></a></dt>
+<dd><p>Get the result of a symmetry operation for two states.</p>
+<dl class="simple">
+<dt>sym_point_group<span class="classifier">str</span></dt><dd><p>The symmetry point group.</p>
+</dd>
+<dt>state1<span class="classifier">str</span></dt><dd><p>The first state.</p>
+</dd>
+<dt>state2<span class="classifier">str</span></dt><dd><p>The second state.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>str</dt><dd><p>The result of the symmetry operation.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the operation result is not found.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sym_point_group</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – </p></li>
+<li><p><strong>state1</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – </p></li>
+<li><p><strong>state2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="symm_vcham.SymmetryMask.get_product_table">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_product_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sym_point_group</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/symm_vcham.html#SymmetryMask.get_product_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#symm_vcham.SymmetryMask.get_product_table" title="Permalink to this definition"></a></dt>
+<dd><p>Get the product table for a given symmetry point group.</p>
+<dl class="simple">
+<dt>sym_point_group<span class="classifier">str</span></dt><dd><p>The symmetry point group.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dict</dt><dd><p>The product table for the given symmetry point group.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the symmetry point group is unknown.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sym_point_group</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="symm_vcham.SymmetryMask.get_total_sym_irrep">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_total_sym_irrep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">VCSystem</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/symm_vcham.html#SymmetryMask.get_total_sym_irrep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#symm_vcham.SymmetryMask.get_total_sym_irrep" title="Permalink to this definition"></a></dt>
+<dd><p>Get the totally symmetric irreducible representation for a given symmetry point group.</p>
+<dl class="simple">
+<dt>VCSystem<span class="classifier">str or object</span></dt><dd><p>The symmetry point group or an object with a ‘symmetry_point_group’ attribute.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>str</dt><dd><p>The totally symmetric irreducible representation.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If VCSystem is not a string or an object with a ‘symmetry_point_group’ attribute.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="symm_vcham.SymmetryMask.product_tables">
+<span class="sig-name descname"><span class="pre">product_tables</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'c2':</span> <span class="pre">{('A',</span> <span class="pre">'A'):</span> <span class="pre">'A',</span> <span class="pre">('A',</span> <span class="pre">'B'):</span> <span class="pre">'B',</span> <span class="pre">('B',</span> <span class="pre">'A'):</span> <span class="pre">'B',</span> <span class="pre">('B',</span> <span class="pre">'B'):</span> <span class="pre">'A'},</span> <span class="pre">'c2h':</span> <span class="pre">{('Ag',</span> <span class="pre">'Ag'):</span> <span class="pre">'Ag',</span> <span class="pre">('Ag',</span> <span class="pre">'Au'):</span> <span class="pre">'Au',</span> <span class="pre">('Ag',</span> <span class="pre">'Bg'):</span> <span class="pre">'Bg',</span> <span class="pre">('Ag',</span> <span class="pre">'Bu'):</span> <span class="pre">'Bu',</span> <span class="pre">('Au',</span> <span class="pre">'Ag'):</span> <span class="pre">'Au',</span> <span class="pre">('Au',</span> <span class="pre">'Au'):</span> <span class="pre">'Ag',</span> <span class="pre">('Au',</span> <span class="pre">'Bg'):</span> <span class="pre">'Bu',</span> <span class="pre">('Au',</span> <span class="pre">'Bu'):</span> <span class="pre">'Bg',</span> <span class="pre">('Bg',</span> <span class="pre">'Ag'):</span> <span class="pre">'Bg',</span> <span class="pre">('Bg',</span> <span class="pre">'Au'):</span> <span class="pre">'Bu',</span> <span class="pre">('Bg',</span> <span class="pre">'Bg'):</span> <span class="pre">'Ag',</span> <span class="pre">('Bg',</span> <span class="pre">'Bu'):</span> <span class="pre">'Au',</span> <span class="pre">('Bu',</span> <span class="pre">'Ag'):</span> <span class="pre">'Bu',</span> <span class="pre">('Bu',</span> <span class="pre">'Au'):</span> <span class="pre">'Bg',</span> <span class="pre">('Bu',</span> <span class="pre">'Bg'):</span> <span class="pre">'Au',</span> <span class="pre">('Bu',</span> <span class="pre">'Bu'):</span> <span class="pre">'Ag'},</span> <span class="pre">'c2v':</span> <span class="pre">{('A1',</span> <span class="pre">'A1'):</span> <span class="pre">'A1',</span> <span class="pre">('A1',</span> <span class="pre">'A2'):</span> <span class="pre">'A2',</span> <span class="pre">('A1',</span> <span class="pre">'B1'):</span> <span class="pre">'B1',</span> <span class="pre">('A1',</span> <span class="pre">'B2'):</span> <span class="pre">'B2',</span> <span class="pre">('A2',</span> <span class="pre">'A1'):</span> <span class="pre">'A2',</span> <span class="pre">('A2',</span> <span class="pre">'A2'):</span> <span class="pre">'A1',</span> <span class="pre">('A2',</span> <span class="pre">'B1'):</span> <span class="pre">'B2',</span> <span class="pre">('A2',</span> <span class="pre">'B2'):</span> <span class="pre">'B1',</span> <span class="pre">('B1',</span> <span class="pre">'A1'):</span> <span class="pre">'B1',</span> <span class="pre">('B1',</span> <span class="pre">'A2'):</span> <span class="pre">'B2',</span> <span class="pre">('B1',</span> <span class="pre">'B1'):</span> <span class="pre">'A1',</span> <span class="pre">('B1',</span> <span class="pre">'B2'):</span> <span class="pre">'A2',</span> <span class="pre">('B2',</span> <span class="pre">'A1'):</span> <span class="pre">'B2',</span> <span class="pre">('B2',</span> <span class="pre">'A2'):</span> <span class="pre">'B1',</span> <span class="pre">('B2',</span> <span class="pre">'B1'):</span> <span class="pre">'A2',</span> <span class="pre">('B2',</span> <span class="pre">'B2'):</span> <span class="pre">'A1'},</span> <span class="pre">'ci':</span> <span class="pre">{('Ag',</span> <span class="pre">'Ag'):</span> <span class="pre">'Ag',</span> <span class="pre">('Ag',</span> <span class="pre">'Au'):</span> <span class="pre">'Au',</span> <span class="pre">('Au',</span> <span class="pre">'Ag'):</span> <span class="pre">'Au',</span> <span class="pre">('Au',</span> <span class="pre">'Au'):</span> <span class="pre">'Ag'},</span> <span class="pre">'cs':</span> <span class="pre">{(&quot;A'&quot;,</span> <span class="pre">&quot;A'&quot;):</span> <span class="pre">&quot;A'&quot;,</span> <span class="pre">(&quot;A'&quot;,</span> <span class="pre">&quot;A''&quot;):</span> <span class="pre">&quot;A''&quot;,</span> <span class="pre">(&quot;A''&quot;,</span> <span class="pre">&quot;A'&quot;):</span> <span class="pre">&quot;A''&quot;,</span> <span class="pre">(&quot;A''&quot;,</span> <span class="pre">&quot;A''&quot;):</span> <span class="pre">&quot;A'&quot;},</span> <span class="pre">'d2':</span> <span class="pre">{('A',</span> <span class="pre">'A'):</span> <span class="pre">'A',</span> <span class="pre">('A',</span> <span class="pre">'B1'):</span> <span class="pre">'B1',</span> <span class="pre">('A',</span> <span class="pre">'B2'):</span> <span class="pre">'B2',</span> <span class="pre">('A',</span> <span class="pre">'B3'):</span> <span class="pre">'B3',</span> <span class="pre">('B1',</span> <span class="pre">'A'):</span> <span class="pre">'B1',</span> <span class="pre">('B1',</span> <span class="pre">'B1'):</span> <span class="pre">'A',</span> <span class="pre">('B1',</span> <span class="pre">'B2'):</span> <span class="pre">'B3',</span> <span class="pre">('B1',</span> <span class="pre">'B3'):</span> <span class="pre">'B2',</span> <span class="pre">('B2',</span> <span class="pre">'A'):</span> <span class="pre">'B2',</span> <span class="pre">('B2',</span> <span class="pre">'B1'):</span> <span class="pre">'B3',</span> <span class="pre">('B2',</span> <span class="pre">'B2'):</span> <span class="pre">'A',</span> <span class="pre">('B2',</span> <span class="pre">'B3'):</span> <span class="pre">'B1',</span> <span class="pre">('B3',</span> <span class="pre">'A'):</span> <span class="pre">'B3',</span> <span class="pre">('B3',</span> <span class="pre">'B1'):</span> <span class="pre">'B2',</span> <span class="pre">('B3',</span> <span class="pre">'B2'):</span> <span class="pre">'B1',</span> <span class="pre">('B3',</span> <span class="pre">'B3'):</span> <span class="pre">'A'},</span> <span class="pre">'d2h':</span> <span class="pre">{('Ag',</span> <span class="pre">'Ag'):</span> <span class="pre">'Ag',</span> <span class="pre">('Ag',</span> <span class="pre">'Au'):</span> <span class="pre">'Au',</span> <span class="pre">('Ag',</span> <span class="pre">'B1g'):</span> <span class="pre">'B1g',</span> <span class="pre">('Ag',</span> <span class="pre">'B1u'):</span> <span class="pre">'B1u',</span> <span class="pre">('Ag',</span> <span class="pre">'B2g'):</span> <span class="pre">'B2g',</span> <span class="pre">('Ag',</span> <span class="pre">'B2u'):</span> <span class="pre">'B2u',</span> <span class="pre">('Ag',</span> <span class="pre">'B3g'):</span> <span class="pre">'B3g',</span> <span class="pre">('Ag',</span> <span class="pre">'B3u'):</span> <span class="pre">'B3u',</span> <span class="pre">('Au',</span> <span class="pre">'Ag'):</span> <span class="pre">'Au',</span> <span class="pre">('Au',</span> <span class="pre">'Au'):</span> <span class="pre">'Ag',</span> <span class="pre">('Au',</span> <span class="pre">'B1g'):</span> <span class="pre">'B1u',</span> <span class="pre">('Au',</span> <span class="pre">'B1u'):</span> <span class="pre">'B1g',</span> <span class="pre">('Au',</span> <span class="pre">'B2g'):</span> <span class="pre">'B2u',</span> <span class="pre">('Au',</span> <span class="pre">'B2u'):</span> <span class="pre">'B2g',</span> <span class="pre">('Au',</span> <span class="pre">'B3g'):</span> <span class="pre">'B3u',</span> <span class="pre">('Au',</span> <span class="pre">'B3u'):</span> <span class="pre">'B3g',</span> <span class="pre">('B1g',</span> <span class="pre">'Ag'):</span> <span class="pre">'B1g',</span> <span class="pre">('B1g',</span> <span class="pre">'Au'):</span> <span class="pre">'B1u',</span> <span class="pre">('B1g',</span> <span class="pre">'B1g'):</span> <span class="pre">'Ag',</span> <span class="pre">('B1g',</span> <span class="pre">'B1u'):</span> <span class="pre">'Au',</span> <span class="pre">('B1g',</span> <span class="pre">'B2g'):</span> <span class="pre">'B3g',</span> <span class="pre">('B1g',</span> <span class="pre">'B2u'):</span> <span class="pre">'B3u',</span> <span class="pre">('B1g',</span> <span class="pre">'B3g'):</span> <span class="pre">'B2g',</span> <span class="pre">('B1g',</span> <span class="pre">'B3u'):</span> <span class="pre">'B2u',</span> <span class="pre">('B1u',</span> <span class="pre">'Ag'):</span> <span class="pre">'B1u',</span> <span class="pre">('B1u',</span> <span class="pre">'Au'):</span> <span class="pre">'B1g',</span> <span class="pre">('B1u',</span> <span class="pre">'B1g'):</span> <span class="pre">'Au',</span> <span class="pre">('B1u',</span> <span class="pre">'B1u'):</span> <span class="pre">'Ag',</span> <span class="pre">('B1u',</span> <span class="pre">'B2g'):</span> <span class="pre">'B3u',</span> <span class="pre">('B1u',</span> <span class="pre">'B2u'):</span> <span class="pre">'B3g',</span> <span class="pre">('B1u',</span> <span class="pre">'B3g'):</span> <span class="pre">'B2u',</span> <span class="pre">('B1u',</span> <span class="pre">'B3u'):</span> <span class="pre">'B2g',</span> <span class="pre">('B2g',</span> <span class="pre">'Ag'):</span> <span class="pre">'B2g',</span> <span class="pre">('B2g',</span> <span class="pre">'Au'):</span> <span class="pre">'B2u',</span> <span class="pre">('B2g',</span> <span class="pre">'B1g'):</span> <span class="pre">'B3g',</span> <span class="pre">('B2g',</span> <span class="pre">'B1u'):</span> <span class="pre">'B3u',</span> <span class="pre">('B2g',</span> <span class="pre">'B2g'):</span> <span class="pre">'Ag',</span> <span class="pre">('B2g',</span> <span class="pre">'B2u'):</span> <span class="pre">'Au',</span> <span class="pre">('B2g',</span> <span class="pre">'B3g'):</span> <span class="pre">'B1g',</span> <span class="pre">('B2g',</span> <span class="pre">'B3u'):</span> <span class="pre">'B1u',</span> <span class="pre">('B2u',</span> <span class="pre">'Ag'):</span> <span class="pre">'B2u',</span> <span class="pre">('B2u',</span> <span class="pre">'Au'):</span> <span class="pre">'B2g',</span> <span class="pre">('B2u',</span> <span class="pre">'B1g'):</span> <span class="pre">'B3u',</span> <span class="pre">('B2u',</span> <span class="pre">'B1u'):</span> <span class="pre">'B3g',</span> <span class="pre">('B2u',</span> <span class="pre">'B2g'):</span> <span class="pre">'Au',</span> <span class="pre">('B2u',</span> <span class="pre">'B2u'):</span> <span class="pre">'Ag',</span> <span class="pre">('B2u',</span> <span class="pre">'B3g'):</span> <span class="pre">'B1u',</span> <span class="pre">('B2u',</span> <span class="pre">'B3u'):</span> <span class="pre">'B1g',</span> <span class="pre">('B3g',</span> <span class="pre">'Ag'):</span> <span class="pre">'B3g',</span> <span class="pre">('B3g',</span> <span class="pre">'Au'):</span> <span class="pre">'B3u',</span> <span class="pre">('B3g',</span> <span class="pre">'B1g'):</span> <span class="pre">'B2g',</span> <span class="pre">('B3g',</span> <span class="pre">'B1u'):</span> <span class="pre">'B2u',</span> <span class="pre">('B3g',</span> <span class="pre">'B2g'):</span> <span class="pre">'B1g',</span> <span class="pre">('B3g',</span> <span class="pre">'B2u'):</span> <span class="pre">'B1u',</span> <span class="pre">('B3g',</span> <span class="pre">'B3g'):</span> <span class="pre">'Ag',</span> <span class="pre">('B3g',</span> <span class="pre">'B3u'):</span> <span class="pre">'Au',</span> <span class="pre">('B3u',</span> <span class="pre">'Ag'):</span> <span class="pre">'B3u',</span> <span class="pre">('B3u',</span> <span class="pre">'Au'):</span> <span class="pre">'B3g',</span> <span class="pre">('B3u',</span> <span class="pre">'B1g'):</span> <span class="pre">'B2u',</span> <span class="pre">('B3u',</span> <span class="pre">'B1u'):</span> <span class="pre">'B2g',</span> <span class="pre">('B3u',</span> <span class="pre">'B2g'):</span> <span class="pre">'B1u',</span> <span class="pre">('B3u',</span> <span class="pre">'B2u'):</span> <span class="pre">'B1g',</span> <span class="pre">('B3u',</span> <span class="pre">'B3g'):</span> <span class="pre">'Au',</span> <span class="pre">('B3u',</span> <span class="pre">'B3u'):</span> <span class="pre">'Ag'}}</span></em><a class="headerlink" href="#symm_vcham.SymmetryMask.product_tables" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="opt_diag.html" class="btn btn-neutral float-left" title="Optimization Diagonalization Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="utils.html" class="btn btn-neutral float-right" title="Utils Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
