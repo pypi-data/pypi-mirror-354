@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "case-mapping"
+version = "0.2.0"
+description = "Classes to support representation of the CASE Cyber Ontology"
+authors = [
+]
+maintainers = [
+    "Cyber Domain Ontology Maintainers <operations@cyberdomainontology.org>"
+]
+license = "Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/casework/CASE-Mapping-Python"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Libraries"
+]
+
+[tool.poetry.dependencies]
+cdo-local-uuid = "^0.5.0"
+python = "^3.9"
+pytz = "^2023.3.post1"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1"
+pytest = "^7.4.2"
+types-pytz = "^2024"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
