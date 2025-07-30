@@ -1,0 +1,62 @@
+Metadata-Version: 2.4
+Name: arxiv-tracker
+Version: 0.0.2
+Summary: A tool for tracking new papers on arXiv
+Project-URL: Homepage, https://github.com/monkitect/arxiv_tracker
+Project-URL: Repository, https://github.com/monkitect/arxiv_tracker
+Project-URL: Issues, https://github.com/monkitect/arxiv_tracker/issues
+Description-Content-Type: text/markdown
+Requires-Dist: feedparser
+Requires-Dist: pandas
+
+# ArXiv Tracker
+
+A Python package for tracking new papers on arXiv based on keywords.
+
+## Features
+
+- Track papers based on keywords
+- Automatic deduplication
+- Save papers to CSV
+- Configurable check interval
+
+## Installation
+
+```bash
+pip install arxiv-tracker
+```
+
+## Usage
+
+```text
+from arxiv_tracker.query_tracker import QueryTracker
+
+tracker = QueryTracker(["machine learning"])
+papers = tracker.fetch(max_results=60)
+```
+
+```text
+from arxiv_tracker.rss_tracker import RSSTracker
+
+rss_url = f"http://export.arxiv.org/rss/cs.AI"
+tracker = RSSTracker(rss_url=rss_url)
+papers = tracker.fetch()
+```
+
+---
+
+## Development
+
+- install & test
+
+```text
+pip install -e .
+python -m unittest discover tests
+```
+
+- build & upload to TestPyPI
+
+```text
+python -m build
+twine upload --repository testpypi dist/*  -u__token__ -p <your_token>
+```

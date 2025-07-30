@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=42", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+version_scheme = "guess-next-dev"
+
+[project]
+name = "arxiv-tracker"
+dynamic = ["version"]
+description = "A tool for tracking new papers on arXiv"
+readme = "README.md"
+dependencies = [
+    "feedparser",
+    "pandas",
+]
+
+[project.urls]
+Homepage = "https://github.com/monkitect/arxiv_tracker"
+Repository = "https://github.com/monkitect/arxiv_tracker"
+Issues = "https://github.com/monkitect/arxiv_tracker/issues"
