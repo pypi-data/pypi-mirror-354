@@ -1,0 +1,15 @@
+Metadata-Version: 2.3
+Name: libb-util
+Version: 0.0.1
+Summary: libb-util utilities module
+License: 0BSD
+Author: bissli
+Author-email: bissli.xyz@protonmail.com
+Requires-Python: >=3.10,<4.0
+Classifier: License :: OSI Approved
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: bump2version (>=1.0.1,<2.0.0)
