@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "active_period_method"
+version = "0.9.0"
+authors = [
+  { name="Martin Jestädt", email="m.jestaedt@ifakt.de" },
+  { name="Marco Bernreuther", email="marco.bernreuther@ipa.fraunhofer.de" },
+  { name="Benjamin Epple", email="b.epple@ifakt.de"},
+]
+description = "Bottleneck detection via the active period method"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dynamic = ["dependencies"]
+
+[project.urls]
+Homepage = "https://gitlab.cc-asp.fraunhofer.de/mcb/active-period-method"
+Issues = "https://gitlab.cc-asp.fraunhofer.de/mcb/active-period-method/-/issues"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+ignore_missing_imports = true
