@@ -1,0 +1,63 @@
+Metadata-Version: 2.4
+Name: picasa
+Version: 0.1.0
+Summary: PICASA, Partitioning Inter-patient Cellular Attributes by Shared Attention, project python package
+Home-page: https://github.com/causalpathlab/picasa
+Author: Sishir Subedi and Yongjin Park
+Author-email: 
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: anndata==0.10.8
+Requires-Dist: annoy==1.17.0
+Requires-Dist: numpy==1.24.4
+Requires-Dist: pandas>=2.0.3
+Requires-Dist: scanpy==1.9.3
+Requires-Dist: torch==2.5.1
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+
+<div align="center">
+    <img src="images/picasa_workflow.png" alt="Logo" width="500" height="500">
+</div>
+
+
+
+### This is a project repository for -
+* - Subedi, Sishir, and  Yongjin P. Park. "Decomposing patient heterogeneity of single-cell cancer data by cross-attention neural networks." [medRxiv 2025.06.04.25328900](https://www.medrxiv.org/content/10.1101/2025.06.04.25328900v1)
+
+
+
+## Tutorial
+
+For the step-by-step tutorial, please refer to <a href="https://github.com/causalpathlab/picasa/tree/main/picasa_reproducibility/analysis/tutorial">
+notebooks </a>:
+
+- Tutorial 1. <a href="https://github.com/causalpathlab/picasa/tree/main/picasa_reproducibility/analysis/tutorial/1_training_picasa_model.ipynb">
+ Training PICASA model using simulated datasets.</a>
+
+- Tutorial 2. <a href="https://github.com/causalpathlab/picasa/tree/main/picasa_reproducibility/analysis/tutorial/2_plotting_all_three_latent_umaps.ipynb">
+Plotting all three latent representations learned by the model.</a>
+
+- Tutorial 3. <a href="https://github.com/causalpathlab/picasa/tree/main/picasa_reproducibility/analysis/tutorial/3_attention_matrix_analysis.ipynb">
+Analysis of the cross attention matrix estimated by the model.</a>
+
+- Tutorial 4. <a href="https://github.com/causalpathlab/picasa/tree/main/picasa_reproducibility/analysis/tutorial/4_cancer_common_representation_analysis.ipynb">
+Cancer common representation analysis.</a>
+
+- Tutorial 5. <a href="https://github.com/causalpathlab/picasa/tree/main/picasa_reproducibility/analysis/tutorial/5_cancer_unique_representation_analysis.ipynb">
+Cancer unique representation analysis.</a>
+
+- Tutorial 6. <a href="https://github.com/causalpathlab/picasa/tree/main/picasa_reproducibility/analysis/tutorial/6_cancer_patient_outcome_analysis.ipynb">
+Cancer patient outcome analysis.</a>
