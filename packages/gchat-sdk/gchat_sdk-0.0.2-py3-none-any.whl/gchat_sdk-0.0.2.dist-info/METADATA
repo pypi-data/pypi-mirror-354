@@ -1,0 +1,97 @@
+Metadata-Version: 2.4
+Name: gchat-sdk
+Version: 0.0.2
+Summary: Gchat SDK for managing and closing conversations
+Author: Tatianno Alves
+Author-email: tferreiraalves@gmail.com
+License: MIT License
+Keywords: gchat chatbot sdk gnew
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: summary
+
+# GCHAT Close Conversations
+
+This project automates sending alerts and closing inactive conversations on the GCHAT platform, using API integration.
+
+## Features
+
+- Automatically sends alert messages to inactive contacts.
+- Automatically closes conversations based on configurable criteria.
+- Flexible configuration via environment variables.
+
+## Project Structure
+
+```
+.
+├── gchat_sdk/
+│   ├── controllers/
+│   ├── entities/
+│   ├── factories/
+│   ├── providers/
+│   ├── tests/
+│   ├── main.py
+│   ├── settings.py
+│   └── utils.py
+├── examples/
+│   └── finish_chats.py
+├── .env
+├── requirements.txt
+└── LICENSE
+```
+
+## Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/Gnew-Solucoes-IP-Ltda/gchat-sdk.git
+   cd GCHAT-Encerrar-conversas
+   ```
+
+2. Create and activate a virtual environment:
+   ```sh
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+3. Install dependencies:
+   ```sh
+   pip install -r requirements.txt
+   ```
+
+4. Configure environment variables in the `.env` file:
+   ```
+   URL_API=https://api.gchat.app.br
+   TOKEN_API=your_token
+   END_CHATS_WITH_ATTENDANTS_LAST_MESSAGE=True
+   END_CHATS_WITH_CONTACTS_LAST_MESSAGE=True
+   TIMEOUT=1
+   ALERT_TIME=0.1
+   ```
+
+## Usage
+
+Run the example to send alerts and close inactive conversations:
+
+```sh
+python examples/finish_chats.py
+```
+
+## Testing
+
+Unit tests are located in `gchat_sdk/tests/`. To run the tests using `unittest`:
+
+```sh
+python -m unittest discover gchat_sdk/tests/
+```
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
