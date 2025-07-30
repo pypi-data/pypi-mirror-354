@@ -1,0 +1,64 @@
+Metadata-Version: 2.4
+Name: extractCodeBlock
+Version: 0.1.0
+Summary: A package to extract code blocks from a LLM response, enclosed in triple backticks.
+Home-page: https://github.com/antick-coder/Extract_LLM_Block_Pkg.git
+Author: Antick Mazumder
+Author-email: antick.majumder@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+# extractCodeBlock
+
+A simple Python package to extract code blocks enclosed within triple backticks (```) from a string content.
+
+## Features
+
+- Extracts multiple code blocks with language identifiers.
+- Returns a list of dictionaries where each dictionary maps the block language/name to its content.
+- Useful for parsing markdown or text or code with embedded code snippets.
+
+## Installation
+
+Install the package via pip once published on PyPi:
+
+```bash
+pip install extractCodeBlock
+```
+
+# Usage 
+
+```python
+from extractCodeBlock import extractCodeBlock
+
+text = """
+```python
+print("Hello World !")```
+
+```sql
+SELECT * FROM users;```
+"""
+
+code_blocks = extractCodeBlock(text)
+print(code_blocks)
+```
+
+# Output:
+## [{'python': 'print("Hello World !")'}, {'sql': 'SELECT * FROM users;'}]
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE] (LICENSE) file for details.
