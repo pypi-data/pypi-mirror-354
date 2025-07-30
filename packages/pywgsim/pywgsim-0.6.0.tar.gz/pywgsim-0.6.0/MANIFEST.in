@@ -1,0 +1,6 @@
+include Makefile
+include pywgsim/*.pyx
+include pywgsim/src/*.c
+include pywgsim/src/*.h
+include pywgsim/src/Makefile
+include scripts/*
