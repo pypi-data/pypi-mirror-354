@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: entanglement-temp-controller
+Version: 1.0.5
+Summary: Flask based temperature controller for serial devices
+Author: Quantum Computing Inc.
+Author-email: support@quantumcomputinginc.com
+License: Apache 2.0
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: uvicorn
+Requires-Dist: fastapi
+Requires-Dist: pyserial
+Requires-Dist: flask
+
+# entanglement-temp-controller
+
+
+## Getting started
+
+### Installation
+
+`entanglement-temp-controller` currently supports Python 3.9-12, inclusive, as specified in the
+PEP-621-compliant pyproject.toml.
+
+Install `entanglement-temp-controller` from the [public PyPI server](https://pypi.org/)
+into your Python virtual environment using--
+
+```bash
+pip install entanglement-temp-controller
+```
+
+### Running the application
+
+To run the application run the following command:
+```bash
+python -m entanglement

@@ -1,0 +1,43 @@
+ # (C) Quantum Computing Inc., 2025.
+
+# THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE of the Copyright Holder.
+# The contents of this file may not be disclosed to third parties, copied
+# or duplicated in any form, in whole or in part, without the prior written
+# permission of the Copyright Holder.
+
+[project]
+name = 'entanglement-temp-controller'
+version = "1.0.5"
+description = "Flask based temperature controller for serial devices"
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = []
+license = {text = "Apache 2.0"}
+authors = [
+    {name = "Quantum Computing Inc."},
+    {email = "support@quantumcomputinginc.com"},
+]
+
+classifiers = []
+dependencies = [
+             "requests",
+             "uvicorn",
+             "fastapi",
+             "pyserial",
+             "flask",
+             ]
+
+[build-system]
+requires = ["setuptools>=61", "wheel", "tomli"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+#py-modules = ["entanglement_temp_controller"]
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"entanglement_temp_controller" = ["templates/*", "static/*"]
+
+[project.scripts]
+entanglectl = "entanglement_temp_controller.main:main"
