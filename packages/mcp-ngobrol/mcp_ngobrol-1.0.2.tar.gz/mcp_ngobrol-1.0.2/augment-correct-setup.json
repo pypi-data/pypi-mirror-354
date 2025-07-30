@@ -1,0 +1,147 @@
+{
+  "augment_setup": {
+    "title": "MCP Ngobrol v1.0.0 - Setup untuk Augment Code",
+    "description": "Setup MCP Ngobrol di Augment Code dengan format yang benar",
+    "version": "1.0.0",
+    "author": "MBPR",
+    "steps": [
+      {
+        "step": 1,
+        "title": "Install MCP Ngobrol",
+        "options": [
+          {
+            "method": "UV Package Manager (Recommended)",
+            "command": "uvx mcp-ngobrol@latest",
+            "description": "Install menggunakan UV"
+          },
+          {
+            "method": "Local Development",
+            "command": "git clone https://github.com/MBPR-dev/mcp-ngobrol.git",
+            "description": "Clone repository untuk development"
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "title": "Open Augment Settings",
+        "description": "Buka Augment Code → Settings → MCP Configuration"
+      },
+      {
+        "step": 3,
+        "title": "Add MCP Server Configuration",
+        "description": "Copy salah satu konfigurasi berikut ke Augment MCP settings",
+        "configurations": {
+          "production": {
+            "mcpServers": {
+              "mcp-ngobrol": {
+                "command": "uvx",
+                "args": ["mcp-ngobrol@latest"],
+                "env": {
+                  "FORCE_WEB": "false",
+                  "MCP_DEBUG": "false",
+                  "MCP_LANGUAGE": "id",
+                  "PYTHONIOENCODING": "utf-8"
+                }
+              }
+            }
+          },
+          "development": {
+            "mcpServers": {
+              "mcp-ngobrol-dev": {
+                "command": "python",
+                "args": ["C:/project/mcp-feedback-enhanced-2.3.0/run_mcp_simple.py"],
+                "env": {
+                  "FORCE_WEB": "false",
+                  "MCP_DEBUG": "true",
+                  "MCP_LANGUAGE": "id",
+                  "PYTHONIOENCODING": "utf-8"
+                }
+              }
+            }
+          },
+          "web_ui": {
+            "mcpServers": {
+              "mcp-ngobrol-web": {
+                "command": "uvx",
+                "args": ["mcp-ngobrol@latest"],
+                "env": {
+                  "FORCE_WEB": "true",
+                  "MCP_DEBUG": "false",
+                  "MCP_LANGUAGE": "id",
+                  "WEB_HOST": "0.0.0.0",
+                  "WEB_PORT": "8080",
+                  "PYTHONIOENCODING": "utf-8"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "step": 4,
+        "title": "Save and Restart",
+        "description": "Save konfigurasi dan restart Augment Code"
+      },
+      {
+        "step": 5,
+        "title": "Verify Installation",
+        "description": "Check apakah 'interactive_feedback_python' tool tersedia"
+      }
+    ],
+    "environment_variables": {
+      "FORCE_WEB": {
+        "description": "Force menggunakan Web UI instead of Qt GUI",
+        "values": ["true", "false"],
+        "default": "false"
+      },
+      "MCP_DEBUG": {
+        "description": "Enable debug mode untuk troubleshooting",
+        "values": ["true", "false"],
+        "default": "false"
+      },
+      "MCP_LANGUAGE": {
+        "description": "Set default language untuk interface",
+        "values": ["id", "en", "zh-CN", "zh-TW"],
+        "default": "id"
+      },
+      "PYTHONIOENCODING": {
+        "description": "Set Python encoding untuk Unicode support",
+        "default": "utf-8"
+      },
+      "WEB_HOST": {
+        "description": "Web UI host address",
+        "default": "127.0.0.1"
+      },
+      "WEB_PORT": {
+        "description": "Web UI port number",
+        "default": "8080"
+      }
+    },
+    "troubleshooting": {
+      "server_not_found": {
+        "issue": "MCP server tidak ditemukan",
+        "solutions": [
+          "Install UV: curl -LsSf https://astral.sh/uv/install.sh | sh",
+          "Install mcp-ngobrol: uvx mcp-ngobrol@latest",
+          "Check PATH environment variable"
+        ]
+      },
+      "gui_not_showing": {
+        "issue": "GUI tidak muncul",
+        "solutions": [
+          "Set FORCE_WEB=true untuk Web UI",
+          "Check display environment",
+          "Try manual run: python run_mcp_simple.py"
+        ]
+      },
+      "encoding_issues": {
+        "issue": "Character encoding problems",
+        "solutions": [
+          "Set PYTHONIOENCODING=utf-8",
+          "Check system locale settings",
+          "Restart Augment after config change"
+        ]
+      }
+    }
+  }
+}

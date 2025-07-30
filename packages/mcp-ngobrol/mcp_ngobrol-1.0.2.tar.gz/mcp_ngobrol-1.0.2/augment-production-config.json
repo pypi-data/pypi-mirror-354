@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "mcp-ngobrol": {
+      "command": "uvx",
+      "args": [
+        "mcp-ngobrol@latest"
+      ],
+      "env": {
+        "FORCE_WEB": "false",
+        "MCP_DEBUG": "false",
+        "MCP_LANGUAGE": "id",
+        "PYTHONIOENCODING": "utf-8"
+      }
+    }
+  }
+}
