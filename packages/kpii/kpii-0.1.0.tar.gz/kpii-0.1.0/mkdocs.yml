@@ -1,0 +1,38 @@
+site_name: KPII
+site_description: 한국어 개인정보 탐지 패키지
+site_author: HyeonSeop So
+repo_url: https://github.com/sotthang/kpii
+repo_name: sotthang/kpii
+
+theme:
+  name: material
+  language: ko
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - search.suggest
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed
+  - pymdownx.arithmatex
+  - pymdownx.emoji
+  - admonition
+  - footnotes
+  - toc:
+      permalink: true
+
+nav:
+  - 홈: index.md
+  - 시작하기:
+    - 설치: getting-started/installation.md
+    - 사용법: getting-started/usage.md
+  - 예제:
+    - 기본 사용법: examples/basic.md
+    - 고급 사용법: examples/advanced.md 

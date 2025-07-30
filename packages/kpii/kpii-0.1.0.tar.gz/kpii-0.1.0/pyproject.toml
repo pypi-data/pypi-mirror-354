@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "kpii"
+version = "0.1.0"
+description = "한국어 개인정보 탐지 및 마스킹 라이브러리"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [
+    { name = "HyeonSeop So", email = "sotthang@gmail.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = []
+
+[project.urls]
+"Homepage" = "https://github.com/sotthang/kpii"
+"Bug Tracker" = "https://github.com/sotthang/kpii/issues"
+
+[tool.poetry.group.dev.dependencies]
+build = "^1.2.2.post1"
+twine = "^6.1.0"
+
