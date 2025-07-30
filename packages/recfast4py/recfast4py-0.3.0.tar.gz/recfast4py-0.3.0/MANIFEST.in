@@ -1,0 +1,13 @@
+include AUTHORS.rst
+include CONTRIBUTING.rst
+include HISTORY.rst
+include LICENSE
+include README.rst
+include requirements.txt
+include Makefile
+include docs/*
+include test/*
+include src/recfast4py/*.h
+include src/recfast4py/*.cpp
+include src/recfast4py/*.pyx
+include src/recfast4py/data/*.dat

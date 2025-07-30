@@ -1,0 +1,48 @@
+# vim:ft=toml
+[build-system]
+requires = ["setuptools >= 40.6.0", "wheel", "numpy", "Cython"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "recfast4py"
+version = "0.3.0"
+license = {text = "GPLv3"}
+description = "Python wrapper for recfast++"
+authors = [
+    {name = "Uwe Schmitt", email = "uwe.schmitt@id.ethz.ch"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: C",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Scientific/Engineering :: Astronomy",
+]
+
+dependencies = [
+    "numpy",
+    "pytest-regtest>=1.5.1",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "build",
+    "twine",
+    "pytest",
+    "pytest-cov",
+    "pytest-regtest>=2.3.3",
+    "tox",
+    "flake8",
+    "ruff",
+    "sphinx",
+    "sphinx-pynpoint-theme",
+]
