@@ -1,0 +1,328 @@
+Metadata-Version: 2.4
+Name: geo-importer
+Version: 0.1.0b19
+Summary: Qt application to transform raw tables into clean geographic data.
+Author-email: frievoe97 <friedrich.voelkers@me.com>
+License: MIT
+Project-URL: Homepage, https://friedrichvoelkers.de
+Project-URL: Repository, https://github.com/frievoe97/geo-importer
+Project-URL: Issues, https://github.com/frievoe97/geo-importer/issues
+Keywords: qt,geodata,import,gui,mapping
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: acres==0.5.0
+Requires-Dist: aiofiles==24.1.0
+Requires-Dist: anyio==4.9.0
+Requires-Dist: black==25.1.0
+Requires-Dist: branca==0.8.1
+Requires-Dist: camelot-py==1.0.0
+Requires-Dist: certifi==2025.4.26
+Requires-Dist: cffi==1.17.1
+Requires-Dist: chardet==5.2.0
+Requires-Dist: charset-normalizer==3.4.2
+Requires-Dist: ci-info==0.3.0
+Requires-Dist: click==8.2.1
+Requires-Dist: configobj==5.0.9
+Requires-Dist: configparser==7.2.0
+Requires-Dist: contourpy==1.3.2
+Requires-Dist: cryptography==45.0.4
+Requires-Dist: cycler==0.12.1
+Requires-Dist: docopt==0.6.2
+Requires-Dist: et_xmlfile==2.0.0
+Requires-Dist: etelemetry==0.3.1
+Requires-Dist: filelock==3.18.0
+Requires-Dist: folium==0.19.7
+Requires-Dist: fonttools==4.58.2
+Requires-Dist: h11==0.16.0
+Requires-Dist: httplib2==0.22.0
+Requires-Dist: idna==3.10
+Requires-Dist: iniconfig==2.1.0
+Requires-Dist: itsdangerous==2.2.0
+Requires-Dist: Jinja2==3.1.6
+Requires-Dist: kiwisolver==1.4.8
+Requires-Dist: looseversion==1.3.0
+Requires-Dist: lxml==5.4.0
+Requires-Dist: MarkupSafe==3.0.2
+Requires-Dist: matplotlib==3.10.3
+Requires-Dist: mypy_extensions==1.1.0
+Requires-Dist: networkx==3.5
+Requires-Dist: nibabel==5.3.2
+Requires-Dist: nipype==1.10.0
+Requires-Dist: nox==2025.5.1
+Requires-Dist: numpy==2.3.0
+Requires-Dist: opencv-python-headless==4.11.0.86
+Requires-Dist: openpyxl==3.1.5
+Requires-Dist: packaging==25.0
+Requires-Dist: pandas==2.3.0
+Requires-Dist: pathlib==1.0.1
+Requires-Dist: pathspec==0.12.1
+Requires-Dist: pdfminer.six==20250506
+Requires-Dist: pillow==11.2.1
+Requires-Dist: pipreqs==0.4.13
+Requires-Dist: platformdirs==4.3.8
+Requires-Dist: pluggy==1.6.0
+Requires-Dist: prov==2.0.2
+Requires-Dist: puremagic==1.29
+Requires-Dist: pycparser==2.22
+Requires-Dist: pydot==4.0.0
+Requires-Dist: Pygments==2.19.1
+Requires-Dist: PyMuPDF==1.26.0
+Requires-Dist: pyparsing==3.2.3
+Requires-Dist: pypdf==5.6.0
+Requires-Dist: pypdfium2==4.30.1
+Requires-Dist: pyproj==3.7.1
+Requires-Dist: PySide6==6.9.1
+Requires-Dist: PySide6_Addons==6.9.1
+Requires-Dist: PySide6_Essentials==6.9.1
+Requires-Dist: pytest==8.4.0
+Requires-Dist: python-dateutil==2.9.0.post0
+Requires-Dist: pytz==2025.2
+Requires-Dist: pyxnat==1.6.3
+Requires-Dist: PyYAML==6.0.2
+Requires-Dist: RapidFuzz==3.13.0
+Requires-Dist: rdflib==7.1.4
+Requires-Dist: requests==2.32.4
+Requires-Dist: ruff==0.11.13
+Requires-Dist: scipy==1.15.3
+Requires-Dist: shiboken6==6.9.1
+Requires-Dist: simplejson==3.20.1
+Requires-Dist: six==1.17.0
+Requires-Dist: sniffio==1.3.1
+Requires-Dist: starlette==0.47.0
+Requires-Dist: tabulate==0.9.0
+Requires-Dist: tools==1.0.2
+Requires-Dist: traits==7.0.2
+Requires-Dist: tzdata==2025.2
+Requires-Dist: urllib3==2.4.0
+Requires-Dist: uvicorn==0.34.3
+Requires-Dist: xyzservices==2025.4.0
+Requires-Dist: yarg==0.1.10
+Dynamic: license-file
+
+# Geo-Importer
+
+Geo‑Importer is a Qt-based application that helps you convert raw tabular data into geographic datasets. It targets **Python 3.12+** and follows a conventional `src/` layout with unit tests and MkDocs documentation.
+
+The workflow is implemented as a multi-step wizard:
+
+1. **Upload** – load Excel, CSV or PDF files
+2. **PDF Area** – select table regions inside PDFs
+3. **Worksheet** – choose an Excel sheet to process
+4. **DataPrep** – clean up the table (skip rows, delete cells, etc.)
+5. **Columns & Filter** – pick relevant columns and apply optional Pandas filters
+6. **Geo Filter** – load reference GeoCSV files (e.g. NUTS/LAU) and filter them
+7. **Mapping** – automatically match statistics to geographic rows using several strategies
+8. **Manual Mapping** – resolve unmatched rows manually
+9. **Preview** – inspect the final dataset on an interactive Folium map
+10. **Export** – save the result as CSV or GeoJSON
+
+```mermaid
+flowchart TB
+    Upload[Upload]
+    PDFArea[PDF Area]
+    Worksheet[Worksheet]
+    DataPrep[DataPrep]
+    ColumnsFilter[Columns & Filter]
+    GeoFilter[Geo Filter]
+    Mapping[Mapping]
+    ManualMapping[Manual Mapping]
+    Preview[Preview]
+    Export[Export]
+    Upload <--> PDFArea
+    Upload <--> Worksheet
+    Upload <--> DataPrep
+    PDFArea <--> DataPrep
+    Worksheet <--> DataPrep
+    DataPrep <--> ColumnsFilter
+    ColumnsFilter <--> GeoFilter
+    GeoFilter <--> Mapping
+    Mapping <--> ManualMapping
+    ManualMapping <--> Preview
+    Preview <--> Export
+```
+
+A shared `DataStore` object holds intermediate DataFrames so windows remain decoupled. Core logic lives in `src/core` and the Qt views are under `src/views`.
+
+## Project layout
+
+```text
+geo-importer/
+├── src/               # Application packages
+│   ├── core/          # Workflow logic, constants and the DataStore
+│   ├── views/         # Qt based UI components for each wizard step
+│   ├── mapper/        # Matching widgets and algorithms
+│   ├── models/        # Minimal Qt models
+│   ├── geodata/       # Sample geographic reference data (NUTS, LAU …)
+│   └── main.py        # Application entry point
+├── data/              # Example statistics tables for testing
+├── static/            # Placeholder for generated assets
+├── tests/             # Unit tests for core logic
+└── docs/              # MkDocs site with API reference
+```
+
+## Quick start
+
+The instructions below show three independent workflows.  Each one starts from
+
+```bash
+git clone https://github.com/frievoe97/geo-importer
+cd geo-importer
+```
+
+To undo a workflow simply remove the virtual environment and build artefacts:
+
+```bash
+deactivate  # if the venv is active
+rm -rf .venv dist build geo_importer.egg-info
+```
+
+### 1. Run the application locally
+
+1. Create a Python 3.12+ virtual environment and install the package:
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install .
+```
+
+2. Launch the GUI directly from the repository:
+
+```bash
+python main.py
+```
+
+3. Run the unit tests:
+
+```bash
+pytest -v
+```
+
+4. Undo: deactivate the environment and remove `.venv` and the `geo_importer.egg-info` directory.
+
+### 2. Build and test the wheel locally
+
+1. Set up a new environment and install build tools:
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install .
+python -m pip install --upgrade build
+```
+
+2. Build the distribution:
+
+```bash
+python -m build
+```
+
+3. Install the wheel and run the application:
+
+```bash
+pip install dist/geo_importer-*.whl
+geo-importer
+```
+
+4. Run the unit tests:
+
+```bash
+pytest -v
+```
+
+5. Undo: remove `.venv` and the `dist/` and `build/` folders.
+
+### 3. Publish to PyPI
+
+1. Prepare the environment and build the wheel as above:
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade build twine
+python -m build
+```
+
+2. Upload the package:
+
+```bash
+twine upload dist/*
+```
+
+3. Undo: remove `.venv` and the build artefacts.
+
+The `data/` directory contains small example files and `src/geodata` ships
+reference GeoCSV files that install automatically.
+
+### Automated publishing via GitHub Actions
+
+1. Add your PyPI API key as the `PYPI_API_TOKEN` secret in the GitHub repository
+2. Bump the version in `pyproject.toml` and `src/main.py` using the helper script:
+
+```bash
+scripts/bump_version.py 0.1.0b19
+```
+
+3. Commit the changes on your `release` branch and create a tag that starts with `v`:
+
+```bash
+git tag v0.1.0b19
+git push origin release --tags
+```
+
+Pushing the tag triggers `.github/workflows/pypi.yml`. It runs the test suite,
+builds the wheel and uploads the package to PyPI automatically.
+
+## Documentation
+
+Run the helper script to generate API docs and serve them locally via MkDocs:
+
+```bash
+python generate_api_docs.py
+mkdocs serve -f docs/mkdocs.yml
+```
+
+### Publishing on GitHub Pages
+
+Documentation is published automatically when a release tag is pushed. After
+bumping the version and tagging a release on the `release` branch, the
+`pages.yml` workflow builds the docs with [mike](https://github.com/jimporter/mike)
+so older versions remain available. GitHub Pages must be enabled in the
+repository settings with **GitHub Actions** as the source. Once the workflow
+finishes the site is available at `https://<username>.github.io/geo-importer`.
+
+## Running tests
+
+```bash
+pytest -v
+```
+
+## Signal and Data Flow
+
+Signals connect each wizard step with the main window:
+
+- `FileLoadView.uploadFinished` → `_on_uploaded`
+- `PdfAreaView.extractionReady` → `_on_pdf_ready`
+- `SheetSelectView.selectionReady` → `_on_sheet_ready`
+- `CleanDataView.prepReady` → `_on_prep_ready`
+- `ColumnFilterView.filterReady` → `_on_filter_ready`
+- `GeoFilterView.filterReady` → `_on_geo_ready`
+- `AutoMapView.mappingDone` → `_on_mapping_done`
+- `ManualMapView.manualMappingDone` → `_on_manual_ready`
+- `ExportView.exportFinished` → marks export as complete
+
+Each view emits a custom Qt signal once its task finishes. `MainWindow` listens to these signals, stores the results in `DataStore`, and advances the workflow accordingly.
+
+## License
+
+Geo‑Importer is distributed under the terms of the MIT license. See
+[LICENSE](LICENSE) for details.
