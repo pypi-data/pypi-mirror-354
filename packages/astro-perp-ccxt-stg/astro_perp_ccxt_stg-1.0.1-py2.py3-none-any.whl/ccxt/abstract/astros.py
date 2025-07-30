@@ -1,0 +1,27 @@
+from ccxt.base.types import Entry
+
+
+class ImplicitAPI:
+    public_get_info_ping = publicGetInfoPing = Entry('info/ping', 'public', 'GET', {'cost': 1})
+    public_get_info_time = publicGetInfoTime = Entry('info/time', 'public', 'GET', {'cost': 1})
+    public_get_info_markprice = publicGetInfoMarkPrice = Entry('info/markPrice', 'public', 'GET', {'cost': 1})
+    public_get_info_trades = publicGetInfoTrades = Entry('info/trades', 'public', 'GET', {'cost': 1})
+    public_get_info_pairs = publicGetInfoPairs = Entry('info/pairs', 'public', 'GET', {'cost': 1})
+    public_get_info_depth = publicGetInfoDepth = Entry('info/depth', 'public', 'GET', {'cost': 1})
+    public_get_info_kline = publicGetInfoKline = Entry('info/kline', 'public', 'GET', {'cost': 1})
+    public_get_v1_market_funding_history = publicGetV1MarketFundingHistory = Entry('v1/market/funding/history', 'public', 'GET', {'cost': 1})
+    public_get_v1_market_funding_current = publicGetV1MarketFundingCurrent = Entry('v1/market/funding/current', 'public', 'GET', {'cost': 1})
+    private_get_v1_trade_fillhistory = privateGetV1TradeFillHistory = Entry('v1/trade/fillHistory', 'private', 'GET', {'cost': 1})
+    private_post_hot_order_balance = privatePostHotOrderBalance = Entry('hot/order/balance', 'private', 'POST', {'cost': 1})
+    private_post_order_selectcontractcurrententrustlist = privatePostOrderSelectContractCurrentEntrustList = Entry('order/selectContractCurrentEntrustList', 'private', 'POST', {'cost': 1})
+    private_post_order_selectcontractmatchpairlist = privatePostOrderSelectContractMatchPairList = Entry('order/selectContractMatchPairList', 'private', 'POST', {'cost': 1})
+    private_post_order_queryorder = privatePostOrderQueryOrder = Entry('order/queryOrder', 'private', 'POST', {'cost': 1})
+    private_post_hot_order_selectcontractpositionlist = privatePostHotOrderSelectContractPositionList = Entry('hot/order/selectContractPositionList', 'private', 'POST', {'cost': 1})
+    private_post_hot_order_create = privatePostHotOrderCreate = Entry('hot/order/create', 'private', 'POST', {'cost': 1})
+    private_post_hot_order_batchcreate = privatePostHotOrderBatchCreate = Entry('hot/order/batchCreate', 'private', 'POST', {'cost': 1})
+    private_post_order_cancelentrust = privatePostOrderCancelEntrust = Entry('order/cancelEntrust', 'private', 'POST', {'cost': 1})
+    private_post_order_cancelentrustbycli = privatePostOrderCancelEntrustByCli = Entry('order/cancelEntrustByCli', 'private', 'POST', {'cost': 1})
+    private_post_order_batchcancelentrust = privatePostOrderBatchCancelEntrust = Entry('order/batchCancelEntrust', 'private', 'POST', {'cost': 1})
+    private_post_order_cancelall = privatePostOrderCancelAll = Entry('order/cancelAll', 'private', 'POST', {'cost': 1})
+    private_post_order_callmarginamount = privatePostOrderCallMarginAmount = Entry('order/callMarginAmount', 'private', 'POST', {'cost': 1})
+    private_post_hot_order_closeorder = privatePostHotOrderCloseOrder = Entry('hot/order/closeOrder', 'private', 'POST', {'cost': 1})
