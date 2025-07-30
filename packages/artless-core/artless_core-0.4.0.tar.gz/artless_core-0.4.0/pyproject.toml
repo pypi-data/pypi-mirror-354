@@ -1,0 +1,93 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["artless_core"]
+
+[tool.setuptools.dynamic]
+version = {attr = "artless_core.__version__"}
+
+[tool.setuptools.package-data]
+artless_core = ["py.typed"]
+
+[project]
+name = "artless-core"
+dynamic = ["version"]
+authors = [
+  {name = "Peter Bro", email = "p3t3rbr0@gmail.com"},
+]
+maintainers = [
+  {name = "Peter Bro", email = "p3t3rbr0@gmail.com"},
+]
+description = "The artless and ultralight web framework for building minimal APIs and apps."
+keywords = ["artless", "ultralight", "asgi", "wsgi", "web", "library", "framework"]
+readme = {file = "README.md", content-type = "text/markdown"}
+requires-python = ">=3.11"
+license = "MIT"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Typing :: Typed"
+]
+
+[project.urls]
+Homepage = "https://git.peterbro.su/peter/py3-artless-core"
+Repository = "https://git.peterbro.su/peter/py3-artless-core.git"
+Issues = "https://git.peterbro.su/peter/py3-artless-core/issues"
+Documentation = "https://pages.peterbro.su/py3-artless-core/"
+Changelog = "https://pages.peterbro.su/py3-artless-core/changelog.html"
+
+[project.optional-dependencies]
+build = ["build==1.2.2.post1", "twine==6.1.0"]
+dev = [
+    "black==25.1.0",
+    "coverage==7.8.2",
+    "flake8==7.2.0",
+    "isort==6.0.1",
+    "mypy==1.16.0"
+]
+benchmarks = [
+    "Django==5.2.2",
+    "Flask==3.1.1",
+    "blacksheep==2.3.1",
+    "bottle==0.13.3",
+    "falcon==4.0.2",
+    "fastapi==0.115.12",
+    "gunicorn==23.0.0",
+    "uvicorn==0.34.3"
+]
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_single_line = false
+
+[tool.coverage.report]
+exclude_lines = [
+    "pass",
+    "\\.\\.\\.",
+    "def __getattr__",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["artless_core"]
+
+[tool.coverage.html]
+directory = "coverage_report"
