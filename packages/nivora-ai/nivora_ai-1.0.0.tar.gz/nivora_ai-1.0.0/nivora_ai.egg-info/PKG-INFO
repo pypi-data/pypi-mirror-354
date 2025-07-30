@@ -1,0 +1,521 @@
+Metadata-Version: 2.4
+Name: nivora-ai
+Version: 1.0.0
+Summary: Comprehensive Python SDK for deploying, scaling, and monetizing AI agents across multiple blockchain networks
+Author-email: Nivora AI Team <support@nivora-ai.com>
+Maintainer-email: Nivora AI Team <support@nivora-ai.com>
+License: MIT
+Project-URL: Homepage, https://nivora-ai.com
+Project-URL: Documentation, https://docs.app-nivoraai.com
+Project-URL: Repository, https://github.com/Nivora-AI/nivora-ai
+Project-URL: Issues, https://github.com/Nivora-AI/nivora-ai/issues
+Project-URL: Changelog, https://github.com/Nivora-AI/nivora-ai/releases
+Keywords: ai,blockchain,agent,deployment,ethereum,polygon,solana,defi,cross-chain,monetization
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet :: WWW/HTTP :: HTTP Servers
+Classifier: Topic :: Office/Business :: Financial
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.8.1
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastapi>=0.100.0
+Requires-Dist: uvicorn[standard]>=0.20.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: web3>=6.0.0
+Requires-Dist: aiohttp>=3.8.0
+Requires-Dist: asyncpg>=0.28.0
+Requires-Dist: sqlalchemy>=2.0.0
+Requires-Dist: celery>=5.3.0
+Requires-Dist: redis>=4.5.0
+Requires-Dist: python-jose[cryptography]>=3.3.0
+Requires-Dist: passlib[bcrypt]>=1.7.4
+Requires-Dist: python-multipart>=0.0.6
+Requires-Dist: websockets>=11.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: flake8>=6.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: pre-commit>=3.0.0; extra == "dev"
+Provides-Extra: solana
+Requires-Dist: solders>=0.18.0; extra == "solana"
+Requires-Dist: solana>=0.30.0; extra == "solana"
+Provides-Extra: analytics
+Requires-Dist: pandas>=2.0.0; extra == "analytics"
+Requires-Dist: numpy>=1.24.0; extra == "analytics"
+Requires-Dist: matplotlib>=3.7.0; extra == "analytics"
+Dynamic: license-file
+
+# 🚀 Nivora AI SDK
+
+<div align="center">
+
+**The Future of AI Agent Deployment on Blockchain**
+
+[![PyPI version](https://badge.fury.io/py/nivora-ai.svg)](https://badge.fury.io/py/nivora-ai)
+[![npm version](https://badge.fury.io/js/nivora-ai.svg)](https://badge.fury.io/js/nivora-ai)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi)](https://fastapi.tiangolo.com)
+[![Blockchain](https://img.shields.io/badge/Blockchain-Multi--Chain-green)](https://nivora-ai.com)
+
+[🌐 Website](https://nivora-ai.com) • [📚 Documentation](https://docs.app-nivoraai.com) • [💬 Telegram](https://t.me/Nivora_AI) • [🐦 Twitter](https://twitter.com/Nivora_AI)
+
+</div>
+
+## 🌟 Overview
+
+Nivora AI SDK is a comprehensive Python-based framework that revolutionizes AI agent deployment across multiple blockchain networks. With zero-configuration deployment, automated scaling, and built-in monetization, developers can focus on building intelligent agents while Nivora handles the complex infrastructure.
+
+## ✨ Key Features
+
+### 🤖 AI Agent Management
+- **Multi-Type Agents**: Trading, DeFi, NFT, Analytics, Governance, and Custom agents
+- **Intelligent Deployment**: Zero-configuration deployment across multiple blockchains
+- **Auto-Scaling**: Dynamic scaling based on demand and performance metrics
+- **Real-time Monitoring**: Comprehensive health checks and performance analytics
+
+### ⛓️ Multi-Blockchain Support
+- **Ethereum**: Full EVM compatibility with gas optimization
+- **Polygon**: High-speed, low-cost transactions
+- **Binance Smart Chain**: Enterprise-grade performance
+- **Solana**: Lightning-fast execution and minimal fees
+
+### 💰 Built-in Monetization
+- **Flexible Payment Models**: Pay-per-use, subscription, or custom pricing
+- **Cross-Chain Payments**: Accept payments in multiple cryptocurrencies
+- **Revenue Analytics**: Detailed insights into agent performance and earnings
+- **Automated Billing**: Smart contracts handle payment processing
+
+### 🔗 Cross-Chain Interoperability
+- **Seamless Transfers**: Move assets between different blockchain networks
+- **Unified API**: Single interface for multi-chain operations
+- **Bridge Integration**: Automated cross-chain bridge management
+- **State Synchronization**: Keep agent state consistent across chains
+
+## 📊 Performance Metrics
+
+```mermaid
+graph TD
+    A[Deployment Request] --> B{Agent Type}
+    B -->|Trading| C[Trading Logic]
+    B -->|DeFi| D[DeFi Protocols]
+    B -->|NFT| E[NFT Operations]
+    B -->|Analytics| F[Data Processing]
+    B -->|Custom| G[User Logic]
+    
+    C --> H[Multi-Chain Deployment]
+    D --> H
+    E --> H
+    F --> H
+    G --> H
+    
+    H --> I[Ethereum]
+    H --> J[Polygon]
+    H --> K[BSC]
+    H --> L[Solana]
+    
+    I --> M[Monitoring & Analytics]
+    J --> M
+    K --> M
+    L --> M
+    
+    M --> N[Revenue Tracking]
+    M --> O[Performance Optimization]
+```
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+# Install via pip
+pip install nivora-ai
+
+# Install via npm (JavaScript/TypeScript support)
+npm install nivora-ai
+
+# Install with optional dependencies
+pip install nivora-ai[solana,analytics,dev]
+```
+
+### Basic Usage
+
+```python
+from nivora_ai import NivoraAI, AgentConfig, AgentType
+
+# Initialize Nivora AI
+nivora = NivoraAI(api_key="your-api-key")
+
+# Create agent configuration
+config = AgentConfig(
+    name="My Trading Agent",
+    agent_type=AgentType.TRADING,
+    description="Automated trading agent for DeFi protocols",
+    networks=["ethereum", "polygon"],
+    auto_scale=True,
+    monetization_enabled=True
+)
+
+# Deploy agent
+agent = await nivora.create_agent(config)
+print(f"Agent deployed: {agent.id}")
+
+# Execute task
+result = await agent.execute({
+    "action": "trade",
+    "token_pair": "ETH/USDC",
+    "amount": 1.0,
+    "strategy": "dca"
+})
+```
+
+### FastAPI Integration
+
+```python
+from fastapi import FastAPI
+from nivora_ai.api import create_nivora_app
+
+# Create FastAPI app with Nivora AI
+app = create_nivora_app()
+
+# Run the application
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+```
+
+## 📋 Supported Agent Types
+
+| Agent Type | Description | Use Cases | Supported Networks |
+|------------|-------------|-----------|-------------------|
+| 🔄 **Trading** | Automated trading strategies | DeFi, CEX arbitrage, Market making | ETH, POLYGON, BSC |
+| 💎 **DeFi** | Decentralized finance operations | Yield farming, Liquidity provision, Lending | ETH, POLYGON, BSC |
+| 🖼️ **NFT** | Non-fungible token management | Minting, Trading, Marketplace operations | ETH, POLYGON, SOL |
+| 📊 **Analytics** | Data analysis and insights | Market analysis, Portfolio tracking, Risk assessment | All Networks |
+| 🏛️ **Governance** | DAO and voting mechanisms | Proposal creation, Voting automation, Treasury management | ETH, POLYGON |
+| ⚙️ **Custom** | User-defined logic | Custom business logic, Integration services | All Networks |
+
+## 🏗️ Architecture Overview
+
+```mermaid
+graph TB
+    subgraph "User Layer"
+        UI[Web Interface]
+        API[REST API]
+        WS[WebSocket]
+        SDK[Python SDK]
+    end
+    
+    subgraph "Nivora AI Core"
+        AM[Agent Manager]
+        DM[Deployment Manager]
+        MM[Monetization Manager]
+        CM[Cross-Chain Manager]
+    end
+    
+    subgraph "Blockchain Networks"
+        ETH[Ethereum]
+        POLY[Polygon]
+        BSC[Binance Smart Chain]
+        SOL[Solana]
+    end
+    
+    subgraph "Infrastructure"
+        DB[(Database)]
+        CACHE[(Redis Cache)]
+        QUEUE[Task Queue]
+        MONITOR[Monitoring]
+    end
+    
+    UI --> API
+    API --> AM
+    WS --> AM
+    SDK --> AM
+    
+    AM --> DM
+    AM --> MM
+    AM --> CM
+    
+    DM --> ETH
+    DM --> POLY
+    DM --> BSC
+    DM --> SOL
+    
+    AM --> DB
+    AM --> CACHE
+    DM --> QUEUE
+    MM --> MONITOR
+```
+
+## 💡 Advanced Features
+
+### Automated Scaling
+
+```python
+from nivora_ai import ScalingConfig
+
+scaling_config = ScalingConfig(
+    min_instances=1,
+    max_instances=10,
+    cpu_threshold=70,
+    memory_threshold=80,
+    scale_up_cooldown=300,  # 5 minutes
+    scale_down_cooldown=600  # 10 minutes
+)
+
+await agent.configure_scaling(scaling_config)
+```
+
+### Cross-Chain Operations
+
+```python
+# Transfer assets between chains
+transfer_result = await nivora.cross_chain_transfer({
+    "source_network": "ethereum",
+    "destination_network": "polygon",
+    "token": "USDC",
+    "amount": 1000,
+    "recipient": "0x..."
+})
+```
+
+### Revenue Monitoring
+
+```python
+# Get revenue analytics
+revenue_data = await nivora.get_revenue_analytics(
+    agent_id="agent_123",
+    start_date="2025-06-10",
+    end_date="2025-06-11"
+)
+
+print(f"Total Revenue: {revenue_data.total_revenue} ETH")
+print(f"Transaction Count: {revenue_data.transaction_count}")
+```
+
+## 📈 Performance Benchmarks
+
+| Metric | Ethereum | Polygon | BSC | Solana |
+|--------|----------|---------|-----|--------|
+| **Deployment Time** | ~2 minutes | ~30 seconds | ~45 seconds | ~15 seconds |
+| **Transaction Speed** | 15 TPS | 7,000 TPS | 2,000 TPS | 65,000 TPS |
+| **Average Gas Cost** | $5-50 | $0.01-0.1 | $0.1-1 | $0.00025 |
+| **Confirmation Time** | 12 seconds | 2 seconds | 3 seconds | 400ms |
+| **Uptime SLA** | 99.9% | 99.9% | 99.9% | 99.9% |
+
+## 🔧 Configuration
+
+### Environment Variables
+
+```bash
+# Core Configuration
+NIVORA_API_KEY=your-api-key
+NIVORA_ENVIRONMENT=production
+NIVORA_LOG_LEVEL=INFO
+
+# Database Configuration
+DATABASE_URL=postgresql://user:pass@localhost/nivora
+REDIS_URL=redis://localhost:6379
+
+# Blockchain Configuration
+ETHEREUM_RPC_URL=https://mainnet.infura.io/v3/your-key
+POLYGON_RPC_URL=https://polygon-rpc.com
+BSC_RPC_URL=https://bsc-dataseed.binance.org
+SOLANA_RPC_URL=https://api.mainnet-beta.solana.com
+
+# Security
+JWT_SECRET_KEY=your-jwt-secret
+ENCRYPTION_KEY=your-encryption-key
+```
+
+### Agent Configuration Options
+
+```python
+agent_config = {
+    "name": "My Agent",
+    "agent_type": "trading",
+    "version": "1.0.0",
+    "networks": ["ethereum", "polygon"],
+    "auto_scale": True,
+    "max_instances": 5,
+    "min_instances": 1,
+    "monetization_enabled": True,
+    "execution_parameters": {
+        "max_gas_price": "50000000000",  # 50 gwei
+        "slippage_tolerance": 0.01,      # 1%
+        "retry_attempts": 3
+    },
+    "environment_variables": {
+        "TRADING_STRATEGY": "conservative",
+        "RISK_TOLERANCE": "medium"
+    },
+    "resource_limits": {
+        "cpu": "500m",
+        "memory": "1Gi",
+        "storage": "10Gi"
+    }
+}
+```
+
+## 🌐 API Reference
+
+### REST API Endpoints
+
+```http
+# Agent Management
+GET    /agents                    # List all agents
+POST   /agents                    # Create new agent
+GET    /agents/{id}               # Get agent details
+PUT    /agents/{id}               # Update agent
+DELETE /agents/{id}               # Delete agent
+POST   /agents/{id}/execute       # Execute agent task
+GET    /agents/{id}/status        # Get agent status
+
+# Deployment Management
+GET    /deployments               # List deployments
+POST   /deployments               # Create deployment
+GET    /deployments/{id}          # Get deployment details
+DELETE /deployments/{id}          # Terminate deployment
+
+# Monetization
+POST   /monetization/payments     # Process payment
+GET    /monetization/revenue      # Get revenue analytics
+GET    /monetization/configs      # List payment configs
+
+# Monitoring
+GET    /monitoring/health         # System health check
+GET    /monitoring/metrics        # System metrics
+GET    /monitoring/alerts         # System alerts
+GET    /monitoring/logs           # System logs
+
+# Cross-Chain
+POST   /cross-chain/transfer      # Initiate cross-chain transfer
+GET    /cross-chain/bridges       # List available bridges
+GET    /cross-chain/status/{id}   # Get transfer status
+```
+
+### WebSocket Events
+
+```javascript
+// Connect to WebSocket
+const ws = new WebSocket('wss://api.nivora-ai.com/ws');
+
+// Subscribe to events
+ws.send(JSON.stringify({
+    type: 'subscribe',
+    topic: 'agent_updates',
+    agent_id: 'agent_123'
+}));
+
+// Handle events
+ws.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    console.log('Agent update:', data);
+};
+```
+
+## 🔒 Security Features
+
+- **🔐 End-to-End Encryption**: All data encrypted in transit and at rest
+- **🔑 API Key Authentication**: Secure API key management with rate limiting
+- **🛡️ Smart Contract Audits**: All contracts audited by leading security firms
+- **🔒 Multi-Signature Wallets**: Enhanced security for fund management
+- **📊 Real-time Monitoring**: 24/7 security monitoring and threat detection
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Development Setup
+
+```bash
+# Clone repository
+git clone https://github.com/Nivora-AI/nivora-sdk.git
+cd nivora-sdk
+
+# Install dependencies
+pip install -e .[dev]
+
+# Run tests
+pytest
+
+# Format code
+black nivora_ai/
+
+# Type checking
+mypy nivora_ai/
+```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- **📚 Documentation**: [docs.app-nivoraai.com](https://docs.app-nivoraai.com)
+- **💬 Community**: [Telegram](https://t.me/Nivora_AI)
+- **🐦 Updates**: [Twitter](https://twitter.com/Nivora_AI)
+- **📧 Email**: [support@nivora-ai.com](mailto:support@nivora-ai.com)
+- **🐛 Issues**: [GitHub Issues](https://github.com/Nivora-AI/nivora-ai/issues)
+
+## 🗺️ Roadmap
+
+```mermaid
+timeline
+    title Nivora AI Development Roadmap
+    
+    section Q1 2025
+        Core SDK Release        : Multi-chain support
+                                : Basic agent types
+                                : REST API
+        
+    section Q2 2025
+        Advanced Features       : WebSocket support
+                                : Advanced scaling
+                                : Enhanced monitoring
+        
+    section Q3 2025
+        Enterprise Edition      : Custom integrations
+                                : Advanced analytics
+                                : Enterprise security
+        
+    section Q4 2025
+        Ecosystem Expansion     : Plugin marketplace
+                                : Third-party integrations
+                                : Mobile SDKs
+```
+
+### Upcoming Features
+
+- [ ] **GraphQL API** - Advanced querying capabilities
+- [ ] **Mobile SDKs** - iOS and Android support  
+- [ ] **Visual Agent Builder** - Drag-and-drop agent creation
+- [ ] **AI-Powered Optimization** - Automatic performance tuning
+- [ ] **Decentralized Governance** - Community-driven development
+- [ ] **Layer 2 Integration** - Optimism, Arbitrum support
+- [ ] **Enterprise Dashboard** - Advanced management interface
+- [ ] **Compliance Tools** - Regulatory compliance automation
+
+---
+
+<div align="center">
+
+**Built with ❤️ by the Nivora AI Team**
+
+[🌐 nivora-ai.com](https://nivora-ai.com) • [📧 support@nivora-ai.com](mailto:support@nivora-ai.com)
+
+*Empowering the future of AI on blockchain, one agent at a time.*
+
+</div>

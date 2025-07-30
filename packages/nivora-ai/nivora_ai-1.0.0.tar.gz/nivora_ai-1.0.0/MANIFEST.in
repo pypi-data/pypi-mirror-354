@@ -1,0 +1,19 @@
+include README.md
+include LICENSE
+include pyproject.toml
+recursive-include nivora_ai *.py
+recursive-include nivora_ai *.pyi
+include nivora_ai/py.typed
+exclude .replit
+exclude replit.nix
+exclude simple_main.py
+exclude generated-icon.png
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * *.orig
+recursive-exclude * *.rej
+recursive-exclude * .DS_Store
+recursive-exclude * .env*
+recursive-exclude * *.key
+recursive-exclude * *.pem
+recursive-exclude * secrets.json
