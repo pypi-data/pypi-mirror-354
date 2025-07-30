@@ -1,0 +1,238 @@
+name: Package Applications
+description: Package applications and prepare artifacts
+
+inputs:
+  platform:
+    description: 'Target platform'
+    required: true
+  build-type:
+    description: 'Build type (dev, staging, production)'
+    required: true
+  version:
+    description: 'Application version'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Package applications
+      shell: bash
+      run: |
+        echo "📦 Packaging ${{ inputs.platform }} applications..."
+
+        # Determine app type
+        if [ "${{ inputs.platform }}" = "linux" ]; then
+          APP_TYPE="system"
+        else
+          APP_TYPE="app"
+        fi
+
+        # Package based on platform and signing availability
+        if [ "${{ inputs.platform }}" = "macOS" ]; then
+          echo "📦 Packaging macOS applications (no Briefcase notarization)..."
+          
+          # ALWAYS use adhoc signing to avoid Briefcase notarization issues
+          briefcase package ${{ inputs.platform }} $APP_TYPE -a server --adhoc-sign
+          briefcase package ${{ inputs.platform }} $APP_TYPE -a r2midi-client --adhoc-sign
+          
+          # Create DMG installers without notarization
+          briefcase package ${{ inputs.platform }} dmg -a server --adhoc-sign
+          briefcase package ${{ inputs.platform }} dmg -a r2midi-client --adhoc-sign
+
+        else
+          echo "📦 Packaging for ${{ inputs.platform }}..."
+          briefcase package ${{ inputs.platform }} $APP_TYPE -a server
+          briefcase package ${{ inputs.platform }} $APP_TYPE -a r2midi-client
+        fi
+
+    - name: Create PKG installers (macOS signed builds only)
+      if: inputs.platform == 'macOS' && env.BRIEFCASE_SIGNING_IDENTITY != ''
+      shell: bash
+      run: |
+        echo "📦 Creating signed PKG installers for macOS..."
+        
+        # Find the built app bundles - they might have different names
+        echo "Looking for built app bundles..."
+        ls -la build/*/macOS/app/ || ls -la build/*/macos/app/ || true
+        
+        # Find server app (try multiple possible names)
+        SERVER_APP=""
+        for app_path in build/*/macOS/app/*.app build/*/macos/app/*.app; do
+          if [[ "$app_path" == *"server"* ]] || [[ "$app_path" == *"Server"* ]]; then
+            if [ -d "$app_path" ]; then
+              SERVER_APP="$app_path"
+              break
+            fi
+          fi
+        done
+        
+        # Find client app (try multiple possible names)  
+        CLIENT_APP=""
+        for app_path in build/*/macOS/app/*.app build/*/macos/app/*.app; do
+          if [[ "$app_path" == *"client"* ]] || [[ "$app_path" == *"Client"* ]] || [[ "$app_path" == *"r2midi"* ]]; then
+            if [ -d "$app_path" ]; then
+              CLIENT_APP="$app_path"
+              break
+            fi
+          fi
+        done
+        
+        echo "Found apps:"
+        echo "Server: $SERVER_APP"
+        echo "Client: $CLIENT_APP"
+        
+        if [ -z "$SERVER_APP" ] && [ -z "$CLIENT_APP" ]; then
+          echo "⚠️ No app bundles found, skipping PKG creation"
+          echo "Available apps:"
+          find build -name "*.app" -type d || true
+          exit 0
+        fi
+        
+        VERSION="${{ inputs.version }}"
+        SIGNING_IDENTITY="$BRIEFCASE_SIGNING_IDENTITY"
+        
+        # Function to create PKG for an app
+        create_pkg() {
+          local APP_PATH="$1"
+          local APP_NAME="$2"
+          local IDENTIFIER="$3"
+          
+          if [ -z "$APP_PATH" ] || [ ! -d "$APP_PATH" ]; then
+            echo "⚠️ $APP_NAME app not found, skipping"
+            return
+          fi
+          
+          echo "🔐 Signing $APP_NAME..."
+          
+          # Re-sign the app bundle with proper settings
+          find "$APP_PATH" -type f \( -name "*.dylib" -o -name "*.so" -o -perm +111 \) -exec \
+            codesign --force --timestamp --options runtime \
+            --entitlements "$GITHUB_WORKSPACE/entitlements.plist" \
+            --sign "$SIGNING_IDENTITY" {} \; 2>/dev/null || true
+          
+          codesign --force --timestamp --options runtime \
+            --entitlements "$GITHUB_WORKSPACE/entitlements.plist" \
+            --sign "$SIGNING_IDENTITY" "$APP_PATH"
+          
+          echo "📦 Creating PKG for $APP_NAME..."
+          
+          # Find installer signing identity
+          INSTALLER_IDENTITY=$(security find-identity -v -p codesigning | \
+            grep "Developer ID Installer" | head -1 | \
+            sed -n 's/.*"\([^"]*\)".*/\1/p')
+          
+          if [ -z "$INSTALLER_IDENTITY" ]; then
+            INSTALLER_IDENTITY="$SIGNING_IDENTITY"
+          fi
+          
+          # Create temporary directories
+          PKG_ROOT=$(mktemp -d)
+          mkdir -p "$PKG_ROOT/Applications"
+          cp -R "$APP_PATH" "$PKG_ROOT/Applications/"
+          
+          # Create simple PKG
+          PKG_FINAL="${APP_NAME// /_}-${VERSION}.pkg"
+          
+          pkgbuild \
+            --root "$PKG_ROOT" \
+            --identifier "${IDENTIFIER}.pkg" \
+            --version "$VERSION" \
+            --install-location "/" \
+            --sign "$INSTALLER_IDENTITY" \
+            "$PKG_FINAL"
+          
+          # Cleanup
+          rm -rf "$PKG_ROOT"
+          
+          if [ -f "$PKG_FINAL" ]; then
+            echo "✅ PKG created: $PKG_FINAL"
+          fi
+        }
+        
+        # Create PKGs for available apps
+        if [ -n "$SERVER_APP" ]; then
+          create_pkg "$SERVER_APP" "R2MIDI Server" "com.r2midi.server"
+        fi
+        
+        if [ -n "$CLIENT_APP" ]; then
+          create_pkg "$CLIENT_APP" "R2MIDI Client" "com.r2midi.client"
+        fi
+
+    - name: Prepare artifacts
+      shell: bash
+      run: |
+        mkdir -p artifacts
+        echo "📁 Preparing artifacts for ${{ inputs.platform }}..."
+
+        # Platform-specific artifact preparation
+        case "${{ inputs.platform }}" in
+          macOS)
+            # Look for DMG files first
+            if [ -d "dist" ]; then
+              find dist -name "*.dmg" -exec cp {} artifacts/ \; 2>/dev/null || true
+            fi
+            
+            # Look for PKG files we created
+            find . -name "*.pkg" -maxdepth 1 -exec cp {} artifacts/ \; 2>/dev/null || true
+
+            # Package app bundles as zip if no DMG found
+            if [ ! -f artifacts/*.dmg ]; then
+              for app in build/*/macOS/app/*.app build/*/macos/app/*.app; do
+                if [ -d "$app" ]; then
+                  app_name=$(basename "$app" .app)
+                  cd "$(dirname "$app")"
+                  zip -r "$GITHUB_WORKSPACE/artifacts/${app_name}-macos-${{ inputs.build-type }}-v${{ inputs.version }}.zip" "$(basename "$app")"
+                  cd "$GITHUB_WORKSPACE"
+                fi
+              done
+            fi
+            ;;
+          windows)
+            # Copy MSI installers if available
+            if [ -d "dist" ]; then
+              find dist -name "*.msi" -exec cp {} artifacts/ \; 2>/dev/null || true
+            fi
+
+            # Package Windows builds as ZIP using PowerShell's Compress-Archive
+            for dir in build/*/windows/app; do
+              if [ -d "$dir" ]; then
+                app_name=$(basename "$(dirname "$(dirname "$dir")")")
+                # Use PowerShell to create the ZIP file
+                powershell -Command "Compress-Archive -Path '$dir/*' -DestinationPath '$GITHUB_WORKSPACE/artifacts/${app_name}-windows-${{ inputs.build-type }}-v${{ inputs.version }}.zip' -Force"
+              fi
+            done
+            ;;
+          linux)
+            # Copy deb packages
+            if [ -d "dist" ]; then
+              find dist -name "*.deb" -exec cp {} artifacts/ \; 2>/dev/null || true
+            fi
+
+            # Create tar.gz archives
+            for dir in build/*/linux/system; do
+              if [ -d "$dir" ]; then
+                app_name=$(basename "$(dirname "$(dirname "$dir")")")
+                tar -czf "artifacts/${app_name}-linux-${{ inputs.build-type }}-v${{ inputs.version }}.tar.gz" \
+                    -C "$dir" . --exclude="*.log"
+              fi
+            done
+            ;;
+        esac
+
+        # Create build info file
+        cat > artifacts/BUILD_INFO.txt << EOF
+        R2MIDI Build Information
+        =======================
+
+        Version: ${{ inputs.version }}
+        Platform: ${{ inputs.platform }}
+        Build Type: ${{ inputs.build-type }}
+        Built: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
+        Commit: ${{ github.sha }}
+        Branch: ${{ github.ref_name }}
+        Workflow: ${{ github.workflow }}
+        Run: ${{ github.run_number }}
+        EOF
+
+        echo "📦 Artifacts created:"
+        ls -la artifacts/ || echo "No artifacts found"
