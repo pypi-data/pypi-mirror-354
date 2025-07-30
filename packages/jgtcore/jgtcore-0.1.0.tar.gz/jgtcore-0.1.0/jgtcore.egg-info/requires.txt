@@ -1,0 +1,9 @@
+python-dotenv
+ruamel.yaml>=0.18.6
+
+[dev]
+pytest
+pytest-cov
+black
+isort
+flake8
