@@ -1,0 +1,389 @@
+Metadata-Version: 2.4
+Name: beautiful-validator
+Version: 0.0.1
+Summary: 🛡️ Beautiful Smart Input Validation for Python
+Home-page: https://github.com/pydefender/pydefender
+Author: PyDefender Team
+Author-email: team@pydefender.dev
+License: MIT
+Project-URL: Homepage, https://github.com/pydefender/pydefender
+Project-URL: Bug Reports, https://github.com/pydefender/pydefender/issues
+Project-URL: Source, https://github.com/pydefender/pydefender
+Project-URL: Documentation, https://pydefender.dev/docs
+Project-URL: Changelog, https://github.com/pydefender/pydefender/blob/main/CHANGELOG.md
+Keywords: validation,input,data,forms,decorators,beautiful,smart,defensive,programming,python,validators,validation-library,input-validation,data-validation,form-validation,type-checking
+Platform: any
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: OS Independent
+Classifier: Typing :: Typed
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: colorama>=0.4.6
+Provides-Extra: dev
+Requires-Dist: pytest>=7.4.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: isort>=5.12.0; extra == "dev"
+Requires-Dist: mypy>=1.5.0; extra == "dev"
+Requires-Dist: pre-commit>=3.0.0; extra == "dev"
+Provides-Extra: test
+Requires-Dist: pytest>=7.4.0; extra == "test"
+Requires-Dist: pytest-cov>=4.1.0; extra == "test"
+Requires-Dist: coverage>=7.0.0; extra == "test"
+Provides-Extra: docs
+Requires-Dist: mkdocs>=1.5.0; extra == "docs"
+Requires-Dist: mkdocs-material>=9.0.0; extra == "docs"
+Requires-Dist: mkdocstrings>=0.22.0; extra == "docs"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: platform
+Dynamic: project-url
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# 🛡️ PyDefender - Beautiful Smart Input Validation
+
+[![PyPI version](https://badge.fury.io/py/pydefender.svg)](https://badge.fury.io/py/pydefender)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Downloads](https://pepy.tech/badge/pydefender)](https://pepy.tech/project/pydefender)
+
+**The most beautiful and intelligent input validation library for Python** ✨
+
+Stop writing boring validation code! PyDefender makes input validation **beautiful**, **smart**, and **effortless**.
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+pip install pydefender
+```
+
+### Basic Usage
+
+```python
+import pydefender
+
+# ❌ Before: Ugly, repetitive validation
+def set_age(age):
+    if not isinstance(age, (int, str)):
+        raise ValueError("Age must be a number")
+    try:
+        age = int(age)
+    except ValueError:
+        raise ValueError("Age must be a valid number")
+    if age < 0:
+        raise ValueError("Age cannot be negative")
+    if age > 150:
+        raise ValueError("Age cannot be greater than 150")
+    return f"Age: {age}"
+
+# ✅ After: Beautiful PyDefender
+@pydefender.age()
+def set_age(age):
+    return f"Age: {age}"
+
+# Works magically with ANY input!
+print(set_age("25"))     # → "Age: 25" ✨
+print(set_age(30.5))     # → "Age: 30" (auto-rounded)
+# set_age("200")         # → Beautiful error with suggestions
+```
+
+## ✨ Why PyDefender?
+
+### 🎨 **Beautiful Decorators**
+```python
+@pydefender.number(min_value=0, max_value=100)
+def set_score(score):
+    return f"Score: {score}/100"
+
+@pydefender.string(min_length=2, max_length=50, auto_capitalize=True)
+def set_name(name):
+    return f"Hello, {name}!"
+
+@pydefender.price()
+def set_price(price):
+    return f"Price: ${price:.2f}"
+```
+
+### 🧠 **Smart Auto-Correction**
+```python
+@pydefender.number(extract_from_text=True, round_decimals=2)
+def parse_price(text):
+    return f"Price: ${text}"
+
+print(parse_price("Price is $19.999"))  # → "Price: $20.00"
+print(parse_price("Cost: 15.4321"))     # → "Price: $15.43"
+```
+
+### 🌍 **Multi-Language Support**
+```python
+# English
+@pydefender.configure(language="en")
+@pydefender.age()
+def set_age_en(age): return f"Age: {age}"
+
+# Russian (with Cyrillic decorators!)
+@pydefender.configure(language="ru")
+@pydefender.возраст()  # Russian alias!
+def установить_возраст(возраст): return f"Возраст: {возраст}"
+```
+
+### 🛠️ **Easy Configuration**
+```python
+# For beginners - friendly and helpful
+pydefender.setup_for_beginners()
+
+# For professionals - clean and fast  
+pydefender.setup_for_professionals()
+
+# For production - optimized performance
+pydefender.setup_for_production()
+```
+
+## 🎯 Available Validators
+
+### 🔢 Numbers
+```python
+@pydefender.number()           # General number validation
+@pydefender.integer()          # Integer numbers only
+@pydefender.positive_number()  # Positive numbers (≥0)
+@pydefender.percentage()       # 0-100% validation
+@pydefender.age()             # Age validation (0-150)
+@pydefender.score()           # Score validation (0-10)  
+@pydefender.price()           # Price validation (≥0, 2 decimals)
+```
+
+### 📝 Strings
+```python
+@pydefender.string()    # General string validation
+@pydefender.name()      # Person name validation
+@pydefender.username()  # Username validation (no spaces, special rules)
+@pydefender.comment()   # Comment validation (max length, etc.)
+```
+
+## 🎮 Interactive Demo
+
+```python
+import pydefender
+
+# Run interactive demo
+pydefender.demo()
+
+# Or get help
+pydefender.show_help()
+```
+
+## 🎪 Examples Gallery
+
+### Smart Number Extraction
+```python
+@pydefender.number(extract_from_text=True, min_value=0, max_value=150)
+def extract_age(text):
+    return f"Age: {text}"
+
+print(extract_age("I am 25 years old"))  # → "Age: 25"
+print(extract_age("Age: 30"))            # → "Age: 30"  
+print(extract_age("no numbers here"))    # → Error with suggestions
+```
+
+### Auto-Formatting Names
+```python
+@pydefender.name()  # Auto-capitalizes and trims
+def welcome_user(name):
+    return f"Welcome, {name}!"
+
+print(welcome_user("  john doe  "))     # → "Welcome, John Doe!"
+print(welcome_user("MARY SMITH"))       # → "Welcome, Mary Smith!"
+```
+
+### Advanced Number Validation
+```python
+@pydefender.number(
+    min_value=0,
+    max_value=1000,
+    multiple_of=5,           # Must be divisible by 5
+    round_decimals=2,        # Round to 2 decimal places
+    suggest_closest=True     # Suggest nearest valid values
+)
+def set_price_steps(price):
+    return f"Price: ${price}"
+
+print(set_price_steps("47.3333"))  # → "Price: $45.00" (rounded to nearest multiple of 5)
+```
+
+### Form Validation
+```python
+from pydefender.decorators import form_validator
+
+@form_validator(
+    name=pydefender.name(),
+    age=pydefender.age(),
+    email=pydefender.email()  # Coming in v0.1.0!
+)
+def register_user(name, age, email):
+    return f"User {name} ({age}) registered with {email}"
+```
+
+## 📊 Error Handling
+
+PyDefender provides beautiful, helpful error messages:
+
+```python
+@pydefender.age()
+def set_age(age):
+    return f"Age: {age}"
+
+try:
+    set_age("200")
+except pydefender.ValidationError as e:
+    print(e)
+    # Output:
+    # ❌ Number too large (maximum: 150)
+    #   Received: 200
+    #   💡 Suggestions:
+    #     • Enter a number from 0 to 150
+    #     • Nearest valid: 150
+```
+
+## ⚙️ Configuration
+
+### Global Configuration
+```python
+pydefender.configure(
+    language="ru",           # Russian interface
+    colors=True,             # Colored output
+    emojis=True,             # Use emojis
+    auto_retry=True,         # Auto-retry on errors
+    max_attempts=3,          # Maximum retry attempts
+    suggest_corrections=True # Show helpful suggestions
+)
+```
+
+### Per-Validator Configuration
+```python
+@pydefender.number(
+    min_value=0,
+    max_value=100,
+    auto_retry=False,        # Disable retries for this validator
+    error_message="Custom error message",
+    success_message="Great! Value: {value}"
+)
+def custom_validator(value):
+    return value
+```
+
+## 🏗️ Roadmap
+
+### Version 0.1.0 (Coming Soon)
+- [ ] 📧 Email validation
+- [ ] 📱 Phone number validation  
+- [ ] 📅 Date/time validation
+- [ ] 🌐 URL validation
+
+### Version 0.2.0
+- [ ] 📄 File validation
+- [ ] 🔐 Password strength validation
+- [ ] 💳 Credit card validation
+- [ ] 🏠 Address validation
+
+### Version 0.3.0  
+- [ ] 🧠 AI-powered validation
+- [ ] 🔌 Framework integrations (Django, Flask, FastAPI)
+- [ ] 📊 Analytics and monitoring
+- [ ] 🎨 Custom UI themes
+
+## 🤝 Contributing
+
+We love contributions! PyDefender is designed to be easily extensible.
+
+```bash
+# Clone the repo
+git clone https://github.com/pydefender/pydefender.git
+cd pydefender
+
+# Install in development mode
+pip install -e ".[dev]"
+
+# Run tests
+python examples/quick_test.py
+
+# Run the interactive demo
+python -c "import pydefender; pydefender.demo()"
+```
+
+### Adding New Validators
+
+1. Create validator in `pydefender/validators/`
+2. Add tests in `tests/`
+3. Update `__init__.py` 
+4. Add examples to `examples/`
+
+## 📈 Performance
+
+PyDefender is optimized for performance:
+
+- ⚡ **Lazy loading** - Validators loaded only when needed
+- 🏎️ **Caching** - Validation results cached automatically  
+- 📦 **Minimal dependencies** - Only `colorama` required
+- 🎯 **Efficient** - Optimized for common use cases
+
+## 🧪 Testing
+
+```bash
+# Quick test
+python examples/quick_test.py
+
+# Full test suite (coming soon)
+pytest tests/
+
+# Performance benchmarks
+python tools/benchmark.py
+```
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file.
+
+## 🌟 Star History
+
+If PyDefender helps you, please give it a star! ⭐
+
+## 💬 Support
+
+- 📧 **Email**: [team@pydefender.dev](mailto:team@pydefender.dev)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/pydefender/pydefender/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/pydefender/pydefender/discussions)
+- 📖 **Docs**: [pydefender.dev](https://pydefender.dev) (coming soon)
+
+## 🏆 Sponsors
+
+Become a sponsor and help us make PyDefender even better!
+
+[❤️ Sponsor PyDefender](https://github.com/sponsors/pydefender)
+
+---
+
+**Made with 🔒 and ❤️ by the PyDefender Team**
+
+*Validation has never been this beautiful!* ✨
