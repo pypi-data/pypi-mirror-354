@@ -1,0 +1,20 @@
+FROM runpod/pytorch:2.8.0-py3.11-cuda12.8.1-cudnn-devel-ubuntu22.04
+
+RUN apt update && apt install -y git curl unzip
+RUN curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg | tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null && \
+    curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list | tee /etc/apt/sources.list.d/tailscale.list && \
+    apt-get update && \
+    apt-get install -y tailscale=1.82.0* tailscale-archive-keyring
+RUN curl https://rclone.org/install.sh | bash
+RUN curl -s https://raw.githubusercontent.com/agentsea/nebulous/main/remote_install.sh | bash 
+RUN pip install torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+RUN pip install peft transformers bitsandbytes sentencepiece accelerate tiktoken qwen-vl-utils chatmux
+
+RUN pip install -e git+https://github.com/pbarker/unsloth-zoo.git#egg=unsloth_zoo && \
+    pip install "unsloth==2025.5.6" && \
+    pip install -e git+https://github.com/pbarker/unsloth-zoo.git#egg=unsloth_zoo && \
+    pip install huggingface_hub[hf_xet]
+
+ARG CACHEBUST=1
+ENV CACHEBUST=$CACHEBUST
+RUN pip install orign
