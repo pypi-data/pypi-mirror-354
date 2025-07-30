@@ -1,0 +1,20 @@
+config: /home/kyle/NRML/code/src/ee_wildfire/UserConfig/user_config.yml
+export: false
+download: false
+credentials: /home/kyle/NRML/OAuth/service-account-credentials.json
+data_dir: /home/kyle/ee_wildfire_data
+tiff_dir: /home/kyle/ee_wildfire_data/tiff
+google_drive_dir: EE-Wildfire-Test
+min_size: 10000000.0
+max_size: 100000000.0
+retry_failed: false
+purge_before: false
+purge_after: false
+start_date: 2020-01-01 00:00:00
+end_date: 2020-01-08 00:00:00
+silent: false
+reset_config: false
+log_dir: /home/kyle/ee_wildfire_data/logs
+log_level: info
+no_log: false
+debug: false
