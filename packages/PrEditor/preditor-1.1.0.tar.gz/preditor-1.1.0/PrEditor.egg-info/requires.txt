@@ -1,0 +1,26 @@
+Qt.py
+configparser>=4.0.2
+future>=0.18.2
+signalslot>=0.1.2
+importlib-metadata>=4.8.3
+
+[cli]
+click>=7.1.2
+click-default-group
+
+[dev]
+black
+build
+covdefaults
+coverage
+flake8
+flake8-bugbear
+Flake8-pyproject
+pep8-naming
+pytest
+tox
+
+[shortcut]
+
+[shortcut:platform_system == "Windows"]
+casement>=0.1.0
