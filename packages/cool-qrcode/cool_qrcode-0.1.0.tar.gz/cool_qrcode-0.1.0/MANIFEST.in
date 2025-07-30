@@ -1,0 +1,11 @@
+include README.md
+include LICENSE
+include requirements.txt
+include requirements-dev.txt
+include colors-reference.md
+recursive-include cool_qrcode *.py
+recursive-include tests *.py
+recursive-include examples *.py
+recursive-include docs *
+global-exclude __pycache__
+global-exclude *.py[co] 

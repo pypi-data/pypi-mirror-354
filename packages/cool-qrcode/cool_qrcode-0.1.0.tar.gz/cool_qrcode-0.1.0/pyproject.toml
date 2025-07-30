@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cool-qrcode"
+version = "0.1.0"
+description = "A Python library for generating personalized QR codes"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Kelvin Xu", email = "xxk59@hotmail.com"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Utilities",
+]
+keywords = ["qrcode", "qr", "barcode", "generator", "personalized"]
+requires-python = ">=3.8"
+dependencies = [
+    "qrcode[pil]>=7.4.2",
+    "Pillow>=8.0.0",
+    "numpy>=1.21.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov",
+    "black",
+    "flake8",
+    "mypy",
+]
+
+[project.urls]
+Homepage = "https://github.com/xxk59/cool-qrcode"
+Repository = "https://github.com/xxk59/cool-qrcode"
+Issues = "https://github.com/xxk59/cool-qrcode/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cool_qrcode*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true 
