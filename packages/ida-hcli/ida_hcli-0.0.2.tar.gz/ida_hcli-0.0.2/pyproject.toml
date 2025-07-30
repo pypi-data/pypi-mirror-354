@@ -1,0 +1,31 @@
+[project]
+name = "ida-hcli"
+version = "0.0.2"
+description = "IDA Pro CLI utility"
+requires-python = ">=3.12"
+license = "MIT"
+readme = "README.md"
+keywords = ["ida", "ida-pro", "reverse-engineering", "disassembler", "binary-analysis", "malware-analysis", "security"]
+authors = [
+    { name = "Hex-Rays SA", email = "support@hex-rays.com" }
+]
+
+dependencies = [
+    "click",
+    "rich",
+    "httpx",
+    "supabase",
+    "pydantic",
+    "platformdirs",
+]
+
+[project.urls]
+"Hex-Rays" = "https://hex-rays.com/"
+
+[project.scripts]
+hcli = "hcli.main:cli"
+ida-hcli = "hcli.main:cli"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
