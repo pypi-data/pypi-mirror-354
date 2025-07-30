@@ -1,0 +1,61 @@
+Metadata-Version: 2.3
+Name: synapticsync
+Version: 0.0.0a1
+Summary: 
+License: MIT
+Author: Chris
+Author-email: 53177842+ChristopherMarais@users.noreply.github.com
+Requires-Python: >=3.10,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: bidict (>=0.23.1,<0.24.0)
+Requires-Dist: h5py (>=3.13.0,<4.0.0)
+Requires-Dist: numpy (>=2.2.6,<3.0.0)
+Requires-Dist: pandas (>=2.2.3,<3.0.0)
+Requires-Dist: requests (>=2.32.3,<3.0.0)
+Requires-Dist: scikit-learn (>=1.6.1,<2.0.0)
+Requires-Dist: scipy (>=1.15.3,<2.0.0)
+Requires-Dist: seaborn (>=0.13.2,<0.14.0)
+Requires-Dist: spectral-connectivity (==1.1.2)
+Requires-Dist: spikeinterface[full,widgets] (==0.97.1)
+Requires-Dist: xgboost (>=3.0.2,<4.0.0)
+Description-Content-Type: text/markdown
+
+# SynapticSync
+
+This repository holds code to conduct ephys analysis on data files that come from trodes and phy files. It also has code to extract behavior data from Boris and ECU data and some tools to manipulate behavioral epochs.
+
+# Installation
+
+```bash
+pip install synapticsync
+```
+
+# How to contribute:
+Clone this repository and create a new branch for your changes. 
+
+The following commands will set up the environment you need to contribute.
+
+```bash
+cd <path/to/cloned/repository/SynapticSync>
+conda env create -f environment.yml
+conda activate synapticsync
+poetry config virtualenvs.create false --local
+poetry install
+poetry run pre-commit install
+```
+
+To add a new dependency for the SynapticSync package use:
+```bash
+poetry add <new-package-name>
+```
+
+To add a new development specific package use:
+```bash
+poetry add --group dev <new-package-name>
+```
+
