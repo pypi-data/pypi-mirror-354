@@ -1,0 +1,59 @@
+Metadata-Version: 2.4
+Name: iam-map
+Version: 0.2.3
+Summary: Offline IAM graph exporter + NLP query shell
+Author-email: Hrishi Logani <loganihrishi@gmail.com>
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: boto3
+Requires-Dist: networkx
+Requires-Dist: pydot
+Requires-Dist: pyparsing>=3.0.9
+Requires-Dist: rich
+Requires-Dist: typer[all]
+Requires-Dist: requests
+
+# 🗺️ IAM Map — AWS IAM Graph Analyzer
+
+A powerful CLI to explore IAM users, groups, and policies across AWS accounts — with AI-powered natural language support via **Ollama + Mistral**.
+
+---
+
+## 💊 Choose Your Path
+
+### 🔵 The Blue Pill — Just Install and Play
+
+1. **Install the package:**
+
+```bash
+pip install iam-map
+````
+
+2. **Export a graph:**
+
+```bash
+iam-map export-graph --profile my-account
+```
+
+3. **Start ollama:**
+
+```bash
+ollama run mistral
+```
+
+4. **Ask questions with natural language:**
+
+```bash
+iam-map shell --profile my-account
+```
+
+Example prompts:
+
+```
+💬 > Who has EC2 or Lambda access but not S3?
+💬 > Which users are in dev or test group with full Admin rights?
+```
+
+That’s it. Explore your IAM relationships like never before.
+
+---
