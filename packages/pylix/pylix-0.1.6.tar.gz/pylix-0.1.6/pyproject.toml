@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "pylix"
+version = "0.1.6"
+description = "Useful things for python"
+authors = ["SirMrManuel0"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+numpy = "^2.2.4"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+setuptools = "76.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
