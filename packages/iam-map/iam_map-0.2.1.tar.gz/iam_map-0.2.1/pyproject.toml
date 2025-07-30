@@ -1,0 +1,24 @@
+[project]
+name = "iam-map"                 # ← PyPI / pip name (hyphen OK)
+version = "0.2.1"
+description = "Offline IAM graph exporter + NLP query shell"
+authors = [{name = "Hrishi Logani", email = "loganihrishi@gmail.com"}]
+readme = "README.md"
+requires-python = ">=3.8"
+
+dependencies = [
+  "boto3",
+  "networkx",
+  "pydot",
+  "pyparsing>=3.0.9",
+  "rich",
+  "typer[all]",
+  "requests"
+]
+
+[project.scripts]                # CLI entry-point
+iam-map = "iam_map.cli:APP"      # module path uses underscore, CLI uses hyphen
+
+[tool.setuptools.packages.find]
+include = ["iam_map*"]
+exclude = ["output", "data"]
