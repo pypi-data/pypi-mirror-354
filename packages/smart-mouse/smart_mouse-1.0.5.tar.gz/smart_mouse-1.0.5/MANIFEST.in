@@ -1,0 +1,11 @@
+include README.md
+include LICENSE
+include requirements.txt
+recursive-include smart_mouse *.json
+recursive-include smart_mouse *.py
+exclude tests/*
+exclude .git*
+exclude .pytest_cache/*
+exclude __pycache__/*
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co] 
