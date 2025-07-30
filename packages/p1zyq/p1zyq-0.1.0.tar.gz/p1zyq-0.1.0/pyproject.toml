@@ -1,0 +1,231 @@
+[project]
+name = "p1zyq"
+version = "0.1.0"
+description = "Python项目模板，包含创建Python包所需的所有基础结构。"
+readme = "README.md"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.10"
+include = [
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+]
+dependencies = [
+    "typer>=0.9.0",
+    "rich>=10.0.0",
+]
+authors = [
+    { name = "Zhou Yuanqi", email = "zyq1034378361@gmail.com" },
+]
+maintainers = [
+    { name = "Zhou Yuanqi", email = "zyq1034378361@gmail.com" },
+]
+packages = [
+    { include = "p1zyq", from = "src" },
+]
+
+[project.license]
+text = "MIT License"
+
+[project.urls]
+Homepage = "https://github.com/1034378361/p1zyq"
+"Bug Tracker" = "https://github.com/1034378361/p1zyq/issues"
+Documentation = "https://p1zyq.readthedocs.io/"
+Repository = "https://github.com/1034378361/p1zyq"
+Changelog = "https://github.com/1034378361/p1zyq/blob/main/CHANGELOG.md"
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit>=3.5.0",
+    "ipython>=8.18.0",
+    "ipdb>=0.13.13",
+    "python-dotenv>=1.0.0",
+    "gitpython>=3.1.40",
+    "bump2version>=1.0.1",
+]
+test = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.1.0",
+    "coverage>=7.2.0",
+    "pytest-mock>=3.12.0",
+    "tox>=4.11.0",
+    "pytest-xdist>=3.5.0",
+]
+lint = [
+    "ruff>=0.3.0",
+    "bandit>=1.7.5",
+]
+typing = [
+    "mypy>=1.6.0",
+    "types-requests>=2.31.0",
+    "types-pyyaml>=6.0.0",
+]
+docs = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.4.0",
+    "mkdocstrings>=0.24.0",
+    "mkdocstrings-python>=1.8.0",
+    "mkdocs-git-revision-date-localized-plugin>=1.2.0",
+]
+changelog = [
+    "gitpython>=3.1.40",
+    "pyyaml>=6.0.0",
+    "yaml",
+]
+full-dev = [
+    "dev",
+    "test",
+    "lint",
+    "typing",
+    "docs",
+    "changelog",
+]
+
+[project.scripts]
+p1zyq = "p1zyq.cli:app"
+
+[build-system]
+requires = [
+    "pdm-backend>=2.0.0",
+]
+build-backend = "pdm.backend"
+
+[tool.mypy]
+files = [
+    "src",
+    "tests",
+]
+python_version = "3.12"
+warn_unused_configs = false
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+check_untyped_defs = false
+disallow_untyped_decorators = false
+no_implicit_optional = false
+strict_optional = false
+show_error_codes = false
+warn_redundant_casts = false
+warn_return_any = false
+warn_unreachable = false
+overrides = [
+    { module = "tests.*", allow_untyped_defs = true, disable_error_code = "attr-defined" },
+]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+include = [
+    "src/**/*.py",
+    "tests/**/*.py",
+    "scripts/**/*.py",
+]
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "B",
+    "I",
+    "C4",
+    "SIM",
+    "TCH",
+    "RUF",
+    "D",
+    "UP",
+    "S",
+    "BLE",
+    "N",
+    "COM",
+]
+ignore = [
+    "E203",
+    "D107",
+    "D203",
+    "D213",
+    "D401",
+    "COM812",
+]
+unfixable = [
+    "F401",
+    "F841",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.pep8-naming]
+ignore-names = [
+    "setUp",
+    "tearDown",
+    "setUpClass",
+    "tearDownClass",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = [
+    "p1zyq",
+]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.tox]
+legacy_tox_ini = "[tox]\nisolated_build = True\nenvlist = py38, py39, py310, py311, py312\n\n[testenv]\ndeps =\n    pytest>=7.0.0\n    pytest-cov>=4.1.0\ncommands =\n    pytest {posargs:tests} --cov=src --cov-report=term --cov-report=xml --cov-fail-under=85\n"
+
+[tool.pdm]
+distribution = true
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
+python_files = "test_*.py"
+python_functions = "test_*"
+python_classes = "Test*"
+addopts = "--cov=src --cov-report=term --cov-report=html --cov-report=xml --cov-fail-under=85"
+
+[tool.coverage.run]
+source = [
+    "src",
+]
+omit = [
+    "tests/*",
+    "scripts/*",
+]
+
+[tool.coverage.report]
+fail_under = 85
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "pass",
+    "raise ImportError",
+]
