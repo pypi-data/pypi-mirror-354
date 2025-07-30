@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: mispotx
+Version: 1.2.4
+Summary: A tool to push OTXs to MISP
+Home-page: https://github.com/andreatripoli/mispotx
+Author: Andrea Tripoli
+License: MIT
+Keywords: MISP,OTX,AlienVault
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Topic :: Utilities
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pymisp>=2.5.12
+Requires-Dist: OTXv2>=1.5.12
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+A tool to extract pulses from AlienVault and push them into your MISP instance
