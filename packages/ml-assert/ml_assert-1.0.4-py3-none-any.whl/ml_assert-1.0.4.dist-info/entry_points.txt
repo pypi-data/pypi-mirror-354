@@ -1,0 +1,7 @@
+[console_scripts]
+ml-assert=ml_assert.cli:app
+
+[ml_assert.plugins]
+dvc_check=ml_assert.plugins.dvc_check:DVCArtifactCheckPlugin
+file_exists=ml_assert.plugins.file_exists:FileExistsPlugin
+
