@@ -1,0 +1,23 @@
+# PyPI包发布清单文件
+include README.md
+include LICENSE
+include CHANGELOG.md
+include requirements.txt
+include aitoolkit_base/py.typed
+
+# 包含模型文件
+recursive-include aitoolkit_base/models *.tflite *.task *.onnx
+
+# 包含文档
+recursive-include docs *.md *.yml *.yaml
+
+# 排除开发文件
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * .git*
+recursive-exclude * .DS_Store
+recursive-exclude tests *
+recursive-exclude examples *
+recursive-exclude .pytest_cache *
+recursive-exclude build *
+recursive-exclude dist * 
