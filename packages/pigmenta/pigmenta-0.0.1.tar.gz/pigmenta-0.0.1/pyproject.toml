@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pigmenta"
+version = "0.0.1"
+authors = [
+    {name = "Crispen Gari", email = "crispengari@gmail.com"},
+]
+description = "This packages contains some color Palettes that are very important for visualizing graphs and doing other stuffs."
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.10"
+dependencies  = [
+  
+]
+keywords = [
+    "pigmenta",
+    "python",
+    "python3",
+    "color palettes",
+    "colors",
+    "coloring",
+    "machine-learning"
+]
+classifiers = [
+    'Development Status :: 5 - Production/Stable',
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: Unix",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+    'Natural Language :: English'
+]
+
+[project.urls]
+homepage = "https://github.com/CrispenGari/pigmenta"
+repository = "https://github.com/CrispenGari/pigmenta"
+documentation = "https://github.com/CrispenGari/pigmenta/blob/main/README.md"
+changelog = "https://github.com/CrispenGari/pigmenta/blob/main/CHANGELOG.md"
+issues = "https://github.com/CrispenGari/pigmenta/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pigmenta", "pigmenta/static/**"]
+exclude = ["pigmenta/tests*", "tests*", "images", "tests"]
+namespaces = false
+
+[tool.setuptools]
+include-package-data = true
