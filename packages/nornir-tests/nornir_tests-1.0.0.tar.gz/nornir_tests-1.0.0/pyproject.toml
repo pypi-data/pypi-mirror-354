@@ -1,0 +1,32 @@
+[project]
+name = "nornir-tests"
+version = "1.0.0"
+description = "Testing extension for Nornir"
+readme = "README.rst"
+requires-python = ">=3.10,<4.0"
+dependencies = [
+    "assertpy>=1.1",
+    "jsonpath-ng>=1.7.0",
+    "lxml>=5.4.0",
+    "nornir>=3.5.0",
+    "rich>=14.0.0",
+    "wrapt>=1.17.2",
+]
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "ipdb>=0.13.13",
+    "jupyter>=1.1.1",
+    "mypy>=1.16.0",
+    "nbsphinx>=0.9.7",
+    "nornir-napalm>=0.5.0",
+    "nornir-utils>=0.2.0",
+    "pylama>=8.4.1",
+    "pytest>=8.4.0",
+    "pytest-coverage>=0.0",
+    "sphinx>=8.1.3",
+    "sphinx-issues>=5.0.1",
+    "sphinx-rtd-theme>=3.0.2",
+    "sphinxcontrib-napoleon>=0.7",
+]
