@@ -1,0 +1,283 @@
+Metadata-Version: 2.4
+Name: cybercore-ai-chat-manager
+Version: 1.0.4
+Summary: A modular AI API/chat manager supporting multiple backends
+Home-page: https://github.com/TeamMalina/CyberCore
+Author: TeamMalina
+Author-email: contact@teammalina.dev
+License: MIT
+Project-URL: Homepage, https://github.com/TeamMalina/CyberCore
+Project-URL: Repository, https://github.com/TeamMalina/CyberCore
+Project-URL: Documentation, https://github.com/TeamMalina/CyberCore/wiki
+Project-URL: Bug Reports, https://github.com/TeamMalina/CyberCore/issues
+Project-URL: Changelog, https://github.com/TeamMalina/CyberCore/blob/main/CHANGELOG.md
+Keywords: ai chat bot openai api machine-learning nlp chatbot assistant
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Communications :: Chat
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: aiohttp<4.0.0,>=3.8.0
+Requires-Dist: requests<3.0.0,>=2.31.0
+Requires-Dist: httpx<1.0.0,>=0.24.0
+Requires-Dist: pydantic<3.0.0,>=2.0.0
+Requires-Dist: pydantic-settings<3.0.0,>=2.0.0
+Requires-Dist: python-dotenv<2.0.0,>=1.0.0
+Requires-Dist: pyyaml<7.0,>=6.0
+Requires-Dist: cryptography<42.0.0,>=41.0.0
+Requires-Dist: click<9.0.0,>=8.1.0
+Requires-Dist: rich<14.0.0,>=13.0.0
+Requires-Dist: prompt-toolkit<4.0.0,>=3.0.0
+Requires-Dist: python-dateutil<3.0.0,>=2.8.0
+Requires-Dist: tiktoken<1.0.0,>=0.5.0
+Requires-Dist: tenacity<9.0.0,>=8.0.0
+Requires-Dist: typing-extensions<5.0.0,>=4.5.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: isort>=5.12.0; extra == "dev"
+Requires-Dist: flake8>=6.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: pre-commit>=3.0.0; extra == "dev"
+Provides-Extra: audio
+Requires-Dist: elevenlabs>=0.2.0; extra == "audio"
+Requires-Dist: pydub>=0.25.0; extra == "audio"
+Requires-Dist: soundfile>=0.12.0; extra == "audio"
+Provides-Extra: local
+Requires-Dist: torch>=2.0.0; extra == "local"
+Requires-Dist: transformers>=4.25.0; extra == "local"
+Requires-Dist: accelerate>=0.20.0; extra == "local"
+Provides-Extra: all
+Requires-Dist: torch>=2.0.0; extra == "all"
+Requires-Dist: transformers>=4.25.0; extra == "all"
+Requires-Dist: elevenlabs>=0.2.0; extra == "all"
+Requires-Dist: openai>=1.0.0; extra == "all"
+Requires-Dist: anthropic>=0.3.0; extra == "all"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# AI Chat Manager
+
+A comprehensive Python package for managing AI-powered chat conversations with support for multiple backends, enhanced features, and extensible architecture.
+
+## Features
+
+- **Multiple AI Backends**: Support for OpenAI, Venice AI, HuggingFace, ElevenLabs, and more
+- **Streaming Support**: Real-time streaming responses
+- **Function Calling**: Advanced function calling capabilities
+- **Vision Support**: Image understanding with compatible models
+- **Audio Generation**: Text-to-speech with ElevenLabs
+- **Conversation Management**: Persistent conversation history with smart context handling
+- **Rate Limiting**: Built-in rate limiting and retry logic
+- **Error Handling**: Comprehensive error handling and conversion
+- **CLI Interface**: Easy-to-use command line interface
+- **Extensible**: Plugin architecture for adding new backends
+
+## Installation
+
+```bash
+pip install cybercore-ai-chat-manager
+```
+
+## Quick Start
+
+```python
+from ai_chat_manager import ChatManager, Config
+from ai_chat_manager.backends import OpenAIBackend
+
+# Create configuration
+config = Config()
+config.add_backend("openai", {
+    "api_key": "your-openai-api-key",
+    "model": "gpt-3.5-turbo"
+})
+
+# Create chat manager
+manager = ChatManager(config)
+
+# Start a conversation
+response = await manager.chat("Hello, how are you?", backend="openai")
+print(response.content)
+```
+
+## Project Structure
+
+```
+ai_chat_manager/
+├── __init__.py                  # Main package init
+├── core/
+│   ├── __init__.py
+│   ├── types.py                 # Core type definitions
+│   ├── exceptions.py            # Exception definitions
+│   ├── config.py                # Configuration management
+│   ├── bot.py                   # Bot implementation
+│   └── manager.py               # Chat manager
+├── backends/
+│   ├── __init__.py              # Backend registry
+│   ├── base.py                  # Base backend class
+│   ├── openai_backend.py
+│   ├── venice_backend.py
+│   ├── huggingface_backend.py
+│   └── elevenlabs_backend.py
+├── cli/
+│   ├── __init__.py
+│   ├── main.py                  # Main CLI
+│   └── wrapper.py               # CLI wrapper
+├── utils/
+│   ├── __init__.py
+│   └── helpers.py               # Utility functions
+└── examples/
+    ├── basic.py
+    └── advanced.py
+```
+
+## Backend Support
+
+### OpenAI
+- GPT-3.5, GPT-4, and all variants
+- Function calling
+- Vision support (GPT-4V)
+- Streaming responses
+
+### Venice AI
+- Privacy-focused AI platform
+- Anonymous and censorship-resistant
+- OpenAI-compatible API
+- Enhanced privacy controls
+
+### HuggingFace
+- Inference API support
+- Local model support
+- Wide variety of open-source models
+- Custom model hosting
+
+### ElevenLabs
+- High-quality text-to-speech
+- Voice cloning
+- Multiple voice models
+- Streaming audio generation
+
+## Configuration
+
+The package uses a comprehensive configuration system:
+
+```python
+from ai_chat_manager.core.config import Config, BackendConfig
+
+config = Config()
+
+# Add OpenAI backend
+openai_config = BackendConfig(
+    name="openai",
+    backend_type="openai",
+    api_key="your-api-key",
+    model="gpt-4",
+    max_tokens=2000,
+    temperature=0.7
+)
+config.add_backend_config(openai_config)
+```
+
+## Error Handling
+
+The package provides comprehensive error handling:
+
+```python
+from ai_chat_manager.core.exceptions import (
+    BackendError, AuthenticationError, RateLimitError,
+    ModelNotFoundError, QuotaExceededError
+)
+
+try:
+    response = await manager.chat("Hello")
+except AuthenticationError:
+    print("Invalid API key")
+except RateLimitError:
+    print("Rate limit exceeded")
+except BackendError as e:
+    print(f"Backend error: {e}")
+```
+
+## CLI Usage
+
+```bash
+# Initialize configuration
+ai-chat-manager init
+
+# Basic commands (all three work identically)
+ai-chat-manager --help
+acm --help
+chat-manager --help
+
+# Backend management
+ai-chat-manager backend add openai
+ai-chat-manager backend list
+
+# Bot management
+ai-chat-manager bot create assistant
+ai-chat-manager bot list
+
+# Start chatting
+ai-chat-manager chat assistant
+
+# System status
+ai-chat-manager status
+ai-chat-manager doctor
+```
+
+## Examples
+
+See the `examples/` directory for more detailed usage examples:
+
+- `basic.py`: Simple chat interactions
+- `advanced.py`: Advanced features like function calling, streaming, and conversation management
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Changelog
+
+### Version 1.0.0
+- Initial release
+- Support for OpenAI, Venice AI, HuggingFace, and ElevenLabs
+- Comprehensive configuration system
+- CLI interface with three command aliases: `ai-chat-manager`, `acm`, `chat-manager`
+- Error handling and retry logic
+- Conversation management
+- Streaming support
+- Function calling
