@@ -1,0 +1,16 @@
+.gitignore
+LICENSE
+README.md
+fw-scraped.yml
+pyproject.toml
+setup.py
+.github/workflows/build-publish.yml
+src/etubeapi/__init__.py
+src/etubeapi/lib.py
+src/etubeapi/main.py
+src/etubeapi.egg-info/PKG-INFO
+src/etubeapi.egg-info/SOURCES.txt
+src/etubeapi.egg-info/dependency_links.txt
+src/etubeapi.egg-info/entry_points.txt
+src/etubeapi.egg-info/requires.txt
+src/etubeapi.egg-info/top_level.txt
