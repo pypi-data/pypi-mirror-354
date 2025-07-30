@@ -1,0 +1,16 @@
+[project]
+name = "gru-mcp-pypi"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp[cli]>=1.9.3",
+]
+
+[project.scripts]
+gru-mcp-pypi = "gru_mcp_pypi:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
