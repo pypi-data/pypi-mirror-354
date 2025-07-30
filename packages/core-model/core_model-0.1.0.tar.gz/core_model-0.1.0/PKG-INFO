@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: core_model
+Version: 0.1.0
+Summary: LLM-driven data analysis system with Streamlit and MLflow
+Author: Your Name
+Requires-Dist: streamlit
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: seaborn
+Requires-Dist: scipy
+Requires-Dist: scikit-learn
+Requires-Dist: mlflow
+Requires-Dist: openai
+Requires-Dist: statsmodels
+Dynamic: author
+Dynamic: requires-dist
+Dynamic: summary
