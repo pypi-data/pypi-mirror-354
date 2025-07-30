@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alumathGroup26"
+version = "0.1.1"
+description = "A simple matrix calculator library"
+authors = [
+    {name = "Manzi Terry", email = "m.terry@alustudent.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["matrix", "mathematics", "linear algebra", "calculator"]
+
+[project.urls]
+Homepage = "https://github.com/lGikundiro/Advanced-Linear-Algebra---Formative-2"
+Repository = "https://github.com/lGikundiro/Advanced-Linear-Algebra---Formative-2"
