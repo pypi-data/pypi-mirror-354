@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: xengine-commons
+Version: 0.0.7
+Summary: Xengine Commons 是 Fengyun AI 团队维护的基础工具库
+Author-email: lhybdv <39660787@qq.com>
+License: Apache Software License
+Project-URL: Homepage, https://github.com/windcloudai/xengine-commons
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: utype>=0.6.5
+Dynamic: license-file
+
+# Xengine-commons
+Xengine Commons 是 Fengyun AI 团队维护的基础工具库，为 Python Web 开发和 API 工程提供标准化组件和常用工具集，帮助团队保持代码一致性和开发效率。
