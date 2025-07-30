@@ -1,0 +1,17 @@
+.gitignore
+.pre-commit-config.yaml
+LICENSE
+README.md
+pyproject.toml
+uv.lock
+.github/workflows/publish.yml
+assets/vlc_chat_screenshot.png
+vlc_mcp_player/__init__.py
+vlc_mcp_player/_version.py
+vlc_mcp_player/main.py
+vlc_mcp_server.egg-info/PKG-INFO
+vlc_mcp_server.egg-info/SOURCES.txt
+vlc_mcp_server.egg-info/dependency_links.txt
+vlc_mcp_server.egg-info/entry_points.txt
+vlc_mcp_server.egg-info/requires.txt
+vlc_mcp_server.egg-info/top_level.txt
