@@ -1,0 +1,65 @@
+Metadata-Version: 2.4
+Name: python-tools-mcp
+Version: 0.2.0
+Summary: Python development tools as an MCP
+Project-URL: Homepage, https://github.com/benfjensen/python_tools_mcp
+Project-URL: Bug Tracker, https://github.com/benfjensen/python_tools_mcp/issues
+Author-email: Ben O'Mahony <ben@benomahony.com>
+License: MIT
+License-File: LICENSE
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.11
+Requires-Dist: mcp>=1.9.3
+Requires-Dist: pydantic>=2.11.5
+Requires-Dist: uv>=0.1.19
+Description-Content-Type: text/markdown
+
+# Python Tools MCP
+
+A Model Context Protocol (MCP) server that exposes modern Python development tools.
+
+## Features
+
+- Manage Python dependencies using `uv`
+- Run tests with `pytest` and coverage measurement
+- Lint and format code with `ruff`
+- Type checking with `basedpyright` or `mypy`
+- Analyze and improve code quality with tools like `vulture`, `radon`, and `bandit`
+- Check docstring coverage with `interrogate`
+- Profile Python code with `py-spy`
+
+## Installation
+
+```bash
+uv sync
+```
+
+## Usage
+
+Start the server:
+
+```bash
+uvx python_tools_mcp
+```
+
+Then use the tools in your MCP-compatible application.
+
+### Example Tools
+
+- `pytest`: Run tests with optional coverage
+- `ruff_check`: Lint Python code
+- `ruff_format`: Format Python code
+- `uv_add`: Add dependencies
+- `uv_sync`: Install dependencies
+- `coverage_analyze`: Analyze existing coverage data
+
+## License
+
+MIT
+
