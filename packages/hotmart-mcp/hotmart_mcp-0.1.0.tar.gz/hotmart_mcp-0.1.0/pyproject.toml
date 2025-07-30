@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hotmart-mcp"
+version = "0.1.0"
+description = "Model Context Protocol server for Hotmart API integration"
+authors = [
+    { name = "Vinicius", email = "contato@vdscruz.com" }
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.11"
+keywords = ["mcp", "hotmart", "api", "claude"]
+
+dependencies = [
+    "mcp>=1.0.0",
+    "httpx>=0.27.0",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.0.0",
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "requests>=2.31.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/cajuflow/hotmart-mcp"
+Repository = "https://github.com/cajuflow/hotmart-mcp"
+
+[project.scripts]
+hotmart-mcp = "src.hotmart_mcp:main"
+hotmart-mcp-test = "src.tests.run_tests:main"
+
+# Configuração do build
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+# Pytest configuration - básico
+[tool.pytest.ini_options]
+testpaths = ["src/tests"]
+python_files = "test_*.py"
+addopts = [
+    "-v",
+    "--asyncio-mode=auto",
+]
+
+# Black configuration - básico
+[tool.black]
+line-length = 88
+
+# isort configuration - básico  
+[tool.isort]
+profile = "black"
