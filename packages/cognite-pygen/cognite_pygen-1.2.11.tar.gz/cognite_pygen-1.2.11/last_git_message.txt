@@ -1,0 +1,29 @@
+[PYG-390, PYG-381] ⬆ Upgrade pydantic to 2.11 (#481)
+
+# Description
+
+This removed the upper-bound of pyandic and updates all dependencies.
+This leads to the following two changes to the code base
+
+1. Pydantic 2.11 deprecates the following:
+
+![image](https://github.com/user-attachments/assets/5825c6ae-e2dd-4221-8344-684d3a350d70)
+
+2. And cognite-sdk 7.75 has changed the base class for
+NodeResultSetExpression and EdgeResultSetExpression, which needs to be
+updated to comply with `mypy`.
+
+**All the code in `/examples` is generated and should not be reviewed.
+Instead focus on the templates that generates the code`**
+
+
+## Bump
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## Changelog
+### Fixed
+
+- Remove upper bound on `pydantic`.
