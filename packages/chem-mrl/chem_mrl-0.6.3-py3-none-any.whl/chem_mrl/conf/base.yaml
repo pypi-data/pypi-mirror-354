@@ -1,0 +1,75 @@
+defaults:
+  - base_config_schema
+  - /model: chem_mrl # chem_mrl, chem_2d_mrl, classifier or dice_loss_classifier
+  - _self_
+
+# dataset params
+# train_dataset_path and val_dataset_path must be parquet files
+# You can specify column names in /model/chem_mrl and /model/classifier configs
+train_dataset_path: Derify/pubchem_10m_genmol_similarity
+val_dataset_path: Derify/pubchem_10m_genmol_similarity
+test_dataset_path: Derify/pubchem_10m_genmol_similarity
+train_datasets_split: train
+val_datasets_split: validation # if loading from different local files, this should be set to train
+test_datasets_split: test # if loading from different local files, this should be set to train
+smiles_a_column_name: smiles_a
+smiles_b_column_name: smiles_b # can be set to `null` if training a classifier model
+label_column_name: similarity
+n_train_samples: 100000 # Number of training samples to load. Uses seeded sampling if a seed is set.
+n_val_samples: 100000 # Number of evaluation samples to load. Uses seeded sampling if a seed is set.
+n_test_samples: 100000 # Number of testing samples to load. Uses seeded sampling if a seed is set.
+
+early_stopping_patience: 3 # Number of epochs to wait before early stopping
+scale_learning_rate: false # Scale learning rate by sqrt(batch_size)
+use_normalized_weight_decay:
+  false # overrides the weight decay specified in training_args
+  # Normalized weight decay for adamw optimizer - https://arxiv.org/pdf/1711.05101.pdf
+  # optimized hyperparameter lambda_norm = 0.05 for AdamW optimizer
+  # Hyperparameter search indicates a normalized weight decay outperforms
+  # the default adamw weight decay
+
+# Note: SentenceTransformerTrainingArguments extends transformers.TrainingArguments
+# https://sbert.net/docs/package_reference/sentence_transformer/training_args.html
+# https://huggingface.co/docs/transformers/main/en/main_classes/trainer#transformers.TrainingArguments
+training_args:
+  _target_: sentence_transformers.SentenceTransformerTrainingArguments
+  run_name: chem_mrl
+  resume_from_checkpoint: null # null or the path to a folder with a valid checkpoint for your model.
+  output_dir: training_output/${training_args.run_name}_${now:%Y-%m-%d_%H-%M-%S} # Path to save model, checkpoints and evaluation results
+  overwrite_output_dir: false
+  num_train_epochs: 3
+  learning_rate: 5.0e-05
+  lr_scheduler_type: linear
+  warmup_ratio: 0.05
+  optim: adamw_hf # transformer's compatible optimizer name - adamw_hf adamw_apex_fused
+  weight_decay: 0
+  seed: 42
+  data_seed: 42
+  do_train: True
+  do_eval: True
+  max_steps: -1
+  eval_strategy: epoch # 'no', 'steps', 'epoch'
+  eval_steps: 0
+  load_best_model_at_end: true
+  metric_for_best_model: eval_val_${model.eval_metric}
+  save_strategy: epoch # 'steps', 'steps', 'epoch', 'best'
+  save_steps: 0
+  save_total_limit: 10
+  logging_strategy: epoch # 'no', 'steps', 'epoch'
+  logging_steps: 0
+  logging_nan_inf_filter: false
+  logging_dir: ${training_args.output_dir}/logs
+  report_to: all # codecarbon and wandb installed by this repo
+  per_device_train_batch_size: 32
+  per_device_eval_batch_size: 32
+  tf32: false
+  fp16: false
+  fp16_full_eval: false
+  gradient_accumulation_steps: 1
+  gradient_checkpointing: false
+  torch_compile: false
+  disable_tqdm: false
+  dataloader_num_workers: 0
+  dataloader_pin_memory: false
+  dataloader_prefetch_factor: null # should be null if dataloader_num_workers is 0
+  dataloader_persistent_workers: false
