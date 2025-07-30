@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: matform
+Version: 0.1.15
+Summary: Matrix transform library
+Author-email: Jaehak Lee <leejaehak87@gmail.com>
+Project-URL: Homepage, https://github.com/jaehakl/matform
+Project-URL: Bug Tracker, https://github.com/jaehakl/matform/issues
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: matplotlib
+Dynamic: license-file
+
+# Matform
+
+### Installation
+
+```
+pip install matform
+```
