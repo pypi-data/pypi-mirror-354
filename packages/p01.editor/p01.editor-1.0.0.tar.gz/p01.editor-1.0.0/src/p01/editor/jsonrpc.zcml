@@ -1,0 +1,15 @@
+<configure
+    xmlns:zope="http://namespaces.zope.org/zope"
+    xmlns="http://namespaces.zope.org/browser"
+    xmlns:p01="http://namespaces.zope.org/p01"
+    i18n_domain="p01">
+
+  <p01:jsonrpc
+      for="*"
+      class=".jsonrpc.XEditorPaste"
+      methods="doXEditorPaste"
+      permission="zope.Public"
+      layer="z3c.jsonrpc.layer.IJSONRPCLayer"
+      />
+
+</configure>
