@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block title %}
+    <title>{{ request.site.name }} Reservation Details</title>
+{% endblock title %}
+
+
+{% block content %}
+
+    <h2>Reservation Details</h2>
+
+    <table class="table">
+        <thead>
+            <th>ID</th>
+            <th>User</th>
+            <th>Delivery Group</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Duration</th>
+        </thead>
+        <tr>
+            <td>{{ res_id }}</td>
+            <td>{{ res.user.email }}</td>
+            <td>{{ res.deliverygroup }}</td>
+            <td>{{ res.t_start | naturaltime }} ({{ res.t_start }})</td>
+            <td>{{ res.t_end | naturaltime }} ({{ res.t_end }})</td>
+            <td>{{ res.t_end | timeuntil:res.t_start }}</td>
+        </tr>
+    </table>
+
+    <div class="my-5"></div>
+
+    <h3>Related Bookings</h3>
+
+    <table class="table table-striped table-sm">
+        <thead>
+            <th>ID</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Duration</th>
+            <th>PPMS System ID</th>
+            <th>PPMS Session</th>
+        </thead>
+        {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.id }}</td>
+                <td>{{ booking.t_start }}</td>
+                <td>{{ booking.t_end }}</td>
+                <td>{{ booking.t_end | timeuntil:booking.t_start }}</td>
+                <td>{{ booking.system_id }}</td>
+                <td>{{ booking.ppms_session }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock content %}

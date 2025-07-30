@@ -1,0 +1,6 @@
+{% load humanize %}
+
+<a href="{% url 'update_item' item_name %}"
+    class="btn btn-block btn-outline-secondary p-1">{{ item_label }}</a>
+<a href="{% url 'update_item' item_name %}"
+    class="btn btn-block btn-secondary p-1 px-2">{{ item_task.t_end | naturaltime }}</a>

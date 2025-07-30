@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: diop
+Version: 0.4.0a35
+Summary: Desktop Infrastructure Operations
+License: GPL-3.0-or-later
+Author: Niko Ehrenfeuchter
+Author-email: nikolaus.ehrenfeuchter@unibas.ch
+Requires-Python: >=3.9,<4.0
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Dist: croniter (>=1.3.15,<2.0.0)
+Requires-Dist: datetimerange (>=2.1.0,<3.0.0)
+Requires-Dist: django (>=4.2.2,<5.0.0)
+Requires-Dist: django-auth-ldap (>=4.3.0,<5.0.0)
+Requires-Dist: django-environ (>=0.10.0,<0.11.0)
+Requires-Dist: django-extensions (>=3.2.3,<4.0.0)
+Requires-Dist: django-q2 (>=1.5.2,<2.0.0)
+Requires-Dist: logging-interceptor (>=0.1.2,<0.2.0)
+Requires-Dist: mysqlclient (>=2.1.1,<3.0.0)
+Requires-Dist: psytricks (>=2.2.0a2,<3.0.0)
+Requires-Dist: pyppms (>=3.3.0,<4.0.0)
+Requires-Dist: python-box (>=7.0.1,<8.0.0)
+Requires-Dist: pyyaml (>=6.0,<7.0)
+Requires-Dist: setuptools (>=78.1.0,<79.0.0)
+Requires-Dist: whitenoise (>=6.5.0,<7.0.0)
+Project-URL: Organisation Homepage, https://imcf.one/
+Description-Content-Type: text/markdown
+
+# Diop 🕶
+
+- `D`esktop
+- `I`nfrastructure
+- `Op`erations
+
+`Diop` is a [Django-based][www-django] web application to manage a Virtual
+Desktop Infrastructure based on *Citrix Virtual Apps and Desktops* (CVAD).
+
+## 🧩 Components and ⚙ functional dependencies
+
+A full Diop setup consists of the following components:
+
+- The Diop main project components:
+  - The Diop **core app**.
+  - Several Diop [Django-Q2][www-django-q2] **task queue workers**. They are
+    performing the periodic tasks, updating status information and similar.
+- A backing database, currently only **MySQL** is tested.
+- Optional, but **required for production** setups:
+  - Access to a running [**PSyTricks / ResTricks**][www-psytricks] service  -
+    that's the interface to the *CVAD* platform (in a testing / development
+    setup this is not necessarily required, but then obviously no status updates
+    and / or actions can be performed).
+- Optional, but **highly recommended**:
+  - Access to an **ActiveDirectory LDAP** interface for performing
+    authentication.
+  - Access to a **PPMS booking system** instance (performed through the
+    [pyppms][www-pyppms] package).
+
+[www-django]: https://www.djangoproject.com/
+[www-psytricks]: https://pypi.org/project/psytricks/
+[www-pyppms]: https://pypi.org/project/pyppms/
+[www-django-q2]: https://github.com/django-q2/django-q2
+
