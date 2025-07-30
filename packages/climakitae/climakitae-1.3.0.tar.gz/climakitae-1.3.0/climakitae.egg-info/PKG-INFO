@@ -1,0 +1,111 @@
+Metadata-Version: 2.4
+Name: climakitae
+Version: 1.3.0
+Summary: Climate data analysis toolkit
+Home-page: https://github.com/cal-adapt/climakitae
+Author: Cal-Adapt Analytics Engine Team
+Author-email: analytics@cal-adapt.org
+License: BSD 3-Clause License
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 1 - Planning
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: aiobotocore<=2.16.1
+Requires-Dist: boto3<=1.35.88
+Requires-Dist: dask
+Requires-Dist: dask-gateway
+Requires-Dist: dask-geopandas
+Requires-Dist: fsspec
+Requires-Dist: geopandas
+Requires-Dist: intake
+Requires-Dist: intake-esm<=2023.11.10
+Requires-Dist: intake-geopandas
+Requires-Dist: intake-xarray
+Requires-Dist: matplotlib
+Requires-Dist: numcodecs<=0.14.1
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: param
+Requires-Dist: psutil
+Requires-Dist: pyproj
+Requires-Dist: pytz
+Requires-Dist: rioxarray
+Requires-Dist: s3fs>=2024.12.0
+Requires-Dist: scipy
+Requires-Dist: setuptools<=75.6.0
+Requires-Dist: shapely
+Requires-Dist: statsmodels
+Requires-Dist: timezonefinder
+Requires-Dist: tqdm
+Requires-Dist: xarray
+Requires-Dist: xclim<=0.54.0
+Requires-Dist: xmip
+Provides-Extra: docs
+Requires-Dist: Sphinx; extra == "docs"
+Requires-Dist: sphinx-book-theme; extra == "docs"
+Requires-Dist: sphinx-design; extra == "docs"
+Requires-Dist: nbsphinx; extra == "docs"
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license-file
+
+Climakitae
+==========
+A python toolkit for retrieving and performing scientific analyses with climate data from the [Cal-Adapt Analytics Engine](https://analytics.cal-adapt.org).
+
+**Note:** This package is in active development and should be considered a work in progress. 
+
+Documentation
+-------------
+Check out the official documentation on ReadTheDocs: https://climakitae.readthedocs.io/en/latest/ 
+
+Installation
+------------
+
+Install the latest version in development directly with pip.
+
+```
+pip install https://github.com/cal-adapt/climakitae/archive/main.zip
+```
+
+Basic Usage
+-----------
+
+```
+# Import functions of interest from climakitae
+from climakitae.core.data_interface import (
+    get_data_options, 
+    get_subsetting_options, 
+    get_data
+)
+
+# See all the data catalog options as a pandas DataFrame object
+get_data_options()
+
+# See all the area subset options for retrieving a spatial subset of the catalog data
+get_subsetting_options()
+
+# Retrieve data for a single variable for the state of California
+get_data(
+    variable = "Precipitation (total)", 
+    downscaling_method = "Dynamical", 
+    resolution = "9 km", 
+    timescale = "monthly", 
+    scenario = "SSP 3-7.0 -- Business as Usual",
+    cached_area = "CA"
+)
+```
+
+If you want to use graphic user interfaces to retrieve and view data visualization options (among other features), you'll need to import our sister package `climakitaegui`, which works in tandem with climakitae to produce interactive GUIs. See [climakitaegui](https://github.com/cal-adapt/climakitaegui) for more information on how to use this library. 
+
+Links
+-----
+* PyPI releases: https://pypi.org/project/climakitae/
+* Source code: https://github.com/cal-adapt/climakitae
+* Issue tracker: https://github.com/cal-adapt/climakitae/issues
+
+Contributors
+------------
+[![Contributors](https://contrib.rocks/image?repo=cal-adapt/climakitae)](https://github.com/cal-adapt/climakitae/graphs/contributors)
