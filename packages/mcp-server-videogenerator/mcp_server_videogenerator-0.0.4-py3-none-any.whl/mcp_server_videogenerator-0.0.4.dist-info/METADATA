@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: mcp-server-videogenerator
+Version: 0.0.4
+Summary: A Model Context Protocol server providing tools to generate videos
+Author: drpebcak
+License: MIT
+Keywords: automation,http,llm,mcp
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.13
+Requires-Dist: fastmcp>=2.6.1
+Requires-Dist: google-auth
+Requires-Dist: google-genai>=1.19.0
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: pillow>=11.2.1
+Requires-Dist: python-dotenv>=1.1.0
