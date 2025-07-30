@@ -1,0 +1,28 @@
+/* Hiding TOC everywhere */
+
+.toc-drawer, .toc-content-icon, .toc-header-icon  {
+    display: none;
+}
+
+@media(max-width:52em) /* $content-width + 2* $content-padding */ {
+    .content {
+        overflow-x: auto;
+        width: 100%
+    }
+}
+@media(min-width:82em) /* $full-width */ {
+    .content {
+        width: 58em; /* $content-width + $sidebar-width (updated) */
+    }
+}
+/* Over very big screens */
+@media (min-width: 100em) {
+    .content {
+        width: 64em; /* $content-width + + $sidebar-width + (12/2) */
+    }
+}
+@media (min-width: 110em) {
+    .content {
+        width: 70em; /* $content-width + $sidebar-width + 12 */
+    }
+}
