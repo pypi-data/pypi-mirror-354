@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: xiguapi-mcp-douyindl
+Version: 0.3.0
+Summary: get douyin video download url
+Requires-Python: >=3.13
+Requires-Dist: drissionpage==4.1.0.18
+Requires-Dist: mcp[cli]>=1.9.3
+Description-Content-Type: text/markdown
+
+# Douyin Video Downloader MCP Tool
+
+这是一个基于 `DrissionPage` 和 `FastMCP` 的抖音视频下载地址获取工具。它通过模拟浏览器行为，获取抖音视频的下载链接。
+
+## 功能
+
+- 通过抖音视频分享链接获取无水印视频下载地址。
+
+## 注意事项
+
+- 本地运行会调用Chromium 内核浏览器，请确保安装，且允许客户端操作浏览器。
+- 浏览器设置的是无头模式，在后台运行。
+- 抖音的视频链接结构可能会发生变化，导致工具失效，届时需要更新代码。
