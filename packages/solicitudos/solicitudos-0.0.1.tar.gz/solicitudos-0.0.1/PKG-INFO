@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: solicitudos
+Version: 0.0.1
+Summary: A package to protect against aliased machine-translated code
+Author-email: Keith Grant <kgrant@redhat.com>
+License-Expression: GPL-3.0-only
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+License-File: LICENSE-GPLv3
+Dynamic: license-file
+
+This package was created to serve as a warning against machine-translated code.
