@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block title %}
+    <title>{{ request.site.name }} Current Sessions</title>
+{% endblock title %}
+
+{% block content %}
+    <h2>Sessions</h2>
+
+    <table class="table table-striped table-hover table-sm">
+        <thead>
+            <th>
+                <a href="{% url 'session_list' %}?sort=uid">UID</a>
+            </th>
+            <th>
+                <a href="{% url 'session_list' %}?sort=machine">Machine</a>
+            </th>
+            <th>
+                <a href="{% url 'session_list' %}?sort=user">User</a>
+            </th>
+            <th>
+                <a href="{% url 'session_list' %}?sort=-t_start">Session Start</a>
+            </th>
+            <th>
+                <a href="{% url 'session_list' %}?sort=client_address">Client IP</a>
+            </th>
+            <th>
+                <a href="{% url 'session_list' %}?sort=state">Current State</a>
+            </th>
+            <th>
+                <a href="{% url 'session_list' %}?sort=-t_change">Last Change</a>
+            </th>
+        </thead>
+        {% for session in object_list %}
+            <tr class="position-relative">
+                <td>
+                    <a href="{% url 'session_details' session.uid %}"
+                       class="stretched-link link-secondary">{{ session.uid }}</a>
+                </td>
+                <td>{{ session.machine.hostname }}</td>
+                <td>{{ session.user.email }}</td>
+                <td>{{ session.t_start | naturaltime }}</td>
+                <td>{{ session.client_address }}</td>
+                <td>{{ session.state }}</td>
+                <td>{{ session.t_change | naturaltime }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

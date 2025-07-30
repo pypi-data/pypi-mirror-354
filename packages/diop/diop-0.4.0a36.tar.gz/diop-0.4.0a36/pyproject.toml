@@ -1,0 +1,87 @@
+[tool.poetry]
+authors = ["Niko Ehrenfeuchter <nikolaus.ehrenfeuchter@unibas.ch>"]
+description = "Desktop Infrastructure Operations"
+license = "GPL-3.0-or-later"
+name = "diop"
+packages = [
+  {include = "diop_core", from = "src"},
+  {include = "diop", from = "src"},
+]
+readme = "README.md"
+version = "0.4.0-a.36"
+
+[tool.poetry.urls]
+# "Changelog" = "https://github.com/imcf/diop/blob/main/CHANGELOG.md"
+"Organisation Homepage" = "https://imcf.one/"
+
+[tool.poetry.dependencies]
+croniter = "^1.3.15"
+datetimerange = "^2.1.0"
+django = "^4.2.2"
+django-auth-ldap = "^4.3.0"
+django-environ = "^0.10.0"
+django-extensions = "^3.2.3"
+django-q2 = "^1.5.2"
+logging-interceptor = "^0.1.2"
+mysqlclient = "^2.1.1"
+psytricks = "^2.2.0a2"
+pyppms = "^3.3.0"
+python = "^3.9"
+python-box = "^7.0.1"
+pyyaml = "^6.0"
+whitenoise = "^6.5.0"
+setuptools = "^78.1.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.1.0"
+djlint = "^1.31.0"
+pylint = "^2.16.2"
+pylint-django = "^2.5.3"
+pdoc = "^15.0.1"
+
+[tool.poetry.scripts]
+diop-manage = "diop_core.cli:manage"
+diop-newconfig = "diop_core.cli:newconfig"
+
+[tool.djlint]
+ignore = "H014"
+preserve_blank_lines = true
+
+[tool.poetry-dynamic-versioning]
+enable = false
+style = "semver"
+vcs = "git"
+
+[tool.poetry-dynamic-versioning.substitution]
+folders = [
+  {path = "src"},
+  {path = "src/diop/templates", files = ["base.html"], patterns = ['(>)DIOPVERSION(</)']},
+]
+
+[build-system]
+build-backend = "poetry_dynamic_versioning.backend"
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
+
+
+[tool.ruff.lint]
+# exclude = [
+#   "tests/foo/*"
+# ]
+
+select = [
+    "D",
+    "D212",  # summary lines must be on the first physical line of the docstring
+    "D401",  # imperative mood for all docstrings
+    "D415",  # summary line has to end in a punctuation mark
+    "D417",  # require documentation for _all_ function parameters
+]
+
+ignore = [
+    "D202",  # no blank lines allowed after function docstring
+    ## D211 conflicts with ruff's formatting as of 2025-04-14, so don't use it:
+    # "D211",  # no blank lines allowed before class docstring
+]
+
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"

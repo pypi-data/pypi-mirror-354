@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    <title>{{ request.site.name }} Machines</title>
+{% endblock title %}
+
+
+{% block content %}
+    <h2>{{ request.site.name }} Machines</h2>
+
+    <table class="table table-striped table-hover table-sm">
+        <thead>
+            <th>Name</th>
+            <th>Category</th>
+            <th>State</th>
+            <th>Power</th>
+            <th>Maintenance</th>
+            <th>Registered</th>
+            <th>Agent Version</th>
+        </thead>
+        {% for machine in machines %}
+            <tr class="position-relative {{ machine.tr_class }}">
+                <td>{{ machine.hostname }}</td>
+                <td>{{ machine.deliverygroup }}</td>
+                <td>{{ machine.state }}</td>
+                <td>{{ machine.powerstate }}</td>
+                <td>{{ machine.maintenance }}</td>
+                <td>{{ machine.registration }}</td>
+                <td>{{ machine.agent }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}
