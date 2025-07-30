@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: paymentech
+Version: 0.4.3
+Summary: Python SDK for Chase Paymentech
+Home-page: https://github.com/SerenitySoftware/paymentech
+Author: Jordan Ambra
+Author-email: jordan@serenity.software
+Keywords: chase,paymentech,e-commerce,payments
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: License :: Freely Distributable
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: requests
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
+
+# Chase Paymentech SDK
+Python SDK for Chase Paymentech
+
+[![Build Status](https://travis-ci.org/SerenitySoftware/paymentech.svg?branch=master)](https://travis-ci.org/SerenitySoftware/paymentech)
