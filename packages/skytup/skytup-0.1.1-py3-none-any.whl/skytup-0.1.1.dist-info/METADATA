@@ -1,0 +1,71 @@
+Metadata-Version: 2.4
+Name: skytup
+Version: 0.1.1
+Summary: A sample Python package
+Home-page: https://github.com/skytup/pypi.git
+Author: Skytup
+Author-email: skytup91@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: click>=8.0.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Skytup
+
+A sample Python package that can be installed via pip.
+
+## Installation
+
+You can install the package using pip:
+
+```bash
+pip install skytup
+```
+
+## Usage
+
+You can use this package either as a Python module or through its command-line interface.
+
+### Python Module
+```python
+import skytup
+
+# Say hello
+result = skytup.hello()
+print(result)  # Output: "Hello from Skytup!"
+
+# Add numbers
+sum_result = skytup.add(5, 3)
+print(sum_result)  # Output: 8
+```
+
+### Command Line Interface
+The package provides a command-line interface with the following commands:
+
+```bash
+# Show help
+skytup --help
+
+# Print a greeting
+skytup greet
+
+# Add two numbers
+skytup sum 5 3
+```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
