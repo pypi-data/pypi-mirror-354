@@ -1,0 +1,36 @@
+{
+    "config": {
+        "step": {
+            "reauth_confirm": {
+                "description": "Caithfidh an comhth\u00e1th\u00fa VeSync do chuntas a athfh\u00edordheimhni\u00fa"
+            }
+        }
+    },
+    "entity": {
+        "fan": {
+            "vesync": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Uath"
+                        }
+                    }
+                }
+            }
+        },
+        "select": {
+            "night_light_level": {
+                "name": "Leibh\u00e9al solais o\u00edche",
+                "state": {
+                    "bright": "Geal",
+                    "dim": "Laghdaigh"
+                }
+            }
+        },
+        "switch": {
+            "display": {
+                "name": "Taispe\u00e1in"
+            }
+        }
+    }
+}
