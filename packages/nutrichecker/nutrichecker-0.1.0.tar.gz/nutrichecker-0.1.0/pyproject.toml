@@ -1,0 +1,30 @@
+# pyproject.toml
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nutrichecker"
+version = "0.1.0"
+description = "Library advanced nutrition analysis dan rekomendasi makanan sehat"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+  { name="Eden Simamora", email="aeden6877@gmail.com" }
+]
+requires-python = ">=3.6"
+
+dependencies = [
+    "requests",
+    "pandas",
+    "numpy",
+    "scikit-learn",
+    "matplotlib",
+    "tqdm",
+    "tinydb",
+    "python-decouple",
+    "loguru"
+]
+
+[project.urls]
+Homepage = "https://github.com/username/nutricheck"
