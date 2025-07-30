@@ -1,0 +1,40 @@
+[project]
+name = "certship"
+version = "0.0.1"
+description = "A tool for auto deploy cert to cloud storage service provider."
+authors = [
+    {name = "laofahai",email = "laofahai@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "cryptography",
+    "requests (>=2.32.4,<3.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "certship"
+version = "0.0.1"
+description = "A tool for auto deploy cert to cloud storage service provider."
+authors = ["laofahai <laofahai@gmail.com>"]
+readme = "README.md"
+packages = [
+    { include = "src" },
+    { include = "tests" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<4.0"
+cryptography = "*"
+requests = ">=2.32.4,<3.0.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+
+[tool.poetry.scripts]
+certship = "src.cli:main"
