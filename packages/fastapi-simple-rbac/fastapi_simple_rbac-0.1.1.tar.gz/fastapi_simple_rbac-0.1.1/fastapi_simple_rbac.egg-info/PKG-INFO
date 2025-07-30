@@ -1,0 +1,216 @@
+Metadata-Version: 2.4
+Name: fastapi-simple-rbac
+Version: 0.1.1
+Summary: Dead simple role-based access control for FastAPI
+Author-email: Farid Darabi <farid.darabi@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/fariddarabi/fastapi-simple-rbac
+Project-URL: Repository, https://github.com/faridarabi/fastapi-simple-rbac
+Project-URL: Issues, https://github.com/fariddarabi/fastapi-simple-rbac/issues
+Keywords: fastapi,rbac,auth,roles,permissions
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Framework :: FastAPI
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Security
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastapi>=0.68.0
+Requires-Dist: python-jose[cryptography]>=3.3.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: httpx>=0.24.0; extra == "dev"
+Requires-Dist: black>=22.0.0; extra == "dev"
+Requires-Dist: isort>=5.10.0; extra == "dev"
+Requires-Dist: flake8>=4.0.0; extra == "dev"
+Requires-Dist: mypy>=0.991; extra == "dev"
+Dynamic: license-file
+
+# FastAPI Simple RBAC
+
+Dead simple role-based access control for FastAPI.
+
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.68+-green.svg)](https://fastapi.tiangolo.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Why?
+
+I got tired of writing the same role-checking boilerplate in every FastAPI project. This package lets you protect endpoints with a simple decorator:
+
+```python
+@app.get("/admin")
+@require_roles("admin")
+def admin_only(request: Request):
+    return {"message": "You're an admin!"}
+```
+
+That's it. No complex setup, no learning curve.
+
+## Installation
+
+```bash
+pip install fastapi-simple-rbac
+```
+
+## Quick Start
+
+```python
+from fastapi import FastAPI, Request
+from fastapi_simple_rbac import RBACMiddleware, require_roles
+
+app = FastAPI()
+app.add_middleware(RBACMiddleware)
+
+@app.get("/admin")
+@require_roles("admin")
+def admin_dashboard(request: Request):
+    return {"message": "Welcome, admin!"}
+```
+
+By default, it looks for roles in JWT tokens (in the `Authorization` header). If you need something else, keep reading.
+
+## Examples
+
+### Multiple roles
+
+```python
+# User needs BOTH roles
+@require_roles(["admin", "editor"], require_all=True)
+def admin_editor_only(request: Request):
+    return {"message": "You're both admin AND editor"}
+
+# User needs ANY of these roles  
+@require_roles(["admin", "editor", "moderator"], require_all=False)
+def staff_only(request: Request):
+    return {"message": "You're staff"}
+
+# Shorthand for the above
+@require_any_role(["admin", "editor", "moderator"])
+def staff_only_alt(request: Request):
+    return {"message": "Same thing"}
+```
+
+### Custom role sources
+
+Don't use JWT? No problem. Write your own role getter:
+
+```python
+def get_roles_from_database(request: Request):
+    user_id = request.headers.get("X-User-ID")
+    return database.get_user_roles(user_id)
+
+app.add_middleware(RBACMiddleware, role_getter=get_roles_from_database)
+```
+
+Or from headers:
+
+```python
+def get_roles_from_header(request: Request):
+    roles = request.headers.get("X-User-Roles", "")
+    return roles.split(",") if roles else []
+
+app.add_middleware(RBACMiddleware, role_getter=get_roles_from_header)
+```
+
+Async role getters work too:
+
+```python
+async def get_roles_from_api(request: Request):
+    user_id = extract_user_id(request)
+    async with httpx.AsyncClient() as client:
+        response = await client.get(f"/users/{user_id}/roles")
+        return response.json()["roles"]
+
+app.add_middleware(RBACMiddleware, role_getter=get_roles_from_api)
+```
+
+### JWT Configuration
+
+```python
+app.add_middleware(
+    RBACMiddleware,
+    secret_key="your-secret-key",
+    verify_jwt_signature=True,  # Set to False for development
+    role_claim="permissions"    # Default is "roles"
+)
+```
+
+### Custom error messages
+
+```python
+@require_roles("vip", error_message="VIP membership required!")
+def vip_lounge(request: Request):
+    return {"message": "Welcome to the VIP lounge"}
+```
+
+### Custom error handling
+
+```python
+def custom_error_handler(request: Request, exception: RBACException):
+    return JSONResponse(
+        status_code=exception.status_code,
+        content={"error": "Nope", "details": exception.message}
+    )
+
+app.add_middleware(RBACMiddleware, error_handler=custom_error_handler)
+```
+
+### FastAPI Dependencies
+
+If you prefer dependency injection:
+
+```python
+from fastapi import Depends
+from fastapi_simple_rbac import get_current_user_roles, create_role_dependency
+
+# Inject roles into your endpoint
+@app.get("/profile")
+def get_profile(roles: list = Depends(get_current_user_roles)):
+    return {"your_roles": roles}
+
+# Create reusable dependencies
+admin_required = create_role_dependency("admin")
+
+@app.get("/admin", dependencies=[Depends(admin_required)])
+def admin_endpoint():
+    return {"message": "Admin access"}
+```
+
+## JWT Token Format
+
+Your JWT should look like this:
+
+```json
+{
+  "sub": "user123",
+  "roles": ["admin", "editor"],
+  "exp": 1234567890
+}
+```
+
+The roles can be a single string or an array. Both work fine.
+
+## Development
+
+```bash
+git clone https://github.com/yourusername/fastapi-simple-rbac
+cd fastapi-simple-rbac
+pip install -e ".[dev]"
+pytest
+```
+
+## License
+
+MIT. Do whatever you want with it. 
