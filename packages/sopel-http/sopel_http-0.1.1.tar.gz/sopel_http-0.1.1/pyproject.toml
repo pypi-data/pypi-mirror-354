@@ -1,0 +1,57 @@
+[project]
+name = "sopel-http"
+version = "0.1.1"
+description = "An HTTP server for the Sopel IRC bot framework"
+authors = [{name = "Trevor Bergeron", email = "mal@sec.gd"}]
+readme = "README.md"
+urls = {HomePage = "https://github.com/half-duplex/sopel-http"}
+keywords = ["irc", "sopel"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: European Union Public Licence 1.2 (EUPL 1.2)",
+    "Operating System :: OS Independent",
+    "Topic :: Communications :: Chat :: Internet Relay Chat",
+]
+
+requires-python = "~= 3.9"
+dependencies = [
+    "sopel ~= 7.1.9",
+    "Flask ~= 2.1.2",
+    "gevent ~= 25.5.1",
+]
+
+[dependency-groups]
+dev = [
+    "black ~= 25.1",
+    "flake8 ~= 7.1",
+    "flake8-future-import ~= 0.4.7",
+    "flake8-isort ~= 6.1",
+    "flake8-pyproject ~= 1.2",
+    "flake8-type-checking ~= 3.0",
+]
+
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project.entry-points."sopel.plugins"]
+http = "sopel_http"
+
+[tool.flake8]
+exclude = [".venv"]
+max-line-length = 88
+ignore = [
+    # black
+    "W503",
+    # Unnecessary on py3.9+
+    "FI10", "FI11", "FI12", "FI13", "FI14", "FI15", "FI16", "FI17",
+    # Needed until py3.11
+    "FI58",
+]
+
+[tool.isort]
+profile = "black"
+force_sort_within_sections = true
+order_by_type = false
