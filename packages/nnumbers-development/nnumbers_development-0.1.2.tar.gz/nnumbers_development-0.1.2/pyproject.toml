@@ -1,0 +1,368 @@
+[project]
+name = "nnumbers-development"
+version = "0.1.2"
+description = "A  CLI tool for managing OpenStack cloud resources with modern Python features"
+authors = [
+    { name = "Eric Miguel", email = "eric.mrib@gmail.com" },
+]
+maintainers = [
+    { name = "Eric Miguel", email = "eric.mrib@gmail.com" },
+]
+dependencies = [
+    "python-openstackclient>=8.1.0",
+    "cyclopts>=3.18.0",
+    "loguru>=0.7.3",
+    "tabulate>=0.9.0",
+    "typing-extensions>=4.8.0",
+]
+requires-python = ">=3.11"
+readme = "README.md"
+keywords = [
+    "openstack",
+    "cloud",
+    "cli",
+    "infrastructure",
+    "devops",
+    "automation",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: System :: Systems Administration",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
+
+[project.license]
+text = "MIT"
+
+[project.urls]
+Homepage = "https://github.com/your-org/nnumbers-cli"
+Documentation = "https://github.com/your-org/nnumbers-cli#readme"
+Repository = "https://github.com/your-org/nnumbers-cli.git"
+Issues = "https://github.com/your-org/nnumbers-cli/issues"
+Changelog = "https://github.com/your-org/nnumbers-cli/releases"
+
+[project.scripts]
+nnumbers = "nnumbers.__main__:main"
+
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.dev-dependencies]
+ruff = []
+
+[tool.pdm.scripts.generate-requirements]
+cmd = [
+    "pdm",
+    "export",
+    "-o",
+    "requirements.txt",
+    "--without-hashes",
+]
+
+[tool.pdm.scripts.pre-commit-install]
+shell = "pre-commit install"
+
+[tool.pdm.scripts.pci]
+shell = "pre-commit install"
+
+[tool.pdm.scripts.format]
+shell = "ruff format"
+
+[tool.pdm.scripts.fmt]
+shell = "ruff format"
+
+[tool.pdm.scripts.check]
+shell = "ruff check"
+
+[tool.pdm.scripts.ck]
+shell = "ruff check"
+
+[tool.pdm.scripts.check-dry-run]
+shell = "ruff check --no-fix"
+
+[tool.pdm.scripts.ckdr]
+shell = "ruff check --no-fix"
+
+[tool.pdm.scripts.check-typing]
+shell = "mypy src"
+
+[tool.pdm.scripts.ct]
+shell = "mypy src"
+
+[tool.pdm.scripts.check-vulture]
+shell = "vulture src --min-confidence=90"
+
+[tool.pdm.scripts.cv]
+shell = "vulture src --min-confidence=90"
+
+[tool.pdm.scripts.check-vulture-lax]
+shell = "vulture src --min-confidence=80"
+
+[tool.pdm.scripts.cvl]
+shell = "vulture src --min-confidence=80"
+
+[tool.pdm.scripts.check-vulture-sensible]
+shell = "vulture src --min-confidence=60"
+
+[tool.pdm.scripts.cvs]
+shell = "vulture src --min-confidence=60"
+
+[tool.pdm.scripts.test]
+shell = "pytest --cov=src tests/"
+
+[tool.pdm.scripts.format-check]
+composite = [
+    "format",
+    "check",
+]
+
+[tool.pdm.scripts.fc]
+composite = [
+    "format",
+    "check",
+]
+
+[tool.pdm.scripts.format-check-typing]
+composite = [
+    "format",
+    "check",
+    "check-typing",
+]
+
+[tool.pdm.scripts.fct]
+composite = [
+    "format",
+    "check",
+    "check-typing",
+]
+
+[tool.pdm.scripts.format-check-typing-dead]
+composite = [
+    "format",
+    "check",
+    "check-typing",
+    "check-vulture",
+]
+
+[tool.pdm.scripts.fctd]
+composite = [
+    "format",
+    "check",
+    "check-typing",
+    "check-vulture",
+]
+
+[tool.pdm.scripts.full]
+composite = [
+    "format",
+    "check",
+    "check-typing",
+    "check-vulture",
+    "test",
+]
+
+[tool.pdm.scripts.pre-commit-check]
+shell = "pre-commit run --all-files"
+
+[tool.pdm.scripts.pcc]
+shell = "pre-commit run --all-files"
+
+[tool.ruff]
+fix = true
+include = [
+    "pyproject.toml",
+    "src/**/*.py",
+    "scripts/**/*.py",
+    "*.py",
+]
+extend-include = [
+    "*.ipynb",
+]
+respect-gitignore = true
+show-fixes = true
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+line-length = 88
+indent-width = 4
+target-version = "py311"
+
+[tool.ruff.lint]
+extend-safe-fixes = [
+    "F401",
+]
+select = [
+    "F",
+    "E",
+    "W",
+    "C901",
+    "B",
+    "D",
+    "D401",
+    "E",
+    "I001",
+]
+ignore = [
+    "D417",
+]
+fixable = [
+    "ALL",
+]
+unfixable = []
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = [
+    "fastapi.Depends",
+    "fastapi.Query",
+    "fastapi.Header",
+    "fastapi.Path",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.flake8-bandit]
+check-typed-exception = true
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "single"
+
+[tool.ruff.lint.flake8-import-conventions.aliases]
+altair = "alt"
+"matplotlib.pyplot" = "plt"
+numpy = "np"
+pandas = "pd"
+seaborn = "sns"
+scipy = "sp"
+polars = "pl"
+
+[tool.ruff.lint.flake8-import-conventions.extend-aliases]
+"dask.dataframe" = "dd"
+
+[tool.ruff.lint.isort]
+force-single-line = true
+force-sort-within-sections = true
+lines-after-imports = 2
+lines-between-types = 0
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = [
+    "D",
+]
+"*_test.py" = [
+    "D",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--cov=src",
+    "--cov-report=term-missing",
+    "--cov-report=html:htmlcov",
+    "--cov-report=xml",
+    "--cov-fail-under=80",
+]
+testpaths = [
+    "tests",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+filterwarnings = [
+    "error",
+    "ignore::UserWarning",
+    "ignore::DeprecationWarning",
+]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = [
+    "openstack.*",
+    "tabulate.*",
+    "loguru.*",
+]
+ignore_missing_imports = true
+
+[dependency-groups]
+dev = [
+    "ruff>=0.11.13",
+    "types-tabulate>=0.9.0.20241207",
+    "pytest>=8.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.12.0",
+    "mypy>=1.8.0",
+    "vulture>=2.11",
+    "pre-commit>=3.6.0",
+    "icecream>=2.1.4",
+]
