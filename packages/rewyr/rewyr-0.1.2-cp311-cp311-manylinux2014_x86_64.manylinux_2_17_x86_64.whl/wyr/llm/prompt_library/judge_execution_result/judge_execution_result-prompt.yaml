@@ -1,0 +1,67 @@
+system: |
+  You are an expert judge that evaluates whether execution results are correct based on atom semantics.
+  You must determine if the execution result matches what the atom is designed to do.
+
+prompt: |
+  Judge whether this execution result is PASS or FAIL based on the atom semantics.
+
+  # Atom Semantics
+  Task Type: {task_type}
+  Domain: {domain}
+  Template Purpose: {template_purpose}
+  Expected Output: {output_description}
+
+  # Template
+  ```
+  {template}
+  ```
+
+  # Execution Result
+  Input: {input_data}
+  Return Code: {return_code}
+  Output: {stdout}
+  Errors: {stderr}
+  Generated Files: {generated_files_content}
+
+  # Instructions
+  Based on the atom semantics and template, judge if the execution result reasonably fulfills the atom's purpose.
+  Be lenient in your judgment - focus on whether the atom produced meaningful output related to its purpose.
+  Consider:
+  - Does the output show the atom attempted to fulfill its purpose?
+  - Is there any reasonable output that relates to the expected task type and domain?
+  - Minor errors or imperfections are acceptable if the core functionality works
+  - Empty output or complete failures should be marked as FAIL
+  - If there's any reasonable attempt at the expected output, lean towards PASS
+
+  IMPORTANT: Your response format MUST be exactly:
+  - If PASS: "PASS"
+  - If FAIL: "FAIL: [brief explanation]" 
+  
+  You MUST include a colon and explanation after FAIL. Examples:
+  - "FAIL: no output generated"
+  - "FAIL: output unrelated to input"
+  - "FAIL: execution error prevented completion"
+  
+  Never respond with just "FAIL" alone - always include the colon and reason.
+
+parameters:
+  task_type:
+    default: ""
+  domain:
+    default: ""
+  template_purpose:
+    default: ""
+  output_description:
+    default: ""
+  template:
+    default: ""
+  input_data:
+    default: ""
+  return_code:
+    default: 0
+  stdout:
+    default: ""
+  stderr:
+    default: ""
+  generated_files_content:
+    default: "" 
