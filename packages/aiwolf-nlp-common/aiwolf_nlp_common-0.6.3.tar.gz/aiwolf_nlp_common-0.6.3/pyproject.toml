@@ -1,0 +1,36 @@
+[project]
+name = "aiwolf-nlp-common"
+dynamic = ["version"]
+dependencies = ["websocket-client>=1.8.0"]
+requires-python = ">=3.8"
+authors = [
+  { name = "aiwolfdial", email = "aiwolf@kanolab.net" },
+  { name = "nwatanabe", email = "nwatanabe@kanolab.net" },
+  { name = "ysahashi", email = "ysahashi@kanolab.net" },
+]
+maintainers = [
+  { name = "aiwolfdial", email = "aiwolf@kanolab.net" },
+  { name = "nwatanabe", email = "nwatanabe@kanolab.net" },
+  { name = "ysahashi", email = "ysahashi@kanolab.net" },
+]
+description = "aiwolf-nlp-common"
+readme = "README.md"
+license = { file = "LICENSE" }
+keywords = ["aiwolf"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.setuptools.dynamic]
+version = { attr = "aiwolf_nlp_common._version.__version__" }
+
+[tool.hatch]
+version.path = "src/aiwolf_nlp_common/_version.py"
+
+[project.urls]
+Homepage = "https://aiwolfdial.github.io/aiwolf-nlp/"
+
+[dependency-groups]
+dev = ["build>=1.2.2.post1", "pytest>=8.3.3", "twine>=5.1.1"]
+lint = ["ruff>=0.7.4"]
