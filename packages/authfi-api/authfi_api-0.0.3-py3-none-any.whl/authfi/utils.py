@@ -1,0 +1,32 @@
+
+def get_message(code: int) -> tuple[str, str]:
+    error_table = {
+        0: ("Normal", "Success"),
+        1000: ("Access Error", "You are access API without correct informations. Such as not carry API Key, wrong API Key or access point, or RP / User information is not able to be found on AuthFi (were deleted). Please check with your informations."),
+        1001: ("Access Error", "You are blocked by accessing APIs. Response with this error when RP reach Trailed expire date or suspend by AuthFi for reasons. Please contect with AuthFi client services."),
+        1002: ("Parameter Error", "Parameters send from RP server are not acceptable. The following are possible causes: 1. page index too large. 2. record size of each page not between 20 to 100. 3. user ID is wrong, AuthFi not able to find the user by user ID. 4. credential ID from Security Key is wrong, AuthFi not able to find the key by credential ID. 5. not sent user id when doing identity verification. 6. Leak Crucial infomation, e.g. qrcode_token"),
+        2000: ("Suspend Error", "User try to do FIDO2 Security Key registration or authentication by Security Key, but RP set user as suspend."),
+        3000: ("Limit Error", "When RP is in trial state or just apply for activate, there is max users limitaion. API will return this code when users count is reached limitation and new user is trying to register Security Key."),
+        3001: ("Limit Error", "Every user can register as much as 10 keys in single RP. This code will be returned when user is trying to register more than 10 keys."),
+        3100: ("Parameter Error", "When doing PUT /api/v1/webauthn/registration or PUT /api/v1/mobile/registration. The fido_register_response object send by RP server got wrong format, missing items or parsing error will receive this code."),
+        3200: ("Parameter Error", "When doing PUT /api/v1/webauthn/registration or PUT /api/v1/mobile/registration. The attestation object content is not suit to FIDO2 specification."),
+        3300: ("Parameter Error", "When doing PUT /api/v1/webauthn/registration or PUT /api/v1/mobile/registration. The attestation object content in U2F format is not suit to FIDO2 specification."),
+        3400: ("Parameter Error", "When doing PUT /api/v1/webauthn/registration or PUT /api/v1/mobile/registration. The attestation object content in Packed format is not suit to FIDO2 specification."),
+        3500: ("Parameter Error", "When doing PUT /api/v1/webauthn/registration or PUT /api/v1/mobile/registration. The attestation object content in TPM format is not suit to FIDO2 specification."),
+        3600: ("Parameter Error", "When doing PUT /api/v1/webauthn/registration or PUT /api/v1/mobile/registration. The attestation object content in Android SafetyNet format is not suit to FIDO2 specification."),
+        3700: ("Parameter Error", "When doing PUT /api/v1/webauthn/registration or PUT /api/v1/mobile/registration. The attestation object content in Android Key format is not suit to FIDO2 specification."),
+        3800: ("Parameter Error", "When doing PUT /api/v1/webauthn/registration or PUT /api/v1/mobile/registration. The attestation object content in Apple format is not suit to FIDO2 specification."),
+        3900: ("Parameter Error", "When doing PUT /api/v1/webauthn/login, PUT /api/v1/webauthn/verification or PUT /api/v1/mobile/verification. The fido_login_response / fido_auth_response object send by RP server got wrong format, missing items or parsing error will receive this code."),
+        4000: ("Parameter Error", "When fido_xxx_response contain clientDataJSON which got wrong format, missing items or parsing error"),
+        4100: ("Parameter Error", "When fido_register_response contain response.attestationObject.authData which got wrong format, missing items or parsing error. And when fido_login_response / fido_auth_rersponse contain response.authenticatorData which got wrong format, missing items or parsing error."),
+        4200: ("Parameter Error", "When fido_xxx_response contains wrong flag informations."),
+        5000: ("Timeout Error", "FIDO register/login/verify request were handle over 30 seconds on AuthFi. This can be caused by No Credential to login/verify"),
+        5100: ("Mobile API Request Error", "QRCode token was not found on AuthFi."),
+        5101: ("Mobile API Request Error", "QRCode was expired."),
+        5102: ("Mobile API Request Error", "QRCode was used."),
+        5103: ("Mobile API Request Error", "Not able to find register user name with QRCode token."),
+        5104: ("Mobile API Request Error", "User register name on authenticator app is not same as create QRCode user information."),
+        7000: ("Data Error", "Some data store with wrong value not expected."),
+        8000: ("Unexpected Error", "There are some unexpect errors happend."),
+    }
+    return error_table[code]
