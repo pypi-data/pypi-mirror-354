@@ -1,0 +1,53 @@
+Metadata-Version: 2.4
+Name: eduval
+Version: 1.0.1
+Summary: Python library for evaluating student performance and conducting assessments
+Home-page: https://github.com/shammeer-s/CSK-Academy
+Author: Mohammed Shammeer
+Author-email: mohammedshammeer.s@gmail.com
+Keywords: academy,assessment,python,education,student performance
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: matplotlib
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: summary
+
+# StudentAssessment
+
+**eduval** is a Python package designed to streamline the process of 
+assessing and scoring students based on their performance across quizzes, 
+assignments, exams, and other evaluation criteria.
+
+## Features
+
+- Add and manage student records
+- Record scores for different assessment types
+- Calculate weighted or average scores
+- Generate report cards or summaries
+- Export data to CSV or JSON
+- Basic data validation and error handling
+
+## Installation
+You can install the package using pip:
+
+```bash
+pip install eduval
+```
+
