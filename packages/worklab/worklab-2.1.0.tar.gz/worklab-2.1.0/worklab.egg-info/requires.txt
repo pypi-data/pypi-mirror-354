@@ -1,0 +1,14 @@
+scipy>=1.2.0
+numpy
+pandas
+matplotlib
+xlrd
+scikit-learn
+seaborn
+
+[dev]
+pytest
+Flake8-pyproject
+black
+jupyter-book
+build
