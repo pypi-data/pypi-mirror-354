@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "tess-backml"
+version = "0.3.3"
+description = ""
+authors = ["Jorge Martinez-Palomera <jorgemarpa@ug.uchile.cl>"]
+readme = "README.md"
+packages = [{include = "tess_backml", from = "src"}]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.13"
+numpy = ">1.26,<3.0"
+pandas = "^2.2.3"
+matplotlib = "^3.9.0"
+astropy = ">=5.3.4,<7.0"
+tqdm = "^4.67.1"
+scipy = "^1.13.0"
+tesscube = "^1.2.1"
+
+[tool.poetry.group.dev.dependencies]
+mkdocs = "^1.6.0"
+mkdocs-material = "^9.6.12"
+mkdocstrings = {version = "^0.29.0", extras = ["python", "numpy-style"]}
+mkdocs-jupyter = "^0.25.1"
+ruff = "^0.5.5"
+pytest = "^8.3.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+# Assumes Python 3.10
+target-version = "py310"
+line-length = 88
+
+[tool.ruff.lint]
+# Enable Pyflakes (`F`), a subset of pycodestyle (`E`) and isort (`I`).
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.mypy]
+plugins = "numpy.typing.mypy_plugin"
+disable_error_code = ["import-untyped"]
