@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "selfcordLibrary"
+version = "1.0.0"
+description = "Updated selfcord library with bug fixes."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "Unlicensed" }
+authors = [
+  { name = "Next" }
+]
+keywords = ["discord", "selfbot", "selfcord"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+[tool.hatch.build.targets.wheel]
+packages = ["selfcord"]
