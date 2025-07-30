@@ -1,0 +1,5 @@
+[console_scripts]
+live-trading = trading_system.cli:main
+sq = trading_system.cli:main
+stratequeue = trading_system.cli:main
+trading-system = trading_system.cli:main
