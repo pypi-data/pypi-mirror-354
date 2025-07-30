@@ -1,0 +1,6 @@
+"""Define constants for blockchain networks"""
+ETHEREUM_MAINNET_RPC = "https://mainnet.infura.io/v3/"
+ETHEREUM_SEPOLIA_RPC = "https://ethereum-sepolia.publicnode.com"
+POLYGON_MAINNET_RPC = "https://polygon-mainnet.infura.io"
+POLYGON_TESTNET_RPC = "https://rpc-mumbai.maticvigil.com/"
+POLY_AMOY_TESTNET_RPC = "https://rpc-amoy.polygon.technology/"
