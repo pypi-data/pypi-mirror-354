@@ -1,0 +1,1 @@
+from ...supernovasdk.binhosupernova.commands.i2c.definitions import *
