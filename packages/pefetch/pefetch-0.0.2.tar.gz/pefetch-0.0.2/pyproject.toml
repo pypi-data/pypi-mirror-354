@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pefetch"
+version = "0.0.2"
+requires-python = ">=3.8"
+authors = [
+  {name = "Stan Ulbrych"},
+]
+maintainers = [
+  {name = "Stan Ulbrych"},
+]
+description = "Fetch Project Euler problems from the command line"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE.md"]
+keywords = ["projecteuler", "utility", "cli"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
+
+[project.urls]
+Repository = "https://github.com/stanfromireland/pefetch.git"
+"Bug Tracker" = "https://github.com/stanfromireland/pefetch/issues"
+Changelog = "https://github.com/stanfromireland/pefetch/blob/master/CHANGELOG.md"
+
+[project.scripts]
+pefetch = "pefetch.cli:main"
