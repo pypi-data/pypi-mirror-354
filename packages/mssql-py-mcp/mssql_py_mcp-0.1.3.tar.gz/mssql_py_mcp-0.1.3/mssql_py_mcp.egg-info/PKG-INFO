@@ -1,0 +1,95 @@
+Metadata-Version: 2.4
+Name: mssql-py-mcp
+Version: 0.1.3
+Summary: A MSSQL MCP server using pure Python TDS
+Author-email: JEWEI AI <jewei@jewei.tech>
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: fastmcp>=0.1.0
+Requires-Dist: python-tds>=1.13.0
+Requires-Dist: python-dotenv>=0.19.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+
+# mssql-py-mcp
+
+A MSSQL MCP server implementation in Python, designed to work with the `pytds` library. This project provides a simple and efficient way to interact with Microsoft SQL Server databases, leveraging the pure Python `pytds` driver for connectivity.
+
+This project uses **pure `pytds`** for database connections.
+
+## What is `pytds`?
+
+`pytds` is a pure Python implementation of the Tabular Data Stream (TDS) protocol, which is used to communicate with Microsoft SQL Server. Unlike other drivers that rely on native libraries (like FreeTDS), `pytds` is written entirely in Python, making it platform-independent and easy to install.
+
+### Key Features of `pytds`
+
+-   **Pure Python**: No external dependencies or compilers needed.
+-   **Cross-Platform**: Runs on any platform where Python is supported.
+-   **Thread-Safe**: Safe to use in multi-threaded applications.
+-   **Supports various authentication methods**: Including SQL Server and Windows authentication.
+-   **Lightweight**: Minimal overhead and easy to integrate.
+
+## Features
+
+-   **MCP Server**: Implements the Minecraft JEWEI MCP protocol for database interaction.
+-   **MSSQL Connectivity**: Connects to Microsoft SQL Server using `pytds`.
+-   **Database Operations**: Supports executing queries, listing tables, and retrieving database information.
+-   **Easy Configuration**: Uses a `.env` file for simple setup of database credentials.
+
+## Installation
+
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/your-username/mssql-py-mcp.git
+    cd mssql-py-mcp
+    ```
+
+2.  **Create a virtual environment** (recommended):
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
+
+3.  **Install dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+## Configuration
+
+1.  Create a `.env` file in the root directory of the project. You can copy the example file:
+    ```bash
+    cp .env.example .env
+    ```
+
+2.  Edit the `.env` file with your MSSQL database credentials:
+    ```
+    DB_HOST=your_server_address
+    DB_USER=your_username
+    DB_PASSWORD=your_password
+    DB_NAME=your_database_name
+    DB_PORT=1433
+    ```
+
+## Usage
+
+Run the MCP server with the following command:
+
+```bash
+python -m mssql_py_mcp.server
+```
+
+The server will start and listen for incoming MCP connections on the default port.
+
+## How It Works
+
+The server listens for MCP commands, establishes a connection to the MSSQL database using `pytds`, executes the requested queries, and returns the results in the MCP format. The core logic is handled in `mssql_py_mcp/core.py`, which manages the database connection and query execution.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request if you have any improvements or bug fixes.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
