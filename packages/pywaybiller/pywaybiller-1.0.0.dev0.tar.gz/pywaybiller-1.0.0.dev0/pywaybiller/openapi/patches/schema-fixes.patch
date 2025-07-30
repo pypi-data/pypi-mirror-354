@@ -1,0 +1,11 @@
+--- ./pywaybiller/openapi/waybiller_schema.json	2025-06-12 10:17:20.512371727 +0300
++++ ./pywaybiller/openapi/waybiller_schema-patched.json	2025-06-12 09:46:27.719652454 +0300
+@@ -1,7 +1,7 @@
+ {
+   "openapi": "3.0.3",
+   "info": {
+-    "title": "Waybiller External API",
++    "title": "Waybiller External API - with fixes",
+     "version": "v1",
+     "description": "The **Waybiller External API** is a feature that allows companies to access **Waybiller** data as JSON objects and\ncreate **Waybiller** instances out of their own data.\n\nTo make integration easier for the companies, the external API provides mapping support - it is possible to create\ncompany-specific mappings for object identifiers (such as destination and origin).\n\nThese mappings will be used for representing companies data from external API, and for converting the values during the\ncreation of **Waybiller** instances (such as transport orders and waybills).\n\nMost of the API responses contain mapped values, which may be null if the company doesn't have a mapping for this\nobject.\n\nUnique **Waybiller** identifiers and values can be accessed via the `raw_data` key.\n\nThe API is HTTPS and JSON based.\n\n### Pagination\n\nBy default, list endpoint responses are presented in pages of 30 items.\n\nIt is possible to control the page size using the `limit` parameter:\n`/external-api/<some-list-endpoint>/?limit=<number>`, where `<number>` is an integer between 1 and 1000.\n"
+   },
