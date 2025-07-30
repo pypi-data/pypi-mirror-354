@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: yors_pano_path_util
+Version: 1.0.0
+Summary: enjoy python path
+Home-page: https://github.com/ymc-github/panz/blob/main/packages/yors_pano_path_util/README.md
+License: LICENSE
+Keywords: artist,panz,mono,yors_pano_path_util
+Author: yemiancheng
+Author-email: ymc.github@gmail.com
+Requires-Python: >=3.10,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Build Tools
+Project-URL: Documentation, https://github.com/ymc-github/panz/blob/main/packages/yors_pano_path_util/README.md
+Project-URL: Repository, https://github.com/ymc-github/panz.git
+Project-URL: changelog, https://github.com/ymc-github/panz/blob/main/packages/yors_pano_path_util/CHANGELOG.md
+Description-Content-Type: text/markdown
+
+<!-- inject desc here -->
+<!-- inject-desc -->
+
+enjoy python path
+
+## File size
+
+<!-- inject size of bundles here -->
+<!-- inject-file-size -->
+
+## Features
+
+<!-- inject feat here -->
+- feat(core): path_resolve - resolve path to absolute path with root path
+- feat(core): path_dirname - get dirname of path
+- feat(core): path_unix - convert path to unix path
+- feat(core): path_parse - parse path to name, stem, suffix, parent
+- feat(core): path_comfy_get - Get ComfyUI models directory path by traversing up from specified path
+
+## Usage
+
+```bash
+pip install yors_pano_path_util
+```
+
+<!-- inject demo here -->
+
+
