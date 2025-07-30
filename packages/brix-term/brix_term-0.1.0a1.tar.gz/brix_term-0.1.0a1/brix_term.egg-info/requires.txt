@@ -1,0 +1,10 @@
+llmbrix>=0.1.0a8
+prompt-toolkit
+rich
+pyperclip
+
+[dev]
+pytest
+pre-commit
+build
+twine
