@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deepvisiontools"
+authors = [
+  { name = "Lucas Bernigaud Samatan", email = "lucas.bernigaud-samatan@inrae.fr" },
+  { name = "Jordan Bernigaud Samatan", email = "jordan.bernigaud-samatan@inrae.fr" },
+  { name = "Paul Faucher", email = "paul.faucher@inrae.fr" },
+]
+maintainers = [
+  { name = "Jordan Bernigaud Samatan", email = "jordan.bernigaud-samatan@inrae.fr" },
+  { name = "Lucas Bernigaud Samatan", email = "lucas.bernigaud-samatan@inrae.fr" },
+]
+description = "Overlay of PyTorch to generalize trainning and inference processes for detection, instance segmentation and semantic segmentation tasks."
+readme = "README.md"
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12"
+]
+dynamic = ["version"]
+requires-python = ">=3.11.9,<=3.12.12"
+dependencies = [
+  "torch>=2.4.0,<=2.6.0",
+  "torchvision>=0.19.0,<=0.21.0",
+  "pycocotools==2.0.8",
+  "torchmetrics>=1.4.0,<=1.7.0",
+  "tensorboard>=2.18.0,<=2.19.0",
+  "ultralytics>=8.3.28,<=8.3.95",
+  "transformers>=4.44.2,<=4.50.0",
+  "colorcet==3.1.0",
+  "segmentation-models-pytorch>0.4.0,<=0.5.0",
+  "openpyxl==3.1.5"
+]
+
+license = { file = "LICENSE.txt" }
+
+[project.urls]
+Homepage = "https://forgemia.inra.fr/ue-apc/librairies/python/deepvisiontools_v1"
+Issues = "https://forgemia.inra.fr/ue-apc/librairies/python/deepvisiontools_v1/-/issues"
+Documentation = "https://deepvisiontools.readthedocs.io/en/latest/"
+Repository = "https://forgemia.inra.fr/ue-apc/librairies/python/deepvisiontools_v1"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.dynamic]
+version = { attr = "deepvisiontools.__version__" }
