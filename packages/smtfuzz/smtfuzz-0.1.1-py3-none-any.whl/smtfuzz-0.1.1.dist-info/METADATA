@@ -1,0 +1,80 @@
+Metadata-Version: 2.4
+Name: smtfuzz
+Version: 0.1.1
+Summary: A fuzzer for SMT solvers.
+Home-page: https://github.com/ZJU-Automated-Reasoning-Group/smtfuzz
+Author: rainoftime
+Author-email: rainoftime@gmail.com
+License: GPL-3.0
+Keywords: smt,fuzzing,testing,formal methods,verification
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: z3-solver~=4.8.10
+Requires-Dist: meson>=1.6.1
+Requires-Dist: tqdm>=4.65.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+
+## smtfuzz: A random generator for SMT-LIB2 formulas
+
+
+
+SMT solvers are automated tools that can determine the satisfiability of logical formulas in various theories, including arithmetic, bit-vectors, arrays, and more.
+smtfuzz is a random generator for SMT-LIB2 formulas. It is designed to help users generate test cases for SMT solvers and explore various SMT-LIB2 features.
+
+## Installation
+
+To install a stable version of smtfuzz:
+~~~~
+pip3 install smtfuzz
+~~~~
+
+Install from source
+~~~~
+pip install -e .
+~~~~
+
+## Usage
+
+After installing the package, you can type
+~~~~
+smtfuzz
+~~~~
+And you will see an SMT-LIB2 formula on the screen.
+
+For more advanced options, please use the `-h` flag to display the help menu. Feel free to experiment with different combinations of options to generate a wide variety of SMT-LIB2 formulas for testing purposes.
+
+## Feedback
+
+Please submit an issue to report any bugs, issues, questions, or feature requests. We are pleased to receive your 
+feedback.
+
+
+## Detected Bugs
+
+https://smtfuzz.github.io/
