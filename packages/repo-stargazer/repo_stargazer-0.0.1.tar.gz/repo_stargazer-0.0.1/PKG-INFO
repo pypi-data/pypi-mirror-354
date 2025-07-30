@@ -1,0 +1,55 @@
+Metadata-Version: 2.4
+Name: repo-stargazer
+Version: 0.0.1
+Summary: Tell me about my stars
+Author: Sachdeva, Kapil
+License-File: LICENSE
+Requires-Python: >=3.13
+Requires-Dist: fastparquet>=2024.11.0
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: lancedb>=0.23.0
+Requires-Dist: langchain-community>=0.3.24
+Requires-Dist: langchain-core>=0.3.64
+Requires-Dist: langchain-ollama>=0.3.3
+Requires-Dist: langchain-openai>=0.3.21
+Requires-Dist: langchain-text-splitters>=0.3.8
+Requires-Dist: langchain>=0.3.25
+Requires-Dist: mcp>=1.9.3
+Requires-Dist: mpire>=2.10.2
+Requires-Dist: pandas>=2.3.0
+Requires-Dist: pydantic-settings>=2.9.1
+Requires-Dist: pydantic>=2.11.5
+Requires-Dist: pygithub>=2.6.1
+Requires-Dist: rich>=14.0.0
+Requires-Dist: typer>=0.16.0
+Requires-Dist: xdg-base-dirs>=6.0.2
+Description-Content-Type: text/markdown
+
+# The Repo Stargazer
+
+## Problem
+
+I have been starring github projects for a long time. 
+
+There are two primary intentions behind giving stars -
+
+* Recognize the efforts of the author
+* Bookmark the repository for my own use
+
+The problem is how does one search the starred repositories. The interface
+provided by github.com is very primitive
+
+## Solution
+
+This project uses semantic search as an attempt to solve the above problem.
+
+## Install
+
+```bash
+# Are you still using pip? Come on man!
+uv add repo-stargazer
+```
+
+## Usgage
+
+TBD
