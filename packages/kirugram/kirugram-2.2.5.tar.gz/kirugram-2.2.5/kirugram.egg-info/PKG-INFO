@@ -1,0 +1,36 @@
+Metadata-Version: 2.4
+Name: kirugram
+Version: 2.2.5
+Summary: Kirgram is a Telegram client library for Python. It is a fork of Pyrogram.
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.28.0
+Requires-Dist: pyrogram>=2.0.0
+
+# Kirgram
+
+Kirgram — это асинхронная клиентская библиотека для Telegram на Python, форк Pyrogram.
+
+## Возможности
+- Асинхронная работа с Telegram MTProto API
+- Поддержка пользователей и ботов
+- Совместимость с Pyrogram API
+- Расширяемая архитектура
+
+## Установка
+```bash
+pip install kirgram
+```
+
+## Пример использования
+```python
+from kirgram import Client
+
+app = Client("my_account", api_id=12345, api_hash="0123456789abcdef0123456789abcdef")
+
+with app:
+    app.send_message("me", "Привет, мир!")
+```
+
+## Лицензия
+GNU Lesser General Public License v3.0 (LGPL-3.0)

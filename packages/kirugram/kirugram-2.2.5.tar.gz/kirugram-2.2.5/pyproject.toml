@@ -1,0 +1,29 @@
+[project]
+name = "kirugram"
+version = "2.2.5"
+description = "Kirgram is a Telegram client library for Python. It is a fork of Pyrogram."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.28.0",
+    "pyrogram>=2.0.0"
+]
+[tool.hatch.version]
+path = "pyrogram/__init__.py"
+
+[tool.hatch.build.hooks.custom]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    ".github/",
+    "docs/",
+    "tests/",
+    ".gitignore",
+]
+
+[tool.hatch.build.targets.wheel]
+ignore-vcs = true
+packages = ["pyrogram"]
