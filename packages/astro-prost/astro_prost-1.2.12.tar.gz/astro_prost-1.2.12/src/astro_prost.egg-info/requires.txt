@@ -1,0 +1,28 @@
+numpy
+astropy
+matplotlib
+pandas
+scikit-learn
+tqdm
+scipy
+astro-datalab
+requests
+colorama
+filelock
+
+[:python_version <= "3.9"]
+sfdmap
+
+[:python_version == "3.9"]
+specutils>=1.13
+
+[:python_version >= "3.9"]
+sfdmap2
+
+[dev]
+asv==0.6.4
+jupyter
+pre-commit
+pytest
+pytest-cov
+ruff
