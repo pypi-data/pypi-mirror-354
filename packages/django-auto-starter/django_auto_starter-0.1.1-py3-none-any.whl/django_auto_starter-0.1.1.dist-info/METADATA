@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: django-auto-starter
+Version: 0.1.1
+Summary: CLI tool to auto-start Django projects with REST setup
+Author-email: Enoch Jason J <enochjason06@gmail.com>
+License: Proprietary — All rights reserved by Enoch Jason J
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: yaspin
+Dynamic: license-file
+
+# django-auto-starter
+
+🚀 A CLI tool for backend developers to **automatically set up a Django project** with everything needed for a REST API backend in production.
+
+## ✨ Features
+
+- Installs Django, Django REST Framework, and CORS headers
+- Creates a Django project and a default app
+- Configures `settings.py`:
+  - Adds `'rest_framework'`, `'corsheaders'`, and your app to `INSTALLED_APPS`
+  - Adds CORS middleware
+  - Enables CORS for all origins
+- Starts the Django development server with a loading spinner
+- Sets up a basic template directory: `your_app/templates/your_app`
+
+## 📦 Installation
+
+```bash
+pip install django-auto-starter
+```
+
+##  Usage
+
+```bash
+django-auto <project_name> <app_name>
+```
