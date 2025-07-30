@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: Imagination
+Version: 3.4.5
+Summary: Depedency Injection Framework
+Author-email: Juti Noppornpitak <juti_n@yahoo.co.jp>
+License-Expression: Apache-2.0
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: kotoba
+Provides-Extra: build
+Requires-Dist: setuptools; extra == "build"
