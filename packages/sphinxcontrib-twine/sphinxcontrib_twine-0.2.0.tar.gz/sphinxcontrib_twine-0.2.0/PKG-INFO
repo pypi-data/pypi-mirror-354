@@ -1,0 +1,87 @@
+Metadata-Version: 2.4
+Name: sphinxcontrib-twine
+Version: 0.2.0
+Summary: Add some interactive stories in your Sphinx docs
+Author-email: Xing Ji <me@xingji.me>
+Maintainer-email: Xing Ji <me@xingji.me>
+License-Expression: MIT
+Project-URL: Homepage, https://sphinxcontrib-twine.readthedocs.io
+Project-URL: Repository, https://github.com/jixingcn/sphinxcontrib-twine
+Project-URL: Changelog, https://github.com/jixingcn/sphinxcontrib-twine/blob/main/CHANGELOG.rst
+Project-URL: Issues, https://github.com/jixingcn/sphinxcontrib-twine/issues
+Keywords: sphinx,twine,chapbook,story
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Sphinx
+Classifier: Framework :: Sphinx :: Extension
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Documentation
+Classifier: Topic :: Utilities
+Requires-Python: >=3.9
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+Requires-Dist: sphinx
+Dynamic: license-file
+
+sphinxcontrib-twine
+===================
+
+|sphinxcontrib-twine-version| |python-versions| |docs-badge| |pylint-badge|
+
+
+Add some interactive stories (`Twine`_) in your Sphinx docs.
+
+
+Features
+--------
+
+- Supports `Chapbook`_
+
+
+Installation
+------------
+
+::
+
+    $ pip install sphinxcontrib-twine
+
+
+Usage
+-----
+
+Configuration
+^^^^^^^^^^^^^
+
+Then add ``sphinxcontrib.twine`` in ``extensions`` list of your project's ``conf.py``::
+
+    extensions = [
+        ...,
+        'sphinxcontrib.twine'
+    ]
+
+Directive options
+^^^^^^^^^^^^^^^^^
+
+
+
+.. |sphinxcontrib-twine-version| image:: https://img.shields.io/pypi/v/sphinxcontrib-twine.svg
+    :target: https://pypi.org/project/sphinxcontrib-twine
+
+
+.. |python-versions| image:: https://img.shields.io/pypi/pyversions/sphinxcontrib-twine.svg
+    :target: https://pypi.org/project/sphinxcontrib-twine
+
+
+.. |docs-badge| image:: https://img.shields.io/readthedocs/sphinxcontrib-twine
+    :target: https://sphinxcontrib-twine.readthedocs.io
+
+
+.. |pylint-badge| image:: https://img.shields.io/github/actions/workflow/status/jixingcn/sphinxcontrib-twine/pylint.yml?branch=main&label=pylint
+    :target: https://github.com/jixingcn/sphinxcontrib-twine/actions
+
+
+.. _Twine: https://twinery.org/
+
+
+.. _Chapbook: https://klembot.github.io/chapbook/
