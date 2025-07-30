@@ -1,0 +1,26 @@
+[project]
+name = "pyservx"
+version = "1.0.4"  # Increment to avoid conflict with 1.0.3
+description = "A simple Python server package"
+readme = "README.md"
+requires-python = ">=3.6"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Your Name", email = "your.email@example.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/pyservx"
+Repository = "https://github.com/yourusername/pyservx"
+
+[project.scripts]
+pyservx = "pyservx.server:main"
