@@ -1,0 +1,106 @@
+Metadata-Version: 2.4
+Name: poromics
+Version: 0.0.7
+Summary: A tool for rapid estimation of transport properties of 3D images of porous materials
+Author-email: Amin Sadeghi <amin.sadeghi@live.com>
+Maintainer-email: Amin Sadeghi <amin.sadeghi@live.com>
+License: MIT License
+        
+        Copyright (c) 2025, Amin Sadeghi
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+License-File: LICENSE
+Requires-Python: <3.13,>=3.10
+Requires-Dist: ipykernel>=6.29.5
+Requires-Dist: ipython>=8.34.0
+Requires-Dist: juliacall>=0.9.24
+Requires-Dist: juliapkg>=0.1.16
+Requires-Dist: loguru>=0.7.3
+Requires-Dist: numba>=0.59.0
+Requires-Dist: numpy>=2.1.3
+Requires-Dist: porespy>=2.4.2
+Requires-Dist: pydantic-settings
+Requires-Dist: pydantic~=2.0
+Requires-Dist: tqdm>=4.67.1
+Requires-Dist: typer
+Description-Content-Type: text/markdown
+
+# Poromics
+
+Poromics is a set of tools for rapid estimation of transport properties of 3D images of porous materials. It is designed to be fast and easy to use. Currently, it can predict the tortuosity factor of an image. The goal is to support more transport properties in the future such as permeability. Poromics is optionally GPU-accelerated, which can significantly speed up the calculations for large images (up to 100x speedup).
+
+## Installation
+
+Poromics depends on the Julia package [Tortuosity.jl](https://github.com/ma-sadeghi/Tortuosity.jl/). However, it is not necessary to install Julia separately. The package will be installed automatically when you install `poromics`.
+
+> [!NOTE]
+> We highly recommend using `uv` instead of `pip` to install `poromics` (or any other Python package!) as it's extremely faster. It has lots of useful features, but for all practical purposes, it is a drop-in replacement for `pip`.
+
+### Uv
+
+Install [`uv`](https://docs.astral.sh/uv/getting-started/installation/), and then run the following command in a terminal/command prompt:
+
+```shell
+uv pip install poromics
+```
+
+### Pip
+
+If you prefer to use `pip`, run the following command in a terminal/command prompt:
+
+```shell
+pip install poromics
+```
+
+## Basic Usage
+
+> [!NOTE]
+> The first time you import `poromics`, it will take a few minutes to install Julia and the required packages. This is a one-time setup.
+
+```python
+import porespy as ps
+import poromics
+
+im = ps.generators.blobs(shape=[100, 100, 1], porosity=0.6)  # Test image
+result = poromics.tortuosity_fd(im, axis=1, rtol=1e-5, gpu=True)
+print(result)
+```
+
+The `Result` object is a simple container with the following attributes:
+
+- `im`: The tortuosity factor of the image.
+- `axis`: The axis along which the tortuosity was calculated.
+- `tau`: The tortuosity factor.
+- `c`: The concentration field.
+
+## CLI
+
+> [!WARNING]  
+> The CLI is still in development and not yet functional.
+
+```bash
+poromics --help
+```
+
+## Roadmap
+
+- [ ] Speed up matrix assembly by direct assembly on GPU.
+- [ ] Create Julia sysimage files upon installation for faster startup.
+- [ ] Add more transport properties (e.g. permeability).
+- [ ] Add CLI support.
