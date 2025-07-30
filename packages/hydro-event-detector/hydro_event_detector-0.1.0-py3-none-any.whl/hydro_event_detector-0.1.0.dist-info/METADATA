@@ -1,0 +1,20 @@
+Metadata-Version: 2.3
+Name: hydro-event-detector
+Version: 0.1.0
+Summary: Detect hydrological events identifying peaks and calculating volumes.
+Author: Gonzalo Forero
+Author-email: gonzaloforero57@gmail.com
+Requires-Python: >=3.11
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: numpy (>=2.3.0,<3.0.0)
+Requires-Dist: pandas (>=2.3.0,<3.0.0)
+Requires-Dist: plotly (>=6.1.2,<7.0.0)
+Requires-Dist: scipy (>=1.15.3,<2.0.0)
+Description-Content-Type: text/markdown
+
+# hydro-event-detector
+Detect hydrological events identifying peaks and calculating volumes
+
