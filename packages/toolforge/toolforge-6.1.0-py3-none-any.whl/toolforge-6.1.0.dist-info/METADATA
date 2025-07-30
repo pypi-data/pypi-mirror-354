@@ -1,0 +1,82 @@
+Metadata-Version: 2.4
+Name: toolforge
+Version: 6.1.0
+Summary: Small library for common tasks on Wikimedia Toolforge
+Project-URL: Documentation, https://python-toolforge.readthedocs.io/
+Project-URL: Changelog, https://gitlab.wikimedia.org/toolforge-repos/python-toolforge/-/blob/main/HISTORY.rst
+Project-URL: Bug Tracker, https://phabricator.wikimedia.org/tag/tool-python-toolforge/
+Project-URL: Source, https://gitlab.wikimedia.org/toolforge-repos/python-toolforge
+Author-email: Kunal Mehta <Legoktm@debian.org>
+Maintainer-email: Bryan Davis <bd808@wikimedia.org>, Lucas Werkmeister <mail@lucaswerkmeister.de>
+License-Expression: GPL-3.0+
+License-File: COPYING
+Keywords: toolforge,wikimedia
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.7
+Requires-Dist: decorator>=5.1.1
+Requires-Dist: pymysql>=1.0.3
+Requires-Dist: requests>=2.28.2
+Description-Content-Type: text/x-rst
+
+Toolforge python helper library
+===============================
+
+``toolforge`` is a Python library that contains helper functions for some
+common tasks that Toolforge_ users might encounter.
+
+
+Installation
+------------
+
+Use ``pip`` to install the latest stable version of ``toolforge``:
+
+.. code-block:: bash
+
+    python3 -m pip install --upgrade toolforge
+
+The current development version is available on gitlab.wikimedia.org_, and can
+be installed directly from the git repository:
+
+.. code-block:: bash
+
+    python3 -m pip install --upgrade git+https://gitlab.wikimedia.org/toolforge-repos/python-toolforge.git
+
+Usage
+-----
+
+See the `API reference and user guide`_ for usage instructions.
+
+Contributing
+------------
+
+See CONTRIBUTING.rst_ for guidelines on contributing to ``toolforge``.
+
+Bug reports
+-----------
+
+Please report bugs and feature requests at https://phabricator.wikimedia.org/tag/tool-python-toolforge/.
+
+License
+-------
+
+Licensed under the `GPL-3.0-or-later`_ license. See COPYING_ for the full
+license.
+
+.. _Toolforge: https://wikitech.wikimedia.org/wiki/Portal:Toolforge
+.. _gitlab.wikimedia.org: https://gitlab.wikimedia.org/toolforge-repos/python-toolforge
+.. _API reference and user guide: https://python-toolforge.readthedocs.io/
+.. _CONTRIBUTING.rst: https://gitlab.wikimedia.org/toolforge-repos/python-toolforge/-/blob/main/CONTRIBUTING.rst
+.. _GPL-3.0-or-later: https://www.gnu.org/licenses/gpl-3.0.html
+.. _COPYING: https://gitlab.wikimedia.org/toolforge-repos/python-toolforge/-/blob/main/COPYING
