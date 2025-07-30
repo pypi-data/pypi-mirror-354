@@ -1,0 +1,3 @@
+[console_scripts]
+aitoolkit-install = aitoolkit_base.utils:run_install_guide
+aitoolkit-test = aitoolkit_base.utils:run_tests
