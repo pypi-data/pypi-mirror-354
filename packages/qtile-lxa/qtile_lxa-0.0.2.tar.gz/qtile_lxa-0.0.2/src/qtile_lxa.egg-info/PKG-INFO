@@ -1,0 +1,26 @@
+Metadata-Version: 2.4
+Name: qtile-lxa
+Version: 0.0.2
+Summary: Custom Qtile widgets and tools for LXA OS
+Author-email: Pankaj Jackson <pankajackson@live.co.uk>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/pankajackson/qtile-lxa
+Project-URL: Bug Tracker, https://github.com/pankajackson/qtile-lxa/issues
+Project-URL: Source, https://github.com/pankajackson/qtile-lxa
+Keywords: qtile,widgets,feature,wm,window manager
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Topic :: Utilities
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: qtile
+Requires-Dist: qtile-extras
+Dynamic: license-file
+
+# qtile-lxa
