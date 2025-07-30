@@ -1,0 +1,1 @@
+from ...supernovasdk.binhosupernova.commands.uart.definitions import *

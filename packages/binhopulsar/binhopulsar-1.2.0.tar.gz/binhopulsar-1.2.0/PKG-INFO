@@ -1,0 +1,294 @@
+Metadata-Version: 2.1
+Name: binhopulsar
+Version: 1.2.0
+Summary: Basic SDK for Binho Pulsar
+Home-page: https://github.com/binhollc/PulsarSDK
+Author: Binho LLC
+Author-email: support@binho.io
+License: Private
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+# PulsarSDK: Python SDK for Binho Pulsar USB Host Adapter
+
+PulsarSDK is a Python package for interacting with the Binho Pulsar USB host adapter. The Pulsar adapter provides simplified control of embedded systems, supporting I2C, SPI, UART, and GPIO communication protocols.
+
+## Prerequisites
+
+Ensure your system meets the following requirements before installing the PulsarSDK:
+
+- Python 3.8 or higher
+- Windows, macOS, or Linux
+- Binho Pulsar USB host adapter with up-to-date firmware
+
+## Installation From PyPi
+
+For the most recent update of the binhopulsar Python package on PyPi, follow these steps:
+
+1. Open your terminal or command prompt.
+
+3. Use pip to install the PulsarSDK:
+
+```sh
+pip install binhopulsar
+```
+
+Now, the PulsarSDK is installed and ready to be used in your Python projects. You can import and use it as shown in the usage example.
+
+# Installation From the Git Repository
+
+Remember to activate your virtual environment (if you're using one) before running the installation command.
+
+To install the PulsarSDK from your local file system, follow these steps:
+
+1. Download the PulsarSDK package.
+
+2. Extract the downloaded package to a folder on your local file system.
+
+3. Open a terminal or command prompt and navigate to the folder containing the extracted PulsarSDK.
+
+4. Install the SDK using pip with the local file path:
+
+```sh
+pip install .
+```
+
+**Note**: Make sure to include the period (.) at the end, indicating the current directory.
+
+Now, the PulsarSDK is installed and ready to be used in your Python projects. You can import and use it as shown in the usage example.
+
+## API Overview
+
+The Pulsar host adapter shares its API with the Binho Supernova adapter. If you're familiar with the SupernovaSDK, transitioning to the PulsarSDK will be straightforward, as the same commands and interfaces are used for the supported protocols.
+
+# Examples Repository
+
+To see some examples of how to use this Python package, please refer to the [examples repository](https://github.com/binhollc/SupernovaSDK-examples). This repository hosts different Jupyter notebooks for all the protocol and interface APIs provided by the PulsarSDK.
+
+# Support
+
+For help, please visit our [Customer Support Portal](https://support.binho.io/) or reach us at techsupport@binho.io.
+
+# Changelog
+
+## v1.2.0
+
+### ✨ New Features
+
+- **Persistent Voltage Configuration:**
+  - Voltage settings for I2C, SPI, UART, and GPIO can now be optionally saved across power cycles, ensuring a seamless and predictable startup configuration.
+
+  ```python
+  # Set and optionally store the operating voltage.
+  def setI2cSpiUartGpioVoltage(self, id: int, voltage_mV : c_uint16, save: bool = False)
+
+  # Measure and use the external voltage. Optionally, store the voltage value.
+  def useExternalI2cSpiUartGpioVoltage(self, id: int, save: bool = False)
+  ```
+
+### 🧹 Cleanups
+
+- **Unified I2C Pull-Up Resistor Values:**
+  - Harmonized the list of supported pull-up resistor values between Pulsar and Supernova platforms.
+  - The firmware now validates selected resistor values, returning an `INVALID PARAMETER` error for unsupported configurations.
+
+## v1.1.0
+
+### 🆕 TL;DR Highlights
+
+- 🚀 Added `i2cControllerScanBus()` to scan I2C bus (includes 10-bit addresses)
+- 📦 Renamed package to `binhopulsar` for PEP625 compliance
+- ⚙️ New `getDeviceInfo()` API for consolidated device metadata
+- 🔌 Improved USB disconnect handling and device enumeration output
+
+### 🔧 Improvements
+
+- **Enhanced Validation:** Update commands validator to enforce maximum transfer length per protocol
+
+### ✨ New Features
+
+- **I2C Controller:**
+  - **Support for 10-bit addressing:** Introduced support for 10-bit addressing transfers indicated with a flag in the write and read commands.
+
+  ```python
+  # Write to a 10-bit address target
+  i2cControllerWrite(id=1, busId=I2C_BUS_A, targetAddress=0x308, registerAddress=[0x00,0x00], data=[0x00,0x01,0x02], is10BitTargetAddress=True)
+
+  # Read to a 10-bit address target
+  i2cControllerRead(id=2, busId=I2C_BUS_A, targetAddress=0x308, requestDataLength=3, registerAddress=[0x00,0x00], is10BitTargetAddress=True)
+  ```
+
+  - **Bus Scanning Support:** Introduced a new method to scan the selected I2C bus and retrieve a list of connected target addresses, including 10-bit addresses.
+
+  ```python
+  def i2cControllerScanBus(self, id: int, busId: I2cBus, include10BitAddresses: bool = False)
+  ```
+
+- **Device info:**
+  - **New `getDeviceInfo()` Method**: Introduced a new method to retrieve all the device information, including the manufacturer name, product name, serial number, firmware version, hardware version and supported interfaces, such as I2C, SPI, GPIO, etc. This method is an all-in-one solution aimed at replace the method ``getUsbString`` with the different sub-command values. However, the method `getUsbString` is still available as part of the API.
+
+  ```python
+  # Method signature
+  def getDeviceInfo(self, id: int)
+
+  # Response structure
+  {'id': 6, 'command': 'SYS GET DEVICE INFO', 'result': 'SUCCESS', 'manufacturer': 'Binho LLC', 'product_name': 'Pulsar', 'serial_number': '5F4BCE79166A34559DF3081DF5A8769DA', 'hardware_version': 'B', 'firmware_version': '4.1.0', 'capabilities': {'supported_groups': ['I2C', 'SPI', 'UART', 'GPIO']}}
+  ```
+
+### 🧹 Refactors & Cleanups
+
+- **Package Renaming for PEP625 Compliance:** Updated package name from `BinhoPulsar` to `binhopulsar`, and renamed submodule `Pulsar` to `pulsar` to be compliant with [PEP625](https://peps.python.org/pep-0625/).
+
+  ```sh
+  # Up to v1.0.0
+  pip install BinhoPulsar
+
+  # From version v1.1.0
+  pip install binhopulsar
+  ```
+
+  ```python
+  # Up to v1.0.0
+  import BinhoPulsar
+  from BinhoPulsar.Pulsar import Pulsar
+  from BinhoPulsar.commands.i2c.definitions import I2cPullUpResistorsValue
+
+  # From v1.1.0
+  import binhopulsar
+  from binhopulsar.pulsar import Pulsar
+  from binhopulsar.commands.i2c.definitions import I2cPullUpResistorsValue
+  ```
+
+- **`UsbDisconnectionError` Exception Removal:** This exception was removed and it is no longer thrown when the Pulsar device is unexpectedly disconnected. As in previous versions, only the system message is asynchronously returned through the registered callback to notify this event. Additionally, clients of the API must check the result returned by the API methods which returns an error if there is no communication established between the host and the device.
+
+- **Command response result:** The result strings ``"BUS_NOT_INITIALIZED"`` and ``"BUS_ALREADY_INITIALIZED"`` were renamed as ``"INTERFACE_NOT_INITIALIZED"`` and ``"INTERFACE_ALREADY_INITIALIZED"``. These strings are returned as the value of the key `result`.
+
+  ```python
+  # Up to v1.0.0
+  {'id': 13, 'command': 'I2C CONTROLLER INIT', 'result': 'BUS_ALREADY_INITIALIZED', 'i2c_bus': 'I2C_BUS_A'}
+
+  # From v1.1.0
+  {'id': 13, 'command': 'I2C CONTROLLER INIT', 'result': 'INTERFACE_ALREADY_INITIALIZED', 'i2c_bus': 'I2C_BUS_A'}
+  ```
+
+- **Device Enumeration Output Overhaul:**
+  - Modified the structure and content of the dictionaries returned by the static method `getConnectedPulsarDevicesList()`.
+  - Added the hardware and firmware version.
+  - Removed unused fields.
+
+  ```python
+  # Up to v1.0.0
+  {'path': '\\\\?\\HID#VID_1FC9&PID_82FD#7&8ada5c5&1&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}',
+    'vendor_id': '0x1fc9',
+    'product_id': '0x82fd',
+    'serial_number': '12B24708C123895DB326EDA7E1FBA6D',
+    'release_number': 256,
+    'manufacturer_string': 'Binho LLC',
+    'product_string': 'Binho Pulsar',
+    'usage_page': 65280,
+    'usage': 1,
+    'interface_number': 0}
+
+  # From v1.1.0
+  {'path': '\\\\?\\HID#VID_1FC9&PID_82FD#6&9e2d326&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}',
+    'vendor_id': '0x1fc9',
+    'product_id': '0x82fd',
+    'serial_number': '12B24708C123895DB326EDA7E1FBA6DA',
+    'manufacturer_string': 'Binho LLC',
+    'product_string': 'Binho Pulsar',
+    'hardware_version': 'B',
+    'firmware_version': '4.1.0'}
+  ```
+
+## v1.0.0
+
+### Improvements
+
+- **Enhanced Validation:**
+  - Comprehensive ID validation added across all SDK methods.
+- **Preliminary 10-bit I2C Addressing Support:**
+  - API update to include a flag in transfer methods to indicate a 10-bit target static address.
+- **GPIO Initial Value Setting:**
+  - API expanded to configure the initial value when setting a GPIO as a digital output. Feature not supported yet by firmware.
+- **Communication Enhancements:**
+  - A new USB Transfer protocol was implemented to make communication between devices and host more efficient.
+  - The `open` method has been updated:
+    - Removed the optional parameters vid and pid.
+    - The new USB Transfer Protocol now manages the connection internally, automatically identifying and opening the first Pulsar device based on these values.
+
+    This change simplifies device connection setup by offloading the responsibility of specifying vid and pid to the underlying protocol.
+
+### Refactors
+
+Several refactors were carried out as part of the implementation of `v1.0.0` to unify and standardize both the API and the dictionary responses across protocols.
+
+- **Responses dictionary standardization:**
+  - All the keys are written in ``snake_case`` style.
+  - All the Python dictionaries returned by the API are based on a common structures containing the following  `key-value` pairs:
+    - ``'id'``: integer number representing the response id.
+    - ``command``: string name of the command.
+    - ``result``: string indicating the result of the command request.
+    - ``payload_length``: all those responses that return a variable length value, include this key to indicate the length of the returned variable length data.
+    - ``payload``: this key identifies the variable length data.
+
+```python
+{'id':<response_id>, 'command':<command_name_string>, 'result': <result_string>, 'payload_length': <int>, 'payload': <list>}
+```
+
+See some examples below:
+
+```python
+{'id': 1, 'command': 'SYS GET USB STRING', 'result': 'SUCCESS', 'payload_length': 12, 'payload': 'MN-Binho LLC'}
+
+{'id': 6, 'command': 'SYS SET I2C SPI UART GPIO VOLTAGE', 'result': 'SUCCESS'}
+
+{'id': 12, 'command': 'I2C CONTROLLER WRITE', 'result': 'SUCCESS', 'i2c_bus': 'I2C_BUS_A', 'payload_length': 128}
+```
+
+The key ``'command'`` now identifies the command name instead of the integer number, and the key `'name'` was removed.
+
+- **Integration of protocol roles in the API methods naming:** As part of the standardization process, the API methods expose the role to which the method relates to.
+  - **UART:** Simplified nomenclature by removing "Controller" from command and parameter names, since there is no controller or target roles.
+  - **I2C:** Standardized methods naming with "Controller", except for ``i2cSetPullUpResistors``, as it is independent of the device role.
+
+- **Functional Consolidation:**
+  - **I2C:** Unified I2C methods:
+    - ``i2cWriteNonStop`` merged with ``i2cControllerWrite`` (triggered by the ``isNonStop`` flag)
+    - ``i2cReadFrom`` integrated into ``i2cControllerRead`` (invoked based on register address length)
+  - **Voltage setting**: Rename methods for clarification.
+    - ``setI2cSpiUartBusVoltage`` as ``setI2cSpiUartGpioVoltage``
+    - ``useExternalSourceForI2cSpiUartBusVoltage`` as ``useExternalI2cSpiUartGpioVoltage``
+
+- **API Standardization:**
+  - For the most part, all protocols are based on a set of methods to initialize and configure the device, as well as to issue transfers. For instance:
+    - ``i2cControllerInit``, ``i2cControllerSetParameters``, ``i2cControllerWrite``, ``i2cControllerRead``
+    - ``spiControllerInit``, ``spiControllerSetParameters``, ``spiControllerTransfer``
+    - ``uartInit``, ``uartSetParameters``, ``uartSend``
+  - In a near future, new methods such as ``deinit`` and ``getParameters`` might be implemented too.
+  - **I2C frequencies configuration:**
+    - In I2C, now the frequency is set through the methods ``i2cControllerInit`` and ``i2cControllerSetParameters``.
+    - These changes are in line with the already implementation of the methods ``uartSetParameters`` and ``spiControllerSetParameters`` to set the UART baudrate and SPI clock frequency respectively.
+
+### New Features
+
+- **I2C Bus Selector:** Added `busId: I2cBus` parameter to all I2C-related commands. This parameter specifies the bus used for communication. The possible options are:
+  - I2cBus.I2C_BUS_A: Corresponds to the Qwiic port.
+  - I2cBus.I2C_BUS_B: Corresponds to the breakout board pins.
+
+  This update provides flexibility for interacting with devices on different I2C interfaces.
+
+- **I2C Controller Initialization Command:** Added a new method, ``i2cControllerInit(id: int, busId: I2cBus, frequency: int, pullUpResistorsValue: I2cPullUpResistorsValue)``, for initializing the I2C controller with enhanced configuration capabilities. Possible result codes include:
+  - ``SUCCESS``
+  - ``INVALID_PARAMETER``
+  - ``FEATURE_NOT_SUPPORTED_BY_HARDWARE``
+  - ``BUS_ALREADY_INITIALIZED``
+  - ``BUS_NOT_SUPPORTED``
+
+- **Voltage setting:**
+  - Now the method  ``setI2cSpiUartGpioVoltage`` accept the value ``0`` mV as a valid voltage value. This allows the user to turn off the power supply and as a result the downstream devices.
+
+- **UsbDisconnectionError exception:** A new exception was implemented which is raised when the USB Host device is unexpectedly disconnected. Deeper logic added was also added to return an error if a method is invoked after the disconnection and before a reconnection.
