@@ -1,0 +1,53 @@
+name: Test Repository Access
+
+on:
+  workflow_dispatch:  # Manual trigger only
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  test-access:
+    name: Test Repository Access
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: List files to verify access
+      run: |
+        echo "✅ Repository checkout successful!"
+        echo "📁 Repository contents:"
+        ls -la
+        echo ""
+        echo "📦 Package info:"
+        if [ -f "pyproject.toml" ]; then
+          echo "✅ pyproject.toml found"
+          grep "^name" pyproject.toml || echo "Name not found"
+          grep "^version" pyproject.toml || echo "Version not found"
+        else
+          echo "❌ pyproject.toml not found"
+        fi
+        
+    - name: Check Python setup
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        
+    - name: Install uv and test build
+      run: |
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+        export PATH="$HOME/.cargo/bin:$PATH"
+        echo "✅ uv installed successfully"
+        uv --version
+        
+    - name: Test package build
+      run: |
+        export PATH="$HOME/.cargo/bin:$PATH"
+        echo "🔨 Testing package build..."
+        uv build
+        echo "✅ Package built successfully!"
+        ls -la dist/

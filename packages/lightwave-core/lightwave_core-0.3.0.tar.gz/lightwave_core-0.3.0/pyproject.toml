@@ -1,0 +1,149 @@
+[build-system]
+requires = ["hatchling"] # Or setuptools, flit, etc.
+build-backend = "hatchling.build" # Or the backend you chose
+
+[project]
+name = "lightwave-core"
+version = "0.3.0" # Enterprise configuration management system
+description = "Core library for the LightWave ecosystem."
+readme = "README.md"
+requires-python = ">=3.11" # Or your minimum Python version
+license = { text = "Proprietary" } # Or Apache-2.0, MIT, etc.
+authors = [
+    { name = "joelschaeffer", email = "joel.schaeffer@lightwave-media.ltd" },
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: Other/Proprietary License", # Adjust if open source
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    # Core dependencies
+    "pydantic>=2.0.0",
+    "typing-extensions>=4.5.0",
+    "python-dateutil>=2.8.2", # For date handling
+    "jsonschema>=4.17.3", # For JSON validation
+    "pathspec>=0.11.0", # For path matching
+    "pyyaml>=6.0.2", # For YAML config files
+    "httpx>=0.25.0", # For HTTP client functionality
+]
+
+[project.urls]
+Homepage = "https://github.com/kiwi-dev-la/lightwave-core"
+Repository = "https://github.com/kiwi-dev-la/lightwave-core"
+# Documentation = "https://github.com/kiwi-dev-la/lightwave-core/docs" # when i have docs
+
+# Package discovery - ensures your package is correctly built
+# This configuration assumes src-layout (recommended)
+[tool.hatch.build.targets.wheel]
+packages = ["src/lightwave"]
+
+# If you want to define any command-line scripts
+[project.scripts]
+# CLI commands have been moved to lightwave-cli package
+# lightwave = "lightwave.core.cli:main"
+# lightwave-cli = "lightwave_shared_core.cli:main"
+
+[project.optional-dependencies]
+# Dependencies needed ONLY for developing/testing this library
+dev = [
+    "ruff",          # Linter/formatter
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",    # For test coverage
+    "pytest-bdd>=8.1.0",    # For BDD testing
+    "pytest-xdist",         # For parallel testing
+    "build",         # For building the package
+    "twine",         # For checking/uploading the package
+    "mypy>=1.0.0",   # Static type checking
+    "pre-commit",    # Manage pre-commit hooks
+    "black",         # Code formatter
+    "isort",         # Import sorting
+]
+# You might have specific dependencies needed only for tests
+test = [
+    "pytest-mock",
+    "freezegun",     # For time-based tests
+    # "django", # Add Django/DRF here IF your tests need them
+    # "factory-boy",
+    # "pytest-django",
+]
+# Add docs dependencies if you plan to have documentation
+docs = [
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]",
+]
+# Combine them for easy installation
+all-dev = [
+    "lightwave-core[dev,test,docs]"
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+# Add other ruff configurations (select rules, etc.)
+# See: https://docs.astral.sh/ruff/configuration/
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "UP", "B", "C4", "T20", "SIM", "ARG"] # Example rule set
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+strict_optional = true
+
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --cov=src/lightwave --cov-report=term-missing"
+testpaths = [
+    "tests",
+]
+
+
+# Optional: Coverage configuration
+[tool.coverage.run]
+source = ["src/lightwave"]
+omit = ["*/__init__.py"] # Example: Omit empty init files
+
+[tool.coverage.report]
+fail_under = 85 # Set your desired minimum coverage
+show_missing = true
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+# Useful for uv compatibility and PEP 621 compliance
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# Pre-commit configuration (you'll need a .pre-commit-config.yaml file too)
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+include = '\.pyi?$'
+
+# Define where your package data files are located
+[tool.hatch.build.sources]
+"src" = "lightwave"
+"tests" = ""

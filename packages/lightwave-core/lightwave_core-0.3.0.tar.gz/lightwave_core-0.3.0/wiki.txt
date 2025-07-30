@@ -1,0 +1,255 @@
+# Lightwave Wiki Configuration
+# This file contains the structure and configuration for the Lightwave company wiki
+
+wiki:
+  title: "Lightwave Company Wiki"
+  base_url: "/wiki"
+  
+  # Main sections of the wiki
+  sections:
+    - id: company-overview
+      title: "Company Overview"
+      subsections:
+        - id: mission-vision
+          title: "Mission & Vision"
+        - id: company-history
+          title: "Company History"
+        - id: leadership-team
+          title: "Leadership Team"
+        - id: office-locations
+          title: "Office Locations"
+        - id: contact-information
+          title: "Contact Information"
+          
+    - id: organizational-structure
+      title: "Organizational Structure"
+      subsections:
+        - id: company-ownership
+          title: "Company Ownership & Administration"
+        - id: department-structure
+          title: "Department Structure"
+          subsections:
+            - id: engineering
+              title: "Engineering"
+            - id: product
+              title: "Product"
+            - id: design
+              title: "Design"
+            - id: marketing
+              title: "Marketing"
+            - id: finance
+              title: "Finance"
+        - id: team-rosters
+          title: "Team Rosters"
+        - id: roles-responsibilities
+          title: "Roles & Responsibilities"
+          
+    - id: development-methodology
+      title: "Development Methodology"
+      subsections:
+        - id: scrum-framework
+          title: "Scrum Framework"
+          subsections:
+            - id: scrum-roles
+              title: "Scrum Roles"
+            - id: sprint-cycles
+              title: "Sprint Cycles"
+            - id: task-management
+              title: "Task Management System"
+        - id: development-workflow
+          title: "Development Workflow"
+          subsections:
+            - id: task-prioritization
+              title: "Task Prioritization"
+            - id: dependency-management
+              title: "Dependency Management"
+            - id: implementation-guidelines
+              title: "Implementation Guidelines"
+            - id: testing-strategy
+              title: "Testing Strategy"
+        - id: code-standards
+          title: "Code Standards & Best Practices"
+        - id: version-control
+          title: "Version Control Guidelines"
+          
+    - id: technical-infrastructure
+      title: "Technical Infrastructure"
+      subsections:
+        - id: development-environments
+          title: "Development Environments"
+          subsections:
+            - id: dev-environment
+              title: "Development"
+            - id: staging-environment
+              title: "Staging"
+            - id: production-environment
+              title: "Production"
+        - id: aws-infrastructure
+          title: "AWS Infrastructure"
+        - id: deployment-process
+          title: "Deployment Process"
+        - id: monitoring-alerting
+          title: "Monitoring & Alerting"
+        - id: disaster-recovery
+          title: "Disaster Recovery"
+          
+    - id: ecosystem-indices
+      title: "Ecosystem Indices"
+      description: "Standardized index files serving as the single source of truth for various aspects of the Lightwave ecosystem."
+      subsections:
+        - id: api-endpoints-index
+          title: "API Endpoints Index"
+          description: "Complete API endpoint reference across all Lightwave services"
+          subsections:
+            - id: api-structure-overview
+              title: "API Structure Overview"
+            - id: authentication-endpoints
+              title: "Authentication Endpoints"
+            - id: core-service-endpoints
+              title: "Core Service Endpoints"
+            - id: application-specific-endpoints
+              title: "Application-specific Endpoints"
+            - id: integration-endpoints
+              title: "Integration Endpoints"
+        - id: filesystem-conventions
+          title: "Filesystem Conventions"
+          description: "Standardized project structures and filesystem conventions"
+          subsections:
+            - id: common-project-structure
+              title: "Common Project Structure"
+            - id: repository-organization
+              title: "Repository Organization"
+            - id: naming-conventions
+              title: "Naming Conventions"
+            - id: django-application-structure
+              title: "Django Application Structure"
+            - id: frontend-application-structure
+              title: "Frontend Application Structure"
+        - id: component-registry
+          title: "Component Registry"
+          description: "Registry of all UI components in the Lightwave Design System"
+        - id: schema-registry
+          title: "Schema Registry"
+          description: "Standardized data schemas for all objects in the ecosystem"
+        - id: url-index
+          title: "URL Index"
+          description: "URL structures and naming conventions across all platforms"
+        - id: dependency-graph
+          title: "Dependency Graph"
+          description: "Dependencies between Lightwave repositories and build order"
+          
+    - id: product-documentation
+      title: "Product Documentation"
+      subsections:
+        - id: product-roadmap
+          title: "Product Roadmap"
+        - id: feature-specifications
+          title: "Feature Specifications"
+        - id: api-documentation
+          title: "API Documentation"
+        - id: database-schema
+          title: "Database Schema"
+        - id: architecture-diagrams
+          title: "Architecture Diagrams"
+          
+    - id: tools-resources
+      title: "Tools & Resources"
+      subsections:
+        - id: lightwave-cli
+          title: "Lightwave CLI Usage Guide"
+          subsections:
+            - id: development-commands
+              title: "Development Commands"
+            - id: infrastructure-commands
+              title: "Infrastructure Commands"
+        - id: development-tools
+          title: "Development Tools"
+        - id: communication-platforms
+          title: "Communication Platforms"
+        - id: project-management
+          title: "Project Management Tools"
+        - id: ecosystem-tools
+          title: "Ecosystem Tools"
+          subsections:
+            - id: lightwave-project-starter
+              title: "Lightwave Project Starter"
+              description: "Tool for scaffolding new projects following Lightwave conventions"
+          
+    - id: onboarding
+      title: "Onboarding"
+      subsections:
+        - id: new-employee-setup
+          title: "New Employee Setup"
+        - id: environment-configuration
+          title: "Environment Configuration"
+        - id: first-week
+          title: "First Week Checklist"
+        - id: training-resources
+          title: "Training Resources"
+        - id: mentorship-program
+          title: "Mentorship Program"
+          
+    - id: policies-procedures
+      title: "Policies & Procedures"
+      subsections:
+        - id: work-policy
+          title: "Work Hours & Remote Policy"
+        - id: benefits
+          title: "Time Off & Benefits"
+        - id: security-policies
+          title: "Security Policies"
+        - id: expense-management
+          title: "Expense Management"
+        - id: performance-reviews
+          title: "Performance Reviews"
+          
+    - id: knowledge-base
+      title: "Knowledge Base"
+      subsections:
+        - id: faqs
+          title: "FAQs"
+        - id: troubleshooting
+          title: "Troubleshooting Guides"
+        - id: technical-articles
+          title: "Technical Articles"
+        - id: release-notes
+          title: "Release Notes Archive"
+        - id: learning-resources
+          title: "Learning Resources"
+  
+  # Wiki settings
+  settings:
+    default_access: "team"
+    contributors_group: "wiki-editors"
+    admins_group: "wiki-admins"
+    enable_comments: true
+    enable_version_history: true
+    search_enabled: true
+    
+  # Integration settings
+  integrations:
+    jira:
+      enabled: true
+      project_key: "LW"
+    github:
+      enabled: true
+      repository: "lightwave/docs"
+    slack:
+      enabled: true
+      notification_channel: "#wiki-updates"
+      
+  # Index file sources
+  index_sources:
+    api_endpoints: "/src/index/api-endpoints-index.md"
+    filesystem_conventions: "/src/index/filesystem-conventions.md"
+    component_registry: "/src/index/component-registry.md"
+    schema_registry: "/src/index/schema-registry.md"
+    url_index: "/src/index/url-index.md"
+    dependency_graph: "/src/index/dependency-graph.md"
+    
+  # Auto-sync settings
+  auto_sync:
+    enabled: true
+    source_repo: "lightwave/lightwave-shared-core"
+    frequency: "daily"
+    notify_on_changes: true 

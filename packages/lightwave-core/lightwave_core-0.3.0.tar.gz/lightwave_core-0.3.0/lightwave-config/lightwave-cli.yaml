@@ -1,0 +1,171 @@
+profileName: Lightwave CLI Master Command Profile
+version: 1.0.0
+description: Index of commands for the Lightwave CLI ecosystem managing human-AI Scrum
+  teams.
+categories:
+  Project & Configuration:
+  - signature: lightwave init --project <ProjectName> [--template <TemplateName>]
+      [--repo <GitRepoURL>]
+    description: Initializes a new Lightwave project directory, sets up configuration,
+      optionally clones a git repo, and applies a project template.
+  - signature: lightwave config set --key <SettingKey> --value <SettingValue> [--global]
+    description: Sets a specific configuration value for the current project or globally.
+  - signature: lightwave config get --key <SettingKey> [--global]
+    description: Retrieves the value of a specific configuration setting.
+  - signature: lightwave config list [--global]
+    description: Lists all configuration settings for the current project or globally.
+  - signature: lightwave status
+    description: Shows a high-level status overview of the current project.
+  - signature: lightwave healthcheck
+    description: Runs diagnostics to check connectivity to AI services and other integrations.
+  Agent Management:
+  - signature: lightwave agent create --name <AgentName> --role <RoleName> [--model
+      <AIModelName>] [--instructions <String> | --instructions-file <FilePath>]
+    description: Registers a new AI agent with a specific name, role, optional model,
+      and custom instructions.
+  - signature: lightwave agent list [--role <RoleName>] [--status <active|inactive>]
+      [--sprint <SprintID>]
+    description: Lists available agents, filterable by role, status, or sprint assignment.
+  - signature: lightwave agent describe --name <AgentName>
+    description: Shows detailed information about a specific agent.
+  - signature: lightwave agent update --name <AgentName> [--role <NewRole>] [--model
+      <NewModel>] [--instructions <String> | --instructions-file <FilePath>] [--status
+      <active|inactive>]
+    description: Modifies the configuration or status of an existing agent.
+  - signature: lightwave agent assign --name <AgentName> --sprint <SprintID> [--task
+      <TaskID>]
+    description: Assigns an agent to a specific sprint or task.
+  - signature: lightwave agent unassign --name <AgentName> --sprint <SprintID> [--task
+      <TaskID>]
+    description: Removes an agent's assignment from a sprint or task.
+  - signature: lightwave agent delete --name <AgentName> [--force]
+    description: Removes an agent definition from the project.
+  - signature: lightwave agent evaluate --name <AgentName> --sprint <SprintID> [--metrics
+      <MetricsList>] [--output <FilePath>]
+    description: Triggers an evaluation of an agent's performance within a specific
+      sprint.
+  Sprint Management:
+  - signature: lightwave sprint start [--duration <DurationString>] --goal <SprintGoal>
+      [--from-backlog] [--auto-select] [--max-points <Points>]
+    description: Starts a new sprint with a defined duration and goal, optionally
+      pulling from backlog.
+  - signature: lightwave sprint end [--id <SprintID> | --current] [--summarize <FilePath>]
+      [--evaluate-agents] [--archive]
+    description: Formally closes a sprint, optionally summarizing, evaluating agents,
+      and archiving.
+  - signature: lightwave sprint list [--status <planned|active|completed|archived>]
+      [--limit <Number>]
+    description: Lists sprints, filterable by status.
+  - signature: lightwave sprint status [--id <SprintID> | --current]
+    description: Shows the detailed status of a specific sprint.
+  - signature: lightwave sprint goal --set <NewSprintGoal> [--id <SprintID> | --current]
+    description: Updates the goal for a specific sprint.
+  - signature: lightwave sprint extend --duration <DurationString> [--id <SprintID>
+      | --current] [--reason <ReasonString>]
+    description: Extends the duration of an active sprint.
+  Backlog Management:
+  - signature: lightwave backlog add --item <ItemDescription> [--priority <high|medium|low>]
+      [--type <feature|bug|chore|spike>] [--points <Number>] [--details <DetailsString>]
+    description: Adds a new item to the product backlog.
+  - signature: lightwave backlog list [--priority <prio>] [--type <type>] [--unassigned]
+      [--query <SearchTerm>]
+    description: Displays items in the product backlog, with filtering options.
+  - signature: lightwave backlog refine --item-id <ItemID> [--agent <AgentName>] [--ask
+      <QuestionString>]
+    description: Initiates refinement for a specific backlog item, potentially involving
+      an AI agent.
+  - signature: lightwave backlog prioritize [--agent <AgentName>] [--strategy <StrategyName>]
+    description: Triggers a prioritization session for the backlog.
+  - signature: lightwave backlog move --item-id <ItemID> --sprint <SprintID>
+    description: Moves a backlog item into a specific sprint.
+  - signature: lightwave backlog update --item-id <ItemID> [--item <NewDesc>] [--priority
+      <prio>] [--type <type>] [--points <num>] [--details <details>]
+    description: Updates the details of an existing backlog item.
+  - signature: lightwave backlog delete --item-id <ItemID> [--force]
+    description: Removes an item from the backlog.
+  Task Management:
+  - signature: lightwave task create --sprint <SprintID> -t <Title> [-d <Description>]
+      [--assignee <Name>] [--type <Type>] [--points <Number>] [--parent-task <TaskID>]
+    description: Creates a new task within a sprint, optionally as a subtask.
+  - signature: lightwave task list [--sprint <SprintID|current>] [--status <Status>]
+      [--assignee <Name>] [--type <Type>] [--query <SearchTerm>]
+    description: Lists tasks based on various filters.
+  - signature: lightwave task describe --id <TaskID>
+    description: Shows all details of a specific task.
+  - signature: lightwave task update --id <TaskID> [--status <NewStatus>] [--title
+      <NewTitle>] [--description <NewDesc>] [--points <Number>]
+    description: Updates the status or other details of a task.
+  - signature: lightwave task assign --id <TaskID> --assignee <Name>
+    description: Assigns or reassigns a task.
+  - signature: lightwave task breakdown --id <TaskID> [--agent <AgentName>] [--max-subtasks
+      <Number>] [--strategy <StrategyName>]
+    description: Instructs an agent to break down a task into smaller subtasks.
+  - signature: lightwave task subtask add --parent-task <TaskID> -t <SubtaskTitle>
+      [-d <SubtaskDesc>] [--assignee <Name>]
+    description: Manually adds a subtask to a parent task.
+  - signature: lightwave task link --from <TaskID> --to <TaskID> --type <blocks|relates_to|duplicates>
+    description: Creates a dependency or relationship link between two tasks.
+  - signature: lightwave task estimate --id <TaskID> [--agent <AgentName>] [--method
+      <MethodName>]
+    description: Requests an estimation for a task, potentially from an agent.
+  - signature: lightwave task delete --id <TaskID> [--force]
+    description: Deletes a task.
+  Communication & Notes:
+  - signature: lightwave comment add --task-id <TaskID> -m <CommentMessage[@Mention]>
+    description: Adds a comment to a task's discussion thread, allowing @-mentions.
+  - signature: lightwave comment list --task-id <TaskID> [--limit <Number>] [--since
+      <Timestamp|Duration>]
+    description: Shows comments associated with a task.
+  - signature: lightwave comment search -q <QueryString> [--task-id <TaskID>] [--sprint
+      <SprintID>] [--author <Name>]
+    description: Searches through comments based on keywords or filters.
+  - signature: lightwave notes generate --context <task|sprint|backlog|project> [--id
+      <ContextID>] --agent <AgentName> --type <NoteType> [--output <FilePath>]
+    description: Instructs an agent to generate structured notes based on the context.
+  - signature: lightwave notes query -q <QueryString> [--agent <AgentName>] [--type
+      <NoteType>] [--context <Context>] [--id <ContextID>]
+    description: Uses an AI agent to search and retrieve information from generated
+      notes.
+  - signature: lightwave notes list [--type <NoteType>] [--context <Context>] [--id
+      <ContextID>] [--limit <Number>]
+    description: Lists generated notes, filterable by type or context.
+  - signature: lightwave chat --agent <AgentName> [-m <InitialMessage>]
+    description: Starts an interactive chat session directly with a specified agent.
+  Testing & Quality Assurance:
+  - signature: lightwave test run [--task-id <TaskID> | --sprint <SprintID> | --all]
+      [--type <TestType>] [--agent <AgentName>]
+    description: Triggers automated test runs associated with tasks, sprints, or the
+      project.
+  - signature: lightwave test status [--task-id <TaskID> | --sprint <SprintID>] [--run-id
+      <TestRunID>]
+    description: Checks the status of ongoing or recent test runs.
+  - signature: lightwave test results [--task-id <TaskID> | --sprint <SprintID>] [--run-id
+      <TestRunID>] [--details] [--output <FilePath>]
+    description: Displays the results of a completed test run.
+  - signature: lightwave test case create -t <Title> [-d <Description>] [--task-id
+      <TaskID>] [--type <TestType>]
+    description: Defines a new manual or automated test case.
+  - signature: lightwave test case list [--task-id <TaskID>] [--type <TestType>] [--query
+      <SearchTerm>]
+    description: Lists defined test cases.
+  - signature: lightwave test case link --case-id <TestCaseID> --task-id <TaskID>
+    description: Explicitly links a test case to a task.
+  Reporting & Analytics:
+  - signature: lightwave report generate --type <ReportType> [--sprint <SprintID|current|all>]
+      [--output <FilePath>] [--agent <AgentName>]
+    description: Generates various standard Agile and custom reports.
+  - signature: lightwave analytics show --metric <MetricName> [--sprint <SprintID>]
+      [--task-id <TaskID>] [--agent <AgentName>]
+    description: Displays specific development or process metrics.
+  - signature: lightwave report list [--type <ReportType>] [--sprint <SprintID>]
+    description: Lists previously generated reports.
+  Synchronization & Utilities:
+  - signature: lightwave sync [--push] [--pull] [--force]
+    description: Synchronizes the local project state with the central backend/repository.
+  - signature: lightwave prune --type <logs|reports|archived_sprints> [--older-than
+      <DurationString>] [--force]
+    description: Cleans up old data like logs, reports, or archived sprints.
+  Help:
+  - signature: lightwave help [<Command>]
+    description: Displays general help or help for a specific command.
+

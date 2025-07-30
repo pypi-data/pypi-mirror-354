@@ -1,0 +1,270 @@
+# Lightwave Media Services - Dynamic Business Plan Template
+version: "${version}"
+updated: "${current_date}"
+
+variables:
+  company:
+    fiscal_year_start: "01-01"
+    fiscal_year_end: "12-31"
+    tax_id: "${tax_id}"
+    state_entity_number: "${state_entity_number}"
+    formation_date: "${formation_date}"
+    s_corp_election_date: "${s_corp_election_date}"
+
+legal_structure:
+  entity_type: "S-Corporation"
+  state: "California"
+  county: "Los Angeles"
+  registered_agent:
+    name: "${registered_agent_name}"
+    address: "${registered_agent_address}"
+  
+  llc_details:
+    type: "Member-Managed LLC"
+    members:
+      - name: "${member1_name}"
+        ownership_percentage: "${member1_percentage}"
+        role: "Managing Member"
+        title: "Chief Executive Officer"
+      - name: "${member2_name}"
+        ownership_percentage: "${member2_percentage}"
+        role: "Managing Member"
+        title: "Chief Technology Officer"
+    
+  required_filings:
+    annual:
+      - name: "Statement of Information (LLC)"
+        due_date: "${formation_date + 90 days}"
+        fee: "${llc_statement_fee}"
+      - name: "S-Corporation Tax Return (Form 1120S)"
+        due_date: "March 15"
+        extension_available: true
+      - name: "California LLC Tax Return (Form 568)"
+        due_date: "March 15"
+        minimum_tax: 800
+      - name: "Los Angeles Business Tax Renewal"
+        due_date: "February 28"
+    
+    quarterly:
+      - name: "Estimated Tax Payments"
+        dates: ["April 15", "June 15", "September 15", "January 15"]
+      - name: "Sales Tax Returns"
+        dates: ["April 30", "July 31", "October 31", "January 31"]
+      - name: "Payroll Tax Returns"
+        forms: ["Form 941", "DE 9", "DE 9C"]
+
+company_overview:
+  name: "${company_name}"
+  dba: "${dba_name}"
+  tagline: "${tagline}"
+  mission: "${mission_statement}"
+  vision: "${vision_statement}"
+  
+  locations:
+    primary_office:
+      address: "${office_address}"
+      type: "${office_type}" # home_office, commercial, virtual
+      monthly_cost: "${office_cost}"
+    
+    business_licenses:
+      - jurisdiction: "City of Los Angeles"
+        license_number: "${la_business_license}"
+        renewal_date: "${la_license_renewal}"
+      - jurisdiction: "County of Los Angeles"
+        license_number: "${county_business_license}"
+        renewal_date: "${county_license_renewal}"
+
+core_services:
+  web_and_app_development:
+    service_list: ${web_dev_services}
+    pricing_models:
+      hourly_rate: "${dev_hourly_rate}"
+      project_based:
+        small_project_range: "${small_project_rate}"
+        medium_project_range: "${medium_project_rate}"
+        large_project_range: "${large_project_rate}"
+      retainer:
+        minimum_hours: "${min_retainer_hours}"
+        monthly_rate: "${monthly_retainer_rate}"
+  
+  content_production:
+    service_list: ${content_services}
+    pricing_models:
+      hourly_rate: "${content_hourly_rate}"
+      package_rates: ${content_package_rates}
+  
+  digital_marketing:
+    service_list: ${marketing_services}
+    pricing_models:
+      monthly_retainer: "${marketing_retainer_rate}"
+      project_based: ${marketing_project_rates}
+
+financial_metrics:
+  startup_costs:
+    equipment: "${equipment_cost}"
+    software_licenses: "${software_cost}"
+    marketing: "${marketing_cost}"
+    working_capital: "${working_capital}"
+    legal_and_filing: "${legal_cost}"
+    total: "${total_startup_cost}"
+
+  revenue:
+    current_month: "${current_month_revenue}"
+    current_quarter: "${current_quarter_revenue}"
+    ytd: "${ytd_revenue}"
+    projected_annual: "${projected_annual_revenue}"
+    
+  expenses:
+    fixed_monthly:
+      rent: "${rent_expense}"
+      software_subscriptions: "${software_expense}"
+      insurance: "${insurance_expense}"
+      utilities: "${utilities_expense}"
+      total: "${total_fixed_expenses}"
+    
+    variable_monthly:
+      contractor_payments: "${contractor_expense}"
+      marketing_spend: "${marketing_expense}"
+      supplies: "${supplies_expense}"
+      total: "${total_variable_expenses}"
+    
+    quarterly_taxes:
+      federal_estimated: "${federal_tax_payment}"
+      state_estimated: "${state_tax_payment}"
+      sales_tax: "${sales_tax_payment}"
+      total: "${total_tax_payments}"
+
+  profitability:
+    gross_margin: "${gross_margin_percentage}"
+    net_margin: "${net_margin_percentage}"
+    operating_expenses_ratio: "${opex_ratio}"
+    current_ratio: "${current_ratio}"
+
+operational_metrics:
+  projects:
+    active_count: "${active_projects}"
+    completed_mtd: "${completed_projects_month}"
+    completed_ytd: "${completed_projects_ytd}"
+    average_project_value: "${avg_project_value}"
+    
+  clients:
+    active_count: "${active_clients}"
+    retainer_clients: "${retainer_clients}"
+    new_clients_mtd: "${new_clients_month}"
+    new_clients_ytd: "${new_clients_ytd}"
+    
+  team:
+    full_time_employees: "${full_time_count}"
+    contractors: "${contractor_count}"
+    utilization_rate: "${team_utilization}"
+    billable_hours_mtd: "${billable_hours_month}"
+    billable_hours_ytd: "${billable_hours_ytd}"
+
+insurance_coverage:
+  general_liability:
+    provider: "${gl_provider}"
+    policy_number: "${gl_policy_number}"
+    coverage_amount: "${gl_coverage_amount}"
+    renewal_date: "${gl_renewal_date}"
+  
+  professional_liability:
+    provider: "${pl_provider}"
+    policy_number: "${pl_policy_number}"
+    coverage_amount: "${pl_coverage_amount}"
+    renewal_date: "${pl_renewal_date}"
+  
+  cyber_liability:
+    provider: "${cyber_provider}"
+    policy_number: "${cyber_policy_number}"
+    coverage_amount: "${cyber_coverage_amount}"
+    renewal_date: "${cyber_renewal_date}"
+
+banking:
+  business_checking:
+    bank: "${bank_name}"
+    account_type: "${account_type}"
+    minimum_balance: "${min_balance}"
+    current_balance: "${current_balance}"
+  
+  business_savings:
+    bank: "${savings_bank_name}"
+    current_balance: "${savings_balance}"
+    
+  business_credit_card:
+    provider: "${cc_provider}"
+    credit_limit: "${credit_limit}"
+    current_balance: "${cc_balance}"
+    due_date: "${cc_due_date}"
+
+accounting:
+  software: "${accounting_software}"
+  fiscal_year: "${fiscal_year}"
+  tax_preparer: "${tax_preparer_name}"
+  bookkeeper: "${bookkeeper_name}"
+  chart_of_accounts: "${coa_version}"
+  
+  accounts_receivable:
+    current: "${current_ar}"
+    thirty_days: "${thirty_day_ar}"
+    sixty_days: "${sixty_day_ar}"
+    ninety_plus_days: "${ninety_plus_ar}"
+    
+  accounts_payable:
+    current: "${current_ap}"
+    thirty_days: "${thirty_day_ap}"
+    sixty_days: "${sixty_day_ap}"
+    ninety_plus_days: "${ninety_plus_ap}"
+
+compliance:
+  data_privacy:
+    ccpa_compliant: "${ccpa_compliance}"
+    privacy_policy_version: "${privacy_policy_version}"
+    last_updated: "${privacy_policy_date}"
+  
+  security:
+    cyber_security_policy: "${security_policy_version}"
+    last_assessment: "${security_assessment_date}"
+    next_assessment: "${next_assessment_date}"
+  
+  contracts:
+    client_agreement_version: "${client_agreement_version}"
+    contractor_agreement_version: "${contractor_agreement_version}"
+    nda_version: "${nda_version}"
+
+reporting:
+  frequency:
+    financial_statements: "monthly"
+    tax_filings: "quarterly"
+    metrics_dashboard: "weekly"
+    team_reviews: "monthly"
+  
+  key_reports:
+    - name: "P&L Statement"
+      frequency: "monthly"
+      template: "${pl_template}"
+    - name: "Balance Sheet"
+      frequency: "monthly"
+      template: "${bs_template}"
+    - name: "Cash Flow Statement"
+      frequency: "monthly"
+      template: "${cf_template}"
+    - name: "Project Profitability"
+      frequency: "weekly"
+      template: "${project_profit_template}"
+    - name: "Team Utilization"
+      frequency: "weekly"
+      template: "${utilization_template}"
+
+growth_metrics:
+  targets:
+    monthly_revenue_growth: "${revenue_growth_target}"
+    client_acquisition_rate: "${client_acquisition_target}"
+    project_completion_rate: "${project_completion_target}"
+    team_growth_rate: "${team_growth_target}"
+  
+  actuals:
+    current_month:
+      revenue_growth: "${current_revenue_growth}"
+      new_clients: "${current_new_clients}"
+      completed_projects: "${current_completed_projects}"
+      team_additions: "${current_team_additions}" 

@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "audit_id": "7a61e1c1-9e67-4739-b92c-7116b59512e5",
+    "target": "LightWave AI Services",
+    "component": "API Gateway",
+    "environment": "production",
+    "version": "1.0.0",
+    "generated": "2025-04-04T12:27:09.499230",
+    "description": "Audit of API Gateway in production environment",
+    "os": "Darwin Darwin Kernel Version 24.3.0: Thu Jan  2 20:24:16 PST 2025; root:xnu-11215.81.4~3/RELEASE_ARM64_T6000",
+    "hostname": "Joels-MBP.attlocal.net",
+    "python_version": "3.11.11",
+    "user": "joelschaeffer"
+  },
+  "results": {
+    "code_quality": {
+      "score": 85,
+      "issues_found": 12,
+      "critical_issues": 2,
+      "recommendations": [
+        "Increase test coverage in authentication module",
+        "Fix linting issues in data_processor.py"
+      ]
+    },
+    "security": {
+      "score": 90,
+      "vulnerabilities": 3,
+      "severity_breakdown": {
+        "high": 1,
+        "medium": 1,
+        "low": 1
+      },
+      "recommendations": [
+        "Update dependencies with known vulnerabilities",
+        "Use environment variables for sensitive configuration"
+      ]
+    },
+    "api_assessment": {
+      "endpoints_analyzed": 8,
+      "compliant_endpoints": 7,
+      "issues": [
+        {
+          "endpoint": "/users/profile",
+          "issue": "Missing rate limiting"
+        }
+      ]
+    }
+  }
+}

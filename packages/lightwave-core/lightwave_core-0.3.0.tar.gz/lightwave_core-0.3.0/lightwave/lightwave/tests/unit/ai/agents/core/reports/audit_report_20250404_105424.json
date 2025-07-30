@@ -1,0 +1,168 @@
+{
+  "summary": {
+    "timestamp": "2025-04-04T10:54:24.465420",
+    "total_tests": 26,
+    "passed": 0,
+    "failed": 0,
+    "skipped": 26,
+    "errors": 0
+  },
+  "categories": {
+    "TestAgentToolingAudit": {
+      "description": "Audits the individual tool functions used by the Pydantic AI agent.",
+      "tests": [
+        {
+          "name": "test_example_tool_success",
+          "description": "Verify tool function success path and correct dependency usage.",
+          "status": "not_run"
+        },
+        {
+          "name": "test_tool_missing_dependency",
+          "description": "Audit: Check graceful handling of missing optional dependencies (e.g., API key).",
+          "status": "not_run"
+        },
+        {
+          "name": "test_tool_api_failure",
+          "description": "Audit: Check handling of external API errors (e.g., 4xx/5xx).",
+          "status": "not_run"
+        },
+        {
+          "name": "test_define_scope_node",
+          "description": "Verify scope definition node updates state correctly.",
+          "status": "not_run"
+        },
+        {
+          "name": "test_coder_agent_node",
+          "description": "Verify coder node interacts with agent and updates message state.",
+          "status": "not_run"
+        },
+        {
+          "name": "test_route_user_message_node",
+          "description": "Verify routing node directs flow based on user input.",
+          "status": "not_run"
+        },
+        {
+          "name": "test_full_graph_execution",
+          "description": "Simulate a multi-step execution through the graph.",
+          "status": "not_run"
+        },
+        {
+          "name": "test_api_key_exposure",
+          "description": "Audit: Ensure API keys are loaded securely (env vars) and not hardcoded.",
+          "status": "not_run"
+        },
+        {
+          "name": "test_type_hinting",
+          "description": "Audit: Check for presence and correctness of type hints (manual inspection or static analysis tool).",
+          "status": "not_run"
+        },
+        {
+          "name": "test_error_handling_specificity",
+          "description": "Audit: Recommend using specific exceptions over broad 'except Exception'.",
+          "status": "not_run"
+        }
+      ]
+    },
+    "TestLangGraphNodeAudit": {
+      "description": "Audits the functions used as nodes in the LangGraph workflow.",
+      "tests": [
+        {
+          "name": "test_define_scope_node",
+          "description": "Verify scope definition node updates state correctly.",
+          "status": "not_run"
+        },
+        {
+          "name": "test_coder_agent_node",
+          "description": "Verify coder node interacts with agent and updates message state.",
+          "status": "not_run"
+        },
+        {
+          "name": "test_route_user_message_node",
+          "description": "Verify routing node directs flow based on user input.",
+          "status": "not_run"
+        },
+        {
+          "name": "test_full_graph_execution",
+          "description": "Simulate a multi-step execution through the graph.",
+          "status": "not_run"
+        },
+        {
+          "name": "test_api_key_exposure",
+          "description": "Audit: Ensure API keys are loaded securely (env vars) and not hardcoded.",
+          "status": "not_run"
+        },
+        {
+          "name": "test_type_hinting",
+          "description": "Audit: Check for presence and correctness of type hints (manual inspection or static analysis tool).",
+          "status": "not_run"
+        },
+        {
+          "name": "test_error_handling_specificity",
+          "description": "Audit: Recommend using specific exceptions over broad 'except Exception'.",
+          "status": "not_run"
+        }
+      ]
+    },
+    "TestLangGraphFlowAudit": {
+      "description": "Audits the overall compiled LangGraph flow.",
+      "tests": [
+        {
+          "name": "test_full_graph_execution",
+          "description": "Simulate a multi-step execution through the graph.",
+          "status": "not_run"
+        },
+        {
+          "name": "test_api_key_exposure",
+          "description": "Audit: Ensure API keys are loaded securely (env vars) and not hardcoded.",
+          "status": "not_run"
+        },
+        {
+          "name": "test_type_hinting",
+          "description": "Audit: Check for presence and correctness of type hints (manual inspection or static analysis tool).",
+          "status": "not_run"
+        },
+        {
+          "name": "test_error_handling_specificity",
+          "description": "Audit: Recommend using specific exceptions over broad 'except Exception'.",
+          "status": "not_run"
+        }
+      ]
+    },
+    "TestSecurityAudit": {
+      "description": "Specific tests focused on potential security vulnerabilities.",
+      "tests": [
+        {
+          "name": "test_api_key_exposure",
+          "description": "Audit: Ensure API keys are loaded securely (env vars) and not hardcoded.",
+          "status": "not_run"
+        },
+        {
+          "name": "test_type_hinting",
+          "description": "Audit: Check for presence and correctness of type hints (manual inspection or static analysis tool).",
+          "status": "not_run"
+        },
+        {
+          "name": "test_error_handling_specificity",
+          "description": "Audit: Recommend using specific exceptions over broad 'except Exception'.",
+          "status": "not_run"
+        }
+      ]
+    },
+    "TestBestPracticesAudit": {
+      "description": "Checks related to code style, clarity, and maintainability.",
+      "tests": [
+        {
+          "name": "test_type_hinting",
+          "description": "Audit: Check for presence and correctness of type hints (manual inspection or static analysis tool).",
+          "status": "not_run"
+        },
+        {
+          "name": "test_error_handling_specificity",
+          "description": "Audit: Recommend using specific exceptions over broad 'except Exception'.",
+          "status": "not_run"
+        }
+      ]
+    }
+  },
+  "recommendations": []
+}

@@ -1,0 +1,300 @@
+{
+  "mcp_version": "1.0",
+  "timestamp": "2025-04-07T11:36:13.171578",
+  "type": "principles_report",
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2025-04-07T11:36:13.171428",
+    "company": "Lightwave Media LLC",
+    "environment": "development",
+    "update_frequency": "daily",
+    "mcp_version": "1.0",
+    "generated_by": "example_user"
+  },
+  "variables": {
+    "default_review_cycle": "14",
+    "company_goals": "Improve code quality and test coverage",
+    "current_sprint": "core-sprint-03",
+    "team_focus": "API modernization",
+    "key_metrics": "{'test_coverage': 85, 'api_response_time': 150}"
+  },
+  "principles": {
+    "embrace_reality": {
+      "id": "P01",
+      "title": "Embrace Reality and Deal With It",
+      "description": "Understand and accept reality as it is, not as you wish it were. Base decisions on objective assessment.",
+      "keywords": [
+        "realism",
+        "objectivity",
+        "truth",
+        "acceptance"
+      ],
+      "application_context": [
+        "decision making",
+        "problem diagnosis",
+        "risk assessment",
+        "planning"
+      ],
+      "last_applied": "2025-04-07T11:36:13.171434",
+      "success_metric": "0.85",
+      "recent_examples": "Identified and addressed technical debt in auth system"
+    },
+    "five_step_process": {
+      "id": "P02",
+      "title": "Use the 5-Step Process to Get What You Want Out of Life (and Work)",
+      "description": "1. Set Clear Goals. 2. Identify Problems. 3. Diagnose Problems. 4. Design Solutions. 5. Do What's Needed.",
+      "keywords": [
+        "goals",
+        "problems",
+        "diagnosis",
+        "design",
+        "execution",
+        "process"
+      ],
+      "application_context": [
+        "project planning",
+        "feature development",
+        "problem solving",
+        "refactoring"
+      ],
+      "current_goals": "{active_project_goals}",
+      "identified_problems": "{current_sprint_problems}",
+      "solution_progress": "{solution_implementation_status}"
+    },
+    "radical_open_mindedness": {
+      "id": "P03",
+      "title": "Be Radically Open-Minded",
+      "description": "Genuinely consider the perspectives of others, especially those who disagree with you, to increase the probability of being right. Recognize your blind spots.",
+      "keywords": [
+        "open-mindedness",
+        "humility",
+        "disagreement",
+        "feedback",
+        "learning",
+        "blind spots"
+      ],
+      "application_context": [
+        "code review",
+        "architecture discussion",
+        "team collaboration",
+        "decision making"
+      ],
+      "recent_feedback": "{latest_team_feedback}",
+      "disagreement_resolution": "{recent_resolved_conflicts}"
+    },
+    "everything_is_a_machine": {
+      "id": "P04",
+      "title": "Understand that Everything is a Machine",
+      "description": "View systems (codebases, teams, processes) as machines with inputs, outputs, and cause-effect relationships. Understand how they work and how to improve them.",
+      "keywords": [
+        "systems thinking",
+        "cause-effect",
+        "design",
+        "improvement",
+        "process"
+      ],
+      "application_context": [
+        "architecture design",
+        "debugging",
+        "process improvement",
+        "performance analysis"
+      ],
+      "system_health": "{current_system_health_metrics}",
+      "recent_improvements": "{latest_system_improvements}"
+    },
+    "pain_plus_reflection_equals_progress": {
+      "id": "P05",
+      "title": "Pain + Reflection = Progress",
+      "description": "View mistakes and painful experiences as opportunities to learn and improve. Reflect deeply to understand the root causes and derive principles.",
+      "keywords": [
+        "pain",
+        "reflection",
+        "learning",
+        "mistakes",
+        "progress",
+        "evolution"
+      ],
+      "application_context": [
+        "post-mortems",
+        "retrospectives",
+        "debugging",
+        "personal development"
+      ],
+      "recent_learnings": "{latest_postmortem_insights}",
+      "improvement_metrics": "{learning_implementation_progress}"
+    },
+    "ego_barrier": {
+      "id": "P06",
+      "title": "Recognize and Overcome the Ego Barrier",
+      "description": "Your ego prevents you from acknowledging weaknesses and mistakes objectively. Subordinate your ego to the goal of finding the best possible outcome.",
+      "keywords": [
+        "ego",
+        "humility",
+        "objectivity",
+        "weakness",
+        "mistakes"
+      ],
+      "application_context": [
+        "collaboration",
+        "feedback",
+        "self-assessment"
+      ],
+      "team_feedback_stats": "{recent_feedback_metrics}",
+      "improvement_areas": "{identified_growth_areas}"
+    },
+    "blind_spot_barrier": {
+      "id": "P07",
+      "title": "Recognize and Overcome the Blind Spot Barrier",
+      "description": "You can't see everything. Rely on the perspectives of others who are wired differently to see risks and opportunities you might miss.",
+      "keywords": [
+        "blind spots",
+        "perspective",
+        "collaboration",
+        "diversity of thought"
+      ],
+      "application_context": [
+        "teamwork",
+        "decision making",
+        "risk assessment"
+      ],
+      "identified_blindspots": "{recent_blindspot_discoveries}",
+      "mitigation_strategies": "{current_mitigation_plans}"
+    },
+    "struggle_well": {
+      "id": "P08",
+      "title": "Struggle Well",
+      "description": "Push through challenges and discomfort. The struggle towards goals leads to evolution and is where the real rewards lie.",
+      "keywords": [
+        "struggle",
+        "perseverance",
+        "evolution",
+        "challenge",
+        "determination"
+      ],
+      "application_context": [
+        "complex tasks",
+        "learning new skills",
+        "long projects"
+      ],
+      "current_challenges": "{active_challenges}",
+      "growth_metrics": "{challenge_resolution_rate}"
+    },
+    "think_for_yourself": {
+      "id": "P09",
+      "title": "Think for Yourself About What Is True",
+      "description": "Don't blindly accept conventional wisdom or others' opinions. Develop your own understanding based on evidence and logic.",
+      "keywords": [
+        "independent thinking",
+        "truth",
+        "logic",
+        "evidence",
+        "analysis"
+      ],
+      "application_context": [
+        "decision making",
+        "problem solving",
+        "architecture design"
+      ],
+      "innovation_metrics": "{novel_solution_count}",
+      "validation_data": "{evidence_based_decisions}"
+    },
+    "balance_risk_reward": {
+      "id": "P10",
+      "title": "Balance Risk and Reward",
+      "description": "Understand that higher rewards typically involve higher risks. Know how to manage risk effectively to achieve your goals.",
+      "keywords": [
+        "risk",
+        "reward",
+        "decision making",
+        "trade-offs",
+        "investment"
+      ],
+      "application_context": [
+        "strategic planning",
+        "feature prioritization",
+        "technology choices"
+      ],
+      "risk_assessment": "{current_risk_metrics}",
+      "reward_tracking": "{achieved_benefits}"
+    }
+  },
+  "development_principles": {
+    "modular_design": {
+      "id": "SD01",
+      "title": "Prioritize Modular Design (via Django Apps)",
+      "description": "Manage codebase complexity by designing granular, well-defined Django apps with clear responsibilities and public APIs. Promotes separation of concerns and maintainability.",
+      "keywords": [
+        "django",
+        "apps",
+        "modularity",
+        "complexity",
+        "separation of concerns",
+        "api",
+        "architecture"
+      ],
+      "application_context": [
+        "architecture design",
+        "refactoring",
+        "code review",
+        "feature development"
+      ],
+      "modularity_score": "{current_modularity_metrics}",
+      "app_dependencies": "{app_dependency_graph}",
+      "recent_refactors": "{latest_modular_improvements}"
+    },
+    "clear_public_apis": {
+      "id": "SD02",
+      "title": "Define Clear Public APIs for Modules/Apps",
+      "description": "Ensure interactions between different parts of the codebase (especially Django apps) happen through well-defined, stable interfaces (e.g., an api.py file). Avoid tight coupling.",
+      "keywords": [
+        "api",
+        "interface",
+        "coupling",
+        "dependencies",
+        "django",
+        "apps",
+        "architecture"
+      ],
+      "application_context": [
+        "architecture design",
+        "refactoring",
+        "code review"
+      ],
+      "api_coverage": "{public_api_coverage}",
+      "interface_stability": "{api_breaking_changes}",
+      "coupling_metrics": "{current_coupling_score}"
+    },
+    "manage_dependencies": {
+      "id": "SD03",
+      "title": "Manage the Dependency Graph",
+      "description": "Be mindful of dependencies between apps/modules. Aim for a clear, acyclic graph where possible. Diagnose and mitigate circular imports.",
+      "keywords": [
+        "dependencies",
+        "coupling",
+        "circular imports",
+        "architecture",
+        "maintainability"
+      ],
+      "application_context": [
+        "architecture design",
+        "refactoring",
+        "code review",
+        "problem diagnosis"
+      ],
+      "dependency_health": "{dependency_graph_metrics}",
+      "circular_deps": "{identified_circular_imports}",
+      "resolution_status": "{dependency_improvements}"
+    }
+  },
+  "metrics": {
+    "embrace_reality_success_metric": "0.85",
+    "pain_plus_reflection_equals_progress_improvement_metrics": "{learning_implementation_progress}",
+    "ego_barrier_team_feedback_stats": "{recent_feedback_metrics}",
+    "blind_spot_barrier_mitigation_strategies": "{current_mitigation_plans}",
+    "struggle_well_growth_metrics": "{challenge_resolution_rate}",
+    "think_for_yourself_innovation_metrics": "{novel_solution_count}",
+    "modular_design_modularity_score": "{current_modularity_metrics}",
+    "clear_public_apis_coupling_metrics": "{current_coupling_score}"
+  },
+  "status": "healthy"
+}

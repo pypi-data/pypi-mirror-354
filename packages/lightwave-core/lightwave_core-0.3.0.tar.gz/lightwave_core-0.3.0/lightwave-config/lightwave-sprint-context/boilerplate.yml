@@ -1,0 +1,34 @@
+description: "Lightwave Shared Core Sprint Context Template"
+version: "1.0.0"
+
+options:
+  - name: ProjectName
+    description: "The name of the project (e.g., lightwave-shared-core)"
+    default: "lightwave-shared-core"
+    prompt: "What is the name of the project?"
+  
+  - name: SprintName
+    description: "The name of the sprint (e.g., core-sprint-01)"
+    default: "core-sprint-01"
+    prompt: "What is the name of this sprint?"
+  
+  - name: SprintGoal
+    description: "The main goal for this sprint"
+    default: "Implement foundational shared components"
+    prompt: "What is the primary goal for this sprint?"
+  
+  - name: MinPythonVersion
+    description: "Minimum Python version required"
+    default: "3.11"
+    prompt: "What is the minimum Python version required?"
+  
+  - name: PackageStructure
+    description: "Whether to show the package structure section"
+    default: true
+    type: bool
+    prompt: "Include the package structure diagram?"
+
+templates:
+  - source: "global-core-sprint-template.yaml"
+    destination: "{{ .SprintName }}-context.md"
+    template: true 

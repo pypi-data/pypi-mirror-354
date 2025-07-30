@@ -1,0 +1,35 @@
+{
+  "metadata": {
+    "audit_id": "3aae0014-c66f-4a22-b392-d7c3bf258cda",
+    "target": "LightWave AI Services",
+    "component": "Test Component",
+    "environment": "development",
+    "version": "1.0.0",
+    "generated": "2025-04-04T12:22:57.046155",
+    "description": "This is a test audit report for integration testing."
+  },
+  "results": {
+    "code_quality": {
+      "score": 85,
+      "issues_found": 12,
+      "critical_issues": 2,
+      "recommendations": [
+        "Increase test coverage in authentication module",
+        "Fix linting issues in data_processor.py"
+      ]
+    },
+    "security": {
+      "score": 90,
+      "vulnerabilities": 3,
+      "severity_breakdown": {
+        "high": 1,
+        "medium": 1,
+        "low": 1
+      },
+      "recommendations": [
+        "Update dependencies with known vulnerabilities",
+        "Use environment variables for sensitive configuration"
+      ]
+    }
+  }
+}

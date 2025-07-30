@@ -1,0 +1,232 @@
+# Lightwave Ecosystem Subdomain Configuration
+# This file defines the subdomain structure for Lightwave applications
+# Configured for use with django-hosts
+
+# Main domains for different applications
+domains:
+  createos:
+    primary: createos.io
+    description: Central business management platform
+  cineos:
+    primary: cineos.io
+    description: Cinematography workflow platform
+  photographyos:
+    primary: photographyos.io
+    description: Photography workflow platform
+  photo_workflows:
+    primary: photo-workflows.com
+    description: Photo processing automation
+  portfolio: 
+    primary: joelschaeffer.com
+    description: Portfolio, Blog & shop
+  corporate:
+    primary: lightwave-media.site
+    description: Company information
+
+# Common subdomain patterns across all applications
+common_subdomains:
+  admin:
+    description: System administration and CMS
+    required: true
+    urls_module: admin_urls
+    host_conf_name: admin_host
+  auth:
+    description: Authentication service
+    required: true
+    urls_module: auth_urls
+    host_conf_name: auth_host
+  api:
+    description: API endpoints
+    required: true
+    urls_module: api_urls
+    host_conf_name: api_host
+  app:
+    description: Main web application
+    required: true
+    urls_module: app_urls
+    host_conf_name: app_host
+  cdn:
+    description: Cloudflare R2 CDN for assets
+    required: true
+    urls_module: cdn_urls
+    host_conf_name: cdn_host
+  mobile:
+    description: Mobile app API
+    required: false
+    urls_module: mobile_urls
+    host_conf_name: mobile_host
+  desktop:
+    description: Desktop app API
+    required: false
+    urls_module: desktop_urls
+    host_conf_name: desktop_host
+
+# Application-specific configuration
+applications:
+  createos:
+    enabled_subdomains:
+      - admin
+      - auth
+      - api
+      - app
+      - cdn
+    default_host: app
+    parent_host: createos.io
+    
+  cineos:
+    enabled_subdomains:
+      - admin
+      - auth
+      - api
+      - app
+      - mobile
+      - desktop
+      - cdn
+    default_host: app
+    parent_host: cineos.io
+    
+  photographyos:
+    enabled_subdomains:
+      - admin
+      - auth
+      - api
+      - app
+      - mobile
+      - desktop
+      - cdn
+    default_host: app
+    parent_host: photographyos.io
+    
+  photo_workflows:
+    enabled_subdomains:
+      - admin
+      - auth
+      - api
+      - app
+      - mobile
+      - desktop
+      - cdn
+    default_host: app
+    parent_host: photo-workflows.com
+    
+  portfolio:
+    enabled_subdomains:
+      - admin
+      - auth
+      - api
+      - shop
+      - mobile
+      - desktop
+      - cdn
+    default_host: www
+    parent_host: joelschaeffer.com
+    
+  corporate:
+    enabled_subdomains:
+      - admin
+      - auth
+      - cdn
+    default_host: www
+    parent_host: lightwave-media.site
+
+# Django Hosts Configuration
+# This file defines the host configurations for different environments
+
+environments:
+  development:
+    default_host: www
+    parent_host: localhost:8000
+    hosts:
+      - name: www
+        app_name: www
+        subdomain: ''
+        urlconf: website.urls
+      - name: api
+        app_name: api
+        subdomain: api
+        urlconf: api.urls
+      - name: admin
+        app_name: admin
+        subdomain: admin
+        urlconf: admin_site.urls
+      - name: dashboard
+        app_name: dashboard
+        subdomain: dashboard
+        urlconf: dashboard.urls
+
+  staging:
+    default_host: www
+    parent_host: example-staging.com
+    hosts:
+      - name: www
+        app_name: www
+        subdomain: ''
+        urlconf: website.urls
+      - name: api
+        app_name: api
+        subdomain: api
+        urlconf: api.urls
+      - name: admin
+        app_name: admin
+        subdomain: admin
+        urlconf: admin_site.urls
+      - name: dashboard
+        app_name: dashboard
+        subdomain: dashboard
+        urlconf: dashboard.urls
+
+  production:
+    default_host: www
+    parent_host: example.com
+    hosts:
+      - name: www
+        app_name: www
+        subdomain: ''
+        urlconf: website.urls
+      - name: api
+        app_name: api
+        subdomain: api
+        urlconf: api.urls
+      - name: admin
+        app_name: admin
+        subdomain: admin
+        urlconf: admin_site.urls
+      - name: dashboard
+        app_name: dashboard
+        subdomain: dashboard
+        urlconf: dashboard.urls
+
+# Settings that apply across all environments
+global_settings:
+  host_scheme: https  # or http for development
+  host_port: ''  # empty string for standard ports (80/443)
+  host_callback: 'django_hosts.callbacks.cached_host_site'
+  prepend_www: false
+  
+# Custom host callbacks if needed
+callbacks:
+  admin_only:
+    module: 'project.hosts.callbacks'
+    function: 'admin_only_callback'
+  api_versioned:
+    module: 'project.hosts.callbacks'
+    function: 'api_versioned_callback'
+
+# Django Hosts Configuration
+django_hosts_settings:
+  # Settings to be added to Django settings file
+  settings:
+    ROOT_HOSTCONF: "lightwave.core.hosts"
+    DEFAULT_HOST: "app"  # Default is the main application
+    HOST_PORT: "8000"  # For local development
+    PARENT_HOST: ""  # Will be set dynamically based on application
+    
+  # Middleware configuration
+  middleware:
+    host_middleware: "django_hosts.middleware.HostsRequestMiddleware"
+    host_response_middleware: "django_hosts.middleware.HostsResponseMiddleware"
+    
+  # Where to insert the middleware in the middleware list
+  middleware_position:
+    host_middleware: 0  # First in the list
+    host_response_middleware: -1  # Last in the list 
