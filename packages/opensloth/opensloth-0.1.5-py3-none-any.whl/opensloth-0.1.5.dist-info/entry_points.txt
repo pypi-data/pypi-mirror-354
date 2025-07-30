@@ -1,0 +1,7 @@
+[console_scripts]
+opensloth-build-dataset=opensloth.scripts.build_dataset:main
+opensloth-export=opensloth.scripts.export:main
+opensloth-init=opensloth.scripts.get_example_config:main
+opensloth-prepare-unsloth-model=opensloth.scripts.prepare_model:main
+opensloth-train=opensloth.scripts.hp_trainer:train
+
