@@ -1,0 +1,21 @@
+Metadata-Version: 2.3
+Name: yt-transcript-fetcher
+Version: 0.1.0
+Summary: This library can be used to fetch transcripts for YouTube videos
+License: MIT
+Keywords: youtube,transcript,yt-transcript,yt,video,subtitle
+Author: Dan Eagle
+Author-email: dan@tyto.cc
+Requires-Python: >=3.9,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Dist: requests (>=2.32.4,<3.0.0)
+Description-Content-Type: text/markdown
+
+
