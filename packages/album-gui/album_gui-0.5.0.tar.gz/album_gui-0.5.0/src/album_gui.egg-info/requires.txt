@@ -1,0 +1,5 @@
+album<0.13,>=0.12
+PyQt5>=5.15.6
+
+[:platform_system == "Windows"]
+pywin32>=303
