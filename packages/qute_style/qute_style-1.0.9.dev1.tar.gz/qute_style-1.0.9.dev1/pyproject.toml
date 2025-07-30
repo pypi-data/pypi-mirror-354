@@ -1,0 +1,93 @@
+[tool.poetry]
+name = "qute_style"
+version = "1.0.9-dev1"
+description = "QuteStyle is an expandable application framework for PySide6"
+authors = ["Marina Baumgartner, Dairen Gonschior, Tilman Krummeck, Dennis Spitzhorn, Gerhard Trapp, Patrick Zwerschke <PS-TF-Entwicklung@tuev-sued.de>"]
+readme = "README.md"
+repository = "https://github.com/TUV-SUD-Product-Service-GmbH/QuteStyle"
+license = "MIT"
+packages = [
+    {include = "qute_style"},
+    {include = "qute_style_examples"},
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.12"
+PySide6 = "6.5.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "8.4.0"
+pytest-qt = "4.4.0"
+requests = "2.32.3"
+black = "25.1.0"
+coverage = "7.8.2"
+isort = "6.0.1"
+mypy = "1.16.0"
+pre-commit = "4.2.0"
+pytest-cov = "^6.0.0"
+pytest-github-actions-annotate-failures = "^0.2.0"
+ruff = "^0.11.12"
+types-requests = "2.32.0.20250602"
+
+
+[tool.poetry.scripts]
+qute-style-example = "qute_style_examples.main:main_method"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+# Decrease the maximum line length to 79 characters.
+line-length = 79
+target-version = "py311"
+src = ["qute_style", "qute_style_examples", "tests", "dev_scripts"]
+extend-exclude = ["gen", "ui", "resources", "resources_rc.py"]
+
+[tool.ruff.lint]
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+select = [
+  "E",   # pycodestyle
+  "F",   # pyflakes
+  "A",   # flake8-builtins
+  "B",   # flake8-bugbear
+  "C4",  # flake8-comprehensions
+  "Q",   # flake8-quotes
+  "RET", # flake8-return
+  "SIM", # flake8-simplify
+  "PTH", # flake8-use-pathlib
+  "UP",  # pyupgrade
+  "D",   # pydocstyle
+  #"I",   # isort - differs from regular isort a little bit
+  # see -> https://docs.astral.sh/ruff/faq/#how-does-ruffs-import-sorting-compare-to-isort
+  "N",   # pep8-naming
+  "W",   # warning
+  "PL",  # Pylint
+  "PGH", # pygrep-hooks
+  "PD",  # pandas-vet
+  "FLY", # flynt
+  "NPY", # NumPy-specific rules
+  "PERF",# Perflint
+  "RUF", # Ruff-specific rules
+]
+
+# general ignore:
+# multi-line-summary-first-line, mutable-class-default,
+# magic-value-comparison, yoda-conditions, function-call-in-default-argument,
+# expr-or-true, blanket-type-ignore, bare-except
+ignore = ["D212", "RUF012", "PLR2004", "SIM300", "B008", "SIM222", "PGH003", "E722"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["D104"]  # undocumented-public-package
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.pylint]
+max-branches = 14
