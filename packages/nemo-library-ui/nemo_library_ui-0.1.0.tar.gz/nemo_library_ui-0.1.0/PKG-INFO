@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: nemo_library_ui
+Version: 0.1.0
+Summary: UI for the NEMO Python library
+Home-page: https://github.com/NEMOGunnar/nemo_library_ui
+Author: Gunnar Schug
+Author-email: gunnar.schug@nemo-ai.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: FastAPI
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
+Requires-Dist: jinja2
+Requires-Dist: nemo_library
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# nemo_library_ui
+
+A web-based UI for the NEMO AI library using FastAPI and Jinja2.
