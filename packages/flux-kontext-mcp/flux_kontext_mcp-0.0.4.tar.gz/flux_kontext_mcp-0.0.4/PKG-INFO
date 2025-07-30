@@ -1,0 +1,47 @@
+Metadata-Version: 2.4
+Name: flux-kontext-mcp
+Version: 0.0.4
+Summary: Flux.1 Kontext MCP Server
+Project-URL: Homepage, https://github.com/sugarforever/flux-kontext-mcp
+Project-URL: Bug Tracker, https://github.com/sugarforever/flux-kontext-mcp/issues
+License-File: LICENSE
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.10
+Requires-Dist: mcp==1.8.1
+Requires-Dist: openai>=1.86.0
+Requires-Dist: replicate>=1.0.7
+Requires-Dist: requests>=2.32.3
+Description-Content-Type: text/markdown
+
+# Flux.1 Kontext MCP Server
+
+MCP server configuration:
+
+```json
+{
+    "mcpServers": {
+        "flux_kontext_mcp": {
+            "command": "uvx",
+            "args": ["flux-kontext-mcp"],
+            "env": {
+                "REPLICATE_API_TOKEN": "your_replicate_api_token"
+            }
+        }
+    }
+}
+```
+
+## MCP tools
+
+- flux_kontext_generate
+- flux_kontext_async_generate
+- flux_kontext_get_prediction
+- flux_kontext_list_predictions
+- flux_kontext_cancel_prediction
+- flux_kontext_wait_for_prediction
+- flux_kontext_get_model_info
+
+
+
