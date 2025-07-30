@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyweb2md"
+version = "0.1.0"
+description = "专为LLM应用优化的网页内容提取和Markdown转换工具"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [{name = "kian_liu", email = "kian_liu@foxmail.com"}]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP :: Browsers",
+    "Topic :: Text Processing :: Markup :: HTML",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "selenium>=4.15.0",
+    "beautifulsoup4>=4.12.0",
+    "lxml>=4.9.0",
+    "webdriver-manager>=4.0.0",
+]
+keywords = ["web scraping", "markdown", "llm", "ai", "content extraction", "html to markdown", "token optimization"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/PyWeb2MD/pyweb2md"
+Repository = "https://github.com/PyWeb2MD/pyweb2md"
+Documentation = "https://github.com/PyWeb2MD/pyweb2md#readme"
+"Bug Tracker" = "https://github.com/PyWeb2MD/pyweb2md/issues"
+Changelog = "https://github.com/PyWeb2MD/pyweb2md/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+include = ["pyweb2md*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"] 
