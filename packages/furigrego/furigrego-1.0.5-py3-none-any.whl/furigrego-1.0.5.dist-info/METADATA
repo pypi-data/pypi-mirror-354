@@ -1,0 +1,29 @@
+Metadata-Version: 2.3
+Name: furigrego
+Version: 1.0.5
+Summary: Chez Grego
+License: MIT
+Author: Grego
+Requires-Python: >=3.11,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: beautifulsoup4 (>=4.12.2,<5.0.0)
+Requires-Dist: fugashi[unidic-lite] (>=1.2.1,<2.0.0)
+Requires-Dist: lxml (>=4.9.2,<5.0.0)
+Requires-Dist: unidic (>=1.1.0,<2.0.0)
+Project-URL: Homepage, https://chezgrego.com/
+Project-URL: Repository, https://chezgrego.com/
+Description-Content-Type: text/markdown
+
+# Furigrego
+
+Ajout automatique de furigana à partir de texte japonais.
+
+## Installation
+
+```bash
+pip install furigrego
+
