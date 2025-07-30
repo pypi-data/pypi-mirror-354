@@ -1,0 +1,36 @@
+Metadata-Version: 2.4
+Name: dynamic_forest
+Version: 1.0.0
+Summary: A dynamic forest data structure.
+Project-URL: Homepage, https://github.com/pmacg/dynamic-forest
+Project-URL: Issues, https://github.com/pmacg/dynamic-forest/issues
+Author-email: Peter Macgregor <prm4@st-andrews.ac.uk>
+License-File: LICENSE
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+# Dynamic Forest Python Library
+An implementation of a dynamic tree data structure in Python.
+
+## Reference
+
+If you find this software useful, we would appreciate if you could cite the following work, for which this implementation
+was developed.
+
+```
+Shin, S., Shomorony, I., and Macgregor, P. (2025). Dynamic DBSCAN with Euler Tour Sequences. In 28th International Conference on Artificial Intelligence and Statistics (AISTATS 2025). PMLR.
+```
+
+If you use bibtex, you can copy the following into your .bib file.
+
+```
+@inproceedings{shin2025dynamic,
+  title = {Dynamic DBSCAN with Euler Tour Sequences},
+  booktitle = {28th {{International Conference on Artificial Intelligence and Statistics}} ({{AISTATS}}'25)},
+  author = {Seiyun Shin and Ilan Shomorony and Peter Macgregor},
+  year = {2025}
+}
+```
