@@ -1,0 +1,62 @@
+Metadata-Version: 2.4
+Name: Spektrum
+Version: 1.2.1
+Summary: Spektrum is a spec-based testing library to help facilitate BDD-testing in Python.
+Home-page: https://github.com/liquidweb/spektrum
+Author: LiquidWeb Quality Engineering
+Author-email: software-qa@liquidweb.com
+License: MIT License
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.5
+License-File: LICENSE
+License-File: NOTICE
+Requires-Dist: colored
+Requires-Dist: docopt
+Requires-Dist: pike>=0.1.0
+Requires-Dist: coverage
+Requires-Dist: httpx>=0.23.0
+Requires-Dist: python-dateutil>=2.8.2
+Requires-Dist: pyyaml
+Requires-Dist: ast-decompiler
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+.. role:: raw-html(raw)
+   :format: html
+
+.. _GitHub: https://github.com/liquidweb/spektrum
+
+
+Spektrum
+========
+
+Spektrum is a Python testing framework inspired from RSpec and Jasmine.
+The library was created out of a desire to have a relatively flexible Python
+testing framework that adopted a more code-centric approach to BDD.
+
+Spektrum is open-source and is available on `GitHub`_. We love contributions!
+
+Getting Started
+~~~~~~~~~~~~~~~~
+
+Continuous Integration
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Release Notes
+~~~~~~~~~~~~~~
+
+- `Release notes`_ are available in the documentation
