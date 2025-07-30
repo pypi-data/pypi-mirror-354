@@ -1,0 +1,89 @@
+name: Lint Changed Packages
+
+on:
+  push:
+
+jobs:
+  detect-changed-packages:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.generate_matrix.outputs.matrix }}
+      has_changed_packages: ${{ steps.generate_matrix.outputs.has_changed_packages }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history to enable accurate diffing
+
+      - name: Get changed files list
+        id: changed_files_list_action
+        uses: tj-actions/changed-files@v44
+
+      - name: Generate package matrix
+        id: generate_matrix
+        run: |
+          chmod +x .github/scripts/generate_matrix.sh
+          .github/scripts/generate_matrix.sh
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed_files_list_action.outputs.all_changed_files }}
+          PACKAGES_TO_LINT: "qcog_exp/intech/pytorch_models"
+        shell: bash
+
+  lint-test-package:
+    needs: detect-changed-packages
+    if: needs.detect-changed-packages.outputs.has_changed_packages == 'true' # Only run if there are changed packages
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false # If one package fails, others continue
+      matrix: ${{ fromJson(needs.detect-changed-packages.outputs.matrix) }}
+    env:
+      UV_INDEX_GEMFURY_PASSWORD: ${{ secrets.GEMFURY_READ_TOKEN }} # Token as username
+      UV_INDEX_GEMFURY_USERNAME: qognitive
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4 # Matched your original setup
+        with:
+          python-version: 3.12
+
+      - name: Install UV
+        uses: astral-sh/setup-uv@v6 # Matched your original setup
+        with:
+          version: latest # Or your preferred UV version
+
+      - name: Announce package being processed
+        run: |
+          echo "Linting and testing package: ${{ matrix.package_dir }}"
+
+      - name: Install package-specific dependencies
+        # This assumes the package's pyproject.toml lists all necessary dependencies, 
+        # including dev dependencies for linting/testing tools (e.g., pytest, ruff, mypy).
+        run: uv pip install --system .[dev] # Use --dev to install development dependencies
+        working-directory: ${{ matrix.package_dir }}
+
+      - name: Build Types for ${{ matrix.package_dir }} (if applicable)
+        # Run from repo root where scripts/build_types.py is located
+        run: python scripts/build_types.py
+        # No working-directory specified, so it runs from repo root
+
+      - name: Format package ${{ matrix.package_dir }}
+        # Assuming your format.sh script is at 'hone-packages/scripts/format.sh'
+        # and is designed to format files in the CWD.
+        # Also assumes tools like Ruff/Black are installed via the package's dev dependencies.
+        run: ../../../scripts/format.sh
+        working-directory: ${{ matrix.package_dir }}
+
+      - name: Lint package ${{ matrix.package_dir }}
+        # Similar assumptions as formatting: script at 'hone-packages/scripts/lint.sh', operates on CWD.
+        # Tools (Ruff, MyPy, etc.) installed from package's dev dependencies.
+        run: ../../../scripts/lint.sh
+        working-directory: ${{ matrix.package_dir }}
+
+      - name: Run tests for ${{ matrix.package_dir }}
+        # Assumes pytest is installed as a dev dependency (via `uv pip install --dev`)
+        # and tests are discoverable by pytest within the package directory (e.g., a 'tests/' subdir).
+        run: pytest
+        working-directory: ${{ matrix.package_dir }}
