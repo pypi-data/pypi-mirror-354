@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: metarace-trackmeet
+Version: 1.13.1
+Summary: Timing and result application for track cycling events
+Author-email: Nathan Fraser <ndf-zz@6-v.org>
+License: MIT
+Project-URL: homepage, https://github.com/ndf-zz/metarace-trackmeet
+Keywords: velodrome
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Other/Nonlisted Topic
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: metarace (>=2.1.8)
+
+# metarace-trackmeet
+Timing and results for track cycling meets
