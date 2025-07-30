@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+ssids=$(sudo iw dev wlan0 scan ap-force | grep "\sSSID:\s*\w" | cut -d' ' -f 2- |grep -v "^_owetm_")
+
+for s in $(printf "%s\n" "$ssids"| tr ' ' '^' | sort -u); do
+    echo $(tr '^' ' ' <<< "$s")
+done
