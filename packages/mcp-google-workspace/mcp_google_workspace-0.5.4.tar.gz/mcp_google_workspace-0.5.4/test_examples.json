@@ -1,0 +1,46 @@
+[
+  {
+    "tool": "create_gmail_draft",
+    "description": "Create a simple HTML email draft",
+    "args": {
+      "__user_id__": "your-email@gmail.com",
+      "to": "test@example.com",
+      "subject": "Test: Simple HTML Email",
+      "body": "This is the plain text version.",
+      "html_body": "<html>\n<body style=\"font-family: Arial, sans-serif;\">\n    <h2 style=\"color: #2c3e50;\">HTML Email Test</h2>\n    <p>This email demonstrates <strong>HTML formatting</strong>.</p>\n    <ul>\n        <li>Rich text formatting</li>\n        <li>Styled content</li>\n        <li>Lists and structure</li>\n    </ul>\n</body>\n</html>"
+    }
+  },
+  {
+    "tool": "create_gmail_draft",
+    "description": "Create email with multiple attachments",
+    "args": {
+      "__user_id__": "your-email@gmail.com",
+      "to": "test@example.com",
+      "subject": "Test: Email with Attachments",
+      "body": "Please find the test files attached.",
+      "attachments": [
+        "/var/folders/t2/rr99mj9x33j8z01r0vbv2_8h0000gn/T/gmail_mcp_test/test_document.txt",
+        "/var/folders/t2/rr99mj9x33j8z01r0vbv2_8h0000gn/T/gmail_mcp_test/test_report.html",
+        "/var/folders/t2/rr99mj9x33j8z01r0vbv2_8h0000gn/T/gmail_mcp_test/test_data.csv",
+        "/var/folders/t2/rr99mj9x33j8z01r0vbv2_8h0000gn/T/gmail_mcp_test/example_code.py"
+      ]
+    }
+  },
+  {
+    "tool": "send_gmail_email",
+    "description": "Send email with both HTML and attachments",
+    "args": {
+      "__user_id__": "your-email@gmail.com",
+      "to": "test@example.com",
+      "subject": "Test: Complete Email Features",
+      "body": "This email has both HTML and attachments.",
+      "html_body": "<html>\n<body>\n    <h2>Complete Feature Test</h2>\n    <p>This email includes:</p>\n    <ol>\n        <li><strong>HTML formatting</strong></li>\n        <li><em>Multiple attachments</em></li>\n        <li>All features combined</li>\n    </ol>\n    <div style=\"background: #f0f0f0; padding: 10px; margin: 10px 0;\">\n        <p>Attached files:</p>\n        <ul>\n            <li>test_document.txt</li>\n            <li>test_report.html</li>\n            <li>test_data.csv</li>\n            <li>example_code.py</li>\n        </ul>\n    </div>\n</body>\n</html>",
+      "attachments": [
+        "/var/folders/t2/rr99mj9x33j8z01r0vbv2_8h0000gn/T/gmail_mcp_test/test_document.txt",
+        "/var/folders/t2/rr99mj9x33j8z01r0vbv2_8h0000gn/T/gmail_mcp_test/test_report.html",
+        "/var/folders/t2/rr99mj9x33j8z01r0vbv2_8h0000gn/T/gmail_mcp_test/test_data.csv",
+        "/var/folders/t2/rr99mj9x33j8z01r0vbv2_8h0000gn/T/gmail_mcp_test/example_code.py"
+      ]
+    }
+  }
+]
