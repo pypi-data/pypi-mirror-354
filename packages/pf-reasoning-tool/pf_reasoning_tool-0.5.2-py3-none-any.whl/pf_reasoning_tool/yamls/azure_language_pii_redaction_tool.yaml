@@ -1,0 +1,39 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Tool.schema.json
+
+name: Azure Language PII Redaction
+description: >-
+  Detects and redacts Personally Identifiable Information (PII) from input text
+  using the Azure AI Language Service.
+type: python
+category: HW_PF_tools
+
+module: pf_reasoning_tool.tools.azure_language_pii_redaction_tool
+function: redact_pii_text
+
+inputs:
+  connection:
+    type: [CustomConnection]
+    description: >-
+      Azure AI Language Service connection. Requires endpoint and API key.
+
+  text_input:
+    type: [string]
+    description: The text from which to redact PII.
+
+  language:
+    type: [string]
+    description: Language code of the input text (e.g., "en", "es").
+    default: "en"
+    optional: true
+
+  pii_categories:
+    type: [list]
+    description: >-
+      (Optional) Specific PII categories to detect/redact (e.g., ["Person", "PhoneNumber"]).
+      If empty or not provided, defaults to all supported categories.
+    optional: true
+
+outputs:
+  output:
+    type: [string]
+    description: The input text with detected PII redacted.
