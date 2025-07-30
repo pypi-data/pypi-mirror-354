@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: MBbankchecker
+Version: 0.2.6
+Summary: bankchecker base on MBBank of The DT
+Author: JussKynn
+License-File: LICENSE.txt
+Requires-Dist: Pillow
+Requires-Dist: requests
+Requires-Dist: aiohttp
+Requires-Dist: setuptools
+Requires-Dist: wheel
+Requires-Dist: wasmtime
+Requires-Dist: mb-capcha-ocr
+Dynamic: author
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
