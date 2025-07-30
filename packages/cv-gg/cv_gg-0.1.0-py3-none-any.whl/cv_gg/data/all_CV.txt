@@ -1,0 +1,3558 @@
+Для каждой задачи решил вставить свой импорт :З
+
+###
+## 1. Задачи по сегментации по порогу (например, гистограмма)
+CV_2(3); CV_3(4-5)
+---
+## 2. Задачи, связанные с гистограммами изображений
+CV_2(1-2); CV_3(5); lab_1(p1_t5, p1_t7, p2_t4)
+---
+## 3. Морфологические операции (расширение, эрозия)
+CV_2(4); CV_3(1-3)
+---
+## 4. Методы избавления от шума, фильтрация по среднему, медиане и т.д.
+CV_1(1-3); CV_3(6-7); lab_1(p2_t7)
+---
+## 5. Методы выделения границ
+CV_1(4); CV_3(7); lab_1(p2_t1, p2_t2)
+---
+## 6. Методы улучшения изображения (эквализация гистограммы)
+lab_1(p1_t7)
+---
+## 7. Классификация на каком-нибудь встроенном датасете (обучение)
+CV_5(1); lab_2(1-3)
+---
+## 8. Трансферное обучение на каком-то встроенном датасете
+CV_5(2); CV_9(all); CV_10(1-2); CV_12(all); CV_13(all); lab_2(4); lab_5(1)
+---
+## 9. Детекция объектов на фото, без обучения, работа с рамками
+CV_6(all); CV_7(all); lab_1(p2_t3)
+---
+## 10. Семантическая сегментация без обучения
+CV_10(3); lab_5(2)
+---
+## 11. Сегментация экземпляров без обучения
+CV_11(all)
+
+###
+## CV_1
+---
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+img = cv2.imread('081312_1337_30.jpg')
+
+plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+
+img.shape
+---
+#1. (сдано на семинаре)
+Напишите программу Python для применения фильтра среднего к изображению с шумом типа «соль-перец». Опишите вывод, включая способность фильтра среднего удалять шум. Без OpenCV.
+
+def avg_filter(image, window = 3):
+    pad = window // 2
+    h, w, c = image.shape
+    image_filtered = np.zeros((h, w, c), dtype = np.uint8)
+    image_pad = np.pad(image, ((pad, pad), (pad, pad), (0, 0)), mode = 'constant', constant_values = 0)
+
+    for i in range(h):
+        for j in range(w):
+            for k in range(c):
+                image_filtered[i, j, k] = np.mean(image_pad[i:i+window, j:j+window, k]).astype(np.uint8)
+
+    return image_filtered
+
+avg_img = avg_filter(img)
+plt.imshow(cv2.cvtColor(avg_img, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+---
+#2. (сдано на семинаре)
+Опишите, насколько эффективен фильтр среднего для удаления шума типа «соль-перец». Основываясь на вашем понимании медианного фильтра, можете ли вы объяснить, почему фильтр среднего не может удалить шум типа «соль-перец»? Измените программу из задания 1 для медианного фильтра.
+
+def median_filter(image, window = 3):
+    pad = window // 2
+    h, w, c = image.shape
+    image_filtered = np.zeros((h, w, c), dtype = np.uint8)
+    image_pad = np.pad(image, ((pad, pad), (pad, pad), (0, 0)), mode = 'constant', constant_values = 0)
+
+    for i in range(h):
+        for j in range(w):
+            for k in range(c):
+                image_filtered[i, j, k] = np.median(image_pad[i:i+window, j:j+window, k]).astype(np.uint8)
+
+    return image_filtered
+
+median_img = median_filter(img)
+plt.imshow(cv2.cvtColor(median_img, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+---
+#3. (сдано на семинаре)
+Напишите программу и проверьте, ли использовать фильтр максимального значения или минимальный фильтр для удаления шума типа «соль-перец»?
+
+def min_filter(image, window = 3):
+    pad = window // 2
+    h, w, c = image.shape
+    image_filtered = np.zeros((h, w, c), dtype = np.uint8)
+    image_pad = np.pad(image, ((pad, pad), (pad, pad), (0, 0)), mode = 'constant', constant_values = 0)
+
+    for i in range(h):
+        for j in range(w):
+            for k in range(c):
+                image_filtered[i, j, k] = np.min(image_pad[i:i+window, j:j+window, k]).astype(np.uint8)
+
+    return image_filtered
+
+def max_filter(image, window = 3):
+    pad = window // 2
+    h, w, c = image.shape
+    image_filtered = np.zeros((h, w, c), dtype = np.uint8)
+    image_pad = np.pad(image, ((pad, pad), (pad, pad), (0, 0)), mode = 'constant', constant_values = 0)
+
+    for i in range(h):
+        for j in range(w):
+            for k in range(c):
+                image_filtered[i, j, k] = np.max(image_pad[i:i+window, j:j+window, k]).astype(np.uint8)
+
+    return image_filtered
+
+min_img = min_filter(img)
+plt.imshow(cv2.cvtColor(min_img, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+
+max_img = max_filter(img)
+plt.imshow(cv2.cvtColor(max_img, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+---
+#4.
+Напишите программу Python для получения разности лапласиана гауссовой функции (LoG). Возьмите изображение 01.jpg из https://drive.google.com/drive/folders/1syZR4mVjJ9Unypdqx8mIXeHew58k83pA?usp=sharing
+
+    *Псевдокод программы будет следующим:*
+
+* Прочитайте изображение.
+
+* Применить фильтр LoG, предполагая стандартное отклонение 1, и сохранить изображение как im1.
+
+* Применить фильтр LoG, предполагая стандартное отклонение 2, и сохранить изображение как im2.
+
+* Найти разницу между двумя изображениями и сохранить полученное изображение?
+
+from scipy.ndimage import gaussian_laplace
+
+im0 = cv2.imread('01.jpg')
+plt.imshow(cv2.cvtColor(im0, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+im0.shape
+
+im1 = gaussian_laplace(im0, sigma = 1)
+plt.imshow(cv2.cvtColor(im1, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+
+im2 = gaussian_laplace(im0, sigma = 2)
+plt.imshow(cv2.cvtColor(im2, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+
+diff = im1 - im2
+plt.imshow(cv2.cvtColor(diff, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+
+cv2.imwrite('im1.jpg', im1)
+cv2.imwrite('im2.jpg', im2)
+cv2.imwrite('diff.jpg', diff)
+
+## CV_2
+---
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+from google.colab.patches import cv2_imshow
+---
+# Задача 1 (сдано на семинаре)
+
+Изучите гистограмму какого-либо изображения на предмет как она себя ведет при следующих преобразованиях.
+1. При переносах: меняйте расстояния и для каждого случая изучите гистограмму. Различаются ли гистограммы входного и выходного изображения при разных расстояниях переноса?
+2. При поворотах: меняйте углы и для каждого случая изучите гистограмму. Различаются ли гистограммы входного и выходного изображения при разных углах?
+3. Различаются ли гистограммы входного и выходного изображения для разных преобразований? Объясните увиденное.
+
+image = cv2.imread('HolHorse.jpg')
+image = cv2.resize(image, (300, 300))
+image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+cv2_imshow(image)
+plt.hist(image.flatten(), 64)
+plt.show()
+
+fig, axs = plt.subplots(1, 3, figsize = (15, 6))
+axs = axs.ravel()
+
+c = 0
+for i, j in [[10, -10], [20, -20], [20, -30]]:
+    height, width = image.shape[:2]
+    tx, ty = i, j
+    translation_matrix = np.array([
+        [1, 0, tx],
+        [0, 1, ty]
+    ], dtype=np.float32)
+    translated_image = cv2.warpAffine(src=image, M=translation_matrix, dsize=(width, height))
+    axs[c].set_title(f'tx = {i}, ty = {j}')
+    axs[c].hist(translated_image.flatten(), 64)
+    c += 1
+plt.show()
+
+height, width = image.shape[:2]
+center = (width // 2, height // 2)
+M = cv2.getRotationMatrix2D(center, -30, .7)
+rotated = cv2.warpAffine(image, M, (width, height))
+cv2_imshow(rotated)
+plt.hist(rotated.flatten(), 64)
+plt.show()
+---
+# Задача 2 (сдано на семинаре)
+
+Что произойдет, если вы увеличите (масштабируете) изображение, сохраняя при этом размер изображения? Попробуйте разные уровни масштабирования (2X, 3X и 4X). Будут ли гистограммы входного изображения и выходного изображения выглядеть по-разному? Покажите это.
+
+image = cv2.imread('HolHorse.jpg')
+image = cv2.resize(image, (300, 300))
+image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+cv2_imshow(image)
+plt.hist(image.flatten(), 64)
+plt.show()
+
+image2 = cv2.resize(cv2.resize(image, None, fx = 2, fy = 2), (300, 300))
+cv2_imshow(image2)
+plt.hist(image2.flatten(), 64)
+plt.show()
+
+image3 = cv2.resize(cv2.resize(image, None, fx = 3, fy = 3), (300, 300))
+cv2_imshow(image3)
+plt.hist(image3.flatten(), 64)
+plt.show()
+
+image4 = cv2.resize(cv2.resize(image, None, fx = 4, fy = 4), (300, 300))
+cv2_imshow(image4)
+plt.hist(image4.flatten(), 64)
+plt.show()
+---
+# Задача 3
+
+Попробуйте как можно качественнее избавиться от фона изображения [https://drive.google.com/file/d/1MZsKGAhnrIikel7zcSWtxszmxfVP1zSq/view?usp=drive_link](https://drive.google.com/file/d/1MZsKGAhnrIikel7zcSWtxszmxfVP1zSq/view?usp=drive_link)
+
+image = cv2.imread('cursive-snippet.jpg')
+image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+cv2_imshow(image)
+
+img = cv2.adaptiveThreshold(image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 15, 7)
+cv2_imshow(img)
+---
+# Задача 4
+
+Исследуйте изображение [https://drive.google.com/file/d/1mPdQQsleX4CN1k5zh85LK2NLeipXzH7L/view?usp=drive_link](https://drive.google.com/file/d/1mPdQQsleX4CN1k5zh85LK2NLeipXzH7L/view?usp=drive_link) и улучшите его разными методами, сравните полученные результаты. Выберите лучше сработавший метод и обоснуйте почему он оказался лучше.
+
+image = cv2.imread('eqlz.jpg')
+image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+plt.imshow(image, cmap = 'gray')
+plt.axis('off')
+plt.show()
+
+kernel = np.ones((5, 5), np.uint8)
+
+dilation = cv2.dilate(image, kernel)
+plt.imshow(dilation, cmap = 'gray')
+plt.axis('off')
+plt.show()
+
+erosion = cv2.erode(image, kernel)
+plt.imshow(erosion, cmap = 'gray')
+plt.axis('off')
+plt.show()
+
+opening = cv2.morphologyEx(image, cv2.MORPH_OPEN, kernel)
+plt.imshow(opening, cmap = 'gray')
+plt.axis('off')
+plt.show()
+
+closing = cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel)
+plt.imshow(closing, cmap = 'gray')
+plt.axis('off')
+plt.show()
+
+**closing** выделяет и не размазывает (в отличие от *dilation*) кости, что делает его лучшим вариантом для улучшения данного изображения среди *морфологических операций*
+
+## CV_3
+---
+import numpy as np
+import matplotlib.pyplot as plt
+import cv2
+from google.colab.patches import cv2_imshow
+from skimage.filters.thresholding import threshold_otsu
+---
+# Задача 1 (сдано на семинаре)
+
+Проведите экспетимент:
+1. Создайте условную картинку - белый квадрат размером 30 на 30 пикселей на черном фоне картинки размерами 100 на 100 пикселей.
+2. Создайте негатив этой картинки - черный квадрат на белом фоне.
+3. К обоим картинкам примените операцию расширения.
+4. К обоим картинкам примените операцию эрозии.
+5. Сделайте выводы.
+
+kernel = np.ones((5, 5), np.uint8)
+
+image_size = (100, 100)
+image = np.zeros(image_size, dtype=np.uint8)
+square_size = 30
+square_start = (35, 35)
+image[square_start[0]:square_start[0] + square_size, square_start[1]:square_start[1] + square_size] = 255
+
+plt.imshow(image, cmap = 'gray')
+plt.show()
+
+dilation = cv2.dilate(image, kernel)
+plt.imshow(dilation, cmap = 'gray')
+plt.show()
+
+erosion = cv2.erode(image, kernel)
+plt.imshow(erosion, cmap = 'gray')
+plt.show()
+
+img_inv = 255 - image
+plt.imshow(img_inv, cmap = 'gray')
+plt.show()
+
+dilation = cv2.dilate(img_inv, kernel)
+plt.imshow(dilation, cmap = 'gray')
+plt.show()
+
+erosion = cv2.erode(img_inv, kernel)
+plt.imshow(erosion, cmap = 'gray')
+plt.show()
+---
+# Задача 2 (сдано на семинаре)
+
+Заполнить отверстия внутри объектов на бинарном изображении. Подберите подходящую картинку самостоятельно.
+
+Можно использовать картинки [1](https://drive.google.com/file/d/1Yp_7FdzL3Ou6N10cEiS3MZJUcNmBg4FE/view?usp=drive_link) [2](https://drive.google.com/file/d/1fniVuHygcJNaRe2WgBRgtQ4VtZjZyYnI/view?usp=drive_link) [3](https://drive.google.com/file/d/11yjAyf6Ddbb4wDv7_WyiYRCWchmOyqC6/view?usp=drive_link) [4](https://drive.google.com/file/d/1B60nmOzS17uvOJD6uvS0aHJv0AWeSez9/view?usp=drive_link) Или подобрать подходящую картинку самостоятельно.
+
+image = cv2.imread('text4.jpg')
+image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+plt.imshow(image, cmap = 'gray')
+plt.axis('off')
+plt.show()
+
+dilation = cv2.dilate(image, kernel, iterations = 40)
+plt.imshow(dilation, cmap = 'gray')
+plt.axis('off')
+plt.show()
+
+opening = cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel, iterations = 40)
+plt.imshow(opening, cmap = 'gray')
+plt.axis('off')
+plt.show()
+---
+# Задача 3 (сдано на семинаре)
+
+Разделить сросшиеся объекты на бинарном изображении с использованием морфологических операций. Подберите подходящую картинку самостоятельно.
+
+image = np.zeros((400, 400), dtype=np.uint8)
+center1 = (120, 120)
+center2 = (260, 260)
+radius = 100
+cv2.circle(image, center1, radius, 255, -1)
+cv2.circle(image, center2, radius, 255, -1)
+
+plt.imshow(image, cmap = 'gray')
+plt.show()
+
+kernel = np.ones((3, 3), np.uint8)
+im = cv2.erode(image, kernel, iterations = 20)
+im = cv2.morphologyEx(im, cv2.MORPH_CLOSE, kernel, iterations = 10)
+im = cv2.dilate(im, kernel, iterations = 5)
+plt.imshow(im, cmap = 'gray')
+plt.show()
+---
+# Задача 4 (сдано на семинаре)
+
+Подберите подходящее для сегментации изображение в полутонах. Сегментируйте изображение, подобрав порог исходя из гистограммы.
+
+image = cv2.imread('cursive-snippet.jpg')
+image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+cv2_imshow(image)
+
+plt.hist(image.flatten(), 256)
+plt.show()
+
+threshold_otsu(image)
+
+im = 255 * (image > 153)
+cv2_imshow(im)
+---
+# Задача 5 (сдано на семинаре)
+
+Сегментировать изображение на основе анализа гистограммы цветовых каналов (RGB).
+
+Для этого:
+1. Разделить изображение на цветовые каналы.
+2. Построить гистограммы для каждого канала.
+3. Найти пороги для каждого канала (например взять порог по Оцу).
+4. Выбрать более-менее подходящее значение порога для изображения исходя из порогов по каналам.
+5. Визуализировать результат бинаризации на исходном цветном изображении.
+
+
+
+img = cv2.imread('Grivus.jpg')
+plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+
+colors = ('blue', 'green', 'red')
+for i, color in enumerate(colors):
+    hist = cv2.calcHist([img], [i], None, [256], [0,256])
+    plt.plot(hist, color = color)
+plt.title('RGB Color Histogram')
+plt.xlabel('Bins')
+plt.ylabel('Number of Pixels')
+plt.show()
+
+threshold_otsu(img[:, :, 0]), threshold_otsu(img[:, :, 1]), threshold_otsu(img[:, :, 2])
+
+img[:, :, 0] = 255 * (img[:, :, 0] > 77)
+img[:, :, 1] = 255 * (img[:, :, 1] > 78)
+img[:, :, 2] = 255 * (img[:, :, 2] > 78)
+plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+---
+#Задача 6
+
+С помощью частотных методов выделить на изображении более плавные переходы, размытости и фон, приглушить резкие переходы и границы. Описать что это за фильтр.
+
+Подобрать подходящую картинку самостоятельно.
+
+image = cv2.imread('gorillaz.jpg', 0)
+
+f_transform = np.fft.fft2(image)
+
+f_transform_shifted = np.fft.fftshift(f_transform)
+
+rows, cols = image.shape
+crow, ccol = rows // 2, cols // 2
+
+# Фильтр низких частот - для выделения размытых областей
+mask = np.zeros((rows, cols), np.uint8) # Нули по умолчанию
+mask[crow-30:crow+30, ccol-30:ccol+30] = 1 # Сохраняем низкие частоты
+
+f_transform_filtered = f_transform_shifted * mask
+
+f_transform_filtered_shifted = np.fft.ifftshift(f_transform_filtered)
+
+image_filtered = np.fft.ifft2(f_transform_filtered_shifted)
+
+image_filtered = np.abs(image_filtered)
+
+plt.subplot(121), plt.imshow(image, cmap='gray')
+plt.title('Входное изображение'), plt.xticks([]), plt.yticks([])
+
+plt.subplot(122), plt.imshow(image_filtered, cmap='gray')
+plt.title('Отфильтрованное изображение'), plt.xticks([]), plt.yticks([])
+
+plt.show()
+---
+#Задача 7
+
+С помощью частотных методов приглушить на изображении более плавные переходы, размытости и фон, выделить резкие переходы и границы. Описать что это за фильтр.
+
+Подобрать подходящую картинку самостоятельно.
+
+image = cv2.imread('gorillaz.jpg', 0)
+
+f_transform = np.fft.fft2(image)
+
+f_transform_shifted = np.fft.fftshift(f_transform)
+
+rows, cols = image.shape
+crow, ccol = rows // 2, cols // 2
+
+# Фильтр высоких частот - для выделения границ
+mask = np.ones((rows, cols), np.uint8) # Единицы по умолчанию
+mask[crow-30:crow+30, ccol-30:ccol+30] = 0 # Удаляем низкие частоты
+
+f_transform_filtered = f_transform_shifted * mask
+
+f_transform_filtered_shifted = np.fft.ifftshift(f_transform_filtered)
+
+image_filtered = np.fft.ifft2(f_transform_filtered_shifted)
+
+image_filtered = np.abs(image_filtered)
+
+plt.subplot(121), plt.imshow(image, cmap='gray')
+plt.title('Входное изображение'), plt.xticks([]), plt.yticks([])
+
+plt.subplot(122), plt.imshow(image_filtered, cmap='gray')
+plt.title('Отфильтрованное изображение'), plt.xticks([]), plt.yticks([])
+
+plt.show()
+
+## CV_5
+---
+!pip install torchmetrics >> None
+!pip install torchvision >> None
+
+import torch as th
+import torch.nn as nn
+import torch.optim as optim
+import torchmetrics as M
+from torch.utils.data import DataLoader, random_split
+import torchvision
+import torchvision.transforms.v2 as T
+import matplotlib.pyplot as plt
+from random import randint
+from tqdm import tqdm
+import torchvision.models as models
+import zipfile
+
+def train_model(model, criterion, optimizer, metric, file_name, train, test, batch_size, num_epoch):
+    th.manual_seed(42)
+
+    loader = DataLoader(train, batch_size = batch_size, shuffle = True)
+    loader_test = DataLoader(test, batch_size = batch_size, shuffle = True)
+
+    model = model.to('cuda')
+    criterion = criterion.to('cuda')
+    metric = metric.to('cuda')
+
+    best_metric = 0
+    epoch_losses = []
+    test_metrics = []
+
+    for epoch in tqdm(range(num_epoch), desc = 'Обучение'):
+        model.train()
+        epoch_loss = 0
+        for X_batch, y_batch in loader:
+            X_batch = X_batch.to('cuda')
+            y_batch = y_batch.to('cuda')
+            optimizer.zero_grad()
+            y_pred = model(X_batch)
+            loss = criterion(y_pred, y_batch)
+            loss.backward()
+            optimizer.step()
+            epoch_loss += loss.item()
+        epoch_loss /= len(loader)
+        epoch_losses.append(epoch_loss)
+
+        metric.reset()
+        model.eval()
+        with th.no_grad():
+            for X_batch, y_batch in loader_test:
+                X_batch = X_batch.to('cuda')
+                y_batch = y_batch.to('cuda')
+                y_pred = model(X_batch)
+                metric.update(y_pred, y_batch)
+        test_metric = metric.compute().cpu().item()
+        test_metrics.append(test_metric)
+
+        if test_metric > best_metric:
+            best_metric = test_metric
+            th.save(model, file_name)
+
+    return epoch_losses, test_metrics
+
+def show_image(image, file_name, classes_to_idx, mean, std):
+    model = th.load(file_name, weights_only = False).to('cuda')
+    model.eval()
+
+    true_label = image[1]
+    image_tensor = image[0].to('cuda')
+
+    with th.no_grad():
+        pred_idx = model(image_tensor.unsqueeze(0)).argmax(dim = 1).item()
+
+    idx_to_class = {v: k for k, v in classes_to_idx.items()}
+    pred_class = idx_to_class[pred_idx]
+    true_class = idx_to_class[true_label]
+
+    image_np = image_tensor.cpu().numpy().transpose((1, 2, 0))
+    image_np = std * image_np + mean
+
+    plt.title(f'Predict: {pred_class} | True: {true_class}')
+    plt.imshow(image_np)
+    plt.show()
+---
+# Задача 1
+
+Для датасета Mnist с рукописными цифрами:
+1. Реализуйте модель классификации без сверточных слоев (только с полносвязными). Возьмите какое-нибудь изображение из датасета, реализуйте сдвиг этого изображения на 5px влево и вправо так, чтобы визуально объект на изображении смещался. Посчитайте вероятности для каждого класса. Визуализируйте как меняются вероятности в зависимости от степени сдвига.
+2. Сделайте то же самое с сетью со сверточными слоями. Сравните результаты.
+
+transform = T.Compose([
+    T.ToTensor(),
+    T.Normalize((0.1307,), (0.3081,))
+])
+
+train_dataset = torchvision.datasets.MNIST(root = './data', train = True,
+                                           download = True, transform = transform)
+test_dataset  = torchvision.datasets.MNIST(root = './data', train = False,
+                                           download = True, transform = transform)
+
+print(f'Количество классов: {len(train_dataset.classes)}')
+print(f'Размер картинки: {train_dataset[0][0].shape}')
+
+model = nn.Sequential(
+    nn.Flatten(),
+    nn.Linear(in_features= 28 * 28, out_features = 64),
+    nn.ReLU(),
+    nn.Linear(in_features = 64, out_features = 10)
+)
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.AdamW(model.parameters(), lr = 0.001)
+metric = M.Accuracy(task = 'multiclass', num_classes = 10)
+
+epoch_losses, accuracy_test = train_model(model = model, criterion = criterion, optimizer = optimizer,
+                                          metric = metric, file_name = 'n1_fc.pth', train = train_dataset,
+                                          test = test_dataset, batch_size = 32, num_epoch = 10)
+
+plt.title('CrossEntropyLoss')
+plt.plot(epoch_losses)
+plt.grid(True)
+plt.show()
+
+plt.title('Accuracy')
+plt.plot(accuracy_test)
+plt.grid(True)
+plt.show()
+
+class CNN(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.features = nn.Sequential(
+            nn.Conv2d(in_channels=1, out_channels=4, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(2)
+        )
+        self.classifier = nn.Linear(784, 10)
+
+    def forward(self, x):
+        x = self.features(x)
+        x = x.view(x.size(0), -1)
+        x = self.classifier(x)
+        return x
+
+model = CNN()
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.AdamW(model.parameters(), lr = 0.001)
+metric = M.Accuracy(task = 'multiclass', num_classes = 10)
+
+epoch_losses, accuracy_test = train_model(model = model, criterion = criterion, optimizer = optimizer,
+                                          metric = metric, file_name = 'n1_cnn.pth', train = train_dataset,
+                                          test = test_dataset, batch_size = 32, num_epoch = 10)
+
+plt.title('CrossEntropyLoss')
+plt.plot(epoch_losses)
+plt.grid(True)
+plt.show()
+
+plt.title('Accuracy')
+plt.plot(accuracy_test)
+plt.grid(True)
+plt.show()
+
+choice = randint(0, len(test_dataset))
+show_image(test_dataset[choice], 'n1_fc.pth', classes_to_idx = test_dataset.class_to_idx,
+           mean = (0.1307,), std = (0.3081,))
+show_image(test_dataset[choice], 'n1_cnn.pth', classes_to_idx = test_dataset.class_to_idx,
+           mean = (0.1307,), std = (0.3081,))
+
+def shift(image, n):
+    return th.cat((image[:, :, -n:], image[:, :, :-n]), dim = 2)
+
+show_image((shift(test_dataset[choice][0], 10), test_dataset[choice][1]),
+           'n1_fc.pth', classes_to_idx = test_dataset.class_to_idx,
+           mean = (0.1307,), std = (0.3081,))
+
+true_label = test_dataset[choice][1]
+fc_pred = []
+cnn_pred = []
+softmax = nn.Softmax(dim = 1)
+
+model_fc = th.load('n1_fc.pth', weights_only = False)
+model_fc.eval()
+model_cnn = th.load('n1_cnn.pth', weights_only = False)
+model_cnn.eval()
+
+for i in range(28):
+    image = shift(test_dataset[choice][0].to('cuda').unsqueeze(0), i)
+    fc_pred.append(softmax(model_fc(image)).cpu()[0][true_label].item())
+    cnn_pred.append(softmax(model_cnn(image)).cpu()[0][true_label].item())
+
+plt.title(f'Вероятность {true_label} в зависимости от сдвига')
+plt.xlabel('Сдвиг')
+plt.ylabel('Вероятность')
+plt.plot(fc_pred, label = 'Полносвязанные слои')
+plt.plot(cnn_pred, label = 'Свёрточные слои')
+plt.legend()
+plt.grid(True)
+plt.show()
+---
+# Задача 2
+
+Напишите модель классификации на предобученной сети resnet18 на Pytorch с заменой последнего полносвязного слоя для данных из [директории](https://drive.google.com/drive/folders/1r0PvRCsrqBpRe6bj1aw8bLwkEfAbC9lo?usp=sharing). Построить графики обучения и потерь.
+
+with zipfile.ZipFile('cats_and_dogs.zip', 'r') as archive:
+    archive.extractall()
+
+transform = T.Compose([
+    T.Resize((256, 256)),
+    T.ToTensor(),
+    T.Normalize(mean = (0.485, 0.456, 0.406), std = (0.229, 0.224, 0.225))
+])
+
+train = torchvision.datasets.ImageFolder(root = 'cats_and_dogs/train', transform = transform)
+test = torchvision.datasets.ImageFolder(root = 'cats_and_dogs/test', transform = transform)
+
+train.class_to_idx, test.class_to_idx
+
+model = models.resnet18(weights = models.ResNet18_Weights.DEFAULT)
+model.fc
+
+model.fc = nn.Linear(in_features = 512, out_features = 2)
+print(f'Число настраиваемых параметров: {sum(p.numel() for p in model.parameters() if p.requires_grad == True)}')
+
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.AdamW(model.parameters(), lr = 0.001)
+metric = M.Accuracy(task = 'multiclass', num_classes = 2)
+
+epoch_losses, accuracy_test = train_model(model = model, criterion = criterion, optimizer = optimizer,
+                                          metric = metric, file_name = 'n2.pth', train = train,
+                                          test = test, batch_size = 32, num_epoch = 10)
+
+plt.title('CrossEntropyLoss')
+plt.plot(epoch_losses)
+plt.grid(True)
+plt.show()
+
+plt.title('Accuracy')
+plt.plot(accuracy_test)
+plt.grid(True)
+plt.show()
+
+choice = randint(0, len(test))
+show_image(test[choice], 'n2.pth', classes_to_idx = train.class_to_idx,
+           mean = (0.485, 0.456, 0.406), std = (0.229, 0.224, 0.225))
+
+## CV_6
+---
+!pip install ultralytics >> None
+from ultralytics import YOLO
+
+import torch
+from torchvision.models.detection import fasterrcnn_resnet50_fpn, \
+fasterrcnn_mobilenet_v3_large_fpn
+from torchvision import transforms
+from PIL import Image
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+---
+# Задача 1
+
+Реализуйте детектор на основе предобученной модели Faster R-CNN (с backbone, которая там задана по умолчанию). Примените его на своем изображении с выводом названий классов вместо номера.
+
+model = fasterrcnn_resnet50_fpn(pretrained = True)
+model.eval()
+COCO_INSTANCE_CATEGORY_NAMES = [
+    'background', 'person', 'bicycle', 'car', 'motorcycle', 'airplane',
+    'bus', 'train', 'truck', 'boat', 'traffic light', 'fire hydrant',
+    'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse',
+    'sheep', 'cow', 'elephant', 'bear', 'zebra', 'giraffe', 'backpack',
+    'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee', 'skis', 'snowboard',
+    'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard',
+    'surfboard', 'tennis racket', 'bottle', 'wine glass', 'cup', 'fork', 'knife',
+    'spoon', 'bowl', 'banana', 'apple', 'sandwich', 'orange', 'broccoli',
+    'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch',
+    'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse',
+    'remote', 'keyboard', 'cell phone', 'microwave', 'oven', 'toaster',
+    'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 'teddy bear',
+    'hair drier', 'toothbrush'
+]
+
+image = Image.open('1790069.jpeg').convert('RGB')
+transform = transforms.Compose([
+    transforms.ToTensor()
+])
+image_tensor = transform(image)
+
+with torch.no_grad():
+    prediction = model([image_tensor])[0]
+
+prediction
+
+score_threshold = 0.9
+
+fig, ax = plt.subplots(1, figsize = (12, 8))
+ax.imshow(image)
+
+for box, label, score in zip(prediction['boxes'], prediction['labels'], prediction['scores']):
+    if score > score_threshold:
+        x1, y1, x2, y2 = box
+        rect = patches.Rectangle((x1, y1), x2 - x1, y2 - y1,
+                                 linewidth = 2, edgecolor = 'red', facecolor = 'none')
+        ax.add_patch(rect)
+        class_name = COCO_INSTANCE_CATEGORY_NAMES[label]
+        ax.text(x1, y1 - 10, f'{class_name}: {score:.2f}', color = 'red',
+                fontsize=12, bbox = dict(facecolor = 'yellow', alpha = 0.5))
+
+plt.axis('off')
+plt.show()
+---
+# Задача 2
+
+Реализуйте детектор на основе предобученной модели Faster R-CNN с mobilenet в качестве backbone. Примените его на своем изображении с выводом названий классов вместо номера.
+
+model = fasterrcnn_mobilenet_v3_large_fpn(pretrained = True)
+model.eval()
+
+image = Image.open('1790069.jpeg').convert('RGB')
+transform = transforms.Compose([
+    transforms.ToTensor()
+])
+image_tensor = transform(image)
+
+with torch.no_grad():
+    prediction = model([image_tensor])[0]
+
+score_threshold = 0.5
+
+fig, ax = plt.subplots(1, figsize = (12, 8))
+ax.imshow(image)
+
+for box, label, score in zip(prediction['boxes'], prediction['labels'], prediction['scores']):
+    if score > score_threshold:
+        x1, y1, x2, y2 = box
+        rect = patches.Rectangle((x1, y1), x2 - x1, y2 - y1,
+                                 linewidth = 2, edgecolor = 'red', facecolor = 'none')
+        ax.add_patch(rect)
+        class_name = COCO_INSTANCE_CATEGORY_NAMES[label]
+        ax.text(x1, y1 - 10, f'{class_name}: {score:.2f}', color = 'red',
+                fontsize=12, bbox = dict(facecolor = 'yellow', alpha = 0.5))
+
+plt.axis('off')
+plt.show()
+---
+# Задача 3
+
+Реализуйте детектор на основе предобученной модели YOLO (версию выберите какая вам нравится). Примените его на своем изображении с указанием порога уверенности confidence threshold.
+
+model = YOLO('yolov8n.pt')
+result = model('1790069.jpeg')
+result[0].show()
+
+model = YOLO('best.pt')
+result = model('1790069.jpeg')
+result[0].show()
+
+## CV_7
+---
+import torch
+import torchvision
+from torchvision import transforms
+from PIL import Image, ImageDraw
+import matplotlib.pyplot as plt
+import warnings
+import numpy as np
+import json
+from collections import Counter
+import cv2
+
+# Игнорируем предупреждения
+warnings.filterwarnings("ignore")
+
+class SSDObjDetector:
+    def __init__(self, model_name='ssd300_vgg16', confidence_threshold=0.5):
+        """
+        Инициализация детектора
+
+        Args:
+            model_name (str): название предобученной модели SSD
+                            (доступные варианты: 'ssd300_vgg16', 'ssdlite320_mobilenet_v3_large')
+            confidence_threshold (float): порог уверенности для отображения bounding box
+        """
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        self.model = self._load_pretrained_model(model_name)
+        self.confidence_threshold = confidence_threshold
+        self.transform = self._get_transform()
+
+        # COCO классы (91 категория)
+        self.CLASSES = [
+            '__background__', 'person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
+            'train', 'truck', 'boat', 'traffic light', 'fire hydrant', 'N/A', 'stop sign',
+            'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
+            'elephant', 'bear', 'zebra', 'giraffe', 'N/A', 'backpack', 'umbrella', 'N/A', 'N/A',
+            'handbag', 'tie', 'suitcase', 'frisbee', 'skis', 'snowboard', 'sports ball',
+            'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket',
+            'bottle', 'N/A', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana',
+            'apple', 'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut',
+            'cake', 'chair', 'couch', 'potted plant', 'bed', 'N/A', 'dining table', 'N/A', 'N/A',
+            'toilet', 'N/A', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',
+            'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'N/A', 'book',
+            'clock', 'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush'
+        ]
+
+    def _load_pretrained_model(self, model_name):
+        """Загрузка предобученной модели"""
+        if model_name == 'ssd300_vgg16':
+            model = torchvision.models.detection.ssd300_vgg16(pretrained=True)
+        elif model_name == 'ssdlite320_mobilenet_v3_large':
+            model = torchvision.models.detection.ssdlite320_mobilenet_v3_large(pretrained=True)
+        else:
+            raise ValueError(f"Unknown model name: {model_name}. Available: 'ssd300_vgg16', 'ssdlite320_mobilenet_v3_large'")
+
+        model.eval()
+        return model.to(self.device)
+
+    def _get_transform(self):
+        """Трансформации для входного изображения"""
+        return transforms.Compose([
+            transforms.ToTensor(),
+        ])
+
+    def detect(self, image_path, output_path=None):
+        """
+        Детектирование объектов на изображении
+
+        Args:
+            image_path (str): путь к входному изображению
+            output_path (str, optional): путь для сохранения результата. Если None - результат не сохраняется.
+
+        Returns:
+            dict: словарь с результатами детектирования (bboxes, labels, scores)
+        """
+        # Загрузка и преобразование изображения
+        image = Image.open(image_path).convert("RGB")
+        # unsqueeze(0) меняет форму тензора с [C, H, W] на [1, C, H, W],
+        # Нейросети PyTorch всегда ожидают батч изображений, даже если он состоит из одного изображения
+        image_tensor = self.transform(image).unsqueeze(0).to(self.device)
+
+        # Детектирование
+        with torch.no_grad():
+            predictions = self.model(image_tensor)
+
+        # Выбираем боксы, лейблы и скоры
+        boxes = predictions[0]['boxes'].cpu().numpy()
+        labels = predictions[0]['labels'].cpu().numpy()
+        scores = predictions[0]['scores'].cpu().numpy()
+
+        # Применяем текущий порог уверенности
+        keep = scores >= self.confidence_threshold
+        boxes = boxes[keep] # Индексация boxes[keep] оставляет только те bbox'ы, для которых keep равен True
+        labels = labels[keep]
+        scores = scores[keep]
+
+        # Визуализация результатов
+        draw = ImageDraw.Draw(image)
+        for box, label, score in zip(boxes, labels, scores):
+            draw.rectangle([(box[0], box[1]), (box[2], box[3])], outline="red", width=3)
+            draw.text((box[0], box[1]), f"{self.CLASSES[label]}: {score:.2f}", fill="red")
+
+        # Сохранение или отображение результата
+        if output_path:
+            image.save(output_path)
+            print(f"Результат сохранен в: {output_path}")
+        else:
+            plt.figure(figsize=(12, 8))
+            plt.imshow(image)
+            plt.axis('off')
+            plt.show()
+
+        return {
+            'boxes': boxes,
+            'labels': [self.CLASSES[l] for l in labels],
+            'scores': scores
+        }
+
+# Инициализация детектора
+detector = SSDObjDetector(model_name='ssd300_vgg16', confidence_threshold=0.5)
+
+# Детектирование объектов на изображении
+results = detector.detect("/content/drive/MyDrive/datasets/cv/image6.jpg", output_path="output.jpg")
+
+# Вывод результатов
+print("Обнаруженные объекты:")
+for box, label, score in zip(results['boxes'], results['labels'], results['scores']):
+    print(f"{label} (уверенность: {score:.2f}): {box}")
+---
+# Задача 1.
+
+Модифицируйте код так, чтобы порог уверенности (confidence_threshold) можно было менять без пересоздания объекта детектора. Получите результаты для значений уверенности 0.5, 0.3, 0.7
+
+class SSDObjDetector:
+    def __init__(self, model_name='ssd300_vgg16', confidence_threshold=0.5):
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        self.model = self._load_pretrained_model(model_name)
+        self.confidence_threshold = confidence_threshold
+        self.transform = self._get_transform()
+        self.CLASSES = ['__background__', 'person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
+                        'train', 'truck', 'boat', 'traffic light', 'fire hydrant', 'N/A', 'stop sign',
+                        'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
+                        'elephant', 'bear', 'zebra', 'giraffe', 'N/A', 'backpack', 'umbrella', 'N/A', 'N/A',
+                        'handbag', 'tie', 'suitcase', 'frisbee', 'skis', 'snowboard', 'sports ball',
+                        'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket',
+                        'bottle', 'N/A', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana',
+                        'apple', 'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut',
+                        'cake', 'chair', 'couch', 'potted plant', 'bed', 'N/A', 'dining table', 'N/A', 'N/A',
+                        'toilet', 'N/A', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',
+                        'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'N/A', 'book',
+                        'clock', 'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush']
+
+    def _load_pretrained_model(self, model_name):
+        if model_name == 'ssd300_vgg16':
+            model = torchvision.models.detection.ssd300_vgg16(pretrained=True)
+        elif model_name == 'ssdlite320_mobilenet_v3_large':
+            model = torchvision.models.detection.ssdlite320_mobilenet_v3_large(pretrained=True)
+        else:
+            raise ValueError(f"Unknown model name: {model_name}. Available: 'ssd300_vgg16', 'ssdlite320_mobilenet_v3_large'")
+        model.eval()
+        return model.to(self.device)
+
+    def _get_transform(self):
+        return transforms.Compose([transforms.ToTensor()])
+
+    # Новый метод для изменения порога уверенности без пересоздания объекта
+    def set_confidence_threshold(self, new_threshold):
+        self.confidence_threshold = new_threshold
+
+    def detect(self, image_path, output_path=None):
+        image = Image.open(image_path).convert("RGB")
+        image_tensor = self.transform(image).unsqueeze(0).to(self.device)
+        with torch.no_grad():
+            predictions = self.model(image_tensor)
+        boxes = predictions[0]['boxes'].cpu().numpy()
+        labels = predictions[0]['labels'].cpu().numpy()
+        scores = predictions[0]['scores'].cpu().numpy()
+        keep = scores >= self.confidence_threshold
+        boxes = boxes[keep]
+        labels = labels[keep]
+        scores = scores[keep]
+        draw = ImageDraw.Draw(image)
+        for box, label, score in zip(boxes, labels, scores):
+            draw.rectangle([(box[0], box[1]), (box[2], box[3])], outline="red", width=3)
+            draw.text((box[0], box[1]), f"{self.CLASSES[label]}: {score:.2f}", fill="red")
+        if output_path:
+            image.save(output_path)
+            print(f"Результат сохранен в: {output_path}")
+        else:
+            plt.figure(figsize=(12, 8))
+            plt.imshow(image)
+            plt.axis('off')
+            plt.show()
+        return {'boxes': boxes, 'labels': [self.CLASSES[l] for l in labels], 'scores': scores}
+
+detector = SSDObjDetector(model_name='ssd300_vgg16', confidence_threshold=0.5)
+results_05 = detector.detect("/content/1790069.jpeg")
+print("Обнаруженные объекты при confidence_threshold=0.5:")
+for box, label, score in zip(results_05['boxes'], results_05['labels'], results_05['scores']):
+    print(f"{label} (уверенность: {score:.2f}): {box}")
+
+detector.set_confidence_threshold(0.3)
+results_03 = detector.detect("/content/1790069.jpeg")
+print("Обнаруженные объекты при confidence_threshold=0.3:")
+for box, label, score in zip(results_03['boxes'], results_03['labels'], results_03['scores']):
+    print(f"{label} (уверенность: {score:.2f}): {box}")
+
+detector.set_confidence_threshold(0.7)
+results_07 = detector.detect("/content/1790069.jpeg")
+print("Обнаруженные объекты при confidence_threshold=0.7:")
+for box, label, score in zip(results_07['boxes'], results_07['labels'], results_07['scores']):
+    print(f"{label} (уверенность: {score:.2f}): {box}")
+---
+# Задача 2
+
+Добавьте возможность указывать, какие классы объектов нужно детектировать (например, только людей и автомобили). Реализуйте метод set_target_classes(['class1', 'class2'])
+
+class SSDObjDetector:
+    def __init__(self, model_name='ssd300_vgg16', confidence_threshold=0.5):
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        self.model = self._load_pretrained_model(model_name)
+        self.confidence_threshold = confidence_threshold
+        self.transform = self._get_transform()
+        self.CLASSES = ['__background__', 'person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
+                        'train', 'truck', 'boat', 'traffic light', 'fire hydrant', 'N/A', 'stop sign',
+                        'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
+                        'elephant', 'bear', 'zebra', 'giraffe', 'N/A', 'backpack', 'umbrella', 'N/A', 'N/A',
+                        'handbag', 'tie', 'suitcase', 'frisbee', 'skis', 'snowboard', 'sports ball',
+                        'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket',
+                        'bottle', 'N/A', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana',
+                        'apple', 'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut',
+                        'cake', 'chair', 'couch', 'potted plant', 'bed', 'N/A', 'dining table', 'N/A', 'N/A',
+                        'toilet', 'N/A', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',
+                        'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'N/A', 'book',
+                        'clock', 'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush']
+        self.target_classes = None  # Новый атрибут для фильтрации по классам
+
+    def _load_pretrained_model(self, model_name):
+        if model_name == 'ssd300_vgg16':
+            model = torchvision.models.detection.ssd300_vgg16(pretrained=True)
+        elif model_name == 'ssdlite320_mobilenet_v3_large':
+            model = torchvision.models.detection.ssdlite320_mobilenet_v3_large(pretrained=True)
+        else:
+            raise ValueError(f"Unknown model name: {model_name}. Available: 'ssd300_vgg16', 'ssdlite320_mobilenet_v3_large'")
+        model.eval()
+        return model.to(self.device)
+
+    def _get_transform(self):
+        return transforms.Compose([transforms.ToTensor()])
+
+    def set_confidence_threshold(self, new_threshold):
+        self.confidence_threshold = new_threshold
+
+    # Новый метод для установки целевых классов
+    def set_target_classes(self, target_classes):
+        self.target_classes = target_classes
+
+    def detect(self, image_path, output_path=None):
+        image = Image.open(image_path).convert("RGB")
+        image_tensor = self.transform(image).unsqueeze(0).to(self.device)
+        with torch.no_grad():
+            predictions = self.model(image_tensor)
+        boxes = predictions[0]['boxes'].cpu().numpy()
+        labels = predictions[0]['labels'].cpu().numpy()
+        scores = predictions[0]['scores'].cpu().numpy()
+        keep = scores >= self.confidence_threshold
+        boxes = boxes[keep]
+        labels = labels[keep]
+        scores = scores[keep]
+        if self.target_classes is not None:
+            target_keep = np.array([self.CLASSES[label] in self.target_classes for label in labels])
+            boxes = boxes[target_keep]
+            labels = labels[target_keep]
+            scores = scores[target_keep]
+        draw = ImageDraw.Draw(image)
+        for box, label, score in zip(boxes, labels, scores):
+            draw.rectangle([(box[0], box[1]), (box[2], box[3])], outline="red", width=3)
+            draw.text((box[0], box[1]), f"{self.CLASSES[label]}: {score:.2f}", fill="red")
+        if output_path:
+            image.save(output_path)
+            print(f"Результат сохранен в: {output_path}")
+        else:
+            plt.figure(figsize=(12, 8))
+            plt.imshow(image)
+            plt.axis('off')
+            plt.show()
+        return {'boxes': boxes, 'labels': [self.CLASSES[l] for l in labels], 'scores': scores}
+
+detector = SSDObjDetector(model_name='ssd300_vgg16', confidence_threshold=0.3)
+detector.set_target_classes(['person', 'couch'])
+results_pc = detector.detect("/content/1790069.jpeg")
+for box, label, score in zip(results_pc['boxes'], results_pc['labels'], results_pc['scores']):
+    print(f"{label} (уверенность: {score:.2f}): {box}")
+---
+# Задача 3
+
+Модифицируйте метод detect(), чтобы он мог сохранять результаты (координаты bbox, классы, оценки) в JSON-файл в таком формате:
+
+
+
+```
+{
+  "detections": [
+    {"class": "class1", "score": 0.98, "bbox": [x1, y1, x2, y2]},
+    {"class": "class2", "score": 0.85, "bbox": [x1, y1, x2, y2]}
+  ]
+}
+```
+
+
+
+class SSDObjDetector:
+    def __init__(self, model_name='ssd300_vgg16', confidence_threshold=0.5):
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        self.model = self._load_pretrained_model(model_name)
+        self.confidence_threshold = confidence_threshold
+        self.transform = self._get_transform()
+        self.CLASSES = ['__background__', 'person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
+                        'train', 'truck', 'boat', 'traffic light', 'fire hydrant', 'N/A', 'stop sign',
+                        'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
+                        'elephant', 'bear', 'zebra', 'giraffe', 'N/A', 'backpack', 'umbrella', 'N/A', 'N/A',
+                        'handbag', 'tie', 'suitcase', 'frisbee', 'skis', 'snowboard', 'sports ball',
+                        'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket',
+                        'bottle', 'N/A', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana',
+                        'apple', 'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut',
+                        'cake', 'chair', 'couch', 'potted plant', 'bed', 'N/A', 'dining table', 'N/A', 'N/A',
+                        'toilet', 'N/A', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',
+                        'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'N/A', 'book',
+                        'clock', 'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush']
+        self.target_classes = None
+
+    def _load_pretrained_model(self, model_name):
+        if model_name == 'ssd300_vgg16':
+            model = torchvision.models.detection.ssd300_vgg16(pretrained=True)
+        elif model_name == 'ssdlite320_mobilenet_v3_large':
+            model = torchvision.models.detection.ssdlite320_mobilenet_v3_large(pretrained=True)
+        else:
+            raise ValueError(f"Unknown model name: {model_name}. Available: 'ssd300_vgg16', 'ssdlite320_mobilenet_v3_large'")
+        model.eval()
+        return model.to(self.device)
+
+    def _get_transform(self):
+        return transforms.Compose([transforms.ToTensor()])
+
+    def set_confidence_threshold(self, new_threshold):
+        self.confidence_threshold = new_threshold
+
+    def set_target_classes(self, target_classes):
+        self.target_classes = target_classes
+
+    def detect(self, image_path, output_path=None, json_output_path=None):
+        image = Image.open(image_path).convert("RGB")
+        image_tensor = self.transform(image).unsqueeze(0).to(self.device)
+        with torch.no_grad():
+            predictions = self.model(image_tensor)
+        boxes = predictions[0]['boxes'].cpu().numpy()
+        labels = predictions[0]['labels'].cpu().numpy()
+        scores = predictions[0]['scores'].cpu().numpy()
+        keep = scores >= self.confidence_threshold
+        boxes = boxes[keep]
+        labels = labels[keep]
+        scores = scores[keep]
+        if self.target_classes is not None:
+            target_keep = np.array([self.CLASSES[label] in self.target_classes for label in labels])
+            boxes = boxes[target_keep]
+            labels = labels[target_keep]
+            scores = scores[target_keep]
+        draw = ImageDraw.Draw(image)
+        for box, label, score in zip(boxes, labels, scores):
+            draw.rectangle([(box[0], box[1]), (box[2], box[3])], outline="red", width=3)
+            draw.text((box[0], box[1]), f"{self.CLASSES[label]}: {score:.2f}", fill="red")
+        if output_path:
+            image.save(output_path)
+            print(f"Результат сохранен в: {output_path}")
+        else:
+            plt.figure(figsize=(12, 8))
+            plt.imshow(image)
+            plt.axis('off')
+            plt.show()
+        # Новый блок для сохранения результатов в JSON
+        if json_output_path:
+            detections = []
+            for box, label, score in zip(boxes, labels, scores):
+                detections.append({
+                    "class": self.CLASSES[label],
+                    "score": float(score),
+                    "bbox": box.tolist() if hasattr(box, "tolist") else list(box)
+                })
+            result_json = {"detections": detections}
+            with open(json_output_path, "w") as f:
+                json.dump(result_json, f, indent=2)
+            print(f"JSON результат сохранен в: {json_output_path}")
+        return {'boxes': boxes, 'labels': [self.CLASSES[l] for l in labels], 'scores': scores}
+
+detector = SSDObjDetector(model_name='ssd300_vgg16', confidence_threshold=0.3)
+detector.set_target_classes(['person', 'couch'])
+results_pc = detector.detect("/content/1790069.jpeg", json_output_path='output_json.json')
+for box, label, score in zip(results_pc['boxes'], results_pc['labels'], results_pc['scores']):
+    print(f"{label} (уверенность: {score:.2f}): {box}")
+
+with open('output_json.json', 'r') as f:
+    data = json.load(f)
+data
+---
+# Задача 5
+
+Добавьте функционал подсчёта количества объектов каждого класса.
+
+Пример вывода:
+
+
+
+```
+Обнаружено:  
+- class1: 3  
+- class2: 2  
+- class3: 1
+```
+
+
+
+class SSDObjDetector:
+    def __init__(self, model_name='ssd300_vgg16', confidence_threshold=0.5):
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        self.model = self._load_pretrained_model(model_name)
+        self.confidence_threshold = confidence_threshold
+        self.transform = self._get_transform()
+        self.CLASSES = ['__background__', 'person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
+                        'train', 'truck', 'boat', 'traffic light', 'fire hydrant', 'N/A', 'stop sign',
+                        'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
+                        'elephant', 'bear', 'zebra', 'giraffe', 'N/A', 'backpack', 'umbrella', 'N/A', 'N/A',
+                        'handbag', 'tie', 'suitcase', 'frisbee', 'skis', 'snowboard', 'sports ball',
+                        'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket',
+                        'bottle', 'N/A', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana',
+                        'apple', 'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut',
+                        'cake', 'chair', 'couch', 'potted plant', 'bed', 'N/A', 'dining table', 'N/A', 'N/A',
+                        'toilet', 'N/A', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',
+                        'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'N/A', 'book',
+                        'clock', 'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush']
+        self.target_classes = None
+
+    def _load_pretrained_model(self, model_name):
+        if model_name == 'ssd300_vgg16':
+            model = torchvision.models.detection.ssd300_vgg16(pretrained=True)
+        elif model_name == 'ssdlite320_mobilenet_v3_large':
+            model = torchvision.models.detection.ssdlite320_mobilenet_v3_large(pretrained=True)
+        else:
+            raise ValueError(f"Unknown model name: {model_name}. Available: 'ssd300_vgg16', 'ssdlite320_mobilenet_v3_large'")
+        model.eval()
+        return model.to(self.device)
+
+    def _get_transform(self):
+        return transforms.Compose([transforms.ToTensor()])
+
+    def set_confidence_threshold(self, new_threshold):
+        self.confidence_threshold = new_threshold
+
+    def set_target_classes(self, target_classes):
+        self.target_classes = target_classes
+
+    def detect(self, image_path, output_path=None, json_output_path=None):
+        image = Image.open(image_path).convert("RGB")
+        image_tensor = self.transform(image).unsqueeze(0).to(self.device)
+        with torch.no_grad():
+            predictions = self.model(image_tensor)
+        boxes = predictions[0]['boxes'].cpu().numpy()
+        labels = predictions[0]['labels'].cpu().numpy()
+        scores = predictions[0]['scores'].cpu().numpy()
+        keep = scores >= self.confidence_threshold
+        boxes = boxes[keep]
+        labels = labels[keep]
+        scores = scores[keep]
+        if self.target_classes is not None:
+            target_keep = np.array([self.CLASSES[label] in self.target_classes for label in labels])
+            boxes = boxes[target_keep]
+            labels = labels[target_keep]
+            scores = scores[target_keep]
+        draw = ImageDraw.Draw(image)
+        for box, label, score in zip(boxes, labels, scores):
+            draw.rectangle([(box[0], box[1]), (box[2], box[3])], outline="red", width=3)
+            draw.text((box[0], box[1]), f"{self.CLASSES[label]}: {score:.2f}", fill="red")
+        if output_path:
+            image.save(output_path)
+            print(f"Результат сохранен в: {output_path}")
+        else:
+            plt.figure(figsize=(12, 8))
+            plt.imshow(image)
+            plt.axis('off')
+            plt.show()
+        if json_output_path:
+            detections = []
+            for box, label, score in zip(boxes, labels, scores):
+                detections.append({
+                    "class": self.CLASSES[label],
+                    "score": float(score),
+                    "bbox": box.tolist() if hasattr(box, "tolist") else list(box)
+                })
+            result_json = {"detections": detections}
+            with open(json_output_path, "w") as f:
+                json.dump(result_json, f, indent=2)
+            print(f"JSON результат сохранен в: {json_output_path}")
+        # Подсчёт количества объектов каждого класса
+        detected_classes = [self.CLASSES[l] for l in labels]
+        counts = Counter(detected_classes)
+        print("Обнаружено:")
+        for cls, count in counts.items():
+            print(f"- {cls}: {count}")
+        return {'boxes': boxes, 'labels': detected_classes, 'scores': scores}
+
+detector = SSDObjDetector(model_name='ssd300_vgg16', confidence_threshold=0.3)
+detector.set_target_classes(['person', 'couch'])
+results_pc = detector.detect("/content/1790069.jpeg")
+for box, label, score in zip(results_pc['boxes'], results_pc['labels'], results_pc['scores']):
+    print(f"{label} (уверенность: {score:.2f}): {box}")
+
+## СV_9
+---
+Пользуясь примером из лекции для сети U-Net на основе VGG16_bn, задайте архитектуру на основе ResNet, проведите обучение на том же датасете.
+
+import os
+if not os.path.exists('dataset1'):
+    !wget https://github.com/alexgkendall/SegNet-Tutorial/archive/refs/heads/master.zip -O camvid.zip
+    !unzip -q camvid.zip
+    !rm camvid.zip
+
+%pip install -q torch_snippets==0.5
+
+import torch
+from torch_snippets import *
+import torch.nn as nn
+from torchvision import transforms
+from sklearn.model_selection import train_test_split
+from torch.utils.data import Dataset, DataLoader
+import cv2
+from torch import optim
+from torch_snippets.torch_loader import Report
+
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+device
+
+tfms = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+])
+
+class SegData(Dataset):
+    def __init__(self, split):
+        self.items = stems(f'/content/SegNet-Tutorial-master/CamVid/{split}')
+        self.split = split
+
+    def __len__(self):
+        return len(self.items)
+
+    def __getitem__(self, ix):
+        image = read(f'/content/SegNet-Tutorial-master/CamVid/{self.split}/{self.items[ix]}.png', 1)
+        image = cv2.resize(image, (224,224))
+        mask = read(f'/content/SegNet-Tutorial-master/CamVid/{self.split}annot/{self.items[ix]}.png', 0)
+        mask = cv2.resize(mask, (224,224), interpolation=cv2.INTER_NEAREST)
+        return image, mask
+
+    def choose(self):
+        return self[randint(len(self))]
+
+    def collate_fn(self, batch):
+        ims, masks = list(zip(*batch))
+        ims = torch.cat([tfms(im.copy()/255.)[None] for im in ims]).float().to(device)
+        ce_masks = torch.cat([torch.Tensor(mask[None]) for mask in masks]).long().to(device)
+        return ims, ce_masks
+
+items = stems(f'/content/SegNet-Tutorial-master/CamVid/test')
+items[:3]
+
+trn_ds = SegData('train')
+val_ds = SegData('test')
+trn_dl = DataLoader(trn_ds, batch_size=4, shuffle=True, collate_fn=trn_ds.collate_fn)
+val_dl = DataLoader(val_ds, batch_size=1, shuffle=True, collate_fn=val_ds.collate_fn)
+
+show(trn_ds[10][0]), show(trn_ds[10][1])
+
+def conv(in_channels, out_channels):
+    return nn.Sequential(
+        nn.Conv2d(in_channels, out_channels, kernel_size=3, stride=1, padding=1),
+        nn.BatchNorm2d(out_channels),
+        nn.ReLU(inplace=True)
+    )
+
+def up_conv(in_channels, out_channels):
+    return nn.Sequential(
+        nn.ConvTranspose2d(in_channels, out_channels, kernel_size=2, stride=2),
+        nn.ReLU(inplace=True)
+    )
+
+from torchvision.models import resnet34
+
+class ResNetUNet(nn.Module):
+    def __init__(self, n_class=12, pretrained=True):
+        super().__init__()
+        self.base_model = resnet34(pretrained=pretrained)
+        self.layer0 = nn.Sequential(
+            self.base_model.conv1,
+            self.base_model.bn1,
+            self.base_model.relu,
+        )
+        self.maxpool = self.base_model.maxpool
+        self.layer1 = self.base_model.layer1
+        self.layer2 = self.base_model.layer2
+        self.layer3 = self.base_model.layer3
+        self.layer4 = self.base_model.layer4
+        self.conv_bot = conv(512, 512)
+        self.upconv4 = up_conv(512, 256)
+        self.conv4 = conv(512, 256)
+        self.upconv3 = up_conv(256, 128)
+        self.conv3 = conv(256, 128)
+        self.upconv2 = up_conv(128, 64)
+        self.conv2 = conv(128, 64)
+        self.upconv1 = up_conv(64, 64)
+        self.conv1 = conv(128, 64)
+        self.upconv0 = up_conv(64, 64)
+        self.conv0 = conv(64, 64)
+        self.out = nn.Conv2d(64, n_class, kernel_size=1)
+
+    def forward(self, x):
+        x0 = self.layer0(x)
+        x1 = self.maxpool(x0)
+        x1 = self.layer1(x1)
+        x2 = self.layer2(x1)
+        x3 = self.layer3(x2)
+        x4 = self.layer4(x3)
+        b = self.conv_bot(x4)
+        d4 = self.upconv4(b)
+        d4 = torch.cat([d4, x3], dim=1)
+        d4 = self.conv4(d4)
+        d3 = self.upconv3(d4)
+        d3 = torch.cat([d3, x2], dim=1)
+        d3 = self.conv3(d3)
+        d2 = self.upconv2(d3)
+        d2 = torch.cat([d2, x1], dim=1)
+        d2 = self.conv2(d2)
+        d1 = self.upconv1(d2)
+        d1 = torch.cat([d1, x0], dim=1)
+        d1 = self.conv1(d1)
+        d0 = self.upconv0(d1)
+        d0 = self.conv0(d0)
+        out = self.out(d0)
+        return out
+
+ce = nn.CrossEntropyLoss()
+def UnetLoss(preds, targets):
+    ce_loss = ce(preds, targets)
+    acc = (torch.max(preds, 1)[1] == targets).float().mean()
+    return ce_loss, acc
+
+def dice_score(preds, targets):
+    preds = torch.softmax(preds, dim=1)
+    intersect = (preds * targets).sum()
+    union = preds.sum() + targets.sum()
+    return 2 * intersect / union
+
+def train_batch(model, data, optimizer, criterion):
+    model.train()
+    ims, ce_masks = data
+    _masks = model(ims)
+    optimizer.zero_grad()
+    loss, acc = criterion(_masks, ce_masks)
+    loss.backward()
+    optimizer.step()
+    return loss.item(), acc.item()
+
+@torch.no_grad()
+def validate_batch(model, data, criterion):
+    model.eval()
+    ims, masks = data
+    _masks = model(ims)
+    loss, acc = criterion(_masks, masks)
+    return loss.item(), acc.item()
+
+model = ResNetUNet(n_class=12).to(device)
+criterion = UnetLoss
+optimizer = optim.Adam(model.parameters(), lr=1e-3)
+n_epochs = 10
+
+from tqdm import tqdm
+
+log = Report(n_epochs)
+for ex in range(n_epochs):
+    train_loss_epoch = 0
+    train_acc_epoch = 0
+    for data in tqdm(trn_dl, desc=f'Epoch {ex+1}/{n_epochs} - Training'):
+        loss, acc = train_batch(model, data, optimizer, criterion)
+        train_loss_epoch += loss
+        train_acc_epoch += acc
+    train_loss_epoch /= len(trn_dl)
+    train_acc_epoch /= len(trn_dl)
+
+    val_loss_epoch = 0
+    val_acc_epoch = 0
+    for data in tqdm(val_dl, desc=f'Epoch {ex+1}/{n_epochs} - Validation'):
+        loss, acc = validate_batch(model, data, criterion)
+        val_loss_epoch += loss
+        val_acc_epoch += acc
+    val_loss_epoch /= len(val_dl)
+    val_acc_epoch /= len(val_dl)
+
+    log.record(ex+1, trn_loss=train_loss_epoch, trn_acc=train_acc_epoch,
+               val_loss=val_loss_epoch, val_acc=val_acc_epoch)
+
+log.plot_epochs(['trn_loss','val_loss'])
+
+im, mask = next(iter(val_dl))
+_mask = model(im)
+_, _mask = torch.max(_mask, dim=1)
+
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(9, 3))
+
+plt.subplot(1, 3, 1)
+plt.imshow(im[0].permute(1,2,0).detach().cpu().numpy())
+plt.title('Original image')
+
+plt.subplot(1, 3, 2)
+plt.imshow(mask.permute(1,2,0).detach().cpu().numpy(), cmap='gray')
+plt.title('Original mask')
+
+plt.subplot(1, 3, 3)
+plt.imshow(_mask.permute(1,2,0).detach().cpu().numpy(), cmap='gray')
+plt.title('Predicted mask')
+
+plt.tight_layout()
+plt.show()
+
+log.plot_epochs(['trn_acc','val_acc'])
+
+## CV_10
+---
+!pip install segmentation_models_pytorch >> None
+!pip install torchmetrics >> None
+
+import torch as th
+from torch.utils.data import DataLoader
+from torchvision import transforms
+from torchvision.datasets import VOCSegmentation
+import segmentation_models_pytorch as smp
+from tqdm import tqdm
+import matplotlib.pyplot as plt
+import torchmetrics as M
+
+def train_model(model, criterion, optimizer, metric, file_name,
+                train, test, batch_size, num_epoch):
+    th.manual_seed(42)
+    device = th.device('cuda' if th.cuda.is_available() else 'cpu')
+
+    loader      = DataLoader(train, batch_size=batch_size, shuffle=True)
+    loader_test = DataLoader(test,  batch_size=batch_size, shuffle=False)
+
+    model     = model.to(device)
+    criterion = criterion.to(device)
+    metric    = metric.to(device)
+
+    best_metric  = 0.0
+    epoch_losses = []
+    test_metrics = []
+
+    for epoch in range(1, num_epoch+1):
+        model.train()
+        epoch_loss = 0.0
+        for X_batch, y_batch in tqdm(loader,
+                                     desc=f'Train {epoch}/{num_epoch}',
+                                     leave=False):
+            X_batch, y_batch = X_batch.to(device), y_batch.to(device)
+            optimizer.zero_grad()
+            y_pred = model(X_batch)
+            loss   = criterion(y_pred, y_batch)
+            loss.backward()
+            optimizer.step()
+            epoch_loss += loss.item()
+        epoch_loss   /= len(loader)
+        epoch_losses.append(epoch_loss)
+
+        model.eval()
+        metric.reset()
+        with th.no_grad():
+            for X_batch, y_batch in tqdm(loader_test,
+                                         desc=f'Valid {epoch}/{num_epoch}',
+                                         leave=False):
+                X_batch, y_batch = X_batch.to(device), y_batch.to(device)
+                y_pred = model(X_batch)
+                metric.update(y_pred, y_batch)
+        test_metric = metric.compute().item()
+        test_metrics.append(test_metric)
+
+        if test_metric > best_metric:
+            best_metric = test_metric
+            th.save(model.state_dict(), file_name)
+
+        tqdm.write(
+            f"Epoch {epoch}/{num_epoch} — "
+            f"train loss: {epoch_losses[-1]:.4f}, "
+            f"val score: {test_metrics[-1]:.4f}"
+        )
+
+    return epoch_losses, test_metrics
+---
+# Задача 1
+
+Обучите модель u-net семантической сегментации на встроенном в torchvision датасете Pascal VOC с VGG в качестве энкодера
+
+batch_size = 16
+num_epochs = 5
+learning_rate = 1e-3
+file_name = 'best_unet_vgg16.pth'
+
+img_transform = transforms.Compose([
+    transforms.Resize((256, 256)),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                         std =[0.229, 0.224, 0.225]),
+])
+mask_transform = transforms.Compose([
+    transforms.Resize((256, 256), interpolation=transforms.InterpolationMode.NEAREST),
+    transforms.PILToTensor(),
+    transforms.Lambda(lambda x: x.squeeze(0).long()),
+])
+
+train_ds = VOCSegmentation(
+    root='./data', year='2012', image_set='train',
+    download=True,
+    transform=img_transform,
+    target_transform=mask_transform,
+)
+test_ds = VOCSegmentation(
+    root='./data', year='2012', image_set='val',
+    download=False,
+    transform=img_transform,
+    target_transform=mask_transform,
+)
+
+model = smp.Unet(
+    encoder_name='vgg16',
+    encoder_weights='imagenet',
+    in_channels=3,
+    classes=21,
+)
+
+criterion = th.nn.CrossEntropyLoss(ignore_index=255)
+optimizer = th.optim.Adam(model.parameters(), lr=learning_rate)
+metric = M.JaccardIndex(
+    task='multiclass',
+    num_classes=21,
+    average='macro',
+    ignore_index=255)
+
+epoch_losses, test_metrics = train_model(
+    model, criterion, optimizer, metric,
+    file_name, train_ds, test_ds, batch_size, num_epochs)
+
+plt.title('CrossEntropyLoss')
+plt.plot(epoch_losses)
+plt.grid(True)
+plt.show()
+
+plt.title('JaccardIndex')
+plt.plot(test_metrics)
+plt.grid(True)
+plt.show()
+---
+# Задача 2
+
+Обучите модель u-net семантической сегментации на встроенном в torchvision датасете Pascal VOC с ResNet в качестве энкодера
+
+model = smp.Unet(
+    encoder_name='resnet34',
+    encoder_weights='imagenet',
+    in_channels=3,
+    classes=21,
+)
+
+criterion = th.nn.CrossEntropyLoss(ignore_index=255)
+optimizer = th.optim.Adam(model.parameters(), lr=learning_rate)
+metric = M.JaccardIndex(
+    task='multiclass',
+    num_classes=21,
+    average='macro',
+    ignore_index=255)
+
+epoch_losses, test_metrics = train_model(
+    model, criterion, optimizer, metric,
+    file_name, train_ds, test_ds, batch_size, num_epochs)
+
+plt.title('CrossEntropyLoss')
+plt.plot(epoch_losses)
+plt.grid(True)
+plt.show()
+
+plt.title('JaccardIndex')
+plt.plot(test_metrics)
+plt.grid(True)
+plt.show()
+---
+# Задача 3
+
+Реализуйте семантическую сегментацию на предобученной Yolo
+
+!pip install ultralytics >> None
+
+from ultralytics import YOLO
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+model = YOLO('yolov8n-seg.pt')
+
+def segment_image_yolo(img_path: str):
+    img_bgr = cv2.imread(img_path)
+    img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
+    results = model(img, imgsz=640)[0]
+
+    masks = results.masks.data.cpu().numpy()
+    classes = results.boxes.cls.cpu().numpy().astype(int)
+    scores = results.boxes.conf.cpu().numpy()
+
+    H, W = masks.shape[1:]
+    sem_seg = np.zeros((H, W), dtype=np.int32)
+    for mask, cls, score in zip(masks, classes, scores):
+        sem_seg[mask > 0.5] = cls
+
+    return img, sem_seg
+
+img, sem_seg = segment_image_yolo('/content/1790069.jpeg')
+
+palette = np.random.randint(0, 255, (model.names.__len__(), 3), dtype=np.uint8)
+colored = palette[sem_seg]
+
+fig, ax = plt.subplots(1, 2, figsize=(12, 6))
+ax[0].imshow(img)
+ax[0].set_title('Input')
+ax[0].axis('off')
+ax[1].imshow(colored)
+ax[1].set_title('Segmentation')
+ax[1].axis('off')
+plt.show()
+
+## CV_11
+---
+# Сегментация экземпляров на предобученной Mask R-CNN
+
+import torch
+import torchvision
+from torchvision.models.detection import maskrcnn_resnet50_fpn
+from torchvision.transforms import functional as F
+from PIL import Image
+import matplotlib.pyplot as plt
+import numpy as np
+import cv2
+from collections import Counter
+from prettytable import PrettyTable
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device
+
+COCO_CLASSES = [
+    '__background__', 'person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
+    'train', 'truck', 'boat', 'traffic light', 'fire hydrant', 'N/A', 'stop sign',
+    'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
+    'elephant', 'bear', 'zebra', 'giraffe', 'N/A', 'backpack', 'umbrella', 'N/A', 'N/A',
+    'handbag', 'tie', 'suitcase', 'frisbee', 'skis', 'snowboard', 'sports ball',
+    'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket',
+    'bottle', 'N/A', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana',
+    'apple', 'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut',
+    'cake', 'chair', 'couch', 'potted plant', 'bed', 'N/A', 'dining table', 'N/A', 'N/A',
+    'toilet', 'N/A', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',
+    'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'N/A', 'book', 'clock',
+    'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush'
+]
+
+model = maskrcnn_resnet50_fpn(pretrained=True).to(device)
+model.eval()
+
+def load_image(image_path):
+    image = Image.open(image_path).convert("RGB")
+    tensor = F.to_tensor(image).unsqueeze(0).to(device)
+    return image, tensor
+
+image_path = '/content/5c4758fd13986d88d1f8de53c4a2a9ac.jpg'
+original_image, image_tensor = load_image(image_path)
+
+with torch.no_grad():
+    predictions = model(image_tensor)
+
+predictions
+---
+# Задача 1
+
+Модифицируйте код сегментации экземпляров на предобученной Mask R-CNN, чтобы он обнаруживал только объекты определенных классов (например, только людей и автомобили).
+
+def filter_prediction(prediction, target_ids, score_threshold=0.5):
+    labels = prediction['labels']
+    scores = prediction['scores']
+    boxes = prediction['boxes']
+    masks = prediction['masks']
+
+    keep = [(labels[i].item() in target_ids) and (scores[i].item() >= score_threshold)
+            for i in range(len(labels))]
+
+    filtered = {
+        'labels': labels[keep],
+        'scores': scores[keep],
+        'boxes': boxes[keep],
+        'masks': masks[keep]
+    }
+    return filtered
+
+def visualize_filtered(image, prediction, alpha=0.5):
+    pred = {k: v.cpu() for k, v in prediction.items()}
+    image_np = np.array(image)
+    masks = (pred['masks'] > alpha).squeeze(1).numpy()
+    colored_mask = np.zeros_like(image_np, dtype=np.uint8)
+    for mask in masks:
+        color = np.random.randint(0, 255, size=3)
+        colored_mask[mask] = color
+    result = cv2.addWeighted(image_np, 1-alpha, colored_mask, alpha, 0)
+    plt.figure(figsize=(12, 8))
+    plt.imshow(result)
+    plt.axis('off')
+    plt.show()
+
+TARGET_CLASSES = ['person', 'car']
+TARGET_IDS = [COCO_CLASSES.index(cls) for cls in TARGET_CLASSES]
+
+filtered_preds = filter_prediction(predictions[0], TARGET_IDS, score_threshold=0.7)
+visualize_filtered(original_image, filtered_preds)
+
+filtered_preds['labels']
+---
+# Задача 2 + Задача 5
+
+Добавьте отрисовку bounding box поверх масок (используйте cv2.rectangle). Сделайте разные цвета для разных классов.
+
+Замените случайные цвета на фиксированные для каждого класса (люди – красные, машины – синие и т.д.). Используйте словарь class_colors.
+
+def visualize_boxes(image, prediction, class_colors, alpha=0.5, box_thickness=2):
+    pred = {k: v.cpu() for k, v in prediction.items()}
+    image_np = np.array(image).copy()
+
+    masks = (pred['masks'] > alpha).squeeze(1).numpy()
+    labels = pred['labels'].numpy()
+    boxes = pred['boxes'].numpy().astype(int)
+
+    colored_mask = np.zeros_like(image_np, dtype=np.uint8)
+    for mask, label in zip(masks, labels):
+        color = class_colors.get(int(label), (0, 255, 0))
+        colored_mask[mask] = color
+
+    overlay = cv2.addWeighted(image_np, 1 - alpha, colored_mask, alpha, 0)
+
+    for box, label in zip(boxes, labels):
+        x1, y1, x2, y2 = box
+        color = class_colors.get(int(label), (0, 255, 0))
+        cv2.rectangle(overlay, (x1, y1), (x2, y2), color, thickness=box_thickness)
+
+    plt.figure(figsize=(12, 8))
+    plt.imshow(overlay)
+    plt.axis('off')
+    plt.show()
+
+class_colors = {
+    3: (0, 0, 255), #person
+    1: (255, 0, 0) #car
+}
+
+visualize_boxes(original_image, filtered_preds, class_colors)
+---
+# Задача 3
+
+Реализуйте подсчет количества обнаруженных объектов каждого класса (вывод в консоль таблицы: класс → количество).
+
+def count_instances(prediction, score_threshold=0.5):
+    labels = prediction['labels'].cpu().numpy()
+    scores = prediction['scores'].cpu().numpy()
+
+    cnt = Counter()
+    for lbl, scr in zip(labels, scores):
+        if scr >= score_threshold:
+            cls_name = COCO_CLASSES[lbl]
+            cnt[cls_name] += 1
+
+    table = PrettyTable()
+    table.field_names = ["Класс", "Количество"]
+    for cls, num in cnt.items():
+        table.add_row([cls, num])
+
+    print(table)
+
+count_instances(filtered_preds)
+
+count_instances(predictions[0])
+
+## CV_12
+---
+Задачи на основе инстанс-сегментации, которая приведена в файле "Mask R-CNN instance segmentation on custom dataset"
+
+# Начнем с загрузки необходимых наборов данных, установки необходимых пакетов и их импорта.
+!wget --quiet http://sceneparsing.csail.mit.edu/data/ChallengeData2017/images.tar
+!wget --quiet http://sceneparsing.csail.mit.edu/data/ChallengeData2017/annotations_instance.tar
+!tar -xf images.tar
+!tar -xf annotations_instance.tar
+!rm images.tar annotations_instance.tar
+
+%pip install -qU torch_snippets==0.5 # вспомогательная библиотека для удобной работы с PyTorch (содержит полезные функции для загрузки данных, визуализации и т. д.).
+!wget --quiet https://raw.githubusercontent.com/pytorch/vision/release/0.12/references/detection/engine.py
+!wget --quiet https://raw.githubusercontent.com/pytorch/vision/release/0.12/references/detection/utils.py
+!wget --quiet https://raw.githubusercontent.com/pytorch/vision/release/0.12/references/detection/transforms.py
+!wget --quiet https://raw.githubusercontent.com/pytorch/vision/release/0.12/references/detection/coco_eval.py
+!wget --quiet https://raw.githubusercontent.com/pytorch/vision/release/0.12/references/detection/coco_utils.py
+%pip install -q -U 'git+https://github.com/sizhky/cocoapi.git@patch-1#subdirectory=PythonAPI' # Этот пакет нужен для работы с форматом аннотаций COCO (который используется в ADE20K).
+
+from torch_snippets import *
+from torch_snippets.inspector import inspect # Инструмент для отладки (показывает структуру данных).
+import torchvision
+from torchvision.models.detection.faster_rcnn import FastRCNNPredictor # Класс для замены головы модели Faster R-CNN.
+from torchvision.models.detection.mask_rcnn import MaskRCNNPredictor # Класс для замены головы модели Mask R-CNN.
+
+from engine import train_one_epoch, evaluate # готовые циклы обучения/валидации из engine.py
+import utils
+import transforms as T
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+# пути к изображениям и аннотациям из ADE20K с помощью Glob из torch_snippets
+all_images = Glob('images/training')
+all_annots = Glob('annotations_instance/training')
+
+f = 'ADE_train_00014301'
+
+im = read(find(f, all_images), 1) # поиск и чтение изображения
+an = read(find(f, all_annots), 1).transpose(2,0,1) # поиск и чтение аннотации
+r,g,b = an # Семантические классы в красном канале, номера инстансов в зелёном канале, синий не используется
+nzs = np.nonzero(r==4) # Выбор класса "person" (4), на выходе массив индектов
+instances = np.unique(g[nzs]) # извлечение масок инстансов.
+masks = np.zeros((len(instances), *r.shape)) # формируем массив масок по количеству инстансов
+for ix,_id in enumerate(instances):
+    masks[ix] = g==_id # # Маска для инстанса _id, коротко говоря формируем каждую маску
+
+subplots([im, *masks], sz=20) # Вывод изображения и масок, где sz=20 — параметр, задающий размер области отображения (например, в дюймах или пикселях).
+
+# Пробегаем по аннотациям и фильтруем аннотации, оставляя только те, которые содержат объекты класса "person" (класс 4 в ADE20K)
+annots = []
+for ann in Tqdm(all_annots[:5000]):
+    _ann = read(ann, 1).transpose(2,0,1)
+    r,g,b = _ann
+    if 4 not in np.unique(r): continue
+    annots.append(ann)
+
+from sklearn.model_selection import train_test_split # разбиваем
+_annots = stems(annots)
+trn_items, val_items = train_test_split(_annots, random_state=2)
+
+def get_transform(train): # трансформации
+    image_transforms = []
+    image_transforms.append(T.PILToTensor())
+    if train:
+        image_transforms.append(T.RandomHorizontalFlip(0.5))
+    return T.Compose(image_transforms)
+
+class MasksDataset(Dataset):
+    def __init__(self, items, transforms, N): # items-список id изображений, N-количество элементов в датасете
+        self.items = items
+        self.transforms = transforms
+        self.N = N
+
+    def get_mask(self, path):
+        an = read(path, 1).transpose(2,0,1) # загрузка маски (предположительно в формате HWC → CHW)
+        r,g,b = an # разделение на каналы (R, G, B) и далее получаем маски класса "person"
+        nzs = np.nonzero(r==4)
+        instances = np.unique(g[nzs])
+        masks = np.zeros((len(instances), *r.shape))
+        for ix,_id in enumerate(instances):
+            masks[ix] = g==_id
+        return masks
+
+    def __getitem__(self, ix): # получение элемента по индексу
+        _id = self.items[ix] # получаем ID изображения
+        img_path = f'images/training/{_id}.jpg' # соответственно изображение
+        mask_path = f'annotations_instance/training/{_id}.png' # маска
+        masks = self.get_mask(mask_path) # получаем маски
+        obj_ids = np.arange(1, len(masks)+1) # список id объектов
+        img = Image.open(img_path).convert("RGB")
+        num_objs = len(obj_ids)
+
+        # Обработка bounding boxes (ограничивающих рамок):
+        boxes = []
+        for i in range(num_objs):
+            obj_pixels = np.where(masks[i]) # координаты пикселей объекта
+            xmin = np.min(obj_pixels[1])
+            xmax = np.max(obj_pixels[1])
+            ymin = np.min(obj_pixels[0])
+            ymax = np.max(obj_pixels[0])
+            if (((xmax-xmin)<=10) | (ymax-ymin)<=10):  # Если bbox слишком мал, расширяем его до 10x10
+                xmax = xmin+10
+                ymax = ymin+10
+            boxes.append([xmin, ymin, xmax, ymax])
+        boxes = torch.as_tensor(boxes, dtype=torch.float32) # преобразуем в тензор
+
+        # Подготовка target (целевых данных для модели)
+        labels = torch.ones((num_objs,), dtype=torch.int64) # все объекты принадлежащие одному классу
+        masks = torch.as_tensor(masks, dtype=torch.uint8) # маски в тензорном формате
+        area = (boxes[:, 3] - boxes[:, 1]) * (boxes[:, 2] - boxes[:, 0]) # площадь bbox
+        iscrowd = torch.zeros((num_objs,), dtype=torch.int64) # флаг "группа объектов" (0)
+        image_id = torch.tensor([ix]) # ID изображения
+
+        target = {} # словарь, ниже его заполняем
+        target["boxes"] = boxes
+        target["labels"] = labels
+        target["masks"] = masks
+        target["image_id"] = image_id
+        target["area"] = area
+        target["iscrowd"] = iscrowd
+        if self.transforms is not None:
+            img, target = self.transforms(img, target)
+        if (img.dtype == torch.float32) or (img.dtype == torch.uint8) :
+          img = img/255.
+        return img, target
+
+    def __len__(self):
+        return self.N
+
+    def choose(self):
+        return self[randint(len(self))]
+
+x = MasksDataset(trn_items, get_transform(train=True), N=100) # инициализация класса с передачей trn_items (списка идентификаторов изображений )
+im,targ = x[0] # Получение конкретного примера, где im-тензор изображения, а targ-словарь с целевыми данными для обучения модели
+
+# inspect(im,targ)
+# subplots([im, *targ['masks']], sz=10)
+
+# Функция для правильной визуализации
+def visualize_sample(image, target):
+    # Преобразуем изображение
+    if isinstance(image, torch.Tensor):
+        image = image.permute(1, 2, 0).numpy()  # Меняем порядок каналов
+        if image.max() <= 1.0:  # Если нормализовано [0,1]
+            image = (image * 255).astype(np.uint8)
+
+    # Преобразуем маски
+    masks = []
+    for mask in target['masks']:
+        if isinstance(mask, torch.Tensor):
+            mask = mask.numpy()
+        masks.append(mask)
+
+    # Создаем фигуру
+    n_subplots = 1 + len(masks)
+    fig, axes = plt.subplots(1, n_subplots, figsize=(5*n_subplots, 5))
+
+    # Если только 1 subplot, axes будет не списком
+    if n_subplots == 1:
+        axes = [axes]
+
+    # Отображаем оригинальное изображение
+    axes[0].imshow(image)
+    axes[0].set_title('Original Image')
+    axes[0].axis('off')
+
+    # Отображаем маски
+    for i, mask in enumerate(masks, 1):
+        axes[i].imshow(mask, cmap='gray')
+        axes[i].set_title(f'Mask {i}')
+        axes[i].axis('off')
+
+    plt.tight_layout()
+    plt.show()
+
+# Визуализируем
+visualize_sample(im, targ)
+
+# Создает Mask R-CNN с измененными головами под наши классы
+def get_model_instance_segmentation(num_classes):
+    # загрузить предварительно обученную модель сегментации экземпляра на COCO
+    # Загружается модель Mask R-CNN с backbone ResNet-50 и FPN (Feature Pyramid Network), FPN помогает работать с объектами разных масштабов
+    model = torchvision.models.detection.maskrcnn_resnet50_fpn(pretrained=True)
+
+    # получить количество входных признаков для классификатора
+    in_features = model.roi_heads.box_predictor.cls_score.in_features
+    # Замена головы для классификации объектов (bbox)
+    model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
+
+    # теперь получите количество входных признаков для классификатора маски
+    in_features_mask = model.roi_heads.mask_predictor.conv5_mask.in_channels
+    hidden_layer = 256 # для более простых задач можно уменьшить
+    # Замена головы для сегментации (маски)
+    model.roi_heads.mask_predictor = MaskRCNNPredictor(in_features_mask,
+                                                       hidden_layer,num_classes)
+    return model
+
+model = get_model_instance_segmentation(2).to(device) # 2 = класс "person" + фон
+
+dataset = MasksDataset(trn_items, get_transform(train=True), N=len(trn_items))
+dataset_test = MasksDataset(val_items, get_transform(train=False), N=len(val_items))
+
+# загрузчики
+data_loader = torch.utils.data.DataLoader(
+    dataset, batch_size=2, shuffle=True, num_workers=0,
+    collate_fn=utils.collate_fn)
+
+data_loader_test = torch.utils.data.DataLoader(
+    dataset_test, batch_size=1, shuffle=False, num_workers=0,
+    collate_fn=utils.collate_fn)
+
+num_classes = 2
+model = get_model_instance_segmentation(num_classes).to(device)
+params = [p for p in model.parameters() if p.requires_grad] # Собирает только те параметры модели, которые требуют градиенты (для обучения)
+optimizer = torch.optim.SGD(params,
+                            lr=0.005, # Скорость обучения, стандартная начальная скорость обучения для Mask R-CNN
+                            momentum=0.9, # Инерция обновления, помогает быстрее сходиться и избегать локальных минимумов
+                            weight_decay=0.0005) # L2-регуляризация, предотвращает переобучение через L2-регуляризацию
+
+# Настройка планировщика скорости обучения
+lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, # StepLR - уменьшает скорость обучения в заданные моменты
+                                                step_size=3, # каждые 3 эпохи будет срабатывать
+                                                gamma=0.1) # новое LR = текущее LR * 0.1 (резкое уменьшение)
+
+# Обучение модели
+# Данный код выполняет тонкую настройку (fine-tuning) предобученной модели Mask R-CNN
+num_epochs = 2
+
+trn_history = []
+for epoch in range(num_epochs):
+    # train for one epoch, printing every 10 iterations
+    res = train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq=10)
+    trn_history.append(res)
+    # update the learning rate
+    lr_scheduler.step()
+    # evaluate on the test dataset
+    res = evaluate(model, data_loader_test, device=device)
+
+import matplotlib.pyplot as plt
+plt.title('Training Loss')
+losses = [np.mean(list(trn_history[i].meters['loss'].deque)) for i in range(len(trn_history))]
+plt.plot(losses)
+
+# Инференс обученной модели Mask R-CNN на тестовом изображении,
+# визуализация исходного изображения и предсказанных масок объектов с указанием их классов и уверенности модели.
+model.eval()
+im = dataset_test[7][0]
+show(im)
+with torch.no_grad():
+    prediction = model([im.to(device)])
+    for i in range(len(prediction[0]['masks'])):
+        plt.imshow(Image.fromarray(prediction[0]['masks']\
+                      [i, 0].mul(255).byte().cpu().numpy()))
+        plt.title('Class: '+str(prediction[0]['labels']\
+                   [i].cpu().numpy())+' Score:'+str(\
+                  prediction[0]['scores'][i].cpu().numpy()))
+        plt.show()
+---
+**Задача 1**
+
+Модифицируйте код вывода масок, чтобы отображались только объекты с confidence score > 0.7. Добавьте визуализацию bounding boxes прямо на исходном изображении с разными цветами для разных классов.
+
+**Задача 2**
+
+Добавьте текстовый отчет после обработки, который подсчитывает количество обнаруженных объектов каждого класса и выводит среднюю уверенность по классам.
+
+threshold = 0.7
+
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+
+class_names = {1: 'person'}
+colors = {cls: tuple(np.random.rand(3,).tolist()) for cls in class_names}
+
+highlight_color = (1, 0, 0)
+
+model.eval()
+image, _ = dataset_test[15]
+with torch.no_grad():
+    pred = model([image.to(device)])[0]
+
+boxes  = pred['boxes'].cpu().numpy()
+labels = pred['labels'].cpu().numpy()
+scores = pred['scores'].cpu().numpy()
+masks  = pred['masks'][:, 0].cpu().numpy()
+
+keep = scores > threshold
+boxes, labels, scores, masks = boxes[keep], labels[keep], scores[keep], masks[keep]
+
+fig, ax = plt.subplots(1, figsize=(12, 8))
+img_np = image.permute(1, 2, 0).cpu().numpy()
+if img_np.max() <= 1:
+    img_np = (img_np * 255).astype(np.uint8)
+ax.imshow(img_np)
+
+for box, lbl, score, mask in zip(boxes, labels, scores, masks):
+    if lbl == 1:
+        color = highlight_color
+        rect = patches.Rectangle(
+            (box[0], box[1]),
+            box[2] - box[0],
+            box[3] - box[1],
+            linewidth=2, edgecolor=color, facecolor='none'
+        )
+        ax.add_patch(rect)
+        ax.text(
+            box[0], box[1] - 5,
+            f"person: {score:.2f}",
+            color=color, fontsize=12, weight='bold'
+        )
+        bin_mask = (mask > 0.5).astype(np.uint8)
+        colored_mask = np.zeros((bin_mask.shape[0], bin_mask.shape[1], 3), dtype=float)
+        for c in range(3):
+            colored_mask[..., c] = bin_mask * color[c]
+        ax.imshow(colored_mask, alpha=0.3)
+
+ax.axis('off')
+plt.tight_layout()
+plt.show()
+
+from collections import defaultdict
+
+counts = defaultdict(int)
+sum_scores = defaultdict(float)
+
+for lbl, score in zip(labels, scores):
+    counts[lbl] += 1
+    sum_scores[lbl] += score
+
+for lbl in sorted(counts):
+    cls_name = class_names.get(lbl, f'class_{lbl}')
+    cnt = counts[lbl]
+    avg_score = sum_scores[lbl] / cnt if cnt>0 else 0
+    print(f"  - {cls_name}:
+{cnt} шт., средний confidence = {avg_score:.3f}")
+
+## CV_13
+---
+**Задача 1**
+
+Проведите инстанс-сегментацию объектов на изображениях из датасета PennFudanPed https://drive.google.com/drive/folders/1Rs9LY7PQtFVsK0mlr-BV5pvsNIofBDTo?usp=sharing
+
+**Задача 2**
+
+На основе задачи 1:
+
+- Визуализируйте примеры из датасета так, чтоб были видны как маски так и bounding box-ы.
+- Добавьте в getitem() подсчет количества объектов на изображении и включите эту информацию в target
+
+%pip install -qU torch_snippets==0.5
+!wget --quiet https://raw.githubusercontent.com/pytorch/vision/release/0.12/references/detection/engine.py
+!wget --quiet https://raw.githubusercontent.com/pytorch/vision/release/0.12/references/detection/utils.py
+!wget --quiet https://raw.githubusercontent.com/pytorch/vision/release/0.12/references/detection/transforms.py
+!wget --quiet https://raw.githubusercontent.com/pytorch/vision/release/0.12/references/detection/coco_eval.py
+!wget --quiet https://raw.githubusercontent.com/pytorch/vision/release/0.12/references/detection/coco_utils.py
+%pip install -q -U 'git+https://github.com/sizhky/cocoapi.git@patch-1#subdirectory=PythonAPI'
+
+import zipfile
+
+import os
+import numpy as np
+from PIL import Image
+import torch as th
+from torch.utils.data import Dataset, DataLoader, random_split
+import torchvision.transforms.v2 as T
+
+from torchvision.models.detection import maskrcnn_resnet50_fpn
+from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
+from torchvision.models.detection.mask_rcnn import MaskRCNNPredictor
+
+from engine import train_one_epoch, evaluate
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+
+device = 'cuda' if th.cuda.is_available() else 'cpu'
+
+with zipfile.ZipFile('PennFudanPed.zip', 'r') as archive:
+    archive.extractall()
+
+class PennFudanDataset(Dataset):
+    def __init__(self, root, transforms=None):
+        self.root = root
+        self.transforms = transforms
+        img_dir = os.path.join(root, "PNGImages")
+        mask_dir = os.path.join(root, "PedMasks")
+
+        self.imgs = sorted([f for f in os.listdir(img_dir) if f.endswith('.png')])
+        self.masks = sorted([f for f in os.listdir(mask_dir) if f.endswith('.png')])
+
+    def __len__(self):
+        return len(self.imgs)
+
+    def __getitem__(self, idx):
+        img_path = os.path.join(self.root, "PNGImages", self.imgs[idx])
+        img = Image.open(img_path).convert("RGB")
+
+        mask_path = os.path.join(self.root, "PedMasks", self.masks[idx])
+        mask = Image.open(mask_path)
+        mask = np.array(mask)
+
+        obj_ids = np.unique(mask)
+        obj_ids = obj_ids[obj_ids != 0]
+        num_objects = th.tensor([len(obj_ids)])
+
+        masks = mask == obj_ids[:, None, None]
+        masks = th.as_tensor(masks, dtype=th.uint8)
+
+        boxes = []
+        for m in masks:
+            pos = th.where(m)
+            ymin = th.min(pos[0])
+            ymax = th.max(pos[0])
+            xmin = th.min(pos[1])
+            xmax = th.max(pos[1])
+            boxes.append([xmin, ymin, xmax, ymax])
+        boxes = th.as_tensor(boxes, dtype=th.float32)
+
+        labels = th.ones((len(obj_ids),), dtype=th.int64)
+
+        image_id = th.tensor([idx])
+        area = (boxes[:, 3] - boxes[:, 1]) * (boxes[:, 2] - boxes[:, 0])
+        iscrowd = th.zeros((len(obj_ids),), dtype=th.int64)
+
+        target = {
+            "boxes": boxes,
+            "labels": labels,
+            "masks": masks,
+            "image_id": image_id,
+            "area": area,
+            "iscrowd": iscrowd,
+            "num_objects": num_objects
+        }
+
+        if self.transforms:
+            img, target = self.transforms(img, target)
+
+        return img, target
+
+transform = T.Compose([
+    T.PILToTensor(),
+    T.ConvertImageDtype(th.float32)
+])
+
+dataset = PennFudanDataset('PennFudanPed', transforms=transform)
+
+train_size = int(0.8 * len(dataset))
+val_size = len(dataset) - train_size
+
+train_ds, test_ds = random_split(
+    dataset,
+    [train_size, val_size],
+    generator=th.Generator().manual_seed(42)
+)
+
+data_loader = DataLoader(
+    train_ds, batch_size=4, shuffle=True, num_workers=0,
+    collate_fn=lambda x: tuple(zip(*x)))
+
+data_loader_test = DataLoader(
+    test_ds, batch_size=4, shuffle=False, num_workers=0,
+    collate_fn=lambda x: tuple(zip(*x)))
+
+def get_model_instance_segmentation(num_classes):
+    model = maskrcnn_resnet50_fpn(pretrained=True)
+    in_features = model.roi_heads.box_predictor.cls_score.in_features
+    model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
+    in_features_mask = model.roi_heads.mask_predictor.conv5_mask.in_channels
+    hidden_layer = 256
+    model.roi_heads.mask_predictor = MaskRCNNPredictor(in_features_mask,
+                                                       hidden_layer,num_classes)
+    return model
+
+model = get_model_instance_segmentation(2).to(device)
+
+params = [p for p in model.parameters() if p.requires_grad]
+optimizer = th.optim.SGD(params, lr=0.005, momentum=0.9, weight_decay=0.0005)
+
+lr_scheduler = th.optim.lr_scheduler.StepLR(optimizer, step_size=3, gamma=0.1)
+
+num_epochs = 5
+
+trn_history = []
+for epoch in range(num_epochs):
+    res = train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq=10)
+    trn_history.append(res)
+    lr_scheduler.step()
+    res = evaluate(model, data_loader_test, device=device)
+
+plt.title('Training Loss')
+losses = [np.mean(list(trn_history[i].meters['loss'].deque)) for i in range(len(trn_history))]
+plt.plot(losses)
+plt.show()
+
+def visualize_sample(sample):
+    img, target = sample
+    img = img.permute(1, 2, 0).numpy()
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.imshow(img)
+
+    boxes = target["boxes"]
+    for box in boxes:
+        xmin, ymin, xmax, ymax = box
+        rect = patches.Rectangle(
+            (xmin, ymin), xmax-xmin, ymax-ymin,
+            linewidth=2, edgecolor='r', facecolor='none'
+        )
+        ax.add_patch(rect)
+
+    masks = target["masks"]
+    for mask in masks:
+        ax.imshow(mask.numpy(), alpha=0.3, cmap='viridis')
+
+    ax.axis('off')
+    plt.tight_layout()
+    plt.show()
+
+visualize_sample(test_ds[0])
+
+visualize_sample(test_ds[4])
+
+### 
+## lab_1
+---
+from PIL import Image, ImageSequence
+import matplotlib.pyplot as plt
+import numpy as np
+import cv2
+import os
+from scipy import ndimage
+---
+# Часть 1. Работа с изображениями на Pillow, Matplotlib, Numpy
+
+# Задание 1
+
+Подберите произвольное цветное изображение и с помощью библиотеки Pillow проделайте следующие операции:
+
+
+1.   Получите полутоновое изображение.
+2.   Преобразуйте его в формат .png
+3.   Создайте миниатюру из изображения.
+4.   Выберите и обрежте какую-нибудь область изображения, на котором есть определенный объект.
+
+
+
+# Исходное изображение
+pil_im = Image.open('HolHorse.jpg')
+pil_im
+
+# Полутоновое изображение
+pil_im = Image.open('HolHorse.jpg').convert('L')
+pil_im
+
+# Преобразование в png
+infile = 'HolHorse.jpg'
+outfile = os.path.splitext(infile)[0] + '.png'
+print(outfile)
+outfile_0 = outfile.split('/')[-1]
+print(outfile_0)
+print(infile)
+
+if infile != outfile:
+    try:
+        print('Успешно сохранено!')
+        Image.open(infile).save(outfile_0)
+    except IOError:
+        print('Ошибка преобразования', infile)
+
+# Создаём миниатюру - 1
+pil_im = Image.open('HolHorse.jpg')
+pil_im.size
+
+# Создаём миниатюру - 2
+pil_im.thumbnail((300, 300))
+pil_im.size
+
+# Создаём миниатюру - 3
+pil_im
+
+# crop
+pil_im = Image.open('HolHorse.jpg')
+box = (200, 0, 500, 200)
+region = pil_im.crop(box)
+region
+---
+# Задание 2
+
+Подберите произвольное цветное изображение, с помощью Matplotlib нарисуйте рамку вокруг произвольного объекта на изображении.
+
+# Исходное изображение
+im = np.array(Image.open('HolHorse.jpg'))
+plt.imshow(im)
+plt.show()
+
+# Рамка
+x = [200, 500, 500, 200, 200]
+y = [0, 0, 200, 200, 0]
+plt.plot(x, y, 'g')
+plt.imshow(im)
+plt.axis('off')
+plt.show()
+---
+# Задание 3
+
+Подберите произвольное цветное изображение, напишите функцию, которая получает на входе изображение и возвращает изображение в указанном масштабе.
+
+# Исходное изображение
+pil_im = Image.open('HolHorse.jpg')
+pil_im
+
+# Функция по изменению изображения
+def resize_image(image, x, y):
+    return image.resize((x, y))
+
+pil_im = resize_image(pil_im, 300, 200)
+pil_im
+---
+# Задание 4
+
+Подберите произвольное цветное изображение, получите полутоновое изображение с изолиниями.
+
+
+# Изолинии
+im = np.array(Image.open('HolHorse.jpg').convert('L'))
+plt.gray()
+plt.contour(im, origin = 'image')
+plt.axis('equal')
+plt.axis('off')
+plt.show()
+---
+# Задание 5
+
+Подберите произвольное цветное изображение, постройте гистограмму полутонового изображения.
+
+# Гистограмма
+im = np.array(Image.open('HolHorse.jpg').convert('L'))
+plt.hist(im.flatten(), 64)
+plt.show()
+---
+# Задание 6
+
+Подберите произвольное цветное изображение, выполните следующие операции:
+
+1.   Представьте изображение в виде массива ndarray.
+2.   Возьмите значения пикселей в строках, относящихся к верхней половине изображения и скопируйте их в нижнюю половину изображения.
+3.   Инвертируйте яркость изображения. Выведите получившееся изображение.
+4.   Приведите значения яркости к интервалу от 150 до 250. Выведите получившееся изображение.
+5.   Уменьшите значения более темных пикселей и выведите получившееся изображение.
+
+
+
+# ndarray
+im = np.array(Image.open('HolHorse.jpg').convert('L'), 'f')
+im, im.shape
+
+# Копирование
+im_copy = im.copy()
+im_copy[368:] = im[:368]
+plt.imshow(im_copy)
+plt.show()
+
+# Инвертирование
+im_inv = 255 - im
+plt.imshow(im_inv)
+plt.show()
+
+# Интервал [150, 250]
+im_interv = (100/255) * im + 150
+print(im_interv.min(), im_interv.max())
+plt.imshow(im_interv)
+plt.show()
+
+# Квадратичная функция и уменьшение значения тёмных пикселей
+im_kv = 255 * (im / 255) ** 2
+plt.imshow(im_kv)
+plt.show()
+---
+# Задание 7
+
+Подберите произвольное цветное изображение. Произведите операцию выравнивания гистограммы полутонового изображения, выведите гистограммы и сами изображения до и после выравнивания гистограммы.
+
+# Исходник
+im = np.array(Image.open('HolHorse.jpg').convert('L'), 'f')
+plt.imshow(im)
+plt.show()
+
+# Гистограмма исходника
+plt.hist(im.flatten(), 256)
+plt.show()
+
+# Выравнивание гистограммы
+def image_histogram_equalization(image, number_bins = 256):
+    imhist, bins = np.histogram(image.flatten(), number_bins, density = True)
+    cdf = imhist.cumsum() # ф-я распределения
+    cdf = 255 * cdf / cdf[-1] # нормализация
+    image_equalized = np.interp(image.flatten(), bins[:-1], cdf)
+    return image_equalized.reshape(image.shape)
+
+# Обработанное изображение
+im2 = image_histogram_equalization(im)
+plt.imshow(im2)
+plt.show()
+
+# Гистограмма обработанного изображения
+plt.hist(im2.flatten(), 256)
+plt.show()
+---
+# Задание 8
+
+Подберите произвольное цветное изображение. Выполните гауссово размытие полутонового и цветного изображения.
+
+# Размытие полутона
+im = np.array(Image.open('HolHorse.jpg').convert('L'), 'f')
+im2 = ndimage.gaussian_filter(im, 5) # где 5 - стандартное отклонение
+plt.imshow(im2)
+plt.show()
+
+# Размытие цвета
+im = np.array(Image.open('HolHorse.jpg'), 'f')
+im2 = np.zeros(im.shape)
+for i in range(3):
+    im2[:, :, i] = ndimage.gaussian_filter(im[:, :, i], 5)
+im2 = np.array(np.uint8(im2))
+plt.imshow(im2)
+plt.show()
+---
+# Часть 2. Работа с изображениями на OpenCV
+
+# Задание 1.
+Реализуйте обнаружение краев на произвольном изображении, затем на компьютере в каком-нибудь небольшом видеоролике.
+
+# Исходное изображение
+img = cv2.imread('Grivus.jpg')
+plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+
+# Края по Лапласиану
+laplace = cv2.Laplacian(img, cv2.CV_64F)
+laplace = np.uint8(np.absolute(laplace))
+plt.imshow(cv2.cvtColor(laplace, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+
+# Видео
+from IPython.display import display, Image
+display(Image(filename = 'general-grievous-star-wars.gif'))
+
+# Обработка видео
+from PIL import Image, ImageSequence
+gif = Image.open('general-grievous-star-wars.gif')
+
+processed_frames = []
+for frame in ImageSequence.Iterator(gif):
+    img = cv2.cvtColor(np.array(frame), cv2.COLOR_BGR2RGB)
+    laplace = cv2.Laplacian(img, cv2.CV_64F)
+    laplace = np.uint8(np.absolute(laplace))
+    processed_frame = Image.fromarray(laplace)
+    processed_frames.append(processed_frame)
+
+processed_frames[0].save('processed-grievous.gif', save_all = True,
+                         append_images = processed_frames[1:], loop = 0,
+                         duration = gif.info['duration'])
+
+# Обработанное видео
+from IPython.display import display, Image
+display(Image(filename = 'processed-grievous.gif'))
+---
+# Задание 2.
+
+На произвольном изображении выделите границы и произведите их усиление. Попробуйте сделать это с видеороликом на компьютере.
+
+# Исходное изображение
+img = cv2.imread('Grivus.jpg')
+plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+
+# Усиление границ путём наложения
+laplace = cv2.Laplacian(img, cv2.CV_64F)
+laplace = np.uint8(np.absolute(laplace))
+powered = cv2.addWeighted(img, 1, laplace, 1, 0)
+plt.imshow(cv2.cvtColor(powered, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+
+# Видео
+from IPython.display import display, Image
+display(Image(filename = 'general-grievous-star-wars.gif'))
+
+# Обработка видео
+from PIL import Image, ImageSequence
+gif = Image.open('general-grievous-star-wars.gif')
+
+processed_frames = []
+for frame in ImageSequence.Iterator(gif):
+    img = cv2.cvtColor(np.array(frame), cv2.COLOR_BGR2RGB)
+    laplace = cv2.Laplacian(img, cv2.CV_64F)
+    laplace = np.uint8(np.absolute(laplace))
+    powered = cv2.addWeighted(img, 1, laplace, 1, 0)
+    powered = cv2.cvtColor(powered, cv2.COLOR_BGR2RGB)
+    processed_frame = Image.fromarray(powered)
+    processed_frames.append(processed_frame)
+
+processed_frames[0].save('processed-grievous.gif', save_all = True,
+                         append_images = processed_frames[1:], loop = 0,
+                         duration = gif.info['duration'])
+
+# Обработанное видео
+from IPython.display import display, Image
+display(Image(filename = 'processed-grievous.gif'))
+---
+# Задание 3
+
+Реализуйте собственный пример с сопоставлением шаблонов.
+
+# Исходник и шаблон
+target = cv2.imread('Grivus.jpg', cv2.IMREAD_GRAYSCALE)
+template = target[110:220, 300:380]
+plt.imshow(cv2.cvtColor(target, cv2.COLOR_BGR2RGB))
+plt.show()
+plt.imshow(cv2.cvtColor(template, cv2.COLOR_BGR2RGB))
+plt.show()
+
+# Поиск шаблона, уменьшение размера для усложнения задачи
+template = cv2.resize(template, None, fx = 0.7, fy = 0.7)
+w, h = template.shape[::-1]
+
+methods = [
+    'cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
+    'cv2.TM_CCORR_NORMED', 'cv2.TM_SQDIFF', 'cv2.TM_SQDIFF_NORMED'
+]
+
+fig, axs = plt.subplots(2, 3, figsize = (10, 6))
+axs = axs.ravel()
+
+for i, m in enumerate(methods):
+    img = target.copy()
+    method = eval(m)
+
+    result = cv2.matchTemplate(img, template, method)
+    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+
+    if method in [cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED]:
+        top_left = min_loc
+    else:
+        top_left = max_loc
+
+    bottom_right = (top_left[0] + w, top_left[1] + h)
+    cv2.rectangle(img, top_left, bottom_right, 255, 2)
+
+    axs[i].imshow(img, cmap='gray')
+    axs[i].set_title(m)
+    axs[i].axis("off")
+
+plt.show()
+---
+# Задание 4
+
+Постройте гистограмму изображения с 16 ячейками (бинами).
+
+# Исходное изображение
+img = cv2.imread('Grivus.jpg')
+plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+
+# Гистограмма RGB
+colors = ('blue', 'green', 'red')
+for i, color in enumerate(colors):
+    hist = cv2.calcHist([img], [i], None, [16], [0,256])
+    plt.plot(hist, color = color)
+plt.title('RGB Color Histogram')
+plt.xlabel('Bins')
+plt.ylabel('Number of Pixels')
+plt.show()
+---
+# Задание 5
+
+Получите видеопоток со встроенной камеры в вашем ноутбуке. Обработайте видео, получите контуры. Добейтесь того, чтоб контуров было не много и они были четкие.
+
+# pass
+---
+# Задание 6
+Подберите произвольную цветную картинку для кластеризации и произведите кластеризацию цветов для значений количества кластеров 3, 5, 7, 9.
+
+# Исходное изображение
+img = cv2.imread('colors.jpg')
+plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+
+# Алгоритм k-means
+def k_means(image, K):
+    Z = image.reshape((-1, 3))
+    Z = np.float32(Z)
+
+    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
+    compactness, labels, center = cv2.kmeans(Z, K, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
+
+    center = np.uint8(center)
+    res = center[labels.flatten()].reshape(image.shape)
+
+    plt.imshow(cv2.cvtColor(res, cv2.COLOR_BGR2RGB))
+    plt.axis('off')
+    plt.show()
+
+k_means(img, 3)
+
+k_means(img, 5)
+
+k_means(img, 7)
+
+k_means(img, 9)
+---
+# Задание 7
+Подберите изображение с шумом "соль и перец", уменьшите шум.
+
+# Исходник
+img = cv2.imread('081312_1337_30.jpg')
+plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+
+# Медианный фильтр
+img_blur = cv2.medianBlur(img, 3)
+plt.imshow(cv2.cvtColor(img_blur, cv2.COLOR_BGR2RGB))
+plt.axis('off')
+plt.show()
+
+## lab_2
+---
+!pip install torchmetrics >> None
+!pip install torchvision >> None
+
+import torch as th
+import torch.nn as nn
+import torch.optim as optim
+import torchmetrics as M
+from torch.utils.data import DataLoader, random_split
+import torchvision
+import torchvision.transforms.v2 as T
+import matplotlib.pyplot as plt
+from random import randint
+from tqdm import tqdm
+import torchvision.models as models
+import copy
+
+import zipfile
+with zipfile.ZipFile('data.zip', 'r') as archive:
+    archive.extractall()
+
+transform = T.Compose([
+    T.Resize((64, 64)),
+    T.ToTensor()
+])
+
+dataset = torchvision.datasets.ImageFolder(root = 'data', transform = transform)
+
+dataset_loader = DataLoader(dataset, batch_size = 8)
+
+n = len(dataset) * 64 * 64
+
+mu = th.zeros((3,), dtype=th.float)
+sig = th.zeros((3,), dtype=th.float)
+
+for batch, _ in dataset_loader:
+    for data in batch:
+        mu += data.sum(dim = 1).sum(dim = 1)
+        sig += (data**2).sum(dim = 1).sum(dim = 1)
+
+mu = mu / n
+sig = th.sqrt(sig / n - mu**2)
+
+mu, sig
+
+transform_new = T.Compose([
+    T.Resize((64, 64)),
+    T.ToTensor(),
+    T.Normalize(mean = mu, std = sig)
+])
+
+dataset = torchvision.datasets.ImageFolder(root = 'data', transform = transform_new)
+
+print(f'Картинок в датасете: {len(dataset)}')
+print(f'Количество классов: {len(dataset.classes)}')
+print(f'Размер картинки: {dataset[0][0].shape}')
+
+th.manual_seed(42)
+train, test = random_split(dataset, [0.8, 0.2])
+cti = dataset.class_to_idx
+
+def train_model(model, criterion, optimizer, metric, file_name, train, test, batch_size, num_epoch):
+    th.manual_seed(42)
+
+    loader = DataLoader(train, batch_size = batch_size, shuffle = True)
+    loader_test = DataLoader(test, batch_size = batch_size, shuffle = True)
+
+    model = model.to('cuda')
+    criterion = criterion.to('cuda')
+    metric = metric.to('cuda')
+
+    best_metric = 0
+    epoch_losses = []
+    test_metrics = []
+
+    for epoch in tqdm(range(num_epoch), desc = 'Обучение'):
+        model.train()
+        epoch_loss = 0
+        for X_batch, y_batch in loader:
+            X_batch = X_batch.to('cuda')
+            y_batch = y_batch.to('cuda')
+            optimizer.zero_grad()
+            y_pred = model(X_batch)
+            loss = criterion(y_pred, y_batch)
+            loss.backward()
+            optimizer.step()
+            epoch_loss += loss.item()
+        epoch_loss /= len(loader)
+        epoch_losses.append(epoch_loss)
+
+        metric.reset()
+        model.eval()
+        with th.no_grad():
+            for X_batch, y_batch in loader_test:
+                X_batch = X_batch.to('cuda')
+                y_batch = y_batch.to('cuda')
+                y_pred = model(X_batch)
+                metric.update(y_pred, y_batch)
+        test_metric = metric.compute().cpu().item()
+        test_metrics.append(test_metric)
+
+        if test_metric > best_metric:
+            best_metric = test_metric
+            th.save(model, file_name)
+
+    return epoch_losses, test_metrics
+
+def show_image(image, file_name, classes_to_idx, mean, std):
+    model = th.load(file_name, weights_only = False).to('cuda')
+    model.eval()
+
+    true_label = image[1]
+    image_tensor = image[0].to('cuda')
+
+    with th.no_grad():
+        pred_idx = model(image_tensor.unsqueeze(0)).argmax(dim=1).item()
+
+    idx_to_class = {v: k for k, v in classes_to_idx.items()}
+    pred_class = idx_to_class[pred_idx]
+    true_class = idx_to_class[true_label]
+
+    image_np = image_tensor.cpu().numpy().transpose((1, 2, 0))
+    image_np = std * image_np + mean
+
+    plt.title(f'Predict: {pred_class} | True: {true_class}')
+    plt.imshow(image_np)
+    plt.show()
+---
+# Задание 1
+
+Для [набора данных](https://drive.google.com/drive/folders/1sPwKGt_BX0fwGFTwVcoC7opwLT41b9Ug?usp=sharing) взять два класса и построить модель бинарной классификации, постараться улучшить точность модели. Построить графики кривых обучения.
+
+*Локально удалил классы Apple___Cedar_apple_rust (275) и Apple___healthy (700). Оставшиеся классы сбалансированы - буду использовать метрику Accuracy*
+
+with zipfile.ZipFile('data_bin.zip', 'r') as archive:
+    archive.extractall()
+
+transform = T.Compose([
+    T.Resize((64, 64)),
+    T.ToTensor()
+])
+dataset = torchvision.datasets.ImageFolder(root = 'data_bin', transform = transform)
+dataset_loader = DataLoader(dataset, batch_size = 8)
+
+n = len(dataset) * 64 * 64
+mu_bin = th.zeros((3,), dtype=th.float)
+sig_bin = th.zeros((3,), dtype=th.float)
+for batch, _ in dataset_loader:
+    for data in batch:
+        mu_bin += data.sum(dim = 1).sum(dim = 1)
+        sig_bin += (data**2).sum(dim = 1).sum(dim = 1)
+mu_bin = mu_bin / n
+sig_bin = th.sqrt(sig_bin / n - mu_bin**2)
+
+transform_new = T.Compose([
+    T.Resize((64, 64)),
+    T.ToTensor(),
+    T.Normalize(mean = mu_bin, std = sig_bin)
+])
+dataset = torchvision.datasets.ImageFolder(root = 'data_bin', transform = transform_new)
+print(f'Картинок в датасете: {len(dataset)}')
+print(f'Количество классов: {len(dataset.classes)}')
+print(f'Размер картинки: {dataset[0][0].shape}')
+
+th.manual_seed(42)
+train_bin, test_bin = random_split(dataset, [0.8, 0.2])
+cti_bin = dataset.class_to_idx
+
+class CNN(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.features = nn.Sequential(
+            nn.Conv2d(in_channels=3, out_channels=4, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(2),
+            nn.Conv2d(in_channels=4, out_channels=8, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(2)
+        )
+        self.classifier = nn.Linear(2048, 2)
+
+    def forward(self, x):
+        x = self.features(x)
+        x = x.view(x.size(0), -1)
+        x = self.classifier(x)
+        return x
+
+model = CNN()
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.AdamW(model.parameters(), lr = 0.01)
+metric = M.Accuracy(task = 'binary')
+
+epoch_losses, accuracy_test = train_model(model = model, criterion = criterion, optimizer = optimizer,
+                                          metric = metric, file_name = 'n1.pth', train = train_bin,
+                                          test = test_bin, batch_size = 8, num_epoch = 10)
+
+plt.title('CrossEntropyLoss')
+plt.plot(epoch_losses)
+plt.grid(True)
+plt.show()
+
+plt.title('Accuracy')
+plt.plot(accuracy_test)
+plt.grid(True)
+plt.show()
+
+choice = randint(0, len(test_bin))
+show_image(test_bin[choice], 'n1.pth', cti_bin, mu_bin, sig_bin)
+---
+# Задание 2
+
+Для [набора данных](https://drive.google.com/drive/folders/1sPwKGt_BX0fwGFTwVcoC7opwLT41b9Ug?usp=sharing) построить модель многоклассовой классификации, постараться улучшить точность модели. Построить графики кривых обучения.
+
+class CNN(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.features = nn.Sequential(
+            nn.Conv2d(in_channels=3, out_channels=4, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(2),
+            nn.Conv2d(in_channels=4, out_channels=8, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(2)
+        )
+        self.classifier = nn.Linear(2048, 4)
+
+    def forward(self, x):
+        x = self.features(x)
+        x = x.view(x.size(0), -1)
+        x = self.classifier(x)
+        return x
+
+model = CNN()
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.AdamW(model.parameters(), lr = 0.01)
+metric = M.F1Score(task = 'multiclass', num_classes = 4)
+
+epoch_losses, f1_test = train_model(model = model, criterion = criterion, optimizer = optimizer,
+                                    metric = metric, file_name = 'n2.pth', train = train,
+                                    test = test, batch_size = 8, num_epoch = 10)
+
+plt.title('CrossEntropyLoss')
+plt.plot(epoch_losses)
+plt.grid(True)
+plt.show()
+
+plt.title('F1_Score')
+plt.plot(f1_test)
+plt.grid(True)
+plt.show()
+
+choice = randint(0, len(test))
+show_image(test[choice], 'n2.pth', cti, mu, sig)
+
+model = CNN()
+criterion = nn.CrossEntropyLoss(weight = (1 / th.tensor([630, 621, 275, 700])) / 2226)
+optimizer = optim.AdamW(model.parameters(), lr = 0.01)
+metric = M.F1Score(task = 'multiclass', num_classes = 4)
+
+epoch_losses, f1_test = train_model(model = model, criterion = criterion, optimizer = optimizer,
+                                    metric = metric, file_name = 'n2_weights.pth', train = train,
+                                    test = test, batch_size = 8, num_epoch = 10)
+
+plt.title('CrossEntropyLoss')
+plt.plot(epoch_losses)
+plt.grid(True)
+plt.show()
+
+plt.title('F1_Score')
+plt.plot(f1_test)
+plt.grid(True)
+plt.show()
+
+choice = randint(0, len(test))
+show_image(test[choice], 'n2_weights.pth', cti, mu, sig)
+---
+# Задание 3
+
+Для [набора данных](https://drive.google.com/drive/folders/1sPwKGt_BX0fwGFTwVcoC7opwLT41b9Ug?usp=sharing) изучить зависимость точности модели от количества слоев. Построить графики кривых обучения и интерпретировать.
+
+class CNN_1block(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.conv = nn.Sequential(
+            nn.Conv2d(3, 6, 3, 1), nn.ReLU(), nn.MaxPool2d(2, 2)
+        )
+        self.fc = nn.Linear(5766, 4)
+
+    def forward(self, X):
+        return self.fc(self.conv(X).flatten(start_dim = 1))
+
+model = CNN_1block()
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.AdamW(model.parameters(), lr = 0.01)
+metric = M.F1Score(task = 'multiclass', num_classes = 4)
+
+losses_1block, f1_1block = train_model(model = model, criterion = criterion, optimizer = optimizer,
+                                       metric = metric, file_name = 'n3_1b.pth', train = train,
+                                       test = test, batch_size = 8, num_epoch = 10)
+
+class CNN_2block(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.conv = nn.Sequential(
+            nn.Conv2d(3, 6, 3, 1), nn.ReLU(), nn.MaxPool2d(2, 2),
+            nn.Conv2d(6, 12, 3, 1), nn.ReLU(), nn.MaxPool2d(2, 2)
+        )
+        self.fc = nn.Linear(2352, 4)
+
+    def forward(self, X):
+        return self.fc(self.conv(X).flatten(start_dim = 1))
+
+model = CNN_2block()
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.AdamW(model.parameters(), lr = 0.01)
+metric = M.F1Score(task = 'multiclass', num_classes = 4)
+
+losses_2block, f1_2block = train_model(model = model, criterion = criterion, optimizer = optimizer,
+                                       metric = metric, file_name = 'n3_2b.pth', train = train,
+                                       test = test, batch_size = 8, num_epoch = 10)
+
+class CNN_3block(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.conv = nn.Sequential(
+            nn.Conv2d(3, 6, 3, 1), nn.ReLU(), nn.MaxPool2d(2, 2),
+            nn.Conv2d(6, 12, 3, 1), nn.ReLU(), nn.MaxPool2d(2, 2),
+            nn.Conv2d(12, 24, 3, 1), nn.ReLU(), nn.MaxPool2d(2, 2)
+        )
+        self.fc = nn.Linear(864, 4)
+
+    def forward(self, X):
+        return self.fc(self.conv(X).flatten(start_dim = 1))
+
+model = CNN_3block()
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.AdamW(model.parameters(), lr = 0.01)
+metric = M.F1Score(task = 'multiclass', num_classes = 4)
+
+losses_3block, f1_3block = train_model(model = model, criterion = criterion, optimizer = optimizer,
+                                       metric = metric, file_name = 'n3_3b.pth', train = train,
+                                       test = test, batch_size = 8, num_epoch = 10)
+
+plt.title('CrossEntropyLoss')
+plt.plot(losses_1block, label = '1 block')
+plt.plot(losses_2block, label = '2 blocks')
+plt.plot(losses_3block, label = '3 blocks')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+plt.title('F1_Score')
+plt.plot(f1_1block, label = '1 block')
+plt.plot(f1_2block, label = '2 blocks')
+plt.plot(f1_3block, label = '3 blocks')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+choice = randint(0, len(test))
+show_image(test[choice], 'n3_3b.pth', cti, mu, sig)
+---
+# Задание 4
+
+Для [набора данных](https://drive.google.com/drive/folders/1sPwKGt_BX0fwGFTwVcoC7opwLT41b9Ug?usp=sharing) провести обучение с переносом, используя обученную сеть (например, VGG16) Изучить влияние точности модели от количества добавляемых новых слоев. Построить графики кривых обучения для каждого случая в TensorBoard.
+
+model = models.mobilenet_v2(
+    weights = models.MobileNet_V2_Weights.IMAGENET1K_V1)
+
+for p in model.parameters():
+    p.requires_grad_(False)
+
+model.classifier
+
+model.classifier[-1] = nn.Linear(in_features = 1280, out_features = 4)
+print(f'Число настраиваемых параметров: {sum(p.numel() for p in model.parameters() if p.requires_grad == True)}')
+
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.AdamW(model.parameters(), lr = 0.01)
+metric = M.F1Score(task = 'multiclass', num_classes = 4)
+
+losses_1, f1_1 = train_model(model = model, criterion = criterion, optimizer = optimizer,
+                             metric = metric, file_name = 'n4_1.pth', train = train,
+                             test = test, batch_size = 8, num_epoch = 10)
+
+model2 = copy.deepcopy(model)
+model2.classifier = nn.Sequential(
+    nn.Dropout(0.2),
+    nn.Linear(1280, 64),
+    nn.ReLU(),
+    nn.Dropout(0.2),
+    nn.Linear(64, 4))
+
+print(f'Число настраиваемых параметров: {sum(p.numel() for p in model2.parameters() if p.requires_grad == True)}')
+
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.AdamW(model.parameters(), lr = 0.01)
+metric = M.F1Score(task = 'multiclass', num_classes = 4)
+
+losses_2, f1_2 = train_model(model = model2, criterion = criterion, optimizer = optimizer,
+                             metric = metric, file_name = 'n4_2.pth', train = train,
+                             test = test, batch_size = 8, num_epoch = 10)
+
+model3 = copy.deepcopy(model)
+model3.classifier = nn.Sequential(
+    nn.Dropout(0.2),
+    nn.Linear(1280, 64),
+    nn.ReLU(),
+    nn.Dropout(0.2),
+    nn.Linear(64, 64),
+    nn.ReLU(),
+    nn.Dropout(0.2),
+    nn.Linear(64, 4))
+
+print(f'Число настраиваемых параметров: {sum(p.numel() for p in model3.parameters() if p.requires_grad == True)}')
+
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.AdamW(model.parameters(), lr = 0.01)
+metric = M.F1Score(task = 'multiclass', num_classes = 4)
+
+losses_3, f1_3 = train_model(model = model3, criterion = criterion, optimizer = optimizer,
+                             metric = metric, file_name = 'n4_3.pth', train = train,
+                             test = test, batch_size = 8, num_epoch = 10)
+
+plt.title('CrossEntropyLoss')
+plt.plot(losses_1, label = 'Изменён последний слой')
+plt.plot(losses_2, label = 'Добавлен 1 новый слой')
+plt.plot(losses_3, label = 'Добавлено 2 новых слоя')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+plt.title('F1_Score')
+plt.plot(f1_1, label = 'Изменён последний слой')
+plt.plot(f1_2, label = 'Добавлен 1 новый слой')
+plt.plot(f1_3, label = 'Добавлено 2 новых слоя')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+choice = randint(0, len(test))
+show_image(test[choice], 'n4_1.pth', cti, mu, sig)
+
+
+## lab_5
+---
+!pip install segmentation_models_pytorch >> None
+!pip install ultralytics >> None
+!pip install torchmetrics >> None
+
+import cv2
+import numpy as np
+import torch as th
+import matplotlib.pyplot as plt
+from ultralytics import YOLO
+from torch.utils.data import DataLoader, random_split
+from torchvision import transforms as T
+import segmentation_models_pytorch as smp
+import torchmetrics as M
+from tqdm import tqdm
+from IPython.display import Video, display
+import zipfile
+from PIL import Image
+import os
+import torchvision.transforms.functional as F
+
+def train_model(model, criterion, optimizer, metric, file_name,
+                train, test, batch_size, num_epoch):
+    th.manual_seed(42)
+    device = th.device('cuda' if th.cuda.is_available() else 'cpu')
+
+    loader = DataLoader(train, batch_size=batch_size, shuffle=True)
+    loader_test = DataLoader(test, batch_size=batch_size, shuffle=False)
+
+    model = model.to(device)
+    criterion = criterion.to(device)
+    metric = metric.to(device)
+
+    best = 0.0
+    epoch_losses = []
+    test_metrics = []
+
+    for epoch in range(1, num_epoch+1):
+        model.train()
+        total_loss = 0.0
+        for X, y in tqdm(loader, desc=f'Train {epoch}/{num_epoch}', leave=False):
+            X, y = X.to(device), y.to(device)
+            optimizer.zero_grad()
+            out = model(X)
+            loss = criterion(out, y)
+            loss.backward()
+            optimizer.step()
+            total_loss += loss.item()
+        epoch_losses.append(total_loss / len(loader))
+
+        model.eval()
+        metric.reset()
+        with th.no_grad():
+            for X, y in tqdm(loader_test, desc=f'Valid {epoch}/{num_epoch}', leave=False):
+                X, y = X.to(device), y.to(device)
+                out = model(X)
+                preds = out.argmax(dim=1)
+                metric.update(preds, y)
+        m = metric.compute().item()
+        test_metrics.append(m)
+
+        if m > best:
+            best = m
+            th.save(model.state_dict(), file_name)
+
+        tqdm.write(f'Epoch {epoch}/{num_epoch} — train loss: {epoch_losses[-1]:.4f}, val score: {test_metrics[-1]:.4f}')
+
+    return epoch_losses, test_metrics
+
+# Сегментация
+
+video_path = '3015482-hd_1920_1080_24fps.mp4'
+display(Video(video_path, embed=True, width=640, height=480))
+---
+# Задание 1
+
+Реализуйте семантическую сегментацию u-net на видеоролике (лучше подберите так, чтоб на видео объекты двигались медленно)
+
+batch_size = 16
+num_epochs = 10
+learning_rate = 1e-3
+file_name = 'best_unet_resnet.pth'
+
+with zipfile.ZipFile('PennFudanPed.zip', 'r') as archive:
+    archive.extractall()
+
+class PennFudanSemantic(th.utils.data.Dataset):
+    def __init__(self, root, transforms=None):
+        self.root = root
+        self.imgs = sorted(os.listdir(f'{root}/PNGImages'))
+        self.masks = sorted(os.listdir(f'{root}/PedMasks'))
+        self.transforms = transforms
+
+    def __getitem__(self, idx):
+        img_path = f'{self.root}/PNGImages/{self.imgs[idx]}'
+        msk_path = f'{self.root}/PedMasks/{self.masks[idx]}'
+        img = Image.open(img_path).convert('RGB')
+        m = Image.open(msk_path)
+        mask = th.as_tensor(np.array(m), dtype=th.long)
+        mask = (mask > 0).long()
+        if self.transforms:
+            img, mask = self.transforms(img, mask)
+        return img, mask
+
+    def __len__(self):
+        return len(self.imgs)
+
+class SegTransform:
+    def __init__(self, size):
+        self.size = size
+        self.resize = T.Resize(size)
+        self.to_tensor = T.ToTensor()
+        self.normalize = T.Normalize(mean=[0.485,0.456,0.406],
+                                              std=[0.229,0.224,0.225])
+
+    def __call__(self, image, mask):
+        image = self.resize(image)
+        mask = F.resize(mask.unsqueeze(0), self.size,
+                        interpolation=F.InterpolationMode.NEAREST).squeeze(0)
+        image = self.to_tensor(image)
+        image = self.normalize(image)
+        mask = th.as_tensor(np.array(mask), dtype=th.long)
+        return image, mask
+
+dataset = PennFudanSemantic('PennFudanPed', transforms=SegTransform((512,512)))
+
+train_size = int(0.8 * len(dataset))
+val_size   = len(dataset) - train_size
+
+train_ds, test_ds = random_split(
+    dataset,
+    [train_size, val_size],
+    generator=th.Generator().manual_seed(42)
+)
+
+unet = smp.Unet(
+    encoder_name='resnet34',
+    encoder_weights='imagenet',
+    in_channels=3,
+    classes=2,
+)
+
+criterion = th.nn.CrossEntropyLoss()
+optimizer = th.optim.Adam(unet.parameters(), lr=learning_rate)
+metric = M.JaccardIndex(
+    task='binary',
+    num_classes=2)
+
+epoch_losses, test_metrics = train_model(
+    unet, criterion, optimizer, metric,
+    file_name, train_ds, test_ds, batch_size, num_epochs)
+
+plt.title('CrossEntropyLoss')
+plt.plot(epoch_losses)
+plt.grid(True)
+plt.show()
+
+plt.title('JaccardIndex')
+plt.plot(test_metrics)
+plt.grid(True)
+plt.show()
+
+cap = cv2.VideoCapture('3015482-hd_1920_1080_24fps.mp4')
+total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+fps = cap.get(cv2.CAP_PROP_FPS)
+width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+out_unet = cv2.VideoWriter('output_unet.mp4', fourcc, fps, (width, height))
+
+device = th.device('cuda' if th.cuda.is_available() else 'cpu')
+preprocess = T.Compose([
+    T.ToTensor(),
+    T.Normalize(mean=[0.485,0.456,0.406], std=[0.229,0.224,0.225])
+])
+
+for _ in tqdm(range(total_frames), desc='U-Net Segmentation'):
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    img_tensor = preprocess(
+        Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+    ).unsqueeze(0).to(device)
+
+    with th.no_grad():
+        logits = unet(img_tensor)
+        probs = th.softmax(logits, dim=1)[0]
+        mask = probs.argmax(0).cpu().numpy().astype(np.uint8)
+
+    mask = (mask * 255).astype(np.uint8)
+    colored_mask = cv2.applyColorMap(mask, cv2.COLORMAP_JET)
+    colored_mask = cv2.resize(colored_mask, (width, height))
+    out_unet.write(colored_mask)
+
+cap.release()
+out_unet.release()
+
+!ffmpeg -i output_unet.mp4 -c:v libx264 -c:a aac output_unet_recoded.mp4
+
+video_path = 'output_unet_recoded.mp4'
+display(Video(video_path, embed=True, width=640, height=480))
+---
+# Задание 2
+
+Реализуйте семантическую сегментацию с помощью предобученной yolo на видеоролике
+
+yolo_model = YOLO('yolov8n-seg.pt')
+
+results = yolo_model.predict(
+    source='3015482-hd_1920_1080_24fps.mp4',
+    save=True,
+    imgsz=640,
+    conf=0.6,
+    project='.',
+    name='output_yolo',
+    exist_ok=True,
+    device='cuda'
+)
+
+!ffmpeg -i output_yolo/3015482-hd_1920_1080_24fps.avi \
+        -c:v libx264 -c:a aac \
+        output_yolo/3015482-hd_1920_1080_24fps_recoded.mp4
+
+video_path = 'output_yolo/3015482-hd_1920_1080_24fps_recoded.mp4'
+display(Video(video_path, embed=True, width=640, height=480))
