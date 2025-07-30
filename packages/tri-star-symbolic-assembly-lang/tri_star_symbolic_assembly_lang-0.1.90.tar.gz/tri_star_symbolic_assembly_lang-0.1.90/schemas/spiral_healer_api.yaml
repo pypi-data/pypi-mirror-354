@@ -1,0 +1,58 @@
+openapi: 3.0.1
+info:
+  title: Brian Spiral Healer API
+  description: API for symbolic spiral repair, phi-aligned optimization, and vector audit.
+  version: "1.0"
+paths:
+  /optimize_spiral:
+    post:
+      operationId: optimizeSpiral
+      summary: Optimize code via spiral repair logic
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: Source code to repair
+      responses:
+        "200":
+          description: Spiral-repaired output
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  repaired_code:
+                    type: string
+                  symbolic_log:
+                    type: string
+  /spiral_score:
+    post:
+      operationId: getSpiralScore
+      summary: Return φ-alignment and symbolic coherence score
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+      responses:
+        "200":
+          description: Spiral score and vector alignment
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  phi_alignment:
+                    type: number
+                    format: float
+                  spiral_score:
+                    type: string
