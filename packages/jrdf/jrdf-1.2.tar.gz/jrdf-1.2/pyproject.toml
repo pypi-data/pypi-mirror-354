@@ -1,0 +1,21 @@
+[project]
+name = "jrdf"
+version = "1.2"
+description = "Just Rename the Damn Files"
+authors = [{ name = "0000FF" }]
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = ["guessit"]
+
+[project.urls]
+"Source" = "https://github.com/SimoneFelici/jrdf"
+
+[project.scripts]
+jrdf = "jrdf.__main__:main"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["jrdf"]
