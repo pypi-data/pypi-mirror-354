@@ -1,0 +1,58 @@
+Metadata-Version: 2.4
+Name: lib_video_parser
+Version: 1.0
+Summary: Library for parse video files
+Home-page: https://github.com/YuranIgnatenko/lib_video_parser
+Author: Yurij
+Author-email: yuran.ignatenko@yandex.ru
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: beautifulsoup4
+Requires-Dist: fake_useragent
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: summary
+
+# lib_video_parser
+
+`lib_video_parser` это библиотека Python для получения информации с сайта
+
+## Установка из PyPI
+
+```bash
+pip install lib_video_parser
+```
+
+## Использование репозитория GitHub
+
+```bash
+git clone https://github.com/YuranIgnatenko/lib_video_parser.git
+cd lib_video_parser
+pip install .
+```
+
+## Пример использования
+
+```python
+import lib_video_parser.parser as lib
+import asyncio
+
+url = lib.URL_HOME
+
+parser = lib.Parser(url)
+
+for item in parser.get_files_page(1):
+	print(str(item))
+
+print(parser.get_count_pages(), "count_pages")
+print(parser.get_count_all_files(), "count_all_files")
+print(parser.get_random_page_all_categories(), "random_page_all_categories")
+print(parser.get_random_page_on_category(lib.URL_HOME), "random_page_on_category")
+
+
+```
+
