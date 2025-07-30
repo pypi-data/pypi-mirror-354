@@ -1,0 +1,39 @@
+Metadata-Version: 2.4
+Name: punigowdaa
+Version: 0.1
+Summary: A simple example package
+Project-URL: Homepage, https://github.com/yourusername/punigowda
+Project-URL: Bug Tracker, https://github.com/yourusername/punigowda/issues
+Author-email: puneeth <puneethmgowda047@email.com>
+License-File: LICENSE
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# punigowda
+
+🚀 A simple Python package to demonstrate how to create and publish your own Python package to PyPI.
+
+This package provides sample GenAI program descriptions for educational or reference purposes.
+
+## 📦 Installation
+
+```bash
+pip install punigowda
+
+from punigowda import print_genai_programs
+print_genai_programs(n) #where n is the number of program
+
+
+create a file named.pypirc in home directory and paste the following code in it
+
+[distutils]
+index-servers =
+    pypi
+
+[pypi]
+repository = https://upload.pypi.org/legacy/
+username = __token__
+password = api token of pypi.org
