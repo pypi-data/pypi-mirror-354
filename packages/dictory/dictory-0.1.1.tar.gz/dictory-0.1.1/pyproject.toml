@@ -1,0 +1,21 @@
+[project]
+name = "dictory"
+version = "0.1.1"
+description = "A playful blend of dict and utility/library."
+readme = "README.md"
+requires-python = ">=3.13.3"
+dependencies = [
+    "mypy>=1.16.0",
+    "pre-commit>=4.2.0",
+    "pytest>=8.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "black",
+    "ruff",
+    "mypy",
+    "pre-commit>=4.2.0",
+]
