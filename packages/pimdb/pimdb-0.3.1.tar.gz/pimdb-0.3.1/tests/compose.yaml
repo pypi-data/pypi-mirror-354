@@ -1,0 +1,20 @@
+# Docker containers useful for test runs.
+
+# Copyright (c) 2020, Thomas Aglassinger.
+# All rights reserved. Distributed under the BSD License.
+services:
+  postgres:
+    image: "postgres"
+    shm_size: 32gb # Some complex joins need a lot of memory.
+    container_name: "pimdb_postgres"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5439:5432
+    environment:
+      POSTGRES_USERNAME: "postgres"
+      POSTGRES_PASSWORD: "tEst.123"
+
+volumes:
+  postgres-data:
+    driver: local
