@@ -1,0 +1,32 @@
+Metadata-Version: 2.2
+Name: pvrespeakerdemo
+Version: 2.1.3
+Summary: ⚠️ DEPRECATED: This package is no longer maintained.
+Home-page: https://github.com/Picovoice/picovoice
+Author: Picovoice Inc.
+Author-email: hello@picovoice.ai
+Keywords: wake word,voice control,speech recognition,voice recognition,natural language understanding
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Multimedia :: Sound/Audio :: Speech
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: picovoice==2.1.1
+Requires-Dist: spidev
+Requires-Dist: gpiozero
+Requires-Dist: pvrecorder==1.0.2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+This package has been deprecated.
