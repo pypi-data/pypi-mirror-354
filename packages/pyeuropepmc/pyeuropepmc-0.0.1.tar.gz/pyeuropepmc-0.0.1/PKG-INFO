@@ -1,0 +1,117 @@
+Metadata-Version: 2.3
+Name: pyeuropepmc
+Version: 0.0.1
+Summary: A Python package for working with the Europe PMC API to search and retrieve scientific literature.
+License: file:LICENSE
+Author: Jonas Heinicke (HZI)
+Author-email: jonas.heinicke@helmholtz-hzi.de
+Requires-Python: ==3.10.13
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: backoff (>=2.2.1,<3.0.0)
+Requires-Dist: ipykernel (>=6.7)
+Requires-Dist: ipython (>=7.30)
+Requires-Dist: ipywidgets (>=7.6)
+Requires-Dist: isort (>=5.10)
+Requires-Dist: jupyterlab (>=3.2)
+Requires-Dist: notebook (>=6.4)
+Requires-Dist: numpy (>=1.21)
+Requires-Dist: pandas (>=1.4)
+Requires-Dist: python-dotenv (>=0.19)
+Requires-Dist: rdflib (>=6.0)
+Requires-Dist: rdflib-jsonld (>=0.5)
+Requires-Dist: requests (>=2.28)
+Requires-Dist: typer (>=0.12.5,<0.13.0)
+Description-Content-Type: text/markdown
+
+# PyEuropePMC
+
+**PyEuropePMC** is a Python toolkit for automated search, extraction, entity annotation, and knowledge graph (KG) integration of scientific literature from [Europe PMC](https://europepmc.org/).
+
+---
+
+## 🚧 Project Status
+
+**PyEuropePMC is under active development.**  
+APIs, features, and documentation may change.  
+Contributions, feedback, and suggestions are welcome!
+
+---
+
+## ✨ Features
+
+- **Simple Python API** for querying Europe PMC
+- **Flexible output formats:** JSON, XML, DC
+- **Entity annotation** for genes, diseases, chemicals, and more
+- **Knowledge graph integration** with ready-to-use functions
+- **Modular and extensible** design for custom pipelines
+
+---
+
+## 📝 Overview
+
+PyEuropePMC enables you to:
+
+- **Search** Europe PMC for scientific papers programmatically
+- **Extract** metadata and full-text content
+- **Annotate** entities (e.g., genes, diseases, chemicals) in articles
+- **Integrate** extracted data into knowledge graphs or other downstream applications
+
+---
+
+## 🚀 Quick Start
+
+### 1. Installation
+
+```bash
+pip install pyeuropepmc
+```
+
+Or, to install from source:
+
+```bash
+git clone https://github.com/yourusername/pyeuropepmc.git
+cd pyeuropepmc
+pip install .
+```
+
+### 2. Basic Usage
+
+```python
+import pyeuropepmc
+
+client = pyeuropepmc.Client()
+results = client.search_and_parse("long covid", format="json")
+for paper in results:
+    print(paper["title"])
+```
+
+---
+
+## 📚 Documentation
+
+- [API Reference](docs/API.md) *(coming soon)*
+- [Examples](examples/) *(coming soon)*
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!  
+Please open issues or pull requests for bugs, features, or suggestions.
+
+---
+
+## 📄 License
+
+Distributed under the MIT License.  
+See [LICENSE](LICENSE) for details.
+
+---
+
+## 🌐 Links
+
+- [Europe PMC](https://europepmc.org/)
+- [PyEuropePMC on PyPI](https://pypi.org/project/pyeuropepmc/)
+- [GitHub Repository](https://github.com/yourusername/pyeuropepmc)
+
