@@ -1,0 +1,8 @@
+adder #(
+    .DATA_WIDTH (DATA_WIDTH),
+    .TEST (TEST)
+) u_adder (
+    .A (A),
+    .B (B),
+    .X (X)
+);
