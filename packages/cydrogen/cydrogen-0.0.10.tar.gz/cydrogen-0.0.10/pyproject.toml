@@ -1,0 +1,92 @@
+[build-system]
+build-backend = "mesonpy"
+
+requires = ["meson-python >= 0.18.0", "cython >= 3.1.0"]
+
+[project]
+name = "cydrogen"
+version = "0.0.10"
+description = "Cython bindings for the libhydrogen library"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+classifiers = [
+  # Complete classifiers list is available here: https://pypi.org/classifiers/
+  "Development Status :: 3 - Alpha",
+  # "Development Status :: 4 - Beta",
+  # "Development Status :: 5 - Production/Stable",
+
+  # Indicate who your project is intended for
+  "Intended Audience :: Developers",
+  # Specify the Python versions you support here.
+  # These classifiers are *not* checked by 'pip install'. See instead
+  # 'requires-python'.
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Cython",
+  "Programming Language :: Python :: Implementation :: CPython",
+  # others
+  "License :: OSI Approved :: Apache Software License",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Security :: Cryptography",
+]
+
+[project.urls]
+Homepage = "https://cydrogen.readthedocs.io"
+Documentation = "https://cydrogen.readthedocs.io"
+Repository = "https://github.com/stephane-martin/cydrogen"
+Issues = "https://github.com/stephane-martin/cydrogen/issues"
+Changelog = "https://github.com/stephane-martin/cydrogen/blob/develop/CHANGELOG.md"
+
+[dependency-groups]
+
+develop = [
+  "meson>=1.8.0",
+  "meson-python>=0.18.0",
+  "nox",
+  "pre-commit",
+  "pip-audit",
+  "tomlkit>=0.13.2",
+  "semver>=3.0.0,<4",
+]
+
+lint = [
+  "ruff>=0.11.10",
+  "mypy>=1.15.0",
+  "mypy-extensions>=1.1.0",
+  "cython-lint>=0.16.6",
+  "zizmor",
+  "pyflakes",
+  "pytest>=8.3.5",
+]
+
+build = ["build>=0.11.0", "twine"]
+
+test = ["build>=0.11.0", "pytest>=8.3.5"]
+
+docs = [
+  "mkdocstrings-python>=1.16.0",
+  "mkdocs-material>=9.6.0",
+  "mkdocs>=1.6.1",
+]
+
+[tool.cython-lint]
+max-line-length = 140
+
+[tool.ruff]
+line-length = 140
+indent-width = 4
+target-version = "py312"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+[tool.pytest.ini_options]
+console_output_style = "classic"
+testpaths = "tests"
+addopts = "--import-mode=importlib"
+
+[tool.meson-python.args]
+setup = ["-Dbuildtype=minsize", "-Ddebug=false", "-Db_ndebug=true"]
