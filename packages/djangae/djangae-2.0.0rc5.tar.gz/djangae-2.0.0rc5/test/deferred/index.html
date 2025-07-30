@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://potato-oss.gitlab.io/djangae/djangae/deferred/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Background Processing - Djangae Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Background Processing";
+        var mkdocs_page_input_path = "deferred.md";
+        var mkdocs_page_url = "/djangae/djangae/deferred/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Djangae Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation & Deployment</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../sandbox/">Local/remote management commands</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../environment/">Environment</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../utils/">Utils</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../storage/">Storage backends</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Background Processing</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#google-cloud-tasks-emulator">Google Cloud Tasks Emulator</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#queue-initialisation">Queue Initialisation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#djangaetasksdeferreddefer">djangae.tasks.deferred.defer</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#djangetasksdeferreddefer_iteration_with_finalize">djange.tasks.deferred.defer_iteration_with_finalize</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#identifying-a-task-shard">Identifying a task shard</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scatter-index">Scatter index</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Contrib apps</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../googleauth/">Googleauth</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contrib_search/">Search</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pagination/">Pagination</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../backup/">Scheduled backups</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../locking/">Thread locking</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cloud_run/">Cloud Run</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contributing/">Contributing & Testing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../commercial_support/">Commercial Support</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../work_with_potato/">Work with us!</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Djangae Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Background Processing</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://gitlab.com/potato-oss/djangae/djangae/edit/master/docs/deferred.md" class="icon icon-gitlab"> Edit on GitLab</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="djangaetasks">djangae.tasks</h1>
+<p>The djangae.tasks app provides functionality for working with Google Cloud Tasks from your Django application.</p>
+<p>The main functionality it provides is the ability to "defer" a function to be run later by Cloud Tasks. It
+also provides a number of helper methods that leverage that ability.</p>
+<h2 id="google-cloud-tasks-emulator">Google Cloud Tasks Emulator</h2>
+<p>When developing locally, it is recommended you make use of the <a href="https://gitlab.com/potato-oss/google-cloud/gcloud-tasks-emulator">GCloud Tasks Emulator</a>
+project that simulates the Cloud Task API locally.</p>
+<p>Djangae's sandbox.py provides functionality to start/stop the emulator for you, and djangae.tasks integrates with the emulator when it's running.</p>
+<h2 id="queue-initialisation">Queue Initialisation</h2>
+<p>In the Python 2 App Engine runtime - a file named queue.yaml was used to define new task queues. When App Engine tasks were migrated to Cloud Tasks, queue.yaml
+was effectively deprecated (or at least introduces conflicts with the wider Cloud Tasks configuration).</p>
+<p>It is however useful to be able to create or update queues from a configuration setting in your project. <code>djangae.tasks</code> provides the <code>CLOUD_TASKS_QUEUES</code> setting to do this.</p>
+<p><code>CLOUD_TASKS_QUEUES</code> is a list of dictionaries to create or update task queues. On app initialisation the queues are checked to see if they exist or need updating
+and the configuration changes are applied.</p>
+<p>Here is an example configuration:</p>
+<pre><code>[
+   {
+      &quot;name&quot;: &quot;default&quot;,
+      &quot;rate_per_second&quot;: &quot;1&quot;,  # The tasks per second
+      &quot;rate_max_concurrent&quot;: 10,  # The maximium number of concurrent tasks to run
+      &quot;retry_max_attempts&quot;: 3,  # -1 indicates retry forever (recommended)
+   }
+]
+</code></pre>
+<blockquote>
+<p>Note! There are many more options for queue configuration that can be configured via API, but only these are supported via the <code>CLOUD_TASKS_QUEUES</code> setting.</p>
+</blockquote>
+<h2 id="djangaetasksdeferreddefer">djangae.tasks.deferred.defer</h2>
+<p>This allows you to take any function along with the arguments to be passed to it, and defer the function call to be run in the background by Google Cloud Tasks.</p>
+<p>A similar function exists in the old Python 2.x version of the App Engine SDK.
+Djangae's version brings this functionality to the Python 3 App Engine environment, and also fixes a number of issues with the original App Engine implementation.</p>
+<p><code>defer(function, *args, **kwargs)</code></p>
+<p>You can optionally pass any of the following optional kwargs, which are used to control the behaviour, and are not passed to the function call:</p>
+<ul>
+<li><code>_queue</code> - Name of the Cloud Tasks queue on which to run the task. Defaults to <code>"default"</code>, which is <em>not</em> automatically created for you.</li>
+<li><code>_eta</code> - A <code>datetime</code> object specifying when you want the task to run.</li>
+<li><code>_countdown</code> - Number of seconds by which to delay execution of the task. Overrides <code>_eta</code>.</li>
+<li><code>_name</code> - A name for the Cloud Tasks task. Can be used to avoid repeated execution of the same task.</li>
+<li><code>_service</code> - Name of the App Engine service on which to run the task. Defaults to the <code>default</code> service.</li>
+<li><code>_version</code> - Name of the version of the App Engine service on which to run the task. If no version is specified the task will run on the latest version. (See usage notes.)</li>
+<li><code>_instance</code> - Name of the App Engine instance on which to run the task.</li>
+<li><code>_transactional</code> - Boolean, which if True delays the deferring of the task until after the current database transaction has successfully committed. Defaults to False, unless called from within an atomic block, in which case it's forced to True.</li>
+<li><code>_using</code> - Name of the Django database connection to which <code>_transactional</code> relates. Defaults to "default".</li>
+<li><code>_small_task</code> - If you know that the task payload will be less than 100KB, then you can set this to True and a Datastore entity will not be used to store the task payload.</li>
+<li><code>_wipe_related_caches</code> - By default, if a Django instance is passed as an argument to the called function, then the foreign key caches are wiped before
+   deferring to avoid bloating and stale data when the task runs. Set this to False to disable this functionality.</li>
+<li><code>_retry_options</code> - Not yet implemented.</li>
+</ul>
+<p>Usage notes:</p>
+<ul>
+<li>It is good practice to not pass Django model instances as arguments for the function, as if you do, when the function runs it will get the model instance as it was when the function was deferred, which may be different to how that instance is in the database when the function <em>runs</em>, especially if the task gets retried due to an error, or if the <code>_countdown</code> or <code>_eta</code> was specified. It's better to pass the PK of the instance and reload it inside the function.</li>
+<li>Transactional tasks do not <em>guarantee</em> that the task will run. It's possible (but unlikely) for the transaction to complete
+   successfully, but the queuing of the task to fail. It is not possible for the transaction to fail and the task to queue however.</li>
+<li>If <code>_version</code> is not specified then it will default to the current latest version of the App Engine service from which <code>defer</code> is being called.<ul>
+<li>If you specify a custom <code>_service</code>, but the call to <code>defer</code> is not made from that service, you run the risk that the default version of the current service doesn't exist in the version you've specified.</li>
+<li>Specifying a version of <code>"default"</code> will invoke slightly different behaviour: it will allow App Engine to select the default version of the service when the task is <em>run</em>, rather than when it is <em>created</em>.
+  This can be used to auto-select the default version when specifying a custom service. It also means that deploying new code changes to the default version will cause any paused, queued or failing tasks to be (re-)run on that new code.
+  Due to the fact that <code>defer</code> pickles the function to be run, some code changes (e.g. renaming the deferred function) may mean that the payload can no longer be un-pickled in the new code context.</li>
+</ul>
+</li>
+</ul>
+<h2 id="djangetasksdeferreddefer_iteration_with_finalize">djange.tasks.deferred.defer_iteration_with_finalize</h2>
+<p><code>defer_iteration_with_finalize(queryset, callback, finalize, key_ranges_getter=datastore_key_ranges, order_field='pk', _queue='default', _service='default', _shards=5, _delete_marker=True, _transactional=False, *args, **kwargs)</code></p>
+<p>This function provides similar functionality to a Mapreduce pipeline, but it's entirely self-contained and leverages
+defer to process the tasks.</p>
+<p>The function iterates the passed Queryset in shards, calling <code>callback</code> on each instance. Once all shards complete then
+the <code>finalize</code> callback is called. If a shard runs for 9.5 minutes, or it hits an unhandled exception it re-defers another shard to continue processing. This
+avoids hitting the 10 minute deadline for background tasks.</p>
+<p>Specifying <code>order_field</code> will use a field other than the primary key for sharding and ordering within a shard. Be aware that using a non-unique field will create a high risk that an entity will be processed multiple times due to task continuation
+filtering on <code>__gte</code>. If you have too many common values you may find that a shard never completes (unfortunately this can't be easily fixed due to Cloud Datastore/Firestore not supporting multiple inequality filters).</p>
+<p>Shards are generated by splitting the <code>order_field</code> space into roughly equal chunks,
+via the <code>djangae.processing.datastore_key_ranges</code> function, which assumes by default a Google Datastore database.
+Djangae also provides <code>djangae.processing.sequential_int_key_ranges</code> which can be passed in to work with auto-incrementing primary keys (typical of SQL databases) or you can implement a different strategy by providing a function (which takes the queryset and number of shards as parameters)</p>
+<p>This means that callbacks should complete <strong>within a maximum of 30 seconds</strong>. Callbacks that take longer than this could cause the iteration to fail,
+or, more likely, repeatedly retry running the callback on the same instances.</p>
+<p>If additional <code>*args</code> and/or <code>**kwargs</code> are specified, are passed to both <code>callback</code> (after the instance) and <code>finalize</code>.</p>
+<p><code>_shards</code> is the number of shards to use for processing. If <code>_delete_marker</code> is <code>True</code> then the Datastore entity that
+tracks complete shards is deleted. If you want to keep these (as a log of sorts) then set this to <code>False</code>.</p>
+<p><code>_transactional</code> and <code>_queue</code> work in the same way as <code>defer()</code></p>
+<h3 id="identifying-a-task-shard">Identifying a task shard</h3>
+<p>From a shard callback, you can identify the current shard by using the <code>get_deferred_shard_index()</code> function:</p>
+<pre><code>from djangae.deferred import get_deferred_shard_index
+shard_index = get_deferred_shard_index()
+</code></pre>
+<p>This can be useful when doing things like updating sharded counters.</p>
+<h3 id="scatter-index">Scatter index</h3>
+<p><code>defer_iteration_with_finalize</code> uses the built-in <code>__scatter__</code> column (a column which is automatically randomly populated for a subset of Datastore entities) in order to get a random selection of keys to divide up the entities into shards. If you're using <code>defer_iteration_with_finalize</code> with a queryset which also filters on other columns, then this requires a composite index which includes both the <code>__scatter__</code> column and the other columns being filtered on.</p>
+<p>These composite indexes are no longer possible on the Datastore (for the AppEngine Python 3 runtime). Trying to deploy the composite index with <code>gcloud app deploy index.yaml</code> results in the following error:</p>
+<pre><code class="language-bash">ERROR: (gcloud.app.deploy) INVALID_ARGUMENT: Invalid reserved name '__scatter__' in field path
+</code></pre>
+<p>To work around this issue, <code>djangae.processing.datastore_key_ranges</code> allows a configurable <code>random_keys_getter</code>. The getter makes it possible to retrieve random keys (for your use case) in a way that does not require a new <code>__scatter__</code> composite index.</p>
+<p>You will need to create a wrapper or partial for <code>datastore_key_ranges</code>, passing in your custom <code>random_keys_getter</code>, and then pass that wrapper function to <code>defer_iteration_with_finalize</code>, e.g.</p>
+<pre><code class="language-python">import functools
+from djangae.processing import datastore_key_ranges
+
+
+def custom_find_random_keys(queryset, shard_count) -&gt; list:
+    # your custom implementation
+
+custom_datastore_key_ranges = functools.partial(
+    datastore_key_ranges,
+    random_keys_getter=custom_find_random_keys,
+)
+
+deferred.defer_iteration_with_finalize(
+    queryset,
+    callback,
+    finalize,
+    key_ranges_getter=custom_datastore_key_ranges,
+)
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../storage/" class="btn btn-neutral float-left" title="Storage backends"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../googleauth/" class="btn btn-neutral float-right" title="Googleauth">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://gitlab.com/potato-oss/djangae/djangae" class="icon icon-gitlab" style="color: #fcfcfc"> GitLab</a>
+        </span>
+    
+    
+      <span><a href="../storage/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../googleauth/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

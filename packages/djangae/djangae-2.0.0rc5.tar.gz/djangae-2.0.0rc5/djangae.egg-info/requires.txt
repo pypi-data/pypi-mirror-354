@@ -1,0 +1,13 @@
+django<6,>=4.2
+django-gcloud-connectors<1.6.0,>=1.3.0
+google-api-python-client>=2.27.0
+google-cloud-tasks>=2.0.0
+google-cloud-logging<4.0.0,>=3.0.0
+psutil>=5.7.3
+requests>=2.22.0
+python-jose[cryptography]==3.2.0
+google-cloud-storage==1.43.0
+google-auth<3.0dev,>=2.3.2
+
+[test]
+beautifulsoup4
