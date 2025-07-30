@@ -1,0 +1,8 @@
+include README.md
+include LICENSE
+recursive-include lax_client *.py
+recursive-include examples *.py *.txt *.md
+prune lax_client/__pycache__
+prune lax_client/**/__pycache__
+global-exclude *.pyc
+global-exclude .DS_Store
