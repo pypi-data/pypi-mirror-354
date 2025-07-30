@@ -1,0 +1,4 @@
+[console_scripts]
+cli = laser_measles.cli:run
+measles = laser_measles.generic.model:run
+nigeria = laser_measles.nigeria.model:run
