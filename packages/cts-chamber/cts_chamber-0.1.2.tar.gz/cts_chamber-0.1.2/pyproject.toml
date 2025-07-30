@@ -1,0 +1,57 @@
+[project]
+name = "cts-chamber"
+dynamic = ["version"]
+description = "Interface with a CTS Environmental Chamber"
+authors = [{ name = "Leandro Lanzieri", email = "leandro.lanzieri@desy.de" }]
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE.txt"]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pyvisa",
+    "pyvisa-py",
+    "pyserial",
+]
+classifiers = ["Development Status :: 4 - Beta", "Programming Language :: Python"]
+
+[project.urls]
+Source = "https://gitlab.desy.de/leandro.lanzieri/cts-chamber"
+
+[build-system]
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.uv-dynamic-versioning]
+vcs = "git"
+style = "pep440"
+bump = true
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.11.13",
+    # own fork until fixes are upstreamed
+    "pyvisa_mock@git+https://github.com/leandrolanzieri/pyvisa-mock.git@fixes",
+    "poethepoet>=0.30.0",
+    "pre-commit>=3.4.0",
+]
+
+[tool.pytest.ini_options]
+addopts = "--cov cts_chamber --cov-report term-missing --verbose"
+norecursedirs = ["dist", "build", ".tox"]
+testpaths = ["tests"]
+
+[tool.poe.tasks]
+test = "pytest tests"
+test_hil = "pytest tests --hil"
+lint = "ruff check src tests --fix"
+pre_commit = "pre-commit run --all-files --show-diff-on-failure"
+
+[tool.ruff]
+line-length = 100
+lint.select = ["E", "F", "I"]
+# E: pycodestyle errors, F: pyflakes, I: isort (import sorting)
