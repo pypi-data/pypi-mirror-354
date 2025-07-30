@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: pghaicker
+Version: 0.1.0
+Summary: pghaicker
+Author-email: Florents Tselai <florents.tselai@gmail.com>
+License-Expression: MIT
+Requires-Dist: google-genai
+Requires-Dist: pypandoc
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: black; extra == "dev"
