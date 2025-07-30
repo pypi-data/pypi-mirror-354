@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: arcgis-compressed-geometry
+Version: 0.0.1
+Summary: A Python implementation of ESRI's ArcGIS Compressed Geometry Format.
+Author-email: maslke <maslke@outlook.com>
+License-Expression: MIT
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# arcgis-compressed-geometry
+
+A Python library for encoding and decoding ArcGIS Compressed Geometry Format.
+
+## Introduction
+
+This library provides encoding and decoding functionality for ArcGIS Compressed Geometry Format. It supports the following coordinate formats:
+
+- xy (2D coordinates)
+- xyz (3D coordinates with elevation)
+- xym (coordinates with measure values)
+- xyzm (coordinates with elevation and measure values)
+
+## Installation

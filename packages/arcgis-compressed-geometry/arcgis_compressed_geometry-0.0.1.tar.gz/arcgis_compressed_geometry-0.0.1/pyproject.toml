@@ -1,0 +1,12 @@
+[project]
+name = "arcgis-compressed-geometry"
+version = "0.0.1"
+description = "A Python implementation of ESRI's ArcGIS Compressed Geometry Format."
+authors = [{name="maslke", email="maslke@outlook.com"}]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.7"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
