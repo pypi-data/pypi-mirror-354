@@ -1,0 +1,19 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cpp_compile_test"
+version = "1.0.0"
+description = "Compile-time test discovery and execution for C++ headers using Tree-sitter"
+authors = [{ name = "Austin Drury", email = "drurya96@gmail.com" }]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "tree-sitter",
+    "pydantic>=2.0"
+]
+
+[project.scripts]
+cpp-compile-test = "cpp_compile_test.cli:main"

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Compiler Settings",
+  "description": "Defines compiler invocation settings for Dimensional tests.",
+  "type": "object",
+  "properties": {
+    "compiler": {
+      "type": "string",
+      "description": "Path to the compiler executable"
+    },
+    "compiler_type": {
+      "type": "string",
+      "enum": ["cl", "gcc", "clang", "other"],
+      "description": "Type of compiler used (for validation and behavior mapping)"
+    },
+    "flags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Flags passed to the compiler"
+    }
+  },
+  "required": ["compiler", "compiler_type"],
+  "additionalProperties": false
+}
