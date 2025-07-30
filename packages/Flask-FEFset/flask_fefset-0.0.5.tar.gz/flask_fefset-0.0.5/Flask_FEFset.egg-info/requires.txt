@@ -1,0 +1,9 @@
+Flask==3.0.3
+Flask-Bootstrap
+
+[dev]
+build
+twine
+
+[login]
+Flask-IAM
