@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: chaeto
+Version: 0.0.2
+Summary: CLI for reproducable Python
+Project-URL: repository, https://github.com/tschm/chaeto
+Author-email: Thomas Schmelzer <thomas.schmelzer@gmail.com>
+License-File: LICENSE
+Requires-Python: >=3.11
+Requires-Dist: fire==0.7.0
+Requires-Dist: loguru==0.7.3
+Provides-Extra: dev
+Requires-Dist: numpy==2.3.0; extra == 'dev'
+Requires-Dist: polars==1.30.0; extra == 'dev'
+Requires-Dist: pytest-cov==6.1.1; extra == 'dev'
+Requires-Dist: pytest==8.4.0; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# chaeto
+
+Marimo like experiments
