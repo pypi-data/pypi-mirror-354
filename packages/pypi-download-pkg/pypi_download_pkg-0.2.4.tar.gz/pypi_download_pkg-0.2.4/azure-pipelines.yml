@@ -1,0 +1,101 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  branches:
+    include:
+      - main
+      - dev
+  paths:
+    include:
+      - pypi-download-pkg
+  
+variables:
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
+  isDevTest: $[eq(variables['Build.SourceBranch'], 'refs/heads/dev')]
+  ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
+    EnvName: 'Production'
+  ${{ else }}:
+    EnvName: 'None'
+  
+  
+pool:
+  vmImage: ubuntu-latest
+  
+stages: 
+       
+
+  - stage: Build
+    jobs:
+      - job: buildjob
+        steps:
+        - task: NodeTool@0
+          inputs:
+            versionSpec: '16.x'
+        - task: UsePythonVersion@0
+          inputs:
+            versionSpec: '3.9'
+            addToPath: true
+            architecture: 'x64'
+               
+
+        - script: |
+            curl -LsSf https://astral.sh/uv/install.sh | sh
+            uv sync --group build
+          displayName: 'uv sync'
+          workingDirectory: pypi-download-pkg
+          
+        - script: uv run pyright .           
+          displayName: 'Pyright'
+          workingDirectory: pypi-download-pkg
+
+        - script: uv build           
+          displayName: 'Build'
+          workingDirectory: pypi-download-pkg
+          
+
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: 'pypi-download-pkg/dist'
+            ArtifactName: 'build'
+            publishLocation: 'Container'
+
+  
+
+  - stage: "${{variables.EnvName}}"
+    displayName: "Deploy the ${{ variables.EnvName}} Package"
+    dependsOn: Build
+    condition: and(succeeded(), ne(variables.EnvName, 'None')) 
+    jobs:
+      - deployment: DeployToAzure
+        environment: ${{ variables.EnvName}}
+        strategy:
+         runOnce:
+           deploy:                
+            steps:
+              - task: DownloadBuildArtifacts@0
+                inputs:
+                  buildType: "current"
+                  downloadType: "single"
+                  artifactName: "build"
+                  downloadPath: $(System.ArtifactsDirectory)
+
+              - task: UsePythonVersion@0
+                inputs:
+                  versionSpec: '3.9'
+                  addToPath: true
+                  architecture: 'x64'
+                    
+
+              - script: |
+                  pip install twine
+                displayName: 'Install Twine'
+                workingDirectory: .
+
+              - script: |
+                  twine upload --repository-url https://pkgs.dev.azure.com/bmeurope/_packaging/BMS/pypi/upload/ -p $(System.AccessToken) -u a *
+                displayName: 'Publish to Azure DevOps'
+                workingDirectory: $(System.ArtifactsDirectory)/build
+                
