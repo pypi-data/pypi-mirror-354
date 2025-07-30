@@ -1,0 +1,20 @@
+[project]
+name = "pylyglot"
+version = "1.1.1"
+description = "A lightweight, extensible i18n utility for Python projects"
+readme = "README.md"
+authors = [{ name = "Aaquinas"}]
+license = { file = "LICENSE" }
+requires-python = ">=3.7"
+dependencies = []
+
+[project.urls]
+Homepage = "https://gitlab.com/Aaquinas/pylyglot"
+
+[tool.setuptools]
+packages = ["pylyglot"]
+include-package-data = false
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
