@@ -1,0 +1,23 @@
+[build-system]
+requires = ["flit_core"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "certy"
+readme = "README.md"
+authors = [{name = "Tero Saarni", email = "tero.saarni@gmail.com"}]
+license = {file = "LICENSE"}
+classifiers = ["License :: OSI Approved :: Apache Software License"]
+dynamic = ["version", "description"]
+dependencies = [
+    "cryptography>=42.0.0"
+]
+requires-python = ">=3.9"
+keywords = ["testing", "certificates", "x509", "pki"]
+
+[project.urls]
+Documentation = "https://tsaarni.github.io/python-certy/"
+Source = "https://github.com/tsaarni/python-certy"
+
+[tool.black]
+line-length = 120
