@@ -1,0 +1,12 @@
+.env
+dist/*
+build/*
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+# Byte-compiled / optimized / DLL files
+lexrchainer_client/__pycache__
+*.py[cod]
+*$py.class
