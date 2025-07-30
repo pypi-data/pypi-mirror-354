@@ -1,0 +1,19 @@
+include LICENSE
+include README.md
+include MANIFEST.in
+recursive-include docs *.md
+recursive-include examples *.py *.md *.txt *.json *.html *.ipynb
+
+# Include all model files
+recursive-include tbh_secure_agents/security_validation/models/data *.pkl
+recursive-include tbh_secure_agents/security_validation/models/data/enhanced *.pkl
+include tbh_secure_agents/security_validation/models/*.pkl
+
+# Include package data
+include pyproject.toml
+
+# Exclude build artifacts
+recursive-exclude examples/output *
+global-exclude __pycache__/*
+global-exclude *.py[cod]
+global-exclude *$py.class
