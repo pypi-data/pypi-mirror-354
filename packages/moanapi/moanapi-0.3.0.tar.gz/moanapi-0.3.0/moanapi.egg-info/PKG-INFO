@@ -1,0 +1,93 @@
+Metadata-Version: 2.4
+Name: moanapi
+Version: 0.3.0
+Summary: A dynamic, auto-updating Python wrapper for the Moan API suite.
+Author-email: mineogo <venkatesh10year@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2024 mineogo
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://moanapi.ddns.net
+Project-URL: Bug Tracker, https://moanapi.duckdns.net/module/report-bug
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests>=2.25.0
+Dynamic: license-file
+
+# Moan API Python Client (Dynamic Version)
+
+A simple and intuitive Python wrapper for the [Moan API](https://moanapi.ddns.net/).
+
+This package features a dynamic loader for its API modules and an automatic update checker.
+
+## Installation
+
+Install the package directly from PyPI:
+
+    pip install moanapi
+
+## Usage
+
+First, import and initialize the client with your API key. It's conventional to name the client instance `moan`.
+
+    import moanapi
+
+    try:
+        moan = moanapi.Client(api_key="YOUR_API_KEY")
+
+        # Get an anime quote
+        quote = moan.utility.get_quote(category="anime")
+        print(quote['quote'])
+
+        # Get Roblox user info
+        user = moan.roblox.get_user_info(user_id=261)
+        print(f"Username: {user['data']['username']}")
+        
+        # Generate an image with AI
+        image_data = moan.generative.get_flux_image(prompt="a powerful cat wizard")
+        print(f"Image URL: {image_data['image_url']}")
+
+        # Generate a rankcard (returns raw image bytes)
+        image_bytes = moan.generative.generate_rankcard(
+            username="Zlan", avatar="AVATAR_URL", current_xp=900, 
+            next_level_xp=1000, level=24, rank=1
+        )
+        with open("rankcard.png", "wb") as f:
+            f.write(image_bytes)
+
+    except moanapi.APIError as e:
+        print(f"An API error occurred: {e}")
+
+
+For a full list of available functions and to check for new updates, use the built-in help function:
+
+    import moanapi
+
+    moanapi.help()
+
+
+## License
+This project is licensed under the MIT License.
