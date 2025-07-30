@@ -1,0 +1,17 @@
+[project]
+name = "csaw"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Nicholas Cooper", email = "nicholascullencooper@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+example-pkg = "csaw:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
