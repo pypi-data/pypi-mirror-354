@@ -1,0 +1,68 @@
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pluralizer"
+version = "2.0.0"
+authors = [{ name="Wei Xu" }]
+description = "Singularize or pluralize a given word using a pre-defined list of rules"
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = ["pluralize", "singularize", "singular", "plural"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/weixu365/pluralizer-py"
+Issues = "https://github.com/weixu365/pluralizer-py/issues"
+
+[dependency-groups]
+dev = [
+    "commitizen>=4.8.3",
+    "coverage>=7.8.2",
+    "editorconfig-checker>=3.2.1",
+    "pyright>=1.1.401",
+    "ruff>=0.11.13",
+    "setuptools>=80.9.0",
+    "twine>=6.1.0",
+    "wheel>=0.45.1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["pluralizer"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "pluralizer",
+  "tests",
+]
+exclude = [
+  "*.json",
+  "pkg/_compat.py",
+]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+# Enable the pycodestyle (`E`), Pyflakes (`F`) and Isort (`I`) rules by default.
+# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
+# McCabe complexity (`C901`) by default.
+select = ["F", "I", "E", "W"]
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.mccabe]
+# Flag errors (`C901`) whenever the complexity level exceeds 5.
+max-complexity = 5
