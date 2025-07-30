@@ -1,0 +1,80 @@
+Metadata-Version: 2.1
+Name: pydictionaria
+Version: 2.3
+Summary: Package for curating dictionaries for the Dictionaria project
+Author-email: Robert Forkel <robert_forkel@eva.mpg.de>, Johannes Englisch <johannes_englisch@eva.mpg.de>
+Project-URL: Repository, https://github.com/dictionaria/pydictionaria
+Project-URL: Issues, https://github.com/dictionaria/pydictionaria/issues
+Keywords: data,linguistics
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: simplepybtex
+Requires-Dist: html5lib>=1.1
+Requires-Dist: purl
+Requires-Dist: python-dateutil
+Requires-Dist: csvw>=1.5.4
+Requires-Dist: BeautifulSoup4
+Requires-Dist: attrs>=19.1
+Requires-Dist: clldutils>=3.5.1
+Requires-Dist: pycldf>=1.20
+Requires-Dist: pycdstar>=1.0.1
+Requires-Dist: cdstarcat>=1.0.0
+Requires-Dist: transliterate>=1.7.6
+Requires-Dist: pyconcepticon>=1.1.1
+Requires-Dist: cldfbench
+Provides-Extra: dev
+Requires-Dist: flake8; extra == "dev"
+Provides-Extra: test
+Requires-Dist: tox; extra == "test"
+Requires-Dist: pluggy>=0.12; extra == "test"
+Requires-Dist: pytest>=6; extra == "test"
+Requires-Dist: pytest-mock; extra == "test"
+Requires-Dist: pytest-cov; extra == "test"
+Requires-Dist: coverage>=4.2; extra == "test"
+
+pydictionaria
+=============
+
+Companion library to the [Dictionaria][dictionaria] journal.
+
+[dictionaria]: https://dictionaria.clld.org
+
+## Set up
+
+Pydictionaria can be installed using pip:
+
+    $ pip install pydictionaria
+
+Refer to [`docs/getting-started.md`](docs/getting-started.md) for more
+details.
+
+## Basic usage
+
+*pydictionaria* is meant to be used in conjunction with [cldfench][cldfbench].
+You can set up a *pydictionaria* project using the provided project template:
+
+    $ cldfbench new --template=dictionaria
+
+For a more thorough description of working with a *pydictionaria* project, refer
+to [`docs/submission-workflow.md`](docs/submission-workflow.md).
+
+## Major version updates
+
+### Breaking changes from pydictionaria 1.x to 2.x
+
+Data is not stored in a central repository anymore.  Individual data
+repositories are now managed using [cldfbench][cldfbench].  pydictionaria
+provides a cldfbench template for creating new projects:
+
+    $ cldfbench new --template=dictionaria
+
+[cldfbench]: https://pypi.org/project/cldfbench/
