@@ -1,0 +1,28 @@
+[project]
+name = "polars-utils"
+version = "0.1.14"
+description = "Weighted means, variances, quantiles, fixed effects, and more in Polars."
+readme = "README.md"
+authors = [
+    { name = "Alistair Pattison", email = "alistairpattison@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "polars>=1.24.0",
+    "rpy2>=3.5.17",
+    "tqdm>=4.67.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ipython>=8.18.1",
+    "matplotlib>=3.10.3",
+    "numpy>=2.0.2",
+    "pandas>=2.3.0",
+    "pyarrow>=20.0.0",
+    "pytest>=8.3.5",
+]
