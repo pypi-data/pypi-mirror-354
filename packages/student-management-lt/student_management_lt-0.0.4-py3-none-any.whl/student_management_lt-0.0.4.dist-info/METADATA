@@ -1,0 +1,43 @@
+Metadata-Version: 2.4
+Name: student-management-lt
+Version: 0.0.4
+Summary: A desktop PyQt6 GUI app for managing university student data with an SQL database backend.
+Home-page: https://github.com/ltuala/student-management
+Author: Lyndon Tuala
+Author-email: lyndontuala@gmail.com
+Project-URL: Bug Reports, https://github.com/ltuala/student-management/issues
+Project-URL: Source, https://github.com/ltuala/student-management/
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Description-Content-Type: text/markdown
+Requires-Dist: PyQt6
+Requires-Dist: python-dotenv
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: summary
+
+# What is this project
+[![Core tests](https://github.com/ltuala/student_management/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/ltuala/student_management/actions/workflows/test.yml)  
+A desktop PyQt6 GUI app for managing university student data with an SQL database backend.
+![Student Management System](src/student_management/resources/icons/17.png)
+## How to run
+1. cd to `src/student_management` folder:
+```
+cd src/student_management
+```
+2. Run the following command:
+```
+python main.py
+```
