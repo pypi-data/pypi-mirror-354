@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-assistant-zimgar"
+version = "0.1.1"
+description = "Automates desktop tasks with help from a language model."
+readme = "README.md"
+authors = [{name = "AI Assistant"}]
+maintainers = [{name = "AI Assistant Maintainer", email = "maintainer@example.com"}]
+license = {file = "LICENSE"}
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "pyautogui",
+    "pynput",
+    "requests",
+    "openai",
+    "numpy",
+    "opencv-python",
+    "mss",
+    "SpeechRecognition",
+    "pyaudio",
+    "fastapi",
+    "uvicorn",
+    "httpx<0.24",
+]
+
+[project.urls]
+Homepage = "https://github.com/example/ai-assistant"
+Source = "https://github.com/example/ai-assistant"
+Tracker = "https://github.com/example/ai-assistant/issues"
+
+[project.scripts]
+ai-assistant = "main:main"
+ai-assistant-gui = "gui:main"
+
+[tool.setuptools]
+py-modules = [
+    "desktop_control",
+    "feedback_memory",
+    "llm_interface",
+    "main",
+    "n8n_interface",
+    "screen_capture",
+    "server",
+    "logging_utils",
+    "voice_input",
+    "gui",
+]
