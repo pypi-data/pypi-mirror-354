@@ -1,0 +1,106 @@
+Metadata-Version: 2.4
+Name: mcp-server-hatena-weekly
+Version: 0.1.4
+Summary: Hatena Bookmark Weekly/Monthly Ranking MCP server for fetching popular bookmarks
+Author-email: yareyaredesuyo <yareyaredesuyo@gmail.com>
+License-Expression: MIT
+Keywords: bookmark,hatena,llm,mcp,model-context-protocol,ranking
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Internet :: WWW/HTTP :: Indexing/Search
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.10
+Requires-Dist: beautifulsoup4>=4.9.0
+Requires-Dist: fastmcp>=2.5.2
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: requests>=2.25.0
+Description-Content-Type: text/markdown
+
+# Hatena Bookmark Weekly/Monthly Ranking MCP Server
+
+An MCP server that provides Hatena Bookmark weekly and monthly ranking data. Contains data from 2023-2024 (full years) and 2025 (January to June, with weekly data through June 2nd week and monthly data through May).
+
+## 🛠️ Available Tools
+
+### `weekly` - Weekly Ranking Retrieval
+
+**Description**: Retrieve weekly Hatena bookmark rankings (30 entries) for a specified week
+
+**Parameters**:
+
+- `year` (integer, required): Year (2023-2025)
+- `month` (integer, required): Month (2023-2024: 1-12, 2025: 1-6)
+- `week` (integer, required): Week number (1-5, week 5 only exists in some months)
+
+### `monthly` - Monthly Ranking Retrieval
+
+**Description**: Retrieve monthly Hatena bookmark rankings (50 entries) for a specified month
+
+**Parameters**:
+
+- `year` (integer, required): Year (2023-2025)
+- `month` (integer, required): Month (2023-2024: 1-12, 2025: 1-5, June data will be available after month end)
+
+## Installation
+
+### Using `uv` (Recommended)
+
+No special installation is required when using `uv`. You can run `mcp-server-hatena-weekly` directly using `uvx`.
+
+### Using PIP
+
+Alternatively, you can install `mcp-server-hatena-weekly` using pip:
+
+```sh
+pip install mcp-server-hatena-weekly
+```
+
+After installation, you can run the script as follows:
+
+```sh
+mcp-server-hatena-weekly
+```
+
+## Configuration
+
+### Configure for Claude.app
+
+Add to your Claude settings:
+
+<details>
+<summary>Using uvx</summary>
+
+```json
+{
+  "mcpServers": {
+    "hatena-weekly": {
+      "command": "uvx",
+      "args": ["mcp-server-hatena-weekly"]
+    }
+  }
+}
+```
+
+</details>
+
+### Configure for VS Code
+
+For quick installation, use one of the one-click install buttons below...
+
+[![Install with UV in VS Code](https://img.shields.io/badge/VS_Code-UV-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=hatena-weekly&config=%7B%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22mcp-server-hatena-weekly%22%5D%7D)
+
+### Command Line Options
+
+You can specify the following options when running the server:
+
+- `--sse`: Enable Server-Sent Events transport (on/off)
+- `--host`: Server bind address (default: localhost)
+- `--port`: Server port number (default: 8000)
+- `--log-level`: Logging verbosity (debug, info, warning, error)
+
+## 📄 License
+
+MIT License
