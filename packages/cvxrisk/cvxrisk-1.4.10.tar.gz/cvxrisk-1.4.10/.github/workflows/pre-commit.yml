@@ -1,0 +1,33 @@
+name: pre-commit
+# Code quality and dependency check workflow
+# This workflow runs code quality checks and dependency validation
+# to ensure the codebase meets standards and has no dependency issues.
+
+permissions:
+  contents: read  # Read-only access to repository contents
+
+on:
+  push:  # Triggered on every push to the repository
+
+jobs:
+  deptry:
+    # Dependency validation job
+    # Checks for dependency issues like unused or missing dependencies
+    # using the deptry tool
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Build the virtual environment for ${{ github.repository }}"
+        uses: tschm/cradle/actions/environment@v0.1.72
+
+      - uses: tschm/cradle/actions/deptry@v0.1.72  # Run deptry to check dependencies
+        with:
+          source-folder: 'cvxrisk'
+
+  pre-commit:
+    # Code quality check job
+    # Runs pre-commit hooks to enforce code style, formatting,
+    # and other quality standards
+    runs-on: ubuntu-latest
+    steps:
+      - uses: tschm/cradle/actions/pre-commit@v0.1.72  # Run pre-commit hooks
