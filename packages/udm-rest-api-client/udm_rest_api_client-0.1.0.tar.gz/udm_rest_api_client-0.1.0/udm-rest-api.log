@@ -1,0 +1,287 @@
+/entrypoint.sh: /entrypoint.d/ is not empty, will attempt to perform configuration
+/entrypoint.sh: Looking for shell scripts in /entrypoint.d/
+/entrypoint.sh: Launching /entrypoint.d/50-ldap.sh
+++ ucr get uldap/start-tls
++ UDM_STARTTLS=0
++ [[ -z 0 ]]
++ case "${UDM_STARTTLS}" in
++ TLS_MODE=off
++ TLS_REQCERT=never
++ [[ off != \o\f\f ]]
+++ ucr get ldap/server/name
++ LDAP_HOST=ldap-server
+++ ucr get ldap/server/port
++ LDAP_PORT=389
+++ ucr get ldap/base
++ LDAP_BASE_DN=dc=univention-organization,dc=intranet
++ mkdir -pv /etc/ldap
+mkdir: created directory '/etc/ldap'
++ cat
++ chmod 0644 /etc/ldap/ldap.conf
++ LDAP_SECRET_FILE=/run/secrets/ldap_secret
++ [[ -f /run/secrets/ldap_secret ]]
+No LDAP admin secret provided!
++ echo 'No LDAP admin secret provided!'
++ MACHINE_SECRET_FILE=/run/secrets/machine_secret
+Using LDAP machine secret from env
++ [[ -f /run/secrets/machine_secret ]]
++ [[ -n univention ]]
++ echo 'Using LDAP machine secret from env'
++ echo -n univention
+/entrypoint.sh: Launching /entrypoint.d/52-directory-reports.sh
++ ucr commit /etc/univention/directory/reports/config.ini
+File: /etc/univention/directory/reports/config.ini
+/entrypoint.sh: Configuration complete; ready for start up
+11.06.25 21:55:44.141  DEBUG_INIT
+11.06.25 21:55:44.791  DEBUG_INIT
+11.06.25 21:55:44.795  DEBUG_INIT
+11.06.25 21:56:53        INFO      (       42) : 200 [3fc064892f26] GET /udm/ (0.0.0.0) 418.49ms
+11.06.25 21:56:53      INFO      (        7) :200 GET /udm/ (172.18.0.4) 425.59ms
+11.06.25 21:56:53        INFO      (       42) : 200 [5077f4890260] GET /udm/navigation/ (0.0.0.0) 16.50ms
+11.06.25 21:56:53      INFO      (        7) :200 GET /udm/navigation/ (172.18.0.4) 20.64ms
+11.06.25 21:56:53.848  ADMIN       ( WARN    ) : [e9088297466c] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:53.849  ADMIN       ( WARN    ) : [e9088297466c] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:53.850  ADMIN       ( WARN    ) : [e9088297466c] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:53.852  ADMIN       ( WARN    ) : [e9088297466c] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:53.853  ADMIN       ( WARN    ) : [e9088297466c] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:53        INFO      (       42) : 200 [e9088297466c] GET /udm/users/user/ (0.0.0.0) 66.44ms
+11.06.25 21:56:53      INFO      (        7) :200 GET /udm/users/user/ (172.18.0.4) 68.82ms
+11.06.25 21:56:53.929  ADMIN       ( WARN    ) : [c21edade3e60] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:53.930  ADMIN       ( WARN    ) : [c21edade3e60] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:53.931  ADMIN       ( WARN    ) : [c21edade3e60] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:53.932  ADMIN       ( WARN    ) : [c21edade3e60] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:53.933  ADMIN       ( WARN    ) : [c21edade3e60] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:53        INFO      (       42) : 200 [c21edade3e60] GET /udm/users/user/add (0.0.0.0) 130.54ms
+11.06.25 21:56:53      INFO      (        7) :200 GET /udm/users/user/add (172.18.0.4) 133.50ms
+11.06.25 21:56:54.049  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateDateNotAfter
+11.06.25 21:56:54.049  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateDateNotBefore
+11.06.25 21:56:54.049  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateIssuerCommonName
+11.06.25 21:56:54.049  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateIssuerCountry
+11.06.25 21:56:54.049  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateIssuerLocation
+11.06.25 21:56:54.049  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateIssuerMail
+11.06.25 21:56:54.049  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateIssuerOrganisation
+11.06.25 21:56:54.049  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateIssuerOrganisationalUnit
+11.06.25 21:56:54.049  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateIssuerState
+11.06.25 21:56:54.049  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateSerial
+11.06.25 21:56:54.049  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateSubjectCommonName
+11.06.25 21:56:54.050  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateSubjectCountry
+11.06.25 21:56:54.050  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateSubjectLocation
+11.06.25 21:56:54.050  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateSubjectMail
+11.06.25 21:56:54.050  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateSubjectOrganisation
+11.06.25 21:56:54.050  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateSubjectOrganisationalUnit
+11.06.25 21:56:54.050  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateSubjectState
+11.06.25 21:56:54.050  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property certificateVersion
+11.06.25 21:56:54.051  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property objectFlag
+11.06.25 21:56:54.051  ADMIN       ( WARN    ) : [4ddb4f0b9098] __setitem__: Ignoring property userCertificate
+11.06.25 21:56:54.425  LDAP        ( PROCESS ) : [no requestID] uldap.add: overriding PostReadControl (['entryUUID', 'modifyTimestamp', 'entryCSN'])
+11.06.25 21:56:54       ERROR      (       42) : RsyslogEmitter().emit() failed: /dev/log does not exist, cannot emit entry ({"username": "cn=admin", "hostname": "3b58ff829720", "message": {"en": "User {username} created", "de": "Benutzer {username} angelegt"}, "args": {"module": "users/user", "username": "foo"}, "timestamp": "2025-06-11 21:56:54", "tags": [], "context_id": "2ba45cd4-0f19-47d4-86a8-831cab98db8a", "event": "UDM_USERS_USER_CREATED", "type": "Entry v1"})
+11.06.25 21:56:54        INFO      (       42) : 201 [4ddb4f0b9098] POST /udm/users/user/ (0.0.0.0) 458.39ms
+11.06.25 21:56:54      INFO      (        7) :201 POST /udm/users/user/ (172.18.0.4) 461.79ms
+11.06.25 21:56:54        INFO      (       42) : 200 [f5a42ccf0cb9] GET /udm/users/user/uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (0.0.0.0) 11.12ms
+11.06.25 21:56:54      INFO      (        7) :200 GET /udm/users/user/uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (172.18.0.4) 14.28ms
+11.06.25 21:56:54.577  ADMIN       ( WARN    ) : [8f58f0693509] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:54.578  ADMIN       ( WARN    ) : [8f58f0693509] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:54.579  ADMIN       ( WARN    ) : [8f58f0693509] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:54.581  ADMIN       ( WARN    ) : [8f58f0693509] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:54.582  ADMIN       ( WARN    ) : [8f58f0693509] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:54        INFO      (       42) : 200 [8f58f0693509] GET /udm/users/user/?filter=uid%3D%2A&scope=sub&hidden=0&properties=dn&opened=0 (0.0.0.0) 88.94ms
+11.06.25 21:56:54      INFO      (        7) :200 GET /udm/users/user/?filter=uid%3D%2A&scope=sub&hidden=0&properties=dn&opened=0 (172.18.0.4) 91.98ms
+11.06.25 21:56:54        INFO      (       42) : 200 [db83901fde29] GET /udm/users/user/uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (0.0.0.0) 11.52ms
+11.06.25 21:56:54      INFO      (        7) :200 GET /udm/users/user/uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (172.18.0.4) 14.20ms
+11.06.25 21:56:54        INFO      (       42) : 301 [5d2987bf45b3] GET /udm/ldap/base/ (0.0.0.0) 2.50ms
+11.06.25 21:56:54      INFO      (        7) :301 GET /udm/ldap/base/ (172.18.0.4) 4.31ms
+11.06.25 21:56:54        INFO      (       42) : 200 [5d2987bf45b3] GET /udm/container/dc/dc%3Dunivention-organization%2Cdc%3Dintranet (0.0.0.0) 13.23ms
+11.06.25 21:56:54      INFO      (        7) :200 GET /udm/container/dc/dc%3Dunivention-organization%2Cdc%3Dintranet (172.18.0.4) 15.73ms
+11.06.25 21:56:54.756  ADMIN       ( WARN    ) : [48e9709fd133] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:54.757  ADMIN       ( WARN    ) : [48e9709fd133] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:54.759  ADMIN       ( WARN    ) : [48e9709fd133] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:54.761  ADMIN       ( WARN    ) : [48e9709fd133] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:54.762  ADMIN       ( WARN    ) : [48e9709fd133] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:54        INFO      (       42) : 200 [48e9709fd133] GET /udm/users/user/?position=uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (0.0.0.0) 120.27ms
+11.06.25 21:56:54      INFO      (        7) :200 GET /udm/users/user/?position=uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (172.18.0.4) 122.78ms
+11.06.25 21:56:54        INFO      (       42) : 200 [69bd5d100507] GET /udm/users/user/uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (0.0.0.0) 11.54ms
+11.06.25 21:56:54      INFO      (        7) :200 GET /udm/users/user/uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (172.18.0.4) 14.33ms
+11.06.25 21:56:54        INFO      (       42) : 200 [56f6d4246924] GET /udm/groups/group/cn%3DDomain%20Users%2Ccn%3Dgroups%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (0.0.0.0) 8.23ms
+11.06.25 21:56:54      INFO      (        7) :200 GET /udm/groups/group/cn%3DDomain%20Users%2Ccn%3Dgroups%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (172.18.0.4) 10.68ms
+11.06.25 21:56:54.872  ADMIN       ( WARN    ) : [5777352cc764] __setitem__: Ignoring property objectFlag
+11.06.25 21:56:54.876  LDAP        ( PROCESS ) : [no requestID] uldap.modify: overriding type (['entryUUID', 'modifyTimestamp', 'entryCSN'])
+11.06.25 21:56:54       ERROR      (       42) : RsyslogEmitter().emit() failed: /dev/log does not exist, cannot emit entry ({"username": "cn=admin", "hostname": "3b58ff829720", "message": {"en": "User {username} modified", "de": "Benutzer {username} bearbeitet"}, "args": {"module": "users/user", "username": "foo"}, "timestamp": "2025-06-11 21:56:54", "tags": [], "context_id": "8e029960-ef7b-4aa0-add6-0b5a4ff319bd", "event": "UDM_USERS_USER_MODIFIED", "type": "Entry v1"})
+11.06.25 21:56:54        INFO      (       42) : 204 [5777352cc764] PUT /udm/users/user/uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (0.0.0.0) 68.92ms
+11.06.25 21:56:54      INFO      (        7) :204 PUT /udm/users/user/uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (172.18.0.4) 71.02ms
+11.06.25 21:56:54        INFO      (       42) : 200 [b19fd5b8089d] GET /udm/users/user/uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (0.0.0.0) 10.36ms
+11.06.25 21:56:54      INFO      (        7) :200 GET /udm/users/user/uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (172.18.0.4) 12.26ms
+11.06.25 21:56:55.008  ADMIN       ( WARN    ) : [9f07ca864709] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.009  ADMIN       ( WARN    ) : [9f07ca864709] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.010  ADMIN       ( WARN    ) : [9f07ca864709] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.011  ADMIN       ( WARN    ) : [9f07ca864709] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.012  ADMIN       ( WARN    ) : [9f07ca864709] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55        INFO      (       42) : 200 [9f07ca864709] GET /udm/users/user/?position=uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (0.0.0.0) 105.70ms
+11.06.25 21:56:55      INFO      (        7) :200 GET /udm/users/user/?position=uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (172.18.0.4) 107.60ms
+11.06.25 21:56:55        INFO      (       42) : 200 [e69814e5e919] GET /udm/users/user/uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (0.0.0.0) 9.94ms
+11.06.25 21:56:55      INFO      (        7) :200 GET /udm/users/user/uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (172.18.0.4) 12.00ms
+11.06.25 21:56:55       ERROR      (       42) : RsyslogEmitter().emit() failed: /dev/log does not exist, cannot emit entry ({"username": "cn=admin", "hostname": "3b58ff829720", "message": {"en": "User {username} moved to {position}", "de": "Benutzer {username} verschoben nach {position}"}, "args": {"module": "users/user", "username": "foo", "position": "uid=foo,dc=univention-organization,dc=intranet"}, "timestamp": "2025-06-11 21:56:55", "tags": [], "context_id": "6e5aa7df-0be3-4152-9d19-c810bda012c9", "event": "UDM_USERS_USER_MOVED", "type": "Entry v1"})
+11.06.25 21:56:55        INFO      (       42) : 201 [127117cd386a] PUT /udm/users/user/uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (0.0.0.0) 27.64ms
+11.06.25 21:56:55      INFO      (        7) :201 PUT /udm/users/user/uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (172.18.0.4) 29.44ms
+11.06.25 21:56:55        INFO      (       42) : 200 [345f2d3796c2] GET /udm/users/user/uid%3Dfoo%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (0.0.0.0) 8.48ms
+11.06.25 21:56:55      INFO      (        7) :200 GET /udm/users/user/uid%3Dfoo%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (172.18.0.4) 10.20ms
+11.06.25 21:56:55.198  ADMIN       ( WARN    ) : [b997419bff48] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.198  ADMIN       ( WARN    ) : [b997419bff48] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.200  ADMIN       ( WARN    ) : [b997419bff48] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.202  ADMIN       ( WARN    ) : [b997419bff48] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.203  ADMIN       ( WARN    ) : [b997419bff48] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55        INFO      (       42) : 200 [b997419bff48] GET /udm/users/user/?position=uid%3Dfoo%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (0.0.0.0) 113.28ms
+11.06.25 21:56:55      INFO      (        7) :200 GET /udm/users/user/?position=uid%3Dfoo%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (172.18.0.4) 115.64ms
+11.06.25 21:56:55        INFO      (       42) : 200 [1074f001c851] GET /udm/users/user/uid%3Dfoo%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (0.0.0.0) 9.72ms
+11.06.25 21:56:55      INFO      (        7) :200 GET /udm/users/user/uid%3Dfoo%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (172.18.0.4) 12.50ms
+11.06.25 21:56:55       ERROR      (       42) : RsyslogEmitter().emit() failed: /dev/log does not exist, cannot emit entry ({"username": "cn=admin", "hostname": "3b58ff829720", "message": {"en": "User {username} removed", "de": "Benutzer {username} gel\u00f6scht"}, "args": {"module": "users/user", "username": "foo"}, "timestamp": "2025-06-11 21:56:55", "tags": [], "context_id": "ac1fce44-729e-43f1-bdfb-66d3a4d54b1a", "event": "UDM_USERS_USER_REMOVED", "type": "Entry v1"})
+11.06.25 21:56:55        INFO      (       42) : 204 [bcc62360b333] DELETE /udm/users/user/uid%3Dfoo%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (0.0.0.0) 37.43ms
+11.06.25 21:56:55      INFO      (        7) :204 DELETE /udm/users/user/uid%3Dfoo%2Cdc%3Dunivention-organization%2Cdc%3Dintranet (172.18.0.4) 40.03ms
+11.06.25 21:56:55     WARNING      (       42) : 422 [a0e2592238dd] GET /udm/users/user/?position=uid%3Dfoo%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (0.0.0.0) 19.46ms
+11.06.25 21:56:55   WARNING      (        7) :422 GET /udm/users/user/?position=uid%3Dfoo%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (172.18.0.4) 22.53ms
+11.06.25 21:56:55        INFO      (       42) : 301 [f4786c1fc076] GET /udm/ldap/base/ (0.0.0.0) 3.56ms
+11.06.25 21:56:55      INFO      (        7) :301 GET /udm/ldap/base/ (172.18.0.4) 5.51ms
+11.06.25 21:56:55        INFO      (       42) : 200 [f4786c1fc076] GET /udm/container/dc/dc%3Dunivention-organization%2Cdc%3Dintranet (0.0.0.0) 16.49ms
+11.06.25 21:56:55      INFO      (        7) :200 GET /udm/container/dc/dc%3Dunivention-organization%2Cdc%3Dintranet (172.18.0.4) 18.80ms
+11.06.25 21:56:55        INFO      (       42) : 200 [a7f14d1e91fd] GET /udm/navigation/ (0.0.0.0) 25.36ms
+11.06.25 21:56:55      INFO      (        7) :200 GET /udm/navigation/ (172.18.0.4) 28.63ms
+11.06.25 21:56:55.500  ADMIN       ( WARN    ) : [2865f3dbf2a1] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.501  ADMIN       ( WARN    ) : [2865f3dbf2a1] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.503  ADMIN       ( WARN    ) : [2865f3dbf2a1] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.505  ADMIN       ( WARN    ) : [2865f3dbf2a1] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.506  ADMIN       ( WARN    ) : [2865f3dbf2a1] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55        INFO      (       42) : 200 [2865f3dbf2a1] GET /udm/users/user/ (0.0.0.0) 72.79ms
+11.06.25 21:56:55      INFO      (        7) :200 GET /udm/users/user/ (172.18.0.4) 75.31ms
+11.06.25 21:56:55     WARNING      (       42) : 422 [66ff620e6373] GET /udm/users/user/?position=uid%3Dfoo%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (0.0.0.0) 9.12ms
+11.06.25 21:56:55   WARNING      (        7) :422 GET /udm/users/user/?position=uid%3Dfoo%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (172.18.0.4) 11.87ms
+11.06.25 21:56:55     WARNING      (       42) : 422 [ae70752d0e9e] GET /udm/users/user/?position=uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (0.0.0.0) 8.97ms
+11.06.25 21:56:55   WARNING      (        7) :422 GET /udm/users/user/?position=uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (172.18.0.4) 11.23ms
+11.06.25 21:56:55     WARNING      (       42) : 422 [ca0b18f76d13] GET /udm/users/user/?position=uid%3Dfoo_async%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (0.0.0.0) 8.98ms
+11.06.25 21:56:55   WARNING      (        7) :422 GET /udm/users/user/?position=uid%3Dfoo_async%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (172.18.0.4) 11.59ms
+11.06.25 21:56:55     WARNING      (       42) : 422 [64c53408d055] GET /udm/users/user/?position=uid%3Dfoo_async%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (0.0.0.0) 8.06ms
+11.06.25 21:56:55   WARNING      (        7) :422 GET /udm/users/user/?position=uid%3Dfoo_async%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (172.18.0.4) 10.39ms
+11.06.25 21:56:55        INFO      (       42) : 200 [b3aa46bea5e0] GET /udm/ (0.0.0.0) 13.78ms
+11.06.25 21:56:55      INFO      (        7) :200 GET /udm/ (172.18.0.4) 16.91ms
+11.06.25 21:56:55        INFO      (       42) : 200 [f6dc4a6241c7] GET /udm/navigation/ (0.0.0.0) 14.18ms
+11.06.25 21:56:55      INFO      (        7) :200 GET /udm/navigation/ (172.18.0.4) 22.76ms
+11.06.25 21:56:55.727  ADMIN       ( WARN    ) : [35b23ed98880] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.728  ADMIN       ( WARN    ) : [35b23ed98880] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.729  ADMIN       ( WARN    ) : [35b23ed98880] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.731  ADMIN       ( WARN    ) : [35b23ed98880] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.732  ADMIN       ( WARN    ) : [35b23ed98880] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55        INFO      (       42) : 200 [35b23ed98880] GET /udm/users/user/ (0.0.0.0) 74.42ms
+11.06.25 21:56:55      INFO      (        7) :200 GET /udm/users/user/ (172.18.0.4) 79.27ms
+11.06.25 21:56:55.822  ADMIN       ( WARN    ) : [e01f2c6e37f0] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.823  ADMIN       ( WARN    ) : [e01f2c6e37f0] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.824  ADMIN       ( WARN    ) : [e01f2c6e37f0] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.826  ADMIN       ( WARN    ) : [e01f2c6e37f0] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55.827  ADMIN       ( WARN    ) : [e01f2c6e37f0] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:55        INFO      (       42) : 200 [e01f2c6e37f0] GET /udm/users/user/add (0.0.0.0) 147.72ms
+11.06.25 21:56:55      INFO      (        7) :200 GET /udm/users/user/add (172.18.0.4) 150.57ms
+11.06.25 21:56:55.948  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateDateNotAfter
+11.06.25 21:56:55.948  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateDateNotBefore
+11.06.25 21:56:55.948  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateIssuerCommonName
+11.06.25 21:56:55.948  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateIssuerCountry
+11.06.25 21:56:55.949  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateIssuerLocation
+11.06.25 21:56:55.949  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateIssuerMail
+11.06.25 21:56:55.949  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateIssuerOrganisation
+11.06.25 21:56:55.949  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateIssuerOrganisationalUnit
+11.06.25 21:56:55.949  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateIssuerState
+11.06.25 21:56:55.949  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateSerial
+11.06.25 21:56:55.949  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateSubjectCommonName
+11.06.25 21:56:55.949  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateSubjectCountry
+11.06.25 21:56:55.949  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateSubjectLocation
+11.06.25 21:56:55.949  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateSubjectMail
+11.06.25 21:56:55.949  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateSubjectOrganisation
+11.06.25 21:56:55.949  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateSubjectOrganisationalUnit
+11.06.25 21:56:55.949  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateSubjectState
+11.06.25 21:56:55.949  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property certificateVersion
+11.06.25 21:56:55.950  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property objectFlag
+11.06.25 21:56:55.950  ADMIN       ( WARN    ) : [0afebcc65973] __setitem__: Ignoring property userCertificate
+11.06.25 21:56:56.309  LDAP        ( PROCESS ) : [no requestID] uldap.add: overriding PostReadControl (['entryUUID', 'modifyTimestamp', 'entryCSN'])
+11.06.25 21:56:56       ERROR      (       42) : RsyslogEmitter().emit() failed: /dev/log does not exist, cannot emit entry ({"username": "cn=admin", "hostname": "3b58ff829720", "message": {"en": "User {username} created", "de": "Benutzer {username} angelegt"}, "args": {"module": "users/user", "username": "foo_async"}, "timestamp": "2025-06-11 21:56:56", "tags": [], "context_id": "aba942fa-db6e-422c-ba7b-c053548a0d71", "event": "UDM_USERS_USER_CREATED", "type": "Entry v1"})
+11.06.25 21:56:56        INFO      (       42) : 201 [0afebcc65973] POST /udm/users/user/ (0.0.0.0) 440.33ms
+11.06.25 21:56:56      INFO      (        7) :201 POST /udm/users/user/ (172.18.0.4) 443.32ms
+11.06.25 21:56:56        INFO      (       42) : 200 [45fb05bed113] GET /udm/users/user/uid=foo_async,cn=users,dc=univention-organization,dc=intranet (0.0.0.0) 9.64ms
+11.06.25 21:56:56      INFO      (        7) :200 GET /udm/users/user/uid=foo_async,cn=users,dc=univention-organization,dc=intranet (172.18.0.4) 12.55ms
+11.06.25 21:56:56.473  ADMIN       ( WARN    ) : [7ba2b4a21bcc] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56.474  ADMIN       ( WARN    ) : [7ba2b4a21bcc] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56.475  ADMIN       ( WARN    ) : [7ba2b4a21bcc] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56.477  ADMIN       ( WARN    ) : [7ba2b4a21bcc] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56.478  ADMIN       ( WARN    ) : [7ba2b4a21bcc] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56        INFO      (       42) : 200 [7ba2b4a21bcc] GET /udm/users/user/?filter=uid%3D*&scope=sub&hidden=0&properties=dn&opened=0 (0.0.0.0) 114.29ms
+11.06.25 21:56:56      INFO      (        7) :200 GET /udm/users/user/?filter=uid%3D*&scope=sub&hidden=0&properties=dn&opened=0 (172.18.0.4) 117.20ms
+11.06.25 21:56:56        INFO      (       42) : 200 [92076bcf92ad] GET /udm/users/user/uid=foo_async,cn=users,dc=univention-organization,dc=intranet (0.0.0.0) 9.90ms
+11.06.25 21:56:56      INFO      (        7) :200 GET /udm/users/user/uid=foo_async,cn=users,dc=univention-organization,dc=intranet (172.18.0.4) 12.81ms
+11.06.25 21:56:56        INFO      (       42) : 301 [63fd88d97b31] GET /udm/ldap/base/ (0.0.0.0) 2.24ms
+11.06.25 21:56:56      INFO      (        7) :301 GET /udm/ldap/base/ (172.18.0.4) 4.06ms
+11.06.25 21:56:56        INFO      (       42) : 200 [63fd88d97b31] GET /udm/container/dc/dc=univention-organization,dc=intranet (0.0.0.0) 9.72ms
+11.06.25 21:56:56      INFO      (        7) :200 GET /udm/container/dc/dc=univention-organization,dc=intranet (172.18.0.4) 12.57ms
+11.06.25 21:56:56.630  ADMIN       ( WARN    ) : [527518fc952c] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56.631  ADMIN       ( WARN    ) : [527518fc952c] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56.632  ADMIN       ( WARN    ) : [527518fc952c] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56.634  ADMIN       ( WARN    ) : [527518fc952c] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56.635  ADMIN       ( WARN    ) : [527518fc952c] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56        INFO      (       42) : 200 [527518fc952c] GET /udm/users/user/?position=uid%3Dfoo_async,cn%3Dusers,dc%3Dunivention-organization,dc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (0.0.0.0) 105.26ms
+11.06.25 21:56:56      INFO      (        7) :200 GET /udm/users/user/?position=uid%3Dfoo_async,cn%3Dusers,dc%3Dunivention-organization,dc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (172.18.0.4) 107.87ms
+11.06.25 21:56:56        INFO      (       42) : 200 [7f2d15b08a02] GET /udm/users/user/uid=foo_async,cn=users,dc=univention-organization,dc=intranet (0.0.0.0) 10.09ms
+11.06.25 21:56:56      INFO      (        7) :200 GET /udm/users/user/uid=foo_async,cn=users,dc=univention-organization,dc=intranet (172.18.0.4) 11.92ms
+11.06.25 21:56:56        INFO      (       42) : 200 [98c707bcdd0b] GET /udm/groups/group/cn=Domain%20Users,cn=groups,dc=univention-organization,dc=intranet (0.0.0.0) 7.39ms
+11.06.25 21:56:56      INFO      (        7) :200 GET /udm/groups/group/cn=Domain%20Users,cn=groups,dc=univention-organization,dc=intranet (172.18.0.4) 9.20ms
+11.06.25 21:56:56.717  ADMIN       ( WARN    ) : [894c922b3a17] __setitem__: Ignoring property objectFlag
+11.06.25 21:56:56.721  LDAP        ( PROCESS ) : [no requestID] uldap.modify: overriding type (['entryUUID', 'modifyTimestamp', 'entryCSN'])
+11.06.25 21:56:56       ERROR      (       42) : RsyslogEmitter().emit() failed: /dev/log does not exist, cannot emit entry ({"username": "cn=admin", "hostname": "3b58ff829720", "message": {"en": "User {username} modified", "de": "Benutzer {username} bearbeitet"}, "args": {"module": "users/user", "username": "foo_async"}, "timestamp": "2025-06-11 21:56:56", "tags": [], "context_id": "3d63cb6c-b9ce-43bd-acdd-0a2dc356c400", "event": "UDM_USERS_USER_MODIFIED", "type": "Entry v1"})
+11.06.25 21:56:56        INFO      (       42) : 204 [894c922b3a17] PUT /udm/users/user/uid=foo_async,cn=users,dc=univention-organization,dc=intranet (0.0.0.0) 59.54ms
+11.06.25 21:56:56      INFO      (        7) :204 PUT /udm/users/user/uid=foo_async,cn=users,dc=univention-organization,dc=intranet (172.18.0.4) 61.44ms
+11.06.25 21:56:56        INFO      (       42) : 200 [084db89b2c31] GET /udm/users/user/uid=foo_async,cn=users,dc=univention-organization,dc=intranet (0.0.0.0) 9.33ms
+11.06.25 21:56:56      INFO      (        7) :200 GET /udm/users/user/uid=foo_async,cn=users,dc=univention-organization,dc=intranet (172.18.0.4) 11.43ms
+11.06.25 21:56:56.827  ADMIN       ( WARN    ) : [575ff114cbe8] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56.828  ADMIN       ( WARN    ) : [575ff114cbe8] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56.829  ADMIN       ( WARN    ) : [575ff114cbe8] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56.831  ADMIN       ( WARN    ) : [575ff114cbe8] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56.832  ADMIN       ( WARN    ) : [575ff114cbe8] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56        INFO      (       42) : 200 [575ff114cbe8] GET /udm/users/user/?position=uid%3Dfoo_async,cn%3Dusers,dc%3Dunivention-organization,dc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (0.0.0.0) 87.37ms
+11.06.25 21:56:56      INFO      (        7) :200 GET /udm/users/user/?position=uid%3Dfoo_async,cn%3Dusers,dc%3Dunivention-organization,dc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (172.18.0.4) 89.65ms
+11.06.25 21:56:56        INFO      (       42) : 200 [4e7b5094d3e1] GET /udm/users/user/uid=foo_async,cn=users,dc=univention-organization,dc=intranet (0.0.0.0) 9.78ms
+11.06.25 21:56:56      INFO      (        7) :200 GET /udm/users/user/uid=foo_async,cn=users,dc=univention-organization,dc=intranet (172.18.0.4) 12.36ms
+11.06.25 21:56:56       ERROR      (       42) : RsyslogEmitter().emit() failed: /dev/log does not exist, cannot emit entry ({"username": "cn=admin", "hostname": "3b58ff829720", "message": {"en": "User {username} moved to {position}", "de": "Benutzer {username} verschoben nach {position}"}, "args": {"module": "users/user", "username": "foo_async", "position": "uid=foo_async,dc=univention-organization,dc=intranet"}, "timestamp": "2025-06-11 21:56:56", "tags": [], "context_id": "15a3dda6-785b-4d1c-9bfd-64eec36efc4a", "event": "UDM_USERS_USER_MOVED", "type": "Entry v1"})
+11.06.25 21:56:56        INFO      (       42) : 201 [a1d4c3754a89] PUT /udm/users/user/uid=foo_async,cn=users,dc=univention-organization,dc=intranet (0.0.0.0) 24.52ms
+11.06.25 21:56:56      INFO      (        7) :201 PUT /udm/users/user/uid=foo_async,cn=users,dc=univention-organization,dc=intranet (172.18.0.4) 26.57ms
+11.06.25 21:56:56        INFO      (       42) : 200 [0b4e1c9948ae] GET /udm/users/user/uid=foo_async,dc=univention-organization,dc=intranet (0.0.0.0) 8.11ms
+11.06.25 21:56:56      INFO      (        7) :200 GET /udm/users/user/uid=foo_async,dc=univention-organization,dc=intranet (172.18.0.4) 9.88ms
+11.06.25 21:56:56.986  ADMIN       ( WARN    ) : [439c9f096621] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56.987  ADMIN       ( WARN    ) : [439c9f096621] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56.988  ADMIN       ( WARN    ) : [439c9f096621] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56.989  ADMIN       ( WARN    ) : [439c9f096621] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56.990  ADMIN       ( WARN    ) : [439c9f096621] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:56        INFO      (       42) : 200 [439c9f096621] GET /udm/users/user/?position=uid%3Dfoo_async,dc%3Dunivention-organization,dc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (0.0.0.0) 95.46ms
+11.06.25 21:56:56      INFO      (        7) :200 GET /udm/users/user/?position=uid%3Dfoo_async,dc%3Dunivention-organization,dc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (172.18.0.4) 97.57ms
+11.06.25 21:56:57        INFO      (       42) : 200 [3ce31d388ba7] GET /udm/users/user/uid=foo_async,dc=univention-organization,dc=intranet (0.0.0.0) 10.13ms
+11.06.25 21:56:57      INFO      (        7) :200 GET /udm/users/user/uid=foo_async,dc=univention-organization,dc=intranet (172.18.0.4) 12.42ms
+11.06.25 21:56:57       ERROR      (       42) : RsyslogEmitter().emit() failed: /dev/log does not exist, cannot emit entry ({"username": "cn=admin", "hostname": "3b58ff829720", "message": {"en": "User {username} removed", "de": "Benutzer {username} gel\u00f6scht"}, "args": {"module": "users/user", "username": "foo_async"}, "timestamp": "2025-06-11 21:56:57", "tags": [], "context_id": "0e33cc5e-b0d8-40e4-904f-0ce3a62bbcec", "event": "UDM_USERS_USER_REMOVED", "type": "Entry v1"})
+11.06.25 21:56:57        INFO      (       42) : 204 [1bcb9e3f30f7] DELETE /udm/users/user/uid=foo_async,dc=univention-organization,dc=intranet (0.0.0.0) 26.12ms
+11.06.25 21:56:57      INFO      (        7) :204 DELETE /udm/users/user/uid=foo_async,dc=univention-organization,dc=intranet (172.18.0.4) 28.14ms
+11.06.25 21:56:57     WARNING      (       42) : 422 [18b4e27668d4] GET /udm/users/user/?position=uid%3Dfoo_async,dc%3Dunivention-organization,dc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (0.0.0.0) 6.35ms
+11.06.25 21:56:57   WARNING      (        7) :422 GET /udm/users/user/?position=uid%3Dfoo_async,dc%3Dunivention-organization,dc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (172.18.0.4) 8.17ms
+11.06.25 21:56:57        INFO      (       42) : 200 [25755a619c4f] GET /udm/ (0.0.0.0) 14.42ms
+11.06.25 21:56:57      INFO      (        7) :200 GET /udm/ (172.18.0.4) 17.45ms
+11.06.25 21:56:57        INFO      (       42) : 301 [724c287e2ac3] GET /udm/ldap/base/ (0.0.0.0) 2.08ms
+11.06.25 21:56:57      INFO      (        7) :301 GET /udm/ldap/base/ (172.18.0.4) 4.11ms
+11.06.25 21:56:57        INFO      (       42) : 200 [724c287e2ac3] GET /udm/container/dc/dc%3Dunivention-organization%2Cdc%3Dintranet (0.0.0.0) 10.70ms
+11.06.25 21:56:57      INFO      (        7) :200 GET /udm/container/dc/dc%3Dunivention-organization%2Cdc%3Dintranet (172.18.0.4) 13.01ms
+11.06.25 21:56:57        INFO      (       42) : 200 [b47b652b6247] GET /udm/navigation/ (0.0.0.0) 17.36ms
+11.06.25 21:56:57      INFO      (        7) :200 GET /udm/navigation/ (172.18.0.4) 21.26ms
+11.06.25 21:56:57.201  ADMIN       ( WARN    ) : [4459a80c1480] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:57.202  ADMIN       ( WARN    ) : [4459a80c1480] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:57.203  ADMIN       ( WARN    ) : [4459a80c1480] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:57.205  ADMIN       ( WARN    ) : [4459a80c1480] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:57.206  ADMIN       ( WARN    ) : [4459a80c1480] mapValueDecoded returns a list for service. This is probably not wanted?
+11.06.25 21:56:57        INFO      (       42) : 200 [4459a80c1480] GET /udm/users/user/ (0.0.0.0) 59.36ms
+11.06.25 21:56:57      INFO      (        7) :200 GET /udm/users/user/ (172.18.0.4) 62.57ms
+11.06.25 21:56:57     WARNING      (       42) : 422 [a1ef324789dc] GET /udm/users/user/?position=uid%3Dfoo%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (0.0.0.0) 7.09ms
+11.06.25 21:56:57   WARNING      (        7) :422 GET /udm/users/user/?position=uid%3Dfoo%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (172.18.0.4) 9.44ms
+11.06.25 21:56:57     WARNING      (       42) : 422 [eb54bdace0a2] GET /udm/users/user/?position=uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (0.0.0.0) 6.40ms
+11.06.25 21:56:57   WARNING      (        7) :422 GET /udm/users/user/?position=uid%3Dfoo%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (172.18.0.4) 8.90ms
+11.06.25 21:56:57     WARNING      (       42) : 422 [de3f006a97d6] GET /udm/users/user/?position=uid%3Dfoo_async%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (0.0.0.0) 13.86ms
+11.06.25 21:56:57   WARNING      (        7) :422 GET /udm/users/user/?position=uid%3Dfoo_async%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (172.18.0.4) 15.85ms
+11.06.25 21:56:57     WARNING      (       42) : 422 [c81ec2319ea5] GET /udm/users/user/?position=uid%3Dfoo_async%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (0.0.0.0) 8.35ms
+11.06.25 21:56:57   WARNING      (        7) :422 GET /udm/users/user/?position=uid%3Dfoo_async%2Ccn%3Dusers%2Cdc%3Dunivention-organization%2Cdc%3Dintranet&scope=base&hidden=0&properties=dn&opened=0 (172.18.0.4) 10.24ms
