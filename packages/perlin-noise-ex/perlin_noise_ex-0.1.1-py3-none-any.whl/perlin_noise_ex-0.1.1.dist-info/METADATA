@@ -1,0 +1,44 @@
+Metadata-Version: 2.4
+Name: perlin_noise_ex
+Version: 0.1.1
+Summary: Python implementation of Perlin noise generator
+Author-email: Exityx <gdlasorum@gmail.com>
+Project-URL: Homepage, https://github.com/ExityxXx/PerlinNoiseEX
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: perlin-noise
+Dynamic: license-file
+
+# perlin_noise_dhex
+
+Python implementation of Perlin noise generator by Exityx (DH - DataHandler)
+
+## Installation
+
+```bash
+pip install perlin_noise_dhex
+```
+
+## Usage
+
+```python
+from perlin_noise_dhex import CreateNewPerlinNoise
+
+# Create noise generator
+noise = CreateNewPerlinNoise(seed=20, octave=2, amp=7, period=24)
+
+matrix = noise.createPerlin()
+
+noise.showGraph(matrix)
+
+```
+
+## License
+
+MIT
