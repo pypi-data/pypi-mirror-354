@@ -1,0 +1,26 @@
+Metadata-Version: 2.4
+Name: azul_api
+Version: 1.0.0
+Summary: An API for Azul board game
+Author-email: Evaldas Visockas <developersediary@gmail.com>
+License: GPL-3.0-or-later
+Project-URL: Repository, https://github.com/AzulImplementation/AzulApi
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: azul-game-engine>=1.0.2
+Requires-Dist: flask>=2.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3.4; extra == "dev"
+Requires-Dist: pytest-cov>=6.1.1; extra == "dev"
+Dynamic: license-file
+
+# AzulApi
+
+A API for Azul board game.
+
+Library used: [![GitHub](https://img.shields.io/badge/GitHub-EvalVis/AzulGameEngine-black?style=flat&logo=github)](https://github.com/EvalVis/AzulGameEngine).
+
+## License
+
+Please read a `LICENSE` file.
