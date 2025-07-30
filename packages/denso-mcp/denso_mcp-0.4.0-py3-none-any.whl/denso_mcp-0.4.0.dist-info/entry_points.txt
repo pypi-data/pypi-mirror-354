@@ -1,0 +1,4 @@
+[console_scripts]
+denso-mcp = sw_mcp.cli:start_stdio
+start-sse = sw_mcp.cli:start_sse
+start-stdio = sw_mcp.cli:start_stdio
