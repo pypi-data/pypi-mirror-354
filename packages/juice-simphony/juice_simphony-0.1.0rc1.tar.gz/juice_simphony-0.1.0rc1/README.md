@@ -1,0 +1,106 @@
+# Symphony Web
+
+
+## Getting started
+
+
+## Project requirements
+
+- Python 3.8
+- Git
+
+## Preparing the environment 
+
+- Clone web repository:
+    git clone https://juigitlab.esac.esa.int/core-system/uplink/phs/juice-simphony.git
+
+
+- Find in "data/simphony" path the cfg_config.json and edit it for setting valid paths.
+  Example:
+        
+```
+{
+  "inputs": {
+    "juice_conf": "$HOME/juice_conf"
+  },
+  "scenario_generator": {
+    "scenario_output_area_abs_path": "$HOME/JUICE_PREOPS/PLANNING"
+  },
+  "spice": {
+    "kernel_abs_path": "$HOME/juice/kernels",
+    "available_toolkits": [
+      {
+        "toolkit_version": "N0067"
+      }
+    ]
+  }
+}
+```
+
+
+
+
+## Run the script
+
+```
+juice-simphony
+```
+
+This uses a default configuration file located in the directory specified above data/simphony/config_scenario.json.
+
+```
+{
+  "scenario_id": "S008_01",
+  "shortDesc": "ORB17",
+  "main_target": "Jupiter",
+  "trajectory": "CREMA_5_1_150lb_23_1_a3",
+  "mnemonic": "S008_ORB17_S13P00",
+  "startTime": "2032-12-18T17:32:33",
+  "endTime": "2033-01-08T21:05:31",
+  "iniAbsolutePath": "SOFTWARE/MAPPS",
+  "descriptions": {
+    "scenario_id": "number of the science scenario as per SOCs reference (scenario_number plus version index); expected format: 1 letter + 3 digits + _ + 2 digits (e.g., 'S008_01')",
+    "main_target": "object of interest (not used)",
+    "labelPrefix": "string (not used)",
+    "code": "sequential number of the output scenario",
+    "version": "version of the output scenario",
+    "trajectory": "trajectory identifier, to be used together with mnemonic; not needed if segment_id is provided",
+    "mnemonic": "mnemonic of the trajectory; to be used together with trajectory; not needed if segment_id is provided",
+    "segment_id": "segmentation identified; see https://juicesoc.esac.esa.int/rest_api/plan/; not needed if both trajectory and mnemonic are provided",
+    "shortDesc": "string for the output folder",
+    "startTime": "scenario start time; timestamp in ISO 8601 format YYYY-MM-DDTHH:MM:SS",
+    "endTime": "scenario end time; timestamp in ISO 8601 format YYYY-MM-DDTHH:MM:SS",
+    "iniAbsolutePath": "string (not used)"
+  }
+}
+```
+These are the current input parameters, some of them might be updated in the future. 
+
+For a different input, the script is aimed at be run using an input configuration file from the command like, called as
+```
+juice-simphony --config yourpath/config_scenario.json 
+```
+The segmentation can be selected either with both "trajectory" and "mnemonic", or using "segment_id". In this case, the input would be
+```
+{
+  "scenario_id": "S008_01",
+  "shortDesc": "ORB17",
+  "main_target": "Jupiter",
+  "segment_id": 409,  
+  "startTime": "2032-12-18T17:32:33",
+  "endTime": "2033-01-08T21:05:31",
+  "iniAbsolutePath": "SOFTWARE/MAPPS"
+} 
+```
+If "segment_id" is provided (used to define the trajectory as an SHT code), the parameters "trajectory" and "mnemonic" are ignored. For the Plan list, please check: https://juicesoc.esac.esa.int/rest_api/plan/
+
+To generate the MAPPS configuration, the parameter --mapps needs to be added to the command line, this is
+```
+juice-simphony --mapps 
+
+or 
+
+juice-simphony --config yourpath/config_scenario.json  --mapps
+```
+
+The output is a zip file in the output folder provided above in the configuration. 
