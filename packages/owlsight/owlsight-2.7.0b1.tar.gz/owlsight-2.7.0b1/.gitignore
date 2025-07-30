@@ -1,0 +1,36 @@
+/.cache
+/.ruff_cache
+/.venv
+/venv
+/models
+/logs
+.env
+
+# Ignore all .pyc files
+*.pyc
+*.pkl
+*.log
+
+# Also ignore the __pycache__ directories where .pyc files are stored
+__pycache__/
+
+# custom
+.aider*
+tmp*
+/logo
+/dist
+/build
+/data
+/archive
+deploy.ps1
+build.bat
+.vscode/*
+.egg-info/*
+src/owlsight.egg-info/*
+build_commands.txt
+TODO
+/test_logs
+/configs
+
+# windsurf rules
+.windsurfrules

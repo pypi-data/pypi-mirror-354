@@ -1,0 +1,56 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File (myenv)",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "python": "${workspaceFolder}/.venv/Scripts/python.exe",
+            "console": "integratedTerminal",
+            "env": {
+                "PYDEVD_DISABLE_FILE_VALIDATION": "1",
+                "PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT": "60",
+                "PYDEVD_WARN_SLOW_EVALUATION_TIMEOUT": "60",
+            },
+            "justMyCode": false
+        },
+        {
+            "name": "Streamlit Debug",
+            "type": "python",
+            "request": "launch",
+            "module": "streamlit",
+            "args": [
+                "run",
+                "${file}",
+                "--server.port",
+                "8501"
+            ],
+            "env": {
+                "PYDEVD_DISABLE_FILE_VALIDATION": "1",
+                "PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT": "60",
+                "PYDEVD_WARN_SLOW_EVALUATION_TIMEOUT": "60"
+            },
+            "justMyCode": false
+        }
+        // {
+        //     "name": "Debug owlsight-server.py",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/examples/openai_compatible.py",
+        //     "args": [
+        //         "--model", "unsloth/DeepSeek-R1-0528-Qwen3-8B-GGUF",
+        //         "--gguf__filename", "DeepSeek-R1-0528-Qwen3-8B-Q4_K_M.gguf",
+        //         "--gguf__n_ctx", "8192",
+        //         "--gguf__verbose", "true",
+        //         "--gguf__n_gpu_layers", "-1",
+        //         "--port", "8000"
+        //     ],
+        //     "console": "integratedTerminal",
+        //     "justMyCode": false,
+        //     "env": {
+        //         "PYTHONPATH": "${workspaceFolder}"
+        //     }
+        // }
+    ]
+}
