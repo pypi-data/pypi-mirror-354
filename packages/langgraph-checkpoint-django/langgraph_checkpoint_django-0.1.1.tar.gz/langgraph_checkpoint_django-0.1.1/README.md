@@ -1,0 +1,202 @@
+# LangGraph Checkpoint Django
+
+A Django-based checkpoint saver for [LangGraph](https://github.com/langchain-ai/langgraph), providing persistent storage for conversation states and workflow checkpoints using Django ORM.
+
+## Features
+
+- 🗄️ **Persistent Storage**: Store LangGraph checkpoints in your Django database
+- 🔄 **Thread Management**: Support for conversation threads and namespaces
+- 🚀 **Django Integration**: Seamless integration with existing Django projects
+
+## Installation
+
+Install the package using pip:
+
+```bash
+pip install langgraph-checkpoint-django
+```
+
+## Quick Start
+
+### 1. Add to Django Settings
+
+Add the checkpoint app to your `INSTALLED_APPS` in `settings.py`:
+
+```python
+INSTALLED_APPS = [
+    # Your existing apps
+    'langgraph.checkpoint.django.checkpoint',
+    # Other apps...
+]
+```
+
+### 2. Run Migrations
+
+Create and apply the database migrations:
+
+```bash
+python manage.py migrate
+```
+
+### 3. Basic Usage
+
+#### Synchronous Usage
+
+```python
+from langgraph.checkpoint.django.saver import DjangoSaver
+from langgraph.graph import StateGraph, MessagesState
+from langchain_core.runnables import RunnableConfig
+
+
+def example():
+    # Initialize the checkpoint saver
+    checkpointer = DjangoSaver()
+    
+    # Create your graph with checkpointing
+    def my_node(state: MessagesState):
+        return {"messages": state["messages"] + ["processed"]}
+   
+    graph = StateGraph(MessagesState)
+    graph.add_node("process", my_node)
+    graph.set_entry_point("process")
+    
+    # Compile with checkpointing
+    app = graph.compile(checkpointer=checkpointer)
+    
+    # Use with thread configuration
+    config = RunnableConfig(
+        configurable={
+            "thread_id": "conversation-1",
+            "checkpoint_ns": "default"
+        }
+    )
+    
+    # Run the graph
+    result = app.invoke({"messages": ["hello"]}, config=config)
+    print(result)
+```
+
+#### Asynchronous Usage
+```python
+import asyncio
+from langgraph.checkpoint.django.aio import AsyncDjangoSaver
+from langgraph.graph import StateGraph, MessagesState
+from langchain_core.runnables import RunnableConfig
+
+
+async def example():
+    # Initialize the async checkpoint saver
+    checkpointer = AsyncDjangoSaver()
+    
+    # Create your graph with checkpointing
+    async def my_async_node(state: MessagesState):
+        # Simulate async processing
+        await asyncio.sleep(0.1)
+        return {"messages": state["messages"] + ["processed async"]}
+    
+    graph = StateGraph(MessagesState)
+    graph.add_node("process", my_async_node)
+    graph.set_entry_point("process")
+    
+    # Compile with async checkpointing
+    app = graph.compile(checkpointer=checkpointer)
+    
+    # Use with thread configuration
+    config = RunnableConfig(
+        configurable={
+            "thread_id": "conversation-async-1",
+            "checkpoint_ns": "default"
+        }
+    )
+    
+    # Run the graph
+    result = await app.ainvoke({"messages": ["hello async"]}, config=config)
+    print(result)
+```
+
+## Database Models
+
+The package creates three main models:
+
+- **Checkpoint**: Stores the main checkpoint data and metadata
+- **Write**: Stores pending writes and task information
+
+## API Reference
+
+### DjangoSaver
+
+The synchronous checkpoint saver class for Django ORM integration.
+
+#### Methods
+
+- `get_tuple(config: RunnableConfig) -> Optional[CheckpointTuple]`: Retrieve a checkpoint tuple
+- `list(config: Optional[RunnableConfig], *, filter: Optional[Dict[str, Any]] = None, before: Optional[RunnableConfig] = None, limit: Optional[int] = None) -> Iterator[CheckpointTuple]`: List checkpoints with optional filtering
+- `put(config: RunnableConfig, checkpoint: Checkpoint, metadata: CheckpointMetadata, new_versions: ChannelVersions) -> RunnableConfig`: Store a checkpoint and return updated config
+- `put_writes(config: RunnableConfig, writes: Sequence[Tuple[str, Any]], task_id: str, task_path: str = "") -> None`: Store pending writes for a checkpoint
+- `delete_thread(thread_id: str) -> None`: Delete all checkpoints and writes for a thread
+
+### AsyncDjangoSaver
+
+The asynchronous checkpoint saver class for Django ORM integration, using Django's async ORM capabilities.
+
+#### Methods
+
+- `aget_tuple(config: RunnableConfig) -> Optional[CheckpointTuple]`: Asynchronously retrieve a checkpoint tuple
+- `alist(config: Optional[RunnableConfig], *, filter: Optional[Dict[str, Any]] = None, before: Optional[RunnableConfig] = None, limit: Optional[int] = None) -> AsyncIterator[CheckpointTuple]`: Asynchronously list checkpoints with optional filtering
+- `aput(config: RunnableConfig, checkpoint: Checkpoint, metadata: CheckpointMetadata, new_versions: ChannelVersions) -> RunnableConfig`: Asynchronously store a checkpoint and return updated config
+- `aput_writes(config: RunnableConfig, writes: Sequence[Tuple[str, Any]], task_id: str, task_path: str = "") -> None`: Asynchronously store pending writes for a checkpoint
+- `adelete_thread(thread_id: str) -> None`: Asynchronously delete all checkpoints and writes for a thread
+
+
+
+## Performance Considerations
+
+- **Indexing**: The package creates appropriate database indexes for optimal query performance
+- **Cleanup**: Regularly clean up old checkpoints to manage database size
+- **Connection Pooling**: Use Django's database connection pooling for better performance
+- **Bulk Operations**: The saver uses bulk operations where possible to reduce database queries
+
+
+## Requirements
+
+### Basic Requirements (DjangoSaver)
+
+- Python 3.8+
+- Django 3.1+
+- LangGraph 0.1+
+- LangChain Core
+
+### Async Requirements (AsyncDjangoSaver)
+
+- Python 3.8+
+- Django 4.1+ (required for full async ORM support)
+- LangGraph 0.1+
+- LangChain Core
+- ASGI server (e.g., uvicorn, daphne) for production deployment
+
+### Database Support
+
+> JSONField Support: This package requires Django with `models.JSONField` support:
+> - MySQL: MySQL 5.7.8+ or MariaDB 10.2.7+
+> - SQLite: SQLite 3.9.0+ (with the JSON1 extension enabled)
+
+> Async Database Support (for AsyncDjangoSaver only):
+> - PostgreSQL: Requires `asyncpg` driver
+> - MySQL: Requires `aiomysql` driver
+> - SQLite: Built-in async support in Django 4.1+
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Changelog
+
+### v0.1.0
+- Initial release
+- Basic checkpoint functionality
+- Django ORM integration
+- Thread management support
+
+
+Made with ❤️ for the LangGraph community
