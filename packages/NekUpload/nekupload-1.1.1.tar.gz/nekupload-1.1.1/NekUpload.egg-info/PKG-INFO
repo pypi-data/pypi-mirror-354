@@ -1,0 +1,91 @@
+Metadata-Version: 2.4
+Name: NekUpload
+Version: 1.1.1
+Summary: Upload and validation pipeline for Nektar++ datasets to an online repository
+Author-email: Stephen Liu <stephen.liu21@imperial.ac.uk>
+Project-URL: Nektar, https://www.nektar.info
+Project-URL: Documentation, https://nekupload.readthedocs.io/en/latest/
+Project-URL: Repository, https://gitlab.nektar.info/shl21/NekUpload
+Keywords: nektar++,nekpy,nekrdm,data-processing,data-validation,file-upload,ae-datastore,invenio-rdm,automation,GUI,CLI
+Classifier: Development Status :: 3 - Alpha
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.14
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Archiving :: Backup
+Classifier: Topic :: Utilities
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: numpy
+Requires-Dist: h5py
+Requires-Dist: lxml
+Requires-Dist: requests
+Requires-Dist: sympy
+Requires-Dist: python-dotenv
+Requires-Dist: click
+Requires-Dist: packaging
+Requires-Dist: pyyaml
+Requires-Dist: ruamel.yaml
+Requires-Dist: ttkbootstrap
+Requires-Dist: psutil
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-mock; extra == "dev"
+Requires-Dist: memory_profiler; extra == "dev"
+Requires-Dist: sphinx==8.2; extra == "dev"
+Requires-Dist: sphinx-rtd-theme==3.0.2; extra == "dev"
+Requires-Dist: iniconfig; extra == "dev"
+Dynamic: license-file
+
+# NekUpload
+
+**NekUpload** is a Python package designed to streamline the upload and data management process of Nektar++ datasets to AE Datastore. It automates the validation of simulation datasets to ensure consistency and completeness. Furthermore, it extracts relevant parameters embedded within the files, enriching database records with valuable metadata. This aligns with the FAIR principles (Findable, Accessible, Interoperable, Reusable), making your data accessible, understandable and compatible with other NekRDM tools.
+
+# Installation
+
+There are two installation methods. With pip:
+
+```bash
+python3 -m pip install NekUpload
+```
+
+Or build from source:
+
+```bash
+git clone https://gitlab.nektar.info/nektar/NekUpload.git
+
+#if just need the package as a user
+python3 -m pip install .
+#if you want development tools too
+python3 -m pip install .[dev]
+```
+
+The GUI can then be opened using the command ```nekupload```.
+
+# User Guide
+
+User guide can be found at https://nekupload.readthedocs.io/en/latest/.
+
+# Documentation
+
+The following steps can be used to generate documentation locally. Assming development tools are installed:
+
+```bash
+cd docs
+make html
+```
+
+Open ``build/index.html`` to view the documentation locally.
+
+# Other Info
+
+Note that the root repository contains a schema_update.json file. This is for reference purposes and is the one currently used by the Imperial Aeronautics Data Store for storing CFD-specific metadata. This may evolve in the future.
+
+There is also a launch.sh file, which given the correct venv path, it can be used to invoke the GUI. 
