@@ -1,0 +1,18 @@
+[project]
+name = "PyTX16s"
+version = "1.0.0"
+description = "Python lib to interact with RadioMaster TX16s"
+authors = [
+    {name = "DAAMCS"}
+]
+license = {text = "GPL"}
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "hid (>=1.0.7,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
