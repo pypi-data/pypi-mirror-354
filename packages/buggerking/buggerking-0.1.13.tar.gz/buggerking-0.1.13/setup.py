@@ -1,0 +1,30 @@
+from setuptools import setup, find_packages
+
+setup (
+    name='buggerking',
+    version='0.1.13',
+    description='test buggerking package',
+    author='DogyunHyunseoKyeongyeon',
+    author_email='hyunseo0412@naver.com',
+    url='https://github.com/hyunseopythonl/buggerking',
+    license='MIT',
+    packages=find_packages(),
+    include_package_data=True,
+    classifiers=[
+        'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: MIT License',
+    ],
+    python_requires='>=3.6',
+    install_requires=[
+        "requests",
+        "click>=8.0",
+        "colorama",
+        "psutil",
+    ],
+    entry_points={
+        'console_scripts': [
+            'buggerking = buggerking.cli:main'
+        ]
+    },
+    zip_safe=False
+)
