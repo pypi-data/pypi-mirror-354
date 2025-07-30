@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: gamms
+Version: 0.2
+Requires-Dist: pygame
+Requires-Dist: shapely
+Requires-Dist: networkx
+Requires-Dist: cbor2
+Requires-Dist: aenum
+Requires-Dist: osmnx
+Dynamic: requires-dist
