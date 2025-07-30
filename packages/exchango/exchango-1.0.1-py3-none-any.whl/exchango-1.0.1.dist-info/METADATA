@@ -1,0 +1,170 @@
+Metadata-Version: 2.4
+Name: exchango
+Version: 1.0.1
+Summary: Exchango - modern Python library for obtaining current exchange rates and converting currencies with support for both synchronous and asynchronous interfaces. Easy integration, flexible settings, and regular data updates.
+Home-page: 
+Author: zvenios
+Author-email: kont.05.vladdd@gmail.com
+Keywords: currency,exchange,converter,forex,rates,synchronous,asynchronous,async,sync,aiohttp,requests,conversion,money,finance,financial,api,exchangerate,currency-converter,toolkit
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Financial and Insurance Industry
+Classifier: Topic :: Office/Business :: Financial
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.25.1
+Requires-Dist: aiohttp>=3.8.1
+Requires-Dist: async_lru>=2.0.4
+Requires-Dist: pytz>=2021.3
+Provides-Extra: dev
+Requires-Dist: pytest>=6.2.5; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.15.1; extra == "dev"
+Requires-Dist: coverage>=5.5; extra == "dev"
+Requires-Dist: sphinx>=4.0.2; extra == "dev"
+Provides-Extra: speed
+Requires-Dist: uvloop>=0.16.0; platform_system != "Windows" and extra == "speed"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: keywords
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Supported currencies:
+| CODE | FULL NAME |
+|------|-----------|
+| AUD | Australian Dollar |
+| AZN | Azerbaijani Manat |
+| GBP | British Pound Sterling |
+| AMD | Armenian Dram |
+| BYN | Belarusian Ruble |
+| BGN | Bulgarian Lev |
+| BRL | Brazilian Real |
+| HUF | Hungarian Forint |
+| VND | Vietnamese Dong |
+| HKD | Hong Kong Dollar |
+| GEL | Georgian Lari |
+| DKK | Danish Krone |
+| AED | United Arab Emirates Dirham |
+| USD | United States Dollar |
+| EUR | Euro |
+| EGP | Egyptian Pound |
+| INR | Indian Rupee |
+| IDR | Indonesian Rupiah |
+| KZT | Kazakhstani Tenge |
+| CAD | Canadian Dollar |
+| QAR | Qatari Riyal |
+| KGS | Kyrgystani Som |
+| CNY | Chinese Yuan |
+| MDL | Moldovan Leu |
+| NZD | New Zealand Dollar |
+| NOK | Norwegian Krone |
+| PLN | Polish Zloty |
+| RON | Romanian Leu |
+| XDR | Special Drawing Rights |
+| SGD | Singapore Dollar |
+| TJS | Tajikistani Somoni |
+| THB | Thai Baht |
+| TRY | Turkish Lira |
+| TMT | Turkmenistani Manat |
+| UZS | Uzbekistani Som |
+| UAH | Ukrainian Hryvnia |
+| CZK | Czech Koruna |
+| SEK | Swedish Krona |
+| CHF | Swiss Franc |
+| RSD | Serbian Dinar |
+| ZAR | South African Rand |
+| KRW | South Korean Won |
+| JPY | Japanese Yen |
+
+1. Quick start
+---
+#### First, install exchango. Enter this command in the console or in the terminal:
+```sh
+pip install exchango
+```
+---
+#### Next, select the synchronous or asynchronous version of the library.
+```python
+# Synchronous version
+import exchango.sync_api as exchango
+# Asynchronous version
+import exchango.async_api as exchango
+```
+The difference in usage is almost imperceptible, but the asynchronous version must be applied in ```async def``` and ```await``` before calling the function or in ```asyncio.run()```.
+---
+### The difference between synchronous and asynchronous versions.
+```python
+# Synchronous version
+import exchango.sync_api as exchango
+from time import time
+
+codes = ["AUD", "AZN", "GBP", "AMD", "BYN", "BGN", "BRL", "HUF", "VND", "HKD", "GEL", "DKK", "AED", "USD", "EUR", "EGP", "INR", "IDR", "KZT", "CAD", "QAR", "KGS", "CNY", "MDL", "NZD", "NOK", "PLN", "RON", "XDR", "SGD", "TJS", "THB", "TRY", "TMT", "UZS", "UAH", "CZK", "SEK", "CHF", "RSD", "ZAR", "KRW", "JPY"]
+
+def main():
+    start = time()
+    for currency in codes:
+        for to in codes:
+            for amount in range(0, 11):
+                result = exchango.convert(currency, amount, to)
+                print(f"{amount} {currency} = {result} {to}")
+    end = time()
+    print(end - start)
+
+if __name__ == "__main__":
+    main()
+```
+```python
+# Asynchronous version
+import exchango.async_api as exchango
+from time import time
+import asyncio
+
+codes = ["AUD", "AZN", "GBP", "AMD", "BYN", "BGN", "BRL", "HUF", "VND", "HKD", "GEL", "DKK", "AED", "USD", "EUR", "EGP", "INR", "IDR", "KZT", "CAD", "QAR", "KGS", "CNY", "MDL", "NZD", "NOK", "PLN", "RON", "XDR", "SGD", "TJS", "THB", "TRY", "TMT", "UZS", "UAH", "CZK", "SEK", "CHF", "RSD", "ZAR", "KRW", "JPY"]
+
+async def main():
+    start = time()
+    for currency in codes:
+        for to in codes:
+            for amount in range(0, 11):
+                result = await exchango.convert(currency, amount, to)
+                print(f"{amount} {currency} = {result} {to}")
+    end = time()
+    print(end - start)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+This code calls the ```exchango.convert``` function 20339 times and at the end outputs how much time was spent.
+---
+### Currency converting.
+```python
+# Synchronous version
+exchango.convert(currency, amount, to)
+```
+```python
+# Asynchronous version
+await exchango.convert(currency, amount, to)
+```
+| ARGUMENT | DESCRIPTION | TYPE | EXAMPLE 1 | EXAMPLE 2 | EXAMPLE 3 |
+|:--------:|:-----------:|:----:|:---------:|:---------:|:---------:|
+| ```currency``` | 3-letter code of the currency to convert | ```string``` |    USD    |    EUR    |    RUB    |
+| ```amount``` | Amount of ```currency``` to convert into another currency | ```number``` |     5     |   91.84   |   -647    |
+| ```to``` | 3-letter code of the target currency to convert ```currency``` into | ```string``` |    RUB    |    USD    |    EUR    | 
+
+| RETURNS | SUCCESS | DESCRIPTION |   EXAMPLE 1    |      EXAMPLE 2       | EXAMPLE 3 |
+|:-------:|:-------:|:-----------:|:--------------:|:--------------------:|:---------:|
+| ```number``` | YES | Converting result |     500.0      |     145.1541451      |  -23.535  |
+| ```string``` | NO | Error during converting | Incorrect type | Unspecified argument | And other |
