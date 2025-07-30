@@ -1,0 +1,86 @@
+Metadata-Version: 2.4
+Name: math-mcp
+Version: 1.1.1
+Summary: Math calculation MCP server, providing basic arithmetic, mathematical functions, matrix calculation, statistical analysis, calculus, optimization, regression analysis and data visualization.
+Project-URL: Homepage, https://github.com/111-test-111/math-mcp-server
+Project-URL: Repository, https://github.com/111-test-111/math-mcp-server.git
+Project-URL: Issues, https://github.com/111-test-111/math-mcp-server/issues
+Author-email: jcy <jcy646416062@outlook.com>
+License-Expression: MIT
+License-File: LICENSE
+Keywords: calculation,linear-algebra,mathematics,mcp,statistics
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.10
+Requires-Dist: fastmcp>=2.7.1
+Requires-Dist: matplotlib>=3.7.0
+Requires-Dist: mcp>=1.9.3
+Requires-Dist: numpy>=2.3.0
+Requires-Dist: pandas>=2.3.0
+Requires-Dist: psutil>=7.0.0
+Requires-Dist: scikit-learn>=1.7.0
+Requires-Dist: scipy>=1.15.3
+Requires-Dist: seaborn>=0.12.0
+Requires-Dist: sympy>=1.14.0
+Description-Content-Type: text/markdown
+
+## Math MCP Server
+
+这是一个数学计算MCP（Model Context Protocol）服务器，提供了一些数学计算工具集和绘图工具
+
+### 功能特性
+
+- **矩阵计算**: 基本运算、矩阵分解、特征值、SVD等
+- **统计分析**: 描述性统计、假设检验、分布分析等
+- **微积分**: 导数、积分、极限、泰勒级数等
+- **优化算法**: 函数优化、线性规划、约束优化等
+- **回归分析**: 线性回归、多项式回归、正则化回归等
+- **数据可视化**: 统计图表、函数绘图等
+
+### 使用uvx运行
+
+```bash
+uvx math-mcp
+```
+
+### 项目结构
+
+```
+math_mcp/
+├── __init__.py                    # 包初始化文件
+├── __main__.py                    # CLI入口点
+├── math_server.py                 # 主服务器文件（MCP工具注册）
+├── matrix_calculator.py           # 矩阵计算模块
+├── statistics_calculator.py       # 统计分析模块
+├── calculus_calculator.py         # 微积分计算模块
+├── optimization_calculator.py     # 优化算法模块
+├── regression_calculator.py       # 回归分析模块
+└── plotting_calculator.py         # 统计绘图模块
+```
+
+### 在Claude Desktop中配置
+
+将以下配置添加到Claude Desktop配置文件中：
+
+```json
+{
+  "mcpServers": {
+    "math-calculator": {
+      "command": "uvx",
+      "args": ["math-mcp"],
+      "env": {
+        "OUTPUT_PATH": "path/to/plot_output",
+        "FONT_PATH": "path/to/plot_font"
+      }
+    }
+  }
+}
+```
