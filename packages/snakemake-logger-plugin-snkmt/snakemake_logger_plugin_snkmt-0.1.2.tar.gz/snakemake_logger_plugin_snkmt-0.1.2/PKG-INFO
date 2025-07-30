@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: snakemake-logger-plugin-snkmt
+Version: 0.1.2
+Summary: Snakemake logger plugin that writes logs to SQLite database.
+Author-email: Cade Mirchandani <cmirchan@ucsc.edu>
+License-File: LICENSE
+Requires-Python: <4.0,>=3.11
+Requires-Dist: snakemake-interface-logger-plugins>=1.2.0
+Requires-Dist: snkmt<0.2,>=0.1.0
+Requires-Dist: sqlalchemy>=2.0.38
+Provides-Extra: dev
+Requires-Dist: loguru>=0.7.3; extra == 'dev'
+Requires-Dist: pytest>=8.3.5; extra == 'dev'
+Requires-Dist: ruff>=0.9.10; extra == 'dev'
+Requires-Dist: snakemake>=9.0.1; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# Snakemake Logger Plugin: snkmt
+
+**This plugin is still under development and thus may not be fully stable or feature-complete. Use it at your own discretion and report any issues or suggestions to the repository's issue tracker.**
+
+## Introduction
+
+This is the logging plugin for use with [snkmt](https://github.com/cademirch/snkmt), a monitoring tool for Snakemake workflows. Please refer to [snkmt's](https://github.com/cademirch/snkmt) documentation for more details.
+
+## Usage
+1. Install via pip: `pip install snakemake-logger-plugin-snkmt`
+2. Run Snakemake with the `--logger snkmt` option to enable the snkmt logger. 
+
+>Note: Regular Snakemake logs will continue to be written to stderr when using this plugin, so it may appear that the plugin is not doing anything. This behavior will change in future versions.
+
+## Options
+- `--logger-snkmt-db </path/to/sqlite.db>"` Where to write the snkmt DB.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
