@@ -1,0 +1,65 @@
+Metadata-Version: 2.4
+Name: engine_grpc
+Version: 0.3.3
+Summary: grpc pipeline interfaces
+Home-page: https://github.com/ImagineersHub/engine-grpc-pipeline
+Author: esun
+Author-email: esun@voteb.com
+License: MIT
+Keywords: python,grpc,unity,unreal
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3.10
+Description-Content-Type: text/markdown
+Requires-Dist: grpcio==1.50.0
+Requires-Dist: grpcio-tools==1.50.0
+Requires-Dist: protobuf<5.0dev,>=4.25.2
+Requires-Dist: betterproto[compiler]==2.0.0b5
+Requires-Dist: ugrpc_pipe
+Requires-Dist: compipe>=0.2.3
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: summary
+
+
+### Command interface examples
+
+```python
+UEI().command_parser(cmd=GRPCInterface.method_object_add_component,
+                     params=[
+                         target,
+                         ASSEMBLE_NEARINTERACTIONGRABBABLE,
+                         True
+                     ])
+
+UEI().command_parser(cmd=GRPCInterface.method_object_add_component,
+                     params=[
+                         target,
+                         ASSEMBLE_MESHCOLLIDER,
+                         True
+                     ])
+
+UEI().command_parser(cmd=GRPCInterface.method_object_set_reference_value,
+                     params=[
+                         collision_mesh_asset,
+                         ASSETBLE_MESHFILTER,
+                         "sharedMesh",
+                         target,
+                         ASSEMBLE_MESHCOLLIDER,
+                         "sharedMesh"
+                     ])
+
+UEI().command_parser(cmd=GRPCInterface.method_object_set_value,
+                     params=[
+                         target,
+                         ASSEMBLE_MESHCOLLIDER,
+                         "convex",
+                         True
+                     ])
+```
