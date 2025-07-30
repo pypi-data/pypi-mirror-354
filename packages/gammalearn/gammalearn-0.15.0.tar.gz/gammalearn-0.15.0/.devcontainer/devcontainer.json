@@ -1,0 +1,23 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/miniconda
+{
+	"initializeCommand": "docker pull gitlab-registry.in2p3.fr/gammalearn/gammalearn/dev:latest",
+	"image": "gitlab-registry.in2p3.fr/gammalearn/gammalearn/dev:latest",
+	"postAttachCommand": "micromamba run -n base pip install --no-deps -e /src ",
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"charliermarsh.ruff",
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"njpwerner.autodocstring",
+				"tamasfe.even-better-toml"
+			]
+		}
+	},
+	"workspaceMount": "source=${localWorkspaceFolder},target=/src,type=bind",
+	"workspaceFolder": "/src"
+}
+	

@@ -1,0 +1,390 @@
+stages:
+- GeneratePinnedEnvFiles
+- DockerBuildDevTestBaseImages
+- UnitTests
+- PermanentTag
+- DeployLatest
+- Release
+
+
+variables:
+  DEV_PINNED_DEPENDENCIES_FILE: "dev_env_pinned.yml"
+  TEST_PINNED_DEPENDENCIES_FILE: "test_env_pinned.yml"
+  PROD_PINNED_DEPENDENCIES_FILE: "prod_env_pinned.yml"
+  DEV_IMAGE_TEMP_LOCATION: "${CI_REGISTRY_IMAGE}/dev:${CI_PIPELINE_ID}"
+  DEV_IMAGE_PERMANENT_LOCATION: "${CI_REGISTRY_IMAGE}/dev:${CI_COMMIT_REF_NAME}"
+  TEST_IMAGE_TEMP_LOCATION: "${CI_REGISTRY_IMAGE}/test:${CI_PIPELINE_ID}"
+  TEST_IMAGE_PERMANENT_LOCATION: "${CI_REGISTRY_IMAGE}/test:${CI_COMMIT_REF_NAME}"
+  BASE_IMAGE_TEMP_LOCATION: "${CI_REGISTRY_IMAGE}/base:${CI_PIPELINE_ID}"
+  BASE_IMAGE_PERMANENT_LOCATION: "${CI_REGISTRY_IMAGE}/base:${CI_COMMIT_REF_NAME}"
+  PROD_IMAGE_LOCATION: "${CI_REGISTRY_IMAGE}/prod:${CI_COMMIT_REF_NAME}"
+  DEFAULT_BRANCH_DEV_IMAGE_PERMANENT_LOCATION: "${CI_REGISTRY_IMAGE}/dev:latest"
+  DEFAULT_BRANCH_TEST_IMAGE_PERMANENT_LOCATION: "${CI_REGISTRY_IMAGE}/test:latest"
+  DEFAULT_BRANCH_BASE_IMAGE_PERMANENT_LOCATION: "${CI_REGISTRY_IMAGE}/base:latest"
+  DEFAULT_BRANCH_PROD_IMAGE_PERMANENT_LOCATION: "${CI_REGISTRY_IMAGE}/prod:latest"
+  TAG_PROD_IMAGE_PERMANENT_LOCATION: "${CI_REGISTRY_IMAGE}/gammalearn:${CI_COMMIT_REF_NAME}"
+
+
+.build_dev_test_base_images:
+  # Trigger when
+  # - TAG
+  # - changes to docker files, env files, etc...
+  # - First commit on branch (so we have a test image with the dependencies of the branch, even if master changed dependencies)
+  #   See https://gitlab.com/gitlab-org/gitlab/-/issues/369916
+  # - manual or scheduled pipelines (to be able to re-build images regularly/manually if they were deleted)
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes:
+        - docker/*
+        - docker/**/*
+    # if first commit of new branch: always trigger so our branch has a image, either with modification if changes, or equal to branched from at the time of branch creation
+    - if: $CI_COMMIT_BRANCH && $CI_COMMIT_BEFORE_SHA == "0000000000000000000000000000000000000000"
+    # Pipeline on branch but not first commit on the branch: if changes
+    - if: $CI_COMMIT_BRANCH && $CI_COMMIT_BEFORE_SHA != "0000000000000000000000000000000000000000"
+      changes:
+        - docker/*
+        - docker/**/*
+    - if: $CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web"  # images are rebuild for scheduled or manually triggered pipelines
+    
+
+# kaniko needs some configuration, which is the same for all container building jobs
+.kaniko_write_config:
+  before_script:
+    - uname -a
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+
+
+# We use another stage to produce the pinned dependencies files instead of using a multistage 
+# dockerfile to build a base image because 
+# - kaniko doesn't work well with multistage (copying / is not possible for instance)
+# - kaniko doesn't make it easy to extract stuff as build artifacts https://github.com/GoogleContainerTools/kaniko/issues/1450
+# - micromamba has some environments variables that stays in the ${CI_PROJECT_DIR} after creating environment ?
+#   (not sure about 2, but somehow dependencies are found yet missing if test build follows dev in same stage)
+generate_pinned_env_files:
+  stage: GeneratePinnedEnvFiles
+  extends: .build_dev_test_base_images
+  image:
+    # Note: 
+    # Can not use micromamba when there are pip dependencies in environment, because micromamba env export doesn't list them
+    # https://github.com/mamba-org/mamba/issues/2008
+    # https://github.com/mamba-org/mamba/pull/2104
+    # so mamba image can be used: mambaorg/micromamba:debian-slim:debian-slim and adapting all calls to micromamba to conda
+    name: mambaorg/micromamba:debian-slim
+  script:
+    - uname -a
+    - eval "$(micromamba shell hook --shell bash)"
+    - micromamba create -y -n tmp_env -c conda-forge ruamel.yaml 
+    - micromamba activate tmp_env
+    - python docker/scripts/merge_environment_files.py --name base --output all_deps.yml --files docker/dependencies.yml docker/dev_dependencies.yml docker/test_dependencies.yml
+    - micromamba deactivate
+    - micromamba create -n tmp_dev -y -f all_deps.yml 
+    - micromamba activate tmp_dev
+    - micromamba env export > ${DEV_PINNED_DEPENDENCIES_FILE}
+    - micromamba deactivate
+    - micromamba activate tmp_env
+    - python docker/scripts/write_pruned_env_file.py --nodefaults --old_env ${DEV_PINNED_DEPENDENCIES_FILE} --output ${TEST_PINNED_DEPENDENCIES_FILE} --files docker/dependencies.yml docker/test_dependencies.yml
+    - python docker/scripts/write_pruned_env_file.py --nodefaults --old_env ${DEV_PINNED_DEPENDENCIES_FILE} --output ${PROD_PINNED_DEPENDENCIES_FILE} --files docker/dependencies.yml
+  artifacts:
+    when: always # always provide artifact even if pipeline fails, to have it available for next pipeline
+    expire_in: 90 days
+    paths:
+      - ${DEV_PINNED_DEPENDENCIES_FILE}
+      - ${TEST_PINNED_DEPENDENCIES_FILE}
+      - ${PROD_PINNED_DEPENDENCIES_FILE}
+  tags:
+    - large
+
+
+build_docker_dev_image:
+  stage: DockerBuildDevTestBaseImages
+  extends: 
+    - .build_dev_test_base_images
+    - .kaniko_write_config
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]  # overwrite image entrypoint
+  script:
+    - >-
+      /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/docker/dev/Dockerfile"
+      --destination "${DEV_IMAGE_TEMP_LOCATION}"
+      --build-arg "DEV_PINNED_DEPENDENCIES_FILE=${DEV_PINNED_DEPENDENCIES_FILE}"
+  tags:
+    - large
+
+
+build_docker_test_images:
+  stage: DockerBuildDevTestBaseImages
+  extends: 
+    - .build_dev_test_base_images
+    - .kaniko_write_config
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]  # overwrite image entrypoint
+  script:
+    - >-
+      /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/docker/test/Dockerfile"
+      --destination "${TEST_IMAGE_TEMP_LOCATION}"
+      --build-arg "TEST_PINNED_DEPENDENCIES_FILE=${TEST_PINNED_DEPENDENCIES_FILE}"
+  tags:
+    - large
+
+
+build_docker_base_images:
+  stage: DockerBuildDevTestBaseImages
+  extends: 
+    - .build_dev_test_base_images
+    - .kaniko_write_config
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]  # overwrite image entrypoint
+  script:
+    - >-
+      /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/docker/base/Dockerfile"
+      --destination "${BASE_IMAGE_TEMP_LOCATION}"
+      --build-arg "PROD_PINNED_DEPENDENCIES_FILE=${PROD_PINNED_DEPENDENCIES_FILE}"
+  tags:
+    - large
+
+
+unit_test:
+  stage: UnitTests
+  variables:
+    TEST_IMAGE_LOCATION: "${TEST_IMAGE_PERMANENT_LOCATION}"
+  rules:  # Same case than what triggers dev/test image creation, but must set TEST_IMAGE_LOCATION to temp location
+    - if: $CI_COMMIT_TAG
+      variables:
+        TEST_IMAGE_LOCATION: "${TEST_IMAGE_TEMP_LOCATION}"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes:
+        - docker/*
+        - docker/**/*
+      variables:
+        TEST_IMAGE_LOCATION: "${TEST_IMAGE_TEMP_LOCATION}"
+    - if: $CI_COMMIT_BRANCH && $CI_COMMIT_BEFORE_SHA == "0000000000000000000000000000000000000000"
+      variables:
+        TEST_IMAGE_LOCATION: "${TEST_IMAGE_TEMP_LOCATION}"
+    - if: $CI_COMMIT_BRANCH && $CI_COMMIT_BEFORE_SHA != "0000000000000000000000000000000000000000"
+      changes:
+        - docker/*
+        - docker/**/*
+      variables:
+        TEST_IMAGE_LOCATION: "${TEST_IMAGE_TEMP_LOCATION}"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH # if on default branch, but no modification: use permanent default branch image
+      variables:
+        TEST_IMAGE_LOCATION: "${DEFAULT_BRANCH_TEST_IMAGE_PERMANENT_LOCATION}"
+    - if: $CI_PIPELINE_SOURCE != "merge_request_event" # Run in all other cases, avoiding merge request pipelines
+  image: 
+    name: ${TEST_IMAGE_LOCATION}
+    pull_policy: always
+  script:
+    - eval "$(micromamba shell hook --shell bash)"
+    - micromamba activate
+    - pip install --no-deps .
+    - gammalearn --version
+    - pytest
+      tests/
+      --cov=gammalearn
+      --cov-report html:htmlcov
+      --cov-report xml:coverage.xml
+      --cov-report term-missing:skip-covered
+      --junitxml=coverage_jenkins.xml
+      --color=yes
+      -vv
+    - cd gammalearn/configuration/examples
+    - gammalearn experiment_settings_val.py;
+    - gammalearn experiment_settings_train_MC.py;
+    - gammalearn experiment_settings_test_MC.py;
+    - gammalearn experiment_settings_test_real.py; rm -rf $HOME/gammalearn_experiments/test_install;
+    - gammalearn experiment_settings_file_spawn.py; rm -rf $HOME/gammalearn_experiments/test_install;
+    - gammalearn experiment_settings_fine_tuning.py; rm -rf $HOME/gammalearn_experiments/test_install;
+    - gammalearn experiment_settings_autoencoder.py; rm -rf $HOME/gammalearn_experiments/test_install;
+    - gammalearn experiment_settings_dann.py; rm -rf $HOME/gammalearn_experiments/test_install;
+    - gammalearn experiment_settings_gammaphysnet.py; rm -rf $HOME/gammalearn_experiments/test_install;
+    - gammalearn experiment_settings_clean_channel.py; rm -rf $HOME/gammalearn_experiments/test_install;
+    - gammalearn experiment_settings_profiler.py; rm -rf $HOME/gammalearn_experiments/test_install;
+    - gammalearn experiment_settings_mae_image.py; rm -rf $HOME/gammalearn_experiments/test_install;
+    - gammalearn experiment_settings_mae_lst.py; rm -rf $HOME/gammalearn_experiments/test_install;
+    - gammalearn experiment_settings_prime.py; rm -rf $HOME/gammalearn_experiments/test_install;
+    - gammalearn experiment_settings_megatron.py; rm -rf $HOME/gammalearn_experiments/test_install;
+    - gl_dl1_to_dl2 ~/gammalearn_experiments/train_MC/train_MC_settings.py ~/gammalearn_experiments/train_MC/last.ckpt share/data/real_data /tmp/dl2_test
+    - cd ../../../
+    - sphinx-build -b html -j `nproc` --fail-on-warning docs htmldoc
+  coverage: '/TOTAL.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
+  artifacts:
+    paths:
+      - htmldoc/
+      - htmlcov/
+    expire_in: 8d
+  tags:
+    - large
+
+
+# test that the Zenodo publication will work when making a tag
+test_zenodo:
+  stage: UnitTests
+  image: registry.gitlab.com/escape-ossr/eossr:v2.0.0
+  script:
+    # make sure the repo is in the "tag" state 
+    - apt-get install git -y
+    - git reset --hard HEAD && git clean -fd -x
+    - eossr-check-connection-zenodo --token $ZENODO_TOKEN -p $CI_PROJECT_DIR
+  rules:
+    - if: $CI_PIPELINE_SOURCE != "merge_request_event" # Run in all other cases, avoiding merge request pipelines
+
+
+permanent_tag_dev_test_image:
+  stage: PermanentTag
+  variables:
+    PERMANENT_TAG: ${CI_COMMIT_REF_NAME}
+  rules: # Same rules as dev/test image creation, but must set PERMANENT TAG variable when on default branch
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes:
+        - docker/*
+        - docker/**/*
+      variables:
+        PERMANENT_TAG: "latest"
+    - if: $CI_COMMIT_BRANCH && $CI_COMMIT_BEFORE_SHA == "0000000000000000000000000000000000000000"
+    - if: $CI_COMMIT_BRANCH && $CI_COMMIT_BEFORE_SHA != "0000000000000000000000000000000000000000"
+      changes:
+        - docker/*
+        - docker/**/*
+    - if: $CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web"  # images are rebuild for scheduled or manually triggered pipelines
+  image:
+    name: gcr.io/go-containerregistry/crane:debug
+    entrypoint: [""]
+  script:
+    - crane auth login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - crane tag ${DEV_IMAGE_TEMP_LOCATION} ${PERMANENT_TAG}
+    - crane tag ${TEST_IMAGE_TEMP_LOCATION} ${PERMANENT_TAG}
+    - crane tag ${BASE_IMAGE_TEMP_LOCATION} ${PERMANENT_TAG}
+    - crane delete ${DEV_IMAGE_TEMP_LOCATION}
+    - crane delete ${TEST_IMAGE_TEMP_LOCATION}
+    - crane delete ${BASE_IMAGE_TEMP_LOCATION}
+
+
+build_docker_image_latest:
+  stage: DeployLatest
+  extends: 
+    - .kaniko_write_config
+  variables:
+    BUILD_DESTINATION: "${PROD_IMAGE_LOCATION}"
+    BASE_IMAGE_LOCATION: "${BASE_IMAGE_PERMANENT_LOCATION}"
+  rules:
+    # Push tags production image in the "gammalearn" subregistry (either from base of a branch, or from base of default branch)
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      variables:
+        BUILD_DESTINATION: ${TAG_PROD_IMAGE_PERMANENT_LOCATION}
+        BASE_IMAGE_LOCATION: "${DEFAULT_BRANCH_BASE_IMAGE_PERMANENT_LOCATION}"
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+      variables:
+        BUILD_DESTINATION: ${TAG_PROD_IMAGE_PERMANENT_LOCATION}
+        BASE_IMAGE_LOCATION: "${BASE_IMAGE_PERMANENT_LOCATION}"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      variables:
+        BUILD_DESTINATION: ${DEFAULT_BRANCH_PROD_IMAGE_PERMANENT_LOCATION}
+        BASE_IMAGE_LOCATION: "${DEFAULT_BRANCH_BASE_IMAGE_PERMANENT_LOCATION}"
+    - if: $CI_PIPELINE_SOURCE != "merge_request_event" # Run in all other cases, avoiding merge request pipelines
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]  # overwrite image entrypoint
+  script:
+    - >-
+      /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/docker/latest/Dockerfile"
+      --destination "${BUILD_DESTINATION}"
+      --build-arg "BASE_IMAGE_LOCATION=${BASE_IMAGE_LOCATION}"
+  tags:
+    - large
+
+
+pages:
+  stage: DeployLatest
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  image: alpine:latest
+  script:
+    - mv htmldoc/ public/
+    - mv htmlcov/ public/htmlcov
+  artifacts:
+    paths:
+      - public
+    expire_in: 8d
+
+
+zenodo_publish:
+  stage: Release
+  image: registry.gitlab.com/escape-ossr/eossr:v2.0.0
+  script:
+    - eossr-upload-repository -t $ZENODO_TOKEN -i $CI_PROJECT_DIR --archive-name $CI_PROJECT_NAME.zip -id $ZENODO_PROJECT_ID
+  only:
+    - tags
+
+
+pypi_publish:
+  stage: Release
+  image: python:3.11
+  before_script:
+    - apt-get update -y; apt-get install git -y;
+    - pip install --upgrade pip; pip install twine;
+    - export LAST_RELEASE=`git ls-remote --tags --refs --sort="v:refname" $CI_PROJECT_URL.git | tail -n1 | sed 's/.*\///'`
+    - echo $LAST_RELEASE
+  script:
+    - python -m build
+    - echo "upload to gitlab registry"
+    - python -m twine upload --repository-url ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi/ -u gitlab-ci-token -p ${CI_JOB_TOKEN} dist/*
+    - echo "upload to pypi registry"
+    - twine upload --repository-url https://upload.pypi.org/legacy/ dist/* -u __token__ -p ${PYPI_TOKEN}
+  only:
+    - tags
+  tags:
+    - large
+
+
+ruff_lint:
+  stage: UnitTests
+  variables:
+    TEST_IMAGE_LOCATION: "${TEST_IMAGE_PERMANENT_LOCATION}"
+  rules:  # Same case than what triggers dev/test image creation, but must set TEST_IMAGE_LOCATION to temp location
+    - if: $CI_COMMIT_TAG
+      variables:
+        TEST_IMAGE_LOCATION: "${TEST_IMAGE_TEMP_LOCATION}"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes:
+        - docker/*
+        - docker/**/*
+      variables:
+        TEST_IMAGE_LOCATION: "${TEST_IMAGE_TEMP_LOCATION}"
+    - if: $CI_COMMIT_BRANCH && $CI_COMMIT_BEFORE_SHA == "0000000000000000000000000000000000000000"
+      variables:
+        TEST_IMAGE_LOCATION: "${TEST_IMAGE_TEMP_LOCATION}"
+    - if: $CI_COMMIT_BRANCH && $CI_COMMIT_BEFORE_SHA != "0000000000000000000000000000000000000000"
+      changes:
+        - docker/*
+        - docker/**/*
+      variables:
+        TEST_IMAGE_LOCATION: "${TEST_IMAGE_TEMP_LOCATION}"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH # if on default branch, but no modification: use permanent default branch image
+      variables:
+        TEST_IMAGE_LOCATION: "${DEFAULT_BRANCH_TEST_IMAGE_PERMANENT_LOCATION}"
+    - if: $CI_PIPELINE_SOURCE != "merge_request_event" # Run in all other cases, avoiding merge request pipelines
+  image: 
+    name: ${TEST_IMAGE_LOCATION}
+    pull_policy: always
+  script:
+    - eval "$(micromamba shell hook --shell bash)"
+    - micromamba activate
+    - ruff check tests gammalearn --output-format=gitlab > gl-code-quality-report.json
+  allow_failure: false
+  artifacts:
+    reports:
+      codequality: $CI_PROJECT_DIR/gl-code-quality-report.json

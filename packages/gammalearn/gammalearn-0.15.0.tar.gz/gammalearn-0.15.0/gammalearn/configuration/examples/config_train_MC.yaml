@@ -1,0 +1,288 @@
+
+#Description of the experiment
+experiment:
+        #Main directory where all results will be stored
+        main_directory: "/path/to/gammalearn_experiments"
+        #Name of the current experiment (if the experiment already exists experiment will resume)
+        experiment_name: "train_MC"
+        #previously info : Description of the experiment (could be passed to wandb at some point)
+        description: "My awsome experiment"
+        #Main random seed of the training
+        random_seed: 1
+        
+        
+#Number of gpus to use. If -1, run on all GPUS, if 0 run on CPU.
+device:
+        type: GPU #CPU, GPU, TPU, HPU
+        #Number of accelerators to be used
+        devices: 1
+        #List of accelerators to be used
+        #devices: [1, 3, 4]
+        #Activate the device monitoring (CPU, GPU or TPU)
+        monitor_device: true
+
+#Data loading configuration
+data_loading:
+        #True to tell PyTorch to reuse allocated memory instead of reallocate (use less memory and better performance) TODO : to be removed ?
+        pin_memory: true
+        #Method to start new process in [fork, spawn] (TODO really usefull ?)
+        mp_start_method: "fork"  # Linux vs Windows ?
+        
+#Network configuration
+network:
+        model: "nets.GammaPhysNet" # str, class of the model in datasets.py
+        backbone:
+                model: "nets.ResNetAttentionIndexed"
+                layer_parameters: 
+                        nb_layers: 3
+                        nb_channels: 2
+                        initialisation: 
+                                class: "torch.nn.init.kaiming_normal"
+                                parameters:
+                                        mode: "fan_out"
+                        attention_layer:
+                                class: torch.nn.DualAttention
+                                parameters:
+                                        ratio: 16
+                        normalization: 
+                                class: torch.nn.BatchNorm1d
+                                parameters: {}
+                        non_linearity: 
+                                class: torch.ReLU
+                                parameters: {}
+        #Mini networks after the backbone
+        tasks:
+                #These three parameters are shared by the following tasks predictors
+                fc_width: 256
+                non_linearity: torch.nn.ReLU
+                last_bias_init: None
+                energy:
+                        output_shape: 1
+                        #True to activate the task on a gamma
+                        activate_on:
+                                particle_id: gammalearn.particle.gamma
+                        loss: torch.nn.L1Loss
+                        loss_parameters:
+                                reduction: 'none'
+                        loss_weight: 1
+                        metrics: {}
+                        mt_balancing: True
+                impact:
+                        output_shape: 2
+                        loss: torch.nn.L1Loss
+                        loss_parameters:
+                                        reduction: 'none'
+                        loss_weight: 1
+                        metrics: {}
+                        mt_balancing: True
+                direction:
+                        output_shape: 2
+                        loss: torch.nn.L1Loss
+                        loss_parameters:
+                                        reduction: 'none'
+                        loss_weight: 1
+                        metrics: {}
+                        mt_balancing: True
+                class:
+                        label_shape: 1
+                        output_shape: len(particle_dict)
+                        #True to activate the task
+                        activate_on: true
+                        loss: torch.nn.CrossEntropyLoss
+                        loss_weight: 1
+                        monitoring:
+                                accuracy_particle:
+                                        is_logged: true
+                                        name: "accuracy_particle"
+                                        #num_classes (output shape) should be determined by the network itself
+                                accuracy_particle_parameters:
+                                        threshold: 0.5
+                                        task: "multiclass"
+                                        #num_classes: len(particle_dict)
+                                AUC_particle: AUROC
+                                AUC_particle_parameters:
+                                        task:    "multiclass"
+                                        #num_classes: len(particle_dict)
+                        mt_balancing: True
+        #Only for adversarial training
+        decoder:
+                #True to activate the task
+                activate_on: true
+                fc_features: 100
+                
+                                
+        extra_parameters:
+                # Only for transformers
+                add_pointing: True
+                                
+        
+#Training configuration
+training:
+        #True to enable testing
+        enable_training: true
+        #Maximum number of epochs for the training
+        max_epochs: 3
+        #True to resume a checkpoint
+        resume_checkpoint: true
+        #Path to the checkpoint to be resumed (optional)
+        resume_checkpoint_path: '/path/to/another/experiment/checkpoint_epoch=3.ckpt'
+        
+        #specific options for model checkpointing. See https://pytorch-lightning.readthedocs.io/en/stable/api/pytorch_lightning.callbacks.ModelCheckpoint.html for details.
+        save_checkpointing_options:
+                #Exemple of options to resume a checkpoint
+                #Save checkpoint every n epoch
+                every_n_epochs: 1
+                #Saves the l best checkpoints
+                save_top_k: -1
+                #Saves the last checkpoint
+                save_last: true
+                other_option: "other_value"
+        #Loss definition
+        loss_balancing:
+                #Type of class
+                particle_dict: ['GAMMA_ID', 'PROTON_ID']
+                #The function to compute the loss
+                loss_balancing_algo: 'criterions.UncertaintyWeighting'
+                #Extra parameters passed to the loss balancing function
+                extra_parameters:
+                        #Penalty of the UncertaintyWeighting
+                        penalty: 0
+                        #Coefficients of the log of the multu modal loss
+                        log_var_coefficients: [2, 2, 2, 0.5]
+        optimizer:
+                network: ['load_adam']
+                network_optimizer_parameters:
+                        lr: 1e-2
+                        weight_decay: 1e-7
+                loss_balancing: ['load_adam']
+                loss_balancing_optimizer_parameters: 
+                        lr: 0.025
+                        weight_decay: 1e-4
+        lr_schedulers:
+                name: "lr_scheduler.StepLR"
+                extra_parameters:
+                        gamma: 0.1
+                        step_size: 10
+                
+        #Definition of the dataset to be used
+        dataloading:
+                #List of directories to be used to get training data
+                data_directories: ["/path/to/training/data"]
+                #Number of images per batch for the training
+                batch_size: 1024
+                #Maximum number of workers to create dataset (On MUST, 1 gpu = 8 workers, 1 for the main process and 7 for the other processes) (cf data_handlers.py)
+                preprocessing_workers: 2
+                #Maximum number of workers for the data loaders. If 0, data are loaded from the main thread
+                dataloader_workers: 2
+                #max size of the dataset
+                dataset_size: 2000
+                #Max number of files to use for the dataset (TODO : conflict/redundance with dataset_size ?)
+                files_max_number: 1
+                #Dictionnary of extra parameters for the training if necessary (for example: to ensure all datasets have the same size)
+                dataset_parameters:
+                        #Dataset class to use
+                        dataset_type: "MemoryLSTDataSet"
+                        #Example for LST memory dataset
+                        camera_type: "LST_LSTCam"
+                        group_by: "image"
+                        use_time: true
+                        particle_dict: particle_dict
+                        targets: ["target1", "target2"]
+                        subarray: [1]
+                        image_filters: # list of filters to apply to the images
+                                # - intensity_filter: [50, .inf]
+                                # - cleaning_filter: {picture_thresh: 6, boundary_thresh: 3, keep_isolated_pixels: false, min_number_picture_neighbors: 2}
+                                # - leakage_filter: {leakage2_cut: 0.2, picture_thresh: 6, boundary_thresh: 3, keep_isolated_pixels: False, min_number_picture_neighbors: 2}
+                        event_filters: # list of filters to apply to the events
+                                # - energyband_filter: {energy: [0.02, 2], filter_only_gammas: true}        # in TeV
+                                # - emission_cone_filter: {max_angle: 0.0698}
+                                # - impact_distance_filter: {max_distance: 200}
+                                # - telescope_multiplicity_filter: {multiplicity: 2}
+                        transform: None
+                        target_transform: None
+                        
+        
+        #Validation configuration
+        validation:
+                #Ratio of data to create the validating set
+                validating_ratio: 0.2
+                #Interval in term of epoch for validating the model
+                check_val_every_n_epoch: 3
+        callbacks: ['LogGradientNorm', 'LogModelWeightNorm', 'LogModelParameters', 'LogUncertaintyTracker', 'LogReLUActivations', 'LogLinearGradient']
+        
+#Testing configuration
+testing:
+        #True to enable testing of the model
+        enable_testing: true
+        #True to merge the test datasets (TODO : change to nb events par DL2 file)
+        merge_test_datasets: true
+        #Directory to the checkpoint to be resumed
+        resume_checkpoint_dir: '/path/to/another/experiment/test_install/'
+        #Strategy to pick the checkpoint to be resumed
+        checkpoint_strategy: "best" #best, last, checkpoint_epoch=3.ckpt
+        #Definition of the dataset to be used
+        dataset:
+                #List of directories to be used to get testing data
+                list_directories: ["/path/to/testing/data"]
+                #Number of images per batch for the testing
+                batch_size: 1024
+                #Maximum number of workers to create dataset (On MUST, 1 gpu = 8 workers, 1 for the main process and 7 for the other processes) (cf data_handlers.py)
+                preprocessing_workers: 2
+                #Maximum number of workers for the data loaders. If 0, data are loaded from the main thread
+                dataloader_workers: 2
+                #max size of the dataset
+                dataset_size: 2000
+                #Max number of files to use for the dataset
+                files_max_number: 1
+                #Dictionnary of extra parameters for the testing if necessary (for example: to ensure all datasets have the same size)
+                extra_parameters:
+                        subarray: [1]
+                        image_filters: # list of filters to apply to the images
+                        # - intensity_filter: [50, .inf
+                        # - cleaning_filter: {picture_thresh: 6, boundary_thresh: 3, keep_isolated_pixels: false, min_number_picture_neighbors: 2}
+                        # - leakage_filter: {leakage2_cut: 0.2, picture_thresh: 6, boundary_thresh: 3, keep_isolated_pixels: False, min_number_picture_neighbors: 2}
+                        event_filters: # list of filters to apply to the events
+                                # - energyband_filter: {energy: [0.02, 2], filter_only_gammas: true}        # in TeV
+                                # - emission_cone_filter: {max_angle: 0.0698}
+                                # - impact_distance_filter: {max_distance: 200}
+                                # - telescope_multiplicity_filter: {multiplicity: 2}
+                        transform: None
+                        target_transform: None
+        callbacks: ['LogGradientNorm', 'LogModelWeightNorm', 'LogModelParameters', 'LogUncertaintyTracker', 'LogReLUActivations', 'LogLinearGradient']
+
+#Logging configuration
+logging:
+        #Log level
+        log_level: DEBUG #DEBUG, INFO, WARNING, ERROR, CRITICAL
+        #Occurence of logging. The smaller value the bigger log
+        log_every_n_steps: 5
+        #Interval in term of stored values for metric moving computation
+        window_size: 100
+        #Logger to use for the experiment (TODO : do we need to define one for inference ?)
+        trainer_logger: "utils.TrainerTensorboardLogger"
+        #Options of the tensorboard logger
+        trainer_options:
+        
+        #Log with wandb
+        trainer_logger: "utils.TrainerWandbLogger"
+        #Options of the wandb logger
+        trainer_options:
+                #Name of the wandb project when wandb logger is activated
+                wandb_project: "project"
+                #Tag of the wandb experiment
+                wandb_tag: ["test_tags"]
+                #True to log offline
+                offline: false
+
+        
+#Example of profiler configuration
+profiler:
+        #True to enable the profiler
+        enable_profiler: true
+        #Profiler class to be used
+        class: "PyTorchProfiler"
+        #Dictionnary of options to be passed to the profiler
+        options:
+                emit_nvtx: True
+        
+

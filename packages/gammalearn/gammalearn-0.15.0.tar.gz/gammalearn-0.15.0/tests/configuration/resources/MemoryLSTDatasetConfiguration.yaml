@@ -1,0 +1,12 @@
+dataset_type: "MemoryLSTDataset"
+#Example for LST memory dataset
+camera_type: "LST_LSTCam"
+group_by: "image"
+use_time: true
+# particle_dict: particle_dict
+# targets: ["target1", "target2"]
+subarray: [1]
+# image_filters:
+# event_filters:
+transform: 
+# target_transform: 

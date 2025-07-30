@@ -1,0 +1,15 @@
+data_directories: ["/path/to/training/data"]
+batch_size: 1024
+preprocessing_workers: 2
+dataloader_workers: 2
+dataset_size: 2000
+files_max_number: 1
+dataset_parameters:
+  dataset_type: "MemoryLSTDataset"
+  camera_type: "LST_LSTCam"
+  group_by: "image"
+  use_time: true
+  subarray: [1]
+  # image_filters:
+  # event_filters:
+  transform: 
