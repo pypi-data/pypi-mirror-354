@@ -1,0 +1,109 @@
+<robot name="all_joints_and_shapes">
+
+  <!-- Base link -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.2 0.2 0.2" />
+      </geometry>
+      <origin xyz="0 0 0.1" />
+    </visual>
+  </link>
+
+  <!-- Revolute joint and cylinder -->
+  <link name="revolute_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.3" radius="0.05" />
+      </geometry>
+      <origin xyz="0 0 0.15" />
+    </visual>
+  </link>
+  <joint name="revolute_joint" type="revolute">
+    <parent link="base_link" />
+    <child link="revolute_link" />
+    <origin xyz="0.3 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit effort="10" velocity="1" lower="-1.57" upper="1.57" />
+  </joint>
+
+  <!-- Continuous joint and sphere -->
+  <link name="continuous_link">
+    <visual>
+      <geometry>
+        <sphere radius="0.1" />
+      </geometry>
+      <origin xyz="0 0 0.1" />
+    </visual>
+  </link>
+  <joint name="continuous_joint" type="continuous">
+    <parent link="revolute_link" />
+    <child link="continuous_link" />
+    <origin xyz="0.3 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <!-- Prismatic joint and box -->
+  <link name="prismatic_link">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.4" />
+      </geometry>
+      <origin xyz="0 0 0.2" />
+    </visual>
+  </link>
+  <joint name="prismatic_joint" type="prismatic">
+    <parent link="continuous_link" />
+    <child link="prismatic_link" />
+    <origin xyz="0.3 0 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit effort="10" velocity="0.5" lower="0.0" upper="0.5" />
+  </joint>
+
+  <!-- Fixed joint -->
+  <link name="fixed_link">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.1" />
+      </geometry>
+      <origin xyz="0 0 0.05" />
+    </visual>
+  </link>
+  <joint name="fixed_joint" type="fixed">
+    <parent link="prismatic_link" />
+    <child link="fixed_link" />
+    <origin xyz="0.2 0 0" rpy="0 0 0" />
+  </joint>
+
+  <!-- Planar joint -->
+  <link name="planar_link">
+    <visual>
+      <geometry>
+        <box size="0.2 0.05 0.01" />
+      </geometry>
+      <origin xyz="0 0 0.005" />
+    </visual>
+  </link>
+  <joint name="planar_joint" type="planar">
+    <parent link="fixed_link" />
+    <child link="planar_link" />
+    <origin xyz="0.2 0 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+  </joint>
+
+  <!-- Floating joint -->
+  <link name="floating_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.02" />
+      </geometry>
+      <origin xyz="0 0 0.05" />
+    </visual>
+  </link>
+  <joint name="floating_joint" type="floating">
+    <parent link="planar_link" />
+    <child link="floating_link" />
+    <origin xyz="0.2 0 0" rpy="0 0 0" />
+  </joint>
+
+</robot>

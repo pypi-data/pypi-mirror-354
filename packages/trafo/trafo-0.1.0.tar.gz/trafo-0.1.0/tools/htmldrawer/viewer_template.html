@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>/*TITLE*/</title>
+	<style>
+		body {
+			margin: 0;
+			overflow: hidden;
+			background-color: #123456;
+		}
+
+		svg {
+			display: block;
+		}
+	</style>
+</head>
+
+<body>
+	<svg id="viewport" xmlns="http://www.w3.org/2000/svg">
+		<defs>
+			<marker style="overflow:visible" id="arrowHead" refX="4" refY="0" orient="auto-start-reverse"
+				markerWidth="8" markerHeight="5" viewBox="0 0 8 5" preserveAspectRatio="xMidYMid">
+				<path style="fill:context-stroke;fill-rule:evenodd;stroke:none" d="M 0,0 5,-5 -12,0 5,5 Z" id="headPath"
+					transform="scale(-0.5)" />
+			</marker>
+		</defs>
+	</svg>
+	<script>
+		const svg = document.getElementById('viewport');
+		let width = window.innerWidth;
+		let height = window.innerHeight;
+		svg.setAttribute('width', width);
+		svg.setAttribute('height', height);
+
+		/*SCENE_DEFINITION*/
+
+		/*CAMERA_UP*/
+
+		// camera coordinates:
+		// x points to the right on the image
+		// y points down on the image (and in canvas coordinates)
+		// z points out of the camera towards the scene
+
+		const defaultCamera = {
+			position: [6.5, 4.3, 2.1],
+			lookAt: [0, 0, 0],
+			up: typeof CAMERA_UP !== 'undefined' ? CAMERA_UP : [0, 0, 1],
+			verticalFOV: 45,
+			near: 0.01,
+			orthographic: false,
+			grid: true
+		};
+
+		function convertColor(color) {
+			if (typeof color === 'string') {
+				switch (color) {
+					case 'default':
+						return 'white';
+					case 'x-red':
+						return 'red';
+					case 'y-green':
+						return 'lime';
+					case 'z-blue':
+						return 'royalblue';
+					default:
+						return color;
+				}
+			}
+			const r = Math.floor(color[0] * 255);
+			const g = Math.floor(color[1] * 255);
+			const b = Math.floor(color[2] * 255);
+			return `rgb(${r}, ${g}, ${b})`;
+		}
+
+		const savedCamera = localStorage.getItem('camera');
+
+		camera = savedCamera ? JSON.parse(savedCamera) : structuredClone(defaultCamera);
+
+		setInterval(() => {
+			localStorage.setItem('camera', JSON.stringify(camera));
+		}, 1000);
+
+		const deg = Math.PI / 180;
+
+		let explode = false
+		let explosionDistance = 0.0
+		function updateExplosionDistance() {
+			explosionDistance = distance(camera.position, camera.lookAt) * 0.04
+		}
+		updateExplosionDistance()
+
+		const getCamDirections = () => {
+			const [cx, cy, cz] = camera.position;
+			const [lx, ly, lz] = camera.lookAt;
+			const forward = normalize([lx - cx, ly - cy, lz - cz]);
+			const right = normalize(cross(forward, camera.up));
+			const down = cross(forward, right);
+			return [right, down, forward];
+		};
+
+		const transformToCameraSpace = (point) => {
+			const [px, py, pz] = point;
+			const [cx, cy, cz] = camera.position;
+			let cameraToWorld = getCamDirections();
+			const translated = [px - cx, py - cy, pz - cz];
+			return multiplyMatrixVector(cameraToWorld, translated);
+		};
+
+		const projectToScreen = (point) => {
+			let [x, y, z] = point;
+
+			if (camera.orthographic) {
+				z = distance(camera.position, camera.lookAt)
+			}
+
+			const fovScale = 1 / Math.tan(camera.verticalFOV * deg / 2);
+			const aspect = width / height;
+			return [
+				(x / z) * fovScale / aspect * width / 2 + width / 2,
+				(y / z) * fovScale * height / 2 + height / 2,
+				point[2] // original z coordinate for depth sorting
+			]
+		};
+
+		const clipPoint = (position) => {
+			return position[2] > camera.near ? position : null;
+		};
+
+		const projectPointlike = (pointlike) => {
+			let position = transformToCameraSpace(pointlike.position);
+			let clipped = clipPoint(position);
+			if (!clipped) return null;
+
+			screenPosition = projectToScreen(clipped);
+			depthOffset = pointlike.depthOffset ?? 0;
+
+			return {
+				...pointlike,
+				position: screenPosition,
+				depth: screenPosition[2] + depthOffset
+			};
+		};
+
+		const clipLine = (start, end) => {
+			const near = camera.near;
+			const clip = (p, q) => p - q * near / q[2];
+
+			if (start[2] > near && end[2] > near) return [start, end];
+
+			if (start[2] <= near && end[2] <= near) return null;
+
+			const t = (near - start[2]) / (end[2] - start[2]);
+			const clipped = start.map((s, i) => s + t * (end[i] - s));
+
+			return start[2] > near ? [start, clipped] : [clipped, end];
+		};
+
+		const projectLinelike = (linelike) => {
+			let start = transformToCameraSpace(linelike.start);
+			let end = transformToCameraSpace(linelike.end);
+
+			const clipped = clipLine(start, end);
+			if (!clipped) return null;
+
+			const [screenStart, screenEnd] = clipped.map(projectToScreen);
+			depthOffset = linelike.depthOffset ?? 0;
+
+			return {
+				...linelike,
+				start: screenStart,
+				end: screenEnd,
+				depth: (screenStart[2] + screenEnd[2]) / 2 + depthOffset
+			};
+		};
+
+		const ns = "http://www.w3.org/2000/svg";
+
+		const draw2d = {
+			line: (line) => {
+				const svgLine = document.createElementNS(ns, "line");
+				svgLine.setAttribute("x1", line.start[0]);
+				svgLine.setAttribute("y1", line.start[1]);
+				svgLine.setAttribute("x2", line.end[0]);
+				svgLine.setAttribute("y2", line.end[1]);
+				svgLine.setAttribute("stroke", convertColor(line.color));
+				svgLine.setAttribute("stroke-width", line.width);
+				svg.appendChild(svgLine);
+			},
+			arrow: (arrow) => {
+				const svgArrow = document.createElementNS(ns, "line");
+				const dx = arrow.end[0] - arrow.start[0];
+				const dy = arrow.end[1] - arrow.start[1];
+				const length = Math.sqrt(dx * dx + dy * dy);
+
+				if (length > 1e-6) {
+					let newLength = length - 2 * arrow.width;
+					if (newLength < 1) {
+						arrow.start[0] = arrow.end[0] - dx / length * (2 * arrow.width + 1)
+						arrow.start[1] = arrow.end[1] - dy / length * (2 * arrow.width + 1)
+						newLength = 1
+					}
+					arrow.end[0] = arrow.start[0] + dx / length * newLength
+					arrow.end[1] = arrow.start[1] + dy / length * newLength
+					svgArrow.setAttribute("marker-end", "url(#arrowHead)");
+				}
+				svgArrow.setAttribute("x1", arrow.start[0]);
+				svgArrow.setAttribute("y1", arrow.start[1]);
+				svgArrow.setAttribute("x2", arrow.end[0]);
+				svgArrow.setAttribute("y2", arrow.end[1]);
+
+				svgArrow.setAttribute("stroke", convertColor(arrow.color));
+				svgArrow.setAttribute("stroke-width", arrow.width);
+				svgArrow.setAttribute("stroke-linecap", "round");
+				svg.appendChild(svgArrow);
+			},
+			point: (point) => {
+				const svgPoint = document.createElementNS(ns, "circle");
+				svgPoint.setAttribute("cx", point.position[0]);
+				svgPoint.setAttribute("cy", point.position[1]);
+				svgPoint.setAttribute("r", point.width / 2);
+				svgPoint.setAttribute("fill", convertColor(point.color));
+				svg.appendChild(svgPoint);
+			},
+			text: (text) => {
+				const svgText = document.createElementNS(ns, "text");
+				svgText.setAttribute("x", text.position[0] + 7);
+				svgText.setAttribute("y", text.position[1] + 7);
+				svgText.setAttribute("fill", convertColor(text.color));
+				svgText.setAttribute("text-anchor", "start");
+				svgText.setAttribute("dominant-baseline", "hanging");
+				svgText.setAttribute("font-family", "sans-serif");
+				svgText.textContent = text.text;
+				svg.appendChild(svgText);
+			}
+		}
+
+		let needsUpdate = true
+
+		const drawGrid = (iUp) => {
+			result = []
+			i2 = (iUp + 1) % 3
+			i3 = (iUp + 2) % 3
+			for (let k = -5; k <= 5; k++) {
+				if (k === 0) { continue }
+				p1 = [0, 0, 0]; p2 = [0, 0, 0];
+				p1[i2] = -5; p1[i3] = k; p2[i2] = 5; p2[i3] = k;
+				result.push({ type: "line", start: p1, end: p2, color: "#999999", width: 0.5, depthOffset: 0.1 })
+				p1 = [0, 0, 0]; p2 = [0, 0, 0];
+				p1[i3] = -5; p1[i2] = k; p2[i3] = 5; p2[i2] = k;
+				result.push({ type: "line", start: p1, end: p2, color: "#999999", width: 0.5, depthOffset: 0.1 })
+			}
+			return result
+		}
+
+		const drawAxes = (iUp) => {
+			const a = 1 - 1 / Math.E // avoid length conflict with user frames
+			let result = []
+			for (let i = 0; i < 3; i++) {
+				p1 = [0, 0, 0]; p2 = [0, 0, 0]; p1[i] = -5; p2[i] = -a
+				result.push({ type: "line", start: p1, end: p2, color: "#999999", width: 1, depthOffset: 0.1 })
+				p1 = [0, 0, 0]; p2 = [0, 0, 0]; p1[i] = a; p2[i] = 5
+				result.push({ type: "line", start: p1, end: p2, color: "#999999", width: 1, depthOffset: 0.1 })
+			}
+			result.push({ type: "arrow", start: [-a, 0, 0], end: [a, 0, 0], color: "#ff7777", width: 1.3, depthOffset: 0.1 })
+			result.push({ type: "arrow", start: [0, -a, 0], end: [0, a, 0], color: "#77ff77", width: 1.3, depthOffset: 0.1 })
+			result.push({ type: "arrow", start: [0, 0, -a], end: [0, 0, a], color: "#7777ff", width: 1.3, depthOffset: 0.1 })
+			for (let k = -5; k <= 5; k++) {
+				p = [0, 0, 0]; p[iUp] = k
+				result.push({ type: "point", position: p, color: "#999999", width: 3, depthOffset: 0.1 })
+			}
+			return result
+		}
+
+		function setExplosionOffset(objects, parentOffset = null) {
+			for (let obj of objects) {
+				offset = obj.type === "tree" ? randomVector() : parentOffset ?? randomVector()
+				obj.explosionOffset1 = offset
+				obj.explosionOffset2 = offset
+				if ("children" in obj) {
+					setExplosionOffset(obj.children, offset)
+				}
+				if (obj.type === "tree") {
+					// the base of the origin->me arrow should be shifted by the parentOffset
+					// so it is still connected to the proper origin
+					obj.children[0].children[0].explosionOffset1 = parentOffset ?? [0, 0, 0]
+				}
+			}
+		}
+
+		function process(objects, output) {
+			for (let obj of objects) {
+				switch (obj.type) {
+					case "line":
+					case "arrow":
+						{
+							if (explode && obj.explosionOffset1) {
+								let start = addScaled(obj.start, obj.explosionOffset1, explosionDistance)
+								let end = addScaled(obj.end, obj.explosionOffset2, explosionDistance)
+								let shiftedObj = { ...obj, start: start, end: end }
+								let obj2d = projectLinelike(shiftedObj)
+								if (obj2d) {
+									obj2d.width = obj.width ?? 2
+									output.push(obj2d)
+								}
+								if (!["x-red", "y-green", "z-blue"].includes(obj.color)) {
+									let shadowObj = { ...obj, color: "#555555", depthOffset: 0.2 }
+									obj2d = projectLinelike(shadowObj)
+									if (obj2d) {
+										obj2d.width = obj.width ?? 2
+										output.push(obj2d)
+									}
+									let trace1 = { "type": "line", "start": shadowObj.start, "end": shiftedObj.start, "color": "default", "width": 0.5 }
+									obj2d = projectLinelike(trace1)
+									if (obj2d) { output.push(obj2d) }
+									let trace2 = { "type": "line", "start": shadowObj.end, "end": shiftedObj.end, "color": "default", "width": 0.5 }
+									obj2d = projectLinelike(trace2)
+									if (obj2d) { output.push(obj2d) }
+								}
+							}
+							else {
+								let obj2d = projectLinelike(obj)
+								if (obj2d) {
+									obj2d.width = obj.width ?? 2
+									output.push(obj2d)
+								}
+							}
+						}
+						break
+					case "point":
+					case "text":
+						{
+							if (explode && obj.explosionOffset1) {
+								let position = addScaled(obj.position, obj.explosionOffset1, explosionDistance)
+								let shiftedObj = { ...obj, position: position }
+								let obj2d = projectPointlike(shiftedObj)
+								if (obj2d) { output.push(obj2d) }
+							}
+							else {
+								let obj2d = projectPointlike(obj)
+								if (obj2d) { output.push(obj2d) }
+							}
+						}
+						break
+					case "rotation":
+					case "trafo":
+					case "node":
+					case "tree":
+						process(obj.children, output)
+						break
+					default:
+						throw new Error("Unknown object type: " + obj.type)
+				}
+			}
+		}
+
+		const render = () => {
+			while (svg.lastChild.nodeName !== 'defs') svg.removeChild(svg.lastChild);
+
+			let decoration = []
+			if (camera.grid) {
+				let iUp = camera.up[0] != 0 ? 0 :
+					camera.up[1] != 0 ? 1 : 2
+				decoration = [
+					...decoration,
+					...drawGrid(iUp),
+					...drawAxes(iUp)
+				]
+			}
+
+			let screenObjects = []
+			process([...scene, ...decoration], screenObjects)
+			screenObjects.sort((a, b) => b.depth - a.depth);
+
+			screenObjects.forEach(object => {
+				draw2d[object.type](object);
+			});
+
+			needsUpdate = false
+		};
+
+		window.addEventListener('resize', () => {
+			width = window.innerWidth;
+			height = window.innerHeight;
+			svg.setAttribute('width', width);
+			svg.setAttribute('height', height);
+			needsUpdate = true
+		});
+
+		window.addEventListener('keydown', (e) => {
+			if (e.repeat) { return }
+			switch (e.key) {
+				case 'x':
+					camera.up = camera.up[0] === 1 ? [-1, 0, 0] : [1, 0, 0];
+					needsUpdate = true;
+					break;
+				case 'y':
+					camera.up = camera.up[1] === 1 ? [0, -1, 0] : [0, 1, 0];
+					needsUpdate = true;
+					break;
+				case 'z':
+					camera.up = camera.up[2] === 1 ? [0, 0, -1] : [0, 0, 1];
+					needsUpdate = true;
+					break;
+				case 'g':
+					camera.grid = !camera.grid;
+					needsUpdate = true;
+					break;
+				case 'o':
+					camera.orthographic = !camera.orthographic;
+					needsUpdate = true;
+					break;
+				case 'r':
+					camera = structuredClone(defaultCamera);
+					needsUpdate = true;
+					break
+				case ' ':
+					explode = !explode
+					if (explode) { setExplosionOffset(scene) }
+					needsUpdate = true
+					break
+			}
+		});
+
+		function animate() {
+			requestAnimationFrame(animate);
+			if (needsUpdate) {
+				render();
+			}
+		}
+		animate()
+
+		let isLeftMouseDown = false
+		let isRightMouseDown = false;
+		let lastMousePosition = null;
+
+		const rotateCamera = (x0, y0, x1, y1) => {
+			let dx = x1 - x0;
+			let dy = y1 - y0;
+			let d = distance(camera.position, camera.lookAt);
+
+			let z = camera.up
+			let x = normalize(cross(z, [7.3, -1.6, 2.9]))
+			let y = cross(z, x)
+
+			let view = sub(camera.position, camera.lookAt)
+			let [vx, vy, vz] = multiplyMatrixVector([x, y, z], view)
+
+			let psi = Math.atan2(vy, vx)
+			let theta = Math.atan2(vz, Math.sqrt(vx ** 2 + vy ** 2))
+			psi -= dx * 0.01;
+			theta += dy * 0.01;
+			theta = Math.min(Math.PI / 2 - 1e-6, Math.max(-Math.PI / 2 + 1e-6, theta));
+
+			view = multiplyMatrixVector(transpose([x, y, z]), [
+				d * Math.cos(psi) * Math.cos(theta),
+				d * Math.sin(psi) * Math.cos(theta),
+				d * Math.sin(theta)
+			])
+
+			camera.position = add(camera.lookAt, view)
+			needsUpdate = true
+		};
+
+		const pan = (dx, dy) => {
+			console.log("panning")
+			let [right, down, forward] = getCamDirections();
+			d = distance(camera.position, camera.lookAt) * 0.001;
+			camera.position = [
+				camera.position[0] - d * dx * right[0] + d * dy * -down[0],
+				camera.position[1] - d * dx * right[1] + d * dy * -down[1],
+				camera.position[2] - d * dx * right[2] + d * dy * -down[2]
+			];
+			camera.lookAt = [
+				camera.lookAt[0] - d * dx * right[0] + d * dy * -down[0],
+				camera.lookAt[1] - d * dx * right[1] + d * dy * -down[1],
+				camera.lookAt[2] - d * dx * right[2] + d * dy * -down[2]
+			];
+			needsUpdate = true
+		};
+
+		const zoomCamera = (delta) => {
+			let d = distance(camera.position, camera.lookAt);
+			d = d * (1 - delta * 0.01);
+			if (d <= 0.01 || d >= 1000) { return };
+			camera.position = [
+				camera.lookAt[0] + d * (camera.position[0] - camera.lookAt[0]) / distance(camera.position, camera.lookAt),
+				camera.lookAt[1] + d * (camera.position[1] - camera.lookAt[1]) / distance(camera.position, camera.lookAt),
+				camera.lookAt[2] + d * (camera.position[2] - camera.lookAt[2]) / distance(camera.position, camera.lookAt)
+			];
+			updateExplosionDistance()
+			camera.near = distance(camera.position, camera.lookAt) * 0.001
+			needsUpdate = true
+		};
+
+		window.addEventListener('contextmenu', (e) => {
+			e.preventDefault();
+		});
+
+		window.addEventListener('mousedown', (e) => {
+			if (e.button === 0) isLeftMouseDown = true;
+			if (e.button === 2) isRightMouseDown = true;
+			lastMousePosition = [e.clientX, e.clientY];
+		});
+
+		window.addEventListener('mousemove', (e) => {
+			if (!lastMousePosition) return;
+			const [x0, y0] = lastMousePosition;
+			const [x1, y1] = [e.clientX, e.clientY];
+
+			if (isLeftMouseDown) rotateCamera(x0, y0, x1, y1);
+			if (isRightMouseDown) pan(x1 - x0, y1 - y0);
+
+			lastMousePosition = [e.clientX, e.clientY];
+		});
+
+		window.addEventListener('mouseup', () => {
+			isLeftMouseDown = false;
+			isRightMouseDown = false;
+			lastMousePosition = null;
+		});
+
+		window.addEventListener('wheel', (e) => {
+			zoomCamera(e.deltaY * -0.1);
+		});
+
+		function equals(a, b) {
+			return a.length === b.length && a.every((x, i) => x === b[i]);
+		}
+
+		function add(a, b) {
+			return [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
+		}
+
+		function addScaled(a, b, s) {
+			return [a[0] + b[0] * s, a[1] + b[1] * s, a[2] + b[2] * s];
+		}
+
+		function sub(a, b) {
+			return [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+		}
+
+		function distance(a, b) {
+			return Math.sqrt(a.reduce((sum, x, i) => sum + (x - b[i]) ** 2, 0));
+		}
+
+		function normalize(v) {
+			const length = Math.sqrt(v.reduce((sum, x) => sum + x * x, 0));
+			return v.map(x => x / length);
+		}
+
+		function dot(a, b) {
+			return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+		}
+
+		function cross(a, b) {
+			return [
+				a[1] * b[2] - a[2] * b[1],
+				a[2] * b[0] - a[0] * b[2],
+				a[0] * b[1] - a[1] * b[0]
+			];
+		}
+
+		function randomVector() {
+			let l2 = 2, x = 0, y = 0, z = 0
+			while (l2 > 1) {
+				x = Math.random() * 2 - 1
+				y = Math.random() * 2 - 1
+				z = Math.random() * 2 - 1
+				l2 = x * x + y * y + z * z
+			}
+			x = x / Math.sqrt(l2)
+			y = y / Math.sqrt(l2)
+			z = z / Math.sqrt(l2)
+			return [x, y, z]
+		}
+
+		function multiplyMatrixVector(matrix, vector) {
+			return [
+				dot(matrix[0], vector),
+				dot(matrix[1], vector),
+				dot(matrix[2], vector)
+			]
+		}
+
+		function transpose(matrix) {
+			return [
+				[matrix[0][0], matrix[1][0], matrix[2][0]],
+				[matrix[0][1], matrix[1][1], matrix[2][1]],
+				[matrix[0][2], matrix[1][2], matrix[2][2]]
+			]
+		}
+	</script>
+</body>
+
+</html>
