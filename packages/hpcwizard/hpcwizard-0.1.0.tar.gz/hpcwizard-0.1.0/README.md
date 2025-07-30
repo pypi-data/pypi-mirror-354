@@ -1,0 +1,79 @@
+# Introduction
+
+**GOAL: generate, from a YAML description file, workflows for Pegasus, nextflow or Snakemake. **
+
+Existing WMS (Workflow management systems) generate specific learning
+curves for bioinformaticians which will also engage strategic choices of development[^1].
+
+``hpc_runner`` offers to directly use ``bash`` script bricks in a declarative format
+to form a processing pipeline, drawing inspiration from the syntax and logic of 
+the [.gitlab-ci](https://docs.gitlab.com/ee/ci/yaml/gitlab_ci_yaml.html) file, used to run CI/CD pipeline on GitLab.
+
+The tool is meant to be simple: there is no conversion from ``bash`` to another language.
+Script bricks can be directly added simplifying the development and the sharing of workflows.
+
+## Installation  
+
+Requirements:
+ * Python 3.8 or above.
+ * graphviz package, with `dot` tool.
+
+Create a Python virtual environment and install the `hpc_runner` package from this repository :
+```
+python -m venv venv
+pip install 'hpc_runner @ git+ssh://git@gitlab.cnrgh.fr/lbi/hpc_runner.git'
+```
+
+## Running
+
+Once installed, you can run `hpc_runner` on the provided example to check that
+it runs correctly:
+
+```
+cd examples/prepare_gisaid
+hpc_runner --hpc-config prepare_gisaid.yml
+``` 
+
+In this example, `hpc_runner` uses the default backend.
+You can also define a custom backend configuration file and 
+use it with the `--hpc-backend` option as follows :
+
+```
+hpc_runner --hpc-backend BACKEND_PATH --hpc-config myappconfig.yml
+``` 
+
+See the official [Documentation](http://lbi.pages.cnrgh.fr/hpc_runner/) for
+detailed information.
+
+## For developers
+
+You may create a conda environment like this:
+```sh
+conda create -n hpc python=3.8
+conda activate hpc
+python3 -m pip install .[dev]
+```
+
+### Building `hpc_runner`
+
+The following commands will build the package in an isolated environment, 
+generating a source-distribution and wheel in the directory `dist/`.
+
+```sh
+pip install build
+python -m build
+```
+
+### Available scripts :
+
+- `make deps` : install development dependencies of the `hpc_runner` package,
+- `make check` : run checks on the source code (linter, type checker, ...),
+- `make build` : build the package in an isolated environment, 
+generating a source-distribution and wheel in the directory `dist/`,
+- `make install` : install the package inside a virtual environment,
+- `make test` : run the tests against the package, and generate a coverage report in `htmlcov/`, 
+- `make uninstall` : uninstall the package from the virtual environment,
+- `make clean` : delete all files and directories created by the other targets,
+- `make docs` : generate an HTML documentation in `docs/build/`.
+
+[^1]: [Evaluating Workflow Management Systems: A Bioinformatics Use Case](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8621141&tag=1)
