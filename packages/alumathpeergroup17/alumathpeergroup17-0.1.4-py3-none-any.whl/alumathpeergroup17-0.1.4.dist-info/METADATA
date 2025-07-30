@@ -1,0 +1,46 @@
+Metadata-Version: 2.4
+Name: alumathpeergroup17
+Version: 0.1.4
+Summary: A basic matrix computation library for addition, subtraction, and multiplication.
+Author: WilsonsNavid
+Author-email: wadotiwawil@gmail.com
+License: MIT
+Keywords: matrix addition subtraction multiplication linear-algebra
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: keywords
+Dynamic: license
+Dynamic: requires-python
+Dynamic: summary
+
+# alumathpeergroup17
+
+A lightweight Python library for basic matrix computations (addition, subtraction, multiplication) with dimension checks.
+
+## Installation
+
+```bash
+pip install alumathpeergroup17
+```
+
+from alumathpeergroup17 import matrix_multiplication
+
+a = [[1, 2], [3, 4]]
+b = [[5, 6], [7, 8]]
+
+print(matrix_multiplication(a, b))
+
+---
+
+### âœ… **Step 4: Add a `LICENSE` file**
+
+Use an open-source license like MIT. Here's a simple MIT license placeholder:
