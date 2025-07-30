@@ -1,0 +1,17 @@
+.gitignore
+README.md
+pyproject.toml
+requirements.txt
+.github/workflows/build_and_test.yml
+.github/workflows/publish.yml
+docker/Dockerfile
+examples/trending.py
+src/github_tracker/__init__.py
+src/github_tracker/github_trending.py
+src/github_tracker.egg-info/PKG-INFO
+src/github_tracker.egg-info/SOURCES.txt
+src/github_tracker.egg-info/dependency_links.txt
+src/github_tracker.egg-info/requires.txt
+src/github_tracker.egg-info/top_level.txt
+tests/__init__.py
+tests/test_github_trending.py

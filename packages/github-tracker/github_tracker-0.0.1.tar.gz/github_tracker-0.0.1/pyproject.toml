@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=42", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+version_scheme = "guess-next-dev"
+
+[project]
+name = "github-tracker"
+dynamic = ["version"]
+description = "A tool for tracking github trends and repositories."
+readme = "README.md"
+dependencies = ["requests", "beautifulsoup4"]
+
+[project.urls]
+Homepage = "https://github.com/monkitect/github_tracker"
+Repository = "https://github.com/monkitect/github_tracker"
+Issues = "https://github.com/monkitect/github_tracker/issues"
