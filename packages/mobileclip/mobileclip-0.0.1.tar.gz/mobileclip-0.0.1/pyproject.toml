@@ -1,0 +1,60 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mobileclip"
+dynamic = ["version"]
+description = 'apple mobileclip inference'
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Sayan Goswami", email = "goswami.sayan47@gmail.com" },
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/say4n/mobileclip#readme"
+Issues = "https://github.com/say4n/mobileclip/issues"
+Source = "https://github.com/say4n/mobileclip"
+
+[tool.hatch.version]
+path = "src/mobileclip/__about__.py"
+
+[tool.hatch.envs.default]
+dependencies = [
+  "torch==2.5.0",
+  "timm",
+  "coremltools",
+]
+
+[tool.hatch.envs.default.scripts]
+export = "python src/mobileclip/main.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/mobileclip tests}"
+
+[tool.coverage.run]
+source_pkgs = ["mobileclip", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/mobileclip/__about__.py",
+]
+
+[tool.coverage.paths]
+mobileclip = ["src/mobileclip", "*/mobileclip/src/mobileclip"]
+tests = ["tests", "*/mobileclip/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
