@@ -1,0 +1,13 @@
+[project]
+name = "blite"
+version = "1.1.0"
+authors = [
+    { name="ryzeon-dev", email="master@ryzeon.net" }
+]
+description = "Minimal web backend framework"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
