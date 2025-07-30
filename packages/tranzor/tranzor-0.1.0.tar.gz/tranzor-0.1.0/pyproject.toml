@@ -1,0 +1,19 @@
+[project]
+name = "tranzor"
+version = "0.1.0"
+description = "Transversal Clifford logical circuit generator for color code."
+readme = "README.md"
+authors = [{ name = "Yiming Zhang", email = "zhangyiming21@mail.ustc.edu.cn" }]
+requires-python = ">=3.10"
+dependencies = ["stim>=1.15"]
+
+[[tool.mypy.overrides]]
+module = "stim"
+ignore_missing_imports = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = ["mypy>=1.16.0"]
