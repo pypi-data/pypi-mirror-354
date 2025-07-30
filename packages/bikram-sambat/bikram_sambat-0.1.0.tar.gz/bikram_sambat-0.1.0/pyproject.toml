@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bikram-sambat"
+dynamic = ["version"]
+authors = [
+  { name = "Ashok Dhakal", email = "info@ashokdhakal.com" },
+]
+description = "A comprehensive, modern, and easy-to-use Python library for the Bikram Sambat (BS) calendar system."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Office/Business :: Scheduling",
+    "Natural Language :: English",
+    "Natural Language :: Nepali",
+]
+dependencies = [
+    "pytz",
+]
+
+[project.urls]
+Homepage = "https://github.com/ashok095/bikram-sambat"
+Repository = "https://github.com/ashok095/bikram-sambat"
+"Bug Tracker" = "https://github.com/ashok095/bikram-sambat/issues"
+Documentation = "https://bikram-sambat.readthedocs.io"  # Optional, if you host docs
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-cov"]
+
+[tool.setuptools]
+packages = ["bikram_sambat"]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = { attr = "bikram_sambat.__version__" }
