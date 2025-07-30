@@ -1,0 +1,69 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Perangkat sudah dikonfigurasi",
+            "reauth_successful": "Autentikasi ulang berhasil",
+            "reconfigure_successful": "Konfigurasi ulang berhasil"
+        },
+        "error": {
+            "already_configured": "Perangkat sudah dikonfigurasi",
+            "cannot_connect": "Gagal terhubung",
+            "password_error": "Autentikasi tidak valid",
+            "unknown": "Kesalahan tak terduga"
+        },
+        "step": {
+            "password": {
+                "data": {
+                    "password": "Kata Sandi"
+                }
+            },
+            "reauth_confirm": {
+                "data": {
+                    "password": "Kata Sandi"
+                }
+            },
+            "reconfigure": {
+                "data": {
+                    "password": "Kata Sandi"
+                }
+            },
+            "user": {
+                "data": {
+                    "host": "Host"
+                },
+                "data_description": {
+                    "host": "Nama host atau alamat IP perangkat Solar-Log Anda."
+                },
+                "title": "Tentukan koneksi Solar-Log Anda"
+            }
+        }
+    },
+    "entity": {
+        "sensor": {
+            "capacity": {
+                "name": "Kapasitas"
+            },
+            "consumption_yesterday": {
+                "name": "Konsumsi kemarin"
+            },
+            "efficiency": {
+                "name": "Efisiensi"
+            },
+            "power_available": {
+                "name": "Daya tersedia"
+            },
+            "power_dc": {
+                "name": "Daya DC"
+            },
+            "usage": {
+                "name": "Penggunaan"
+            },
+            "voltage_ac": {
+                "name": "Tegangan AC"
+            },
+            "voltage_dc": {
+                "name": "Tegangan DC"
+            }
+        }
+    }
+}
