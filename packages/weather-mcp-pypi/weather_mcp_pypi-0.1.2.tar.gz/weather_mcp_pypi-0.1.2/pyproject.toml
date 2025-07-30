@@ -1,0 +1,20 @@
+[project]
+name = "weather-mcp-pypi"
+version = "0.1.2"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "hancs5", email = "hancs5@asiainfo.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=1.9.3",
+    "requests>=2.32.4",
+]
+
+[project.scripts]
+weather-mcp-pypi = "weather_mcp_pypi:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
