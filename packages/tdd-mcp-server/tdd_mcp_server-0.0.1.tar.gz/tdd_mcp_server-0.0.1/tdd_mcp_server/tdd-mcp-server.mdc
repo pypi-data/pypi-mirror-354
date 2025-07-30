@@ -1,0 +1,11 @@
+---
+description: This rule is helpful for identifying tests, lints, and other available project scripts
+globs: 
+alwaysApply: true
+---
+Always prefer tools exposed by tdd-mcp-server for running tests, lints, and other scripts to writing your own command line invocations. When running tests or lints just to determine whether they pass, always use the default "quiet" option, since you can request the output with the "get_last_tool_call_output" tool call.
+
+At the end of each round of code edits, look for linting and typechecking tools, and always be sure to run them. Prefer fixing any lint errors with the provided tools.
+
+**Never ask the user if they'd like to see the more detailed output** -- it's only for the agent to use in case the tool runs have nonzero exit codes.
+

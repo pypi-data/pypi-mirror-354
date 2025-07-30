@@ -1,0 +1,66 @@
+# TDD MCP Server Configuration - Self-Testing Configuration
+# This configuration is used to test the TDD MCP Server project itself
+
+cache_directory = ".tdd-mcp-cache"
+max_cache_size_mb = 100
+max_history_entries = 1000
+
+[tools.pytest]
+description = "Run the full test suite with pytest. For verbose output, add the -v flag. Pass specific test files to filter, or -k to filter particular test names."
+command = "pytest"
+args = []
+expected_runtime_seconds = 1.5
+expected_output_size_bytes = 1024
+working_directory = "."
+timeout_seconds = 30.0
+
+[tools.black_check]
+description = "Check Python code formatting with black (requires: pip install black)"
+command = "black"
+args = ["--check", "--diff", "."]
+frozen_args = true
+expected_runtime_seconds = 2.0
+expected_output_size_bytes = 2048
+working_directory = "."
+timeout_seconds = 30.0
+
+[tools.black_format]
+description = "Format Python code with black (requires: pip install black)"
+command = "black"
+args = ["."]
+frozen_args = true
+expected_runtime_seconds = 3.0
+expected_output_size_bytes = 1024
+working_directory = "."
+timeout_seconds = 30.0
+
+[tools.ruff_check]
+description = "Run ruff linting checks"
+command = "ruff"
+args = ["check", "."]
+frozen_args = true
+expected_runtime_seconds = 1.5
+expected_output_size_bytes = 2048
+working_directory = "."
+timeout_seconds = 30.0
+
+[tools.ruff_fix]
+description = "Run ruff with automatic fixes"
+command = "ruff"
+args = ["check", "--fix", "."]
+frozen_args = true
+expected_runtime_seconds = 2.0
+expected_output_size_bytes = 1024
+working_directory = "."
+timeout_seconds = 30.0
+
+[tools.mypy]
+description = "Run Python type checking with mypy"
+command = "mypy"
+args = ["tdd_mcp_server/"]
+frozen_args = true
+expected_runtime_seconds = 5.0
+expected_output_size_bytes = 2048
+working_directory = "."
+timeout_seconds = 60.0
+
