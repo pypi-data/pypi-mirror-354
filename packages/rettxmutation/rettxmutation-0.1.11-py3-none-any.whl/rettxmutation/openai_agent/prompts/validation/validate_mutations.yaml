@@ -1,0 +1,9 @@
+name: validate_mutations
+description: Validate if mutations are valid MECP2 mutations
+input:
+  document_text: The document text to validate
+  mutations: The mutations to validate
+execution_settings:
+  default:
+    temperature: 0.1
+    max_tokens: 50
