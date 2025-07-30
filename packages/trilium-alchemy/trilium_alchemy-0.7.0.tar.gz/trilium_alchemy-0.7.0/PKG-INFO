@@ -1,0 +1,35 @@
+Metadata-Version: 2.3
+Name: trilium-alchemy
+Version: 0.7.0
+Summary: Python SDK and CLI toolkit for TriliumNext Notes, compatible with Trilium Notes
+Author: mm21
+Author-email: mm21.dev@gmail.com
+Requires-Python: >=3.12,<4.0
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Operating System :: OS Independent
+Classifier: Typing :: Typed
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Development Status :: 3 - Alpha
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: pydantic (>=2,<3)
+Requires-Dist: pyrollup (>=0.1.0,<0.2.0)
+Requires-Dist: python-dotenv (>=1.0.1,<2.0.0)
+Requires-Dist: pyyaml (>=6.0.2,<7.0.0)
+Requires-Dist: requests (>=2.31.0,<3.0.0)
+Requires-Dist: trilium-client (>=0.1.2,<0.2.0)
+Requires-Dist: typer (>=0.15.2,<0.16.0)
+Project-URL: Documentation, https://mm21.github.io/trilium-alchemy/
+Project-URL: Homepage, https://github.com/mm21/trilium-alchemy
+Description-Content-Type: text/markdown
+
+# TriliumAlchemy
+Python SDK and CLI toolkit for [TriliumNext Notes](https://github.com/TriliumNext/Notes), compatible with [Trilium Notes](https://github.com/zadam/trilium)
+
+GitHub: <https://github.com/mm21/trilium-alchemy/>
+
+Docs: <https://mm21.github.io/trilium-alchemy/>
+
