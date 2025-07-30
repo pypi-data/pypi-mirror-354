@@ -1,0 +1,11 @@
+httpx>=0.28.1
+mcp[cli]>=1.2.0
+
+[dev]
+build
+twine
+taskipy
+
+[test]
+pytest>=8.3.4
+pytest-asyncio>=0.24.0
