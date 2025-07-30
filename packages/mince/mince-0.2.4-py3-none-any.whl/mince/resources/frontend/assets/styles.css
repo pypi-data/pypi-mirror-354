@@ -1,0 +1,82 @@
+/* restyle radio items */
+
+#date-picker {
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.dash-bootstrap .DateInput {
+    width: 120px;
+}
+
+.dash-bootstrap .CalendarDay__default.CalendarDay__selected, .dash-bootstrap .CalendarDay__default.CalendarDay__selected:hover {
+    background: #000000;
+    border: 1px double #000000;
+}
+
+.dash-bootstrap .SingleDatePickerInput__withBorder, .dash-bootstrap .DateRangePickerInput__withBorder {
+    border: 1px solid #000000;
+}
+
+.dash-bootstrap .DateInput_input {
+    background: rgb(52, 58, 64);
+    color: white;
+}
+
+.dash-bootstrap .DayPickerKeyboardShortcuts_show__bottomRight {
+    border-bottom: 12px solid #000000;
+    border-right: 16px solid #000000;
+}
+
+.radio-group .form-check {
+  padding-left: 0;
+}
+
+.radio-group .btn-group > .form-check:not(:last-child) > .btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.radio-group .btn-group > .form-check:not(:first-child) > .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -1px;
+}
+
+
+.radio-group {
+    margin-top: 15px;
+}
+
+.radio-group .btn-group {
+    margin-left: 15px;
+}
+
+.radio-group .hidden {
+    display: none;
+    margin-left: 0;
+}
+
+
+
+#radio-group-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#radio-group-row.hidden {
+    display: none !important;
+}
+
+#react-entry-point {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#main-chart {
+    margin-top: 20px;
+    flex-grow: 1;
+}
