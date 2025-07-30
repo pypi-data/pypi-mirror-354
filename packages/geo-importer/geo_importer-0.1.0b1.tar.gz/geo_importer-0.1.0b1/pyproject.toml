@@ -1,0 +1,81 @@
+# pyproject.toml
+
+[tool.black]
+line-length = 150
+target-version = ["py313"]
+skip-string-normalization = true
+skip_magic_trailing_comma = true
+include = '''
+/(
+    src
+  | tests
+)/
+.*\.pyi?$
+'''
+exclude = '''
+/(
+    ui
+  | .*/ui
+  | \.venv
+  | \.git
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.tox
+  | __pycache__
+)/
+'''
+
+[tool.ruff]
+line-length = 150
+target-version = "py313"
+fix = true
+unsafe-fixes = false
+exclude = [
+    "*/ui/*",
+    "src/core/step_descriptions.py"
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = ["E402"]
+
+[project]
+name = "geo-importer"
+version = "0.1.0b1"
+description = "Qt application to transform raw tables into clean geographic data."
+authors = [{name = "frievoe97", email = "friedrich.voelkers@me.com"}]
+requires-python = ">=3.13"
+readme = "README.md"
+dynamic = ["dependencies"]
+license = {text = "MIT"}
+keywords = ["qt", "geodata", "import", "gui", "mapping"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Build Tools",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.13",
+  "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://friedrichvoelkers.de"
+Repository = "https://github.com/frievoe97/geo-importer"
+Issues = "https://github.com/frievoe97/geo-importer/issues"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[project.scripts]
+geo-importer = "src.main:MainWindow.main"
+
+[tool.setuptools.packages.find]
+include = ["src*"]
+
+[tool.setuptools.package-data]
+"src.geodata" = ["**/*.csv"]
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"

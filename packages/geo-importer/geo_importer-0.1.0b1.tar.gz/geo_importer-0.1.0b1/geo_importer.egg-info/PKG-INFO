@@ -1,0 +1,416 @@
+Metadata-Version: 2.4
+Name: geo-importer
+Version: 0.1.0b1
+Summary: Qt application to transform raw tables into clean geographic data.
+Author-email: frievoe97 <friedrich.voelkers@me.com>
+License: MIT
+Project-URL: Homepage, https://friedrichvoelkers.de
+Project-URL: Repository, https://github.com/frievoe97/geo-importer
+Project-URL: Issues, https://github.com/frievoe97/geo-importer/issues
+Keywords: qt,geodata,import,gui,mapping
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: acres==0.5.0
+Requires-Dist: aiofiles==24.1.0
+Requires-Dist: anyio==4.9.0
+Requires-Dist: black==25.1.0
+Requires-Dist: branca==0.8.1
+Requires-Dist: camelot-py==1.0.0
+Requires-Dist: certifi==2025.4.26
+Requires-Dist: cffi==1.17.1
+Requires-Dist: chardet==5.2.0
+Requires-Dist: charset-normalizer==3.4.2
+Requires-Dist: ci-info==0.3.0
+Requires-Dist: click==8.2.1
+Requires-Dist: configobj==5.0.9
+Requires-Dist: configparser==7.2.0
+Requires-Dist: contourpy==1.3.2
+Requires-Dist: cryptography==45.0.4
+Requires-Dist: cycler==0.12.1
+Requires-Dist: docopt==0.6.2
+Requires-Dist: et_xmlfile==2.0.0
+Requires-Dist: etelemetry==0.3.1
+Requires-Dist: filelock==3.18.0
+Requires-Dist: fitz==0.0.1.dev2
+Requires-Dist: folium==0.19.7
+Requires-Dist: fonttools==4.58.2
+Requires-Dist: frontend==0.0.3
+Requires-Dist: h11==0.16.0
+Requires-Dist: httplib2==0.22.0
+Requires-Dist: idna==3.10
+Requires-Dist: iniconfig==2.1.0
+Requires-Dist: itsdangerous==2.2.0
+Requires-Dist: Jinja2==3.1.6
+Requires-Dist: kiwisolver==1.4.8
+Requires-Dist: looseversion==1.3.0
+Requires-Dist: lxml==5.4.0
+Requires-Dist: MarkupSafe==3.0.2
+Requires-Dist: matplotlib==3.10.3
+Requires-Dist: mypy_extensions==1.1.0
+Requires-Dist: networkx==3.5
+Requires-Dist: nibabel==5.3.2
+Requires-Dist: nipype==1.10.0
+Requires-Dist: numpy==2.3.0
+Requires-Dist: opencv-python-headless==4.11.0.86
+Requires-Dist: openpyxl==3.1.5
+Requires-Dist: packaging==25.0
+Requires-Dist: pandas==2.3.0
+Requires-Dist: pathlib==1.0.1
+Requires-Dist: pathspec==0.12.1
+Requires-Dist: pdfminer.six==20250506
+Requires-Dist: pillow==11.2.1
+Requires-Dist: pipreqs==0.4.13
+Requires-Dist: platformdirs==4.3.8
+Requires-Dist: pluggy==1.6.0
+Requires-Dist: prov==2.0.2
+Requires-Dist: puremagic==1.29
+Requires-Dist: pycparser==2.22
+Requires-Dist: pydot==4.0.0
+Requires-Dist: Pygments==2.19.1
+Requires-Dist: PyMuPDF==1.26.0
+Requires-Dist: pyparsing==3.2.3
+Requires-Dist: pypdf==5.6.0
+Requires-Dist: pypdfium2==4.30.1
+Requires-Dist: pyproj==3.7.1
+Requires-Dist: PySide6==6.9.1
+Requires-Dist: PySide6_Addons==6.9.1
+Requires-Dist: PySide6_Essentials==6.9.1
+Requires-Dist: pytest==8.4.0
+Requires-Dist: python-dateutil==2.9.0.post0
+Requires-Dist: pytz==2025.2
+Requires-Dist: pyxnat==1.6.3
+Requires-Dist: PyYAML==6.0.2
+Requires-Dist: RapidFuzz==3.13.0
+Requires-Dist: rdflib==7.1.4
+Requires-Dist: requests==2.32.4
+Requires-Dist: ruff==0.11.13
+Requires-Dist: scipy==1.15.3
+Requires-Dist: shiboken6==6.9.1
+Requires-Dist: simplejson==3.20.1
+Requires-Dist: six==1.17.0
+Requires-Dist: sniffio==1.3.1
+Requires-Dist: starlette==0.47.0
+Requires-Dist: tabulate==0.9.0
+Requires-Dist: tools==1.0.2
+Requires-Dist: traits==7.0.2
+Requires-Dist: tzdata==2025.2
+Requires-Dist: urllib3==2.4.0
+Requires-Dist: uvicorn==0.34.3
+Requires-Dist: xyzservices==2025.4.0
+Requires-Dist: yarg==0.1.10
+Dynamic: license-file
+
+# Geo-Importer
+
+Geo‑Importer is a Qt application that guides you through turning raw tables into
+clean geographic data. It targets **Python 3.13** and ships a classic
+`src/` layout together with unit tests and MkDocs documentation.
+
+The program is centred around a wizard that walks through several steps:
+
+1. **Upload** – load an Excel, CSV or PDF file.
+2. **PDF Area** – for PDFs, choose the table region to extract.
+3. **Worksheet** – for Excel, pick the sheet to process.
+4. **DataPrep** – tidy up the table (skip header rows, delete cells, etc.).
+5. **Columns & Filter** – select relevant columns and optionally apply a
+   Pandas query expression to filter rows.
+6. **Geo Filter** – load a reference GeoCSV (e.g. NUTS/LAU) and optionally
+   filter it as well.
+7. **Mapping** – automatically map statistics to geographic rows using a set of
+   configurable matchers (prefix, regex, fuzzy, unique value).
+8. **Manual Mapping** – review unmatched rows and fix them manually.
+9. **Preview** – inspect the result on an interactive Folium map.
+10. **Export** – save the final dataset as CSV or GeoJSON.
+
+```mermaid
+flowchart TB
+    Upload[Upload]
+    PDFArea[PDF Area]
+    Worksheet[Worksheet]
+    DataPrep[DataPrep]
+    ColumnsFilter[Columns & Filter]
+    GeoFilter[Geo Filter]
+    Mapping[Mapping]
+    ManualMapping[Manual Mapping]
+    Preview[Preview]
+    Export[Export]
+    Upload <--> PDFArea
+    Upload <--> Worksheet
+    Upload <--> DataPrep
+    PDFArea <--> DataPrep
+    Worksheet <--> DataPrep
+    DataPrep <--> ColumnsFilter
+    ColumnsFilter <--> GeoFilter
+    GeoFilter <--> Mapping
+    Mapping <--> ManualMapping
+    ManualMapping <--> Preview
+    Preview <--> Export
+```
+
+A quasi‑singleton `DataStore` object keeps all intermediate DataFrames so that
+the views can share data without passing objects around. The core logic lives in
+`src/core` and the individual Qt windows are under `src/views`.
+
+## Project layout
+
+```text
+geo-importer/
+├── src/               # Application packages
+│   ├── core/          # Workflow logic, constants and the DataStore
+│   ├── views/         # Qt based UI components for each wizard step
+│   ├── mapper/        # Matching widgets and algorithms
+│   ├── models/        # Minimal Qt models
+│   ├── geodata/       # Sample geographic reference data (NUTS, LAU …)
+│   └── main.py        # Application entry point
+├── data/              # Example statistics tables for testing
+├── static/            # Placeholder for generated assets
+├── tests/             # Unit tests for core logic
+└── docs/              # MkDocs site with API reference
+```
+
+## Quick start
+
+The instructions below show three independent workflows.  Each one starts from
+
+```bash
+git clone https://github.com/frievoe97/geo-importer
+cd geo-importer
+```
+
+To undo a workflow simply remove the virtual environment and build artefacts:
+
+```bash
+deactivate  # if the venv is active
+rm -rf .venv dist build
+```
+
+### 1. Run the application locally
+
+1. Create a Python 3.13 virtual environment and install the package:
+
+   ```bash
+   python3.13 -m venv .venv
+   source .venv/bin/activate  # Windows: .venv\Scripts\activate
+   pip install .
+   ```
+
+2. Launch the GUI directly from the repository:
+
+   ```bash
+   python main.py
+   ```
+
+3. Update `requirements.txt` after changing imports:
+
+   ```bash
+   python -m pipreqs.pipreqs . --force --ignore geo_importer,.venv
+   ```
+
+4. Undo: deactivate the environment and remove `.venv`.
+
+### 2. Build and test the wheel locally
+
+1. Set up a new environment and install build tools:
+
+   ```bash
+   python3.13 -m venv .venv
+   source .venv/bin/activate
+   pip install .
+   python -m pip install --upgrade build
+   ```
+
+2. Build the distribution:
+
+   ```bash
+   python -m build
+   ```
+
+3. Install the wheel and run the application:
+
+   ```bash
+   pip install dist/geo_importer-*.whl
+   geo-importer
+   ```
+
+4. Run the unit tests:
+
+   ```bash
+   pytest -v
+   ```
+
+5. Undo: remove `.venv` and the `dist/` and `build/` folders.
+
+### 3. Publish to PyPI
+
+1. Prepare the environment and build the wheel as above:
+
+   ```bash
+   python3.13 -m venv .venv
+   source .venv/bin/activate
+   python -m pip install --upgrade build twine
+   python -m build
+   ```
+
+2. Upload the package:
+
+   ```bash
+   twine upload dist/*
+   ```
+
+3. Undo: remove `.venv` and the build artefacts.
+
+The `data/` directory contains small example files and `src/geodata` ships
+reference GeoCSV files that install automatically.
+
+## Documentation
+
+Run the helper script to generate API docs and serve them locally via MkDocs:
+
+```bash
+python generate_api_docs.py
+mkdocs serve -f docs/mkdocs.yml
+```
+
+## Running tests
+
+```bash
+pytest -v
+```
+
+## Signal and Data Flow
+
+Geo-Importer’s UI wiring is centralized in `MainWindow._wire_signals()` (see [`src/main.py`](src/main.py)). Each wizard step (a Qt window) emits a
+custom signal when its task completes, and `MainWindow` listens for that signal to advance the workflow or hand off data.
+
+### Signal Connections in `MainWindow._wire_signals()`
+
+```python
+# src/main.py, MainWindow._wire_signals()
+
+# Navigation buttons and info
+self.btn_back.clicked.connect(lambda: self._shift(-1))
+self.btn_next.clicked.connect(lambda: self._shift(+1))
+self.btn_info.clicked.connect(self._on_info_clicked)
+
+# Wizard-step signals
+self.pg_upload.uploadFinished.connect(self._on_uploaded)
+self.pg_pdf.extractionReady.connect(self._on_pdf_ready)
+self.pg_sheet.selectionReady.connect(self._on_sheet_ready)
+self.pg_prep.prepReady.connect(self._on_prep_ready)
+self.pg_filter.filterReady.connect(self._on_filter_ready)
+self.pg_geo.filterReady.connect(self._on_geo_ready)
+self.pg_mapping.mappingDone.connect(self._on_mapping_done)
+self.pg_manual.manualMappingDone.connect(self._on_manual_ready)
+self.pg_export.exportFinished.connect(lambda _: self._steps_done.update({Step.EXPORT: True}))
+```
+
+### Where Signals Are Defined
+
+Each window class declares its “ready” signal:
+
+```python
+# src/views/dataprep/dataprep_window.py
+
+class CleanDataView(QMainWindow, Ui_DataPrepWindow):
+    """Cleans tabular data before mapping."""
+    prepReady = Signal(pd.DataFrame)  # emitted when user confirms prep is done
+    ...
+```
+
+Other windows follow the same pattern:
+
+| Window                  | Signal                         | Payload / Purpose                                             |
+|-------------------------|--------------------------------|---------------------------------------------------------------|
+| **FileLoadView**        | `uploadFinished(str)`          | File path once upload completes                               |
+| **PdfAreaView**         | `extractionReady(dict)`        | `{ "df": DataFrame }` extracted from selected PDF area        |
+| **SheetSelectView**     | `selectionReady(dict)`         | `{ "df": DataFrame }` chosen sheet                            |
+| **CleanDataView**       | `prepReady(DataFrame)`         | Cleaned DataFrame                                             |
+| **ColumnFilterView**    | `filterReady(dict)`            | `{ "df_filtered": DataFrame, "selected_columns": List[str] }` |
+| **GeoFilterView**       | `filterReady(dict)`            | Same as ColumnFilterView plus geo-metadata                    |
+| **AutoMapView**         | `mappingDone(DataFrame)`       | DataFrame of automatically matched rows                       |
+| **ManualMapView**       | `manualMappingDone(DataFrame)` | DataFrame after manual corrections                            |
+| **MapPreviewView**      | `renderingFinished()`          | No payload; fires once Folium map is fully rendered           |
+| **ExportView**          | `exportFinished(str)`          | Path to the generated ZIP archive                             |
+
+### Emitting a Signal
+
+Here’s how `CleanDataView` emits its signal once the user clicks “Next” (or when the window closes):
+
+```python
+# src/views/dataprep/dataprep_window.py
+
+def emit_data(self) -> None:
+    """Convert table widget contents to DataFrame and emit prepReady."""
+    df = self._logic.convert_table_to_dataframe(
+        get_table_data(self.tableWidget),
+        self.tableWidget.columnCount()
+    )
+    self.prepReady.emit(df)
+
+
+# Called automatically before closing:
+def closeEvent(self, event) -> None:
+    self.emit_data()
+    super().closeEvent(event)
+```
+
+### High-Level Workflow
+
+1. **Upload**
+
+    * `FileLoadView` → `uploadFinished(path)` → `MainWindow._on_uploaded`
+    * Decides next steps, stores path in `DataStore`.
+
+2. **Extraction / Sheet Selection**
+
+    * **PDF**: `PdfAreaView` → `extractionReady({"df": ...})` → `_on_pdf_ready`
+    * **Excel**: `SheetSelectView` → `selectionReady({"df": ...})` → `_on_sheet_ready`
+    * Both handlers call `CleanDataView.load_dataframe(df)`.
+
+3. **Data Preparation**
+
+    * User edits table → window emits `prepReady(df)` → `_on_prep_ready`
+    * Handler passes the cleaned DataFrame to `ColumnFilterView`.
+
+4. **Filtering**
+
+    * `ColumnFilterView` → `filterReady({...})` → `_on_filter_ready`
+    * Stores filtered DataFrame & selected columns in `DataStore`.
+
+5. **Geo-Filtering**
+
+    * `GeoFilterView` → `filterReady({...})` → `_on_geo_ready`
+    * Initializes `AutoMapView` with user and geo DataFrames.
+
+6. **Automatic Mapping**
+
+    * `AutoMapView` → `mappingDone(df)` → `_on_mapping_done`
+    * Stores results in `DataStore`.
+
+7. **Manual Mapping**
+
+    * `ManualMapView` → `manualMappingDone(df)` → `_on_manual_ready`.
+
+8. **Preview**
+
+    * `MapPreviewView` → `renderingFinished()` → transitions to Preview.
+
+9. **Export**
+
+    * `ExportView` → `exportFinished(path)` → marks export complete.
+
+Throughout, a **quasi-singleton** [`DataStore`](src/core/data_store.py) holds all intermediate DataFrames so that views remain decoupled and no large
+objects are passed directly between windows.
+
+## License
+
+Geo‑Importer is distributed under the terms of the MIT license. See
+[LICENSE](LICENSE) for details.
