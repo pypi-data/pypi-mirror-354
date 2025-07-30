@@ -1,0 +1,76 @@
+default:
+  before_script:
+    - python -m venv venv
+    - source venv/bin/activate
+  cache:
+    paths:
+      - .cache/pip
+  image: python:3.13
+
+stages:
+  - lint
+  - test
+  - coverage
+
+variables:
+  PIP_CACHE_DIR: "${CI_PROJECT_DIR}/.cache/pip"
+
+.test:
+  stage: test
+  before_script:
+    - python -m venv venv
+    - source venv/bin/activate
+    - pip install tox
+  artifacts:
+    paths:
+      - .coverage*
+    expire_in: 1 hour
+
+test-py39:
+  extends: .test
+  image: python:3.9
+  script:
+    - tox -e python3.9
+
+test-py310:
+  extends: .test
+  image: python:3.10
+  script:
+    - tox -e python3.10
+
+test-py311:
+  extends: .test
+  image: python:3.11
+  script:
+    - tox -e python3.11
+
+test-py312:
+  extends: .test
+  image: python:3.12
+  script:
+    - tox -e python3.12
+
+test-py313:
+  extends: .test
+  image: python:3.13
+  script:
+    - tox -e python3.13
+
+coverage:
+  stage: coverage
+  script:
+    - pip install coverage
+    - python -m coverage combine
+    - python -m coverage html
+    - python -m coverage report
+  coverage: '/TOTAL.*\s+(\d+%)$/'
+  artifacts:
+    paths:
+      - htmlcov
+    expire_in: 1 week
+
+lint:
+  stage: lint
+  script:
+    - pip install ruff
+    - make lint
