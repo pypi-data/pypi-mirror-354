@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: shader-workshop
+Version: 0.1.0
+Summary: A local shader development environment
+Author-email: bµg <u@pkh.me>
+Project-URL: Repository, https://github.com/ubitux/ShaderWorkshop
+Project-URL: Issues, https://github.com/ubitux/ShaderWorkshop/issues
+Project-URL: Changelog, https://github.com/ubitux/ShaderWorkshop/blob/main/CHANGELOG.md
+Keywords: shaders,glsl,webgl
+Requires-Python: >=3.11
+License-File: LICENSE
+Requires-Dist: watchdog
+Requires-Dist: aiohttp
+Requires-Dist: asyncio
+Dynamic: license-file
