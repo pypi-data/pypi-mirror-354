@@ -1,0 +1,34 @@
+conf:
+  uvicorn:
+    host: "0.0.0.0"
+    port: 8000
+
+  api:
+    id: 23598539
+    hash: "6d9d7305ffc6f148dab120d24541b127"
+
+  clients:
+    bots: "/etc/tgdb/clients/bots.txt"
+    userbots: "/etc/tgdb/clients/userbots.txt"
+
+  horizon:
+    max_len: 3_000
+    transaction:
+      max_age_seconds: 30
+
+  message_cache:
+    max_len: 1_000_000
+
+  heap:
+    chat: -1005000124280
+    page:
+      max_fullness: 0.8
+
+  relations:
+    chat: -1005000098156
+
+  buffer:
+    chat: -1005000896039
+    overflow:
+      len: 5000
+      timeout_seconds: 0.1
