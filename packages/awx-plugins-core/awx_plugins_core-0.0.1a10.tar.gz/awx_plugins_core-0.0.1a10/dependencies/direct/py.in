@@ -1,0 +1,14 @@
+-c py-constraints.in  # limits known broken versions
+
+covdefaults
+coverage  # accessed directly from tox
+coverage-enable-subprocess
+cryptography  # used by `tests/github_app_test.py`
+hypothesis
+Jinja2
+PyJWT  # used by `tests/github_app_test.py`
+pytest
+pytest-cov
+pytest-mock
+pytest-subtests  # allows marking bits of test functions as subtests
+pytest-xdist

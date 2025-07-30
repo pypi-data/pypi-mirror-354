@@ -1,0 +1,245 @@
+[build-system]
+requires = [
+  # Essentials:
+  "setuptools >= 64",
+
+  # Plugins:
+  "setuptools-scm >= 8",
+]
+build-backend = "setuptools.build_meta"  # must be set always
+
+[project]
+name = "awx-plugins-core"  # import awx_plugins.credentials.x, awx_plugins.credentials.y
+# name = "awx_plugins.credentials.x"  # import awx_plugins.credentials.x
+# name = "awx_plugins.credentials.y"  # import awx_plugins.credentials.y
+# version =  # should remain unset when `setuptools-scm` is handling it
+description = "A temporary home for the essential AWX plugins"
+dependencies = [  # runtime deps  # https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#dependencies-optional-dependencies
+  # GUIDANCE: only add things that this project imports directly
+  # GUIDANCE: only set lower version bounds
+  # "awx_plugins.base_interface.api",  # keep `__init__.py` empty
+]
+classifiers = [  # Allowlist: https://pypi.org/classifiers/
+  "Development Status :: 1 - Planning",
+
+  "Environment :: Web Environment",
+
+  "Framework :: Ansible",
+
+  "Intended Audience :: System Administrators",
+
+  "License :: OSI Approved :: Apache Software License",
+
+  "Operating System :: POSIX :: Linux",
+
+  "Programming Language :: Python :: 3",
+  # It's usually a good idea to list runtimes present in CI:
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+
+  "Topic :: System :: Systems Administration",
+
+  "Typing :: Typed",
+]
+dynamic = [
+  "version",  # let `setuptools-scm` populate this
+]
+keywords = [
+  "Ansible",
+  "AWX",
+]
+requires-python = ">= 3.11"  # must be set from the very first release
+
+[[project.authors]]
+name = "Ansible maintainers and contributors"
+
+# Example entry point declarations:
+# * https://github.com/ansible/awx/blob/cb2ad41/setup.cfg#L16-L25
+# * https://github.com/pytest-dev/pytest-xdist/blob/649cca5/pyproject.toml#L48-L50
+# * https://github.com/ansible-community/ansible-pygments/blob/2ffb109/pyproject.toml#L29-L35
+# * https://github.com/ansible-community/sphinx_ansible_theme/blob/645f414/pyproject.toml#L53-L54
+# awx calls `importlib.metadata.entry_points(group='awx_plugins.credentials')` to discover and later enable any plugins present in the same env
+# TODO: consider using https://pluggy.rtfd.io
+#
+# PLUGIN ACTIVATION GUIDANCE (UX):
+# `pip install awx_plugins.credentials.x`  would auto-activate any plugins the packaged project ships
+[project.entry-points."awx_plugins.credentials"]  # new entry points group name
+conjur = "awx_plugins.credentials.conjur:conjur_plugin"
+hashivault_kv = "awx_plugins.credentials.hashivault:hashivault_kv_plugin"
+hashivault_ssh = "awx_plugins.credentials.hashivault:hashivault_ssh_plugin"
+azure_kv = "awx_plugins.credentials.azure_kv:azure_keyvault_plugin"
+aim = "awx_plugins.credentials.aim:aim_plugin"
+centrify_vault_kv = "awx_plugins.credentials.centrify_vault:centrify_plugin"
+thycotic_dsv = "awx_plugins.credentials.dsv:dsv_plugin"
+thycotic_tss = "awx_plugins.credentials.tss:tss_plugin"
+aws_secretsmanager_credential = "awx_plugins.credentials.aws_secretsmanager:aws_secretmanager_plugin"
+github_app_lookup = "awx_plugins.credentials.github_app:github_app_lookup"
+
+[project.entry-points."awx_plugins.managed_credentials"] # new entry points group name
+ssh = "awx_plugins.credentials.plugins:ssh"
+scm = "awx_plugins.credentials.plugins:scm"
+vault = "awx_plugins.credentials.plugins:vault"
+controller = "awx_plugins.credentials.plugins:controller"
+kubernetes_bearer_token = "awx_plugins.credentials.plugins:kubernetes_bearer_token"
+registry = "awx_plugins.credentials.plugins:registry"
+galaxy_api_token = "awx_plugins.credentials.plugins:galaxy_api_token"
+net = "awx_plugins.credentials.plugins:net"
+
+[project.entry-points."awx_plugins.managed_credentials.supported"]  # new entry points group name
+aws = "awx_plugins.credentials.plugins:aws"
+openstack = "awx_plugins.credentials.plugins:openstack"
+vmware = "awx_plugins.credentials.plugins:vmware"
+satellite6 = "awx_plugins.credentials.plugins:satellite6"
+bitbucket_dc_token = "awx_plugins.credentials.plugins:bitbucket_dc_token"
+gce = "awx_plugins.credentials.plugins:gce"
+azure_rm = "awx_plugins.credentials.plugins:azure_rm"
+github_token = "awx_plugins.credentials.plugins:github_token"
+gitlab_token = "awx_plugins.credentials.plugins:gitlab_token"
+insights = "awx_plugins.credentials.plugins:insights"
+rhv = "awx_plugins.credentials.plugins:rhv"
+gpg_public_key = "awx_plugins.credentials.plugins:gpg_public_key"
+terraform = "awx_plugins.credentials.plugins:terraform"
+
+[project.entry-points."awx_plugins.inventory"]  # new entry points group name
+azure_rm = "awx_plugins.inventory.plugins:azure_rm"
+ec2 = "awx_plugins.inventory.plugins:ec2"
+gce = "awx_plugins.inventory.plugins:gce"
+vmware = "awx_plugins.inventory.plugins:vmware"
+openstack = "awx_plugins.inventory.plugins:openstack"
+rhv = "awx_plugins.inventory.plugins:rhv"
+satellite6 = "awx_plugins.inventory.plugins:satellite6"
+terraform = "awx_plugins.inventory.plugins:terraform"
+controller = "awx_plugins.inventory.plugins:controller"
+insights = "awx_plugins.inventory.plugins:insights"
+openshift_virtualization = "awx_plugins.inventory.plugins:openshift_virtualization"
+constructed = "awx_plugins.inventory.plugins:constructed"
+
+[project.entry-points."awx_plugins.inventory.supported"]  # plugins that awx will skip activating automatically
+rhv = "awx_plugins.inventory.plugins:rhv_supported"
+satellite6 = "awx_plugins.inventory.plugins:satellite6_supported"
+controller = "awx_plugins.inventory.plugins:controller_supported"
+insights = "awx_plugins.inventory.plugins:insights_supported"
+openshift_virtualization = "awx_plugins.inventory.plugins:openshift_virtualization_supported"
+
+[project.license]
+file = "LICENSE"
+
+# [[project.maintainers]]  # if differs from authors
+# name = ""
+# email = "@"
+
+[project.optional-dependencies]
+# These are additional runtime dependencies used as feature-flags.
+# The end-users will be able to reference them in their
+# dependencies. Do not abuse as "test" / "dev" deps.
+# Treat as public API.
+credentials-conjur = [
+  "awx_plugins.interfaces",
+  "requests",
+]
+credentials-hashivault-kv = [
+  "awx_plugins.interfaces",
+  "requests",
+]
+credentials-hashivault-ssh = [
+  "awx_plugins.interfaces",
+  "requests",
+]
+credentials-azure-kv = [
+  "awx_plugins.interfaces",
+  "azure-identity",
+  "azure-keyvault",
+  "msrestazure",
+]
+credentials-github-app = [
+  "awx_plugins.interfaces",
+  "PyGithub",
+]
+credentials-aim = [
+  "awx_plugins.interfaces",
+  "requests",
+]
+credentials-centrify-vault-kv = [
+  "awx_plugins.interfaces",
+  "requests",
+]
+credentials-thycotic-dsv = [
+  "awx_plugins.interfaces",
+  "python-dsv-sdk >= 1.0.4",
+]
+credentials-thycotic-tss = [
+  "awx_plugins.interfaces",
+  "python-tss-sdk >= 1.2.1",
+]
+credentials-aws-secretsmanager-credential = [
+  "awx_plugins.interfaces",
+  "boto3",
+]
+inventory-azure-rm = [
+  "awx_plugins.interfaces",
+  "PyYAML",
+]
+inventory-ec2 = [
+  "awx_plugins.interfaces",
+  "PyYAML",
+]
+inventory-gce = [
+  "awx_plugins.interfaces",
+  "PyYAML",
+]
+inventory-vmware = [
+  "awx_plugins.interfaces",
+  "PyYAML",
+]
+inventory-openstack = [
+  "awx_plugins.interfaces",
+  "PyYAML",
+]
+inventory-rhv = [
+  "awx_plugins.interfaces",
+  "PyYAML",
+]
+inventory-satellite6 = [
+  "awx_plugins.interfaces",
+  "PyYAML",
+]
+inventory-terraform = [
+  "awx_plugins.interfaces",
+  "PyYAML",
+]
+inventory-controller = [
+  "awx_plugins.interfaces",
+  "PyYAML",
+]
+inventory-insights = [
+  "awx_plugins.interfaces",
+  "PyYAML",
+]
+inventory-openshift-virtualization = [
+  "awx_plugins.interfaces",
+  "PyYAML",
+]
+inventory-constructed = [
+  "awx_plugins.interfaces",
+  "PyYAML",
+]
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+# [project.scripts]
+# # These are entry-point executables for interfacing via CLI:
+# executable = "packaged.importable:callable"
+
+[project.urls]
+Homepage = "https://docs.ansible.com"
+"Chat: Discuss Forum" = "https://forum.ansible.com"
+"Chat: Matrix" = "https://matrix.to/#/#awx:ansible.com"
+"CI: GitHub" = "https://github.com/ansible/awx-plugins/actions/workflows/ci-cd.yml"
+"Docs: RTD" = "https://awx-plugins-core.rtfd.io"
+"GitHub: issues" = "https://github.com/ansible/awx-plugins/issues"
+"GitHub: repo" = "https://github.com/ansible/awx-plugins"
+
+[tool.setuptools_scm]  # this section presence is a feature-flag to activate `setuptools-scm`
