@@ -1,0 +1,67 @@
+Metadata-Version: 2.4
+Name: alumathpeer11
+Version: 1.0.0
+Summary: Pure Python matrix operations library without external dependencies
+Home-page: https://github.com/Mugisha-isaac/ALU_Formatie_2
+Author: alumathpeer11 Team
+Author-email: i.mugisha@alustudent.com
+Keywords: matrix,multiplication,linear algebra,mathematics
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+# alumathpeer11
+
+Pure Python matrix operations library without external dependencies.
+
+## Features
+
+- Matrix multiplication for different dimensions
+- Efficient loop-based implementation
+- No external dependencies
+- Simple and intuitive API
+
+## Installation
+
+````bash
+pip install alumathpeer11
+
+from alumathpeer11 import Matrix, create_matrix
+
+# Create matrices
+m1 = create_matrix([[1, 2], [3, 4]])
+m2 = create_matrix([[5, 6], [7, 8]])
+
+# Matrix multiplication
+result = m1 * m2
+print(result)
+## Step 2: Publishing to PyPI
+
+### Prerequisites:
+1. **Install required tools:**
+   ```bash
+   pip install setuptools wheel twine
+
+   cd alumathpeer11
+python setup.py sdist bdist_wheel
+````
