@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: azul_game_engine
+Version: 1.0.0
+Summary: Game engine for enabling Azul game being used by API and AI agents
+Author-email: Evaldas Visockas <developersediary@gmail.com>
+License: GPL-3.0-or-later
+Project-URL: Repository, https://github.com/AzulImplementation/AzulGameEngine
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3.4; extra == "dev"
+Requires-Dist: pytest-cov>=6.1.1; extra == "dev"
+Dynamic: license-file
+
+# Azul game engine
+
+Disclaimer: I am not the creator of this game, creator is Michael Kiesling.
+I am writing this game as a lib to enable AI training, API etc. on this good game.
+
+Original game: [https://en.wikipedia.org/wiki/Azul_(board_game)](Azul).
+
+[![codecov](https://codecov.io/gh/AzulImplementation/AzulGameEngine/branch/main/graph/badge.svg)](https://codecov.io/gh/AzulImplementation/AzulGameEngine)
