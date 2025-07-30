@@ -1,0 +1,31 @@
+[tool.coverage.run]
+branch = true
+source = [ "dcel" ]
+
+[tool.coverage.report]
+exclude_lines = [ "if TYPE_CHECKING:" ]
+show_missing = true
+
+[tool.pytest.ini_options]
+addopts = ""
+
+[tool.poetry]
+name = "pydcel"
+version = "1.0.2"
+description = "A Python implementation of the Doubly-Connected Edge List (DCEL) data structure."
+authors = [ "Hamdaan Ali" ]
+license = "BSD 3-Clause License"
+readme = "README.md"
+
+  [[tool.poetry.packages]]
+  include = "dcel"
+
+  [tool.poetry.dependencies]
+  python = ">=3.9,<3.12"
+
+[tool.poetry.group.dev]
+dependencies = { }
+
+[build-system]
+requires = [ "poetry-core" ]
+build-backend = "poetry.core.masonry.api"
