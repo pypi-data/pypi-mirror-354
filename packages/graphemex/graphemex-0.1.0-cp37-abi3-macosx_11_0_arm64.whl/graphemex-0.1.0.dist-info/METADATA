@@ -1,0 +1,136 @@
+Metadata-Version: 2.4
+Name: graphemex
+Version: 0.1.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Rust
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+License-File: LICENSE
+Summary: Fast Unicode grapheme cluster segmentation with Rust + PyO3
+Keywords: unicode,grapheme,segmentation,rust,pyo3
+Author: Alexandr Sukhryn alexandrvirtual@gmail.com
+Author-email: Alexandr Sukhryn <alexandrvirtual@gmail.com>
+License: MIT
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+
+# grapheme_rs
+
+Fast Unicode grapheme cluster segmentation library written in Rust using PyO3.
+
+## About
+
+`graphemex` is a high-performance Python library for Unicode grapheme cluster handling, powered by Rust. It provides correct and efficient text segmentation according to Unicode standards, which is essential for proper text processing in many applications.
+
+## Key Benefits
+
+- 🚀 **High Performance**: Implemented in Rust for maximum speed
+- 🌍 **Unicode Correctness**: Properly handles all Unicode grapheme clusters
+- 🔧 **Simple API**: Just 4 intuitive functions for common text operations
+- 💻 **Cross-Platform**: Works on all major operating systems
+- 🐍 **Python Friendly**: Seamless Python integration via PyO3
+- 🛠 **Zero Dependencies**: Only requires Python standard library at runtime
+
+## Features
+
+- `split(text: str) -> List[str]`: Splits text into grapheme clusters
+- `len(text: str) -> int`: Returns the number of grapheme clusters in the string
+- `slice(text: str, start: int, end: int) -> str`: Extracts a substring by grapheme cluster indices
+- `truncate(text: str, max_len: int) -> str`: Truncates string to maximum number of grapheme clusters
+
+## Installation
+
+## Use Cases
+
+- Text editors and IDEs
+- Input validation and processing
+- Social media character counting
+- Text truncation for UI elements
+- Natural language processing
+- Data cleaning and normalization
+
+## Performance
+
+`grapheme_rs` is significantly faster than pure Python implementations:
+- Up to 100x faster for grapheme splitting
+- Minimal memory overhead
+- Efficient handling of large texts
+
+## Requirements
+
+- Python ≥3.7
+- No additional runtime dependencies
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Author
+
+Alexandr Sukhryn (alexandrvirtual@gmail.com)
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_split_basic() {
+        let text = "Hello";
+        assert_eq!(split(text), vec!["H", "e", "l", "l", "o"]);
+    }
+
+    #[test]
+    fn test_split_emoji() {
+        let text = "👨‍👩‍👧‍👦👋";
+        assert_eq!(split(text), vec!["👨‍👩‍👧‍👦", "👋"]);
+    }
+
+    #[test]
+    fn test_len_basic() {
+        assert_eq!(len("Hello"), 5);
+        assert_eq!(len(""), 0);
+    }
+
+    #[test]
+    fn test_len_complex() {
+        assert_eq!(len("👨‍👩‍👧‍👦 Hello 🌍!"), 10);
+    }
+
+    #[test]
+    fn test_slice_basic() {
+        let text = "Hello";
+        assert_eq!(slice(text, 0, 2).unwrap(), "He");
+        assert_eq!(slice(text, 1, 4).unwrap(), "ell");
+    }
+
+    #[test]
+    fn test_slice_emoji() {
+        let text = "👨‍👩‍👧‍👦 Hello 🌍!";
+        assert_eq!(slice(text, 0, 1).unwrap(), "👨‍👩‍👧‍👦");
+        assert_eq!(slice(text, 8, 9).unwrap(), "🌍");
+    }
+
+    #[test]
+    fn test_slice_invalid() {
+        let text = "Hello";
+        assert!(slice(text, 3, 2).is_err()); // start > end
+        assert!(slice(text, 0, 6).is_err()); // end > len
+    }
+
+    #[test]
+    fn test_truncate_basic() {
+        assert_eq!(truncate("Hello", 3), "Hel");
+        assert_eq!(truncate("Hello", 5), "Hello");
+        assert_eq!(truncate("Hello", 10), "Hello");
+    }
+
+    #[test]
+    fn test_truncate_emoji() {
+        assert_eq!(truncate("👨‍👩‍👧‍👦 Hello", 1), "👨‍👩‍👧‍👦");
+        assert_eq!(truncate("👨‍👩‍👧‍👦 Hello", 2), "👨‍👩‍👧‍👦 ");
+    }
+}
