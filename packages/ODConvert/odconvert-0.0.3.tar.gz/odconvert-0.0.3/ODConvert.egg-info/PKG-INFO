@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: ODConvert
+Version: 0.0.3
+Summary: A simplistic CLI for converting between object detection dataset formats
+Author-email: Jack Devey <jack.devey@bcu.ac.uk>
+License-File: LICENSE.txt
+Requires-Dist: fire==0.7.0
+Requires-Dist: rich==14.0.0
+Dynamic: license-file
