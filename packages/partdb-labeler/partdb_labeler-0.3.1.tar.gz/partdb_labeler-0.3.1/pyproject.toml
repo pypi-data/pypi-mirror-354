@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "partdb_labeler"
+version = "0.3.1"
+authors = [
+    {name = "Scott Alfter", email = "scott@alfter.us"},
+]
+description = "PartDB Labeler"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+        "requests", 
+        "zebra", 
+        "qrcode", 
+        "pillow"
+]
+
+[project.scripts]
+partdb_labeler = "partdb_labeler.partdb_labeler:cli"
