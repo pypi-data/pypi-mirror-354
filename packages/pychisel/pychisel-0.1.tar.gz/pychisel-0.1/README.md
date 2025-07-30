@@ -1,0 +1,107 @@
+# PyChisel
+
+PyChisel is a Python package that provides automated tools for quick preparation of Pandas DataFrames. It simplifies the process of data normalization by splitting columns into reference tables, which is a common technique in data preparation and database design.
+
+## Installation
+
+You can install PyChisel using pip:
+
+```bash
+pip install pychisel
+```
+
+### Requirements
+
+- Python 3.11 or higher
+- pandas 2.0.0 or higher
+
+## Features
+
+- **Column Splitting**: Split columns in a DataFrame into reference tables, replacing original values with IDs
+- **Customizable Configuration**: Control how reference tables and ID columns are named
+- **Inplace Operations**: Choose whether to modify the original DataFrame or create a copy
+
+## Usage
+
+### Basic Usage
+
+```python
+import pandas as pd
+from pychisel.core import Splitter
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'city': ['New York', 'Los Angeles', 'Chicago', 'New York', 'Los Angeles'],
+    'department': ['Sales', 'Marketing', 'Sales', 'IT', 'Sales'],
+    'employee_count': [10, 15, 8, 12, 20]
+})
+
+# Initialize the Splitter
+splitter = Splitter()
+
+# Split the 'city' and 'department' columns
+splitted_df, ref_tables = splitter.split(df, columns=['city', 'department'])
+
+# The original DataFrame now has ID columns instead of the original values
+print(splitted_df)
+
+# Reference tables contain the mapping between IDs and original values
+print(ref_tables['ref_city'])
+print(ref_tables['ref_department'])
+```
+
+### Using the Convenience Function
+
+```python
+import pandas as pd
+from pychisel.core import split
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'city': ['New York', 'Los Angeles', 'Chicago', 'New York', 'Los Angeles'],
+    'department': ['Sales', 'Marketing', 'Sales', 'IT', 'Sales'],
+    'employee_count': [10, 15, 8, 12, 20]
+})
+
+# Split the 'city' and 'department' columns using the convenience function
+splitted_df, ref_tables = split(df, columns=['city', 'department'])
+```
+
+### Advanced Configuration
+
+```python
+import pandas as pd
+from pychisel.core import Splitter
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'city': ['New York', 'Los Angeles', 'Chicago', 'New York', 'Los Angeles'],
+    'department': ['Sales', 'Marketing', 'Sales', 'IT', 'Sales'],
+    'employee_count': [10, 15, 8, 12, 20]
+})
+
+# Initialize the Splitter with custom configuration
+splitter = Splitter(
+    drop_original=False,  # Keep the original columns
+    ref_prefix='dim_',    # Use 'dim_' as prefix for reference tables
+    id_suffix='_key'      # Use '_key' as suffix for ID columns
+)
+
+# Split the 'city' and 'department' columns
+splitted_df, ref_tables = splitter.split(df, columns=['city', 'department'])
+
+# The DataFrame now has both original columns and ID columns
+print(splitted_df)
+
+# Reference tables are named with the custom prefix
+print(ref_tables['dim_city'])
+print(ref_tables['dim_department'])
+```
+
+## License
+
+This project is licensed under the MIT License.
+
+## Author
+
+Anderson Alves Monteiro - [GitHub](https://www.github.com/tekoryu)
