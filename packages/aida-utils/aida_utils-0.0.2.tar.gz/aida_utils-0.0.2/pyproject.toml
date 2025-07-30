@@ -1,0 +1,18 @@
+[project]
+name = "aida-utils"
+version = "0.0.2"
+description = "Random utils used at aida-lab"
+authors = [
+    {name = "Jan Aerts", email = "jan.aerts@kuleuven.be"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=2.3.0",
+    "scipy>=1.15.3",
+]
+
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"

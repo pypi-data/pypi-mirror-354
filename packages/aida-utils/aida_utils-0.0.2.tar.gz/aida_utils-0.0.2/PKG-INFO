@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: aida-utils
+Version: 0.0.2
+Summary: Random utils used at aida-lab
+Author-email: Jan Aerts <jan.aerts@kuleuven.be>
+License: MIT
+Requires-Python: >=3.11
+Requires-Dist: numpy>=2.3.0
+Requires-Dist: scipy>=1.15.3
+Description-Content-Type: text/markdown
+
+= AIDA utils
+Functions often used at the AIDA-lab http://aida-lab.be
