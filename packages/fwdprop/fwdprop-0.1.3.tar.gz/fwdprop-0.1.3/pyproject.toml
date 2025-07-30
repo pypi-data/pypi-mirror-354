@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fwdprop"
+version = "0.1.3"
+description = "A forward propagation simulator for 3-input networks"
+readme = "README.md"
+requires-python = ">=3.6"
+license = {text = "MIT"}
+authors = [{name = "GokulanandM", email = "gokulkvmhs2020@gmail.com"}]
+dependencies = ["numpy"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
