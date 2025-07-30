@@ -1,0 +1,28 @@
+Metadata-Version: 2.4
+Name: curing
+Version: 1.3.5
+Summary: Data Quality tool
+Author: shubham choubey
+Author-email: choubeys331@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.6
+Requires-Dist: sqlalchemy
+Requires-Dist: boto3
+Requires-Dist: python-dotenv
+Requires-Dist: pyyaml
+Requires-Dist: psycopg2
+Requires-Dist: redshift-connector
+Requires-Dist: sqlalchemy-redshift
+Requires-Dist: apscheduler
+Requires-Dist: croniter
+Requires-Dist: jinja2
+Requires-Dist: tabulate
+Requires-Dist: simpleeval
+Requires-Dist: spacy
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
