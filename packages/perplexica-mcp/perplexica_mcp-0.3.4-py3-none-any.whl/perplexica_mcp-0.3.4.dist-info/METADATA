@@ -1,0 +1,464 @@
+Metadata-Version: 2.4
+Name: perplexica-mcp
+Version: 0.3.4
+Summary: A Model Context Protocol (MCP) server that provides search functionality using Perplexica's AI-powered search engine
+Project-URL: Homepage, https://github.com/thetom42/perplexica-mcp
+Project-URL: Repository, https://github.com/thetom42/perplexica-mcp
+Project-URL: Issues, https://github.com/thetom42/perplexica-mcp/issues
+Project-URL: Documentation, https://github.com/thetom42/perplexica-mcp#readme
+Author-email: thetom42 <thetom42@gmail.com>
+Maintainer-email: thetom42 <thetom42@gmail.com>
+License-Expression: MIT
+License-File: LICENSE
+Keywords: ai,llm,mcp,model-context-protocol,perplexica,search
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Internet :: WWW/HTTP :: Indexing/Search
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.12
+Requires-Dist: httpx
+Requires-Dist: mcp[cli]
+Requires-Dist: python-dotenv
+Requires-Dist: uvicorn
+Provides-Extra: dev
+Requires-Dist: black; extra == 'dev'
+Requires-Dist: isort; extra == 'dev'
+Requires-Dist: mypy; extra == 'dev'
+Requires-Dist: pytest; extra == 'dev'
+Requires-Dist: pytest-asyncio; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# Perplexica MCP Server
+
+A Model Context Protocol (MCP) server that provides search functionality using Perplexica's AI-powered search engine.
+
+## Features
+
+- **Search Tool**: AI-powered web search with multiple focus modes
+- **Multiple Transport Support**: stdio, SSE, and Streamable HTTP transports
+- **FastMCP Integration**: Built using FastMCP for robust MCP protocol compliance
+- **Unified Architecture**: Single server implementation supporting all transport modes
+- **Production Ready**: Docker support with security best practices
+
+## Installation
+
+### From PyPI (Recommended)
+
+```bash
+# Install directly from PyPI
+pip install perplexica-mcp
+
+# Or using uvx for isolated execution
+uvx perplexica-mcp --help
+```
+
+### From Source
+
+```bash
+# Clone the repository
+git clone https://github.com/thetom42/perplexica-mcp.git
+cd perplexica-mcp
+
+# Install dependencies
+uv sync
+```
+
+## MCP Client Configuration
+
+To use this server with MCP clients, you need to configure the client to connect to the Perplexica MCP server. Below are configuration examples for popular MCP clients.
+
+### Claude Desktop
+
+#### Stdio Transport (Recommended)
+
+Add the following to your Claude Desktop configuration file:
+
+**Location**: `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `%APPDATA%\Claude\claude_desktop_config.json` (Windows)
+
+```json
+{
+  "mcpServers": {
+    "perplexica": {
+      "command": "uvx",
+      "args": ["perplexica-mcp", "stdio"],
+      "env": {
+        "PERPLEXICA_BACKEND_URL": "http://localhost:3000/api/search"
+      }
+    }
+  }
+}
+```
+
+**Alternative (from source):**
+```json
+{
+  "mcpServers": {
+    "perplexica": {
+      "command": "uv",
+      "args": ["run", "/path/to/perplexica-mcp/src/perplexica_mcp.py", "stdio"],
+      "env": {
+        "PERPLEXICA_BACKEND_URL": "http://localhost:3000/api/search"
+      }
+    }
+  }
+}
+```
+
+#### SSE Transport
+
+For SSE transport, first start the server:
+
+```bash
+uv run src/perplexica_mcp.py sse
+```
+
+Then configure Claude Desktop:
+
+```json
+{
+  "mcpServers": {
+    "perplexica": {
+      "url": "http://localhost:3001/sse"
+    }
+  }
+}
+```
+
+### Cursor IDE
+
+Add to your Cursor MCP configuration:
+
+```json
+{
+  "servers": {
+    "perplexica": {
+      "command": "uvx",
+      "args": ["perplexica-mcp", "stdio"],
+      "env": {
+        "PERPLEXICA_BACKEND_URL": "http://localhost:3000/api/search"
+      }
+    }
+  }
+}
+```
+
+**Alternative (from source):**
+```json
+{
+  "servers": {
+    "perplexica": {
+      "command": "uv",
+      "args": ["run", "/path/to/perplexica-mcp/src/perplexica_mcp.py", "stdio"],
+      "env": {
+        "PERPLEXICA_BACKEND_URL": "http://localhost:3000/api/search"
+      }
+    }
+  }
+}
+```
+
+### Generic MCP Client Configuration
+
+For any MCP client supporting stdio transport:
+
+```bash
+# Command to run the server (PyPI installation)
+uvx perplexica-mcp stdio
+
+# Command to run the server (from source)
+uv run /path/to/perplexica-mcp/src/perplexica_mcp.py stdio
+
+# Environment variables
+PERPLEXICA_BACKEND_URL=http://localhost:3000/api/search
+```
+
+For HTTP/SSE transport clients:
+
+```bash
+# Start the server (PyPI installation)
+uvx perplexica-mcp sse  # or 'http'
+
+# Start the server (from source)
+uv run /path/to/perplexica-mcp/src/perplexica_mcp.py sse  # or 'http'
+
+# Connect to endpoints
+SSE: http://localhost:3001/sse
+HTTP: http://localhost:3002/mcp/
+```
+
+### Configuration Notes
+
+1. **Path Configuration**: Replace `/path/to/perplexica-mcp/` with the actual path to your installation
+2. **Perplexica URL**: Ensure `PERPLEXICA_BACKEND_URL` points to your running Perplexica instance
+3. **Transport Selection**:
+   - Use **stdio** for most MCP clients (Claude Desktop, Cursor)
+   - Use **SSE** for web-based clients or real-time applications
+   - Use **HTTP** for REST API integrations
+4. **Dependencies**: Ensure `uvx` is installed and available in your PATH (or `uv` for source installations)
+
+### Troubleshooting
+
+- **Server not starting**: Check that `uvx` (or `uv` for source) is installed and the path is correct
+- **Connection refused**: Verify Perplexica is running and accessible at the configured URL
+- **Permission errors**: Ensure the MCP client has permission to execute the server command
+- **Environment variables**: Check that `PERPLEXICA_BACKEND_URL` is properly set
+
+## Server Configuration
+
+Create a `.env` file in the project root with your Perplexica configuration:
+
+```env
+PERPLEXICA_BACKEND_URL=http://localhost:3000/api/search
+```
+
+## Usage
+
+The server supports three transport modes:
+
+### 1. Stdio Transport
+
+```bash
+# PyPI installation
+uvx perplexica-mcp stdio
+
+# From source
+uv run src/perplexica_mcp.py stdio
+```
+
+### 2. SSE Transport
+
+```bash
+# PyPI installation
+uvx perplexica-mcp sse [host] [port]
+
+# From source
+uv run src/perplexica_mcp.py sse [host] [port]
+# Default: localhost:3001, endpoint: /sse
+```
+
+### 3. Streamable HTTP Transport
+
+```bash
+# PyPI installation
+uvx perplexica-mcp http [host] [port]
+
+# From source
+uv run src/perplexica_mcp.py http [host] [port]
+# Default: localhost:3002, endpoint: /mcp
+```
+
+## Docker Deployment
+
+The server includes Docker support with multiple transport configurations for containerized deployments.
+
+### Prerequisites
+
+- Docker and Docker Compose installed
+- External Docker network named `backend` (for integration with Perplexica)
+
+### Create External Network
+
+```bash
+docker network create backend
+```
+
+### Build and Run
+
+#### Option 1: HTTP Transport (Streamable HTTP)
+
+```bash
+# Build and run with HTTP transport
+docker-compose up -d
+
+# Or build first, then run
+docker-compose build
+docker-compose up -d
+```
+
+#### Option 2: SSE Transport (Server-Sent Events)
+
+```bash
+# Build and run with SSE transport
+docker-compose -f docker-compose-sse.yml up -d
+
+# Or build first, then run
+docker-compose -f docker-compose-sse.yml build
+docker-compose -f docker-compose-sse.yml up -d
+```
+
+### Environment Configuration
+
+Both Docker configurations support environment variables:
+
+```bash
+# Create .env file for Docker
+cat > .env << EOF
+PERPLEXICA_BACKEND_URL=http://perplexica-app:3000/api/search
+EOF
+
+# Uncomment env_file in docker-compose.yml to use .env file
+```
+
+Or set environment variables directly in the compose file:
+
+```yaml
+environment:
+  - PERPLEXICA_BACKEND_URL=http://your-perplexica-host:3000/api/search
+```
+
+### Container Details
+
+| Transport | Container Name | Port | Endpoint | Health Check |
+|-----------|----------------|------|----------|--------------|
+| HTTP      | `perplexica-mcp-http` | 3001 | `/mcp/` | MCP initialize request |
+| SSE       | `perplexica-mcp-sse`  | 3001 | `/sse`  | SSE endpoint check |
+
+### Health Monitoring
+
+Both containers include health checks:
+
+```bash
+# Check container health
+docker ps
+docker-compose ps
+
+# View health check logs
+docker logs perplexica-mcp-http
+docker logs perplexica-mcp-sse
+```
+
+### Integration with Perplexica
+
+The Docker setup assumes Perplexica is running in the same Docker network:
+
+```yaml
+# Example Perplexica service in the same compose file
+services:
+  perplexica-app:
+    # ... your Perplexica configuration
+    networks:
+      - backend
+  
+  perplexica-mcp:
+    # ... MCP server configuration
+    environment:
+      - PERPLEXICA_BACKEND_URL=http://perplexica-app:3000/api/search
+    networks:
+      - backend
+```
+
+### Production Considerations
+
+- Both containers use `restart: unless-stopped` for reliability
+- Health checks ensure service availability
+- External network allows integration with existing Perplexica deployments
+- Security best practices implemented in Dockerfile
+
+## Available Tools
+
+### search
+
+Performs AI-powered web search using Perplexica.
+
+**Parameters:**
+
+- `query` (string, required): Search query
+- `focus_mode` (string, required): One of 'webSearch', 'academicSearch', 'writingAssistant', 'wolframAlphaSearch', 'youtubeSearch', 'redditSearch'
+- `chat_model` (string, optional): Chat model configuration
+- `embedding_model` (string, optional): Embedding model configuration
+- `optimization_mode` (string, optional): 'speed' or 'balanced'
+- `history` (array, optional): Conversation history
+- `system_instructions` (string, optional): Custom instructions
+- `stream` (boolean, optional): Whether to stream responses
+
+## Testing
+
+Run the comprehensive test suite to verify all transports:
+
+```bash
+uv run src/test_transports.py
+```
+
+This will test:
+
+- ✓ Stdio transport with MCP protocol handshake
+- ✓ HTTP transport with Streamable HTTP compliance
+- ✓ SSE transport endpoint accessibility
+
+## Transport Details
+
+### Stdio Transport
+
+- Uses FastMCP's built-in stdio server
+- Supports full MCP protocol including initialization and tool listing
+- Ideal for MCP client integration
+
+### SSE Transport
+
+- Server-Sent Events for real-time communication
+- Endpoint: `http://host:port/sse`
+- Includes periodic ping messages for connection health
+
+### Streamable HTTP Transport
+
+- Compliant with MCP Streamable HTTP specification
+- Endpoint: `http://host:port/mcp`
+- Returns 307 redirect to `/mcp/` as per protocol
+- Uses StreamableHTTPSessionManager for proper session handling
+
+## Development
+
+The server is built using:
+
+- **FastMCP**: Modern MCP server framework with built-in transport support
+- **Uvicorn**: ASGI server for SSE and HTTP transports
+- **httpx**: HTTP client for Perplexica API communication
+- **python-dotenv**: Environment variable management
+
+## Architecture
+
+```none
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   MCP Client    │◄──►│ Perplexica MCP   │◄──►│   Perplexica    │
+│                 │    │     Server       │    │   Search API    │
+│  (stdio/SSE/    │    │   (FastMCP)      │    │                 │
+│   HTTP)         │    │                  │    │                 │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+                              │
+                              ▼
+                       ┌──────────────┐
+                       │   FastMCP    │
+                       │  Framework   │
+                       │ ┌──────────┐ │
+                       │ │  stdio   │ │
+                       │ │   SSE    │ │
+                       │ │  HTTP    │ │
+                       │ └──────────┘ │
+                       └──────────────┘
+```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## Support
+
+For issues and questions:
+
+- Check the troubleshooting section
+- Review the Perplexica documentation
+- Open an issue on GitHub
