@@ -1,0 +1,43 @@
+[package]
+name = "prompt-composer"
+version = "1.0.4"
+edition = "2021"
+description = "A modular system prompt composition framework for AI assistants"
+license = "MIT"
+repository = "https://github.com/your-org/prompt-composer"
+readme = "README.md"
+
+[lib]
+name = "prompt_composer"
+path = "core/lib.rs"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+tokio = { version = "1.0", features = ["full"] }
+thiserror = "1.0"
+reqwest = { version = "0.11", features = ["json"] }
+uuid = { version = "1.0", features = ["v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Python bindings
+pyo3 = { version = "0.20", features = ["extension-module"], optional = true }
+
+# Node.js bindings
+napi = { version = "2", optional = true }
+napi-derive = { version = "2", optional = true }
+
+[features]
+default = []
+python = ["pyo3"]
+nodejs = ["napi", "napi-derive"]
+
+[build-dependencies]
+napi-build = "2"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
