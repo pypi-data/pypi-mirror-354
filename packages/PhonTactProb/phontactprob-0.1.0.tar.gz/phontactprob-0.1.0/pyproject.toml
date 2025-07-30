@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PhonTactProb"
+version = "0.1.0"
+description = "A package to compute phonotactic probabilities using NLTK and IPA."
+authors = [
+    { name = "Timo", email = "tiyliu@ucdavis.edu" }
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+dependencies = [
+    "nltk>=3.8.1"
+]
+
+[project.urls]
+Homepage = "https://github.com/timo-liu/PhonTactProb"
+Issues = "https://github.com/timo-liu/PhonTactProb/issues"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["PhonTactProb"]
+
+[tool.setuptools.package-data]
+PhonTactProb = ["data/*.txt"]
