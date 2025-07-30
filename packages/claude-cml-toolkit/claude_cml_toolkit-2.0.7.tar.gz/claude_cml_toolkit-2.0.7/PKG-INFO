@@ -1,0 +1,245 @@
+Metadata-Version: 2.4
+Name: claude-cml-toolkit
+Version: 2.0.7
+Summary: A comprehensive MCP toolkit for Cisco Modeling Labs automation
+Author: Claude AI Assistant
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Networking
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: fastmcp>=0.1.0
+Requires-Dist: httpx>=0.26.0
+Requires-Dist: urllib3>=2.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: black>=22.0.0; extra == "dev"
+Requires-Dist: isort>=5.0.0; extra == "dev"
+Requires-Dist: flake8>=4.0.0; extra == "dev"
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Claude-Modeling-Labs MCP Server
+
+A comprehensive, modular toolkit for interacting with Cisco Modeling Labs (CML) through the Model Context Protocol (MCP) interface. This server enables automated lab creation, topology management, device configuration, and network testing for educational and development purposes.
+
+## Features
+
+### Core Capabilities
+- **Lab Management**: Create, start, stop, and delete CML labs
+- **Topology Building**: Add routers, switches, and create network links
+- **Device Configuration**: Apply and retrieve device configurations
+- **Console Access**: Execute commands on network devices
+- **Network Discovery**: Inspect lab topologies, nodes, and interfaces
+
+### Key Benefits
+- **Modular Architecture**: Clean separation of concerns across handlers
+- **Educational Focus**: Perfect for networking students and instructors
+- **Automation Ready**: Designed for agentic AI tutoring systems
+- **Windows Compatible**: Modular design resolves previous Windows compatibility issues
+
+## Installation
+
+### Prerequisites
+- Python 3.8 or higher
+- Access to a Cisco Modeling Labs server
+- Valid CML credentials
+
+### Quick Start
+1. Clone or download this repository
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Run the MCP server:
+   ```bash
+   python claude_modeling_labs_modular.py
+   ```
+
+### Development Installation
+```bash
+pip install -e .[dev]
+```
+
+## Usage
+
+### Initialize Connection
+```python
+# First, initialize the client with your CML server details
+initialize_client(
+    base_url="https://your-cml-server.com",
+    username="your-username", 
+    password="your-password",
+    verify_ssl=True  # Set to False for self-signed certificates
+)
+```
+
+### Basic Lab Operations
+```python
+# Create a new lab
+lab = create_lab("My Network Lab", "Learning OSPF routing")
+
+# Create network devices  
+router1 = create_router(lab["lab_id"], "R1", x=100, y=100)
+router2 = create_router(lab["lab_id"], "R2", x=300, y=100) 
+switch1 = create_switch(lab["lab_id"], "SW1", x=200, y=200)
+
+# Connect devices
+link_nodes(lab["lab_id"], router1["node_id"], router2["node_id"])
+link_nodes(lab["lab_id"], router1["node_id"], switch1["node_id"])
+
+# Start the lab
+start_lab(lab["lab_id"])
+wait_for_lab_nodes(lab["lab_id"], timeout=120)
+```
+
+### Device Configuration
+```python
+# Apply configuration to a router
+ospf_config = """
+hostname Router1
+interface GigabitEthernet0/0
+ ip address 10.1.1.1 255.255.255.0
+ no shutdown
+router ospf 1
+ network 10.1.1.0 0.0.0.255 area 0
+"""
+configure_node(lab["lab_id"], router1["node_id"], ospf_config)
+
+# Retrieve current configuration
+current_config = get_node_config(lab["lab_id"], router1["node_id"])
+```
+
+### Console Commands
+```python
+# Execute commands on devices
+send_console_command(lab["lab_id"], router1["node_id"], "show ip route")
+check_interfaces(lab["lab_id"], router1["node_id"])
+
+# Send multiple commands
+commands = [
+    "show version",
+    "show ip interface brief", 
+    "show running-config"
+]
+send_multiple_commands(lab["lab_id"], router1["node_id"], commands)
+```
+
+## Architecture
+
+The modular design separates functionality into focused handlers:
+
+```
+src/
+├── client/           # CML API authentication and HTTP client
+├── handlers/         # Modular tool handlers
+│   ├── lab_management.py    # Lab CRUD operations
+│   ├── topology.py          # Node and link management  
+│   ├── configuration.py     # Device configuration
+│   └── console.py           # Console session management
+├── utils/            # Common utilities and helpers
+└── server.py         # Main MCP server entry point
+```
+
+### Key Design Principles
+- **Separation of Concerns**: Each handler focuses on one aspect of CML management
+- **Clean Dependencies**: Minimal coupling between modules
+- **Error Handling**: Consistent error handling across all operations
+- **Windows Compatibility**: Modular structure avoids file size limitations
+
+## Available Tools
+
+### Lab Management
+- `initialize_client()` - Authenticate with CML server
+- `list_labs()` - List all available labs
+- `create_lab()` - Create a new lab
+- `get_lab_details()` - Get detailed lab information
+- `delete_lab()` - Delete a lab
+- `start_lab()` - Start lab execution
+- `stop_lab()` - Stop lab execution
+- `wait_for_lab_nodes()` - Wait for nodes to initialize
+- `list_node_definitions()` - List available device types
+
+### Topology Management  
+- `get_lab_nodes()` - List nodes in a lab
+- `add_node()` - Add a device to a lab
+- `create_router()` - Create a router (iosv)
+- `create_switch()` - Create a switch (iosvl2)
+- `get_node_interfaces()` - List node interfaces
+- `get_physical_interfaces()` - Get physical interfaces only
+- `create_interface()` - Create new interface on a node
+- `get_lab_links()` - List all links in a lab
+- `create_link_v3()` - Create link between specific interfaces
+- `link_nodes()` - Automatically link two nodes
+- `delete_link()` - Remove a link
+- `get_lab_topology()` - Get complete topology summary
+
+### Configuration Management
+- `configure_node()` - Apply configuration to a device  
+- `get_node_config()` - Retrieve device configuration
+
+### Console Operations
+- `open_console_session()` - Open console access to device
+- `close_console_session()` - Close console session
+- `send_console_command()` - Execute single command
+- `send_multiple_commands()` - Execute multiple commands
+- `check_interfaces()` - Check interface status
+- `get_diagnostic_recommendations()` - Get troubleshooting suggestions
+
+## Educational Use Cases
+
+This toolkit is designed to support networking education through:
+
+### Automated Lab Creation
+- Dynamic topology generation based on learning objectives
+- Pre-configured scenarios for specific networking concepts
+- Rapid iteration and experimentation
+
+### AI-Powered Tutoring
+- Agentic systems can create custom labs for individual students
+- Real-time guidance and troubleshooting assistance  
+- Adaptive learning paths based on student progress
+
+### Curriculum Integration
+- Support for various networking topics (OSPF, BGP, VLAN, STP, etc.)
+- Scalable from basic connectivity to complex enterprise scenarios
+- Integration with existing learning management systems
+
+## Contributing
+
+This project follows a modular architecture to support easy extension and maintenance:
+
+1. **Adding New Tools**: Create new functions in the appropriate handler module
+2. **New Handler Categories**: Add new handler files and register them in `server.py`
+3. **Testing**: Each module can be tested independently
+4. **Documentation**: Update both code comments and this README
+
+## License
+
+MIT License - see LICENSE file for details.
+
+## Support
+
+For issues, questions, or contributions, please refer to the project repository or documentation.
+
+---
+
+**Version**: 2.0.0  
+**Authors**: Claude AI Assistant  
+**Purpose**: Educational networking automation and AI-powered tutoring
