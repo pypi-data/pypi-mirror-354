@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "builtapi"
+version = "0.2.5"
+description = ""
+authors = ["Dreamlone <mik_sar@mail.ru>", "Konuchov Artem <artem.konuchov@wiredhut.com>"]
+readme = "README.md"
+packages = [{include = "builtapi"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "^2.31.0"
+loguru = "^0.7.2"
+pydantic = "^2.6.0"
+pytest = "^8.0.0"
+pydantic-core = "^2.20.1"
+requests-mock = "^1.12.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
