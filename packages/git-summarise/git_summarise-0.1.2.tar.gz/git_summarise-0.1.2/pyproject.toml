@@ -1,0 +1,14 @@
+[project]
+name = "git-summarise"
+version = "0.1.2"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.7.1",
+    "transformers>=4.52.4",
+    "typer>=0.16.0",
+]
+
+[project.scripts]
+gai = "main:app"
