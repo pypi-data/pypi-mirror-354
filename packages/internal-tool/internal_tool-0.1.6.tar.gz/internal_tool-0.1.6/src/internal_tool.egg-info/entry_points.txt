@@ -1,0 +1,4 @@
+[console_scripts]
+internal-discover = pr_agent.scripts.discover_sources:main
+internal-process = pr_agent.scripts.process_pending:main
+pinecone-setup = pr_agent.scripts.create_pinecone_index:main
