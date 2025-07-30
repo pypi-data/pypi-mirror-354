@@ -1,0 +1,23 @@
+[project]
+name = "xhs-bailian-mcp-server-haileyli"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "lizhiyun01", email = "lizhiyun01@inspur.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "bs4>=0.0.2",
+    "dashscope>=1.23.4",
+    "dotenv>=0.9.9",
+    "httpx>=0.28.1",
+    "mcp[cli]>=1.9.3",
+]
+
+[project.scripts]
+xhs-bailian-mcp-server-haileyli = "xhs_bailian_mcp_server_haileyli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
