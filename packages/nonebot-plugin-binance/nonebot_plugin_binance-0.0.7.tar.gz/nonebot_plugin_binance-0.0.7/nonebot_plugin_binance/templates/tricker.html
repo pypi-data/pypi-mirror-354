@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}行情TICKER - {{ data.symbol }}{% endblock %}
+
+{% block content %}
+<div class="container" style="padding: 24px;">
+    <div class="header" style="padding-bottom: 16px; margin-bottom: 20px;">
+        <span style="font-size: 32px; font-weight: 700; color: #fff;">{{ data.symbol }}</span>
+        <div style="text-align: right;">
+            <!-- 通过添加 class 来控制颜色，而不是内联 style -->
+            <span class="price {{ 'positive' if data.priceChangePercent|float >= 0 else 'negative' }}" style="font-family: 'Roboto Mono', monospace; font-size: 36px; font-weight: 600;">
+                ${{ "%.2f"|format(data.lastPrice|float) }}
+            </span>
+            <!-- 通过添加 class 来控制背景和颜色 -->
+            <span class="change {{ 'positive positive-bg' if data.priceChangePercent|float >= 0 else 'negative negative-bg' }}" style="font-size: 20px; font-weight: 500; padding: 6px 12px; border-radius: 8px; margin-left: 12px; display: inline-block;">
+                {{ '+' if data.priceChangePercent|float >= 0 else '' }}{{ "%.2f"|format(data.priceChangePercent|float) }}%
+            </span>
+        </div>
+    </div>
+    <div class="grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="item-card" style="padding: 16px;">
+            <div class="desc" style="margin-bottom: 8px;">24h 最高价</div>
+            <div class="value" style="font-family: 'Roboto Mono', monospace; font-size: 18px; font-weight: 500; color: #fff;">${{ "%.2f"|format(data.highPrice|float) }}</div>
+        </div>
+        <div class="item-card" style="padding: 16px;">
+            <div class="desc" style="margin-bottom: 8px;">24h 最低价</div>
+            <div class="value" style="font-family: 'Roboto Mono', monospace; font-size: 18px; font-weight: 500; color: #fff;">${{ "%.2f"|format(data.lowPrice|float) }}</div>
+        </div>
+        <div class="item-card" style="padding: 16px;">
+            <div class="desc" style="margin-bottom: 8px;">24h 涨跌额</div>
+            <!-- 同样使用 class 控制颜色 -->
+            <div class="value {{ 'positive' if data.priceChange|float >= 0 else 'negative' }}" style="font-family: 'Roboto Mono', monospace; font-size: 18px; font-weight: 500;">
+                {{ '+' if data.priceChange|float >= 0 else '' }}{{ "%.2f"|format(data.priceChange|float) }}
+            </div>
+        </div>
+        <div class="item-card" style="padding: 16px;">
+            <div class="desc" style="margin-bottom: 8px;">24h 成交量 (币)</div>
+            <div class="value" style="font-family: 'Roboto Mono', monospace; font-size: 18px; font-weight: 500; color: #fff;">{{ "%.2f"|format(data.volume|float) }}</div>
+        </div>
+        <div class="item-card" style="padding: 16px;">
+            <div class="desc" style="margin-bottom: 8px;">24h 成交额 (USD)</div>
+            <div class="value" style="font-family: 'Roboto Mono', monospace; font-size: 18px; font-weight: 500; color: #fff;">${{ "{:,.2f}".format(data.quoteVolume|float) }}</div>
+        </div>
+        <div class="item-card" style="padding: 16px;">
+            <div class="desc" style="margin-bottom: 8px;">24h 总成交数</div>
+            <div class="value" style="font-family: 'Roboto Mono', monospace; font-size: 18px; font-weight: 500; color: #fff;">{{ "{:,}".format(data.count) }}</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
