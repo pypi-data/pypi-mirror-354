@@ -1,0 +1,67 @@
+[package]
+name = "quantrs2-tytan"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+license.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "High-level quantum annealing interface inspired by Tytan for the QuantRS2 framework"
+readme = "README.md"
+
+[dependencies]
+quantrs2-core = { path = "../core", version = "0.1.0-alpha.4" }
+quantrs2-anneal = { path = "../anneal", version = "0.1.0-alpha.4" }
+num-complex.workspace = true
+thiserror.workspace = true
+rand.workspace = true
+rand_chacha.workspace = true
+rand_distr.workspace = true
+ndarray.workspace = true
+num-bigint = "0.4"
+num-integer = "0.1"
+chrono = "0.4"
+symengine = { workspace = true, optional = true }
+regex = { workspace = true, optional = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+num_cpus = "1.16"
+plotters = { version = "0.3", optional = true }
+colored = "2.0"
+
+# SciRS2 dependencies for performance optimization
+scirs2-core = { workspace = true, optional = true }
+scirs2-linalg = { workspace = true, optional = true }
+scirs2-optimize = { workspace = true, optional = true }
+# Excluded due to dependency conflicts with symengine
+# scirs2-cluster = { version = "0.1.0-alpha.4", optional = true }
+
+# Optional dependencies
+rayon = { workspace = true, optional = true }
+ocl = { workspace = true, optional = true }
+
+[features]
+default = ["parallel"]
+parallel = ["dep:rayon"]
+gpu = ["dep:ocl"]
+# The dwave feature is optional and requires symengine to be installed
+dwave = ["dep:symengine", "dep:regex"]
+scirs = ["dep:scirs2-core", "dep:scirs2-linalg", "dep:scirs2-optimize"]
+advanced_optimization = ["scirs", "dep:scirs2-optimize"]
+# Combined accelerated features
+gpu_accelerated = ["gpu", "scirs", "parallel"]
+# These features are placeholder stubs for conditional compilation
+clustering = []
+plotters = ["dep:plotters"]
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+ndarray-rand.workspace = true
+rand_chacha.workspace = true
+colored = "2.0"
+
+# [[bench]]
+# name = "performance_benchmark"
+# harness = false
