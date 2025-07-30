@@ -1,0 +1,90 @@
+variables:
+  GIT_STRATEGY: none
+  ROS2_DISTRO: jazzy
+  DOCKER_TAG: latest
+  image_aduulm_ros2: mrm-git.e-technik.uni-ulm.de:4567/aduulm/docker_images/aduulm-ros2-$ROS2_DISTRO:$DOCKER_TAG
+
+stages:
+  - build_library
+  - coverage_library
+  - test_library
+
+# jobs starting with '.' are ignored by gitlab and function as template jobs which are specialized later on
+.rules_all_stages:
+  only:
+    changes:
+      - library/**/*
+      - .gitlab-ci.yml
+      - .ci_dependencies.yaml
+
+.library:
+  stage: build_library
+  extends: .rules_all_stages
+  artifacts:
+    paths:
+      - ./colcon_build
+    expire_in: 1 day
+  script:
+    - build_repo_with_dependencies_ros2.sh release subjective_logic_lib
+
+.coverage_library:
+  stage: coverage_library
+  extends: .rules_all_stages
+  artifacts:
+    when: always
+    paths:
+      - coverage_details
+      - subjective_logic_test_coverage.xml
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: subjective_logic_test_coverage.xml
+  coverage: /^\s*lines:\s*\d+.\d+\%/
+  script:
+    - python3 -m pip install gcovr --break-system-packages
+    - build_repo_with_dependencies_ros2.sh coverage subjective_logic_lib
+    - source ./colcon_build/install/setup.bash
+    - ./colcon_build/install/subjective_logic_lib/bin/subjective_logic_test
+    - gcovr --cobertura-pretty --print-summary -o subjective_logic_test_coverage.xml --exclude-unreachable-branches --gcov-ignore-parse-errors --filter ".*subjective_logic" --exclude-directories ".*cuda" --exclude ".*test" --exclude ".*bindings"
+    - sed -i "s/<sources>/<sources>\n\t\t<source>$(echo "$(pwd)/src/subjective_logic" | sed 's_/_\\/_g')<\/source>/g" subjective_logic_test_coverage.xml
+    - sed -i "s/filename=\".*\/library/filename=\"library/g" subjective_logic_test_coverage.xml
+    - sed -i "s/package name=\".*\.library/package name=\"library/g" subjective_logic_test_coverage.xml
+    - mkdir coverage_details
+    - gcovr --html-details -o coverage_details/subjective_logic.html --exclude-unreachable-branches --gcov-ignore-parse-errors --filter ".*subjective_logic" --exclude-directories ".*cuda" --exclude ".*test" --exclude ".*bindings"
+
+.unit_tests_library:
+  stage: test_library
+  extends: .rules_all_stages
+  artifacts:
+    when: always
+    paths:
+        - subjective_logic_test.xml
+    reports:
+      junit:
+        - subjective_logic_test.xml
+  script:
+    # delete any src folders that are still around from previous runs
+    - rm -rf src
+    - source gitlab-ros.sh $ROS2_DISTRO
+    # run unit tests
+    - source ./colcon_build/install/setup.bash
+    - ./colcon_build/install/subjective_logic_lib/bin/subjective_logic_test --gtest_output="xml:subjective_logic_test.xml"
+    - sed -i "s#file=\".*/library#file=\"library#g" subjective_logic_test.xml
+
+# specialization of the previously defined templates (allows e.g. building for different docker images)
+# build
+library:
+  extends: .library
+  image: $image_aduulm_ros2
+
+# coverage
+subjective_logic:
+  extends: .coverage_library
+  image: $image_aduulm_ros2
+
+# testing
+subjective_logic_tests:
+  extends: .unit_tests_library
+  image: $image_aduulm_ros2
+  needs:
+    - library
