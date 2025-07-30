@@ -1,0 +1,16 @@
+[project]
+name = "xiguapi-mcp-douyindl"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "mcp[cli]>=1.9.3",
+]
+
+[project.scripts]
+xiguapi-mcp-douyindl = "xiguapi_mcp_douyindl:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
