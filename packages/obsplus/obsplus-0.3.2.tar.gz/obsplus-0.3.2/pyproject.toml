@@ -1,0 +1,177 @@
+
+# --- Build system configuration
+
+[build-system]
+requires = [ "setuptools>=41", "setuptools-scm", ]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools-git-versioning]
+enabled = true
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools_scm]  # this empty section enables the tool
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# --- Project Metadata
+
+[project]
+name = "obsplus"
+dynamic = ["version"]  # version is fetched by setuptools-git-versioning
+
+authors = [
+    { name="Derrick Chambers", email="d-chambers@users.noreply.github.com" },
+    { name="Shawn Boltz", email="sboltz@users.noreply.github.com" }
+]
+
+description = "An ObsPy exapanson pack"
+readme = "README.rst"
+license = { file="LICENSE" }
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
+    "Topic :: Scientific/Engineering",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+keywords = ["geophysics", "Seismology"]
+
+# --- Dependencies
+
+dependencies = [
+    # TODO: Unpin numpy<2 when an obspy release which supports numpy 2 comes out.
+    "numpy>1.24.4, <2.0",
+    "obspy >= 1.4.0",
+    "pandas >= 1.0",
+    "progressbar2",
+    "pydantic >= 2.0, <3.0",
+    "scipy",
+    "tables",
+    "typing-extensions",
+]
+
+[project.optional-dependencies]
+docs = [
+    "sphinx>=1.5.1",
+    "ipykernel",
+    "numpydoc",
+    "sphinx_autodoc_typehints",
+    "nbsphinx",
+    "sphinx-automodapi",
+    "jinja2",
+    "typer",
+]
+
+test = [
+    "pytest",
+    # coveralls currently requires coverage < 5.0
+    "coverage < 5.0",
+    "pytest-cov",
+    "coveralls",
+    "nbval",
+    "twine",
+    "pre-commit",
+]
+
+dev = ["obsplus[test]", "obsplus[docs]"]
+
+# --- URLs for project
+
+[project.urls]
+"Bug Tracker" = "https://github.com/niosh-mining/obsplus/issues"
+"Documentation" = "https://github.com/niosh-mining/obsplus"
+"Homepage" = "https://github.com/niosh-mining/obsplus"
+
+# --- Entry Points
+[project.entry-points."obsplus.datasets"]
+bingham_test = "obsplus.datasets.bingham_test"
+crandall_test = "obsplus.datasets.crandall_test"
+ta_test = "obsplus.datasets.ta_test"
+default_test = "obsplus.datasets.default_test"
+
+
+# --- Pytest config
+[tool.pytest.ini_options]
+
+markers = [
+    "requires_network: tests that require network access",
+    "dataset: tests that require a dataset to run"
+]
+
+filterwarnings = [
+    # Ignore hdf5 warnings from pytables, See pytables #1035
+    'ignore::Warning:tables:'
+]
+
+# --- Ruff configuration
+
+[tool.ruff]
+
+line-length = 88
+
+# enable certain types of linting
+lint.select = [
+    "E",
+    "F",
+    "UP",
+    "RUF",
+    "I001",
+    "D",
+    "FA",
+    "T",
+    "N",
+    "NPY",
+    "NPY201",
+]
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "__init__.py"
+]
+
+# lowest python version supported
+target-version = "py310"
+
+lint.fixable = ["ALL"]
+
+# List of codes to ignore
+lint.ignore = ["D105", "D107", "D401", "D205", "D200", "D400"]
+
+[tool.ruff.lint.mccabe]
+# Unlike Flake8, default to a complexity level of 10.
+max-complexity = 10
+
+# config for docstring parsing
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.format]
+# Use `\n` line endings for all files
+line-ending = "lf"
