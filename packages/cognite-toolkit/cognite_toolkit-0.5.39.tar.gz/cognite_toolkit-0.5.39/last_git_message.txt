@@ -1,0 +1,27 @@
+[CDF-24846] 📶Round 2 profiling command. (#1608)
+
+# Description
+
+In upgrade work, we need a quick way to get an overview over the
+asset-centric resource in a project.
+
+
+![image](https://github.com/user-attachments/assets/058e7479-577e-48a1-8171-a339c46c46d0)
+
+
+## Changelog
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## cdf
+
+### Added
+
+- [alpha] The `cdf profile asset-centric` command now also shows
+relationships and labels.
+
+## templates
+
+No changes.
