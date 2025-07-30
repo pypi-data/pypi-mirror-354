@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: FulizaScoring
+Version: 0.2.0
+Summary: Loop DFS secure parner workspace fuliza scoring
+Author-email: Benson Mburu <benson.mburu@ncbagroup.com>
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: cryptography>=3.4
+Requires-Dist: pypmml>=0.15
+Requires-Dist: pandas>=1.1
