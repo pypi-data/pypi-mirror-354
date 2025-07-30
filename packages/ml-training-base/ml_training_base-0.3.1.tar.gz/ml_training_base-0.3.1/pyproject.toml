@@ -1,0 +1,32 @@
+[build-system]
+requires = [
+    "setuptools>=61.0",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ml-training-base"
+version = "0.3.1"
+description = "A base library for ML training (supervised) with environment setup and logging."
+readme = "README.md"
+license = { text = "MIT"}
+authors = [
+  { name="Chris van den Berg", email="cvandenberg1105@googlemail.com" }
+]
+keywords = ["machine-learning", "training", "tensorflow", "keras", "supervised-learning"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent"
+]
+requires-python = ">=3.7"
+
+dependencies = [
+    "numpy>=1.23",
+    "tensorflow>=2.1",
+    "PyYAML>=6.0",
+    "torch>=2.7"
+]
+
+[tool.setuptools]
+packages = { find = { where = ["src"] } }
