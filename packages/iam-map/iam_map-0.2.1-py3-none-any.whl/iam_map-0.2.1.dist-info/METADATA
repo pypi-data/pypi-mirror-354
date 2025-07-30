@@ -1,0 +1,259 @@
+Metadata-Version: 2.4
+Name: iam-map
+Version: 0.2.1
+Summary: Offline IAM graph exporter + NLP query shell
+Author-email: Hrishi Logani <loganihrishi@gmail.com>
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: boto3
+Requires-Dist: networkx
+Requires-Dist: pydot
+Requires-Dist: pyparsing>=3.0.9
+Requires-Dist: rich
+Requires-Dist: typer[all]
+Requires-Dist: requests
+
+# 🗺️ IAM Map — AWS IAM Graph Analyzer
+
+A powerful CLI to explore IAM users, groups, and policies across AWS accounts — with AI-powered natural language support via **Ollama + Mistral**.
+
+---
+
+## 💊 Choose Your Path
+
+### 🔵 The Blue Pill — Just Install and Play
+
+1. **Install the package:**
+
+```bash
+pip install iam-map
+````
+
+2. **Export a graph:**
+
+```bash
+iam-map export-graph --profile my-account
+```
+
+3. **Start ollama:**
+
+```bash
+ollama run mistral
+```
+
+4. **Ask questions with natural language:**
+
+```bash
+iam-map shell --profile my-account
+```
+
+Example prompts:
+
+```
+💬 > Who has EC2 or Lambda access but not S3?
+💬 > Which users are in dev or test group with full Admin rights?
+```
+
+That’s it. Explore your IAM relationships like never before.
+
+---
+
+### 🔴 The Red Pill — Customize Everything
+
+If you're a power user or developer, go deeper.
+
+#### 🔧 Install from Source
+
+```bash
+git clone https://github.com/yourname/iam-map.git
+cd iam-map
+pip install --editable .
+```
+
+#### 📦 Requirements
+
+* Python 3.8+
+* `boto3`, `networkx`, `rich`, `typer`
+* [Ollama](https://ollama.com) running locally with a model like `mistral`
+
+#### 🧱 Project Structure
+
+```
+iam_map/
+├── cli.py            ← main CLI
+├── exporter.py       ← fetch IAM data to .dot
+├── graph_query.py    ← query logic
+├── ollama_client.py  ← talk to Ollama API
+├── paths.py          ← path resolution
+```
+
+---
+
+## ⚙️ Features
+
+- Export IAM users, groups, and policies  
+- Query users using filters: policies, groups, logic  
+- List username + ID in rich table
+- Support for **multiple AWS accounts**
+- Natural language shell via Ollama  
+
+
+---
+## 🧭 Usage
+
+### 🔐 Configure Your AWS Profiles
+
+```bash
+aws configure --profile dev
+aws configure --profile prod
+```
+
+Each IAM user must have these permissions:
+
+```json
+{
+  "Action": [
+    "iam:ListUsers",
+    "iam:ListGroupsForUser",
+    "iam:ListAttachedUserPolicies",
+    "iam:ListAttachedGroupPolicies"
+  ],
+  "Effect": "Allow",
+  "Resource": "*"
+}
+```
+
+---
+
+### 📤 Export IAM Graphs
+
+```bash
+iam-map export-graph --profile dev
+# → creates: data/dev.dot
+```
+
+---
+
+### 📊 Query Your IAM Graph
+
+```bash
+iam-map query-graph --dot-path data/dev.dot --include-policy AmazonEC2FullAccess
+```
+
+Add filters using:
+
+* `--include-policy`, `--exclude-policy`
+* `--include-group`, `--exclude-group`
+* `--policy-logic any` or `all`
+* `--group-logic any` or `all`
+
+---
+
+### 💬 AI Shell (Natural Language)
+
+```bash
+iam-map shell --profile dev
+```
+
+By default, this:
+
+- Talks to http://localhost:11434
+
+- Sends your query to the mistral model via Ollama
+
+To make that work, start the model manually (do this before you use iam-map):
+
+```bash
+ollama run mistral
+```
+
+🔧 Customize Ollama Settings
+Running on a different model or port? 
+
+No problem:
+
+```bash
+iam-map shell --profile dev --port <your-port> --model <your-model>
+```
+
+
+Requires:
+
+* Ollama running locally
+* Model like `mistral`, `llama3`, etc.
+
+---
+
+## 🌐 Graph Rendering (optional)
+
+Generate diagrams from `.dot` files:
+
+```bash
+dot -Tpng data/dev.dot -o output/dev.png
+```
+
+Or PDF/SVG:
+
+```bash
+dot -Tsvg data/dev.dot -o output/dev.svg
+```
+
+### Install Graphviz:
+
+```bash
+# macOS
+brew install graphviz
+
+# Ubuntu
+sudo apt install graphviz
+
+# Windows
+choco install graphviz
+```
+
+---
+
+## 📁 Output Locations
+
+By default:
+
+* Graphs → `data/`
+* Visuals → `output/`
+
+You can override these by setting environment variables:
+
+```bash
+export DATA_DIR=/custom/data
+export OUTPUT_DIR=/custom/output
+```
+
+---
+
+## 🧠 Powered By
+
+* AWS IAM + `boto3`
+* Graph engine: `networkx`
+* CLI: `typer`, `rich`
+* Natural Language: Ollama + Mistral
+
+---
+
+## ✨ Why Use IAM Map?
+
+✅ Works offline after export  
+✅ Lets you *see* IAM relationships  
+✅ Filters users like a database  
+✅ Natural language interface — no memorizing flags  
+✅ Clean CLI + optional visual outputs
+
+
+---
+
+Ready to map your IAM?
+
+```
+iam-map shell --profile your-account
+```
+
+🌍 Know your access. Map your roles. Secure your cloud.
+
