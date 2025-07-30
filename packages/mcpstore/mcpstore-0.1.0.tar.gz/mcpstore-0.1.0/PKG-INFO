@@ -1,0 +1,62 @@
+Metadata-Version: 2.4
+Name: mcpstore
+Version: 0.1.0
+Summary: A composable, ready-to-use MCP toolkit for agents and rapid integration.
+Home-page: https://github.com/whillhill/mcpstore
+Author: ooooofish
+Author-email: ooooofish <ooooofish@126.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/whillhill/mcpstore
+Project-URL: Bug Tracker, https://github.com/whillhill/mcpstore/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastapi>=0.115.12
+Requires-Dist: fastmcp>=2.7.1
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: pydantic>=2.11.5
+Requires-Dist: uuid>=1.30
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+
+# mcpstore
+
+A composable, ready-to-use MCP toolkit for agents and rapid integration.
+
+## Features
+- Modular MCP service orchestration
+- Fast integration for intelligent agents
+- Extensible plugin and configuration system
+- Built on FastAPI, fastmcp, and httpx
+
+## Installation
+```bash
+pip install mcpstore
+```
+
+## Usage
+```python
+# Example usage will be provided in future releases
+```
+
+## Project Structure
+```
+src/mcpstore/
+    core/       # Core orchestration and management
+    plugins/    # Plugin system
+    config/     # Configuration management
+    data/       # Data and schema files
+    scripts/    # API and CLI scripts
+```
+
+## Contributing
+Contributions are welcome! Please open issues or pull requests on [GitHub](https://github.com/whillhill/mcpstore).
+
+## License
+MIT License. See [LICENSE](LICENSE) for details.
