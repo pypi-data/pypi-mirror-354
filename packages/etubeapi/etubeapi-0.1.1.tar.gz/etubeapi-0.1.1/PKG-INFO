@@ -1,0 +1,53 @@
+Metadata-Version: 2.4
+Name: etubeapi
+Version: 0.1.1
+Summary: CLI tool that allows for interacting with Shimano's E-Tube API
+Author-Email: =?utf-8?q?Norbert_Arkadiusz_G=C3=B6rke?= <me@ngorke.dev>, Magnust Hektoen Steensland <mag.steensland@gmail.com>
+License-Expression: Apache-2.0
+Requires-Dist: httpx~=0.28.1
+Requires-Dist: beautifulsoup4~=4.13
+Requires-Dist: typer~=0.16.0
+Requires-Dist: rich~=13.9
+Requires-Dist: cattrs~=25.1
+Requires-Dist: PyYAML~=6.0
+Description-Content-Type: text/markdown
+
+# etubeapi
+
+`etubeapi` is a small CLI tool that allows for interacting with Shimano's E-Tube API.
+
+## Installation 👷
+
+`etubeapi` can be installed using `pip`.
+
+```console
+$ pip install etubeapi
+```
+
+## Usage 🧑‍💻
+
+Run `etubeapi --help` to see the help and all available commands.
+
+```console
+$ etubeapi --help
+                                                                                  
+ Usage: etubeapi [OPTIONS] COMMAND [ARGS]...                                      
+                                                                                  
+ Operations for scraping and retrieving Shimano E-Tube firmware.                  
+                                                                                  
+╭─ Options ──────────────────────────────────────────────────────────────────────╮
+│ --install-completion          Install completion for the current shell.        │
+│ --show-completion             Show completion for the current shell, to copy   │
+│                               it or customize the installation.                │
+│ --help                        Show this message and exit.                      │
+╰────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ─────────────────────────────────────────────────────────────────────╮
+│ fw   Firmware                                                                  │
+╰────────────────────────────────────────────────────────────────────────────────╯
+```
+
+### Downloading Previously Scraped Firmware
+
+```console
+$ curl https://raw.githubusercontent.com/reven-project/etubeapi/refs/heads/master/fw-scraped.yml | etubeapi fw download <DIRECTORY>
+```
