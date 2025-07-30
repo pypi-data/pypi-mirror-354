@@ -1,0 +1,5 @@
+[console_scripts]
+acm = ai_chat_manager.cli.main:main
+acm-wrapper = ai_chat_manager.cli.wrapper:main
+ai-chat-manager = ai_chat_manager.cli.main:main
+chat-manager = ai_chat_manager.cli.main:main
