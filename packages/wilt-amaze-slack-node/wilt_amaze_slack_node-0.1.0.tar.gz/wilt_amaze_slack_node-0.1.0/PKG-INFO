@@ -1,0 +1,29 @@
+Metadata-Version: 2.4
+Name: wilt_amaze_slack_node
+Version: 0.1.0
+Summary: Add your description here
+License-File: LICENSE
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+
+# Overview
+Data primitive for tree-shaped data structures
+
+# Usage
+```python
+import Node from tree
+
+root = Node('a')
+subtree = Node('b')
+leaf1 = Node('c')
+leaf2 = Node('d')
+leaf3 = Node('e')
+subtree.insert(leaf1)
+subtree.insert(leaf2)
+subtree.insert(leaf3)
+
+root.insert(subtree)
+
+print(root.has_descendant(leaf3))
+# True
+```
