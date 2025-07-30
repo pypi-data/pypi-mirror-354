@@ -1,0 +1,23 @@
+[project]
+name = "hydro-event-detector"
+version = "0.1.0"
+description = "Detect hydrological events identifying peaks and calculating volumes."
+authors = [
+    {name = "Gonzalo Forero", email = "gonzaloforero57@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy (>=2.3.0,<3.0.0)",
+    "scipy (>=1.15.3,<2.0.0)",
+    "pandas (>=2.3.0,<3.0.0)",
+    "plotly (>=6.1.2,<7.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "hydro_event_detector", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
