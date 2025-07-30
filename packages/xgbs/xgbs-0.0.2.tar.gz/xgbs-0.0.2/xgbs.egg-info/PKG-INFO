@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: xgbs
+Version: 0.0.2
+Summary: XGBS: Classification Task-Driven Hyperspectral Band Selection via Interpretability from XGBoost
+Home-page: https://https://github.com/FunctionMayBeStatic/XGBS
+Author: Chuanyu Cui
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Requires-Dist: scikit-learn==1.6.1
+Requires-Dist: xgboost==2.1.1
+
+XGBS: Classification Task-Driven Hyperspectral Band Selection via Interpretability from XGBoost
