@@ -1,0 +1,6 @@
+[console_scripts]
+myback = myback.main:main
+myback-server = myback.main:main
+
+[gui_scripts]
+myback-gui = myback.main:main

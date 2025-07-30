@@ -1,0 +1,11 @@
+# MCP相关依赖
+mcp>=1.0.0
+
+# 图像处理
+pillow>=9.0.0
+
+# Windows剪贴板支持（仅Windows系统）
+pywin32>=300; platform_system=="Windows"
+
+# GUI支持（通常Python自带tkinter，但某些发行版可能需要单独安装）
+# tkinter通常是Python标准库的一部分

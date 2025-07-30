@@ -1,0 +1,101 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "myback"
+version = "1.0.0"
+description = "交互式反馈收集工具 - 支持文字和图片反馈的MCP工具"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+maintainers = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+keywords = ["feedback", "mcp", "gui", "tkinter", "image", "text", "interactive"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Communications",
+    "Topic :: Multimedia :: Graphics",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "mcp>=1.0.0",
+    "pillow>=9.0.0",
+    "pywin32>=300; platform_system=='Windows'",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=22.0.0",
+    "flake8>=5.0.0",
+    "mypy>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/myback"
+Repository = "https://github.com/yourusername/myback"
+Documentation = "https://github.com/yourusername/myback#readme"
+"Bug Reports" = "https://github.com/yourusername/myback/issues"
+
+[project.scripts]
+myback = "myback.main:main"
+myback-server = "myback.main:main"
+
+[project.gui-scripts]
+myback-gui = "myback.main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["myback*"]
+
+[tool.setuptools.package-data]
+myback = ["*.md", "*.txt"]
+
+# Black代码格式化配置
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+# MyPy类型检查配置
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+# Pytest配置
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q --strict-markers"
+testpaths = [
+    "tests",
+]
