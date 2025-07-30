@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="header">
+        <h1>{{ data.title }}</h1>
+    </div>
+    {% if data.orders %}
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>时间</th>
+                <th>交易对</th>
+                <th>方向</th>
+                <th>类型</th>
+                <th style="text-align: right;">价格</th>
+                <th style="text-align: right;">数量</th>
+                <th style="text-align: right;">订单ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in data.orders %}
+            <tr>
+                <!-- 使用新的 format_timestamp 过滤器 -->
+                <td>{{ order.time | format_timestamp('%m-%d %H:%M') }}</td>
+                <td>{{ order.symbol }}</td>
+                <!-- 使用 'positive' 和 'negative' class 来表示买卖方向 -->
+                <td class="{{ 'positive' if order.side == 'BUY' else 'negative' }}" style="font-weight: 500;">
+                    {{ '买入' if order.side == 'BUY' else '卖出' }}
+                </td>
+                <td>{{ order.type | replace('_', ' ') }}</td>
+                <td style="text-align: right;">{{ order.price|float|round(4) }}</td>
+                <td style="text-align: right;">{{ order.origQty|float|round(6) }}</td>
+                <td style="text-align: right;">{{ order.orderId }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="no-data">没有找到相关订单</div>
+    {% endif %}
+</div>
+{% endblock %}

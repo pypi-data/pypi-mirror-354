@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}现货账户资产{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="header">
+        <h1>现货账户资产</h1>
+    </div>
+
+    {% if data.balances %}
+    <table class="data-table" style="white-space: normal;">
+        <thead>
+            <tr>
+                <th style="width: 30%;">资产</th>
+                <th style="text-align: right;">可用</th>
+                <th style="text-align: right;">冻结</th>
+                <th style="text-align: right;">总计</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for asset in data.balances %}
+            <tr>
+                <td>
+                    <div style="display: flex; align-items: center; gap: 14px;">
+                        <img src="{{ asset.icon_path }}"
+                            style="width: 32px; height: 32px; border-radius: 50%; background-color: #363940;">
+                        <span style="font-weight: 600; font-size: 16px; color: #fff;">{{ asset.asset }}</span>
+                    </div>
+                </td>
+                <td style="text-align: right;">{{ asset.free }}</td>
+                <td style="text-align: right;">{{ asset.locked }}</td>
+                <td style="text-align: right; font-weight: 600; color: #fff;">{{ asset.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="no-data">
+        您的现货账户中没有非零资产，或未能获取数据。
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

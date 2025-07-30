@@ -1,0 +1,144 @@
+/* ======================================== */
+/* == templates/style.css                == */
+/* == 说明：所有HTML模板的通用样式表。   == */
+/* ======================================== */
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #1a1b1e;
+    /* 深色背景 */
+    color: #d1d4dc;
+    /* 默认文字颜色 */
+    padding: 24px;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 752px;
+    box-sizing: border-box;
+}
+
+/* 通用容器 */
+.container {
+    background: #232529;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid #363940;
+}
+
+/* 通用头部 */
+.header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #363940;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+}
+
+.header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    color: #fff;
+}
+
+/* 涨跌颜色 */
+.positive {
+    color: #16c784;
+}
+
+.negative {
+    color: #ea3943;
+}
+
+/* 涨跌背景 */
+.positive-bg {
+    background-color: rgba(22, 199, 132, 0.15);
+}
+
+.negative-bg {
+    background-color: rgba(234, 57, 67, 0.15);
+}
+
+
+/* --- 数据表格样式 (用于挂单、预警列表) --- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2c30;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.data-table th {
+    font-weight: 600;
+    color: #848e9c;
+}
+
+.data-table td {
+    font-family: 'Roboto Mono', monospace;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* --- 信息卡片/网格样式 (用于帮助、行情) --- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+}
+
+.item-card {
+    background-color: #2c2f33;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #3a3f44;
+    transition: all 0.2s ease-in-out;
+}
+
+.item-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: #4f545c;
+}
+
+.item-card .name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #58a6ff;
+}
+
+.item-card .desc {
+    font-size: 14px;
+    color: #848e9c;
+    margin-top: 4px;
+    min-height: 18px;
+}
+
+.item-card .example {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    color: #c9d1d9;
+    background-color: #363940;
+    padding: 4px 8px;
+    border-radius: 6px;
+    margin-top: 10px;
+    display: inline-block;
+    word-break: break-all;
+}
+
+/* --- 无数据提示 --- */
+.no-data {
+    text-align: center;
+    padding: 50px 20px;
+    font-size: 16px;
+    color: #848e9c;
+}

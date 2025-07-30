@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}账户状态{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="header">
+        <h1>账户状态</h1>
+    </div>
+    {% if not data.bound %}
+    <div class="no-data">您尚未绑定API密钥</div>
+    <div style="font-size: 13px; color: #6c757d; text-align: center; margin-top: 24px;">
+        请私聊机器人使用 `bn bind [API Key] [Secret Key]` 进行绑定
+    </div>
+    {% else %}
+    <div class="status-grid">
+        <div class="status-item">
+            <span class="status-label">绑定状态</span>
+            <span class="status-value positive">✓ 已绑定</span>
+        </div>
+        {% if data.error %}
+        <div class="status-item">
+            <span class="status-label">API 状态</span>
+            <span class="status-value negative">✕ {{ data.error }}</span>
+        </div>
+        {% else %}
+        <div class="status-item">
+            <span class="status-label">交易权限</span>
+            {% if data.can_trade %}
+            <span class="status-value positive">✓ 已开启</span>
+            {% else %}
+            <span class="status-value negative">✕ 未开启</span>
+            {% endif %}
+        </div>
+        <div class="status-item">
+            <span class="status-label">提现权限</span>
+            {% if data.can_withdraw %}
+            <span class="status-value positive">✓ 已开启</span>
+            {% else %}
+            <span class="status-value negative">✕ 未开启</span>
+            {% endif %}
+        </div>
+        <div class="status-item">
+            <span class="status-label">充值权限</span>
+            {% if data.can_deposit %}
+            <span class="status-value positive">✓ 已开启</span>
+            {% else %}
+            <span class="status-value negative">✕ 未开启</span>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    .status-grid {
+        display: grid;
+        gap: 16px;
+    }
+
+    .status-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #2c2f33;
+        padding: 16px;
+        border-radius: 12px;
+        border: 1px solid #3a3f44;
+    }
+
+    .status-label {
+        font-size: 16px;
+        color: #d1d4dc;
+    }
+
+    .status-value {
+        font-size: 16px;
+        font-weight: 600;
+    }
+</style>
+{% endblock %}
