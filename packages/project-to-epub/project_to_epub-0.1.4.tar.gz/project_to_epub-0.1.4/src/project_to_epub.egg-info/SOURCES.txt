@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+src/project_to_epub/__init__.py
+src/project_to_epub/__main__.py
+src/project_to_epub/cli.py
+src/project_to_epub/converter.py
+src/project_to_epub.egg-info/PKG-INFO
+src/project_to_epub.egg-info/SOURCES.txt
+src/project_to_epub.egg-info/dependency_links.txt
+src/project_to_epub.egg-info/entry_points.txt
+src/project_to_epub.egg-info/requires.txt
+src/project_to_epub.egg-info/top_level.txt
+tests/conftest.py
+tests/test_converter.py
+tests/test_integration.py
