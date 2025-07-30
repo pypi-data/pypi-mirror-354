@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:pypi.org)",
+      "WebFetch(domain:github.com)",
+      "Bash(mkdir:*)",
+      "Bash(uv add:*)",
+      "WebFetch(domain:docling-project.github.io)",
+      "WebFetch(domain:ds4sd.github.io)",
+      "Bash(python -m pytest src/tests/unit/ -v)",
+      "Bash(source:*)",
+      "Bash(pytest:*)",
+      "Bash(mv:*)",
+      "Bash(uv build)",
+      "Bash(cp:*)",
+      "Bash(rm:*)"
+    ],
+    "deny": []
+  }
+}
