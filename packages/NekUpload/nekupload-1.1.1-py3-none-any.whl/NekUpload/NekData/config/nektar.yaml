@@ -1,0 +1,90 @@
+solvers:
+  # Solver names need to match enum values in NekData/data_type SolverType
+  - ADR Solver:
+      EQTYPE:
+        - Projection
+        - Laplace
+        - Poisson
+        - Helmholtz
+        - SteadyAdvectionDiffusion
+        - SteadyAdvectionDiffusionReaction
+        - UnsteadyAdvection
+        - UnsteadyAdvectionDiffusion
+        - UnsteadyReactionDiffusion
+        - UnsteadyInviscidBurgers
+        - UnsteadyViscousBurgers
+      VARIABLES:
+        - ALL: # target all above equation types
+            1D: [u]
+            2D: [u, v]
+            3D: [u, v, w]
+  - Acoustic Solver:
+      EQTYPE: # target specific eqtype. Note, if using this method, cannot use ALL
+        - APE
+        - LEE
+      VARIABLES:
+        - APE:
+            1D: [p, c0sq, rho0, u, u0]
+            2D: [p, c0sq, rho0, u, u0, v, v0]
+            3D: [p, c0sq, rho0, u, u0, v, v0, w, w0]
+        - LEE:
+            1D: [p, rho, rho0, c0sq, gamma, rhou, u0]
+            2D: [p, rho, rho0, c0sq, gamma, rhou, u0, rhov, v0]
+            3D: [p, rho, rho0, c0sq, gamma, rhou, u0, rhov, v0, rhow, w0]
+  - Cardiac EPS Solver:
+      EQTYPE:
+        - Monodomain
+        - BiodomainRoth
+  - Compressible Flow Solver:
+      EQTYPE:
+        - NavierStokesImplicitCFE
+        - NavierStokesCFE
+        - EulerImplicitCFE
+        - EulerCFE
+      VARIABLES:
+        - ALL:
+            1D: [rho,E,p,T,s,a,Mach,sensor,rhou,u]
+            2D: [rho,E,p,T,s,a,Mach,sensor,rhou,u,rhov,v]
+            3D: [rho,E,p,T,s,a,Mach,sensor,rhou,u,rhov,v,rhow,w]
+  - Incompressible Navier Stokes Solver:
+      EQTYPE:
+        - SteadyStokes
+        - SteadyOseen
+        - UnsteadyStokes
+        - SteadyLinearisedNS
+        - UnsteadyLinearisedNS
+        - UnsteadyNavierStokes
+      VARIABLES:
+        - ALL:
+            1D: [p, u]
+            2D: [p, u, v]
+            3D: [p, u, v, w]
+  - Linear Elastic Solver:
+      EQTYPE:
+        - LinearElasticSystem
+        - IterativeElasticSystem
+  - Pulse Wave Solver:
+      EQTYPE:
+        - PulseWavePropagation
+  - Shallow Water Solver:
+      EQTYPE:
+        - LinearSWE
+        - NonlinearSWE
+      VARIABLES:
+        - LinearSWE:
+            1D: [eta,u]
+            2D: [eta,u,v]
+            3D: [eta,u,v,w]
+        - NonlinearSWE:
+            1D: [h,hu]
+            2D: [h,hu,hv]
+            3D: [h,hu,hv,hw]
+  - MMF Solver:
+      EQTYPE:
+        - MMFMaxwell
+  - Image Warping Solver:
+      EQTYPE:
+        - ImageWarpingSystem # Double check
+  - Vortex Wave Interaction Solver:
+      EQTYPE:
+        - UNKNOWN # Currently Unknown
