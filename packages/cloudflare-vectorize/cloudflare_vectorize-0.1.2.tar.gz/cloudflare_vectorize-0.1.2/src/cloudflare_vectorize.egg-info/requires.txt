@@ -1,0 +1,13 @@
+requests<3.0.0,>=2.25.0
+urllib3<2.0.0,>=1.26.0
+
+[:python_version < "3.8"]
+typing-extensions>=4.0.0
+
+[dev]
+pytest>=6.0
+pytest-cov>=2.0
+black>=22.0
+isort>=5.0
+mypy>=0.900
+types-requests>=2.25.0

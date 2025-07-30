@@ -1,0 +1,15 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+src/cloudflare_vectorize/__init__.py
+src/cloudflare_vectorize/client.py
+src/cloudflare_vectorize/exceptions.py
+src/cloudflare_vectorize/utils.py
+src/cloudflare_vectorize.egg-info/PKG-INFO
+src/cloudflare_vectorize.egg-info/SOURCES.txt
+src/cloudflare_vectorize.egg-info/dependency_links.txt
+src/cloudflare_vectorize.egg-info/requires.txt
+src/cloudflare_vectorize.egg-info/top_level.txt
+tests/test_chinese_metadata.py
+tests/test_client.py
