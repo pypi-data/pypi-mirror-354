@@ -1,0 +1,87 @@
+Metadata-Version: 2.4
+Name: pyelle
+Version: 0.1.0
+Summary: An extensible, legible, line-based, elegant data solution!
+Author: Preston Coley
+Author-email: prestoncoley0920@proton.me
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-python
+Dynamic: summary
+
+# PyELLE
+
+Originally developed for use in a custom cryptographic protocol, ELLE format is  
+extensible, legible, line-based, and elegant!  
+
+Data encoded in ELLE looks like this:
+
+```
+|MESSAGE|
+TEXT$PLAINTEXT$VGhpcyBpcyBCYXNlNjQgZGF0YS4=
+DATA$FLAGS,CAN,BE,ANYTHING$VGhpcyBpcyBCYXNlNjQgZGF0YS4=
+OR NOTHING$$VGhpcyBpcyBCYXNlNjQgZGF0YS4=
+|/MESSAGE|
+```
+
+The data header can be anything, from `MESSAGE` to `PACKET` to `LOVE LETTER`.  
+The field names can be anything, and the flags can be anything. Fully extensible.
+
+PyELLE implements ELLE format into Python with these functions and classes:
+
+`class ELLEEntry`
+- `self.name`
+- `self.flags`
+- `self.value`
+
+`class ELLEFile`
+- `def find_entry_with_name(self, name: str) -> ELLEEntry | None`
+- `def save_file(self, file_name: str) -> None`
+- `def set_data_name(self, data_name: str) -> None`
+- `def add_entry(self, entry: ELLEEntry) -> None`
+
+`def elle_encode(data_type: str, entries: list[ELLEEntry]) -> str`
+`def elle_decode(encoded: str) -> ELLEFile`
+
+For example:
+
+```python
+from pyelle import ELLEEntry, ELLEFile, elle_decode, elle_encode
+
+data = b'This is Base64 data.'
+
+entries = (
+    ELLEEntry("TEXT", ("PLAINTEXT",), data),
+    ELLEEntry("DATA", ("FLAGS", "CAN", "BE", "ANYTHING"), data),
+    ELLEEntry("OR NOTHING", (), data)
+)
+
+elle_file = ELLEFile(data_name="MESSAGE", values=entries)
+
+# Data is automatically base64 encoded on save.
+elle_file.save_file("message.elle")
+
+elle_str = str(elle_file)
+
+print(elle_str)
+# Will output:
+#
+# |MESSAGE|
+# TEXT$PLAINTEXT$VGhpcyBpcyBCYXNlNjQgZGF0YS4=
+# DATA$FLAGS,CAN,BE,ANYTHING$VGhpcyBpcyBCYXNlNjQgZGF0YS4=
+# OR NOTHING$$VGhpcyBpcyBCYXNlNjQgZGF0YS4=
+# |/MESSAGE|
+
+# Will reconstruct `elle_file` from str.
+reconstructed_elle_file = elle_decode(elle_str)
+
+# Does the same thing as str(ELLEFile)
+elle_str = elle_encode("MESSAGE", entries)
+```
