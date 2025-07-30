@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: chat-chain
+Version: 0.1.0
+Summary: Extensible Langchain Q&A with RAG implementation.
+Author-email: DL <v49t9zpqd@mozmail.com>
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: langchain<0.4,>=0.3.24
+Requires-Dist: pydantic<3.0,>=2.11
+Provides-Extra: dev
+Requires-Dist: black; extra == "dev"
+Provides-Extra: test
+Requires-Dist: python-dotenv; extra == "test"
+Requires-Dist: boto3; extra == "test"
+Requires-Dist: boto3-stubs; extra == "test"
+Requires-Dist: langchain-aws; extra == "test"
+Requires-Dist: langchain-logseq; extra == "test"
+
+# Chat Pipeline
+
+
+## Usage
+Install dependencies
+```bash
+pip install -e .
+```
+
+

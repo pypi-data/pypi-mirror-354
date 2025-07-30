@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chat-chain"
+version = "0.1.0"
+description = "Extensible Langchain Q&A with RAG implementation."
+readme = "README.md"
+authors = [
+    {name = "DL", email = "v49t9zpqd@mozmail.com"}
+]
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "langchain>=0.3.24,<0.4",
+    "pydantic>=2.11,<3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+]
+test = [
+    "python-dotenv",
+    "boto3",
+    "boto3-stubs",
+    "langchain-aws",
+    "langchain-logseq",
+]
+
+[tool.setuptools]
+packages = ["chat_chain", "chat_chain.utils"]
+
+[tool.black]
+line-length = 120
+target-version = ["py311", "py312", "py313"]
+
+[tool.isort]
+profile = "black"
+line_length = 120
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
