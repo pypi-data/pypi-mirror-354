@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    <title>{{ request.site.name }} Log-In</title>
+{% endblock title %}
+
+
+{% block content %}
+
+{% if form.errors %}
+<div class="card text-bg-danger my-3" style="max-width: 24rem;">
+    <div class="card-header">Error</div>
+    <div class="card-body">
+        <p class="card-text">Authentication failed, please try again.</p>
+    </div>
+</div>
+{% endif %}
+
+{% if next %}
+{% if user.is_authenticated %}
+<p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+{% else %}
+<p>Please login to see this page.</p>
+{% endif %}
+{% endif %}
+
+<div class="col-sm-4">
+    <form method="post" action="{% url 'login' %}" class="form-signin">
+        {% csrf_token %}
+
+        <input name="{{form.username.name}}" id="{{form.username.id_for_label}}"
+            class="form-control m-2 p-1" placeholder="Username" required autofocus=""
+            type="text">
+        <input name="{{form.password.name}}" id="{{form.password.id_for_label}}"
+            class="form-control m-2 p-1" placeholder="Password" required
+            type="password">
+        <input type="hidden" name="next" value="{{ next }}">
+        <button class="btn btn-secondary btn-block m-2 mb-4 p-1" type="submit">Sign
+            in</button>
+    </form>
+</div>
+
+{% endblock content %}

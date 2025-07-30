@@ -1,0 +1,121 @@
+- model: diop.messagetemplate
+  pk: multi-sessions
+  fields:
+    category: W
+    subject: Multiple sessions detected!
+    body: "Dear {{ user.fullname}},\r\n\r\nyou are currently having the following
+      sessions running:\r\n\r\n{{ uid_machine }}\r\n\r\nThe usage terms permit only
+      a SINGLE session in the categories {{ unique_sesssion_group_names }}.\r\n\r\nPlease
+      make sure to terminate all but one session as soon as possible!\r\n\r\n\r\nIn
+      case you're having issues reconnecting or terminating one of your sessions,
+      please contact us at:\r\n\r\n{{ support_contact }}"
+- model: diop.messagetemplate
+  pk: ops-disconnect-limit
+  fields:
+    category: I
+    subject: Session {{session}} exceeds disconnected time limit
+    body: "== OPERATORS NOTIFICATION == {% load humanize %}\r\n\r\nFound a session
+      exceeding the \"max disconnected\" time limit:\r\n\r\n- User: {{ session.user.fullname
+      }}\r\n- Category: {{ session.machine.deliverygroup.dg_name }}\r\n- Machine:
+      {{ session.machine }}\r\n- State: {{ session.cur_state }}\r\n- Session Start:
+      {{ session.t_start | naturaltime }} ({{ session.t_start }})\r\n- Last Change:
+      {{ session.cur_properties.t_change | naturaltime }} ({{ session.cur_properties.t_change
+      }})"
+- model: diop.messagetemplate
+  pk: remaining-reservation-time-please-cancel
+  fields:
+    category: W
+    subject: Orphaned {{ dg_name }} Reservation - please cancel!
+    body: "============= WARNING =============\r\n\r\nDear {{ reservation.user.fullname
+      }}, {% load humanize %}\r\n\r\nyou are still having an active [{{ dg_name }}]
+      reservation with more than {{delta}} minutes\r\nleft after the end of your last
+      session:\r\n\r\n- Reservation Start: {{ reservation.t_start | naturaltime }}
+      ({{ reservation.t_start }})\r\n- Reservation End: {{ reservation.t_end | naturaltime
+      }} ({{ reservation.t_end }})\r\n- Last {{ dg_name }} Session End: {{ last_completed.t_end
+      | naturaltime }} ({{ last_completed.t_end }})\r\n\r\n\r\nPlease cancel your
+      remaining {{dg_name}} reservation through our booking system (unless you're\r\nplanning
+      to start another session now):\r\n\r\n{{booking_uri}}\r\n\r\n\r\nPlease NOTE:
+      Booking a system without actually using it will block anyone else from using\r\nthat
+      resource and is therefore considered a violation of the Rules & Guidelines.
+      Doing so\r\nrepeatedly / intentionally will result in your {{site_name}} account
+      being deactivated.\r\n\r\nBe aware that finishing a session early (i.e. before
+      the end of your reservation) requires\r\nyou to actively cancel the rest of
+      the reservation!\r\n\r\n\r\nIn case you're having issues starting a session,
+      please contact us at:\r\n\r\n{{ support_contact }}"
+- model: diop.messagetemplate
+  pk: reservation-ending-soon
+  fields:
+    category: W
+    subject: '{{ dg_name }} reservation about to expire!'
+    body: "Dear {{ reservation.user.fullname }},\r\n{% load humanize %}\r\nyour current
+      reservation for [{{ dg_name}}] is about to expire!\r\n\r\n- Reservation Start:
+      {{ reservation.t_start | naturaltime }} ({{ reservation.t_start }})\r\n- Reservation
+      END: {{ reservation.t_end | naturaltime }} ({{ reservation.t_end }})\r\n\r\nDetails
+      about your corresponding session:\r\n\r\n- State: {{ session.cur_state }}\r\n-
+      Session Start: {{ session.t_start | naturaltime }} ({{ session.t_start }})\r\n-
+      Last Change: {{ session.cur_properties.t_change | naturaltime }} ({{ session.cur_properties.t_change
+      }})\r\n- Machine: {{ session.machine }}\r\n\r\n\r\n-> If you need your {{ dg_name
+      }} session beyond the current reservation end, make sure to extend it by adding
+      another booking in PPMS:\r\n\r\n{{booking_uri}}\r\n\r\n\r\nOnce your reservation
+      expires, your {{ dg_name }} session will be terminated!\r\n\r\n\r\nNOTE 1: Please
+      take into account that synchronization takes some time, to extend your reservation
+      make your booking at least FIVE minutes before the current reservation end!\r\n\r\nNOTE
+      2: Keep in mind that it does NOT matter which {{ dg_name }} you're booking in
+      PPMS, they are simply placeholders. You can easily extend your reservation by
+      booking a different {{ dg_name }} system in PPMS, you only need to make sure
+      the end time of one is matching the start time of the other.\r\n\r\n\r\nIn case
+      you're having any questions, please contact us at:\r\n\r\n{{ support_contact
+      }}"
+- model: diop.messagetemplate
+  pk: session-reminder
+  fields:
+    category: I
+    subject: '{{ session.machine.deliverygroup.dg_name }} Session Reminder'
+    body: "Good morning {{ session.user.fullname }},\r\n{% load humanize %}\r\nthis
+      is a friendly reminder about your running session:\r\n\r\n- Category: {{ session.machine.deliverygroup.dg_name
+      }}\r\n- State: {{ session.cur_state }}\r\n- Session Start: {{ session.t_start
+      | naturaltime }} ({{ session.t_start }})\r\n- Last Change: {{ session.cur_properties.t_change
+      | naturaltime }} ({{ session.cur_properties.t_change }})\r\n- Machine: {{ session.machine
+      }}\r\n\r\nPlease make sure to reconnect to the session and terminate it once
+      you are done with your work.\r\n\r\n{% if session.is_subject_to_disconnected_termination
+      %}\r\nIf the session continues to stay in state disconnected, it will be force-terminated
+      in\r\n\r\n{{ session.prospected_termination | naturaltime }} ({{ session.prospected_termination
+      }})\r\n{% endif %}\r\n\r\nIn case you're having issues reconnecting or terminating,
+      please contact us at:\r\n\r\n{{ support_contact }}\r\n\r\n\r\n--\r\n{{site_name}}
+      daily reminder generated on {% now \"Y-m-d\" %}."
+- model: diop.messagetemplate
+  pk: session-without-reservation
+  fields:
+    category: W
+    subject: '{{ dg_name }} Session - Booking MANDATORY'
+    body: "============= WARNING =============\r\n\r\nDear {{ session.user.fullname
+      }}, {% load humanize %}\r\n\r\nyou are currently having a [{{ dg_name }}] session
+      running without a valid reservation:\r\n\r\n- Machine: {{ session.machine }}\r\n-
+      State: {{ session.cur_state }}\r\n- Session Start: {{ session.t_start | naturaltime
+      }} ({{ session.t_start }})\r\n- Last Change: {{ session.cur_properties.t_change
+      | naturaltime }} ({{ session.cur_properties.t_change }})\r\n\r\n\r\nPlease keep
+      in mind that sessions in this category require a MANDATORY reservation through
+      our booking system:\r\n\r\n{{booking_uri}}\r\n\r\n\r\nPlease NOTE: Currently
+      only warnings will be sent for sessions violating the booking requirement.\r\n\r\nFrom
+      2023-07-25 on, any [{{ dg_name }}] session that doesn't have a corresponding
+      reservation will be terminated!\r\n\r\n\r\nIn case you're having issues reconnecting
+      or terminating, please contact us at:\r\n\r\n{{ support_contact }}"
+- model: diop.messagetemplate
+  pk: stale-reservation
+  fields:
+    category: W
+    subject: Running {{ dg_name }} Reservation - NO SESSION
+    body: "============= WARNING =============\r\n\r\nDear {{ reservation.user.fullname
+      }}, {% load humanize %}\r\n\r\nyou are currently having an active [{{ dg_name
+      }}] reservation since more than {{delta}} minutes\r\nwithout a corresponding
+      session:\r\n\r\n- Reservation Start: {{ reservation.t_start | naturaltime }}
+      ({{ reservation.t_start }})\r\n- Reservation End: {{ reservation.t_end | naturaltime
+      }} ({{ reservation.t_end }})\r\n\r\n\r\nPlease either use your reservation by
+      starting a {{dg_name}} session or cancel it through our\r\nbooking system:\r\n\r\n{{booking_uri}}\r\n\r\n\r\nPlease
+      NOTE: Booking a system without actually using it will block anyone else from
+      using\r\nthat resource and is therefore considered a violation of the Rules
+      & Guidelines. Doing so\r\nrepeatedly / intentionally will result in your {{site_name}}
+      account being deactivated.\r\n\r\nBe aware that finishing a session early (i.e.
+      before the end of your reservation) requires\r\nyou to actively cancel the rest
+      of the reservation!\r\n\r\n\r\nIn case you're having issues starting a session,
+      please contact us at:\r\n\r\n{{ support_contact }}"

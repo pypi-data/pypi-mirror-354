@@ -1,0 +1,4 @@
+[console_scripts]
+diop-manage=diop_core.cli:manage
+diop-newconfig=diop_core.cli:newconfig
+

@@ -1,0 +1,20 @@
+{% load humanize %}
+
+<h5>{{ request.site.name }} Session Details</h5>
+<ul>
+    <li>User: <b>{{ session_properties.last.session.user.email }}</b>
+        (<em>{{ session_properties.last.session.user.username }}</em>)
+    </li>
+    <li>Machine: <b>{{ session_properties.last.session.machine }}</b></li>
+    <li>Category: <b>{{ session_properties.last.session.machine.deliverygroup }}</b>
+    </li>
+    <li>State: <b>{{ session_properties.last.state }}</b></li>
+    <li>Session Start:
+        <b>{{ session_properties.last.session.t_start | naturaltime }}</b>
+        ({{ session_properties.last.session.t_start }})
+    </li>
+    <li>Last Change:
+        <b>{{ session_properties.last.t_change | naturaltime }}</b>
+        ({{ session_properties.last.t_change }})
+    </li>
+</ul>

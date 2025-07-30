@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block title %}
+    <title>{{ request.site.name }} - Operator's Dash</title>
+{% endblock title %}
+
+
+{% block content %}
+
+    <h1>{{ request.site.name }} - Operator's Dashboard</h1>
+
+    <div class="my-5"></div>
+    <hr />
+    <hr />
+    <div class="my-5"></div>
+
+    <h2>PPMS</h2>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-5">
+                <form method="post" action="{% url 'operators_dash' %}">
+                    {% csrf_token %}
+                    <input type="date"
+                           class="form-control my-1"
+                           id="booking-datepicker"
+                           name="booking-date"
+                           value="{% now "Y-m-d" %}" />
+                    <input type="hidden" name="action" value="ppms-pull-bookings">
+                    <button class="btn btn-outline-primary btn-block p-1 my-1"
+                            name="booking-days"
+                            value="1"
+                            type="submit">🔄🎫 Pull Bookings</button>
+                    <button class="btn btn-outline-primary btn-block p-1 my-1"
+                            name="booking-days"
+                            value="10"
+                            type="submit">🔄🎫🎫 Pull Bookings (+10d)</button>
+                </form>
+            </div>
+
+            <div class="col-sm-5">
+                <form method="post" action="{% url 'operators_dash' %}">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-info btn-block p-1"
+                            type="submit"
+                            name="action"
+                            value="ppms-pull-users">🔄👩‍🔬👨‍🔬 Pull Users</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="my-5"></div>
+
+    <h4>Back To The Future</h4>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-5">
+                <form method="post" action="{% url 'operators_dash' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="booking-date" value="2033-12-12" />
+                    <input type="hidden" name="action" value="ppms-pull-bookings">
+                    <button class="btn btn-outline-primary btn-block p-1 my-1"
+                            name="booking-days"
+                            value="5"
+                            type="submit">🔄🎫 Pull Bookings 2033-12-12 (+5d)</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-5"></div>
+    <hr />
+    <hr />
+    <div class="my-5"></div>
+
+    <h2>Delivery Group Access</h2>
+
+    {% for booking_group in booking_groups %}
+
+        <div class="my-5"></div>
+
+        <h5>{{ booking_group.dg_name }}</h5>
+
+        <table class="table table-striped table-hover table-sm">
+            <thead>
+                <th>User</th>
+                <th>Email</th>
+                <th>Username</th>
+            </thead>
+            {% for user in booking_group.access_users.all %}
+                <tr class="position-relative">
+                    <td>{{ user.fullname }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.username }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
+    <div class="my-5"></div>
+    <hr />
+    <hr />
+    <div class="my-5"></div>
+
+    <h2>Reservations</h2>
+
+    Currently <i>active</i> reservations.
+
+    <table class="table table-striped table-hover table-sm">
+        <thead>
+            <th>ID</th>
+            <th>User</th>
+            <th>Delivery Group</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Duration</th>
+        </thead>
+        {% for res in reservations_current %}
+            <tr class="position-relative">
+                <td>
+                    <a href="{% url 'reservation_details' res.id %}"
+                       class="stretched-link link-secondary">{{ res.id }}</a>
+                </td>
+                <td>{{ res.user.email }}</td>
+                <td>{{ res.deliverygroup }}</td>
+                <td>{{ res.t_start | naturaltime }} ({{ res.t_start }})</td>
+                <td>{{ res.t_end | naturaltime }} ({{ res.t_end }})</td>
+                <td>{{ res.t_end | timeuntil:res.t_start }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <i>Upcoming</i> reservations.
+
+    <table class="table table-striped table-hover table-sm">
+        <thead>
+            <th>ID</th>
+            <th>User</th>
+            <th>Delivery Group</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Duration</th>
+        </thead>
+        {% for res in reservations_future %}
+            <tr class="position-relative">
+                <td>
+                    <a href="{% url 'reservation_details' res.id %}"
+                       class="stretched-link link-secondary">{{ res.id }}</a>
+                </td>
+                <td>{{ res.user.email }}</td>
+                <td>{{ res.deliverygroup }}</td>
+                <td>{{ res.t_start | naturaltime }} ({{ res.t_start }})</td>
+                <td>{{ res.t_end | naturaltime }} ({{ res.t_end }})</td>
+                <td>{{ res.t_end | timeuntil:res.t_start }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock content %}
