@@ -1,0 +1,13 @@
+name: mybinder-env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - esys-escript
+  - oommf
+  - pip
+  - pip:
+      - git+https://github.com/MaMMoS-project/mammos.git@main
+      - pydantic>=2.11.5
+      - ubermag
+      - mammos
