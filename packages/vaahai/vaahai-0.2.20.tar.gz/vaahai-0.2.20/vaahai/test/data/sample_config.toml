@@ -1,0 +1,17 @@
+[vaahai]
+verbose = true
+quiet = false
+log_level = "info"
+
+[llm]
+provider = "openai"
+model = "gpt-4"
+api_key = "sk-sample-key"
+
+[agents]
+default_agent = "assistant"
+max_agents = 5
+
+[project]
+name = "test-project"
+description = "A test project for VaahAI"
