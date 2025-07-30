@@ -1,0 +1,87 @@
+[build-system]
+requires = [
+    "setuptools>=61.2"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ni-cts3"
+description = "CTS3 Python Wrapper"
+keywords = [
+    "NI",
+    "FIME",
+    "CTS3",
+    "NFC"
+]
+authors = [
+    { name = "Julien Vannier", email = "julien.m.vannier@gmail.com" }
+]
+maintainers = [
+    { name = "Guillaume Fouilleul", email = "guillaume.fouilleul@gmail.com" }
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+requires-python = ">=3.6"
+dynamic = [
+    "version"
+]
+
+[project.readme]
+file = "README.rst"
+content-type = "text/x-rst"
+
+[project.license]
+text = "MIT"
+
+[project.urls]
+Homepage = "https://www.fime.com/shop/product/contactless-test-station-cts-iii-41"
+Download = "https://pypi.org/project/ni-cts3"
+Code = "https://github.com/Micropross/CTS3_wrapper"
+
+[tool.setuptools]
+include-package-data = true
+platforms = [
+    "win32",
+    "linux"
+]
+license-files = [
+    "LICENSE"
+]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.package-data]
+"*" = [
+    "py.typed",
+    "*.so",
+    "*.dll"
+]
+
+[tool.setuptools.packages.find]
+where = [
+    "src"
+]
+namespaces = false
+
+[tool.setuptools.dynamic.version]
+attr = "ni_cts3.__version__"
