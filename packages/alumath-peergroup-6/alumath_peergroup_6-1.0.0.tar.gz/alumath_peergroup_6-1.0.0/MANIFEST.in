@@ -1,0 +1,7 @@
+include README.md
+include LICENSE
+include requirements.txt
+recursive-include alumath_peergroup_6 *.py
+recursive-include scripts *.py
+global-exclude __pycache__
+global-exclude *.py[co]

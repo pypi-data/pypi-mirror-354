@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: alumath-peergroup-6
+Version: 1.0.0
+Summary: A Python library for matrix multiplication with support for different dimensions
+Home-page: https://github.com/peergroup6/alumath_peergroup_6
+Author: Peergroup 6
+Author-email: peergroup6@example.com
+License: MIT
+Project-URL: Bug Reports, https://github.com/peergroup6/alumath_peergroup_6/issues
+Project-URL: Source, https://github.com/peergroup6/alumath_peergroup_6
+Project-URL: Documentation, https://github.com/peergroup6/alumath_peergroup_6/wiki
+Keywords: matrix multiplication linear algebra mathematics
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+
+# alumath_peergroup_6
+
+A comprehensive Python library for matrix multiplication with support for different dimensions and broadcasting.
+
+## Features
+
+- **Standard Matrix Multiplication**: Classic A × B multiplication
+- **Element-wise Multiplication**: Hadamard product for same-dimension matrices
+- **Broadcasting Support**: Intelligent dimension handling for compatible matrices
+- **Comprehensive Error Handling**: Clear error messages for invalid operations
+- **Pure Python**: No external dependencies required
+- **Type Hints**: Full type annotation support
+- **Extensive Documentation**: Complete API documentation and examples
+
+## Installation
+
+\`\`\`bash
+pip install alumath_peergroup_6
+\`\`\`
+
+## Quick Start
+
+```python
+from alumath_peergroup_6 import Matrix, multiply
+
+# Create matrices
+matrix_a = Matrix([[1, 2], [3, 4]])
+matrix_b = Matrix([[5, 6], [7, 8]])
+
+# Standard matrix multiplication
+result = multiply(matrix_a, matrix_b, method="standard")
+print(result)
+
+# Element-wise multiplication
+result = multiply(matrix_a, matrix_b, method="hadamard")
+print(result)
+
+# Broadcasting multiplication
+scalar = Matrix([[2]])
+result = multiply(matrix_a, scalar, method="broadcast")
+print(result)
+
+
