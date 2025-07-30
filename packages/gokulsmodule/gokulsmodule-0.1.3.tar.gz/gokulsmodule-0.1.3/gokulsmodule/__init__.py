@@ -1,0 +1,1 @@
+from .main import rectangle, triangle, rev_triangle, hollow_triangle, hollow_square, hollow_rev_triangle, fibbonauci, factors, hcfandlcm, factorial, bogasort, dictconst, GetMYSQLCursor # Import functions from main.py
