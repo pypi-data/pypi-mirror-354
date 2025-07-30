@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["qtasks_webview*"]
+
+[project]
+name = "qtasks_webview"
+version = "0.0.1"
+authors = [
+  { name="txello", email="txello@inbox.ru" },
+]
+description = "Web Framework for QTasks"
+readme = "README.md"
+requires-python = ">=3.8"
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/txello/qtasks_webview"
+Issues = "https://github.com/txello/qtasks_webview/issues"

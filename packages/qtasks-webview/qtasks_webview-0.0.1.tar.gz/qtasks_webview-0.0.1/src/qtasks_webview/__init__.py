@@ -1,0 +1,1 @@
+from qtasks_webview.version import __version__
