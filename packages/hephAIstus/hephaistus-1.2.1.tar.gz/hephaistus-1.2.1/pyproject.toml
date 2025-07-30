@@ -1,0 +1,28 @@
+[project]
+name = "hephAIstus"
+version = "1.2.1"
+description = "Local AI tools and models for DevOps Engineers"
+authors = [
+    {name = "JacobCompany",email = "jacob.gross@health-union.com"}
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = "<4.0,>=3.11"
+dependencies = [
+    "gpt4all (>=2.8,<3.0)",
+    "ollama (>=0.5,<1.0)",
+    "pypdf (>=5.6.0,<6.0.0)",
+    "pandas (>=2.3.0,<3.0.0)",
+    "python-pptx (>=1.0.2,<2.0.0)",
+    "python-docx (>=1.1.2,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.11.12"
+isort = "^6.0.1"
+
