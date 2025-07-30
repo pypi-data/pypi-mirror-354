@@ -1,0 +1,57 @@
+Metadata-Version: 2.4
+Name: sphinxcontrib-twine
+Version: 0.1.0
+Summary: Add some interactive stories in your Sphinx docs
+Author-email: Xing Ji <me@xingji.me>
+License-Expression: MIT
+Project-URL: Repository, https://github.com/jixingcn/sphinxcontrib-twine
+Project-URL: Homepage, https://github.com/jixingcn/sphinxcontrib-twine
+Project-URL: Changelog, https://github.com/jixingcn/sphinxcontrib-twine/blob/main/CHANGELOG.rst
+Project-URL: Issues, https://github.com/jixingcn/sphinxcontrib-twine/issues
+Keywords: sphinx,twine,chapbook,story
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Sphinx
+Classifier: Framework :: Sphinx :: Extension
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Documentation
+Classifier: Topic :: Utilities
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: sphinx
+Dynamic: license-file
+
+# Sphinx [Twine] Extension
+
+Add some interactive stories in your Sphinx docs.
+
+
+## Features
+
+* Supports [Chapbook]
+
+
+## Installation
+
+
+
+## Configuration
+
+
+## Usage
+
+
+### Directive options
+
+
+
+
+[Twine]: https://twinery.org/
+[Chapbook]: https://klembot.github.io/chapbook/
