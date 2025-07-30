@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: promptflow-evals
+Version: 0.3.5
+Summary: Prompt flow evals
+Home-page: https://microsoft.github.io/promptflow/
+License: MIT
+Keywords: telemetry
+Author: Microsoft Corporation
+Author-email: azuremlsdk@microsoft.com
+Requires-Python: >=3.9,<4.0
+Classifier: Development Status :: 7 - Inactive
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3 :: Only
+Provides-Extra: azure
+Requires-Dist: azure-core (>=1.30.2)
+Requires-Dist: azure-identity (>=1.17.1)
+Requires-Dist: jsonpath_ng (>=1.5.0)
+Requires-Dist: nltk (>=3.8.1)
+Requires-Dist: numpy (>=1.22)
+Requires-Dist: promptflow-azure (>=1.15.0,<2.0.0) ; extra == "azure"
+Requires-Dist: promptflow-core (>=1.15.0,<2.0.0)
+Requires-Dist: promptflow-devkit (>=1.15.0,<2.0.0)
+Requires-Dist: pyjwt (>=2.8.0)
+Requires-Dist: rouge-score (>=0.1.2)
+Requires-Dist: websocket-client (>=1.2.0)
+Project-URL: Bug Reports, https://github.com/microsoft/promptflow/issues
+Project-URL: Repository, https://github.com/microsoft/promptflow
+Description-Content-Type: text/markdown
+
+# Prompt flow - Evals
+
+This package ([promptflow-evals](https://pypi.org/project/promptflow-evals/)) has been deprecated. Please use new Azure AI Evaluation SDK ([azure-ai-evaluation](https://pypi.org/project/azure-ai-evaluation/)).
+
+Please refer to [migration guide](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/evaluation/azure-ai-evaluation/migration_guide.md) for guidance on upgrading.
+
+## ChangeLog
+
+Reach the full change log [here](https://github.com/microsoft/promptflow/blob/main/src/promptflow-evals/CHANGELOG.md#release-history).
+
