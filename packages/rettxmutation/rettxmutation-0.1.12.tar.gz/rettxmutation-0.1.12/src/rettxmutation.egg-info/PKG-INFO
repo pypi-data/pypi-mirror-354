@@ -1,0 +1,218 @@
+Metadata-Version: 2.4
+Name: rettxmutation
+Version: 0.1.12
+Summary: Extract Rett Syndrome mutations from genetic diagnosis report
+Author-email: Pedro Rocha <procha@rettsyndrome.eu>
+License: MIT License
+Project-URL: Homepage, https://github.com/rett-europe/rettxmutation
+Project-URL: Issues, https://github.com/rett-europe/rettxmutation/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: python-dotenv
+Requires-Dist: azure-ai-formrecognizer
+Requires-Dist: azure-core
+Requires-Dist: azure-ai-textanalytics
+Requires-Dist: azure.ai.documentintelligence
+Requires-Dist: ftfy
+Requires-Dist: mutalyzer_hgvs_parser
+Requires-Dist: pydantic
+Requires-Dist: pydantic_settings
+Requires-Dist: openai
+Requires-Dist: opencv-python-headless
+Requires-Dist: backoff
+Requires-Dist: jmespath
+Requires-Dist: azure-search-documents
+Requires-Dist: semantic_kernel
+Requires-Dist: importlib.resources
+Dynamic: license-file
+
+# RettX Mutation Analysis Library
+
+[![PyPI version](https://badge.fury.io/py/rettxmutation.svg)](https://badge.fury.io/py/rettxmutation)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+A Python library for extracting and analyzing MECP2 mutations from genetic documents using Azure AI services. Designed for medical genetics research, clinical applications, and bioinformatics workflows focused on Rett Syndrome.
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+pip install rettxmutation
+```
+
+### Basic Usage
+
+```python
+from rettxmutation import RettxServices, DefaultConfig
+
+# Initialize configuration (loads from environment variables)
+config = DefaultConfig()
+
+# Create services
+services = RettxServices(config)
+
+# Process a genetic document
+with open('genetic_report.pdf', 'rb') as file_stream:
+    # Extract text using OCR
+    document = services.ocr_service.extract_and_process_text(file_stream)
+    
+    # Detect MECP2-related keywords and mutations
+    keyword_collection = services.keyword_detector_service.detect_keywords(document)
+    
+    # Get structured mutations with confidence scores
+    mutations = keyword_collection.get_gene_mutations()
+    
+    for mutation in mutations:
+        print(f"Gene: {mutation.primary_transcript.gene_id}")
+        print(f"HGVS: {mutation.primary_transcript.hgvs_transcript_variant}")
+        print(f"Protein: {mutation.primary_transcript.protein_consequence_tlr}")
+```
+
+## ✨ Key Features
+
+- **🔍 Multi-Format Document Processing**: PDF, PNG, JPG support with intelligent OCR
+- **🧬 HGVS Validation**: Built-in mutalyzer integration for mutation validation
+- **🤖 AI-Powered Extraction**: Azure OpenAI and Semantic Kernel for intelligent text analysis
+- **📊 Confidence Scoring**: All results include confidence metrics for quality assessment
+- **🎯 MECP2 Specialization**: Optimized for Rett Syndrome genetic analysis
+- **⚡ Production Ready**: Type-safe Pydantic v2 models with comprehensive error handling
+- **🔄 External API Integration**: Ensembl.org enrichment with retry mechanisms
+- **🏗️ Modular Architecture**: Clean separation of concerns with dependency injection
+
+## 🛠️ Requirements
+
+### Python Version
+- Python 3.8 or higher
+
+### Azure Services
+You'll need access to these Azure services:
+- **Azure Form Recognizer** (Document Intelligence) - for OCR
+- **Azure OpenAI** - for mutation extraction and text analysis
+- **Azure Cognitive Services** (Text Analytics) - for medical text processing
+- **Azure AI Search** (optional) - for enhanced keyword detection
+
+### Environment Variables
+```bash
+# Required
+RETTX_DOCUMENT_ANALYSIS_ENDPOINT=https://your-form-recognizer.cognitiveservices.azure.com/
+RETTX_DOCUMENT_ANALYSIS_KEY=your-form-recognizer-key
+
+RETTX_OPENAI_ENDPOINT=https://your-openai.openai.azure.com/
+RETTX_OPENAI_KEY=your-openai-key
+RETTX_OPENAI_MODEL_NAME=gpt-4
+RETTX_OPENAI_MODEL_VERSION=2024-02-01
+
+RETTX_COGNITIVE_SERVICES_ENDPOINT=https://your-cognitive-services.cognitiveservices.azure.com/
+RETTX_COGNITIVE_SERVICES_KEY=your-cognitive-services-key
+
+# Optional (for enhanced features)
+RETTX_AI_SEARCH_SERVICE=your-search-service
+RETTX_AI_SEARCH_API_KEY=your-search-key
+RETTX_AI_SEARCH_INDEX_NAME=your-index-name
+```
+
+## 📋 Processing Workflow
+
+1. **Document Input**: Accept PDF or image files
+2. **OCR Processing**: Extract text using Azure Form Recognizer
+3. **Text Normalization**: Clean and standardize extracted text
+4. **Keyword Detection**: Multi-layer detection (regex + AI + search)
+5. **Mutation Extraction**: AI-powered identification using Semantic Kernel
+6. **HGVS Validation**: Validate mutations using mutalyzer parser
+7. **Data Enrichment**: Query Ensembl.org for additional mutation data
+8. **Structured Output**: Return validated mutations with confidence scores
+
+## 💻 Advanced Usage
+
+### Async Mutation Validation
+
+```python
+import asyncio
+from rettxmutation.models.gene_models import GeneMutation, TranscriptMutation
+from rettxmutation.services.mutation_validator import MutationValidator
+
+async def validate_mutations():
+    config = DefaultConfig()
+    validator = MutationValidator(config)
+    
+    # Create mutation object
+    mutation = GeneMutation(
+        variant_type="SNV",
+        primary_transcript=TranscriptMutation(
+            gene_id="MECP2",
+            transcript_id="NM_004992.4",
+            hgvs_transcript_variant="NM_004992.4:c.916C>T",
+            protein_consequence_tlr="NP_004983.1:p.(Arg306Cys)"
+        )
+    )
+    
+    # Validate with external services
+    validation_result = await validator.validate_mutations([mutation])
+    return validation_result
+
+# Run async function
+result = asyncio.run(validate_mutations())
+```
+
+### Custom Configuration
+
+```python
+from rettxmutation.config import RettxConfig
+
+class CustomConfig:
+    """Custom configuration implementation"""
+    LOG_LEVEL = "DEBUG"
+    ENVIRONMENT = "production"
+    RETTX_OPENAI_MODEL_NAME = "gpt-4-turbo"
+    # ... other config values
+
+services = RettxServices(CustomConfig())
+```
+
+## 🎯 Use Cases
+
+- **🏥 Clinical Genetics**: Process genetic reports for patient diagnosis
+- **🔬 Research**: Analyze genetic data for Rett Syndrome studies  
+- **📊 Patient Registries**: Populate genetic databases systematically
+- **🤖 Bioinformatics Pipelines**: Integrate with existing analysis workflows
+- **📱 Clinical Applications**: Build genetic analysis tools and dashboards
+
+## 🔧 Error Handling & Reliability
+
+- **Exponential Backoff**: Automatic retry for external API calls (up to 5 attempts)
+- **Graceful Degradation**: Continue processing when optional services are unavailable
+- **Comprehensive Logging**: Detailed logging for debugging and monitoring
+- **Type Safety**: Pydantic v2 models ensure data validation at runtime
+- **Connection Pooling**: Efficient Azure service client management
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [GitHub repository](https://github.com/rett-europe/rettxmutation) for:
+- Issue reporting
+- Feature requests  
+- Pull request guidelines
+- Development setup instructions
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- **Issues**: [GitHub Issues](https://github.com/rett-europe/rettxmutation/issues)
+- **Documentation**: [API Documentation](https://github.com/rett-europe/rettxmutation)
+- **Contact**: procha@rettsyndrome.eu
+
+## 🔮 Roadmap
+
+- **Multi-Gene Support**: Extend beyond MECP2 to other genetic conditions
+- **Enhanced Image Processing**: Advanced OCR for handwritten documents  
+- **Multilingual Support**: Process documents in multiple languages
+- **Real-time Processing**: WebSocket support for live document analysis
+- **Cloud Deployment**: Docker containers and Azure deployment templates
