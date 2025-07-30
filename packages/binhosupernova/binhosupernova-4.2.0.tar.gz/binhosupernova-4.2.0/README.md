@@ -1,0 +1,343 @@
+# SupernovaSDK: Python SDK for Binho Supernova USB Host Adapter
+
+SupernovaSDK is a Python package that facilitates seamless interaction with the innovative Supernova USB host adapter developed by Binho. Designed to simplify device orchestration during embedded system development and testing, the Supernova host adapter enhances hardware control for developers and engineers.
+
+# Prerequisites
+
+Before installing and using the SupernovaSDK, please ensure your system meets the following requirements:
+
+- Python 3.8 or higher.
+- Windows, MacOS or Linux operating systems.
+- Binho Supernova USB host adapter with up-to-date firmware.
+
+# Installation From PyPi
+
+For the most recent update of the binhosupernova Python package on PyPi, follow these steps:
+
+1. Open your terminal or command prompt.
+
+3. Use pip to install the SupernovaSDK:
+
+```sh
+pip install binhosupernova
+```
+
+Now, the SupernovaSDK is installed and ready to be used in your Python projects. You can import and use it as shown in the usage example.
+
+# Installation From the Git Repository
+
+Remember to activate your virtual environment (if you're using one) before running the installation command.
+
+To install the SupernovaSDK from your local file system, follow these steps:
+
+1. Download the SupernovaSDK package.
+
+2. Extract the downloaded package to a folder on your local file system.
+
+3. Open a terminal or command prompt and navigate to the folder containing the extracted SupernovaSDK.
+
+4. Install the SDK using pip with the local file path:
+
+```sh
+pip install .
+```
+
+**Note**: Make sure to include the period (.) at the end, indicating the current directory.
+
+Now, the SupernovaSDK is installed and ready to be used in your Python projects. You can import and use it as shown in the usage example.
+
+# Examples Repository
+
+To see some examples of how to use this Python package, please refer to the [examples repository](https://github.com/binhollc/SupernovaSDK-examples). This repository hosts different Jupyter notebooks for all the protocol and interface APIs provided by the SupernovaSDK.
+
+# Support
+
+For help, please visit our [Customer Support Portal](https://support.binho.io/) or reach us at techsupport@binho.io.
+
+# Changelog
+
+## v4.2.0
+
+### ✨ New Features
+
+- **I3C HDR-DDR Support:**
+  - Added support for I3C HDR-DDR mode on Supernova devices.
+  - Enables high-speed I3C Private Write/Read transactions and full support for both Broadcast and Direct CCCs.
+
+  ```python
+  # I3C Private Write Transfers in HDR-DDR mode API method.
+  def i3cControllerHdrDdrWrite(self, id: c_uint16, targetAddress: c_uint8, command: c_uint8, data: list)
+
+  # I3C Private Read Transfers in HDR-DDR mode API method.
+  def i3cControllerHdrDdrRead(self, id: c_uint16, targetAddress: c_uint8, command: c_uint8, length: c_uint16)
+
+  # Generic I3C CCC in SDR and HDR-DDR modes API method.
+  def i3cControllerCccTransfer(self, id: c_uint16, cmdType: c_uint8, direction: TransferDirection, targetAddress: c_uint8, mode: TransferMode, defByte: c_uint8, ccc: c_uint8, length: c_uint16, data: list)
+  ```
+
+- **Persistent Voltage Configuration:**
+  - Voltage settings for I2C, SPI, UART, and GPIO can now be optionally saved across power cycles, ensuring a seamless and predictable startup configuration.
+
+  ```python
+  # Set and optionally store the operating voltage.
+  def setI2cSpiUartGpioVoltage(self, id: int, voltage_mV : c_uint16, save: bool = False)
+
+  # Measure and use the external voltage. Optionally, store the voltage value.
+  def useExternalI2cSpiUartGpioVoltage(self, id: int, save: bool = False)
+  ```
+
+### 🧹 Cleanups
+
+- **Unified I2C Pull-Up Resistor Values:**
+  - Harmonized the list of supported pull-up resistor values between Pulsar and Supernova platforms.
+  - The firmware now validates selected resistor values, returning an `INVALID PARAMETER` error for unsupported configurations.
+
+## v4.1.0
+
+### 🆕 TL;DR Highlights
+
+- 🚀 Added `i2cControllerScanBus()` to scan I2C bus (includes 10-bit addresses)
+- 📦 Renamed package to `binhosupernova` for PEP625 compliance
+- 🧠 Extended support for I3C CCCs: GETCAPS, GETSTATUS, ENDXFER, ENTASn
+- ⚙️ New `getDeviceInfo()` API for consolidated device metadata
+- 🔁 Expanded frequency options with improved I3C duty cycle support
+- 🔌 Improved USB disconnect handling and device enumeration output
+
+### 🔧 Improvements
+
+- **Enhanced Validation:** Update commands validator to enforce maximum transfer length per protocol
+
+### ✨ New Features
+
+- **I2C Controller:**
+  - **Support for 10-bit addressing:** Introduced support for 10-bit addressing transfers indicated with a flag in the write and read commands.
+
+  ```python
+  # Write to a 10-bit address target
+  i2cControllerWrite(id=1, targetAddress=0x308, registerAddress=[0x00,0x00], data=[0x00,0x01,0x02], is10BitTargetAddress=True)
+
+  # Read to a 10-bit address target
+  i2cControllerRead(id=2, targetAddress=0x308, requestDataLength=3, registerAddress=[0x00,0x00], is10BitTargetAddress=True)
+  ```
+
+  - **Bus Scanning Support:** Introduced a new method to scan the I2C bus and retrieve a list of connected target addresses, including 10-bit addresses.
+
+  ```python
+  def i2cControllerScanBus(self, id: int, include10BitAddresses: bool = False)
+  ```
+
+- **I3C Controller:**
+  - **Extended GETCAPS and GETSTATUS CCCs Format:** Added support for Format 2 with defining byte for both CCCs.
+
+  ```python
+  def i3cGETCAPS(self, id: c_uint16, targetAddress: c_uint8, defByte: c_uint8 = None)
+  def i3cGETSTATUS(self, id: c_uint16, targetAddress: c_uint8, defByte: c_uint8 = None)
+  ```
+
+  - **Support for Direct ENDXFER (Read Mode):** Now supports read direction for the Direct ENDXFER CCC.
+
+  ```python
+  def i3cDirectENDXFER(self, id: c_uint16, targetAddress, definingByte: c_uint8, data:c_uint8 = 0, direction: TransferDirection = TransferDirection.WRITE)
+  ```
+
+  - **Direct ENTAS0-3 CCCs Support:** API now provides methods to emit all Direct ENTASn CCCs.
+
+  ```python
+  def i3cDirectENTAS0(self, id: c_uint16, targetAddress: c_uint8)
+  def i3cDirectENTAS1(self, id: c_uint16, targetAddress: c_uint8)
+  def i3cDirectENTAS2(self, id: c_uint16, targetAddress: c_uint8)
+  def i3cDirectENTAS3(self, id: c_uint16, targetAddress: c_uint8)
+  ```
+
+  - **I3C Pin Drive Strength Configuration:** User can now select between `STANDARD` and `FAST` mode drive strengths.
+
+  ```python
+  def i3cControllerInit(self, id: c_uint16, pushPullRate: I3cPushPullTransferRate, i3cOpenDrainRate: I3cOpenDrainTransferRate, i2cOpenDrainRate: I2cTransferRate, driveStrength: I3cDriveStrength = I3cDriveStrength.FAST_MODE)
+  def i3cControllerSetParameters(self, id: c_uint16, pushPullRate: I3cPushPullTransferRate, i3cOpenDrainRate: I3cOpenDrainTransferRate, i2cOpenDrainRate: I2cTransferRate, driveStrength: I3cDriveStrength = I3cDriveStrength.FAST_MODE)
+  ```
+
+  - **Support for I2C High-Speed and Ultra Fast modes over I3C:** Extended support for I2C Open-Drain frequency at 3.4MHz and 5MHz.
+
+- **Device info:**
+  - **New `getDeviceInfo()` Method**: Introduced a new method to retrieve all the device information, including the manufacturer name, product name, serial number, firmware version, hardware version and supported interfaces, such as I2C, I3C, GPIO, etc. This method is an all-in-one solution aimed at replace the method ``getUsbString`` with the different sub-command values. However, the method `getUsbString` is still available as part of the API.
+
+  ```python
+  # Method signature
+  def getDeviceInfo(self, id: int)
+
+  # Response structure
+  {'id': 6, 'command': 'SYS GET DEVICE INFO', 'result': 'SUCCESS', 'manufacturer': 'Binho LLC', 'product_name': 'Supernova', 'serial_number': '5F4BCE79166A34559DF3081DF5A8769DA', 'hardware_version': 'C', 'firmware_version': '4.1.0', 'capabilities': {'supported_groups': ['I3C', 'I2C', 'SPI', 'UART', 'GPIO']}}
+  ```
+
+### 🧹 Refactors & Cleanups
+
+- **Package Renaming for PEP625 Compliance:** Updated package name from `BinhoSupernova` to `binhosupernova`, and renamed submodule `Supernova` to `supernova` to be compliant with [PEP625](https://peps.python.org/pep-0625/).
+
+  ```sh
+  # Up to v4.0.0
+  pip install BinhoSupernova
+
+  # From version v4.1.0
+  pip install binhosupernova
+  ```
+
+  ```python
+  # Up to v4.0.0
+  import BinhoSupernova
+  from BinhoSupernova.Supernova import Supernova
+  from BinhoSupernova.commands.i2c.definitions import I2cPullUpResistorsValue
+
+  # From v4.1.0
+  import binhosupernova
+  from binhosupernova.supernova import Supernova
+  from binhosupernova.commands.i2c.definitions import I2cPullUpResistorsValue
+  ```
+
+- **I3C Controller:** Modified the list of I3C Push-Pull and I3C Open-Drain frequency values, aimed to provide users with not only more frequency options but also with I3C Push-Pull frequency values with greater duty cycle. This has been requested by several users. Now, the API provides I3C Push-Pull frequency values whose Thigh value goes from 40 ns up to 100 ns.
+
+- **`UsbDisconnectionError` Exception Removal:** This exception was removed and it is no longer thrown when the Supernova device is unexpectedly disconnected. As in previous versions, only the system message is asynchronously returned through the registered callback to notify this event. Additionally, clients of the API must check the result returned by the API methods which returns an error if there is no communication established between the host and the device.
+
+- **Command response result:** The result strings ``"BUS_NOT_INITIALIZE"`` and ``"BUS_ALREADY_INITIALIZED"`` were renamed as ``"INTERFACE_NOT_INITIALIZED"`` and ``"INTERFACE_ALREADY_INITIALIZED"`` to avoid any confusion with the state of the I3C bus. These strings are returned as the value of the key `result`.
+
+  ```python
+  # Up to v4.0.0
+  {'id': 13, 'command': 'I2C CONTROLLER INIT', 'result': 'BUS_ALREADY_INITIALIZED', 'i2c_bus': 'I2C_BUS_A'}
+
+  # From v4.1.0
+  {'id': 13, 'command': 'I2C CONTROLLER INIT', 'result': 'INTERFACE_ALREADY_INITIALIZED', 'i2c_bus': 'I2C_BUS_A'}
+  ```
+
+- **Device Enumeration Output Overhaul:**
+  - Modified the structure and content of the dictionaries returned by the static method `getConnectedSupernovaDevicesList()`.
+  - Added the hardware and firmware version.
+  - Removed unused fields.
+
+  ```python
+  # Up to v4.0.0
+  {'path': '\\\\?\\HID#VID_1FC9&PID_82FC#7&8ada5c5&1&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}',
+    'vendor_id': '0x1fc9',
+    'product_id': '0x82fc',
+    'serial_number': '12B24708C123895DB326EDA7E1FBA6D',
+    'release_number': 256,
+    'manufacturer_string': 'Binho LLC',
+    'product_string': 'Binho Supernova',
+    'usage_page': 65280,
+    'usage': 1,
+    'interface_number': 0}
+
+  # From v4.1.0
+  {'path': '\\\\?\\HID#VID_1FC9&PID_82FC#6&9e2d326&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}',
+    'vendor_id': '0x1fc9',
+    'product_id': '0x82fc',
+    'serial_number': '12B24708C123895DB326EDA7E1FBA6DA',
+    'manufacturer_string': 'Binho LLC',
+    'product_string': 'Binho Supernova',
+    'hardware_version': 'C',
+    'firmware_version': '4.1.0'}
+  ```
+
+## v4.0.0
+
+### Improvements
+
+- **Enhanced Validation:**
+  - Comprehensive ID validation added across all SDK methods.
+  - Dynamic address validation implemented for `I3C SETNEWDA Common Command Code (CCC)`.
+- **Preliminary 10-bit I2C Addressing Support:**
+  - API update to include a flag in transfer methods to indicate a 10-bit target static address.
+- **GPIO Initial Value Setting:**
+  - API expanded to configure the initial value when setting a GPIO as a digital output. Feature not supported yet by firmware.
+- **Communication Enhancements:**
+  - A new USB Transfer protocol was implemented to make communication between devices and host more efficient.
+
+### Refactors
+
+Several refactors were carried out as part of the implementation of `v4.0.0` to unify and standardize both the API and the dictionary responses across protocols.
+
+- **Responses dictionary standardization:**
+  - All the keys are written in ``snake_case`` style.
+  - All the Python dictionaries returned by the API are based on a common structures containing the following  `key-value` pairs:
+    - ``'id'``: integer number representing the response id.
+    - ``command``: string name of the command.
+    - ``result``: string indicating the result of the command request.
+    - ``payload_length``: all those responses that return a variable length value, include this key to indicate the length of the returned variable length data.
+    - ``payload``: this key identifies the variable length data.
+
+```python
+{'id':<response_id>, 'command':<command_name_string>, 'result': <result_string>, 'payload_length': <int>, 'payload': <list>}
+```
+
+See some examples below:
+
+```python
+{'id': 1, 'command': 'SYS GET USB STRING', 'result': 'SUCCESS', 'payload_length': 12, 'payload': 'MN-Binho LLC'}
+
+{'id': 6, 'command': 'SYS SET I2C SPI UART GPIO VOLTAGE', 'result': 'SUCCESS'}
+
+{'id': 12, 'command': 'I2C CONTROLLER WRITE', 'result': 'SUCCESS', 'i2c_bus': 'I2C_BUS_A', 'payload_length': 128}
+
+{'id': 21, 'command': 'I3C CONTROLLER PRIVATE TRANSFER', 'result': 'SUCCESS', 'payload_length': 5, 'payload': [1, 2, 3, 4, 5]}
+```
+
+The key ``'command'`` now identifies the command name instead of the integer number, and the key `'name'` was removed.
+
+- **Integration of protocol roles in the API methods naming:** As part of the standardization process, the API methods expose the role to which the method relates to.
+  - **UART:** Simplified nomenclature by removing "Controller" from command and parameter names, since there is no controller or target roles.
+  - **I2C:** Standardized methods naming with "Controller", except for ``i2cSetPullUpResistors``, as it is independent of the device role.
+  - **I3C:** Standardized methods naming with "Controller" and "Target". For instance, ``i3cControllerInitBus``, ``i3cControllerWrite``, ``i3cControllerSetParameters``
+
+- **Functional Consolidation:**
+  - **I2C:** Unified I2C methods:
+    - ``i2cWriteNonStop`` merged with ``i2cControllerWrite`` (triggered by the ``isNonStop`` flag)
+    - ``i2cReadFrom`` integrated into ``i2cControllerRead`` (invoked based on register address length)
+  - **Voltage setting**: Rename methods for clarification.
+    - ``setI3cBusVoltage`` as ``setI3cVoltage``
+    - ``setI2cSpiUartBusVoltage`` as ``setI2cSpiUartGpioVoltage``
+    - ``useExternalSourceForI3cBusVoltage`` as ``useExternalI3cVoltage``
+    - ``useExternalSourceForI2cSpiUartBusVoltage`` as ``useExternalI2cSpiUartGpioVoltage``
+  - **I3C Controller:**
+    - Remove non-intuitive methods.
+      - ``i3cClearFeature``: Instead use the new ``i3cControllerResetBus`` method to reset the bus, or the methods ``i3cBroadcastDISEC`` and ``i3cDirectDISEC`` to issue the corresponding ``DISEC CCCs``.
+      - ``i3cSetFeature``: Instead use the methods ``i3cBroadcastENEC`` and ``i3cDirectENEC``to issue the corresponding ``ENEC CCCs``.
+      - ``i3cChangeDynamicAddress``: Instead use the method ``i3cSETNEWDA`` to issue the ``SETNEWDA CCC``.
+      - ``i3cSetTargetDeviceConfig``: Replaced with ``i3cControllerSetTargetDeviceConfiguration``.
+      - ``i3cGetCapability:`` Remove this unused and deprecated method.
+    - Enhanced method to change I3C target settings in the target devices table. Check out the section [Examples repository](#examples-repository) to get further insight about how the method ``i3cControllerSetTargetDeviceConfiguration`` works.
+    - Simplified the structure of the target devices table making it more intuitive. Additionally, added fields to hold `mwl` and `mrl` values (added as placeholders for future implementation).
+
+    ``` python
+    {'id': 10, 'command': 'I3C CONTROLLER GET TARGET DEVICES TABLE', 'result': 'SUCCESS', 'number_of_targets': 2, 'table': [{'static_address': 0, 'dynamic_address': 8, 'pid': [2, 8, 0, 112, 146, 11], 'bcr': 7, 'dcr': 68, 'mwl': 0, 'mrl': 0, 'max_ibi_payload_length': 0, 'configuration': {'target_type': 'I3C_DEVICE', 'interrupt_request': 'ACCEPT_IBI', 'controller_role_request': 'REJECT_CRR', 'setdasa': 'DO_NOT_USE_SETDASA', 'setaasa': 'DO_NOT_USE_SETAASA', 'entdaa': 'USE_ENTDAA', 'ibi_timestamp': 'DISABLE_IBIT', 'pending_read_capability': 'DISABLE_AUTOMATIC_READ'}}, {'static_address': 0, 'dynamic_address': 9, 'pid': [7, 112, 16, 67, 16, 0], 'bcr': 6, 'dcr': 239, 'mwl': 0, 'mrl': 0, 'max_ibi_payload_length': 0, 'configuration': {'target_type': 'I3C_DEVICE', 'interrupt_request': 'ACCEPT_IBI', 'controller_role_request': 'REJECT_CRR', 'setdasa': 'DO_NOT_USE_SETDASA', 'setaasa': 'DO_NOT_USE_SETAASA', 'entdaa': 'USE_ENTDAA', 'ibi_timestamp': 'DISABLE_IBIT', 'pending_read_capability': 'DISABLE_AUTOMATIC_READ'}}]}
+    ```
+
+- **API Standardization:**
+  - For the most part, all protocols are based on a set of methods to initialize and configure the device, as well as to issue transfers. For instance:
+    - ``i2cControllerInit``, ``i2cControllerSetParameters``, ``i2cControllerWrite``, ``i2cControllerRead``
+    - ``i3cControllerInit``, ``i3cControllerSetParameters``, ``i3cControllerInitBus``, ``i3cControllerResetBus``, ``i3cControllerGetTargeDevicesTable``, ``i3cControllerSetTargetDeviceConfiguration``, ``i3cControllerWrite``, ``i3cControllerRead``.
+    - ``i3cTargetInit``, ``i3cTargetSetParameters``, ``i3cControllerWriteMemory``, ``i3cControllerReadMemory``.
+    - ``spiControllerInit``, ``spiControllerSetParameters``, ``spiControllerTransfer``
+    - ``uartInit``, ``uartSetParameters``, ``uartSend``
+  - In a near future, new methods such as ``deinit`` and ``getParameters`` might be implemented too.
+  - **I2C and I3C frequencies configuration:**
+    - In I3C, remove the parameters to set the frequencies in the different I3C transfer methods. Now the 3 different frequencies are set through the methods ``i3cControllerInit`` and ``i3cControllerSetParameters``.
+    - In I2C, now the frequency is set through the methods ``i2cControllerInit`` and ``i2cControllerSetParameters``.
+    - These changes are in line with the already implementation of the methods ``uartSetParameters`` and ``spiControllerSetParameters`` to set the UART baudrate and SPI clock frequency respectively.
+  - **I3C Target:** Based on the comments above, the API for the I3C Target role was modified and the methods to set PID, BCR, DCR and static address were removed. These values are set using either ``i3cTargetInit`` or ``i3cTargetSetParameters``.
+
+### New Features
+
+- **I2C Controller Initialization Command:** Added a new method, ``i2cControllerInit(id: int, frequency: int, pullUpResistorsValue: I2cPullUpResistorsValue)``, for initializing the I2C controller with enhanced configuration capabilities. Possible result codes include:
+  - ``SUCCESS``
+  - ``INVALID_PARAMETER``
+  - ``FEATURE_NOT_SUPPORTED_BY_HARDWARE``
+  - ``BUS_ALREADY_INITIALIZED``
+  - ``BUS_NOT_SUPPORTED``
+
+- **I3C Controller:**
+  - **Optionally skip the broadcast address 0x7E**:The methods ``i3cControllerWrite`` and ``i3cControllerRead`` now accept a boolean flag ``startWith7E`` in order to skip or not the I3C Broadcast Address `0x7E` at the beginning of an I3C Private Transfer.
+  - **I3C Private Read Length:** Add support for I3C Private Read transfers of up to 1024 bytes. We are also considering expanding this limit to 2048 bytes.
+  - **Bus Management:** Implemented a new method to reset the bus ``i3cControllerResetBus``. This method replaces the deprecated ``i3cClearFeature`` method used with the parameter ``selector=I3cClearFeatureSelector.RESET_BUS``.
+
+- **Voltage setting:**
+  - Now the methods  ``setI3cVoltage`` and ``setI2cSpiUartGpioVoltage`` accept the value ``0`` mV as a valid voltage value. This allows the user to turn off the power supply and as a result the downstream devices.
+
+- **UsbDisconnectionError exception:** A new exception was implemented which is raised when the USB Host device is unexpectedly disconnected. Deeper logic added was also added to return an error if a method is invoked after the disconnection and before a reconnection.
