@@ -1,0 +1,15 @@
+sympy>=1.5.1
+numpy>=1.22.0
+matplotlib>=3.2.1
+natsort>=8.1.0
+scipy>=1.4.1
+netCDF4
+
+[docs]
+sphinx<5,>=3.4
+
+[lint]
+ruff
+
+[tests]
+pytest
