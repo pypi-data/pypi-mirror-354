@@ -1,0 +1,14 @@
+name: napari-memmap-tiff
+display_name: Loading tiffs using memory map
+# use 'hidden' to remove plugin from napari hub search results
+visibility: public
+# see https://napari.org/stable/plugins/technical_references/manifest.html#fields for valid categories
+categories: ["Annotation", "Segmentation", "Acquisition"]
+contributions:
+  commands:
+    - id: napari-memmap-tiff.make_function_widget
+      python_name: napari_memmap_tiff:memmap_config_widget
+      title: Make memmap config widget
+  widgets:
+    - command: napari-memmap-tiff.make_function_widget
+      display_name: Enable / disable memory mapping tiffs
