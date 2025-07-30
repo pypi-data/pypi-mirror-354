@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: owui-tools
+Version: 0.0.2
+Summary: Simple open web ui utilities to be added to and reused across local owui tools 
+Author-email: Robert Ranney <robert.ranney@caci.com>
+License-Expression: MIT
+License-File: LICENSE.txt
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.8
+Requires-Dist: pydantic
+Description-Content-Type: text/markdown
+
+# OWUI Tools
+Simple open web ui utility tools
