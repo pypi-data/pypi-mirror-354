@@ -1,0 +1,81 @@
+{
+  "list_files_response": {
+    "commands": [
+      {
+        "command": "ls -la",
+        "explanation": "List all files in the current directory with detailed information including hidden files",
+        "risk_level": "low"
+      },
+      {
+        "command": "find . -type f -name '*.txt' | head -10",
+        "explanation": "Find the first 10 text files in the current directory and subdirectories",
+        "risk_level": "low"
+      }
+    ]
+  },
+  "disk_usage_response": {
+    "commands": [
+      {
+        "command": "df -h",
+        "explanation": "Show disk usage for all mounted filesystems in human-readable format",
+        "risk_level": "low"
+      },
+      {
+        "command": "du -sh * | sort -hr | head -10",
+        "explanation": "Show the top 10 largest directories/files in the current location",
+        "risk_level": "low"
+      }
+    ]
+  },
+  "process_info_response": {
+    "commands": [
+      {
+        "command": "ps aux | head -20",
+        "explanation": "Show the top 20 running processes with detailed information",
+        "risk_level": "low"
+      },
+      {
+        "command": "top -n 1 -b | head -20",
+        "explanation": "Show system processes and resource usage snapshot",
+        "risk_level": "low"
+      }
+    ]
+  },
+  "high_risk_response": {
+    "commands": [
+      {
+        "command": "sudo rm -rf /tmp/old_backups",
+        "explanation": "Remove old backup files from temporary directory (requires admin privileges)",
+        "risk_level": "high"
+      }
+    ]
+  },
+  "network_info_response": {
+    "commands": [
+      {
+        "command": "ip addr show",
+        "explanation": "Display network interface configuration and IP addresses",
+        "risk_level": "low"
+      },
+      {
+        "command": "ping -c 4 google.com",
+        "explanation": "Test network connectivity by sending 4 ping packets to Google",
+        "risk_level": "low"
+      }
+    ]
+  },
+  "git_status_response": {
+    "commands": [
+      {
+        "command": "git status",
+        "explanation": "Show the working tree status of the Git repository",
+        "risk_level": "low"
+      },
+      {
+        "command": "git log --oneline -10",
+        "explanation": "Show the last 10 commits in a compact format",
+        "risk_level": "low"
+      }
+    ]
+  }
+}

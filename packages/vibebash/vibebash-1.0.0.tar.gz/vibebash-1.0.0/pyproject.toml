@@ -1,0 +1,220 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "vibebash"
+version = "1.0.0"
+description = "Natural language to shell commands with AI - Interactive CLI tool"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.8"
+authors = [
+    { name = "Binh Pham", email = "binhpham@binhph.am" },
+]
+keywords = [
+    "ai",
+    "cli",
+    "shell",
+    "commands",
+    "natural-language",
+    "llm",
+    "terminal",
+    "automation"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: System :: Shells",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+]
+dependencies = [
+    "langchain>=0.0.350",
+    "langchain-ollama>=0.1.0",
+    "pydantic>=2.0.0",
+    "click>=8.0.0",
+    "rich>=13.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.10.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+]
+test = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.10.0",
+    "requests>=2.28.0",  # For Ollama connection testing
+]
+all = [
+    "vibebash[dev,test]",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/vibebash"
+Documentation = "https://github.com/yourusername/vibebash#readme"
+Repository = "https://github.com/yourusername/vibebash.git"
+Issues = "https://github.com/yourusername/vibebash/issues"
+Changelog = "https://github.com/yourusername/vibebash/releases"
+
+[project.scripts]
+vibebash = "vibebash.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["vibebash"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/vibebash",
+    "/tests",
+    "/docs",
+    "/README.md",
+    "/LICENSE",
+]
+
+# Black configuration
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310", "py311"]
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+# MyPy configuration  
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "langchain.*",
+    "langchain_ollama.*",
+    "anthropic.*", 
+    "ollama.*",
+]
+ignore_missing_imports = true
+
+# Pytest configuration
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "--disable-warnings",
+    "--color=yes",
+    "--cov=vibebash",
+    "--cov-report=html",
+    "--cov-report=term-missing",
+    "--cov-fail-under=80",
+]
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests", 
+    "slow: Slow running tests",
+    "asyncio: Async tests",
+    "requires_api_keys: Tests requiring API keys",
+    "ollama_only: Tests that work with Ollama only",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+# Coverage configuration
+[tool.coverage.run]
+source = ["vibebash"]
+omit = [
+    "*/tests/*",
+    "*/test_*.py",
+    "*/__pycache__/*",
+    "*/.*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+# Flake8 configuration (in setup.cfg since flake8 doesn't support pyproject.toml yet)
+# See setup.cfg for flake8 config
+
+# Hatch environment configuration
+[tool.hatch.envs.default]
+dependencies = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0", 
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.10.0",
+]
+
+[tool.hatch.envs.default.scripts]
+test = "pytest"
+test-ollama = "python run_ollama_tests.py"
+test-local = "python test_local.py"
+cov = "pytest --cov-report=html"
+lint = "flake8 vibebash tests"
+format = "black vibebash tests"
+type-check = "mypy vibebash"
+
+[tool.hatch.envs.dev]
+dependencies = [
+    "vibebash[dev]",
+]
+
+[tool.hatch.envs.test]
+dependencies = [
+    "vibebash[test]",
+]
