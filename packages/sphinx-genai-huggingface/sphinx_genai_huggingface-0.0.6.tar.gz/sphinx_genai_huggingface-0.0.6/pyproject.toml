@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sphinx-genai-huggingface"
+version = "0.0.6"
+authors = [{ name = "Kayce Basques", email = "kaycebasques@gmail.com" }]
+description = "TODO"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "Apache-2.0"
+dependencies = [
+    "einops",
+    "sentence_transformers",
+    "sphinx",
+    "sphinx-genai",
+    "transformers",
+]
+
+[project.urls]
+Homepage = "https://github.com/kaycebasques/sphinx-genai"
+Issues = "https://github.com/kaycebasques/sphinx-genai/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sphinx_genai_huggingface"]

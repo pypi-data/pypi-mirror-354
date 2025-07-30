@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: sphinx-genai-huggingface
+Version: 0.0.6
+Summary: TODO
+Project-URL: Homepage, https://github.com/kaycebasques/sphinx-genai
+Project-URL: Issues, https://github.com/kaycebasques/sphinx-genai/issues
+Author-email: Kayce Basques <kaycebasques@gmail.com>
+License-Expression: Apache-2.0
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.8
+Requires-Dist: einops
+Requires-Dist: sentence-transformers
+Requires-Dist: sphinx
+Requires-Dist: sphinx-genai
+Requires-Dist: transformers
+Description-Content-Type: text/markdown
+
+# sphinx-genai-huggingface
