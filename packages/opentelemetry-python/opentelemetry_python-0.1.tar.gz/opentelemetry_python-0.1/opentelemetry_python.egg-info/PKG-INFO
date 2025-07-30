@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: opentelemetry-python
+Version: 0.1
+Requires-Dist: opentelemetry-api==1.33.1
+Requires-Dist: opentelemetry-sdk==1.33.1
+Requires-Dist: opentelemetry-exporter-otlp==1.33.1
+Requires-Dist: opentelemetry-instrumentation-fastapi==0.54b1
+Requires-Dist: opentelemetry-instrumentation-grpc==0.54b1
+Requires-Dist: opentelemetry-instrumentation-aiokafka==0.54b1
