@@ -1,0 +1,50 @@
+Metadata-Version: 2.4
+Name: video_snap
+Version: 0.0.2
+Summary: "Matches a subsection of a video against another video extremely quickly with a fair tolerance for different compressions betwen them."
+Author: Gareth Edwards
+Author-email: mail@thinkgareth.com
+License: MIT
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Description-Content-Type: text/x-rst; charset=UTF-8
+License-File: LICENSE.txt
+Requires-Dist: importlib-metadata; python_version < "3.8"
+Requires-Dist: av
+Requires-Dist: scikit-image
+Requires-Dist: opencv-python
+Requires-Dist: faiss-cpu
+Requires-Dist: numpy
+Requires-Dist: imagehash
+Requires-Dist: pillow
+Provides-Extra: testing
+Requires-Dist: setuptools; extra == "testing"
+Requires-Dist: pytest; extra == "testing"
+Requires-Dist: pytest-cov; extra == "testing"
+Dynamic: license-file
+
+.. image:: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
+    :alt: Project generated with PyScaffold
+    :target: https://pyscaffold.org/
+
+|
+
+==========
+video_snap
+==========
+
+
+    Add a short description here!
+
+
+A longer description of your project goes here...
+
+
+.. _pyscaffold-notes:
+
+Note
+====
+
+This project has been set up using PyScaffold 4.6. For details and usage
+information on PyScaffold see https://pyscaffold.org/.
