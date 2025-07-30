@@ -1,0 +1,102 @@
+Metadata-Version: 2.4
+Name: django-dynamic-maintenance-mode
+Version: 0.1.0
+Summary: Django middleware to enable maintenance mode dynamically using a database flag.
+Home-page: https://github.com/pranav-dixit/django-dynamic-maintenance-mode
+Author: Pranav Dixit
+Author-email: pranavdixit20@gmail.com
+License: MIT
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 4.1
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Django>=3.2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# django-dynamic-maintenance-mode
+
+Django middleware to enable maintenance mode dynamically using a database flag. Works for both web views and Django REST Framework APIs.
+
+## Features
+
+- Toggle maintenance mode from the admin panel
+- Superusers can bypass maintenance restrictions
+- Admin routes are always accessible
+
+## Installation
+
+```bash
+pip install django-dynamic-maintenance-mode
+```
+
+## Configuration
+
+Add to `INSTALLED_APPS` in settings.py:
+
+```python
+'dynamic_maintenance',
+```
+
+Add to MIDDLEWARE near the top:
+
+```python
+'dynamic_maintenance.middleware.DynamicMaintenanceMiddleware',
+```
+
+Run migrations:
+
+```bash
+python manage.py migrate
+```
+
+Use the admin panel to toggle maintenance mode.## Usage
+
+### Enable or Disable Maintenance Mode
+
+You can toggle the maintenance mode from the Django Admin panel or using Django shell:
+
+```bash
+python manage.py shell
+```
+
+Then in shell:
+
+```python
+from dynamic_maintenance.models import MaintenanceMode
+mode, created = MaintenanceMode.objects.get_or_create(id=1)
+mode.is_active = True  # or False to disable
+mode.message = "We are performing scheduled maintenance. Please check back soon."
+mode.save()
+```
+
+Alternatively, you can create a custom Django management command for enabling/disabling maintenance mode.
+
+### Enable or Disable Maintenance Mode CMD
+
+Commands to enable/disable maintenance mode dynamically
+
+    ```bash
+    python manage.py maintenance_mode on
+    python manage.py maintenance_mode off
+    ```
+
+## License
+
+MIT
+
+---
