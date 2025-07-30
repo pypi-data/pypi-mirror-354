@@ -1,0 +1,10 @@
+precise_lite_runner<1.0.0,>=0.4.1
+ovos-plugin-manager<2.0.0,>=1.0.0
+ovos-utils<1.0.0,>=0.0.14
+
+[full]
+tensorflow
+
+[tflite]
+tflite-runtime~=2.0
+numpy~=1.0
