@@ -1,0 +1,37 @@
+[project]
+name = "rag-ssistant"
+version = "0.1.1"
+description = "RAGssistant: A RAG Assistant for your tasks"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "accelerate>=1.7.0",
+    "chromadb>=1.0.12",
+    "gradio>=5.33.1",
+    "hf-xet>=1.1.3",
+    "huggingface-hub>=0.31.2",
+    "langchain-community>=0.3.24",
+    "langchain-huggingface>=0.2.0",
+    "langchain-mistralai>=0.2.10",
+    "langchain-text-splitters>=0.3.8",
+    "langgraph>=0.4.5",
+    "pydantic>=2.11.4",
+    "pypdf>=5.5.0",
+    "sentence-transformers>=4.1.0",
+]
+
+[project.scripts]
+cli = "rag_ssistant.cli:main"
+ui = "rag_ssistant.ui:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = true
+
+[dependency-groups]
+dev = [
+    "jupyter>=1.1.1",
+]

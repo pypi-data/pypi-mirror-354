@@ -1,0 +1,62 @@
+Metadata-Version: 2.4
+Name: rag-ssistant
+Version: 0.1.1
+Summary: RAGssistant: A RAG Assistant for your tasks
+Requires-Python: >=3.11
+Requires-Dist: accelerate>=1.7.0
+Requires-Dist: chromadb>=1.0.12
+Requires-Dist: gradio>=5.33.1
+Requires-Dist: hf-xet>=1.1.3
+Requires-Dist: huggingface-hub>=0.31.2
+Requires-Dist: langchain-community>=0.3.24
+Requires-Dist: langchain-huggingface>=0.2.0
+Requires-Dist: langchain-mistralai>=0.2.10
+Requires-Dist: langchain-text-splitters>=0.3.8
+Requires-Dist: langgraph>=0.4.5
+Requires-Dist: pydantic>=2.11.4
+Requires-Dist: pypdf>=5.5.0
+Requires-Dist: sentence-transformers>=4.1.0
+Description-Content-Type: text/markdown
+
+# RAG-Powered-AI-Assistant
+
+Welcome to the RAG-Powered AI Assistant repository! This project demonstrates how to build a Retrieval-Augmented Generation (RAG) powered AI assistant.
+
+## Preparation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/HiIAmTzeKean/RAG-Powered-AI-Assistant
+   ```
+
+2. You will have to download the knowledge base of publications from [Ready Tensor](https://drive.google.com/drive/folders/1HAqLXL2W-sh8hqoBb1iSauJ_0wZVRxB9?usp=sharing) and place it under `/data` directory first.
+
+3. Install the required dependencies using `uv`:
+
+    ```bash
+   uv sync
+   ```
+
+## Required environment variables
+
+- `MISTRAL_API_KEY`: Your Mistral API key.
+- `HF_KEY`: Your Hugging Face API key
+
+## Usage
+
+### CLI
+
+To run the AI assistant, use the following command after ensuring that the environment variables are set:
+
+```bash
+uv run cli "What are effective techniques for handling class imbalance?"
+```
+
+### Web UI
+
+To run the web UI, use the following command and navigate to [the page](http://127.0.0.1:8000) in your web browser:
+
+```bash
+uv run ui
+```

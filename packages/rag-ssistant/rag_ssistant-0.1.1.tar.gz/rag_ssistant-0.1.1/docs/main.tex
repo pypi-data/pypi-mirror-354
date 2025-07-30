@@ -1,0 +1,73 @@
+% filepath: /Users/ngtzekean/personal/RAG-Powered-AI-Assistant/docs/system_components_explanation.tex
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\title{System Components: Text Chunking and Vector Database}
+\author{Ng Tze Kean}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+This document explains two core components of the RAG-Powered-AI-Assistant system: the \texttt{TextChunker} and \texttt{VectorDB} classes. Together, these modules enable efficient preprocessing, storage, and retrieval of textual data for downstream AI tasks such as retrieval-augmented generation (RAG).
+
+
+
+
+\section{TextChunker: Document Chunking}
+The \texttt{TextChunker} class is responsible for splitting large documents into smaller, manageable chunks. This is crucial for tasks where context length is limited, such as embedding generation or LLM input.
+
+\subsection*{Key Features}
+\begin{itemize}
+    \item \textbf{Chunk Size and Overlap:} The class allows configuration of chunk size (number of characters per chunk) and overlap (number of characters shared between consecutive chunks).
+    \item \textbf{Flexible Separators:} Chunks are split using a prioritized list of separators (e.g., paragraph breaks, newlines, sentences, spaces).
+    \item \textbf{Metadata Preservation:} Each chunk retains metadata such as the document title and a unique chunk identifier.
+    \item \textbf{Batch Processing:} The \texttt{process\_documents} method processes a list of documents, chunking each and aggregating the results.
+    \item \textbf{Document Loading:} The \texttt{load\_documents} method loads documents from a directory of JSON files, extracting titles and content.
+\end{itemize}
+
+\subsection*{Workflow}
+\begin{enumerate}
+    \item Load documents from disk using \texttt{load\_documents}, which expects each JSON file to contain objects with \texttt{title} and \texttt{publication\_description} fields.
+    \item Use \texttt{process\_documents} to split each document into chunks, each with its own metadata.
+    \item The output is a list of chunk dictionaries, ready for embedding and storage.
+\end{enumerate}
+
+\section{VectorDB: Persistent Vector Database}
+The \texttt{VectorDB} class manages a persistent vector database using ChromaDB and HuggingFace embeddings. It is designed for efficient storage and retrieval of document chunks based on semantic similarity.
+
+\subsection*{Key Features}
+\begin{itemize}
+    \item \textbf{Persistent Storage:} Uses ChromaDB to store embeddings, texts, and metadata on disk.
+    \item \textbf{Flexible Embeddings:} Utilizes a HuggingFace transformer model for embedding generation, with automatic device selection (CUDA, MPS, or CPU).
+    \item \textbf{Document Insertion:} The \texttt{insert\_documents} method embeds and stores chunked documents, assigning unique IDs and preserving metadata.
+    \item \textbf{Similarity Search:} The \texttt{search} method retrieves the most relevant chunks for a given query, returning content, metadata, and similarity scores.
+\end{itemize}
+
+\subsection*{Workflow}
+\begin{enumerate}
+    \item Initialize the database, specifying the storage path, collection name, and embedding model.
+    \item Insert chunked documents (from \texttt{TextChunker}) using \texttt{insert\_documents}.
+    \item Perform semantic search with \texttt{search}, which returns the top-$k$ most similar chunks to a query.
+\end{enumerate}
+
+\section{Integration and Use Case}
+The typical pipeline is as follows:
+\begin{enumerate}
+    \item Load and chunk documents using \texttt{TextChunker}.
+    \item Insert the resulting chunks into \texttt{VectorDB}.
+    \item At query time, use \texttt{VectorDB.search} to retrieve relevant chunks for a user query.
+\end{enumerate}
+This system is ideal for applications such as document search, question answering, and retrieval-augmented generation, where efficient and accurate retrieval of relevant information is critical.
+
+\section{Dependencies}
+\begin{itemize}
+    \item \texttt{langchain\_text\_splitters} for text chunking.
+    \item \texttt{chromadb} for persistent vector storage.
+    \item \texttt{langchain\_huggingface} for embedding models.
+    \item \texttt{torch} for device management.
+    \item \texttt{pydantic} for data modeling.
+\end{itemize}
+
+\end{document}
