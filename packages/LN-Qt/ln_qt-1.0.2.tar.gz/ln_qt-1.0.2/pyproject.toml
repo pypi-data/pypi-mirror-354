@@ -1,0 +1,46 @@
+[project]
+name = "LN-Qt"
+dynamic = ['version']
+description = "LiveNodes: node based live streaming sensor/data and visualization suite."
+authors = [
+    { name = "Yale Hartmann", email = "yale.hartmann@uni-bremen.de" }
+]
+readme = "README.md"
+license = {file = "LICENSE"}
+dependencies = [
+    "livenodes>=0.12.1b1",
+    "ln_ports>=0.12.1b1",
+    "numpy>=1.22.1",
+    "PyQt5>=5.12.3"
+]
+
+[project.entry-points."livenodes.nodes"]
+annotate_ui_button = "ln_qt.annotate_ui_button:Annotate_ui_button"
+print_data = "ln_qt.print_data:Print_data"
+print_shape = "ln_qt.print_shape:Print_shape"
+print_elapsed_time = "ln_qt.print_elapsed_time:Print_elapsed_time"
+print_pipeline_status = "ln_qt.print_pipeline_status:Print_pipeline_status"
+
+
+[project.optional-dependencies]
+dev = [
+    "tox",
+    "pytest>=7.0.1"
+]
+
+[build-system]
+requires = [
+    "setuptools>=60",
+    "wheel",
+    "setuptools_scm>=8.0.0",
+    "setuptools-git-versioning"
+]
+build-backend = 'setuptools.build_meta'
+
+[tool.setuptools-git-versioning]
+enabled = true
+
+[tool.black]
+line-length = 180
+target-version = ['py311']
+skip-string-normalization = true
