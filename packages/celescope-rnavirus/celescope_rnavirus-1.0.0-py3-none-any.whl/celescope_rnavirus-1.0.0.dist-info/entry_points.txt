@@ -1,0 +1,4 @@
+[console_scripts]
+celescope = celescope.celescope:main
+multi_rna = celescope.rna.multi_rna:main
+multi_rnavirus = celescope.rnavirus.multi_rnavirus:main
