@@ -1,0 +1,42 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2025-06-08T14:44:22.628412",
+  "game_state": {
+    "current_sector": "GAMMA-3",
+    "frequency_range": [
+      100.0,
+      200.0
+    ]
+  },
+  "progress": {
+    "sectors_discovered": [
+      "ALPHA-1",
+      "GAMMA-3"
+    ],
+    "signals_found": {},
+    "signals_analyzed": [
+      "SIG_1"
+    ],
+    "total_scan_count": 2,
+    "total_analysis_count": 1
+  },
+  "focused_signal": {
+    "id": "SIG_2",
+    "frequency": 120.0,
+    "strength": 0.7,
+    "modulation": "Pulsed-Echo",
+    "sector": "GAMMA-3",
+    "stability": 1.0,
+    "signature": "",
+    "decoded": false
+  },
+  "statistics": {
+    "play_time_minutes": 0,
+    "session_start": "2025-06-08T14:44:22.616438",
+    "last_command": ""
+  },
+  "settings": {
+    "auto_save_enabled": true,
+    "last_save_location": "saves"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2025-06-09T22:09:38.299585",
+  "game_state": {
+    "current_sector": "DELTA-4",
+    "frequency_range": [
+      100.0,
+      200.0
+    ]
+  },
+  "progress": {
+    "sectors_discovered": [
+      "ALPHA-1",
+      "BETA-2",
+      "GAMMA-3",
+      "DELTA-4"
+    ],
+    "signals_found": {},
+    "signals_analyzed": [],
+    "total_scan_count": 3,
+    "total_analysis_count": 0
+  },
+  "focused_signal": null,
+  "statistics": {
+    "play_time_minutes": 0,
+    "session_start": "2025-06-09T20:03:23.387269",
+    "last_command": ""
+  },
+  "settings": {
+    "auto_save_enabled": true,
+    "last_save_location": "saves"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2025-06-08T14:43:55.418217",
+  "game_state": {
+    "current_sector": "BETA-2",
+    "frequency_range": [
+      100.0,
+      200.0
+    ]
+  },
+  "progress": {
+    "sectors_discovered": [
+      "ALPHA-1",
+      "BETA-2"
+    ],
+    "signals_found": {},
+    "signals_analyzed": [
+      "SIG_1"
+    ],
+    "total_scan_count": 1,
+    "total_analysis_count": 1
+  },
+  "focused_signal": {
+    "id": "SIG_1",
+    "frequency": 110.0,
+    "strength": 0.6,
+    "modulation": "Pulsed-Echo",
+    "sector": "BETA-2",
+    "stability": 1.0,
+    "signature": "",
+    "decoded": false
+  },
+  "statistics": {
+    "play_time_minutes": 0,
+    "session_start": "2025-06-08T14:43:55.402215",
+    "last_command": ""
+  },
+  "settings": {
+    "auto_save_enabled": true,
+    "last_save_location": "saves"
+  }
+}
