@@ -1,0 +1,453 @@
+Metadata-Version: 2.4
+Name: femtotemplate
+Version: 0.7.19
+Summary: Femtosense template project
+Home-page: https://github.com/femtosense/femtotemplate
+Author: Femtosense
+Author-email: info@femtosense.ai
+Project-URL: Source, https://github.com/femtosense/femtotemplate
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Cython
+Requires-Dist: numpy>=1.18.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+![Build Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiRGpDOFpEOXF1M0prSy9OOVNkZ3F2NkRKM0NNMG8xbmpZU0hZdUp1ejhHOEswdDRhOEZOakMrdWZyaHp1WGVtQ1lVTStzRUpXaFlYeFZPSEJFd21NdjF3PSIsIml2UGFyYW1ldGVyU3BlYyI6InJZYzhuZ3d3a1FUUzBzM0kiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+
+# femtotemplate
+
+A template for creating a new python-based project repo
+
+Also a good walkthrough to using the Femtosense development environment
+
+# Walkthrough
+
+This walkthrough covers the development lifecycle for someone working on the project.
+We'll install our package locally, make a code change, run tests locally,
+then push the project to Github.
+This will trigger a number of things which happen automatically:
+the tests will be rerun in a fixed environment,
+and the built package will be uploaded to our private package index.
+
+## Concepts
+
+At Femtosense, Python-based **projects** each have their own **source repository** (repo) tracked by Github.
+Projects are distributed amongst the team as [**packages**](https://docs.python.org/3/tutorial/modules.html#packages)
+which are stored in a **package index**. 
+We maintain a private package index server to share packages amongst the team.
+This makes installing other team members' work as easy as running `pip install`.
+Using packages also enforces in-source inter-project dependency encoding in the `setup.py` files.
+Packages must be versioned according to [**Semantic Versioning**](https://semver.org).
+Packages are indexed as `project_name-version`.
+Packages are either indexed as **volatile** or **nonvolatile** (mutable/immutable might have been better names).
+Nonvolatile packages cannot be modified once they are indexed. 
+This makes sense for packages based on master branch--those are supposed to be clean and stable.
+Volatile packages can be modified over and over, which makes sense for development branches.
+How packages are stored is handled automatically based on the branch name.
+Master is the only branch that is nonvolatile.
+Keep this in mind when making dependencies on development versions of packages.
+
+A **Continuous Integration/Continuous Deployment server** (CI/CD server) 
+is used to automatically run tests when code changes are made,
+and publish new package versions to the index automatically.
+Automatic testing ensures that problems can't fall through the cracks because users didn't always run all the tests.
+It also ensures that the build environment is consistent and repeatable.
+The CI/CD server watches for notifications from Github that code changes have been made,
+then pulls the most recent version of the code and runs its tests.
+Test results propagate back to Github, and run progress is viewable in a dashboard.
+Once the build is complete, the package is created and published to the package index server.
+Automatic publishing of packages means that code developers don't have to worry about manually
+uploading packages to the server.
+
+**Docker** is used to provide the environment used by the CI/CD server.
+**Docker Containers** are conceptually like virtual machine instances, and are used to run the tests.
+We use a centralized [repo](https://github.com/femtosense/buildscripts) with a **Dockerfile** and set of scripts 
+to set up a consistent environment for each project's CI/CD run.
+
+**Cython** is used to **obfuscate** the `.py` files that we don't want to be easy to read. This is configured by the `obfuscation_cfg.yaml` file. Cython converts the selected Python files to C, then compiles them to binary libraries, which are installed as part of the Python wheel package.
+
+In typical use, a developer might have to edit a few build-related things in a repo, other than their own code:
+1. The `setup.py` file: to describe dependencies on other projects and external python packages
+2. The `femtotemplate/VERSION` file : to declare a new code version (this is the only place you should ever enter a version number)
+3. The `femtotemplate/ENV_REQUIREMENTS.sh` file : to describe non-python environmental dependencies (e.g. a system package like librosa)
+4. The `obfuscation_conf.yaml` file : to specify which `.py` files to exclude from obfuscation.
+
+In typical use, the only "new" commands the user might invoke are:
+1. `pip install -e .` : to install the package they're working on and its dependencies
+2. Docker commands (only under some circumstances) : in the event that the developer wishes to reproduce the testing environment locally, as a sanity check
+
+## Important Files
+
+| File Name      | Purpose | Edit When? |
+|----------------|---------|------------|
+| NAME           | project/repo name | once, if starting a new project based on femtotemplate |
+| LICENSE        | legal boilerplate | never |
+| MANIFEST.in    | include for setup.py | once, if starting a new project based on femtotemplate (have to change femtotemplate -> new package name) |
+| setup.py       | instructions for pip to install | never, probably, unless you have unusual installation requirements |
+|------------------------------------|---------------|------------|
+| femtotemplate/                     | where the actual code goes | **OFTEN**, this is where your code goes |
+| femtotemplate/VERSION              | project version number | **OFTEN**, as you make code changes |
+| femtotemplate/PY\_REQUIREMENTS     | python packages that this project depends on | rarely, to add new python dependencies |
+| femtotemplate/ENV\_REQUIREMENTS.sh | non-python environment setup commands | rarely to add new non-python dependencies |
+|----------------|---------|------------|
+| buildspec.yml  | instructions for AWS codebuild (CI server) | never, probably |
+| obfuscation_cfg.yaml | configuration for which parts and how the package gets obfuscated | used in core compiler packages, not in open source packages |
+| obfuscation.py | python script to obfuscate (and deobfuscate) the package | never, probably | 
+
+## Getting Started
+
+Development for python-based packages should be done in Ubuntu.
+Use the most recent Ubuntu AMI if working on AWS.
+
+You need to have git and python tools installed.
+This walkthrough assumes a conda install for python/pip/pytest (see conda via [Anaconda](https://www.anaconda.com/)).
+
+Clone this repo. `cd` into it. Check out the `dev` branch:
+
+```
+git clone https://github.com/femtosense/femtotemplate.git
+cd femtotemplate
+git checkout -b dev origin/dev
+```
+
+To download internal dependencies,
+you need to set up your local `pip` to find Femtosense's private package server. Copy the contents from the buildscripts [to_append.conf](https://github.com/femtosense/buildscripts/blob/master/to_append.conf) to you `~/.pip/pip.conf`.
+
+If you are not developing on a machine inside AWS, 
+you will have to [VPN](https://github.com/femtosense/devops/wiki/VPN-Setup) into our private virtual public cloud
+before installing internal dependencies.
+
+## Installing the Package
+
+Is easy! In the directory with `setup.py`, run
+
+```
+./femtotemplate/ENV_REQUIREMENTS.sh
+```
+
+You'll see the script install some non-Python dependencies (you may have to enter your password for `sudo` priviledges).
+Then run
+
+```
+pip install -e .
+```
+
+You'll see it download a couple packages.
+We've now successfully installed the package on our system's python.
+If you launch `python`, you can now do:
+
+```
+>>> import femtotemplate
+>>> femtotemplate.__version__
+'x.y.z'    <--- the values for x, y, and z change with the template version
+```
+
+You'll see that `__version__` has the same value as what's in the `femtotemplate/VERSION` file.
+The code blob in `femtotemplate/__init__.py` creates this attribute.
+
+**The `femtotemplate/VERSION` file is the single source of version-truth!**
+You should never have to enter a version number anywhere else.
+
+It's useful to understand what is happening when `pip install` is invoked.
+`pip` looks at the `setup.py` file, and, 
+importantly, it uses the `install_requires` keyword to figure out which other packages are needed.
+We've configured this to look at `femtotemplate/PY_REQUIREMENTS`.
+If you bring in a new Python package dependency, add it as a new line to this file.
+**This is how we encode interproject (repo-to-repo) dependencies**.
+
+Packages internal to Femtosense are stored on a [PyPI-like server](https://pypi.org/) running inside of AWS.
+In order to download from this server, we told `pip` about the server's IP 
+when we modified `~/.pip/pip.conf`.
+
+When a project relies on a dependency that is NOT a python package
+(e.g. cmake, librosa, etc.), 
+we must put the install instructions for these dependencies in `femtotemplate/ENV_REQUIREMENTS.sh`.
+This should just contain commands like `sudo apt install some_system_package`.
+Ultimately, it is up to the maintainer of each package to keep this script up-to-date,
+so that all environmental dependencies (including the environmental dependencies of
+other python packages that this package depends on) are installed by this script.
+It is important to document your packages external dependencies in the README.
+There are some tools to help determine parent packages' system dependencies
+(see [below](#Determining-Parent-Package-Environment-Dependencies)).
+
+Packages are published to this server automatically by the CI server,
+which runs when we make commits. Which we'll do next...
+
+## Making a Change and Observing the CI Build
+
+We're currently on the dev branch.
+It's good practice to not work directly on either of the mainline branches
+that all repos have (master and dev).
+
+For the tutorial, we can stay in dev.
+
+Now we'll make a change and push the result. 
+This will trigger the CI build to start running on another server in AWS.
+In this case, the build runs the tests in the 'canonical' environment,
+and publishes the built package to the package index.
+
+
+### Making a Code Change
+
+The only code in this repo is a single python file.
+There's a list of names, you can add yours to that.
+The test parses the list of names and makes sure they only have letters.
+(I hope your name doesn't have any numbers in it).
+
+### Running the Tests Locally
+
+You can run the test locally before you push.
+This is typically a good idea. On more complicated projects, 
+you might run some subset of the complete test battery
+(maybe just the stuff you thought should be affected, 
+because running ALL the tests takes a long time).
+The CI server will run everything to make sure the commit is clean.
+
+```
+cd femtotemplate/test
+pytest -v
+```
+
+Will produce something like:
+
+```
+======================= test session starts =======================
+platform linux -- Python 3.6.9, pytest-3.3.2, py-1.9.0, pluggy-0.13.1 -- /usr/bin/python3
+cachedir: ../../.cache
+rootdir: /home/ubuntu/femtotemplate, inifile:
+plugins: devpi-server-5.5.0
+collected 1 item                                                                                                                                                                                                  
+
+test_names.py::test_no_numbers_in_names PASSED               [100%]
+
+==================== 1 passed in 0.11 seconds =====================
+```
+
+You can try putting a "bad" name in to see what happens.
+Pytest will only show printouts for tests that failed.
+Fix it before moving on.
+
+Actually, when you push, the tests will run inside a Docker container on the build server.
+See the "All About Docker" section below to learn how to run the tests this way locally. 
+In most cases, this shouldn't be necessary, but could serve as a sanity check
+that your environment hasn't diverged meaningfully from the testing environment..
+There's not too much more to learn to use Docker.
+
+### Pushing the Change to Github and Triggering the CI Build
+
+Before we commit and push our change, we need to update `femtotemplate/VERSION`.
+Increment either the last or second-to-last field 
+(this isn't a real project, don't worry about what incrementing one or the other means).
+
+Now we can push our change to Github. This will trigger a CI build
+(assuming the repo's CI is set up--which it is for `femtotemplate`, 
+see the "Setting up CI" section below if it isn't).
+
+```
+git commit -a -m "your message here"
+git push origin dev
+```
+
+Now go to the Github page for the repo.
+The last commit made will show near the top of the page, with your commit message.
+After a minute or two, you should see a little green check mark next to the commit.
+(hopefully not a little red x because they failed; an orange circle means they're still running)
+If you click this check, it will take you the AWS codebuild page,
+assuming you're logged in.
+Here you can see the build log.
+
+After running the tests, the CI server will publish the built package to private package index.
+This makes it accessible to other team members.
+Your new version will be available on other machines via `pip install femtotemplate==VERSION`
+(assuming the other machine's `pip` also knows where our private package index lives).
+
+## Obfuscation
+
+### I. Locally test obfuscation
+
+There are two ways to test obfuscation on your local machine:
+	1. Run codebuild locally (tutorial [here](https://github.com/femtosense/devops/wiki/CodeBuild-Setup)).
+	2. Run the obfuscation commands used in `buildscripts`.
+
+The exact commands used in option 2 could change over time, so please refer to the current `buildscripts` for the latest usage. However, the following commands are likely to work:
+```bash
+python buildscripts/obfuscation/obfuscate.py -x . # Convert selected .py files to .pyx
+pip install . # Build and install the package, with .pyx files compiled to binaries
+```
+
+The installed package can then be tested as usual. 
+
+_Note on testing: It is strongly recommended that you separate tests from the package's source code. That way, your tests will import the **installed** version of the package, which is obfuscated. See [here](https://docs.pytest.org/en/7.1.x/explanation/goodpractices.html) for more info._
+
+When you are done testing, you can revert your .pyx files back to .py with the following command:
+```bash
+python obfuscate.py -rd .
+```
+
+If you wish to inspect the generated .c files, you can use the command:
+```bash
+python obfuscate.py -xb .
+```
+
+### II. Excluding a python file from obfuscation
+`obfuscation_cfg.yaml` is meant to be very easy to edit to exclude certain files from obfuscation. Add to `py_exclusions` to exclude files.
+
+To exclude the file `femtotemplate/names.py`, we should change `py_exclusions` to:
+```yaml
+py_exclusions:
+  - 'setup.py'
+  - 'obfuscate.py'
+  - 'test/*.py'
+  - 'femtotemplate/names.py'
+```
+
+These patterns are passed to Python's [glob.glob](https://docs.python.org/3/library/glob.html) to expand special characters like `*` and `**`. For example, to exclude all python files in the `femtotemplate` subdirectory, use
+```yaml
+py_exclusions:
+  - 'femtotemplate/*.py'
+```
+
+If you edit this list, be careful not to remove `setup.py`, `obfuscate.py`, or `test/*.py`.
+
+### III. Deploying an obfuscated package
+Simply set the Docker build argument `FS_OBFUSCATE=1` in Codebuild's `buildspec.yml` file. This ensures that the Python package is obfuscated before it is tested and uploaded to devpi.
+
+## Recap/Command Reference
+
+```
+# clone repo, switch to dev
+git clone https://github.com/femtosense/femtotemplate.git
+cd femtotemplate
+git checkout -b dev origin/dev
+
+# tell pip where to find the femtosense private package index
+# you need to VPN into AWS if your machine isn't in AWS
+
+# set up the non-Python environment
+./femtotemplate/ENV_REQUIREMENTS.sh
+# install the package locally
+pip install -e .
+
+# run tests
+pytest -v test
+
+# (edit code, update the VERSION)
+
+# commit and push
+git commit -a -m "your message here"
+git push origin dev
+
+# build runs automatically, you can see results on Github
+# new package version is published automatically, 
+# retrievable simply by pip install
+```
+
+# Determining Parent Package Environment Dependencies
+
+There is a little bit of scripting to help with the process of writing your
+`ENV_REQUIREMENTS.sh` file.
+Specifically, packages configured like femtotemplate will have a 
+`__env_requirements__` attribute which has the contents of their `ENV_REQUIREMENTS.sh`.
+Packages configured like femtotemplate also have a `__parent_env_requirements__` attribute
+that concatenates the `__env_requirements__` of all first-degree parent packages.
+
+You can use this to generate a starting point for your own `setup_env.sh` as follows:
+
+```
+import femtotemplate
+f = open('ENV_REQUIREMENTS.sh', 'w') # any dummy file name would work
+f.writelines([line + '\n' for line in femtotemplate.__parent_env_requirements__]) # writelines doesn't add newlines, so we do it before writing
+f.close()
+```
+
+Should produce a file with:
+```
+# requirements from dummy_femtopackage
+sudo apt-get install vim
+```
+
+Which is the contents of femtotemplate's one dependency's (dummy\_femtopackage) `ENV_REQUIREMENTS.sh`.
+
+# Starting Your Own Project Based on femtotemplate
+
+It is a good idea to base your project on this femtotemplate repository. Do the following:
+
+- Copy this repo and rename it and the `femtotemplate/femtotemplate` directory to your new project name (*Note: don't clone this repo because you will pull in all of its history into your project's history.*)
+- Change the contents of `NAME` to your project's name
+- Change the contents of this `README.md` for your project
+- Change the contents of `<your project>/VERSION` to `0.1.0`
+- Delete `<your project>/names.py` and `<your project>/test/test_names.py`
+- Change the contents of `<your project>/PY_REQUIREMENTS` for your project's Python package dependencies
+- Change the contents of `<your project>/ENV_REQUIREMENTS.sh` for your project's non-Python dependencies
+- Set up the CI [build](https://github.com/femtosense/devops/wiki/CodeBuild-Setup)
+
+# All About buildspecs and Docker
+
+As long as you're working exclusively with python, 
+and your build consists of only running pytests in 
+`reponame/test`, you won't need to modify the buildspec.
+
+The `buildspec.yml` is AWS Codebuild's (CI service provider) instructions.
+This is effectively equivalent to Jenkins' jenkinsfile.
+Notice that codebuild's instructions are just to do a docker build.
+
+Look at the commands it uses:
+`docker build .` will create a docker image using the Dockerfile in the directory that the command is invoked from.
+Our [Dockerfile](https://github.com/femtosense/buildscripts/blob/master/Dockerfile) is sourced from the buildscripts central repo.
+The `-t` flag adds a tag. In this case, we call the image `NAME:VERSION`.
+
+`docker run NAME:VERSION` will run the `CMD` specified in the `Dockerfile`. 
+In our case, it runs `pytest`.
+
+If you install docker, you can run the same commands that the build server does
+to replicate its exact environment locally. 
+
+```
+# install docker
+sudo apt-get update
+sudo apt-get install -y docker.io
+
+# start the docker service
+sudo service docker start
+
+# build the docker image
+export NAME=`cat NAME`
+export VERSION=`cat ${NAME}/VERSION`
+
+sudo docker build -t ${NAME}:${VERSION} --build-arg NAME=${NAME} --build-arg VERSION=${VERSION} .
+sudo docker tag ${NAME}:${VERSION} ${NAME}:latest
+
+# now you can look at your available images
+sudo docker images
+
+# now run the tests in docker, this will run the CMD in the Dockerfile
+sudo docker run ${NAME}:latest
+```
+
+To show running containers (you can have more than one)
+
+```
+sudo docker container ls
+```
+
+To kill one if it gets stuck for some reason
+
+```
+sudo docker kill CONTAINER_ID
+```
