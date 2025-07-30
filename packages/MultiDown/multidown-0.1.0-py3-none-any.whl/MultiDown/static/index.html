@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Video Downloader</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1f1c2c, #928dab);
+            color: white;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 500px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        }
+        input, select {
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            margin-top: 15px;
+            background: #ff4081;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #ff79b0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><i class="fas fa-download"></i> Video Downloader</h2>
+        <form method="POST">
+            <label>Enter Video Link:</label>
+            <input type="text" name="url" placeholder="Paste video link here..." required>
+
+            <label>Select Format:</label>
+            <select name="format">
+                <option value="mp3">MP3 (Audio Only)</option>
+                <option value="144">MP4 (144p)</option>
+                <option value="360">MP4 (360p)</option>
+                <option value="720">MP4 (720p)</option>
+                <option value="1080">MP4 (1080p)</option>
+            </select>
+
+            <button type="submit"><i class="fas fa-download"></i> Download</button>
+        </form>
+    </div>
+</body>
+</html>
