@@ -1,0 +1,64 @@
+Metadata-Version: 2.4
+Name: pefetch
+Version: 0.0.2
+Summary: Fetch Project Euler problems from the command line
+Project-URL: Repository, https://github.com/stanfromireland/pefetch.git
+Project-URL: Bug Tracker, https://github.com/stanfromireland/pefetch/issues
+Project-URL: Changelog, https://github.com/stanfromireland/pefetch/blob/master/CHANGELOG.md
+Author: Stan Ulbrych
+Maintainer: Stan Ulbrych
+License-Expression: MIT
+License-File: LICENSE.md
+Keywords: cli,projecteuler,utility
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+Project Euler Fetch (*pefetch*)
+===============================
+
+A CLI utility for accessing [Project Euler](https://projecteuler.net) problems
+from your terminal. Currently, in development, trying to somehow render LATEX,
+with no dependencies!
+
+## Installation
+
+```
+pip install pefetch
+```
+
+## Usage
+
+```
+usage: pefetch [-h] [--link] problem_number
+
+Project Euler Problem Fetcher
+
+positional arguments:
+  problem_number  problem number, type r for random
+
+options:
+  -h, --help      show this help message and exit
+  --link, -l      print link to problem
+```
+
+As an example, problem 1:
+
+```
+$ pefetch 1
+Multiples of 3 or 5
+Problem 1
+
+If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+Find the sum of all the multiples of 3 or 5 below 1000.
+
+```
+
+![](example.png)
+
+## Contributing
+
+There are a lot of issues, performance (~1 second due to the 2 requests), rendering,
+colors in non-dark terminals, images etc.
+Feel free to contribute if you feel like it.
