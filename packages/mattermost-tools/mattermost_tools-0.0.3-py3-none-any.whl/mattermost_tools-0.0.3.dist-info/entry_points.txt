@@ -1,0 +1,3 @@
+[console_scripts]
+mattermost-notify = mattermost_notify.cli:main
+mmstdin2channel = mattermost.stdin2channel:main
