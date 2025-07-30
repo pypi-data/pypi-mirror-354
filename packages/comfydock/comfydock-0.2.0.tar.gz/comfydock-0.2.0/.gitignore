@@ -1,0 +1,14 @@
+.venv/
+
+*.pyc
+
+*.egg-info/
+# Local development environment
+.env*
+
+build/*
+dist/
+
+*.json.lock
+
+Release/*
