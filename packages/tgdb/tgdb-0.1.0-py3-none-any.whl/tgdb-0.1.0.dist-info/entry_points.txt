@@ -1,0 +1,3 @@
+[console_scripts]
+tgdb = tgdb.main.slim_server.__main__:main
+tgdb-dev = tgdb.main.dev_server.__main__:main
