@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bitpacking"
+version = "0.1.0"
+description = "Bit-packing and unpacking integer fields"
+authors = [
+    { name="Simon Nieswand", email="simon.nieswand@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = []
+license = { text = "GPL-3.0-only" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Homepage = "https://github.com/nieswand/bitpacking"
+Repository = "https://github.com/nieswand/bitpacking"
+Issues = "https://github.com/nieswand/bitpacking/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
