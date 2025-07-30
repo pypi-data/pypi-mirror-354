@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+src/main.py
+src/msk_custom_domain/__init__.py
+src/msk_custom_domain/server.py
+src/msk_mcp_server.egg-info/PKG-INFO
+src/msk_mcp_server.egg-info/SOURCES.txt
+src/msk_mcp_server.egg-info/dependency_links.txt
+src/msk_mcp_server.egg-info/entry_points.txt
+src/msk_mcp_server.egg-info/requires.txt
+src/msk_mcp_server.egg-info/top_level.txt
+src/msk_mm2_mcp_server/__init__.py
+src/msk_mm2_mcp_server/server.py
+tests/test_basic.py
