@@ -1,0 +1,20 @@
+[project]
+name = "ignorely"
+version = "3.0.0"
+description = "CLI tool for Git-style file filtering and copying with include/exclude pattern management"
+authors = [
+    {name = "Sisung Kim",email = "sisung.kim1@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10,<4.0"
+dependencies = [
+    "cleo (>=2.1.0,<3.0.0)",
+    "pathspec (>=0.12.1,<0.13.0)"
+]
+
+[project.scripts]
+ignorely = "ignorely.main:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+
