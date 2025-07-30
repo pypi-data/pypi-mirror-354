@@ -1,0 +1,19 @@
+[project]
+name = "kxj-openapi-mcp"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "kouxujian1", email = "kouxujian@163.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "mcp[cli]>=1.9.3",
+]
+
+[project.scripts]
+openapi-mcp = "openapi_mcp:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
