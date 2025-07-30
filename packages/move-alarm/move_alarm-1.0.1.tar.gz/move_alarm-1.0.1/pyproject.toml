@@ -1,0 +1,35 @@
+[project]
+name = "move-alarm"
+version = "1.0.1"
+description = "An alarm designed to remind you to be more active!"
+authors = [
+    {name = "DevDolphin7",email = "devdolphin7@outlook.com"}
+]
+license = "LICENSE"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "python-dotenv (>=1.0.1,<2.0.0)",
+    "requests (>=2.32.3,<3.0.0)",
+    "types-requests (>=2.32.0.20241016,<3.0.0.0)",
+    "simpleaudio (>=1.0.4,<2.0.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+move-alarm = "move_alarm.app:main"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.4"
+mypy = "^1.15.0"
+pytest-mock = "^3.14.0"
+pytest-repeat = "^0.9.3"
+
+[tool.pytest.ini_options]
+testpaths = [
+    "__tests__"
+]
