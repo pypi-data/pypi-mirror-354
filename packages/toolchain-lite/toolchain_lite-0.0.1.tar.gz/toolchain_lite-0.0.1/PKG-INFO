@@ -1,0 +1,52 @@
+Metadata-Version: 2.4
+Name: toolchain-lite
+Version: 0.0.1
+Summary: Python Multiplatform Build Plugin/Tool with Kotlin Multiplatform Mobile
+Author-email: THISISTHEPY <thisisthepy@gmail.com>
+Requires-Python: >=3.9, <3.14
+Description-Content-Type: text/markdown
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Build Tools
+License-File: LICENSE
+Requires-Dist: pytest>=7.0.0 ; extra == "dev"
+Requires-Dist: black>=23.0.0 ; extra == "dev"
+Requires-Dist: isort>=5.12.0 ; extra == "dev"
+Requires-Dist: mypy>=1.0.0 ; extra == "dev"
+Requires-Dist: sphinx>=6.0.0 ; extra == "docs"
+Requires-Dist: sphinx-rtd-theme>=1.2.0 ; extra == "docs"
+Project-URL: Bug Tracker, https://github.com/thisisthepy/toolchain/issues
+Project-URL: Documentation, https://thisisthepy.github.io/
+Project-URL: Homepage, https://github.com/thisisthepy/toolchain
+Provides-Extra: dev
+Provides-Extra: docs
+
+# Toolchain
+
+Python Multiplatform Build Plugin/Tool with Kotlin Multiplatform Mobile
+
+## How to run the project
+
+#### Publish toolchain to local maven repository
+```shell
+./gradlew :toolchain:publishToMavenLocal
+```
+
+#### Run the Android app
+##### 1. Enable 'app' module from settings.gradle.kts
+```kts
+include(":app")  // Uncomment this line
+```
+##### 2. Refresh Gradle project
+
+##### 3. Run the app from Android Studio
+
