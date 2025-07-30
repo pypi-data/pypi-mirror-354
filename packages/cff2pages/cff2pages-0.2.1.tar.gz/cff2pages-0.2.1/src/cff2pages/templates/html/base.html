@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>{{ title }}</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/cff2pages.css">
+    <style>
+    </style>
+</head>
+<body>
+{% from 'html/authors_macro.html' import authors_block %}
+{% from 'html/keyword_macro.html' import keyword_block %}
+{% from 'html/identifiers_macro.html' import identifier_block %}
+{% from 'html/reference_macro.html' import reference_block %}
+{% from 'html/citation_macro.html' import cite_as%}
+
+
+<div class="container">
+    <div class="content">
+        {# cff - title #}
+        <h1 class="blog-title"> {{ title }}</h1>
+
+        {{ authors_block(authors, unique_affiliations) }}
+        {{ keyword_block(keywords) }}
+        {{ identifier_block(identifiers, repository) }}
+
+        {# cff - licence #}
+        {%- if license is defined %}
+            <p class="licence"><b>License</b>: {{ license }}</p>
+        {%- endif %}
+        {# cff - abstract #}
+        {%- if abstract is defined %}
+            <p class="abstract"><b>Abstract</b>: {{ abstract }}</p>
+        {%- endif %}
+        {{ reference_block(references) }}
+    </div>
+
+    {{ cite_as(citation) }}
+
+</div>
+
+<div class="footer-container">
+    <footer class="footer">
+        <p>Generated with <a href="https://github.com/University-of-Potsdam-MM/cff2pages"
+                             target="_blank">cff2pages</a>.
+        </p>
+    </footer>
+</div>
+
+</body>
+</html>
