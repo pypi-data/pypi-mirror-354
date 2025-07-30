@@ -1,0 +1,16 @@
+
+[dev]
+pytest>=7.0
+pytest-cov>=4.0
+coverage>=6.0
+pytest-mock>=3.10.0
+
+[docs]
+sphinx>=4.0.0
+sphinx-rtd-theme
+
+[test]
+pytest>=7.0
+pytest-cov>=4.0
+coverage>=6.0
+pytest-mock>=3.10.0
