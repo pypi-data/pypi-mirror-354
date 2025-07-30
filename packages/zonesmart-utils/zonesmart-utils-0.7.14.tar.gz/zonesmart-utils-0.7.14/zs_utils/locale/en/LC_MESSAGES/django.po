@@ -1,0 +1,2192 @@
+#
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "{message_template}: успешно выполнено."
+msgstr "{message_template}: Successfully completed."
+
+msgid "{message_template}: возникла ошибка."
+msgstr "{message_template}: An error occurred."
+
+msgid "Системная ошибка"
+msgstr "System error"
+
+msgid "Проблемы с валидацией токена"
+msgstr "Token validation issues"
+
+msgid "Проблема с валидацией данных"
+msgstr "Problem with data validation"
+
+msgid "Неизвестная ошибка"
+msgstr "Unknown error"
+
+msgid "Аккаунт отключен"
+msgstr "Account disabled"
+
+msgid "Превышен лимит запросов"
+msgstr "Request limit exceeded"
+
+msgid "Запрашиваемый объект не найден"
+msgstr "The requested object was not found"
+
+msgid "Объект уже существует"
+msgstr "The object already exists"
+
+msgid "Время ожидания ответа на запрос истекло"
+msgstr "The timeout for a response to your request has expired."
+
+msgid "Требуется обновление токена аккаунта"
+msgstr "Account token update required"
+
+msgid "Фунт"
+msgstr "Lb"
+
+msgid "Килограмм"
+msgstr "Kilogram"
+
+msgid "Унция"
+msgstr "Ounce"
+
+msgid "Грамм"
+msgstr "Gram"
+
+msgid "Дюйм"
+msgstr "Inch"
+
+msgid "Фут"
+msgstr "Foot"
+
+msgid "Сантиметр"
+msgstr "Centimeter"
+
+msgid "Метр"
+msgstr "Meter"
+
+msgid "Год"
+msgstr "Year"
+
+msgid "Месяц"
+msgstr "Month"
+
+msgid "День"
+msgstr "Day"
+
+msgid "Час"
+msgstr "Hour"
+
+msgid "Календарный день"
+msgstr "Calendar day"
+
+msgid "Рабочий день"
+msgstr "Working day"
+
+msgid "Минута"
+msgstr "Minute"
+
+msgid "Секунда"
+msgstr "Second"
+
+msgid "Миллисекунда"
+msgstr "Millisecond"
+
+msgid "Понедельник"
+msgstr "Monday"
+
+msgid "Вторник"
+msgstr "Tuesday"
+
+msgid "Среда"
+msgstr "Wednesday"
+
+msgid "Четверг"
+msgstr "Thursday"
+
+msgid "Пятница"
+msgstr "Friday"
+
+msgid "Суббота"
+msgstr "Saturday"
+
+msgid "Воскресенье"
+msgstr "Sunday"
+
+msgid "Не удалось получить токен: {error}"
+msgstr "Failed to get token: {error}"
+
+msgid "Ожидание подтверждения"
+msgstr "Waiting for confirmation"
+
+msgid "Успешно выполнено"
+msgstr "Successfully completed"
+
+msgid "Отменено"
+msgstr "Cancelled"
+
+msgid "Ожидание списания"
+msgstr "Waiting for write-off"
+
+msgid "Яндекс.Касса"
+msgstr "Yandex.Kassa"
+
+msgid "Внешние участники платежного процесса"
+msgstr "External participants in the payment process"
+
+msgid "Продавец товаров и услуг"
+msgstr "Seller of goods and services"
+
+msgid "Не пройдена аутентификация по 3-D Secure"
+msgstr "3-D Secure authentication failed"
+
+msgid "Оплата данным платежным средством отклонена по неизвестным причинам"
+msgstr "Payment by this payment method was rejected for unknown reasons"
+
+msgid "Платеж отменен по API при оплате в две стадии"
+msgstr "Payment cancelled via API when paying in two stages"
+
+msgid "Истек срок действия банковской карты"
+msgstr "The bank card has expired"
+
+msgid "Нельзя заплатить банковской картой, выпущенной в этой стране"
+msgstr "You cannot pay with a bank card issued in this country."
+
+msgid "Истек срок списания оплаты у двухстадийного платежа"
+msgstr "The payment debit period for the two-stage payment has expired"
+
+msgid ""
+"Истек срок оплаты: пользователь не подтвердил платеж за время, отведенное на"
+" оплату выбранным способом"
+msgstr ""
+"Payment deadline expired: the user did not confirm the payment within the "
+"time allotted for payment by the selected method"
+
+msgid "Платеж заблокирован из-за подозрения в мошенничестве"
+msgstr "Payment blocked due to suspected fraud"
+
+msgid "Причина не детализирована"
+msgstr "The reason is not detailed."
+
+msgid "Превышены ограничения на платежи для кошелька в Яндекс.Деньгах"
+msgstr "Payment limits for Yandex.Money wallet exceeded"
+
+msgid "Не хватает денег для оплаты"
+msgstr "Not enough money to pay"
+
+msgid ""
+"Технические неполадки на стороне Яндекс.Кассы: не удалось обработать запрос "
+"в течение 30 секунд"
+msgstr ""
+"Technical problems on the Yandex.Checkout side: the request could not be "
+"processed within 30 seconds"
+
+msgid "Неправильно указан номер карты"
+msgstr "The card number is incorrect."
+
+#.  CID)
+msgid "Неправильно указан код CVV2 (CVC2, CID)"
+msgstr "Incorrect CVV2 code (CVC2"
+
+msgid "Организация, выпустившая платежное средство, недоступна"
+msgstr "The organization that issued the payment instrument is unavailable"
+
+msgid "Исчерпан лимит платежей для данного платежного средства или магазина"
+msgstr "The payment limit for this payment method or store has been reached"
+
+msgid "Запрещены операции данным платежным средством"
+msgstr "Operations with this payment method are prohibited"
+
+msgid ""
+"Нельзя провести безакцептное списание: пользователь отозвал разрешение на "
+"автоплатежи"
+msgstr ""
+"Unable to make a direct debit: the user has revoked permission for automatic"
+" payments"
+
+msgid "Ожидание"
+msgstr "Expectation"
+
+msgid "Общий вопрос"
+msgstr "General question"
+
+msgid "Интерфейс"
+msgstr "Interface"
+
+msgid "Технический"
+msgstr "Technical"
+
+msgid "Счет"
+msgstr "Check"
+
+msgid "Ожидает рассмотрения"
+msgstr "Pending review"
+
+msgid "Открыто"
+msgstr "Open"
+
+msgid "Закрыто пользователем"
+msgstr "Closed by user"
+
+msgid "Закрыто менеджером"
+msgstr "Closed by manager"
+
+msgid "Закрыто из-за отсутствия активности"
+msgstr "Closed due to lack of activity"
+
+msgid "В работе"
+msgstr "In progress"
+
+msgid "Получен ответ"
+msgstr "Response received"
+
+msgid "Закрыто"
+msgstr "Closed"
+
+msgid "Заявка взята в обработку оператором."
+msgstr "The application has been accepted for processing by the operator."
+
+msgid "Заявка автоматически закрыта после длительного отсутствия активности."
+msgstr ""
+"The request was automatically closed after a long period of inactivity."
+
+msgid "Заявка закрыта пользователем."
+msgstr "The request was closed by the user."
+
+msgid "Заявка закрыта оператором."
+msgstr "The application has been closed by the operator."
+
+msgid "Заявка повторно открыта."
+msgstr "The application has been reopened."
+
+msgid "Ошибка валидации капчи: {error}"
+msgstr "Captcha validation error: {error}"
+
+msgid ""
+"Не удалось конвертировать валюту ({from_currency}-->{to_currency}): {error}"
+msgstr "Failed to convert currency ({from_currency}-->{to_currency}): {error}"
+
+msgid "Андорра"
+msgstr "Andorra"
+
+msgid "Объединённые Арабские Эмираты"
+msgstr "United Arab Emirates"
+
+msgid "Афганистан"
+msgstr "Afghanistan"
+
+msgid "Антигуа И Барбуда"
+msgstr "Antigua And Barbuda"
+
+msgid "Ангвилла"
+msgstr "Angvilla"
+
+msgid "Албания"
+msgstr "Albania"
+
+msgid "Армения"
+msgstr "Armenia"
+
+msgid "Нидерландские Антильские острова"
+msgstr "Netherlands Antilles"
+
+msgid "Ангола"
+msgstr "Angola"
+
+msgid "Антарктика"
+msgstr "Antarctic"
+
+msgid "Аргентина"
+msgstr "Argentina"
+
+msgid "Американские Самоа"
+msgstr "American Samoa"
+
+msgid "Аруба"
+msgstr "Aruba"
+
+msgid "Аландские Острова"
+msgstr "Aland Islands"
+
+msgid "Азербайджан"
+msgstr "Azerbaijan"
+
+msgid "Босния И Герцеговина"
+msgstr "Bosnia and Herzegovina"
+
+msgid "Барбадос"
+msgstr "Barbados"
+
+msgid "Бангладеш"
+msgstr "Bangladesh"
+
+msgid "Бельгия"
+msgstr "Belgium"
+
+msgid "Буркина-Фасо"
+msgstr "Burkina Faso"
+
+msgid "Болгария"
+msgstr "Bulgaria"
+
+msgid "Бахрейн"
+msgstr "Bahrain"
+
+msgid "Бурунди"
+msgstr "Burundi"
+
+msgid "Бенин"
+msgstr "Benin"
+
+msgid "Сен-Бартельми"
+msgstr "Saint Barthelemy"
+
+msgid "Бермуды"
+msgstr "Bermudas"
+
+msgid "Бруней Даруссалам"
+msgstr "Brunei Darussalam"
+
+msgid "Боливия"
+msgstr "Bolivia"
+
+#.  Sint Eustatius and Saba
+msgid "Бонайре, Синт-Эстатиус И Саба"
+msgstr "Bonaire"
+
+msgid "Бразилия"
+msgstr "Brazil"
+
+msgid "Багамы"
+msgstr "Bahamas"
+
+msgid "Бутан"
+msgstr "Butane"
+
+msgid "Остров Буве"
+msgstr "Bouvet Island"
+
+msgid "Ботсвана"
+msgstr "Botswana"
+
+msgid "Беларусь"
+msgstr "Belarus"
+
+msgid "Белиз"
+msgstr "Belize"
+
+msgid "Кокосовые Острова "
+msgstr "Cocos Islands"
+
+msgid "Демократическая Республика Конго"
+msgstr "Democratic Republic of the Congo"
+
+msgid "Центрально-Африканская Республика"
+msgstr "Central African Republic"
+
+msgid "Конго"
+msgstr "Congo"
+
+msgid "Кот-Д'Ивуар"
+msgstr "Cote d'Ivoire"
+
+msgid "Острова Кука"
+msgstr "Cook Islands"
+
+msgid "Чили"
+msgstr "Chile"
+
+msgid "Камерун"
+msgstr "Cameroon"
+
+msgid "Колумбия"
+msgstr "Colombia"
+
+msgid "Коста-Рика"
+msgstr "Costa Rica"
+
+msgid "Куба"
+msgstr "Cuba"
+
+msgid "Кабо-Верде"
+msgstr "Cape Verde"
+
+msgid "Кюрасао"
+msgstr "Curacao"
+
+msgid "Остров Рождества"
+msgstr "Christmas Island"
+
+msgid "Кипр"
+msgstr "Cyprus"
+
+msgid "Джибути"
+msgstr "Djibouti"
+
+msgid "Доминика"
+msgstr "Dominica"
+
+msgid "Доминиканская Республика"
+msgstr "Dominican Republic"
+
+msgid "Алжир"
+msgstr "Algeria"
+
+msgid "Эквадор"
+msgstr "Ecuador"
+
+msgid "Эстония"
+msgstr "Estonia"
+
+msgid "Египет"
+msgstr "Egypt"
+
+msgid "Западная Сахара"
+msgstr "Western Sahara"
+
+msgid "Эритрея"
+msgstr "Eritrea"
+
+msgid "Эфиопия"
+msgstr "Ethiopia"
+
+msgid "Фиджи"
+msgstr "Fiji"
+
+msgid "Фолклендские (Мальвинские) Острова"
+msgstr "Falkland Islands (Malvinas)"
+
+msgid "Федеративные Штаты Микронезии"
+msgstr "Federated States of Micronesia"
+
+msgid "Фарерские Острова"
+msgstr "Faroe Islands"
+
+msgid "Габон"
+msgstr "Gabon"
+
+msgid "Гренада"
+msgstr "Grenada"
+
+msgid "Грузия"
+msgstr "Georgia"
+
+msgid "Французская Гвиана"
+msgstr "French Guiana"
+
+msgid "Гернси"
+msgstr "Guernsey"
+
+msgid "Гана"
+msgstr "Ghana"
+
+msgid "Гибралтар"
+msgstr "Gibraltar"
+
+msgid "Гренландия"
+msgstr "Greenland"
+
+msgid "Гамбия"
+msgstr "Gambia"
+
+msgid "Гвинея"
+msgstr "Guinea"
+
+msgid "Гваделупа"
+msgstr "Guadeloupe"
+
+msgid "Экваториальная Гвинея"
+msgstr "Equatorial Guinea"
+
+msgid "Южная Джорджия И Южные Сандвичевы Острова "
+msgstr "South Georgia and the South Sandwich Islands"
+
+msgid "Гватемала"
+msgstr "Guatemala"
+
+msgid "Гуам"
+msgstr "Guam"
+
+msgid "Гвинея-Бисау"
+msgstr "Guinea Bissau"
+
+msgid "Гайана"
+msgstr "Guyana"
+
+msgid "Остров Херд И Острова Макдональд"
+msgstr "Heard Island and McDonald Islands"
+
+msgid "Гондурас"
+msgstr "Honduras"
+
+msgid "Хорватия"
+msgstr "Croatia"
+
+msgid "Гаити"
+msgstr "Haiti"
+
+msgid "Остров Мэн"
+msgstr "Isle of Man"
+
+msgid "Британская Территория Индийского Океана"
+msgstr "British Indian Ocean Territory"
+
+msgid "Ирак"
+msgstr "Iraq"
+
+msgid "Иран"
+msgstr "Iran"
+
+msgid "Исландия"
+msgstr "Iceland"
+
+msgid "Джерси"
+msgstr "Jersey"
+
+msgid "Ямайка"
+msgstr "Jamaica"
+
+msgid "Иордания"
+msgstr "Jordan"
+
+msgid "Кения"
+msgstr "Kenya"
+
+msgid "Кыргызстан"
+msgstr "Kyrgyzstan"
+
+msgid "Камбоджа"
+msgstr "Cambodia"
+
+msgid "Кирибати"
+msgstr "Kiribati"
+
+msgid "Коморские Острова"
+msgstr "Comoros Islands"
+
+msgid "Сент-Китс И Невис"
+msgstr "Saint Kitts and Nevis"
+
+msgid "Корейская Народно-Демократическая Республика"
+msgstr "Democratic People's Republic of Korea"
+
+msgid "Республика Корея"
+msgstr "Republic of Korea"
+
+msgid "Кувейт"
+msgstr "Kuwait"
+
+msgid "Каймановы Острова"
+msgstr "Cayman Islands"
+
+msgid "Казахстан"
+msgstr "Kazakhstan"
+
+msgid "Лаосская Народно-Демократическая Республика"
+msgstr "Lao People's Democratic Republic"
+
+msgid "Ливан"
+msgstr "Lebanon"
+
+msgid "Сент-Люсия"
+msgstr "Saint Lucia"
+
+msgid "Лихтенштейн"
+msgstr "Liechtenstein"
+
+msgid "Шри-Ланка"
+msgstr "Sri Lanka"
+
+msgid "Либерия"
+msgstr "Liberia"
+
+msgid "Лесото"
+msgstr "Lesotho"
+
+msgid "Литва"
+msgstr "Lithuania"
+
+msgid "Люксембург"
+msgstr "Luxembourg"
+
+msgid "Латвия"
+msgstr "Latvia"
+
+msgid "Ливия"
+msgstr "Libya"
+
+msgid "Марокко"
+msgstr "Morocco"
+
+msgid "Монако"
+msgstr "Monaco"
+
+msgid "Республика Молдова"
+msgstr "Republic of Moldova"
+
+msgid "Черногория"
+msgstr "Montenegro"
+
+msgid "Сен-Мартен (Франция)"
+msgstr "Saint Martin (France)"
+
+msgid "Мадагаскар"
+msgstr "Madagascar"
+
+msgid "Маршалловы Острова"
+msgstr "Marshall Islands"
+
+msgid "Северная Македония"
+msgstr "North Macedonia"
+
+msgid "Мали"
+msgstr "Mali"
+
+msgid "Мьянма"
+msgstr "Myanmar"
+
+msgid "Монголия"
+msgstr "Mongolia"
+
+msgid "Аомынь"
+msgstr "Macau"
+
+msgid "Острова Северной Марианы"
+msgstr "Northern Mariana Islands"
+
+msgid "Мартиника"
+msgstr "Martinique"
+
+msgid "Мавритания"
+msgstr "Mauritania"
+
+msgid "Монсеррат"
+msgstr "Montserrat"
+
+msgid "Мальта"
+msgstr "Malta"
+
+msgid "Маврикий"
+msgstr "Mauritius"
+
+msgid "Мальдивы"
+msgstr "Maldives"
+
+msgid "Малави"
+msgstr "Malawi"
+
+msgid "Мексика"
+msgstr "Mexico"
+
+msgid "Мозамбик"
+msgstr "Mozambique"
+
+msgid "Намибия"
+msgstr "Namibia"
+
+msgid "Новая Каледония"
+msgstr "New Caledonia"
+
+msgid "Нигер"
+msgstr "Niger"
+
+msgid "Остров Норфолк"
+msgstr "Norfolk Island"
+
+msgid "Нигерия"
+msgstr "Nigeria"
+
+msgid "Никарагуа"
+msgstr "Nicaragua"
+
+msgid "Непал"
+msgstr "Nepal"
+
+msgid "Науру"
+msgstr "Nauru"
+
+msgid "Ниуэ"
+msgstr "Niue"
+
+msgid "Оман"
+msgstr "Oman"
+
+msgid "Панама"
+msgstr "Panama"
+
+msgid "Французская Полинезия"
+msgstr "French Polynesia"
+
+msgid "Папуа — Новая Гвинея"
+msgstr "Papua New Guinea"
+
+msgid "Пакистан"
+msgstr "Pakistan"
+
+msgid "Сен-Пьер И Микелон"
+msgstr "Saint Pierre and Miquelon"
+
+msgid "Питкэрн"
+msgstr "Pitcairn"
+
+msgid "Палестина"
+msgstr "Palestine"
+
+msgid "Палау"
+msgstr "Palau"
+
+msgid "Парагвай"
+msgstr "Paraguay"
+
+msgid "Катар"
+msgstr "Qatar"
+
+msgid "Реюньон"
+msgstr "Reunion"
+
+msgid "Румыния"
+msgstr "Romania"
+
+msgid "Сербия"
+msgstr "Serbia"
+
+msgid "Руанда"
+msgstr "Rwanda"
+
+msgid "Саудовская Аравия"
+msgstr "Saudi Arabia"
+
+msgid "Соломоновы Острова"
+msgstr "Solomon Islands"
+
+msgid "Сейшельские Острова"
+msgstr "Seychelles"
+
+msgid "Судан"
+msgstr "Sudan"
+
+#.  Ascension Island and Tristan Da Cunha
+msgid "Остров Святой Елены, Остров Вознесения И Тристан-Да-Кунья"
+msgstr "Saint Helena"
+
+msgid "Словения"
+msgstr "Slovenia"
+
+msgid "Шпицберген И Ян-Майен"
+msgstr "Svalbard and Jan Mayen"
+
+msgid "Словакия"
+msgstr "Slovakia"
+
+msgid "Сьерра-Леоне"
+msgstr "Sierra Leone"
+
+msgid "Сан-Марино"
+msgstr "San Marino"
+
+msgid "Сенегал"
+msgstr "Senegal"
+
+msgid "Сомали"
+msgstr "Somalia"
+
+msgid "Суринам"
+msgstr "Suriname"
+
+msgid "Сан-Томе И Принсипи"
+msgstr "Sao Tome And Principe"
+
+msgid "Сальвадор"
+msgstr "Salvador"
+
+msgid "Синт-Мартен (Голландская Часть)"
+msgstr "Sint Maarten (Dutch Part)"
+
+msgid "Сирийская Арабская Республика"
+msgstr "Syrian Arab Republic"
+
+msgid "Эсватини"
+msgstr "Eswatini"
+
+msgid "Острова Туркс И Каикос"
+msgstr "Turks and Caicos Islands"
+
+msgid "Чад"
+msgstr "Chad"
+
+msgid "Французские Южные Территории"
+msgstr "French Southern Territories"
+
+msgid "Того"
+msgstr "Togo"
+
+msgid "Таджикистан"
+msgstr "Tajikistan"
+
+msgid "Токелау"
+msgstr "Tokelau"
+
+msgid "Восточный Тимор"
+msgstr "East Timor"
+
+msgid "Туркменистан"
+msgstr "Turkmenistan"
+
+msgid "Тунис"
+msgstr "Tunisia"
+
+msgid "Тонга"
+msgstr "Tonga"
+
+msgid "Турция"
+msgstr "Türkiye"
+
+msgid "Тринидад И Тобаго"
+msgstr "Trinidad and Tobago"
+
+msgid "Тувалу"
+msgstr "Tuvalu"
+
+msgid "Танзания"
+msgstr "Tanzania"
+
+msgid "Украина"
+msgstr "Ukraine"
+
+msgid "Уганда"
+msgstr "Uganda"
+
+msgid "Соединенные Штаты Малых  Удаленных Островов"
+msgstr "United States of Minor Outlying Islands"
+
+msgid "Уругвай"
+msgstr "Uruguay"
+
+msgid "Узбекистан"
+msgstr "Uzbekistan"
+
+msgid "Государство-Город Ватикан"
+msgstr "Vatican City State"
+
+msgid "Сент-Винсент И Гренадины"
+msgstr "Saint Vincent and the Grenadines"
+
+msgid "Боливарианская Республика Венесуэла"
+msgstr "Bolivarian Republic of Venezuela"
+
+msgid "Виргинские Острова (Британия)"
+msgstr "Virgin Islands (British)"
+
+msgid "Виргинские Острова (CША)"
+msgstr "Virgin Islands (USA)"
+
+msgid "Вануату"
+msgstr "Vanuatu"
+
+msgid "Уоллес И Футана"
+msgstr "Wallace and Futana"
+
+msgid "Самоа"
+msgstr "Samoa"
+
+msgid "Йемен"
+msgstr "Yemen"
+
+msgid "Майот"
+msgstr "Mayotte"
+
+msgid "Замбия"
+msgstr "Zambia"
+
+msgid "Зимбабве"
+msgstr "Zimbabwe"
+
+msgid "Заир"
+msgstr "Zaire"
+
+msgid "Российская Федерация"
+msgstr "Russian Federation"
+
+msgid "Соединённые Штаты"
+msgstr "United States"
+
+msgid "Австралия"
+msgstr "Australia"
+
+msgid "Соединённое Королевство"
+msgstr "United Kingdom"
+
+msgid "Германия"
+msgstr "Germany"
+
+msgid "Франция"
+msgstr "France"
+
+msgid "Чехия"
+msgstr "Czech Republic"
+
+msgid "Польша"
+msgstr "Poland"
+
+msgid "Испания"
+msgstr "Spain"
+
+msgid "Гонконг"
+msgstr "Hong Kong"
+
+msgid "Япония"
+msgstr "Japan"
+
+msgid "Малайзия"
+msgstr "Malaysia"
+
+msgid "Сингапур"
+msgstr "Singapore"
+
+msgid "Дания"
+msgstr "Denmark"
+
+msgid "Перу"
+msgstr "Peru"
+
+msgid "Новая Зеландия"
+msgstr "New Zealand"
+
+msgid "Китайская Провинция Тайвань"
+msgstr "Taiwan Province of China"
+
+msgid "Норвегия"
+msgstr "Norway"
+
+msgid "Израиль"
+msgstr "Israel"
+
+msgid "Швеция"
+msgstr "Sweden"
+
+msgid "Южная Африка"
+msgstr "South Africa"
+
+msgid "Италия"
+msgstr "Italy"
+
+msgid "Нидерланды"
+msgstr "Netherlands"
+
+msgid "Индонезия"
+msgstr "Indonesia"
+
+msgid "Таиланд"
+msgstr "Thailand"
+
+msgid "Португалия"
+msgstr "Portugal"
+
+msgid "Финляндия"
+msgstr "Finland"
+
+msgid "Греция"
+msgstr "Greece"
+
+msgid "Венгрия"
+msgstr "Hungary"
+
+msgid "Пуэрто-Рико"
+msgstr "Puerto Rico"
+
+msgid "Индия"
+msgstr "India"
+
+msgid "Вьетнам"
+msgstr "Vietnam"
+
+msgid "Китай"
+msgstr "China"
+
+msgid "Филиппины"
+msgstr "Philippines"
+
+msgid "Канада"
+msgstr "Canada"
+
+msgid "Швейцария"
+msgstr "Switzerland"
+
+msgid "Ирландия"
+msgstr "Ireland"
+
+msgid "Австрия"
+msgstr "Austria"
+
+msgid "Дирхам (Оаэ)"
+msgstr "Dirham (UAE)"
+
+msgid "Афгани"
+msgstr "Afghani"
+
+msgid "Лек"
+msgstr "Lek"
+
+msgid "Армянский Драм"
+msgstr "Armenian Dram"
+
+msgid "Нидерландский Антильский Гульден"
+msgstr "Netherlands Antillean Guilder"
+
+msgid "Кванза"
+msgstr "Kwanzaa"
+
+msgid "Аргентинское Песо"
+msgstr "Argentine Peso"
+
+msgid "Арубанский Флорин"
+msgstr "Aruban Florin"
+
+msgid "Азербайджанский Манат"
+msgstr "Azerbaijani Manat"
+
+msgid "Конвертируемая Марка"
+msgstr "Convertible Mark"
+
+msgid "Барбадосский Доллар"
+msgstr "Barbados Dollar"
+
+msgid "Така"
+msgstr "Taka"
+
+msgid "Болгарский Лев"
+msgstr "Bulgarian Lev"
+
+msgid "Бахрейнский Динар"
+msgstr "Bahraini Dinar"
+
+msgid "Бурундийский Франк"
+msgstr "Burundian Franc"
+
+msgid "Бермудский Доллар"
+msgstr "Bermuda Dollar"
+
+msgid "Брунейский Доллар"
+msgstr "Brunei Dollar"
+
+msgid "Боливиано"
+msgstr "Boliviano"
+
+msgid "Бразильский Реал"
+msgstr "Brazilian Real"
+
+msgid "Багамский Доллар"
+msgstr "Bahamian Dollar"
+
+msgid "Нгултрум"
+msgstr "Ngultrum"
+
+msgid "Пула"
+msgstr "Pula"
+
+msgid "Белорусский Рубль"
+msgstr "Belarusian Ruble"
+
+msgid "Белизский Доллар"
+msgstr "Belize Dollar"
+
+msgid "Конголезский Франк"
+msgstr "Congolese Franc"
+
+msgid "Чилийское Песо"
+msgstr "Chilean Peso"
+
+msgid "Колумбийское Песо"
+msgstr "Colombian Peso"
+
+msgid "Костариканский Колон"
+msgstr "Costa Rican Colon"
+
+msgid "Кубинское Песо"
+msgstr "Cuban Peso"
+
+msgid "Эскудо Кабо-Верде"
+msgstr "Escudo of Cape Verde"
+
+msgid "Франк Джибути"
+msgstr "Frank Djibouti"
+
+msgid "Доминиканское Песо"
+msgstr "Dominican Peso"
+
+msgid "Алжирский Динар"
+msgstr "Algerian Dinar"
+
+msgid "Египетский Фунт"
+msgstr "Egyptian Pound"
+
+msgid "Накфа"
+msgstr "Nakfa"
+
+msgid "Эфиопский Быр"
+msgstr "Ethiopian Birr"
+
+msgid "Доллар Фиджи"
+msgstr "Fiji dollar"
+
+msgid "Фунт Фолклендских Островов"
+msgstr "Falkland Islands Pound"
+
+msgid "Ларистанский"
+msgstr "Laristansky"
+
+msgid "Седи"
+msgstr "Sedi"
+
+msgid "Гибралтарский Фунт"
+msgstr "Gibraltar Pound"
+
+msgid "Даласи"
+msgstr "Dalasi"
+
+msgid "Гвинейский Франк"
+msgstr "Guinean Franc"
+
+msgid "Кетсаль"
+msgstr "Quetzal"
+
+msgid "Гайанский Доллар"
+msgstr "Guyanese Dollar"
+
+msgid "Лемпира"
+msgstr "Lempira"
+
+msgid "Куна"
+msgstr "Kuna"
+
+msgid "Гурд"
+msgstr "Gourde"
+
+msgid "Иракский Динар"
+msgstr "Iraqi Dinar"
+
+msgid "Иранский Риал"
+msgstr "Iranian Rial"
+
+msgid "Исландская Крона"
+msgstr "Icelandic Krona"
+
+msgid "Ямайский Доллар"
+msgstr "Jamaican Dollar"
+
+msgid "Иорданский Динар"
+msgstr "Jordanian Dinar"
+
+msgid "Кенийский Шиллинг"
+msgstr "Kenyan Shilling"
+
+msgid "Сом"
+msgstr "Catfish"
+
+msgid "Риель"
+msgstr "Riel"
+
+msgid "Франк Комор"
+msgstr "Frank Comor"
+
+msgid "Северокорейская Вона"
+msgstr "North Korean Won"
+
+msgid "Вона"
+msgstr "Won"
+
+msgid "Кувейтский Динар"
+msgstr "Kuwaiti Dinar"
+
+msgid "Доллар Островов Кайман"
+msgstr "Cayman Islands Dollar"
+
+msgid "Тенге"
+msgstr "Tenge"
+
+msgid "Кип"
+msgstr "Kip"
+
+msgid "Ливанский Фунт"
+msgstr "Lebanese Pound"
+
+msgid "Шри-Ланкийская Рупия"
+msgstr "Sri Lankan Rupee"
+
+msgid "Либерийский Доллар"
+msgstr "Liberian Dollar"
+
+msgid "Лоти"
+msgstr "Lotti"
+
+msgid "Литовский Лит"
+msgstr "Lithuanian Lit"
+
+msgid "Ливийский Динар"
+msgstr "Libyan Dinar"
+
+msgid "Марокканский Дирхам"
+msgstr "Moroccan Dirham"
+
+msgid "Молдавский Лей"
+msgstr "Moldovan Leu"
+
+msgid "Малагасийский Ариари"
+msgstr "Malagasy Ariary"
+
+msgid "Македонский Денар"
+msgstr "Macedonian Denar"
+
+msgid "Кьят"
+msgstr "Kyat"
+
+msgid "Тугрик"
+msgstr "Tugrik"
+
+msgid "Патака"
+msgstr "Pataca"
+
+msgid "Угия"
+msgstr "Oogieah"
+
+msgid "Маврикийская Рупия"
+msgstr "Mauritian Rupee"
+
+msgid "Руфия"
+msgstr "Rufiya"
+
+msgid "Малавийская Квача"
+msgstr "Malawian Kwacha"
+
+msgid "Мексиканское Песо"
+msgstr "Mexican Peso"
+
+msgid "Мозамбикский Метикал"
+msgstr "Mozambican Metical"
+
+msgid "Доллар Намибии"
+msgstr "Namibian dollar"
+
+msgid "Найра"
+msgstr "Naira"
+
+msgid "Золотая Кордоба"
+msgstr "Golden Cordoba"
+
+msgid "Непальская Рупия"
+msgstr "Nepalese Rupee"
+
+msgid "Оманский Риал"
+msgstr "Omani Rial"
+
+msgid "Бальбоа"
+msgstr "Balboa"
+
+msgid "Кина"
+msgstr "Kina"
+
+msgid "Пакистанская Рупия"
+msgstr "Pakistani Rupee"
+
+msgid "Гуарани"
+msgstr "Guarani"
+
+msgid "Катарский Риал"
+msgstr "Qatari Riyal"
+
+msgid "Румынский Лей"
+msgstr "Romanian Leu"
+
+msgid "Сербский Динар"
+msgstr "Serbian Dinar"
+
+msgid "Российский Рубль"
+msgstr "Russian Ruble"
+
+msgid "Франк Руанды"
+msgstr "Frank of Rwanda"
+
+msgid "Саудовский Риял"
+msgstr "Saudi Riyal"
+
+msgid "Доллар Соломоновых Островов"
+msgstr "Solomon Islands Dollar"
+
+msgid "Сейшельская Рупия"
+msgstr "Seychelles Rupee"
+
+msgid "Суданский Фунт"
+msgstr "Sudanese Pound"
+
+msgid "Фунт Святой Елены"
+msgstr "Pound of Saint Helena"
+
+msgid "Леоне"
+msgstr "Leone"
+
+msgid "Сомалийский Шиллинг"
+msgstr "Somali Shilling"
+
+msgid "Суринамский Доллар"
+msgstr "Surinamese Dollar"
+
+msgid "Добра"
+msgstr "Good"
+
+msgid "Сирийский Фунт"
+msgstr "Syrian Pound"
+
+msgid "Лилангени"
+msgstr "Lilangeni"
+
+msgid "Сомони"
+msgstr "Somoni"
+
+msgid "Туркменский Новый Манат"
+msgstr "Turkmen New Manat"
+
+msgid "Тунисский Динар"
+msgstr "Tunisian Dinar"
+
+msgid "Паанга"
+msgstr "Paanga"
+
+msgid "Турецкая Лира"
+msgstr "Turkish Lira"
+
+msgid "Доллар Тринидада И Тобаго"
+msgstr "Trinidad and Tobago dollar"
+
+msgid "Танзанийский Шиллинг"
+msgstr "Tanzanian Shilling"
+
+msgid "Гривна"
+msgstr "Hryvnia"
+
+msgid "Угандийский Шиллинг"
+msgstr "Ugandan Shilling"
+
+msgid "Уругвайское Песо"
+msgstr "Uruguayan Peso"
+
+msgid "Узбекский Сум"
+msgstr "Uzbek sum"
+
+msgid "Боливар"
+msgstr "Bolivar"
+
+msgid "Вату"
+msgstr "Vatu"
+
+msgid "Тала"
+msgstr "Tala"
+
+msgid "Франк Кфа Веас"
+msgstr "Frank Kfa Weas"
+
+msgid "Восточно-Карибский Доллар"
+msgstr "East Caribbean Dollar"
+
+msgid "Франк Кфа Всеао"
+msgstr "Franc Kfa Vseao"
+
+msgid "Франк Кфп"
+msgstr "Frank Kfp"
+
+msgid "Йеменский Риал"
+msgstr "Yemeni Rial"
+
+msgid "Замбийская Квача"
+msgstr "Zambian Kwacha"
+
+msgid "Доллар Зимбабве"
+msgstr "Zimbabwe dollar"
+
+msgid "Доллар США"
+msgstr "US Dollar"
+
+msgid "Евро"
+msgstr "Euro"
+
+msgid "Фунт Стерлингов"
+msgstr "Pound sterling"
+
+msgid "Австралийский Доллар"
+msgstr "Australian Dollar"
+
+msgid "Китайский Юань"
+msgstr "CNY"
+
+msgid "Злотый"
+msgstr "Zloty"
+
+msgid "Швейцарский Франк"
+msgstr "Swiss Franc"
+
+msgid "Иена"
+msgstr "Yen"
+
+msgid "Рупия"
+msgstr "Rupee"
+
+msgid "Донг"
+msgstr "Dong"
+
+msgid "Норвежская Крона"
+msgstr "Norwegian Krone"
+
+msgid "Сингапурский Доллар"
+msgstr "Singapore Dollar"
+
+msgid "Шведская Крона"
+msgstr "Swedish Krona"
+
+msgid "Малайзийский Ринггит"
+msgstr "Malaysian Ringgit"
+
+msgid "Бат"
+msgstr "Bat"
+
+msgid "Новозеландский Доллар"
+msgstr "New Zealand Dollar"
+
+msgid "Форинт"
+msgstr "Forint"
+
+msgid "Гонконгский Доллар"
+msgstr "Hong Kong Dollar"
+
+msgid "Индийская Рупия"
+msgstr "Indian Rupee"
+
+msgid "Филиппинское Песо"
+msgstr "Philippine Peso"
+
+msgid "Датская Крона"
+msgstr "Danish Krone"
+
+msgid "Новый Тайваньский Доллар"
+msgstr "New Taiwan Dollar"
+
+msgid "Соль"
+msgstr "Salt"
+
+msgid "Рэнд"
+msgstr "Rand"
+
+msgid "Канадский Доллар"
+msgstr "Canadian Dollar"
+
+msgid "Чешская Крона"
+msgstr "Czech Crown"
+
+msgid "Новый Израильский Шекель"
+msgstr "New Israeli Shekel"
+
+msgid "Русский"
+msgstr "Russian"
+
+msgid "Английский"
+msgstr "English"
+
+msgid "Немецкий"
+msgstr "German"
+
+msgid "Китайский"
+msgstr "Chinese"
+
+msgid "Польский"
+msgstr "Polish"
+
+msgid "Французский"
+msgstr "French"
+
+msgid "Итальянский"
+msgstr "Italian"
+
+msgid "Португальский"
+msgstr "Portuguese"
+
+msgid "Испанский"
+msgstr "Spanish"
+
+msgid "Японский"
+msgstr "Japanese"
+
+msgid "Тайский"
+msgstr "Thai"
+
+msgid "Голландский"
+msgstr "Dutch"
+
+msgid "Абхазский"
+msgstr "Abkhazian"
+
+msgid "Афар"
+msgstr "Afar"
+
+msgid "Африкаанс"
+msgstr "Afrikaans"
+
+msgid "Акан"
+msgstr "Akan"
+
+msgid "Албанский"
+msgstr "Albanian"
+
+msgid "Амхарский"
+msgstr "Amharic"
+
+msgid "Арабский"
+msgstr "Arab"
+
+msgid "Арагонский"
+msgstr "Aragonese"
+
+msgid "Армянский"
+msgstr "Armenian"
+
+msgid "Ассамский"
+msgstr "Assamese"
+
+msgid "Аварский"
+msgstr "Avar"
+
+msgid "Авестийский"
+msgstr "Avestan"
+
+msgid "Аймара"
+msgstr "Aymara"
+
+msgid "Азербайджанский"
+msgstr "Azerbaijani"
+
+msgid "Бамбара"
+msgstr "Bambara"
+
+msgid "Башкирский"
+msgstr "Bashkir"
+
+msgid "Баскский"
+msgstr "Basque"
+
+msgid "Белорусский"
+msgstr "Belorussian"
+
+msgid "Бенгальский"
+msgstr "Bengal"
+
+msgid "Бихари"
+msgstr "Bihari"
+
+msgid "Бислама"
+msgstr "Bislama"
+
+msgid "Боснийский"
+msgstr "Bosnian"
+
+msgid "Бретонский"
+msgstr "Breton"
+
+msgid "Болгарский"
+msgstr "Bulgarian"
+
+msgid "Бирманский"
+msgstr "Burmese"
+
+msgid "Каталанский"
+msgstr "Catalan"
+
+msgid "Чаморро"
+msgstr "Chamorro"
+
+msgid "Чеченский"
+msgstr "Chechen"
+
+msgid "Ньянджа"
+msgstr "Nyanja"
+
+msgid "Чувашский"
+msgstr "Chuvash"
+
+msgid "Корнский"
+msgstr "Cornish"
+
+msgid "Корсиканский"
+msgstr "Corsican"
+
+msgid "Кри"
+msgstr "Cree"
+
+msgid "Хорватский"
+msgstr "Croatian"
+
+msgid "Чешский"
+msgstr "Czech"
+
+msgid "Датский"
+msgstr "Danish"
+
+msgid "Дивехи"
+msgstr "Dhivehi"
+
+msgid "Дзонг-Кэ"
+msgstr "Dzongkha"
+
+msgid "Эсперанто"
+msgstr "Esperanto"
+
+msgid "Эстонский"
+msgstr "Estonian"
+
+msgid "Эве"
+msgstr "Eve"
+
+msgid "Фарерский"
+msgstr "Faroese"
+
+msgid "Финский"
+msgstr "Finnish"
+
+msgid "Фулах"
+msgstr "Fulakh"
+
+msgid "Галисийский"
+msgstr "Galician"
+
+msgid "Грузинский"
+msgstr "Georgian"
+
+msgid "Новогреческий (1453-)"
+msgstr "Modern Greek (1453-)"
+
+msgid "Гуджарати"
+msgstr "Gujarati"
+
+msgid "Гаитянский"
+msgstr "Haitian"
+
+msgid "Хауса"
+msgstr "Hausa"
+
+msgid "Иврит"
+msgstr "Hebrew"
+
+msgid "Гереро"
+msgstr "Herero"
+
+msgid "Хинди"
+msgstr "Hindi"
+
+msgid "Хири Моту"
+msgstr "Hiri Motu"
+
+msgid "Венгерский"
+msgstr "Hungarian"
+
+msgid "Интерлингва (Ассоциация Международного Вспомогательного Языка)"
+msgstr "Interlingua (International Auxiliary Language Association)"
+
+msgid "Индонезийский"
+msgstr "Indonesian"
+
+msgid "Интерлингве"
+msgstr "Interlingue"
+
+msgid "Ирландский"
+msgstr "Irish"
+
+msgid "Игбо"
+msgstr "Igbo"
+
+msgid "Инулиак"
+msgstr "Inuliak"
+
+msgid "Идо"
+msgstr "Ido"
+
+msgid "Исландский"
+msgstr "Icelandic"
+
+msgid "Инуктитут"
+msgstr "Inuktitut"
+
+msgid "Яванский"
+msgstr "Javanese"
+
+msgid "Калааллисут"
+msgstr "Kalaallisut"
+
+msgid "Каннада"
+msgstr "Kannada"
+
+msgid "Канури"
+msgstr "Kanuri"
+
+msgid "Кашмири"
+msgstr "Kashmiri"
+
+msgid "Казахский"
+msgstr "Kazakh"
+
+msgid "Кхмерский Центральный"
+msgstr "Khmer Central"
+
+msgid "Кикуйю"
+msgstr "Kikuyu"
+
+msgid "Киньяруанда"
+msgstr "Kinyarwanda"
+
+msgid "Киргизский"
+msgstr "Kyrgyz"
+
+msgid "Коми"
+msgstr "Komi"
+
+msgid "Корейский"
+msgstr "Korean"
+
+msgid "Курдский"
+msgstr "Kurdish"
+
+msgid "Киньяма"
+msgstr "Kinyama"
+
+msgid "Латынь"
+msgstr "Latin"
+
+msgid "Люксембургский"
+msgstr "Luxembourgish"
+
+msgid "Ганда"
+msgstr "Ganda"
+
+msgid "Лимбурган"
+msgstr "Limburgan"
+
+msgid "Лингала"
+msgstr "Lingala"
+
+msgid "Лаосский"
+msgstr "Laotian"
+
+msgid "Литовский"
+msgstr "Lithuanian"
+
+msgid "Луба-Катанга"
+msgstr "Luba-Katanga"
+
+msgid "Латышский"
+msgstr "Latvian"
+
+msgid "Мэнкский"
+msgstr "Manx"
+
+msgid "Македонский"
+msgstr "Macedonian"
+
+msgid "Малагасийский"
+msgstr "Malagasy"
+
+msgid "Малайский (Макроязык)"
+msgstr "Malay (Macrolanguage)"
+
+msgid "Малаялам"
+msgstr "Malayalam"
+
+msgid "Мальтийский"
+msgstr "Maltese"
+
+msgid "Маори"
+msgstr "Maori"
+
+msgid "Маратхи"
+msgstr "Marathi"
+
+msgid "Маршалльский"
+msgstr "Marshallese"
+
+msgid "Монгольский"
+msgstr "Mongolian"
+
+msgid "Навахо"
+msgstr "Navajo"
+
+msgid "Норвежский Букмол"
+msgstr "Norwegian Bokmål"
+
+msgid "Северный Ндебеле"
+msgstr "Northern Ndebele"
+
+msgid "Непальский (макроязык)"
+msgstr "Nepali (macro language)"
+
+msgid "Ндунга"
+msgstr "Ndunga"
+
+msgid "Норвежский Нюнорск"
+msgstr "Norwegian Nynorsk"
+
+msgid "Норвежский"
+msgstr "Norwegian"
+
+msgid "Сычуань Йи"
+msgstr "Sichuan Yi"
+
+msgid "Южный Ндебеле"
+msgstr "Southern Ndebele"
+
+msgid "Окситанский (пост 1500)"
+msgstr "Occitan (post 1500)"
+
+msgid "Оджибва"
+msgstr "Ojibwa"
+
+msgid "Церковнославянский"
+msgstr "Church Slavonic"
+
+msgid "Оромо"
+msgstr "Oromo"
+
+msgid "Ория (макроязык)"
+msgstr "Oriya (macro language)"
+
+msgid "Осетинский"
+msgstr "Ossetian"
+
+msgid "Панджаби"
+msgstr "Punjabi"
+
+msgid "Пали"
+msgstr "Pali"
+
+msgid "Персидский"
+msgstr "Persian"
+
+msgid "Пушту"
+msgstr "Pashto"
+
+msgid "Кечуа"
+msgstr "Quechua"
+
+msgid "Ретороманский"
+msgstr "Rhaeto-Romanic"
+
+msgid "Рунди"
+msgstr "Rundi"
+
+msgid "Румынский"
+msgstr "Romanian"
+
+msgid "Санскрит"
+msgstr "Sanskrit"
+
+msgid "Сардинский"
+msgstr "Sardinian"
+
+msgid "Синдхи"
+msgstr "Sindhi"
+
+msgid "Северные Саамы"
+msgstr "Northern Sami"
+
+msgid "Самоанский"
+msgstr "Samoan"
+
+msgid "Санго"
+msgstr "Sango"
+
+msgid "Сербский"
+msgstr "Serbian"
+
+msgid "Шотландский Гэльский"
+msgstr "Scottish Gaelic"
+
+msgid "Шона"
+msgstr "Shauna"
+
+msgid "Сингальский"
+msgstr "Sinhalese"
+
+msgid "Словацкий"
+msgstr "Slovak"
+
+msgid "Словенский"
+msgstr "Slovenian"
+
+msgid "Южный Сото"
+msgstr "Southern Sotho"
+
+msgid "Сунданский"
+msgstr "Sundanese"
+
+msgid "Суахили (Макроязык)"
+msgstr "Swahili (Macro language)"
+
+msgid "Свати"
+msgstr "Swati"
+
+msgid "Шведский"
+msgstr "Swedish"
+
+msgid "Тамильский"
+msgstr "Tamil"
+
+msgid "Телугу"
+msgstr "Telugu"
+
+msgid "Таджикский"
+msgstr "Tajik"
+
+msgid "Тигринья"
+msgstr "Tigrinya"
+
+msgid "Тибетский"
+msgstr "Tibetan"
+
+msgid "Туркменский"
+msgstr "Turkmen"
+
+msgid "Тагальский"
+msgstr "Tagalog"
+
+msgid "Тсвана"
+msgstr "Tswana"
+
+msgid "Тонга (Острова Тонга)"
+msgstr "Tonga (Tonga Islands)"
+
+msgid "Турецкий"
+msgstr "Turkish"
+
+msgid "Тсонга"
+msgstr "Tsonga"
+
+msgid "Татарский"
+msgstr "Tatar"
+
+msgid "Тви"
+msgstr "Twi"
+
+msgid "Таитянский"
+msgstr "Tahitian"
+
+msgid "Уйгурский"
+msgstr "Uigur"
+
+msgid "Украинский"
+msgstr "Ukrainian"
+
+msgid "Урду"
+msgstr "Urdu"
+
+msgid "Узбекский"
+msgstr "Uzbek"
+
+msgid "Венда"
+msgstr "Wenda"
+
+msgid "Вьетнамский"
+msgstr "Vietnamese"
+
+msgid "Волапюк"
+msgstr "Volapuk"
+
+msgid "Валлун"
+msgstr "Walloon"
+
+msgid "Валлийский"
+msgstr "Welsh"
+
+msgid "Волоф"
+msgstr "Wolof"
+
+msgid "Западно-фризский"
+msgstr "West Frisian"
+
+msgid "Коса"
+msgstr "Scythe"
+
+msgid "Идиш"
+msgstr "Yiddish"
+
+msgid "Йоруба"
+msgstr "Yoruba"
+
+msgid "Чжуан"
+msgstr "Zhuang"
+
+msgid "Зулусский"
+msgstr "Zulu"
+
+msgid "Ярд"
+msgstr "Yard"
+
+msgid "Миллиметр"
+msgstr "Millimeter"
+
+msgid "Проблемы с доступом к файловому хранилищу."
+msgstr "Problems accessing file storage."
+
+msgid "Обязательный фильтр"
+msgstr "Mandatory filter"
+
+msgid "Максимальное значение: {max_value}"
+msgstr "Maximum value: {max_value}"
+
+msgid "Пользователь не найден."
+msgstr "User not found."
+
+msgid "Токен обновления приложения amoCRM недействителен."
+msgstr "amoCRM App Refresh Token is invalid."
+
+msgid "Необходимо задать настройку 'AMOCRM_APP_MODEL'."
+msgstr "The 'AMOCRM_APP_MODEL' setting must be set."
+
+msgid "Отсутствует токен обновления AmoCRM."
+msgstr "AmoCRM update token is missing."
+
+msgid "У конфига приложения amoCRM не задан ключ '{key}'."
+msgstr ""
+"The amoCRM application config does not have the '{key}' key specified."
+
+#.  exactly one must be the default application.
+msgid ""
+"Среди приложений amoCRM ровно одно должно быть приложением по умолчанию."
+msgstr "Among amoCRM applications"
+
+msgid "Необходимо определить атрибут 'entity_name'."
+msgstr "The 'entity_name' attribute must be defined."
+
+msgid "Необходимо определить атрибут 'entity_model'."
+msgstr "The 'entity_model' attribute must be defined."
+
+msgid ""
+"Параметры 'entity' и '{entity_name}' должны быть экземплярами модели "
+"'{entity_model}'."
+msgstr ""
+"The 'entity' and '{entity_name}' parameters must be instances of the "
+"'{entity_model}' model."
+
+#.  you must specify one of the following parameters: 'entity'
+msgid ""
+"В конструкторе класса {class_name} необходимо задать один из следующих "
+"параметров: 'entity', 'entity_id', '{entity_name}', '{entity_name}_id'."
+msgstr "In the constructor of the class {class_name}"
+
+msgid "Обязательный параметр '{param}' не задан."
+msgstr "Required parameter '{param}' is not specified."
+
+msgid "Необходимо определить метод 'get_api_class_init_params'."
+msgstr "The 'get_api_class_init_params' method must be defined."
+
+msgid "Необходимо определить атрибут 'api_class'."
+msgstr "The 'api_class' attribute must be defined."
+
+msgid "Необходимо определить атрибут '{attr}'."
+msgstr "The attribute '{attr}' must be defined."
+
+msgid ""
+"Для использования тестового режима необходимо указать 'sandbox_api_url'"
+msgstr "To use test mode you need to specify 'sandbox_api_url'"
+
+#.  then the only possible and required parameter is the 'array_payload'
+#. parameter.
+msgid ""
+"Если стоит флаг 'array_payload', то единственным возможным и обязательным "
+"параметром является параметр 'array_payload'."
+msgstr "If the 'array_payload' flag is set"
+
+msgid "Отсутствует обязательный параметр '{param}'."
+msgstr "The required parameter '{param}' is missing."
+
+msgid "Обязательный параметр запроса '{req_param}' не задан."
+msgstr "Required request parameter '{req_param}' is not specified."
+
+msgid "Необходимо задать настройку API_REQUEST_LOG_MODEL (путь к модели)."
+msgstr "You must set the API_REQUEST_LOG_MODEL setting (path to the model)."
+
+msgid "Неверный формат UUID. {file}"
+msgstr "Invalid UUID format. {file}"
+
+msgid "Обязательное поле, если не задано поле 'files'."
+msgstr "Required field if 'files' field is not specified."
+
+msgid "Открыто максимальное количество заявок."
+msgstr "The maximum number of applications has been opened."
+
+msgid "Заявка закрыта."
+msgstr "Application closed."
+
+msgid "Нельзя написать сообщение в чужую заявку."
+msgstr "You cannot write a message to someone else's application."
+
+msgid ""
+"Сообщение для смены статуса '{prev_status}' -> '{new_status}' неопределено."
+msgstr ""
+"The message for changing status '{prev_status}' -> '{new_status}' is "
+"undefined."
+
+msgid "Нельзя закрыть чужую заявку."
+msgstr "You cannot close someone else's application."
+
+msgid "Заявка открыта."
+msgstr "The application is open."
+
+msgid "Ошибка API SMTP.BZ: {status_code} - {text}"
+msgstr "SMTP.BZ API Error: {status_code} - {text}"
+
+msgid "Отправленных сообщений не найдено"
+msgstr "No sent messages found"
+
+msgid "Ошибка при получении лога {message_id}: {status_code}"
+msgstr "Error getting log {message_id}: {status_code}"
+
+msgid "Не указан базовый пакет шаблонов в настройках"
+msgstr "The base template package is not specified in the settings"
+
+msgid "Шаблон {template_name} не найден"
+msgstr "Template {template_name} not found"
+
+msgid "Обязательное поле."
+msgstr "Required field."
+
+msgid "Для данного шаблона не определён язык '{language}'"
+msgstr "Language '{language}' is not defined for this template"
+
+msgid "Уведомление уже было отправлено."
+msgstr "The notification has already been sent."
+
+msgid "Параметр 'instance' должен быть экземпляром класса '{class_name}'."
+msgstr "The 'instance' parameter must be an instance of class '{class_name}'."
+
+msgid "Выполнение функции длилось слишком долго."
+msgstr "The function took too long to execute."
+
+msgid "Необходимо указать один из параметров: 'buffer' или 'path'."
+msgstr "You must specify one of the parameters: 'buffer' or 'path'."
+
+msgid "Не удалось конвертировать тип файла '{content_type}' в расширение."
+msgstr "Failed to convert file type '{content_type}' to extension."
+
+msgid "Неизвестный тип объекта: '{type_obj}'"
+msgstr "Unknown object type: '{type_obj}'"
+
+msgid "Объект '{object_name}' не найден в модуле '{module_name}'."
+msgstr "Object '{object_name}' not found in module '{module_name}'."
+
+msgid "Класс '{class_name}' не найден в модуле '{module_name}'."
+msgstr "Class '{class_name}' not found in module '{module_name}'."
+
+msgid "Метод '{attr_name}' не найден у класса '{class_name}'."
+msgstr "Method '{attr_name}' not found in class '{class_name}'."
+
+msgid "В словаре 'data' отсутствует обязательный ключ '{param_name}'."
+msgstr "Dictionary 'data' is missing required key '{param_name}'."
+
+msgid "Параметр '{param_name}' должен быть словарем."
+msgstr "Parameter '{param_name}' must be a dictionary."
+
+msgid "Недопустимый язык 'lang'."
+msgstr "Invalid language 'lang'."
