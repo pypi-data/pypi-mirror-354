@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "kubernetes-runbooks": {
+      "command": "uvx",
+      "args": ["kubernetes-runbooks-mcp-server"],
+      "env": {}
+    }
+  }
+} 
