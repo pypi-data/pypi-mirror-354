@@ -1,0 +1,20 @@
+[project]
+name = "logback"
+version = "0.2.1"
+description = "Log collection"
+authors = [
+    { name = "zjj"}
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+# uv安装包源镜像
+[[tool.uv.index]]
+url = "https://mirrors.bfsu.edu.cn/pypi/web/simple"
+default = true
+#publish-url = "https://test.pypi.org/legacy/"
