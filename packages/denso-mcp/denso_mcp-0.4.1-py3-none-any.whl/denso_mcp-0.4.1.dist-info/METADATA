@@ -1,0 +1,83 @@
+Metadata-Version: 2.4
+Name: denso-mcp
+Version: 0.4.1
+Summary: Add your description here
+Author-email: Vaibhav Jain <vaibhav@aiplanet.com>
+License-File: license.rtf
+Requires-Python: >=3.10
+Requires-Dist: agno>=1.5.6
+Requires-Dist: aiohttp>=3.11.18
+Requires-Dist: anthropic>=0.52.1
+Requires-Dist: boto3>=1.38.27
+Requires-Dist: comtypes>=1.4.11
+Requires-Dist: fastmcp>=2.5.2
+Requires-Dist: google-genai>=1.16.1
+Requires-Dist: ipython>=8.36.0
+Requires-Dist: keyboard>=0.13.5
+Requires-Dist: langchain-aws>=0.2.24
+Requires-Dist: langchain-mcp-adapters>=0.1.4
+Requires-Dist: langgraph>=0.4.7
+Requires-Dist: matplotlib>=3.10.3
+Requires-Dist: mcp>=1.9.2
+Requires-Dist: opencv-python>=4.11.0.86
+Requires-Dist: pyautogui>=0.9.54
+Requires-Dist: python-dotenv>=1.1.0
+Requires-Dist: pythonnet>=3.0.5
+Requires-Dist: pywin32>=310
+Requires-Dist: streamlit>=1.45.0
+Description-Content-Type: text/markdown
+
+# AI Planet 3D-2D Converter
+
+A Streamlit application that allows users to upload 3D model files (like .step, .x_t) and convert them to 2D drawings using SolidWorks.
+
+## Features
+
+- Upload 3D model files (.step, .x_t, .stp, .igs, .iges, etc.)
+- Automatic conversion to 2D drawings with multiple views (TOP, FRONT, ISOMETRIC)
+- Display of conversion status and results
+
+## Requirements
+
+- Python 3.10+
+- Streamlit
+- aiohttp
+- fastmcp
+- pythonnet
+- Access to SolidWorks API service
+
+## Installation
+
+Use `uv` to setup the environment and install dependencies
+```bash
+uv sync
+```
+
+
+## Usage
+
+1. Start the MCP server in **sse** mode
+   ```bash
+   uv run mcp-server.py --sse
+   ```
+
+   The server will start at [http://localhost:10001](http://localhost:10001)
+
+2. Run the Streamlit app:
+   ```bash
+   streamlit run streamlit_app.py
+   ```
+
+3. Open your web browser and navigate to the URL displayed in the terminal (usually http://localhost:8501)
+
+4. Upload a 3D model file using the file uploader
+
+5. Click the "Convert to 2D" button to start the conversion process
+
+6. Wait for the conversion to complete and view the results
+
+## Notes
+
+- The application requires access to a running SolidWorks API service
+- Ensure that the SolidWorks API service URL is correctly configured in the application
+- The temporary uploaded files are stored in the `temp_uploads` directory
