@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: gramps_gedcom7
+Version: 0.0.3
+Summary: A GEDCOM 7 support library for Gramps genealogy software
+Author-email: David Straub <straub@protonmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/DavidMStraub/gramps-gedcom7
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: gramps>=6.0.0
+Requires-Dist: gedcom7>=0.3.0
+Dynamic: license-file
+
+# gramps-gedcom7
+
+A GEDCOM 7 import library for Gramps.
