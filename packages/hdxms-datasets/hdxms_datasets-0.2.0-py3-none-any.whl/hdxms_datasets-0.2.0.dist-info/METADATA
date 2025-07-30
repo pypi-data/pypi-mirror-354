@@ -1,0 +1,91 @@
+Metadata-Version: 2.4
+Name: hdxms-datasets
+Version: 0.2.0
+Summary: Download and parse curated HDX-MS datasets
+Project-URL: Source, https://github.com/Jhsmit/hdxms-datasets/
+Project-URL: Documentation, https://jhsmit.github.io/hdxms-datasets/
+Author-email: Jochem Smit <jhsmit@gmail.com>
+License-Expression: MIT
+License-File: AUTHORS.rst
+License-File: LICENSE
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.10
+Requires-Dist: narwhals
+Requires-Dist: pyyaml
+Requires-Dist: requests
+Requires-Dist: statsmodels
+Requires-Dist: uncertainties
+Provides-Extra: dev
+Requires-Dist: black[jupyter]>=22.12.0; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: jupyter>=1.0.0; extra == 'docs'
+Requires-Dist: mkdocs-gen-files>=0.4.0; extra == 'docs'
+Requires-Dist: mkdocs-jupyter>=0.22.0; extra == 'docs'
+Requires-Dist: mkdocs-literate-nav>=0.5.0; extra == 'docs'
+Requires-Dist: mkdocs-material>=8.5.11; extra == 'docs'
+Requires-Dist: mkdocs>=1.4.2; extra == 'docs'
+Requires-Dist: mkdocstrings[python]>=0.19.1; extra == 'docs'
+Requires-Dist: pygments>=2.13.0; extra == 'docs'
+Provides-Extra: test
+Requires-Dist: polars; extra == 'test'
+Requires-Dist: pytest>=7.2.0; extra == 'test'
+Description-Content-Type: text/markdown
+
+# HDXMS Datasets
+
+
+* Free software: MIT license
+
+## Installation
+
+```bash
+$ pip install hdxms-datasets
+```
+
+## HDX-MS database
+
+Currently a beta test database is set up at:
+https://github.com/Jhsmit/HDX-MS-datasets
+
+## Using HDX-MS datasets
+
+### Example code
+
+
+```python
+from pathlib import Path
+from hdxms_datasets import DataVault
+
+# local path the download datasets to
+cache_dir = Path('.cache')
+
+# create a vault with local cache dir, set `remote_url` to connect to a different database
+vault = DataVault(cache_dir=cache_dir)
+
+# Download a specific HDX dataset
+vault.fetch_dataset("20221007_1530_SecA_Krishnamurthy")
+
+# Load the dataset
+ds = vault.load_dataset("20221007_1530_SecA_Krishnamurthy")
+
+# Load the FD control of the first 'state' in the dataset.
+fd_control = ds.load_peptides(0, "FD_control")
+
+# Load the corresponding experimental peptides.
+peptides = ds.load_peptides(0, "experiment")
+
+```
+
+## Web infterface
+
+To run the web interface:
+(requires a local clone of the code)
+
+```bash
+solara run hdxms_datasets/web/upload_form.py --production
+```
