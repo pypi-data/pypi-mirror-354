@@ -1,0 +1,16 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v4.3.8
+_src_path: https://github.com/jupyterlab/extension-template
+author_email: aolney@memphis.edu
+author_name: datawhys-experimental-control
+has_binder: true
+has_settings: false
+kind: frontend
+labextension_name: datawhys_experimental_control
+project_short_description: A JupyterLab extension that locks down the user interface
+    and provides additional controls for running experiments using the JupyterLab
+    platform. It is not configurable but may serve as an example for other projects.
+python_name: datawhys_experimental_control
+repository: https://github.com/aolney/datawhys-experimental-control
+test: true
+
