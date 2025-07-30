@@ -1,0 +1,74 @@
+Metadata-Version: 2.4
+Name: mahdi-url-shortener
+Version: 0.1.2
+Summary: A simple Python package to shorten URLs via TinyURL with CLI support.
+Home-page: https://github.com/oxl_mahdi/mahdi-url-shortener
+Author: oxl_mahdi
+Author-email: mhasan37608@gmail.com
+License: MIT
+Project-URL: Bug Tracker, https://github.com/oxl_mahdi/mahdi-url-shortener/issues
+Project-URL: Source, https://github.com/oxl_mahdi/mahdi-url-shortener
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Utilities
+Classifier: Environment :: Console
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pyshorteners>=1.0.1
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# mahdi-url-shortener
+
+[![PyPI version](https://badge.fury.io/py/mahdi-url-shortener.svg)](https://pypi.org/project/mahdi-url-shortener/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+`mahdi-url-shortener` is a simple and lightweight Python package to shorten URLs using TinyURL service.  
+It provides both a programmatic API and a command-line interface (CLI) for convenience.
+
+---
+
+## Features
+
+- Shorten a single URL with a simple function call  
+- Batch shorten URLs from one or multiple files  
+- User-friendly CLI with interactive menu  
+- Supports Python 3.7 and above
+
+---
+
+## Installation
+
+You can install the package from PyPI:
+
+```bash
+pip install mahdi-url-shortener
+
+```Use the CLI Run the CLI directly from the terminal
+mahdi
+
+Usage
+Import and shorten URLs programmatically
+
+from mahdi import create_short_url
+
+long_url = "https://example.com/some/very/long/url"
+short_url = create_short_url(long_url)
+print(f"Shortened URL: {short_url}")
+
