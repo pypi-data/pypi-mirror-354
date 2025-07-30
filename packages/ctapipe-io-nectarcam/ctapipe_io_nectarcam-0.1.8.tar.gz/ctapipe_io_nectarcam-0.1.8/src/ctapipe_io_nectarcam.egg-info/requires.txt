@@ -1,0 +1,14 @@
+ctapipe~=0.19
+protozfits
+scipy==1.11.4
+
+[all]
+ctapipe_io_nectarcam[dev,test]
+
+[dev]
+setuptools_scm
+
+[test]
+pytest
+pytest-cov
+pytest-xdist
