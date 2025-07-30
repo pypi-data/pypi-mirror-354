@@ -1,0 +1,16 @@
+[project]
+name = "solicitudes"
+version = "0.0.1"
+authors = [
+  { name="Keith Grant", email="kgrant@redhat.com" },
+]
+description = "A package to protect against aliased machine-translated code"
+readme = "README.md"
+license = "GPL-3.0-only"
+license-files = ["LICENSE-GPLv3"]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
