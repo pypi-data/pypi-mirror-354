@@ -1,0 +1,14 @@
+[logs]
+level = "info"
+pathdir = "/Users/sebastianperalta/.mb/logs"
+show_locals = false
+show_stack = false
+exclude_modules = ["markdown_it"]
+ignore_third_party = false
+full_trace = false
+active = true
+log_off = false
+
+[logs.handlers]
+default = ["rich"]
+file = ["file"]

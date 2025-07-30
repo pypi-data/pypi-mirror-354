@@ -1,0 +1,10 @@
+import h5py
+from pathlib import Path
+
+# Load the HDF5 file to inspect its contents
+with h5py.File(str(Path('/Users/sebastianperalta/simply/corp/users/seb/vec_store/nltk_dependency_graph_fixed.h5').resolve()), 'r') as f:
+    print("Nodes stored in the HDF5 file:")
+    print(list(f['nodes'].keys())[:10])  # Print the first 10 nodes for inspection
+
+    print("\nEdges stored in the HDF5 file:")
+    print(list(f['edges'].keys())[:10])  # Print the first 10 edges for inspection
