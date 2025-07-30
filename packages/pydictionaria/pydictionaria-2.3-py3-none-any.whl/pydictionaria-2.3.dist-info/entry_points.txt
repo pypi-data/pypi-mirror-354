@@ -1,0 +1,5 @@
+[cldfbench.commands]
+dictionaria = pydictionaria.commands
+
+[cldfbench.scaffold]
+dictionaria = pydictionaria.scaffold:Template
