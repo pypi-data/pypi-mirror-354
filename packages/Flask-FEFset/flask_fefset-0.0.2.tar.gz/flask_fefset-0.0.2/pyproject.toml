@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools","setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Flask-FEFset"
+version = "0.0.2"
+readme = "README.md"
+dependencies = [
+  'Flask==3.0.3',
+  'Flask-Bootstrap'
+]
+
+[project.optional-dependencies]
+login = ['Flask-IAM']
+dev = [
+  'build',
+  'twine',
+]
+
