@@ -1,0 +1,161 @@
+# ZionAI Utils
+
+**A simple utility library for Google Cloud Storage and Secret Manager operations.**
+
+[![PyPI version](https://img.shields.io/pypi/v/zionai-utils.svg)](https://pypi.org/project/zionai-utils/)
+[![Python Support](https://img.shields.io/pypi/pyversions/zionai-utils.svg)](https://pypi.org/project/zionai-utils/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Installation
+
+```bash
+pip install zionai_utils
+```
+
+## Quick Start
+
+### Secrets Manager
+```python
+from zionai_utils import SecretsManager
+
+# Initialize
+secrets = SecretsManager("your-project-id")
+
+# Get any secret
+api_key = secrets.get_secret("api-key")
+db_host = secrets.get_secret("database-host")
+bucket_name = secrets.get_secret("storage-bucket")
+```
+
+### Cloud Storage
+```python
+from zionai_utils import GCSClient
+
+# Initialize
+client = GCSClient("your-project-id")
+
+# Upload files
+success, uri = client.upload_file("bucket-name", "document.pdf")
+success, uri = client.upload_text("bucket-name", "notes.txt", "Hello World!")
+success, uri = client.upload_json("bucket-name", "data.json", {"key": "value"})
+```
+
+## Key Features
+
+### Secrets Manager
+- **Simple retrieval**: `secrets.get_secret("secret-name")`
+- **Default values**: `secrets.get_secret("secret-name", default="fallback")`
+- **Batch operations**: Get multiple secrets at once
+- **Auto-detection**: Automatically detects project ID and credentials
+
+### Cloud Storage
+- **Easy uploads**: Files, text, or JSON with one line
+- **Auto-detection**: Automatically detects file types
+- **Batch operations**: Upload multiple files
+- **File management**: List, delete, and manage files
+
+## Basic Examples
+
+### Environment Configuration
+```python
+from zionai_utils import SecretsManager
+
+secrets = SecretsManager("your-project")
+
+# Get configuration from secrets
+host = secrets.get_secret("db-host")
+port = secrets.get_secret("db-port")
+password = secrets.get_secret("db-password")
+
+# Use with defaults
+api_url = secrets.get_secret("api-endpoint", default="https://api.example.com")
+timeout = secrets.get_secret("timeout", default="30")
+```
+
+### File Operations
+```python
+from zionai_utils import GCSClient
+
+client = GCSClient("your-project")
+
+# Upload different file types
+success, uri = client.upload_file("my-bucket", "report.pdf")
+success, uri = client.upload_text("my-bucket", "log.txt", "Application started")
+success, uri = client.upload_json("my-bucket", "config.json", {"version": "1.0"})
+
+# Batch upload
+files = ["file1.pdf", "file2.docx", "file3.jpg"]
+results = client.batch_upload("my-bucket", files)
+
+# File management
+all_files = client.list_files("my-bucket")
+deleted = client.delete_file("my-bucket", "old-file.txt")
+```
+
+### Combined Usage
+```python
+from zionai_utils import SecretsManager, GCSClient
+
+# Initialize
+secrets = SecretsManager("your-project")
+client = GCSClient("your-project")
+
+# Get bucket name from secrets
+bucket_name = secrets.get_secret("storage-bucket")
+
+# Upload file to secret-defined bucket
+success, uri = client.upload_file(bucket_name, "data.json")
+```
+
+## Setup
+
+### 1. Install Package
+```bash
+pip install zionai_utils
+```
+
+### 2. Google Cloud Setup
+Enable required APIs:
+```bash
+gcloud services enable secretmanager.googleapis.com
+gcloud services enable storage.googleapis.com
+```
+
+### 3. Authentication
+Set environment variables:
+```bash
+export GOOGLE_APPLICATION_CREDENTIALS="/path/to/service-account.json"
+export GOOGLE_CLOUD_PROJECT="your-project-id"
+```
+
+Or provide explicitly:
+```python
+from zionai_utils import SecretsManager, GCSClient
+
+secrets = SecretsManager(
+    project_id="your-project",
+    credentials_path="/path/to/service-account.json"
+)
+
+client = GCSClient(
+    project_id="your-project",
+    credentials_path="/path/to/service-account.json"
+)
+```
+
+## Requirements
+
+- Python 3.7+
+- Google Cloud project with Secret Manager and Storage APIs enabled
+- Service account with appropriate permissions:
+  - `Secret Manager Secret Accessor` (for reading secrets)
+  - `Storage Admin` (for file operations)
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## Links
+
+- **PyPI**: https://pypi.org/project/zionai-utils/
+- **Examples**: Check the `examples/` folder for more usage patterns
