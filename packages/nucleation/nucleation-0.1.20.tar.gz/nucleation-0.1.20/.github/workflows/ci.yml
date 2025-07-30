@@ -1,0 +1,195 @@
+name: Nucleation CI/CD
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'src/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - '.github/workflows/**'
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      should_release: ${{ steps.check.outputs.should_release }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Get current version
+        id: version
+        run: |
+          VERSION=$(grep -m1 'version = ' Cargo.toml | cut -d '"' -f2)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $VERSION"
+
+      - name: Check if version changed
+        id: check
+        run: |
+          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" =~ ^refs/heads/(main|master)$ ]]; then
+            if git diff HEAD^ HEAD --name-only | grep -q "Cargo.toml"; then
+              OLD_VERSION=$(git show HEAD^:Cargo.toml | grep -m1 'version = ' | cut -d '"' -f2)
+              CURRENT_VERSION=$(grep -m1 'version = ' Cargo.toml | cut -d '"' -f2)
+              echo "Old version: $OLD_VERSION"
+              echo "Current version: $CURRENT_VERSION"
+              if [[ "$OLD_VERSION" != "$CURRENT_VERSION" ]]; then
+                echo "should_release=true" >> $GITHUB_OUTPUT
+                echo "Version was bumped from $OLD_VERSION to $CURRENT_VERSION. Will trigger release."
+              else
+                echo "should_release=false" >> $GITHUB_OUTPUT
+                echo "Version unchanged in Cargo.toml."
+              fi
+            else
+              echo "should_release=false" >> $GITHUB_OUTPUT
+              echo "Cargo.toml not modified in the last commit."
+            fi
+          else
+            echo "should_release=false" >> $GITHUB_OUTPUT
+            echo "Not on main/master branch or not a push event. Skipping release check."
+          fi
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - name: Run tests
+        run: cargo test --all-features
+  #      - name: Run clippy
+  #        run: cargo clippy -- -D warnings
+
+  build:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+          target: wasm32-unknown-unknown
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-build-${{ hashFiles('**/Cargo.lock') }}
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+      - name: Build Rust library
+        run: cargo build --release --all-features
+      - name: Build WebAssembly
+        run: |
+          chmod +x ./build-wasm.sh
+          ./build-wasm.sh
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: |
+            target/release/libnucleation.*
+            pkg/
+
+  publish:
+    needs: [check-version, build]
+    runs-on: ubuntu-latest
+    if: needs.check-version.outputs.should_release == 'true'
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+      - name: Publish to crates.io
+        uses: actions-rs/cargo@v1
+        with:
+          command: publish
+          args: --token ${{ secrets.CRATES_IO_TOKEN }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Prepare npm package
+        run: |
+          if [ ! -f "pkg/README.md" ]; then
+            echo "# Nucleation" > pkg/README.md
+            echo "" >> pkg/README.md
+            echo "A high-performance Minecraft schematic parser and utility library (WebAssembly version)" >> pkg/README.md
+            echo "" >> pkg/README.md
+            echo "See [GitHub Repository](https://github.com/Schem-at/Nucleation) for full documentation." >> pkg/README.md
+          fi
+          if [ ! -f "pkg/package.json" ]; then
+            echo "Error: pkg/package.json not found after downloading artifacts. Ensure it's created and uploaded."
+            exit 1
+          fi
+          node -e "
+            const fs = require('fs');
+            const pkgJsonPath = './pkg/package.json';
+            const pkg = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf8'));
+            pkg.version = '${{ needs.check-version.outputs.version }}';
+            pkg.repository = {
+              type: 'git',
+              url: 'https://github.com/Schem-at/Nucleation'
+            };
+            pkg.description = 'A high-performance Minecraft schematic parser and utility library';
+            pkg.keywords = ['minecraft', 'schematic', 'parser', 'wasm', 'webassembly', 'voxel'];
+            pkg.author = 'Nano <nano@schem.at>';
+            pkg.license = 'MIT OR Apache-2.0';
+            pkg.homepage = 'https://github.com/Schem-at/Nucleation';
+            fs.writeFileSync(pkgJsonPath, JSON.stringify(pkg, null, 2));
+            console.log('Updated pkg/package.json with version ${{ needs.check-version.outputs.version }} and other details.');
+          "
+      - name: Publish to npm
+        run: cd pkg && npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ needs.check-version.outputs.version }}
+          name: Release v${{ needs.check-version.outputs.version }}
+          generate_release_notes: true
+          files: |
+            target/release/libnucleation.*
+            pkg/*.wasm
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
