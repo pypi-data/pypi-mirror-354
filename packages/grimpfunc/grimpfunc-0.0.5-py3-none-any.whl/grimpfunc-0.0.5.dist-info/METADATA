@@ -1,0 +1,45 @@
+Metadata-Version: 2.3
+Name: grimpfunc
+Version: 0.0.5
+Summary: SAR processing on the Cloud
+License: MIT
+Keywords: SAR,NSIDC,Holoviz
+Author: Ian Joughin
+Author-email: ian@apl.washington.edu
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: dask (>=2021)
+Requires-Dist: holoviews (>=1,<2)
+Requires-Dist: hvplot (>=0,<1)
+Requires-Dist: numpy (>=1,<2)
+Requires-Dist: pandas (>=1,<2)
+Requires-Dist: panel (>=0,<1)
+Requires-Dist: param (>=1,<2)
+Requires-Dist: progressbar2 (>=3,<4)
+Requires-Dist: pystac (>=1,<2)
+Requires-Dist: requests (>=2,<3)
+Requires-Dist: rio-stac (>=0,<1)
+Requires-Dist: rioxarray (>=0,<1)
+Requires-Dist: stackstac (>=0,<1)
+Requires-Dist: xarray (>=0.20)
+Project-URL: Homepage, https://github.com/fastice/grimpfunc
+Project-URL: Repository, https://github.com/fastice/grimpfunc
+Description-Content-Type: text/markdown
+
+# grimpfunc
+
+Is a small python package with utility classes and functions to work with [GrIMP](https://nsidc.org/data/measures/grimp) data hosted by NASA NSIDC: ([NSIDC-0723](https://nsidc.org/data/nsidc-0723)) and velocity ([NSIDC-481](https://nsidc.org/data/nsidc-0481), [0725](https://nsidc.org/data/nsidc-0725), [0727](https://nsidc.org/data/nsidc-0727), [0731](https://nsidc.org/data/nsidc-0731)).
+
+For examples of how this library is used refer to notebooks in https://github.com/fastice/GrIMPNotebooks
+
+## Installation
+
+In an existing python virtual environment: `pip install git+https://github.com/fastice/grimpfunc.git@master`
+
