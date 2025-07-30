@@ -1,0 +1,4 @@
+[console_scripts]
+mdocs = mrender.docs2md:cli
+mdstream = mrender.md:cli
+mrender = mrender:cli
