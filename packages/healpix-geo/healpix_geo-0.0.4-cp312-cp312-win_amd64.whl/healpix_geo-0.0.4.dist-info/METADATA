@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: healpix-geo
+Version: 0.0.4
+Classifier: Programming Language :: Rust
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Dist: numpy
+Requires-Dist: pytest ; extra == 'tests'
+Provides-Extra: tests
+License-File: LICENSE
+License: Apache-2.0
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+
+# `healpix-geo`
+
+This package integrates with `cds-healpix-rust` and `cds-healpix-python` to support specialized algorithms for the geosciences.
+
