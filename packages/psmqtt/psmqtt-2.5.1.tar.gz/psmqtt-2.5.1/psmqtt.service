@@ -1,0 +1,18 @@
+#
+# psmqtt SystemD service definition
+# See [docs/service.md] for more information.
+#
+
+[Unit]
+Description=Resource daemon to MQTT
+After=multi-user.target
+
+[Service]
+WorkingDirectory=/opt/psmqtt
+User=nobody
+Type=idle
+ExecStart=/usr/bin/python3 /opt/psmqtt/psmqtt.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
