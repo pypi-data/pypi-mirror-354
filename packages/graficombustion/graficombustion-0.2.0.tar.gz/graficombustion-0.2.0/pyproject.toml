@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "graficombustion"
+version = "0.2.0"
+authors = [
+  { name="Tu Nombre", email="tu@email.com" },
+]
+description = "Una librería para generar gráficos de los resultados de las simulaciones de simcombustion."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
+dependencies = [
+    "simcombustion >= 0.1.0",
+    "matplotlib",
+    "numpy",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
