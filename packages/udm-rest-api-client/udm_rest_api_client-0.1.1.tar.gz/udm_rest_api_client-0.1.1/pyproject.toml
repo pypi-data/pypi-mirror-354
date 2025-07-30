@@ -1,0 +1,129 @@
+[build-system]
+requires = ["hatchling", "hatch-fancy-pypi-readme"]
+build-backend = "hatchling.build"
+
+[project]
+name = "udm-rest-api-client"
+description = "Client library to interact with the Univention Directory Manager (UDM) REST API."
+requires-python = ">=3.11"
+license = "AGPL-3.0-only"
+authors = [{ name = "Univention Maintainers", email = "packages@univention.de" }]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Operating System :: OS Independent",
+    "Topic :: Internet",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development",
+    "Typing :: Typed",
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Framework :: AsyncIO",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP",
+    "Typing :: Typed",
+]
+dynamic = ["readme", "version"]
+dependencies = [
+    "typing_extensions>=4.0.0",
+    "uritemplate>=4.1.1",
+    "CacheControl>=0.14.0",
+]
+
+[project.optional-dependencies]
+async = [
+    "aiohttp>=3.0.0",
+]
+dev = [
+    "pytest>=8.4.0",
+    "pytest-asyncio>=1.0.0",
+    "pytest-cov>=6.1.1",
+    "mypy>=1.9.0",
+    "mypy-extensions>=1.0.0",
+    "types-requests>=2.0.0",
+]
+cli = [
+    "python-ldap>=3.0.0",
+    "requests>=2.0.0",
+]
+sync = [
+    "requests>=2.0.0",
+]
+
+[project.urls]
+Homepage = "https://www.univention.com"
+Documentation = "https://docs.software-univention.de/developer-reference/latest/en/udm/rest-api.html"
+Repository = "https://git.knut.univention.de/univention/dev/libraries/udm-rest-api-client"
+Source = "https://git.knut.univention.de/univention/dev/libraries/udm-rest-api-client"
+
+[project.scripts]
+udm = "univention.admin.rest.client.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    "src/univention",
+]
+#only-include = [
+#    "src/univention/admin/rest/client",
+#    "src/univention/admin/rest/async_client.py",
+#]
+
+[tool.hatch.metadata.hooks.fancy-pypi-readme]
+content-type = 'text/markdown'
+# construct the PyPI readme from README.md and Debian changelog
+fragments = [
+    {path = "README.md"},
+    {text = "\n## Changelog\n\n"},
+    {path = "debian/changelog", pattern = "(.+?) -- "},
+    {text = "\n... see [here](https://github.com/univention/univention-corporate-server/blob/8f9ad22f119c1564ea9ffad4885a3bf7610e026d/management/univention-directory-manager-rest/debian/changelog) for earlier changes.\n"},
+]
+
+[tool.hatch.version]
+path = "debian/changelog"
+pattern = "^udm-rest-api-client \\((?P<version>[0-9a-z+.-]+)\\)"
+validate-bump = false
+
+### linters ###
+
+[tool.mypy]
+python_version = "3.11"
+pretty = true
+strict = false
+
+[tool.ruff]
+target-version = "py311"
+line-length = 180
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle
+    "F",  # Pyflakes
+    "UP",  # pyupgrade
+    "B",  # flake8-bugbear
+    "SIM",  # flake8-simplify
+    "I",  # isort
+]
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+combine-as-imports = true
+lines-after-imports = 2
+
+[tool.pytest.ini_options]
+addopts = "-lvv --cov=src --cov=tests --cov-report term-missing --cov-fail-under=70 --junit-xml=/tmp/pytest-junit.xml"
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+data_file = "/tmp/coverage"
+relative_files = true
+
+[tool.coverage.xml]
+output = "/tmp/coverage.xml"

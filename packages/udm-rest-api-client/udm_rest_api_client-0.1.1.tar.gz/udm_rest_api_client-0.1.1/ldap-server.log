@@ -1,0 +1,187 @@
+/entrypoint.sh: /entrypoint.d/ is not empty, will attempt to perform configuration
+/entrypoint.sh: Looking for shell scripts in /entrypoint.d/
+/entrypoint.sh: Launching /entrypoint.d/40-self-service-acl.sh
+Traceback (most recent call last):
+  File "/usr/sbin/ucr-light-filter", line 192, in <module>
+    main()
+  File "/usr/sbin/ucr-light-filter", line 188, in main
+    print(run_filter(sys.stdin.read(), config_registry).decode("UTF-8"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/sbin/ucr-light-filter", line 139, in run_filter
+    line = resolve_variable(line)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/sbin/ucr-light-filter", line 108, in resolve_variable
+    return VARIABLE_PATTERN.sub(lambda x: config_registry[x.group(1)], line)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/sbin/ucr-light-filter", line 108, in <lambda>
+    return VARIABLE_PATTERN.sub(lambda x: config_registry[x.group(1)], line)
+                                          ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3.11/collections/__init__.py", line 1124, in __getitem__
+    raise KeyError(key)
+KeyError: 'self-service/ldap_attributes'
+/entrypoint.sh: Launching /entrypoint.d/50-entrypoint.sh
+Setting 'last_id' to '0' because it is empty
+Traceback (most recent call last):
+  File "/usr/sbin/ucr-light-filter", line 192, in <module>
+    main()
+  File "/usr/sbin/ucr-light-filter", line 188, in main
+    print(run_filter(sys.stdin.read(), config_registry).decode("UTF-8"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/sbin/ucr-light-filter", line 139, in run_filter
+    line = resolve_variable(line)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/sbin/ucr-light-filter", line 108, in resolve_variable
+    return VARIABLE_PATTERN.sub(lambda x: config_registry[x.group(1)], line)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/sbin/ucr-light-filter", line 108, in <lambda>
+    return VARIABLE_PATTERN.sub(lambda x: config_registry[x.group(1)], line)
+                                          ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3.11/collections/__init__.py", line 1124, in __getitem__
+    raise KeyError(key)
+KeyError: 'umc/saml/idp-server'
+Traceback (most recent call last):
+  File "/usr/sbin/ucr-light-filter", line 192, in <module>
+    main()
+  File "/usr/sbin/ucr-light-filter", line 188, in main
+    print(run_filter(sys.stdin.read(), config_registry).decode("UTF-8"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/sbin/ucr-light-filter", line 139, in run_filter
+    line = resolve_variable(line)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/sbin/ucr-light-filter", line 108, in resolve_variable
+    return VARIABLE_PATTERN.sub(lambda x: config_registry[x.group(1)], line)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/sbin/ucr-light-filter", line 108, in <lambda>
+    return VARIABLE_PATTERN.sub(lambda x: config_registry[x.group(1)], line)
+                                          ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3.11/collections/__init__.py", line 1124, in __getitem__
+    raise KeyError(key)
+KeyError: 'umc/saml/idp-server-internal'
+Traceback (most recent call last):
+  File "/usr/sbin/ucr-light-filter", line 192, in <module>
+    main()
+  File "/usr/sbin/ucr-light-filter", line 188, in main
+    print(run_filter(sys.stdin.read(), config_registry).decode("UTF-8"))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/sbin/ucr-light-filter", line 139, in run_filter
+    line = resolve_variable(line)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/sbin/ucr-light-filter", line 108, in resolve_variable
+    return VARIABLE_PATTERN.sub(lambda x: config_registry[x.group(1)], line)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/sbin/ucr-light-filter", line 108, in <lambda>
+    return VARIABLE_PATTERN.sub(lambda x: config_registry[x.group(1)], line)
+                                          ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/usr/lib/python3.11/collections/__init__.py", line 1124, in __getitem__
+    raise KeyError(key)
+KeyError: 'ldap/saml/service-providers'
+2025-06-12 07:18:14,537 INFO  [sync-ldap-indexes.main:234] Checking if ldap indexes need to be updated
+2025-06-12 07:18:14,604 INFO  [sync-ldap-indexes.main:254] Virgin persistent volume. New state file with current state created.
+INFO: Feature "Status ConfigMap" not enabled.
+INFO: Loading initial directory content.
+/etc/ldap/slapd.conf: line 285: rootdn is always granted unlimited privileges.
+/etc/ldap/slapd.conf: line 285: rootdn is always granted unlimited privileges.
+mdb_db_open: database "cn=translog" cannot be opened: No such file or directory (2). Restore from backup!
+backend_startup_one (type=mdb, suffix="cn=translog"): bi_db_open failed! (2)
+slap_startup failed
+/etc/ldap/slapd.conf: line 285: rootdn is always granted unlimited privileges.
+No TLS certificates configured!
+Setting OpenLDAP log level from UCS.
+/entrypoint.sh: Configuration complete; ready for start up
+684a7f3a.23971d8f 0x7fbcdaac9740 @(#) $OpenLDAP: slapd 2.5.13+dfsg-5A~5.2.0.202503251807 (Mar 25 2025 18:33:52) $
+	Debian OpenLDAP Maintainers <pkg-openldap-devel@lists.alioth.debian.org>
+684a7f3b.2c111304 0x7fbcdaac9740 /etc/ldap/slapd.conf: line 280: rootdn is always granted unlimited privileges.
+684a7f3b.2cbeb149 0x7fbcdaac9740 WARNING: No dynamic config support for overlay translog.
+684a7f3b.2cc02bc6 0x7fbcdaac9740 WARNING: No dynamic config support for overlay shadowbind.
+684a7f3b.2cd8c7ad 0x7fbcdaac9740 slapd starting
+684a7f81.2ce8927f 0x7fb9ced4d6c0 conn=1000 op=258 slap_read_controls: (1.3.6.1.1.13.2) cn=foo_da3bca13a6,cn=uid,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f81.2cfb3626 0x7fb9ced4d6c0 OVER: unable to open file /var/lib/univention-ldap/listener/listener.priv
+684a7f81.2d7eb5ef 0x7fb9cf54e6c0 conn=1000 op=263 slap_read_controls: (1.3.6.1.1.13.2) cn=2001,cn=uidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f81.2dbcf13b 0x7fb9cf54e6c0 conn=1000 op=265 slap_read_controls: (1.3.6.1.1.13.2) cn=2001,cn=gidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f81.2dffeedf 0x7fb9cf54e6c0 conn=1000 op=267 slap_read_controls: (1.3.6.1.1.13.1) cn=2001,cn=gidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f82.09bc7ce2 0x7fb9ced4d6c0 conn=1000 op=280 slap_read_controls: (1.3.6.1.1.13.2) cn=S-1-5-21-UNSET-5002,cn=sid,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f82.0a1bb61b 0x7fb9ced4d6c0 conn=1000 op=284 slap_read_controls: (1.3.6.1.1.13.2) uid=foo_da3bca13a6,cn=users,dc=univention-organization,dc=intranet
+684a7f82.0aab7b2c 0x7fb9cf54e6c0 conn=1000 op=285 slap_read_controls: (1.3.6.1.1.13.1) cn=S-1-5-21-UNSET-5002,cn=sid,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f82.0af04297 0x7fb9ced4d6c0 conn=1000 op=286 slap_read_controls: (1.3.6.1.1.13.1) cn=uidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f82.0af22cab 0x7fb9ced4d6c0 conn=1000 op=286 slap_read_controls: (1.3.6.1.1.13.2) cn=uidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f82.0b43cccc 0x7fb9cf54e6c0 conn=1000 op=287 slap_read_controls: (1.3.6.1.1.13.1) cn=2001,cn=uidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f82.0b953ce6 0x7fb9ced4d6c0 conn=1000 op=288 slap_read_controls: (1.3.6.1.1.13.1) cn=foo_da3bca13a6,cn=uid,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f82.0bf7b9fa 0x7fb9cf54e6c0 conn=1000 op=291 slap_read_controls: (1.3.6.1.1.13.1) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f82.0bf9f2a2 0x7fb9cf54e6c0 conn=1000 op=291 slap_read_controls: (1.3.6.1.1.13.2) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f82.0c001b05 0x7fb9cf54e6c0 conn=1000 op=291 slap_read_controls: (1.3.6.1.1.13.1) uid=foo_da3bca13a6,cn=users,dc=univention-organization,dc=intranet
+684a7f82.0c02197d 0x7fb9cf54e6c0 conn=1000 op=291 slap_read_controls: (1.3.6.1.1.13.2) uid=foo_da3bca13a6,cn=users,dc=univention-organization,dc=intranet
+684a7f82.287a5971 0x7fb9cf54e6c0 conn=1000 op=333 slap_read_controls: (1.3.6.1.1.13.1) uid=foo_da3bca13a6,cn=users,dc=univention-organization,dc=intranet
+684a7f82.28a28dec 0x7fb9ced4d6c0 conn=-1 op=0: memberof_value_modify DN="uid=foo_da3bca13a6,cn=users,dc=univention-organization,dc=intranet" delete memberOf="cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet" failed err=32
+684a7f82.29acd184 0x7fb9ced4d6c0 conn=1000 op=339 slap_read_controls: (1.3.6.1.1.13.1) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f82.29b072f4 0x7fb9ced4d6c0 conn=1000 op=339 slap_read_controls: (1.3.6.1.1.13.2) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f83.29d1b3d0 0x7fb9ced4d6c0 conn=1000 op=399 slap_read_controls: (1.3.6.1.1.13.2) cn=foo_ea2020e6ea,cn=uid,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f83.2a68a8e1 0x7fb9cf54e6c0 conn=1000 op=404 slap_read_controls: (1.3.6.1.1.13.2) cn=2002,cn=uidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f83.2acd835e 0x7fb9cf54e6c0 conn=1000 op=406 slap_read_controls: (1.3.6.1.1.13.2) cn=2002,cn=gidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f83.2b3029b0 0x7fb9cf54e6c0 conn=1000 op=408 slap_read_controls: (1.3.6.1.1.13.1) cn=2002,cn=gidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f84.0405d0d4 0x7fb9ced4d6c0 conn=1000 op=421 slap_read_controls: (1.3.6.1.1.13.2) cn=S-1-5-21-UNSET-5004,cn=sid,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f84.045b65b4 0x7fb9ced4d6c0 conn=1000 op=425 slap_read_controls: (1.3.6.1.1.13.2) uid=foo_ea2020e6ea,cn=users,dc=univention-organization,dc=intranet
+684a7f84.04c552bd 0x7fb9cf54e6c0 conn=1000 op=426 slap_read_controls: (1.3.6.1.1.13.1) cn=S-1-5-21-UNSET-5004,cn=sid,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f84.050abec7 0x7fb9ced4d6c0 conn=1000 op=427 slap_read_controls: (1.3.6.1.1.13.1) cn=uidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f84.050c23ab 0x7fb9ced4d6c0 conn=1000 op=427 slap_read_controls: (1.3.6.1.1.13.2) cn=uidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f84.05576a35 0x7fb9cf54e6c0 conn=1000 op=428 slap_read_controls: (1.3.6.1.1.13.1) cn=2002,cn=uidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f84.0594fef5 0x7fb9ced4d6c0 conn=1000 op=429 slap_read_controls: (1.3.6.1.1.13.1) cn=foo_ea2020e6ea,cn=uid,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f84.05ec4b58 0x7fb9cf54e6c0 conn=1000 op=432 slap_read_controls: (1.3.6.1.1.13.1) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f84.05eeed4e 0x7fb9cf54e6c0 conn=1000 op=432 slap_read_controls: (1.3.6.1.1.13.2) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f84.05f52ac2 0x7fb9cf54e6c0 conn=1000 op=432 slap_read_controls: (1.3.6.1.1.13.1) uid=foo_ea2020e6ea,cn=users,dc=univention-organization,dc=intranet
+684a7f84.05f7d165 0x7fb9cf54e6c0 conn=1000 op=432 slap_read_controls: (1.3.6.1.1.13.2) uid=foo_ea2020e6ea,cn=users,dc=univention-organization,dc=intranet
+684a7f85.1e592c73 0x7fb9ced4d6c0 conn=1000 op=505 slap_read_controls: (1.3.6.1.1.13.1) uid=foo_ea2020e6ea,cn=users,dc=univention-organization,dc=intranet
+684a7f85.1e7cc3a1 0x7fb9cf54e6c0 conn=-1 op=0: memberof_value_modify DN="uid=foo_ea2020e6ea,cn=users,dc=univention-organization,dc=intranet" delete memberOf="cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet" failed err=32
+684a7f85.1f683fc1 0x7fb9cf54e6c0 conn=1000 op=511 slap_read_controls: (1.3.6.1.1.13.1) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f85.1f6b83f4 0x7fb9cf54e6c0 conn=1000 op=511 slap_read_controls: (1.3.6.1.1.13.2) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f85.3616e408 0x7fb9cf54e6c0 conn=1000 op=565 slap_read_controls: (1.3.6.1.1.13.2) cn=foo,cn=uid,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f85.367b7f95 0x7fb9ced4d6c0 conn=1000 op=570 slap_read_controls: (1.3.6.1.1.13.2) cn=2003,cn=uidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f85.36bcdd46 0x7fb9ced4d6c0 conn=1000 op=572 slap_read_controls: (1.3.6.1.1.13.2) cn=2003,cn=gidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f85.36fa7cd6 0x7fb9ced4d6c0 conn=1000 op=574 slap_read_controls: (1.3.6.1.1.13.1) cn=2003,cn=gidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f86.0e16d9f6 0x7fb9cf54e6c0 conn=1000 op=587 slap_read_controls: (1.3.6.1.1.13.2) cn=S-1-5-21-UNSET-5006,cn=sid,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f86.0e8ec1ab 0x7fb9cf54e6c0 conn=1000 op=591 slap_read_controls: (1.3.6.1.1.13.2) uid=foo,cn=users,dc=univention-organization,dc=intranet
+684a7f86.0efc5856 0x7fb9ced4d6c0 conn=1000 op=592 slap_read_controls: (1.3.6.1.1.13.1) cn=S-1-5-21-UNSET-5006,cn=sid,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f86.0f34e07b 0x7fb9cf54e6c0 conn=1000 op=593 slap_read_controls: (1.3.6.1.1.13.1) cn=uidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f86.0f369722 0x7fb9cf54e6c0 conn=1000 op=593 slap_read_controls: (1.3.6.1.1.13.2) cn=uidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f86.0f86dcf1 0x7fb9ced4d6c0 conn=1000 op=594 slap_read_controls: (1.3.6.1.1.13.1) cn=2003,cn=uidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f86.0fbe3d98 0x7fb9cf54e6c0 conn=1000 op=595 slap_read_controls: (1.3.6.1.1.13.1) cn=foo,cn=uid,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f86.100dc926 0x7fb9ced4d6c0 conn=1000 op=598 slap_read_controls: (1.3.6.1.1.13.1) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f86.100f7980 0x7fb9ced4d6c0 conn=1000 op=598 slap_read_controls: (1.3.6.1.1.13.2) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f86.1015456b 0x7fb9ced4d6c0 conn=1000 op=598 slap_read_controls: (1.3.6.1.1.13.1) uid=foo,cn=users,dc=univention-organization,dc=intranet
+684a7f86.1016f811 0x7fb9ced4d6c0 conn=1000 op=598 slap_read_controls: (1.3.6.1.1.13.2) uid=foo,cn=users,dc=univention-organization,dc=intranet
+684a7f86.2d090398 0x7fb9cf54e6c0 conn=1000 op=647 slap_read_controls: (1.3.6.1.1.13.2) uid=foo,cn=users,dc=univention-organization,dc=intranet
+684a7f86.38bb5199 0x7fb9ced4d6c0 conn=1000 op=674 slap_read_controls: (1.3.6.1.1.13.1) uid=foo,cn=users,dc=univention-organization,dc=intranet
+684a7f86.38bf3da9 0x7fb9ced4d6c0 conn=1000 op=674 slap_read_controls: (1.3.6.1.1.13.2) uid=foo,dc=univention-organization,dc=intranet
+684a7f86.38d12fd5 0x7fb9cf54e6c0 conn=-1 op=0: memberof_value_modify DN="uid=foo,cn=users,dc=univention-organization,dc=intranet" delete memberOf="cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet" failed err=32
+684a7f86.38d29586 0x7fb9cf54e6c0 conn=-1 op=0: memberof_value_modify DN="uid=foo,dc=univention-organization,dc=intranet" add memberOf="cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet" failed err=20
+684a7f86.3a090153 0x7fb9ced4d6c0 conn=1000 op=675 slap_read_controls: (1.3.6.1.1.13.1) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f86.3a22e80f 0x7fb9cf54e6c0 conn=1000 op=676 slap_read_controls: (1.3.6.1.1.13.1) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f87.07ea3aeb 0x7fb9cf54e6c0 conn=1000 op=702 slap_read_controls: (1.3.6.1.1.13.1) uid=foo,dc=univention-organization,dc=intranet
+684a7f87.083b73d2 0x7fb9ced4d6c0 conn=-1 op=0: memberof_value_modify DN="uid=foo,dc=univention-organization,dc=intranet" delete memberOf="cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet" failed err=32
+684a7f87.09053a18 0x7fb9ced4d6c0 conn=1000 op=708 slap_read_controls: (1.3.6.1.1.13.1) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f87.0907d599 0x7fb9ced4d6c0 conn=1000 op=708 slap_read_controls: (1.3.6.1.1.13.2) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f87.2aa8bfc2 0x7fb9cf54e6c0 conn=1000 op=795 slap_read_controls: (1.3.6.1.1.13.2) cn=foo_async,cn=uid,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f87.2b1a24b8 0x7fb9ced4d6c0 conn=1000 op=800 slap_read_controls: (1.3.6.1.1.13.2) cn=2004,cn=uidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f87.2b7a0d84 0x7fb9ced4d6c0 conn=1000 op=802 slap_read_controls: (1.3.6.1.1.13.2) cn=2004,cn=gidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f87.2bb57ac6 0x7fb9ced4d6c0 conn=1000 op=804 slap_read_controls: (1.3.6.1.1.13.1) cn=2004,cn=gidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f88.054f1155 0x7fb9cf54e6c0 conn=1000 op=817 slap_read_controls: (1.3.6.1.1.13.2) cn=S-1-5-21-UNSET-5008,cn=sid,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f88.05a363f3 0x7fb9cf54e6c0 conn=1000 op=821 slap_read_controls: (1.3.6.1.1.13.2) uid=foo_async,cn=users,dc=univention-organization,dc=intranet
+684a7f88.060932ba 0x7fb9ced4d6c0 conn=1000 op=822 slap_read_controls: (1.3.6.1.1.13.1) cn=S-1-5-21-UNSET-5008,cn=sid,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f88.06427089 0x7fb9cf54e6c0 conn=1000 op=823 slap_read_controls: (1.3.6.1.1.13.1) cn=uidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f88.064421fa 0x7fb9cf54e6c0 conn=1000 op=823 slap_read_controls: (1.3.6.1.1.13.2) cn=uidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f88.06963d1d 0x7fb9ced4d6c0 conn=1000 op=824 slap_read_controls: (1.3.6.1.1.13.1) cn=2004,cn=uidNumber,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f88.06cb4b83 0x7fb9cf54e6c0 conn=1000 op=825 slap_read_controls: (1.3.6.1.1.13.1) cn=foo_async,cn=uid,cn=temporary,cn=univention,dc=univention-organization,dc=intranet
+684a7f88.071892f4 0x7fb9ced4d6c0 conn=1000 op=828 slap_read_controls: (1.3.6.1.1.13.1) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f88.071a4068 0x7fb9ced4d6c0 conn=1000 op=828 slap_read_controls: (1.3.6.1.1.13.2) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f88.07215466 0x7fb9ced4d6c0 conn=1000 op=828 slap_read_controls: (1.3.6.1.1.13.1) uid=foo_async,cn=users,dc=univention-organization,dc=intranet
+684a7f88.07233d58 0x7fb9ced4d6c0 conn=1000 op=828 slap_read_controls: (1.3.6.1.1.13.2) uid=foo_async,cn=users,dc=univention-organization,dc=intranet
+684a7f88.1b6909b3 0x7fb9cf54e6c0 conn=1000 op=877 slap_read_controls: (1.3.6.1.1.13.2) uid=foo_async,cn=users,dc=univention-organization,dc=intranet
+684a7f88.25542a7d 0x7fb9ced4d6c0 conn=1000 op=904 slap_read_controls: (1.3.6.1.1.13.1) uid=foo_async,cn=users,dc=univention-organization,dc=intranet
+684a7f88.255a517d 0x7fb9ced4d6c0 conn=1000 op=904 slap_read_controls: (1.3.6.1.1.13.2) uid=foo_async,dc=univention-organization,dc=intranet
+684a7f88.2576f232 0x7fb9cf54e6c0 conn=-1 op=0: memberof_value_modify DN="uid=foo_async,cn=users,dc=univention-organization,dc=intranet" delete memberOf="cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet" failed err=32
+684a7f88.25793729 0x7fb9cf54e6c0 conn=-1 op=0: memberof_value_modify DN="uid=foo_async,dc=univention-organization,dc=intranet" add memberOf="cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet" failed err=20
+684a7f88.269ac4cd 0x7fb9ced4d6c0 conn=1000 op=905 slap_read_controls: (1.3.6.1.1.13.1) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f88.26ba381d 0x7fb9cf54e6c0 conn=1000 op=906 slap_read_controls: (1.3.6.1.1.13.1) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f88.321eb673 0x7fb9cf54e6c0 conn=1000 op=932 slap_read_controls: (1.3.6.1.1.13.1) uid=foo_async,dc=univention-organization,dc=intranet
+684a7f88.32626b17 0x7fb9ced4d6c0 conn=-1 op=0: memberof_value_modify DN="uid=foo_async,dc=univention-organization,dc=intranet" delete memberOf="cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet" failed err=32
+684a7f88.337b5688 0x7fb9ced4d6c0 conn=1000 op=938 slap_read_controls: (1.3.6.1.1.13.1) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
+684a7f88.337e8bea 0x7fb9ced4d6c0 conn=1000 op=938 slap_read_controls: (1.3.6.1.1.13.2) cn=Domain Users,cn=groups,dc=univention-organization,dc=intranet
