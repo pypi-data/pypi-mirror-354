@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alumathblackout"
+version = "0.1.1"
+license = {text = "MIT"}
+authors = [
+    {name = "Egide Harerimana"},
+    {name = "Sage Muhodari"},
+    {name = "Raissa Irutingabo"},
+    {name = "Michael Musa Musembi"}
+]
+description = "A simple matrix multiplication library mimicking NumPy"
+readme = "README.md"
+requires-python = ">=3.6"
+keywords = ["matrix", "multiplication", "algebra"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+homepage = "https://github.com/degide/alumathblackout"
+source = "https://github.com/degide/alumathblackout"
+
+[tool.setuptools.packages.find]
+include = ["alumathblackout"]
