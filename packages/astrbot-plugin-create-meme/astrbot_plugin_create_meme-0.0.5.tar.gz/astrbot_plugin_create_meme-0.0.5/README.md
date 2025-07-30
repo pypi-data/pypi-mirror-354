@@ -1,0 +1,55 @@
+# AstrBot 表情包插件
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d8da719cfb624fddbb9262e0f08ead55)](https://app.codacy.com/gh/xiaomizhoubaobei/astrbot_plugin_create_meme/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fxiaomizhoubaobei%2Fastrbot_plugin_treasure_bag.svg?type=shield&issueType=security)](https://app.fossa.com/projects/git%2Bgithub.com%2Fxiaomizhoubaobei%2Fastrbot_plugin_create_meme?ref=badge_shield&issueType=security)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fxiaomizhoubaobei%2Fastrbot_plugin_create_meme.svg?type=small)](https://app.fossa.com/projects/git%2Bgithub.com%2Fxiaomizhoubaobei%2Fastrbot_plugin_create_meme?ref=badge_small)
+[![GitHub issues](https://img.shields.io/github/issues/xiaomizhoubaobei/astrbot_plugin_create_meme)](https://github.com/xiaomizhoubaobei/astrbot_plugin_treasure_bag/issues)
+[![GitHub license](https://img.shields.io/github/license/xiaomizhoubaobei/astrbot_plugin_create_meme)](https://github.com/xiaomizhoubaobei/astrbot_plugin_create_meme/blob/master/LICENSE)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/xiaomizhoubaobei/astrbot_plugin_create_meme)](https://github.com/xiaomizhoubaobei/astrbot_plugin_create_meme/releases)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/xiaomizhoubaobei/astrbot_plugin_create_meme/Release)](https://github.com/xiaomizhoubaobei/astrbot_plugin_create_meme/actions)
+[![Commit Activity](https://img.shields.io/github/commit-activity/w/xiaomizhoubaobei/astrbot_plugin_create_meme)](https://github.com/xiaomizhoubaobei/astrbot_plugin_create_meme)
+![GitHub last commit](https://img.shields.io/github/last-commit/xiaomizhoubaobei/astrbot_plugin_create_meme)
+[![Python Version](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://www.python.org/)
+![Code Review](https://img.shields.io/badge/code_review-100%25-brightgreen.svg)
+![Repo Size](https://img.shields.io/github/repo-size/xiaomizhoubaobei/astrbot_plugin_create_meme.svg)
+
+## 简介
+
+AstrBot 的表情包插件，为你的聊天增添趣味。
+
+## 安装
+
+```bash
+# 克隆仓库到插件目录
+cd /AstrBot/data/plugins
+git clone https://github.com/xiaomizhoubaobei/astrbot_plugin_create_meme.git
+
+# 控制台重启 AstrBot
+```
+## 使用说明
+
+### 可用命令
+
+所有可用命令及其详细说明请参考 [命令列表](commands.md)。
+
+
+## 贡献指南
+
+- 🌟 Star 这个项目！（点右上角的星星，感谢支持！）
+- 🐛 提交 Issue 报告问题
+- 💡 提出新功能建议
+- 🔧 提交 Pull Request 改进代码融合
+
+## 支持
+
+如有问题，请参考 [官方文档](https://astrbot.app) 或联系开发者。
+
+## 审计
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fxiaomizhoubaobei%2Fastrbot_plugin_create_meme.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fxiaomizhoubaobei%2Fastrbot_plugin_create_meme?ref=badge_large&issueType=license)
+
+## 相关链接
+
+- [开源协议 (MIT)](https://opensource.org/licenses/MIT)
+- [Python 官方网站](https://www.python.org/)
+- [AstrBot 项目](https://github.com/Soulter/AstrBot)
