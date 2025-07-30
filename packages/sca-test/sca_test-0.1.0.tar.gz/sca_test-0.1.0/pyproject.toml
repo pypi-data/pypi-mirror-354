@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sca_test"
+version = "0.1.0"
+authors = [
+    {name = "Kolesnikova Anna", email = "anny_ko66@mail.ru"},
+]
+description = "Automatic augmentation"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = ["numpy>=1.21"] 
+
+[project.urls]
+Homepage = "https://github.com/KolesnikovaAnna/sca_test"
