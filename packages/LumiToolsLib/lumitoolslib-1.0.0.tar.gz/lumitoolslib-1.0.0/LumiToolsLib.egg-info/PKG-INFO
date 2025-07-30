@@ -1,0 +1,108 @@
+Metadata-Version: 2.4
+Name: LumiToolsLib
+Version: 1.0.0
+Summary: Python utilities for dynamic strings, sandboxed files, and ANSI colors
+Author-email: StrawberryMilcRivers <chocomilccy@gmail.com>
+License-Expression: MIT
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pyperclip>=1.8.0
+Requires-Dist: requests>=2.25.0
+Requires-Dist: win10toast>=0.9.0; platform_system == "Windows"
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Dynamic: license-file
+
+# **ltools** 🔧
+*A Swiss Army knife for Python scripting and automation*
+
+
+`ltools` is a powerful utility library for Python that simplifies file operations, text manipulation, encoding, system tasks, and more, with built-in **sandbox mode** for safe testing.
+
+---
+
+## **Features** ✨
+✅ **File Operations** – Read, write, copy, grep, and manage files (with sandbox support).
+✅ **Dynamic Strings** – `S()` and `M()` for runtime string interpolation.
+✅ **Encoding/Decoding** – Secure `encode()`/`decode()` with shadow keys.
+✅ **System Utilities** – Cross-platform notifications, clipboard access, and public IP fetching.
+✅ **ANSI Styling** – RGB colors and text formatting for terminals.
+✅ **Sandbox Mode** – Virtual filesystem for testing without touching real files.
+✅ **Smart Functions** – Fuzzy matching, random generators, UUIDs, and more.
+
+---
+
+## **Quick Start**
+
+### **1. File Operations (Sandbox Supported)**
+```python
+from ltools import *
+
+# Write to a sandboxed file (doesn't touch disk)
+debug.sandbox(True)  # Enable sandbox mode
+rw_file("test.txt", "Hello, sandbox!")
+print(file_exists("test.txt"))  # True (in sandbox)
+
+# Real filesystem operations
+debug.sandbox(False)
+rw_file("real_file.txt", "This writes to disk.")
+```
+
+### **2. Dynamic Strings (`S` and `M` Classes)**
+```python
+user = "Alice"
+id_num = 42
+
+# S() updates dynamically
+greeting = S("User {user} (ID: {id_num}) logged in at {timestamp()}")
+m_greeting = M("User {user} (ID: [id_num]) logged in at {timestamp()}")
+print(greeting)  # "User Alice (ID: 42) logged in at ..."
+print(m_greeting)  # "User Alice (ID: 42) logged in at ..."
+
+user = "Bob"
+id_num = 31
+
+print(greeting)  # Automatically updates to "User Bob (ID: 31)..."
+print(m_greeting)  # Updates to "User Bob (ID: 42)..."
+```
+
+### **3. Encoding & Security**
+```python
+encoded = encode("Secret Message")
+decoded = decode(encoded)
+print(decoded.decode())
+```
+
+### **4. System Utilities**
+```python
+notify("Task Done", "Script completed successfully!")  # OS notification
+clipboard_copy("Copy this to clipboard")
+print(censor(get_public_ip(),'-'))  # "192.---.-.1" (censored)
+```
+
+### **5. Run the Full Demo**
+```python
+tech_demo()  # Showcases all features
+```
+
+## **API Highlights**
+
+| Function | Description |
+|----------|-------------|
+| `rw_file()` | Read/write files (sandbox-aware). |
+| `S("text {var}")` | Dynamic string (updates on variable changes). |
+| `encode(data)` / `decode(data)` | Secure encoding with shadow keys. |
+| `notify()` | Cross-platform system notifications. |
+| `file_grep()` | Search files using regex. |
+| `ansi()` | RGB terminal styling. |
+| `debug.sandbox()` | Toggle sandbox mode. |
+
+
+## **Why Use ltools?**
+- **Saves Time** – No reinventing the wheel for common tasks.
+- **Safe Testing** – Sandbox mode prevents accidental file changes.
+- **Cross-Platform** – Works on Windows, macOS, and Linux.
+- **Batteries Included** – From clipboard ops to quantum random numbers.
