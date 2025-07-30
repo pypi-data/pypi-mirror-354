@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: hicue
+Version: 0.2.0
+Summary: A visualisation tool for Hi-C dataset.
+Project-URL: Homepage, https://github.com/Mae-4815162342/HiCue
+Project-URL: Issues, https://github.com/Mae-4815162342/HiCue/issues
+Author-email: Maelys Delouis <maelys.delouis@pasteur.fr>
+License: CC BY-NC 4.0
+License-File: LICENSE
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.10
+Requires-Dist: bcbio-gff
+Requires-Dist: chromosight
+Requires-Dist: cooler>0.10
+Requires-Dist: pybigwig
+Description-Content-Type: text/markdown
+
+# HiCue
+
+A visualisation tool for Hi-C datasets.
