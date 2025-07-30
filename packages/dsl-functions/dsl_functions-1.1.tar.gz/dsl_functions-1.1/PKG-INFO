@@ -1,0 +1,49 @@
+Metadata-Version: 2.4
+Name: dsl_functions
+Version: 1.1
+Summary: A module that contains functions designed extract and organize legal data, especially in Brazilian courts.
+Author: Alexandre Araújo Costa
+Author-email: alexandre.araujo.costa@gmail.com
+License: MIT
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests>=2.25.1
+Requires-Dist: selenium>=4.0.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# DSL Modulo
+
+A Python module for domain-specific language processing.
+
+## Installation
+
+```bash
+pip install dsl_functions
+```
+
+## Usage
+
+```python
+import dsl_functions
+```
+
+## License
+
+MIT
+
+
+
