@@ -1,0 +1,66 @@
+Metadata-Version: 2.4
+Name: hosting-platform-website-client
+Version: 1.0.0
+Summary: Python client for website-service API (Proprietary)
+Home-page: 
+Author: OpenAPI Generator community
+Author-email: Free Hosting Platform Team <support@platform.dev>
+License: Proprietary
+Project-URL: Homepage, https://github.com/PotashAlum/Hostopia
+Project-URL: Repository, https://github.com/PotashAlum/Hostopia
+Project-URL: Issues, https://github.com/PotashAlum/Hostopia/issues
+Keywords: hosting,api,client,website,private
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: urllib3>=1.25.3
+Requires-Dist: python-dateutil
+Requires-Dist: pydantic>=1.10.5
+Requires-Dist: typing-extensions>=4.0.0
+Dynamic: author
+
+# Website-service Client
+
+**Proprietary Python client** for the website-service API.
+
+## Installation
+
+```bash
+pip install hosting-platform-website-client
+```
+
+## Usage
+
+```python
+from website_service_client import ApiClient, Configuration
+from website_service_client.api import DefaultApi
+
+# Configure the client
+configuration = Configuration(
+    host="http://localhost:5001"  # Replace with your service URL
+)
+
+# Create API client
+with ApiClient(configuration) as api_client:
+    api_instance = DefaultApi(api_client)
+    
+    # Use the API...
+    try:
+        response = api_instance.health_get()
+        print("Service is healthy:", response)
+    except Exception as e:
+        print("Error:", e)
+```
+
+## License
+
+This software is proprietary and confidential. Unauthorized copying, distribution, or use is strictly prohibited.
+
+Version: 1.0.0
