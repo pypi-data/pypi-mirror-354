@@ -1,0 +1,22 @@
+[build-system]
+requires = ["build==1.2.2.post1", "hatchling==1.21.1"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dataiter"
+dynamic = ["version"]
+description = "Simple, light-weight data frames for Python"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9.0"
+authors = [{ name = "Osmo Salomaa", email = "otsaloma@iki.fi" }]
+dependencies = ["attd>=0.3", "numpy>=2.0,<3.0", "pyarrow>=2.0", "wcwidth>=0.1"]
+
+[project.urls]
+Homepage = "https://github.com/otsaloma/dataiter"
+
+[tool.hatch.version]
+path = "dataiter/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = ["/dataiter"]
