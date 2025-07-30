@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: PETINA
+Version: 0.0.13
+Summary: Package for applying privacy techniques
+Project-URL: Homepage, https://github.com/OKotevska/PETINA
+Project-URL: Repository, https://github.com/OKotevska/PETINA.git
+Author-email: Olivera Kotevska <KOTEVSKAO@ORNL.GOV>
+Maintainer-email: Olivera Kotevska <KOTEVSKAO@ORNL.GOV>
+License-Expression: MIT
+License-File: LICENSE
+Keywords: federated learning,machine learning,privacy
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Requires-Python: >=3.8
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: torch
+Description-Content-Type: text/markdown
+
+# PETINA: Privacy prEservaTIoN Algorithms
+To install please use the instractions on this page: https://test.pypi.org/project/petina/0.0.11/. If you use any of the code please use the appropriate citation from here https://www.osti.gov/doecode/biblio/149859.
+
+## Acknowledgement
+This manuscript has been co-authored by UT-Battelle, LLC, under Contract No. DE-AC05-00OR22725 with the U.S. Department of Energy. The United States Government retains and the publisher, by accepting the article for publication, acknowledges that the United States Government retains a nonexclusive, paid-up, irrevocable, world-wide license to publish or reproduce the published form of this manuscript, or allow others to do so, for United States Government purposes. The Department of Energy will provide public access to these results of federally sponsored research in accordance with the DOE Public Access Plan (http://energy.gov/downloads/doe-public-access-plan).
