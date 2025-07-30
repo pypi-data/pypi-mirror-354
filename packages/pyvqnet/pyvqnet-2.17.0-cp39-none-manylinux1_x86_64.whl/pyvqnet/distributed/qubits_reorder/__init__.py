@@ -1,0 +1,2 @@
+from .swap_q1 import swap_local_global_q1,swap_global_global_q1
+from .swap_qubits import QubitReorder,QubitsPermutation
