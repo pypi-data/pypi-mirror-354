@@ -1,0 +1,75 @@
+Metadata-Version: 2.4
+Name: evemap
+Version: 0.0.0b3
+Summary: Example plugin app for Alliance Auth.
+Author-email: Cunning <ryan.cunning@gmail.com>
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 4.0
+Classifier: Framework :: Django :: 4.2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+License-File: LICENSE
+Requires-Dist: allianceauth>=3
+Requires-Dist: django-eveuniverse==1.5.7
+Requires-Dist: shapely==2.1.1
+Project-URL: Changelog, https://gitlab.com/cunningdesigns/evemap/-/blob/main/CHANGELOG.md
+Project-URL: Documentation, https://gitlab.com/cunningdesigns/evemap/-/tree/main/docs?ref_type=heads
+Project-URL: Homepage, https://gitlab.com/cunningdesigns/evemap
+Project-URL: Source, https://gitlab.com/cunningdesigns/evemap
+Project-URL: Tracker, https://gitlab.com/cunningdesigns/evemap/-/issues
+
+# evemap
+
+Map plugin for [AllianceAuth](https://gitlab.com/allianceauth/allianceauth).
+
+> This is a proof-of-concept that is a work-in-progress.
+
+## Features
+
+- View a map of New Eden
+- Pan + Zoom
+- - Scroll to zoom
+- - Shift + Drag to zoom to box
+
+## Installation
+
+### Step 1 - Pre-Requisites
+
+Evemap is an App for Alliance Auth, Please make sure you have this installed. Evemap is not a standalone Django Application.
+
+### Step 2 - Install app
+
+pip install evemap
+
+### Step 3 - Configure Auth settings
+
+Configure your Auth settings (`local.py`) as follows:
+
+```python
+INSTALLED_APPS += [
+	'eveuniverse',
+	'evemap',
+...
+```
+
+### Step 4 - Maintain Alliance Auth
+
+- Run migrations `python manage.py migrate`
+- Gather your static-files `python manage.py collectstatic`
+- Restart Alliance Auth
+
+# Screenshot
+
+![Map](https://i.imgur.com/0j3NGFj.png)
+

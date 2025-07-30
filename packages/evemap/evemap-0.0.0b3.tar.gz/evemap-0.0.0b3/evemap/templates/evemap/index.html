@@ -1,0 +1,37 @@
+{% extends 'evemap/base.html' %}
+{% load i18n %}
+{% load bootstrap %}
+{% load static %}
+{% load humanize %}
+
+{% block details %}
+
+
+<div id="map" style="width: 100%; height: calc(100vh - 100px);"></div>
+<div id="popup" class="ol-popup" style="display: none;"></div>
+{% endblock %}
+
+{% block extra_javascript %}
+<script type="application/javascript">
+	var url_solar_systems_points = "{% static 'evemap/geospatial/solar_systems_points.geojson' %}";
+	var url_constellations_polygons = "{% static 'evemap/geospatial/constellations_polygons.geojson' %}";
+	var url_regions_polygons = "{% static 'evemap/geospatial/regions_polygons.geojson' %}";
+	var url_stargates_lines = "{% static 'evemap/geospatial/stargates_lines.geojson' %}";
+
+	console.log(url_stargates_lines);
+</script>
+<script type="application/javascript" src="{% static 'evemap/js/ol.js' %}"></script>
+<script src="https://unpkg.com/ol-layerswitcher@latest/dist/ol-layerswitcher.js"></script>
+<script type="application/javascript" src="{% static 'evemap/js/evemap.js' %}"></script>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'evemap/css/ol.css' %}">
+<link rel="stylesheet" href="https://unpkg.com/ol-layerswitcher/dist/ol-layerswitcher.css" />
+<link rel="stylesheet" href="{% static 'evemap/css/evemap.css' %}">
+{% endblock %}
+
+{% block extra_script %}
+
+
+{% endblock %}
