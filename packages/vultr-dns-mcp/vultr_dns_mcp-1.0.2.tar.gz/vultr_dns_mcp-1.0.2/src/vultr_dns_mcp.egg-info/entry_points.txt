@@ -1,0 +1,3 @@
+[console_scripts]
+vultr-dns-mcp = vultr_dns_mcp.cli:main
+vultr-dns-server = vultr_dns_mcp.cli:server_command
