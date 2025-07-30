@@ -1,0 +1,73 @@
+# SPDX-FileCopyrightText: 2023 DB Systel GmbH
+#
+# SPDX-License-Identifier: Apache-2.0
+
+[tool.poetry]
+name = "oss-red-flag-checker"
+version = "0.1.7"
+description = "Check remote repositories for typical red flags like CLAs and risks due to low development activity"
+authors = ["Open Source at Deutsche Bahn <opensource@deutschebahn.com>"]
+maintainers = ["Max Mehl <max.mehl@deutschebahn.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/dbsystel/oss-red-flag-checker/"
+keywords = ["ospo", "open-source-management", "supply-chain", "risk-analysis"]
+classifiers = [
+  "Intended Audience :: Information Technology",
+  "Topic :: Software Development",
+]
+packages = [{ include = "ossrfc" }]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pygithub = "^2.6.1"
+gitpython = "^3.1.44"
+platformdirs = "^4.3.8"
+tqdm = "^4.67.1"
+termcolor = "^3.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+isort = "^6.0.1"
+pylint = "^3.3.7"
+black = "^25.1.0"
+mypy = "^1.16.0"
+types-tqdm = "^4.67.0.20250516"
+pytest = "^8.4.0"
+pytest-cov = "^6.1.1"
+bump-my-version = "^1.2.0"
+
+[tool.poetry.scripts]
+ossrfc = 'ossrfc.checker:main'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# FORMATTING settings
+[tool.isort]
+profile = "black"
+
+[tool.black]
+line-length = 100
+
+# MYPY settings
+[tool.mypy]
+files = ["ossrfc/*.py"]
+
+# PYTEST settings
+[tool.pytest.ini_options]
+addopts = "--cov=ossrfc"
+
+# Bump-My-Version
+[tool.bumpversion]
+commit = true
+tag = true
+allow_dirty = false
+tag_name = "v{new_version}"
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+regex = true
+search = "^version = \"{current_version}\""
+replace = "version = \"{new_version}\""
