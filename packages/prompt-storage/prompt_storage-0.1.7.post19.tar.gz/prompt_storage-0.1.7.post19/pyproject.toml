@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prompt-storage"
+version = "0.1.7.post19"
+description = "Library for managing and caching Google Docs prompts with templating support."
+readme = "README.md"
+authors = [
+    { name = "Albert Toma", email = "cornil@mail.ru" }
+]
+license = { text = "MIT" }
+requires-python = ">=3.8"
+dependencies = [
+    "google-api-python-client>=2.0.0",
+    "google-auth>=2.0.0",
+    "google-auth-oauthlib>=1.0.0",
+    "python-docx>=1.0.0",
+    "jinja2>=3.0.0",
+    "mako>=1.0.0"
+]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent"
+]
+
+[project.optional-dependencies]
+api = ["fastapi>=0.100.0"]
+full = ["fastapi>=0.100.0"]
+
+[project.urls]
+Homepage = "https://github.com/Cornil79/prompt-storage"
+Repository = "https://github.com/Cornil79/prompt-storage"
+Documentation = "https://Cornil79.github.io/prompt-storage"
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.py", "*.txt"]
+"prompt_storage" = ["*.py"]
+
+[tool.setuptools.exclude-package-data]
+"prompt_storage" = ["credentials.json"]
