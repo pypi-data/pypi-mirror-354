@@ -1,0 +1,123 @@
+Metadata-Version: 2.1
+Name: gcomvkm
+Version: 0.1.0
+Summary: Globally Collaborative Multi-View k-Means Clustering Algorithm
+Home-page: https://github.com/kpsinaga/gcomvkm
+Author: Kristina P. Sinaga
+Author-email: kristinasinaga41@gmail.com
+Project-URL: Bug Tracker, https://github.com/kpsinaga/gcomvkm/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy >=1.18.0
+Requires-Dist: scipy >=1.4.0
+Requires-Dist: matplotlib >=3.1.0
+Requires-Dist: scikit-learn >=0.22.0
+Requires-Dist: seaborn >=0.11.0
+
+# G-CoMVKM
+
+## Globally Collaborative Multi-View k-Means Clustering
+
+[![PyPI version](https://badge.fury.io/py/gcomvkm.svg)](https://badge.fury.io/py/gcomvkm)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Overview
+
+G-CoMVKM is a Python implementation of the Globally Collaborative Multi-View k-Means clustering algorithm, originally developed by Kristina P. Sinaga. The algorithm integrates a collaborative transfer learning framework with entropy-regularized feature-view reduction, enabling dynamic elimination of uninformative components. This method achieves clustering by balancing local view importance and global consensus.
+
+## Installation
+
+You can install G-CoMVKM directly from PyPI:
+
+```bash
+pip install gcomvkm
+```
+
+### Requirements
+- Python 3.7+
+- NumPy
+- SciPy
+- Matplotlib
+- scikit-learn
+- seaborn
+
+## Usage
+
+```python
+from gcomvkm import GCoMVKM
+from gcomvkm.utils import load_synthetic_data
+from gcomvkm.evaluation import nmi, rand_index, adjusted_rand_index
+
+# Load the dataset
+X, label = load_synthetic_data()
+
+# Create and fit the model
+model = GCoMVKM(
+    n_clusters=2,
+    gamma=5.0,
+    theta=4.0,
+    max_iter=100,
+    tol=1e-4,
+    verbose=True,
+    random_state=42
+)
+
+model.fit(X)
+
+# Get the cluster assignments
+predicted_labels = model.labels_
+
+# Evaluate the clustering performance
+nmi_score = nmi(label, predicted_labels)
+ri_score = rand_index(label, predicted_labels)
+ari_score = adjusted_rand_index(label, predicted_labels)
+
+print(f"NMI: {nmi_score:.4f}")
+print(f"RI: {ri_score:.4f}")
+print(f"ARI: {ari_score:.4f}")
+```
+
+## Algorithm Parameters
+
+- `n_clusters`: Number of clusters to form
+- `gamma`: Exponent parameter to control the weights of V (typically in range [0,1])
+- `theta`: Coefficient parameter to control the weights of W (typically > 0)
+- `max_iter`: Maximum number of iterations
+- `tol`: Convergence tolerance
+- `verbose`: Whether to print progress information
+- `random_state`: Random seed for reproducibility
+
+## Features
+
+- Multi-view clustering with feature and view weighting
+- Automatic dimensionality reduction through entropy regularization
+- Balanced local and global consensus clustering
+- Comprehensive evaluation metrics
+
+## Citation
+
+If you use this package in your research, please cite the original paper:
+
+```
+@article{sinaga2025gcomvkm,
+  title={A Globally Collaborative Multi-View k-Means Clustering},
+  author={Sinaga, Kristina P.},
+  journal={MDPI Electronics},
+  year={2025}
+}
+```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+6. Performance metrics across different initializations
+7. Convergence plot
+
+## References
+This implementation is based on the MATLAB code by Kristina P. Sinaga. For more details about the algorithm, please refer to the original paper.
