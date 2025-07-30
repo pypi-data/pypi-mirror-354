@@ -1,0 +1,30 @@
+[project]
+name = "tera-tera"
+version = "0.1.1"
+description = "Tera tera app to do langar seva at various gurudwara's"
+readme = "README.md"
+authors = [{name = "Sukhbinder Singh"}]
+license = {text = "Apache-2.0"}
+requires-python = ">=3.8"
+classifiers = [
+    "License :: OSI Approved :: Apache Software License"
+]
+
+[tool.setuptools.package-data]
+"*" = ["*.*"] 
+
+[project.urls]
+Homepage = "https://github.com/sukhbinder/tera-tera"
+Changelog = "https://github.com/sukhbinder/tera-tera/releases"
+Issues = "https://github.com/sukhbinder/tera-tera/issues"
+CI = "https://github.com/sukhbinder/tera-tera/actions"
+
+[project.scripts]
+teratera = "tera_tera.cli:cli"
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
