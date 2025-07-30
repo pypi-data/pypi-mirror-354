@@ -1,0 +1,53 @@
+[project]
+name = "worklab"
+version = "2.1.1"
+description = "Basic scripts for worklab devices"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {file = "LICENSE"}
+keywords = ["biomechanics", "ergometry", "physiology"]
+authors = [
+  {name = "Sophie de Klerk", email = "r.de.klerk@pl.hanze.nl"},
+  {name = "Thomas Rietveld", email = "t.rietveld@lboro.ac.uk"},
+  {name = "Rowie Janssen", email = "r.j.f.janssen@umcg.nl"},
+  {name = "Jelmer Braaksma", email = "j.braaksma01@umcg.nl"}
+]
+classifiers = [
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent"
+]
+dependencies = [
+  "scipy>=1.2.0",
+  "numpy",
+  "pandas",
+  "matplotlib",
+  "xlrd",
+  "scikit-learn",
+  "seaborn"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "Flake8-pyproject",
+    "black",
+    "jupyter-book",
+    "build"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/sophiedkk/worklab"
+"Bug Reports" = "https://github.com/sophiedkk/worklab/issues"
+
+[build-system]
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 120
+
+[tool.flake8]
+ignore = ['E203', 'E241', 'W503']
+max-line-length = 120
