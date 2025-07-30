@@ -1,0 +1,12 @@
+name: mortie
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - flake8
+  - numpy
+  - pandas
+  - pip
+  - pip:
+    - waterdetect
+    - s2cloudless

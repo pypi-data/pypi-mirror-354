@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ICEBath"
+dynamic = ["version", "keywords"]
+description = "ICESat-2 Calibrated Bathymetry Retrievals from Optical Satellite Data"
+authors = [
+  { name = "Shane Grigsby (espg)", email = "refuge@rocktalus.com" },
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+#keywords = ["healpix", "geohashing", "morton index"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.8" # minimum version for importlib.metadata
+dependencies = [
+  "numpy",
+  "s2cloudless",
+  "waterdetect",
+  "pandas"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/espg/ICEBath"
+"Bug Tracker" = "https://github.com/espg/ICEBath/issues"
+
+[tool.setuptools]
+packages = ["icebath"]
+
+[tool.setuptools_scm]
