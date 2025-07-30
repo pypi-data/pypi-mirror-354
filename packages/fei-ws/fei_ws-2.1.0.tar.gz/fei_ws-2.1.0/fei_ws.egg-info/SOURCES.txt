@@ -1,0 +1,47 @@
+.gitignore
+CHANGES.txt
+LICENSE.txt
+MANIFEST.in
+Pipfile
+Pipfile.lock
+README.md
+pyproject.toml
+requirements.txt
+tox.ini
+uv.lock
+wsdl.sh
+.idea/modules.xml
+.idea/vcs.xml
+docs/FEI21 WebServices - CommonWS V1.2.1 2014-02-19.pdf
+docs/FEI21 WebServices - OrganizerWS 1.2 - Classes V1.2.4 2017-06-16.pdf
+docs/FEI21 WebServices - OrganizerWS 1.2 - Methods V1.2.1 2015-03-03.pdf
+docs/FEI21 WebServices - OrganizerWS V1.1 2015-03-03.pdf
+docs/download-entries-xsd.xml
+docs/ES3 API Documentation - OC - version 1.8.26/ES3 API Documentation - OC - 0 - Examples - version 1.8.26.pdf
+docs/ES3 API Documentation - OC - version 1.8.26/ES3 API Documentation - OC - 1 - Base - version 1.8.0.pdf
+docs/ES3 API Documentation - OC - version 1.8.26/ES3 API Documentation - OC - 2 - Athletes - version 1.4.0.pdf
+docs/ES3 API Documentation - OC - version 1.8.26/ES3 API Documentation - OC - 3 - Horses - version 1.4.0.pdf
+docs/ES3 API Documentation - OC - version 1.8.26/ES3 API Documentation - OC - 4 - Invitations - version 1.12.5.pdf
+docs/ES3 API Documentation - OC - version 1.8.26/ES3 API Documentation - OC - 5 - Events - version 1.4.0.pdf
+docs/ES3 API Documentation - OC - version 1.8.26/ES3 API Documentation - OC - 6 - Shows - version 1.4.0.pdf
+docs/ES3 API Documentation - OC - version 1.8.26/ES3 API Documentation - OC - 7 - Entries - version 1.8.8.pdf
+docs/ES3 API Documentation - OC - version 1.8.26/ES3 API Documentation - OC - 8 - Input Objects - version 1.4.0.pdf
+docs/ES3 API Documentation - OC - version 1.8.26/ES3 API Documentation - OC - 9 - Output Objects - version 1.12.5.pdf
+docs/ES3 API Documentation - OC - version 1.8.26/ES3 API Documentation - OC WS - Download Entry Files Example - version 1.7.5.pdf
+fei_ws/__init__.py
+fei_ws/config.py
+fei_ws/utils.py
+fei_ws.egg-info/PKG-INFO
+fei_ws.egg-info/SOURCES.txt
+fei_ws.egg-info/dependency_links.txt
+fei_ws.egg-info/requires.txt
+fei_ws.egg-info/top_level.txt
+fei_ws/clients/__init__.py
+fei_ws/clients/base.py
+fei_ws/clients/client.py
+fei_ws/clients/errors.py
+fei_ws/wsdl/auth.wsdl
+fei_ws/wsdl/common.wsdl
+fei_ws/wsdl/org_1_2.wsdl
+tests/__init__.py
+tests/test.py

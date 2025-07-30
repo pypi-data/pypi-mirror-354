@@ -1,0 +1,43 @@
+[project]
+name = "fei-ws"
+dynamic = ["version"]
+description = "Wrapper for the FEI Web Services v1.2 and FEI Entry System v3"
+license = {text = "MPL-2.0"}
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.32.4",
+    "zeep>=4.3.1",
+]
+keywords = ["fei", "webservice", "client"]
+authors = [
+    {name = "Arend H. Tolner", email = "arie@scgvisual.com"}
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries",
+    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.urls]
+Homepage = "https://github.com/Bounder/python-fei-ws"
+
+
+[tool.setuptools]
+package-data = {"fei_ws" = ["wsdl/*.wsdl"]}
+
+[tool.setuptools.packages.find]
+exclude = ["tests"]
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+local_scheme = "node-and-date"
+
+[build-system]
+requires = ["setuptools>=61.0", "setuptools_scm"]
+build-backend = "setuptools.build_meta"

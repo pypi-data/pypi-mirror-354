@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.fei.org/Entry" targetNamespace="http://www.fei.org/Entry" elementFormDefault="qualified" >
+
+    <xs:element name="HorseSport">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Generated" type="ctGenerated" />
+                <xs:element name="ShowEntries" type="ctShowEntries" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="ctGenerated">
+        <xs:attribute name="Date" type="stDateTimeSpecialGenerated" use="required" />
+        <xs:attribute name="Software" type="xs:string" use="required" />
+        <xs:attribute name="SoftwareVersion" type="xs:string" use="required" />
+        <xs:attribute name="Organization" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="ctShowEntries">
+        <xs:sequence>
+            <xs:element name="Show" type="ctShow" />
+            <xs:element name="Athlete" type="ctAthlete" maxOccurs="unbounded" />
+            <xs:element name="Horse" type="ctHorse" maxOccurs="unbounded" />
+            <xs:element name="Event" type="ctEvent" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ctShow">
+        <xs:sequence>
+            <xs:element name="Venue">
+                <xs:complexType>
+                    <xs:attribute name="Name" type="xs:string" use="required" />
+                    <xs:attribute name="Country" type="xs:string" use="required" />
+                    <xs:attribute name="Complement" type="xs:string" />
+                    <xs:attribute name="Latitude" type="xs:decimal" />
+                    <xs:attribute name="Longitude" type="xs:decimal" />
+                    <xs:attribute name="CountryNOC" type="stNoc" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="AdditionalInfo" type="ctAdditionalInfo" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="FEIID" type="xs:string" use="required" />
+        <xs:attribute name="Type" type="xs:string" use="required" />
+        <xs:attribute name="TypeCode" type="xs:string"/>
+        <xs:attribute name="StartDate" type="xs:date" use="required" />
+        <xs:attribute name="EndDate" type="xs:date" use="required" />
+        <xs:attribute name="URL" type="xs:anyURI" />
+        <xs:attribute name="TimeStamp" type="xs:nonNegativeInteger" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="ctAthlete">
+        <xs:sequence>
+            <xs:element name="ContactPerson" minOccurs="0" >
+                <xs:complexType>
+                    <xs:attribute name="Name" type="xs:string" use="required" />
+                    <xs:attribute name="Quality" type="xs:string" />
+                    <xs:attribute name="MobilePhone" type="xs:string" />
+                    <xs:attribute name="Email" type="xs:string" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="AdditionalInfo" type="ctAdditionalInfo" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="FEIID" type="ctAthleteFEIID" use="required" />
+        <xs:attribute name="NFID" type="xs:string" />
+        <xs:attribute name="Civility" type="xs:string" />
+        <xs:attribute name="FirstName" type="xs:string" use="required" />
+        <xs:attribute name="FamilyName" type="xs:string" use="required" />
+        <xs:attribute name="Gender" type="xs:string" use="required" />
+        <xs:attribute name="BirthDate" type="xs:date" />
+        <xs:attribute name="JumpingRegistrationLastYear" type="stPositiveIntegerNullable"/>
+        <xs:attribute name="CompetingFor" type="stNoc" use="required" />
+        <xs:attribute name="JumpingWorldCupLeague" type="xs:string" />
+        <xs:attribute name="TimeStamp" type="xs:nonNegativeInteger" use="required" />
+        <xs:attribute name="EntrySource" type="xs:string" />  <!-- A vérifier -->
+        <xs:attribute name="Last1JumpingRankingNumber" type="stPositiveIntegerNullable"/>
+        <xs:attribute name="Last1JumpingRankingRank" type="stPositiveIntegerNullable"/>
+        <xs:attribute name="Last2JumpingRankingNumber" type="stPositiveIntegerNullable"/>
+        <xs:attribute name="Last2JumpingRankingRank" type="stPositiveIntegerNullable"/>
+        <xs:attribute name="Last3JumpingRankingNumber" type="stPositiveIntegerNullable"/>
+        <xs:attribute name="Last3JumpingRankingRank" type="stPositiveIntegerNullable"/>
+        <xs:attribute name="Last4JumpingRankingNumber" type="stPositiveIntegerNullable"/>
+        <xs:attribute name="Last4JumpingRankingRank" type="stPositiveIntegerNullable"/>
+    </xs:complexType>
+
+    <xs:complexType name="ctHorse">
+        <xs:sequence>
+            <xs:element name="AdditionalInfo" type="ctAdditionalInfo" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="Ownership" type="ctOwnership" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="FEIID" type="ctHorseFEIID" use="required" />
+        <xs:attribute name="IDType" type="xs:string" use="required" />
+        <xs:attribute name="NFID" type="xs:string" />
+        <xs:attribute name="UELN" type="xs:string" />
+        <xs:attribute name="ChipID" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="ShortenName" type="xs:string"/>
+        <xs:attribute name="Gender" type="xs:string" use="required" />
+        <xs:attribute name="Sex" type="xs:string"/>
+        <xs:attribute name="Stallion" type="xs:boolean" use="required" />
+        <xs:attribute name="Bedding" type="xs:string" />
+        <xs:attribute name="BirthDate" type="xs:date" use="required" />
+        <xs:attribute name="BirthCountry" type="stNocNullable" />
+        <xs:attribute name="JumpingRegistrationLastYear" type="stPositiveIntegerNullable" />
+        <xs:attribute name="AdminNF" type="stNoc" use="required" />
+        <xs:attribute name="Color" type="xs:string" />
+        <xs:attribute name="ColorComplement" type="xs:string" />
+        <xs:attribute name="Pony" type="xs:boolean" use="required" />
+        <xs:attribute name="Height" type="xs:positiveInteger" />
+        <xs:attribute name="StudBook" type="xs:string" />
+        <xs:attribute name="StudBookCode" type="xs:string" />
+        <xs:attribute name="Breeder" type="xs:string" />
+        <xs:attribute name="Sire" type="xs:string" />
+        <xs:attribute name="Dam" type="xs:string" />
+        <xs:attribute name="SireOfDam" type="xs:string" />
+        <xs:attribute name="OwnerOldFormat" type="xs:string" />
+        <xs:attribute name="TimeStamp" type="xs:nonNegativeInteger" use="required" />
+        <xs:attribute name="TrainerFEIID" type="stPositiveIntegerNullable" />
+        <xs:attribute name="TrainerFirstName" type="xs:string" />
+        <xs:attribute name="TrainerFamilyName" type="xs:string" />
+        <xs:attribute name="IsLateEntry" type="xs:boolean" />
+    </xs:complexType>
+
+    <xs:complexType name="ctEvent">
+        <xs:sequence>
+            <xs:element name="AdditionalInfo" type="ctAdditionalInfo" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="Competitions" type="ctCompetitions" minOccurs="0" maxOccurs="1" />
+            <xs:element name="Team" type="ctTeam" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="AthleteEntry" type="ctAthleteEntry" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="FEIID" type="xs:string" use="required" />
+        <xs:attribute name="Discipline" type="xs:string" use="required" />
+        <xs:attribute name="DisciplineCode" type="xs:string"/>
+        <xs:attribute name="Category" type="xs:string" use="required" />
+        <xs:attribute name="CategoryCode" type="xs:string"/>
+        <xs:attribute name="Code" type="xs:string" use="required" />
+        <xs:attribute name="CodeComplement" type="xs:string" />
+        <xs:attribute name="Level" type="xs:string" use="required" />
+        <xs:attribute name="LevelCode" type="xs:string" />
+        <xs:attribute name="AthletesMinAge" type="xs:nonNegativeInteger" />
+        <xs:attribute name="AthletesMaxAge" type="xs:nonNegativeInteger" />
+        <xs:attribute name="HorsesMinAge" type="xs:nonNegativeInteger" />
+        <xs:attribute name="HorsesMaxAge" type="xs:nonNegativeInteger" />
+        <xs:attribute name="OfficialTeam" type="xs:boolean" use="required" />
+        <xs:attribute name="Indoor" type="xs:boolean" use="required" />
+        <xs:attribute name="DraftSchedulePrizeMoney" type="xs:decimal" />
+        <xs:attribute name="DraftSchedulePrizeMoneyCurrency" type="xs:string" />
+        <xs:attribute name="StartDate" type="xs:date" use="required" />
+        <xs:attribute name="EndDate" type="xs:date" use="required" />
+        <xs:attribute name="EntriesInPrincipleDate" type="stDateNullable" />
+        <xs:attribute name="StartDateSubstAdditOC" type="stDateNullable" />
+        <xs:attribute name="LastDateSubstitution" type="stDateNullable" />
+        <xs:attribute name="HorseInspectionDate" type="stDateNullable" />
+        <xs:attribute name="TimeStamp" type="xs:nonNegativeInteger" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="ctTeam">
+        <xs:sequence>
+            <xs:element name="AdditionalInfo" type="ctAdditionalInfo" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="NF" type="stNoc" use="required" />
+        <xs:attribute name="Veterinarian" type="xs:string" />
+        <xs:attribute name="ChefEquipe" type="xs:string" />
+        <xs:attribute name="TimeStamp" type="xs:nonNegativeInteger"/>
+    </xs:complexType>
+
+    <xs:complexType name="ctAthleteEntry">
+        <xs:sequence>
+            <xs:element name="AdditionalInfo" type="ctAdditionalInfo" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="HorseEntry" type="ctHorseEntry" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="Status" type="xs:string"/>
+        <xs:attribute name="FEIID" type="ctAthleteFEIID" use="required" />
+        <xs:attribute name="Team" type="xs:string" />
+        <xs:attribute name="AcceptationDate" type="stDateTimeSpecialNullable" />
+        <xs:attribute name="RejectionDate" type="stDateTimeSpecialNullable" />
+        <xs:attribute name="NFComment" type="xs:string" />
+        <xs:attribute name="RejectionComment" type="xs:string" />
+        <xs:attribute name="TimeStamp" type="xs:nonNegativeInteger" use="required" />
+        <xs:attribute name="BorrowedHorses" type="xs:boolean"/>
+        <xs:attribute name="Withdrawn" type="xs:boolean"/>
+        <xs:attribute name="Substituted" type="xs:boolean"/>
+        <xs:attribute name="Accepted" type="xs:boolean"/>
+        <xs:attribute name="Pending" type="xs:boolean"/>
+        <xs:attribute name="Rejected" type="xs:boolean"/>
+        <xs:attribute name="EnteringNF" type="stNoc"/>
+        <xs:attribute name="Carriage" type="stPositiveIntegerNullable"/>
+        <xs:attribute name="HasBeenSubstituted" type="xs:boolean"/>
+        <xs:attribute name="SubstitutedAthleteFeiId" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="ctHorseEntry">
+        <xs:sequence>
+            <xs:element name="AdditionalInfo" type="ctAdditionalInfo" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="Status" type="xs:string" />
+        <xs:attribute name="FEIID" type="ctHorseFEIID" use="required" />
+        <xs:attribute name="AcceptationDate" type="stDateTimeSpecialNullable" />
+        <xs:attribute name="RejectionDate" type="stDateTimeSpecialNullable" />
+        <xs:attribute name="NFComment" type="xs:string" />
+        <xs:attribute name="RejectionComment" type="xs:string" />
+        <xs:attribute name="TimeStamp" type="xs:nonNegativeInteger" use="required" />
+        <xs:attribute name="Withdrawn" type="xs:boolean"/>
+        <xs:attribute name="Substituted" type="xs:boolean"/>
+        <xs:attribute name="Accepted" type="xs:boolean"/>
+        <xs:attribute name="Pending" type="xs:boolean"/>
+        <xs:attribute name="Rejected" type="xs:boolean"/>
+        <xs:attribute name="Competitions" type="xs:string"/>
+        <xs:attribute name="CompetitionsCode" type="xs:string"/>
+        <xs:attribute name="IsSlot" type="xs:boolean"/>
+        <xs:attribute name="EntryHorseUid" type="xs:string"/>
+        <xs:attribute name="HasBeenSubstituted" type="xs:boolean"/>
+        <xs:attribute name="SubstitutedHorseFeiId" type="ctHorseFEIID"/>
+        <xs:attribute name="IsBorrowed" type="xs:boolean"/>
+    </xs:complexType>
+
+    <xs:simpleType name="ctAthleteFEIID">
+        <xs:restriction base="xs:positiveInteger">
+            <xs:totalDigits value="8"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ctHorseFEIID" >
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(([0-9]{3}[a-zA-Z]{2}[0-9]{2})|([a-zA-Z]{3}[0-9]{5}))" />
+            <xs:pattern value="(([0-9]{3}[a-zA-Z]{2}[0-9]{2})|([a-zA-Z]{3}[0-9]{5})|([a-zA-Z]{0}))" />
+
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="stNoc" >
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z]{3}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="stNocNullable" >
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="stNoc">
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="0" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+
+    <xs:simpleType name="stAdditionalInfoValue" >
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="256"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ctAdditionalInfo">
+        <xs:simpleContent>
+            <xs:extension base="stAdditionalInfoValue">
+                <xs:attribute name="Name" use="required">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                            <xs:maxLength value="128"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="ctCompetitions">
+        <xs:sequence>
+            <xs:element name="Competition" type="ctCompetition" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ctCompetition">
+        <xs:sequence>
+            <xs:element name="Description" type="ctCompetitionDescription" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="FEIID" type="xs:string" use="required"/>
+        <xs:attribute name="Name" type="xs:string" />
+        <xs:attribute name="ScheduleCompetitionNr" type="xs:string" />
+        <xs:attribute name="Rule" type="xs:string" />
+        <xs:attribute name="StartDate" type="xs:date" />
+    </xs:complexType>
+
+    <xs:complexType name="ctCompetitionDescription">
+        <xs:sequence>
+            <xs:element name="Prizes" type="ctPrizes" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="Course" type="ctCourse" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ctPrizes">
+        <xs:attribute name="PointGroup" type="xs:string"/>
+        <xs:attribute name="Currency" type="xs:string"/>
+        <xs:attribute name="Total" type="stPositiveDecimal2SepNullable"/>
+    </xs:complexType>
+
+    <xs:complexType name="ctCourse">
+        <xs:attribute name="MinHeight" type="stPositiveIntegerNullable"/>
+        <xs:attribute name="MaxHeight" type="stPositiveIntegerNullable"/>
+    </xs:complexType>
+
+    <xs:complexType name="ctOwnership">
+        <xs:sequence>
+            <xs:element name="Owner" type="ctOwner" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ctOwner">
+        <xs:attribute name="FamilyName" type="xs:string"/>
+        <xs:attribute name="FirstName" type="xs:string"/>
+        <xs:attribute name="CorporationName" type="xs:string"/>
+        <xs:attribute name="FEIID" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:simpleType name="stPositiveDecimal2SepNullable">
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="[0-9]{1,3}(,[0-9]{3})*(\.[0-9]{0,2})"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="0" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+    <xs:simpleType name="stPositiveIntegerNullable">
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:positiveInteger">
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="0" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+
+    <xs:simpleType name="stDateNullable">
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:date">
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="0" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="stDateTimeNullable">
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:dateTime">
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="0" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+
+    <xs:simpleType name="stDateTimeSpecialNullable">
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="0" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+
+    <xs:simpleType name="stDateTimeSpecialGenerated">
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:dateTime">
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]T[0-9][0-9]:[0-9][0-9]:[0-9][0-9]\+0000"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+</xs:schema>
