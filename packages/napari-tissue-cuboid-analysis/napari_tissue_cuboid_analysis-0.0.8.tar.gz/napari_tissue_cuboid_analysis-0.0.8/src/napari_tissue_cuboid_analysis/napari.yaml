@@ -1,0 +1,14 @@
+name: napari-tissue-cuboid-analysis
+display_name: Tissue Cuboid Analysis
+# use 'hidden' to remove plugin from napari hub search results
+visibility: public
+# see https://napari.org/stable/plugins/technical_references/manifest.html#fields for valid categories
+categories: ["Annotation", "Segmentation", "Acquisition"]
+contributions:
+  commands:
+    - id: napari-tissue-cuboid-analysis.make_qwidget
+      python_name: napari_tissue_cuboid_analysis._widget:TissueCuboidAnalysisQWidget
+      title: Make  Tissue Cuboid Analysis QWidget
+  widgets:
+    - command: napari-tissue-cuboid-analysis.make_qwidget
+      display_name: Tissue Cuboid Analysis
