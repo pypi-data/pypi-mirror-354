@@ -1,0 +1,345 @@
+# Apple Container Python SDK
+
+A Python SDK for interacting with Apple Container via XPC communication. Provides a Docker-like API for container management on macOS.
+
+This implementation is based on the official **Apple Container Swift codebase**:
+🔗 **https://github.com/apple/container**
+
+> **Status**: This is a community implementation that closely follows Apple Container's official Swift implementation patterns and XPC protocols.
+
+> ⚠️ **Development Notice**: This SDK is currently in active development and is **not ready for production use**. The implementation is being built to match Apple Container's Swift codebase but requires extensive testing and validation. Use at your own risk for development and testing purposes only.
+
+## Features
+
+- **🚀 Apple Container Compatible**: Built from official Apple Container Swift code patterns
+- **⚡ Async/Await Support**: Full async API using modern Python patterns
+- **🔌 XPC Communication**: Direct communication with Apple Container daemon via XPC
+- **🐳 Docker-like API**: Familiar interface for Docker users transitioning to Apple Container
+- **🛡️ Type Safety**: Full type hints and Pydantic models based on Apple's Swift models
+- **🍎 macOS Native**: Built specifically for Apple Container on macOS
+
+## Installation
+
+```bash
+pip install apple-container
+```
+
+### Requirements
+
+- **macOS 15.0+** (macOS Sequoia)
+- **Apple Silicon** (M1/M2/M3/M4) or Intel Mac
+- **Python 3.9+**
+- **Apple Container** installed and daemon running
+- **PyObjC** (automatically installed) for XPC communication
+
+## Quick Start
+
+```python
+import asyncio
+from apple_container import AppleContainerClient, ContainerConfiguration
+
+async def main():
+    client = AppleContainerClient()
+
+    # Check if Apple Container daemon is running
+    if await client.ping():
+        print("✅ Apple Container daemon is running")
+
+        # List containers
+        containers = await client.list_containers()
+        print(f"📦 Found {len(containers)} containers")
+
+        # Create and run a container
+        config = ContainerConfiguration(
+            id="",  # Auto-generated
+            image="alpine:latest"
+        )
+        container = await client.create_container(config)
+        print(f"🔨 Created container: {container.id}")
+
+        # Execute command in container (like docker exec)
+        exit_code, output = await client.exec_run(
+            container.id,
+            ["echo", "Hello from Apple Container!"]
+        )
+        print(f"💬 Command output: {output}")
+
+        # Get container logs
+        logs = await client.get_container_logs(container.id)
+        if logs.stdout:
+            print(f"📄 Container logs: {logs.stdout}")
+
+        # Clean up
+        await client.remove_container(container.id)
+        print("🗑️ Container removed")
+    else:
+        print("❌ Apple Container daemon is not running")
+
+asyncio.run(main())
+```
+
+## API Reference
+
+### Client
+
+```python
+from apple_container import AppleContainerClient
+
+client = AppleContainerClient(timeout=30.0)
+```
+
+### Container Operations
+
+```python
+# List containers
+containers = await client.list_containers(all=False)
+
+# Get container by ID/name
+container = await client.get_container("container_id")
+
+# Create container
+config = ContainerConfiguration(id="", image="alpine:latest")
+container = await client.create_container(config)
+
+# Container lifecycle (Note: Apple Container auto-starts on create)
+await client.stop_container("container_id")  # Uses deleteContainer
+await client.restart_container("container_id")  # Delete + create
+await client.remove_container("container_id", force=False)
+
+# Container execution (NEW!)
+exit_code, output = await client.exec_run("container_id", ["ls", "-la"])
+result = await client.exec_container(
+    "container_id",
+    command=["bash", "-c", "echo hello"],
+    working_dir="/app",
+    environment={"VAR": "value"},
+    user="root",
+    tty=True,
+    interactive=True
+)
+
+# Container info
+logs = await client.get_container_logs("container_id", follow=False, tail=100)
+stats = await client.get_container_stats("container_id")  # Simulated for now
+```
+
+### Network Operations
+
+```python
+# List networks
+networks = await client.list_networks()  # Returns NetworkState objects
+
+# Get network by ID/name
+network = await client.get_network("network_id")
+
+# Create network
+config = NetworkConfiguration(id="", mode="nat")  # Apple Container uses NAT mode
+network = await client.create_network(config)
+
+# Remove network
+await client.remove_network("network_id")
+```
+
+### Plugin Operations (Apple Container Specific)
+
+```python
+# List available plugins
+plugins = await client.list_plugins()
+
+# Get plugin info
+plugin = await client.get_plugin("plugin_name")
+
+# Plugin management
+await client.load_plugin("plugin_name")
+await client.unload_plugin("plugin_name")
+await client.restart_plugin("plugin_name")
+```
+
+### Kernel Operations (Apple Container Specific)
+
+```python
+# Install kernel
+await client.install_kernel("/path/to/kernel")
+
+# Get default kernel info
+kernel_info = await client.get_default_kernel()
+```
+
+### System Operations
+
+```python
+# Check daemon status
+is_running = await client.ping()
+```
+
+### Convenience Functions
+
+```python
+from apple_container import ping, list_containers, run_container, exec_container, exec_run
+
+# Quick operations
+is_running = await ping()
+containers = await list_containers(all=True)
+container = await run_container("alpine:latest")
+
+# Quick exec
+exit_code, output = await exec_run("container_id", ["ps", "aux"])
+result = await exec_container("container_id", ["echo", "hello"])
+```
+
+## Error Handling
+
+```python
+from apple_container import (
+    AppleContainerError,
+    AppleContainerNotFoundError,
+    AppleContainerXPCError,
+    AppleContainerPlatformError
+)
+
+try:
+    container = await client.get_container("nonexistent")
+except AppleContainerNotFoundError:
+    print("Container not found")
+except AppleContainerXPCError as e:
+    print(f"XPC Communication error: {e}")
+except AppleContainerError as e:
+    print(f"General error: {e}")
+```
+
+## Models
+
+The SDK uses Pydantic models that mirror Apple Container's Swift models:
+
+### Container Models
+- `Container`: Container information and state
+- `ContainerConfiguration`: Configuration for creating containers (maps to Swift `ContainerConfiguration`)
+- `ContainerState`: Container runtime state
+- `ProcessConfiguration`: Process configuration
+- `ProcessExecConfiguration`: Process execution configuration for `exec` operations
+- `ContainerLogs`: Container log output
+- `ContainerStats`: Container resource usage statistics
+
+### Network Models
+- `NetworkConfiguration`: Network configuration (maps to Swift `NetworkConfiguration`)
+- `NetworkState`: Network runtime state (maps to Swift `NetworkState`)
+- `NetworkMode`: Network mode enum (currently only "nat")
+- `NetworkStatus`: Network status information
+
+### Image Models
+- `ImageDescription`: Image information (maps to Swift `ImageDescription`)
+- `Image`: Extended image model with metadata
+
+## Reference Mappings
+
+Our Python implementation closely follows Apple Container's Swift codebase:
+
+| **Python Module** | **Swift Equivalent** | **GitHub Link** |
+|------------------|---------------------|-----------------|
+| `AppleContainerClient` | `ClientContainer` | [View →](https://github.com/apple/container/blob/main/Sources/ContainerClient/Core/ClientContainer.swift) |
+| `exec_container()` | `createProcess()` | [View →](https://github.com/apple/container/blob/main/Sources/ContainerClient/Core/ClientContainer.swift#L186) |
+| `XPCClient` | `XPCClient` | [View →](https://github.com/apple/container/blob/main/Sources/ContainerClient/XPCClient.swift) |
+| `ContainerConfiguration` | `ContainerConfiguration` | [View →](https://github.com/apple/container/blob/main/Sources/ContainerClient/Core/ContainerConfiguration.swift) |
+| `NetworkConfiguration` | `NetworkConfiguration` | [View →](https://github.com/apple/container/blob/main/Sources/Services/ContainerNetworkService/NetworkConfiguration.swift) |
+
+## Examples
+
+### Basic Container Management
+
+```python
+import asyncio
+from apple_container import AppleContainerClient, ContainerConfiguration
+
+async def basic_example():
+    client = AppleContainerClient()
+
+    # Create container
+    config = ContainerConfiguration(
+        id="",
+        image="alpine:latest"
+    )
+    container = await client.create_container(config)
+
+    # Execute commands
+    exit_code, output = await client.exec_run(container.id, ["whoami"])
+    print(f"Running as: {output.strip()}")
+
+    # Interactive shell (TTY)
+    result = await client.exec_container(
+        container.id,
+        ["/bin/sh"],
+        tty=True,
+        interactive=True
+    )
+
+    await client.remove_container(container.id)
+
+asyncio.run(basic_example())
+```
+
+### Network Management
+
+```python
+import asyncio
+from apple_container import AppleContainerClient, NetworkConfiguration
+
+async def network_example():
+    client = AppleContainerClient()
+
+    # Create custom network
+    network_config = NetworkConfiguration(
+        id="my-network",
+        mode="nat"  # Apple Container uses NAT mode
+    )
+    network = await client.create_network(network_config)
+
+    # List all networks
+    networks = await client.list_networks()
+    for net in networks:
+        print(f"Network: {net.id}, Mode: {net.mode}")
+
+    await client.remove_network(network.id)
+
+asyncio.run(network_example())
+```
+
+## XPC Communication
+
+This SDK communicates directly with the Apple Container daemon via XPC (Cross-Process Communication), following the exact same patterns as Apple's Swift implementation:
+
+- **🔗 Native Integration**: Direct communication with Apple Container daemon
+- **🛡️ Security**: Leverages macOS security model and Apple Container's XPC service
+- **⚡ Performance**: Efficient binary protocol matching Apple's implementation
+- **🔄 Reliability**: Built-in error handling and reconnection logic
+- **📋 Protocol Compatibility**: Uses the same XPC routes and message formats as Apple Container
+
+### XPC Service Details
+- **Service Name**: `com.apple.container.apiserver`
+- **Routes**: Based on Apple Container's XPCRoute enum
+- **Message Format**: JSON over XPC matching Apple's XPCMessage structure
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Compare with Apple Container Swift code for accuracy
+4. Commit your changes (`git commit -m 'Add some amazing feature'`)
+5. Push to the branch (`git push origin feature/amazing-feature`)
+6. Open a Pull Request
+
+### Development Guidelines
+
+- Always reference corresponding Swift code in Apple Container repository
+- Maintain API compatibility with Apple Container patterns
+- Include type hints and comprehensive documentation
+- Test against actual Apple Container daemon when possible
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- **Apple Container Team**: For the excellent Swift implementation this SDK is based on
+- **Apple**: For XPC and the underlying container infrastructure
+- **Python Community**: For the async/await patterns and typing system
