@@ -1,0 +1,24 @@
+[build-system]
+requires = ['hatchling']
+build-backend = "hatchling.build"
+
+[project]
+name = "dynamic_forest"
+version = "1.0.1"
+authors = [
+    { name="Peter Macgregor", email="prm4@st-andrews.ac.uk" },
+]
+description = "A dynamic forest data structure."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+]
+
+[project.urls]
+Homepage = "https://github.com/pmacg/dynamic-forest"
+Issues = "https://github.com/pmacg/dynamic-forest/issues"
