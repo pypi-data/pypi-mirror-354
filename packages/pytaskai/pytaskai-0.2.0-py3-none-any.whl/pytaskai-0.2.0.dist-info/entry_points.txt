@@ -1,0 +1,4 @@
+[console_scripts]
+pytaskai = pytaskai_cli:main
+pytaskai-minimal = pytaskai_minimal:main
+pytaskai-setup = setup_cli:main
