@@ -1,0 +1,15 @@
+include README.rst
+include LICENSE.txt
+include CHANGELOG.md
+include pyproject.toml
+include setup.py
+recursive-include drf_keycloak *.py
+prune tests
+prune test_project  
+prune venv
+prune dist
+prune build
+prune .git
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude .DS_Store
