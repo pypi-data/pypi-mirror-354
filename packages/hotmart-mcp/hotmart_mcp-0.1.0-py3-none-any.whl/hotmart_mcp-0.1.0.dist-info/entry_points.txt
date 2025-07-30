@@ -1,0 +1,3 @@
+[console_scripts]
+hotmart-mcp = src.hotmart_mcp:main
+hotmart-mcp-test = src.tests.run_tests:main
