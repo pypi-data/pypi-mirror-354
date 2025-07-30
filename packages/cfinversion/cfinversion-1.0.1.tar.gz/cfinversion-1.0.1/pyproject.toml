@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "cfinversion"
+version = "1.0.1"
+description = "A package for characteristic functions inversion."
+authors = [
+    "Liliia Imamutdinova",
+    "Mikhail Mikhailov"
+]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/PySATL/pysatl-cfinversion"
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+numpy = ">=2.2.0"
+scipy = ">=1.15.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.9.6"
+pytest = "^8.3.4"
+mypy = "^1.15.0"
+scipy-stubs = "^1.15.2.2"
+finufft = "^2.3.1"
+
+
+
+[tool.poetry.group.notebooks.dependencies]
+matplotlib = ">=3.9.3"
+notebook = "^7.4.1"
+tol-colors = "^1.4.0"
+pandas = "^2.2.3"
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "W"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-v"
+testpaths = [
+    "tests",
+]
+
