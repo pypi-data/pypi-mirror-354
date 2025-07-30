@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: pyhyypapihawkmod
+Version: 1.5.2b2
+Summary: IDS Hyyp/ADT Secure Home API
+Home-page: https://github.com/hawky358/pyHyypApi
+Author: hawky358
+Author-email: hawky358@users.github.com
+License: Apache Software License 2.0
+Requires-Python: >=3.6
+License-File: LICENSE.md
+Requires-Dist: requests
+Requires-Dist: pandas
+Requires-Dist: oscrypto
+Requires-Dist: http-ece
+Requires-Dist: firebase_messaging==0.4.5
+Requires-Dist: appdirs
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+API for accessing IDS Hyyp. This is used by ADT Home Connect and possibly others.
