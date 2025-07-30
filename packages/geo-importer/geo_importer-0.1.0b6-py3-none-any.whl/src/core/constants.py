@@ -1,0 +1,23 @@
+# When a user clicks on a column in the GeoData or CSV filtering dialogs,
+# up to this many unique values will be listed for selection.
+MAX_UNIQUE_VALUES = 100
+
+# Duration (in milliseconds) that a normal status message is shown.
+STATUS_DURATION = 3000
+
+# Duration (in milliseconds) that an error message is shown.
+ERROR_DURATION = 5000
+
+# Number of bytes to read from the start of a CSV file in order to detect
+# the delimiter character.
+SAMPLE_SIZE = 4096
+
+
+EQUAL = " == "
+NOT_EQUAL = " != "
+LESS_THAN = " < "
+GREATER_THAN = " > "
+LOGICAL_AND = " and "
+LOGICAL_OR = " or "
+LIKE_OPERATOR = " like "
+IN_OPERATOR = " in "
