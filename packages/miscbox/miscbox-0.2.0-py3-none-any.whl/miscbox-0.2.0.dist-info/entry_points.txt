@@ -1,0 +1,16 @@
+[console_scripts]
+deb-extract = miscbox.deb_extract:main
+dir-archive = miscbox.dir_archive:main
+enc-recover = miscbox.enc_recover:main
+merge-ip-ranges = miscbox.merge_ip_ranges:main
+mobi-archive = miscbox.mobi_archive:main
+net-stats = miscbox.net_stats:main
+punc-conv = miscbox.punc_conv:main
+rename-with-date = miscbox.rename_with_date:main
+rotate-images = miscbox.rotate_images:main
+shasum-list = miscbox.shasum_list:main
+sort-keys = miscbox.sort_keys:main
+urlencode = miscbox.urlencode:main
+
+[gui_scripts]
+
