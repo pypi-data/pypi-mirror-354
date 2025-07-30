@@ -1,0 +1,11 @@
+climage>=0.2.2
+numpy<=2.2.6
+requests>=2.32.3
+rich>=14.0.0
+setuptools<81.0.0
+shazamio>=0.8.0
+soundcard>=0.4.4
+soundfile>=0.13.1
+
+[api]
+fastapi>=0.115.12
