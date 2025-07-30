@@ -1,0 +1,127 @@
+Metadata-Version: 2.4
+Name: vinews
+Version: 0.1.0
+Summary: Vinews is an open-source library which provides modules for searching and scraping news data from Vietnamese news websites.
+Home-page: https://github.com/JustKiet/vinews
+Author: Kiet Do
+Author-email: kietdohuu@gmail.com
+License: MIT
+Project-URL: Bug Reports, https://github.com/JustKiet/vinews/issues
+Project-URL: Source, https://github.com/JustKiet/vinews
+Project-URL: Documentation, https://github.com/JustKiet/vinews#readme
+Keywords: news,scraping,vietnamese,vietnam,web scraping,news scraping
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.14
+Classifier: Programming Language :: Python :: 3.15
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: annotated-types==0.7.0
+Requires-Dist: anyio==4.9.0
+Requires-Dist: beautifulsoup4==4.13.4
+Requires-Dist: certifi==2025.4.26
+Requires-Dist: h11==0.16.0
+Requires-Dist: httpcore==1.0.9
+Requires-Dist: httpx==0.28.1
+Requires-Dist: idna==3.10
+Requires-Dist: markdownify==1.1.0
+Requires-Dist: pydantic==2.11.5
+Requires-Dist: pydantic-core==2.33.2
+Requires-Dist: six==1.17.0
+Requires-Dist: sniffio==1.3.1
+Requires-Dist: soupsieve==2.7
+Requires-Dist: tenacity==9.1.2
+Requires-Dist: typing-extensions==4.14.0
+Requires-Dist: typing-inspection==0.4.1
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# VINEWS
+
+An open-source library dedicated to searching and scraping Vietnamese news websites with the goal of providing tools and enhancing AI agents news searching capabilities.
+
+**Note**: This library is still under active development. Expect bugs and incomplete features. Contributions are welcome and appreciated!
+
+## Disclaimer & Terms of Use ‼️
+
+This library is provided for **educational and research purposes only**. You are solely responsible for how you use it. Before scraping any website, you must ensure that your actions comply with all applicable laws and the website’s own policies — including their **Terms of Service** and `robots.txt` directives. Many websites explicitly prohibit automated access. The authors and contributors are not responsible for any misuse or legal issues arising from the use of this tool. Always scrape ethically, respectfully, and within legal boundaries.
+
+## Responsible Scraping ‼️
+
+Please be respectful of the websites you interact with. Always use appropriate rate limiting and avoid sending excessive requests. Scraping should never disrupt or degrade the performance of a website. Generating unreasonable traffic may not only lead to IP bans but could also violate legal or ethical standards. Respect the site's resources, policies, and the efforts of its creators.
+
+## Supported Websites
+
+- **VnExpress**
+
+## Installation
+
+```bash
+pip install -i https://test.pypi.org/simple \
+            --extra-index-url https://pypi.org/simple \
+            vinews==0.1.0.dev1
+```
+
+## Quick Start
+
+```python
+from vinews.modules.vnexpress.search import VinewsVnExpressSearch
+import asyncio
+import json
+
+search_engine = VinewsVnExpressSearch()
+query = "Bitcoin"
+    
+# Test synchronous search
+results = search_engine.search(query=query, date_range="day", category="kinhdoanh", limit=5, advanced=True)
+print(results)
+
+homepage = search_engine.search_homepage()
+print(homepage)    
+
+# Test asynchronous search
+async def async_test():
+    async_results = await search_engine.async_search(query=query, date_range="day", category="kinhdoanh", limit=5, advanced=True)
+    
+    async_homepage = await search_engine.async_search_homepage()
+
+    # Optional saving
+    with open("tests/output/vnexpress_search.json", "w", encoding="utf-8") as f:
+        json.dump(async_results.model_dump(), f, indent=2, ensure_ascii=False)
+    
+    with open("tests/output/vnexpress_homepage.json", "w", encoding="utf-8") as f:
+        json.dump(async_homepage.model_dump(), f, indent=2, ensure_ascii=False)
+    
+    asyncio.run(async_test())
+
+if __name__ == "__main__":
+    async_test()
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT - see the `LICENSE` file for details.
