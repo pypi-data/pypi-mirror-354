@@ -1,0 +1,57 @@
+[awx_plugins.credentials]
+aim = awx_plugins.credentials.aim:aim_plugin
+aws_secretsmanager_credential = awx_plugins.credentials.aws_secretsmanager:aws_secretmanager_plugin
+azure_kv = awx_plugins.credentials.azure_kv:azure_keyvault_plugin
+centrify_vault_kv = awx_plugins.credentials.centrify_vault:centrify_plugin
+conjur = awx_plugins.credentials.conjur:conjur_plugin
+github_app_lookup = awx_plugins.credentials.github_app:github_app_lookup
+hashivault_kv = awx_plugins.credentials.hashivault:hashivault_kv_plugin
+hashivault_ssh = awx_plugins.credentials.hashivault:hashivault_ssh_plugin
+thycotic_dsv = awx_plugins.credentials.dsv:dsv_plugin
+thycotic_tss = awx_plugins.credentials.tss:tss_plugin
+
+[awx_plugins.inventory]
+azure_rm = awx_plugins.inventory.plugins:azure_rm
+constructed = awx_plugins.inventory.plugins:constructed
+controller = awx_plugins.inventory.plugins:controller
+ec2 = awx_plugins.inventory.plugins:ec2
+gce = awx_plugins.inventory.plugins:gce
+insights = awx_plugins.inventory.plugins:insights
+openshift_virtualization = awx_plugins.inventory.plugins:openshift_virtualization
+openstack = awx_plugins.inventory.plugins:openstack
+rhv = awx_plugins.inventory.plugins:rhv
+satellite6 = awx_plugins.inventory.plugins:satellite6
+terraform = awx_plugins.inventory.plugins:terraform
+vmware = awx_plugins.inventory.plugins:vmware
+
+[awx_plugins.inventory.supported]
+controller = awx_plugins.inventory.plugins:controller_supported
+insights = awx_plugins.inventory.plugins:insights_supported
+openshift_virtualization = awx_plugins.inventory.plugins:openshift_virtualization_supported
+rhv = awx_plugins.inventory.plugins:rhv_supported
+satellite6 = awx_plugins.inventory.plugins:satellite6_supported
+
+[awx_plugins.managed_credentials]
+controller = awx_plugins.credentials.plugins:controller
+galaxy_api_token = awx_plugins.credentials.plugins:galaxy_api_token
+kubernetes_bearer_token = awx_plugins.credentials.plugins:kubernetes_bearer_token
+net = awx_plugins.credentials.plugins:net
+registry = awx_plugins.credentials.plugins:registry
+scm = awx_plugins.credentials.plugins:scm
+ssh = awx_plugins.credentials.plugins:ssh
+vault = awx_plugins.credentials.plugins:vault
+
+[awx_plugins.managed_credentials.supported]
+aws = awx_plugins.credentials.plugins:aws
+azure_rm = awx_plugins.credentials.plugins:azure_rm
+bitbucket_dc_token = awx_plugins.credentials.plugins:bitbucket_dc_token
+gce = awx_plugins.credentials.plugins:gce
+github_token = awx_plugins.credentials.plugins:github_token
+gitlab_token = awx_plugins.credentials.plugins:gitlab_token
+gpg_public_key = awx_plugins.credentials.plugins:gpg_public_key
+insights = awx_plugins.credentials.plugins:insights
+openstack = awx_plugins.credentials.plugins:openstack
+rhv = awx_plugins.credentials.plugins:rhv
+satellite6 = awx_plugins.credentials.plugins:satellite6
+terraform = awx_plugins.credentials.plugins:terraform
+vmware = awx_plugins.credentials.plugins:vmware
