@@ -1,0 +1,475 @@
+/* Import Gradio Themer Styles */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+/* Import CSS framework via CDN - more reliable for component development */
+@import url("https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.css");
+
+/* Import Tailwind base */
+@import url("https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/base.min.css");
+
+/* Component specific styles */
+.gradio-component {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100vh;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Set Inter as default font family */
+body,
+html {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Remove any conflicting background styles from Gradio */
+.gradio-component * {
+  box-sizing: border-box;
+}
+
+/* Ensure proper theme inheritance */
+[data-theme] {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Global theme application - Force background change across entire UI */
+html[data-theme],
+body[data-theme],
+.gradio-container[data-theme],
+.app[data-theme],
+#root[data-theme],
+.gradio-app,
+.gradio-interface,
+main {
+  background-color: hsl(var(--b1)) !important;
+  color: hsl(var(--bc)) !important;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Force background on all major containers */
+.gradio-container,
+.gradio-app,
+.gradio-interface,
+main,
+#root {
+  background-color: hsl(var(--b1)) !important;
+}
+
+/* Ensure Gradio components inherit theme */
+.gradio-container * {
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Fix for proper CSS framework color inheritance */
+.gradio-component .input,
+.gradio-component .textarea,
+.gradio-component .select {
+  color: inherit !important;
+  background-color: inherit !important;
+}
+
+/* Ensure buttons work properly */
+.gradio-component .btn {
+  border: none !important;
+  outline: none !important;
+}
+
+/* Color picker styles with improved selection indicators */
+.color-picker {
+  width: 40px;
+  height: 40px;
+  border-radius: 0.5rem;
+  border: 2px solid hsl(var(--bc) / 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.color-picker:hover {
+  border-color: hsl(var(--bc) / 0.5);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced color picker selection with ring */
+.color-picker.ring-4 {
+  box-shadow: 0 0 0 4px hsl(var(--p)), 0 0 0 6px rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+}
+
+/* Theme grid styles with better spacing */
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+/* Compact theme grid for new layout */
+.theme-grid-compact {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.75rem;
+  padding: 0.5rem;
+}
+
+/* Enhanced theme card styles */
+.theme-card {
+  border-radius: 1rem;
+  padding: 0;
+  margin: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Compact theme card styles */
+.theme-card-compact {
+  border-radius: 0.75rem;
+  padding: 0;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+}
+
+/* Enhanced button hover effects for theme selector */
+.btn:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Better spacing for theme selector buttons */
+.theme-selector-buttons .btn {
+  margin: 2px;
+  min-width: 60px;
+}
+
+/* Responsive theme button layout */
+@media (max-width: 640px) {
+  .theme-selector-buttons .btn {
+    margin: 1px;
+    min-width: 50px;
+    font-size: 0.625rem;
+  }
+}
+
+.theme-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.theme-card-compact:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Selected theme card highlighting */
+.theme-card.border-primary {
+  box-shadow: 0 0 0 3px hsl(var(--p) / 0.3), 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.theme-card.scale-105 {
+  transform: scale(1.02) translateY(-2px);
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: color 0.2s ease, background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Ensure proper text contrast */
+.gradio-component {
+  color: hsl(var(--bc));
+  background-color: hsl(var(--b1));
+}
+
+/* Ensure proper box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Ensure DaisyUI theme variables are respected */
+[data-theme] {
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* Fix any potential text contrast issues */
+.textarea,
+.input,
+.select {
+  background-color: hsl(var(--b1)) !important;
+  color: hsl(var(--bc)) !important;
+  border-color: hsl(var(--b3)) !important;
+}
+
+.textarea::placeholder,
+.input::placeholder {
+  color: hsl(var(--bc) / 0.6) !important;
+}
+
+/* Ensure proper theming for cards and components */
+.card {
+  background-color: hsl(var(--b2));
+  color: hsl(var(--bc));
+}
+
+/* Input and form element styles */
+input,
+textarea,
+select {
+  color: #1f2937 !important;
+  background-color: #ffffff !important;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  font-family: inherit;
+}
+
+input::placeholder,
+textarea::placeholder,
+select::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Dark mode styles */
+.dark input,
+.dark textarea,
+.dark select {
+  color: #f9fafb !important;
+  background-color: #374151 !important;
+  border-color: #4b5563;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder,
+.dark select::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Button styles */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Ensure text visibility */
+.gradio-component {
+  color: inherit !important;
+}
+
+.gradio-component * {
+  color: inherit !important;
+}
+
+/* Fix textarea text visibility */
+.textarea {
+  color: #1f2937 !important;
+  background-color: #ffffff !important;
+}
+
+.textarea::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Ensure proper contrast for dark themes */
+.textarea:focus {
+  color: #1f2937 !important;
+  background-color: #ffffff !important;
+}
+
+/* Fix button visibility */
+.btn {
+  color: inherit !important;
+}
+
+/* Ensure card text is visible */
+.card {
+  color: inherit !important;
+}
+
+.card-title {
+  color: inherit !important;
+}
+
+/* Override any conflicting styles */
+input,
+select,
+textarea {
+  color: #1f2937 !important;
+  background-color: #ffffff !important;
+}
+
+input::placeholder,
+select::placeholder,
+textarea::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Enhanced tab styling */
+.tabs .tab {
+  transition: all 0.2s ease;
+}
+
+.tabs .tab-active {
+  font-weight: 600;
+}
+
+/* Sticky header improvements */
+.sticky {
+  backdrop-filter: blur(10px);
+}
+
+/* Improved badge styling */
+.badge {
+  font-weight: 500;
+}
+
+/* Font family utility classes */
+.font-inter {
+  font-family: "Inter", sans-serif;
+}
+
+/* Enhanced form control styling */
+.form-control .select {
+  font-weight: 500;
+}
+
+/* Step component styling improvements */
+.steps .step {
+  transition: all 0.3s ease;
+}
+
+.steps .step-primary {
+  color: hsl(var(--pc));
+}
+
+/* Card hover effects */
+.card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+/* Improved mockup code styling */
+.mockup-code {
+  border-radius: 0.75rem;
+}
+
+.mockup-code pre {
+  font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+}
+
+/* Table styling improvements */
+.table {
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+/* Link button improvements */
+.btn:hover {
+  transform: translateY(-1px);
+  transition: transform 0.2s ease;
+}
+
+/* Progress bar styling */
+.progress {
+  border-radius: 9999px;
+  height: 0.75rem;
+}
+
+/* Alert styling improvements */
+.alert {
+  border-radius: 0.75rem;
+  font-weight: 500;
+}
+
+/* Stats component improvements */
+.stats {
+  border-radius: 1rem;
+}
+
+.stat-title {
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.stat-value {
+  font-weight: 700;
+}
+
+/* Checkbox and input improvements */
+.checkbox {
+  border-radius: 0.375rem;
+}
+
+/* Responsive typography improvements */
+@media (max-width: 768px) {
+  .theme-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+
+  .theme-card {
+    margin: 0.25rem;
+    min-height: 100px;
+  }
+}
+
+/* Animation for theme selection */
+@keyframes theme-select {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1.02);
+  }
+}
+
+.theme-card.border-primary {
+  animation: theme-select 0.3s ease-out;
+}
+
+/* Loading states and transitions */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Scroll behavior improvements */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus states */
+.theme-card:focus {
+  outline: 2px solid hsl(var(--p));
+  outline-offset: 2px;
+}
+
+.color-picker:focus {
+  outline: 2px solid hsl(var(--p));
+  outline-offset: 2px;
+}

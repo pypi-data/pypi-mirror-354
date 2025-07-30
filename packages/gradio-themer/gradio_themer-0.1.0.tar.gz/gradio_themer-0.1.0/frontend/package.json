@@ -1,0 +1,44 @@
+{
+  "name": "gradio_themer",
+  "version": "0.1.0",
+  "description": "User-configurable themes for Gradio applications",
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "private": false,
+  "main_changeset": true,
+  "exports": {
+    ".": {
+      "gradio": "./Index.svelte",
+      "svelte": "./dist/Index.svelte",
+      "types": "./dist/Index.svelte.d.ts"
+    },
+    "./example": {
+      "gradio": "./Example.svelte",
+      "svelte": "./dist/Example.svelte",
+      "types": "./dist/Example.svelte.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "@gradio/atoms": "0.16.1",
+    "@gradio/statustracker": "0.10.12",
+    "@gradio/utils": "0.10.2",
+    "@zerodevx/svelte-json-view": "^1.0.7",
+    "daisyui": "^4.12.10",
+    "tailwindcss": "^3.4.4",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.4"
+  },
+  "devDependencies": {
+    "@gradio/preview": "0.13.1"
+  },
+  "peerDependencies": {
+    "svelte": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gradio-app/gradio.git",
+    "directory": "js/fallback"
+  }
+}

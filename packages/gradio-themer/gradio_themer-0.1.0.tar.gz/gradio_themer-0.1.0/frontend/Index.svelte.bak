@@ -1,0 +1,1755 @@
+<script lang="ts">
+  import { createEventDispatcher, onMount } from "svelte";
+  import "./styles.css";
+
+  // Gradio-specific props (const to avoid unused export warnings)
+  export const elem_id = "";
+  export const elem_classes: string[] = [];
+  export let visible = true;
+  export let value: any = null;
+  export let gradio: any = undefined;
+
+  const dispatch = createEventDispatcher();
+
+  // Phase 2: Dynamic themes - the daisyUIThemes array is removed
+  // Themes are now loaded dynamically from backend via value.available_themes
+
+  // Font options for the font selector
+  const fontOptions = [
+    { name: "Inter", family: "Inter, sans-serif" },
+    {
+      name: "System",
+      family:
+        "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    },
+    { name: "Roboto", family: "Roboto, sans-serif" },
+    { name: "Open Sans", family: "'Open Sans', sans-serif" },
+    { name: "Lato", family: "Lato, sans-serif" },
+    { name: "Poppins", family: "Poppins, sans-serif" },
+    { name: "Montserrat", family: "Montserrat, sans-serif" },
+    { name: "Source Sans Pro", family: "'Source Sans Pro', sans-serif" },
+    { name: "Ubuntu", family: "Ubuntu, sans-serif" },
+    { name: "Nunito", family: "Nunito, sans-serif" },
+  ];
+
+  // Color definitions for theme building
+  const colorOptions = {
+    base: [
+      "#ffffff",
+      "#f7f7f7",
+      "#e5e7eb",
+      "#d1d5db",
+      "#9ca3af",
+      "#374151",
+      "#1f2937",
+      "#111827",
+    ],
+    primary: [
+      "#3b82f6",
+      "#06b6d4",
+      "#10b981",
+      "#f59e0b",
+      "#ef4444",
+      "#8b5cf6",
+      "#ec4899",
+      "#6366f1",
+    ],
+    secondary: [
+      "#64748b",
+      "#475569",
+      "#334155",
+      "#1e293b",
+      "#0f172a",
+      "#7c3aed",
+      "#c026d3",
+      "#db2777",
+    ],
+    accent: [
+      "#f97316",
+      "#eab308",
+      "#84cc16",
+      "#22c55e",
+      "#06b6d4",
+      "#3b82f6",
+      "#8b5cf6",
+      "#ec4899",
+    ],
+    neutral: [
+      "#374151",
+      "#4b5563",
+      "#6b7280",
+      "#9ca3af",
+      "#d1d5db",
+      "#f3f4f6",
+      "#f9fafb",
+      "#ffffff",
+    ],
+    info: [
+      "#0ea5e9",
+      "#0284c7",
+      "#0369a1",
+      "#075985",
+      "#0c4a6e",
+      "#082f49",
+      "#164e63",
+      "#155e75",
+    ],
+    success: [
+      "#22c55e",
+      "#16a34a",
+      "#15803d",
+      "#166534",
+      "#14532d",
+      "#052e16",
+      "#064e3b",
+      "#065f46",
+    ],
+    warning: [
+      "#f59e0b",
+      "#d97706",
+      "#b45309",
+      "#92400e",
+      "#78350f",
+      "#451a03",
+      "#365314",
+      "#1a2e05",
+    ],
+    error: [
+      "#ef4444",
+      "#dc2626",
+      "#b91c1c",
+      "#991b1b",
+      "#7f1d1d",
+      "#450a0a",
+      "#7c2d12",
+      "#a16207",
+    ],
+  };
+
+  // State
+  let currentTheme = "light";
+  let selectedFont = "Inter";
+  let customTheme = {
+    name: "custom",
+    base: "#ffffff",
+    primary: "#3b82f6",
+    secondary: "#64748b",
+    accent: "#f97316",
+    neutral: "#374151",
+    info: "#0ea5e9",
+    success: "#22c55e",
+    warning: "#f59e0b",
+    error: "#ef4444",
+  };
+
+  let generatedCSS = "";
+  let copySuccess = false;
+  let activeTab = "themes"; // "themes", "description", or "installation"
+  let customThemeCSS = ""; // For custom CSS input
+
+  // Phase 2: Dynamic theme loading from backend
+  let themeColors = {}; // Will be populated from backend
+  let availableThemes: string[] = []; // Available theme keys for UI
+  let initialThemeApplied = false; // Track if we've applied the initial theme
+
+  // Logging
+  function log(message: string, data?: any) {
+    console.log(`[DaisyUI Themer] ${message}`, data || "");
+    if (gradio) {
+      gradio.dispatch("log", { message, data });
+    }
+  }
+
+  // Phase 2: Dynamic theme loading - themes will be loaded from backend
+  // Remove hardcoded themeColors - now loaded from value.available_themes
+
+  // Reactive statement to load themes from backend
+  $: if (value) {
+    log("Value received from backend", value);
+    log("Available themes in value:", value?.available_themes);
+
+    if (value?.available_themes) {
+      themeColors = value.available_themes;
+      availableThemes = Object.keys(themeColors);
+      log("Loaded user themes", {
+        count: availableThemes.length,
+        themes: availableThemes,
+        themeColors: themeColors,
+      });
+
+      // Only apply initial theme once, don't override user selections
+      if (!initialThemeApplied) {
+        if (
+          value?.currentTheme &&
+          availableThemes.includes(value.currentTheme)
+        ) {
+          log("Applying initial theme from backend", value.currentTheme);
+          selectTheme(value.currentTheme);
+          initialThemeApplied = true;
+        } else if (
+          availableThemes.length > 0 &&
+          (!currentTheme || currentTheme === "light")
+        ) {
+          // Apply first available theme as default if no specific theme set
+          const defaultTheme = availableThemes[0];
+          log("Applying default theme from loaded themes", defaultTheme);
+          selectTheme(defaultTheme);
+          initialThemeApplied = true;
+        }
+      } else {
+        log("Initial theme already applied, not overriding user selection");
+      }
+    } else {
+      log("No available_themes in value object", {
+        value,
+        available_themes: value?.available_themes,
+        keys: Object.keys(value || {}),
+      });
+    }
+  }
+
+  function selectTheme(theme: string) {
+    log(`Switching to theme: ${theme}`);
+    currentTheme = theme;
+
+    // Check if we have user themes loaded and this theme exists
+    if (themeColors && themeColors[theme]) {
+      log(`Applying user theme: ${theme}`, themeColors[theme]);
+      applyThemeColors(themeColors[theme]);
+      return;
+    }
+
+    // Fallback to basic theme application for unknown themes
+    log(`Applying basic theme: ${theme} (no custom configuration found)`);
+    applyBasicTheme(theme);
+  }
+
+  function applyThemeColors(themeConfig: any) {
+    log(`Applying theme colors for: ${themeConfig.name}`);
+
+    // Remove existing custom theme
+    const existing = document.getElementById("daisyui-custom-theme");
+    if (existing) {
+      existing.remove();
+    }
+
+    // Build CSS variables from theme colors
+    let cssVars = ":root {\n";
+    for (const [key, value] of Object.entries(themeConfig.colors)) {
+      cssVars += `  --color-${key}: ${value};\n`;
+    }
+    cssVars += "}\n";
+
+    // Create comprehensive CSS with theme-specific background
+    const themeCSS =
+      cssVars +
+      `
+      /* ===== DYNAMIC THEME APPLICATION ===== */
+      
+      /* ULTRA HIGH SPECIFICITY - FORCE THEME BACKGROUND */
+      html body,
+      html body .gradio-container,
+      html body .gradio-container .app,
+      html body .gradio-container #root,
+      html body .gradio-app,
+      html body .gradio-interface,
+      html body main,
+      body,
+      html,
+      #root,
+      .gradio-container,
+      .app,
+      .gradio-app,
+      .gradio-interface,
+      main {
+        background: ${themeConfig.background} !important;
+        background-color: ${themeConfig.background} !important;
+        color: var(--color-base-content) !important;
+        font-family: var(--theme-font-family, Poppins), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+      }
+      
+      /* ULTRA HIGH SPECIFICITY TABS */
+      html body .gradio-container .gr-tab-nav,
+      html body .gradio-container [role="tablist"],
+      .gr-tab-nav,
+      [role="tablist"] {
+        background: var(--color-base-100) !important;
+        background-color: var(--color-base-100) !important;
+        border-radius: 12px !important;
+        padding: 0.5rem !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+        border: none !important;
+        margin-bottom: 0 !important;
+      }
+      
+      html body .gradio-container button[role="tab"],
+      html body button[role="tab"],
+      button[role="tab"] {
+        background: transparent !important;
+        background-color: transparent !important;
+        color: var(--color-base-content) !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 0.75rem 1.5rem !important;
+        margin: 0.25rem !important;
+        font-weight: 500 !important;
+        transition: all 0.2s ease !important;
+        opacity: 0.7 !important;
+      }
+      
+      html body .gradio-container button[role="tab"]:hover,
+      html body button[role="tab"]:hover,
+      button[role="tab"]:hover {
+        background: var(--color-base-200) !important;
+        background-color: var(--color-base-200) !important;
+        opacity: 1 !important;
+      }
+      
+      html body .gradio-container button[role="tab"][aria-selected="true"],
+      html body button[role="tab"][aria-selected="true"],
+      button[role="tab"][aria-selected="true"] {
+        background: var(--color-primary) !important;
+        background-color: var(--color-primary) !important;
+        color: var(--color-primary-content) !important;
+        opacity: 1 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+      }
+      
+      /* ULTRA HIGH SPECIFICITY CONTENT */
+      html body .gradio-container .gr-tabitem,
+      html body .gr-tabitem,
+      .gr-tabitem {
+        background: var(--color-base-100) !important;
+        background-color: var(--color-base-100) !important;
+        border-radius: 12px !important;
+        padding: 2rem !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+        border: none !important;
+        margin-top: 0 !important;
+      }
+      
+      /* ULTRA HIGH SPECIFICITY INPUTS */
+      html body .gradio-container input,
+      html body .gradio-container textarea,
+      html body .gradio-container select,
+      html body input,
+      html body textarea,
+      html body select,
+      input,
+      textarea,
+      select {
+        background: var(--color-base-100) !important;
+        background-color: var(--color-base-100) !important;
+        border: 1px solid var(--color-base-300) !important;
+        color: var(--color-base-content) !important;
+        border-radius: 8px !important;
+        padding: 0.75rem !important;
+        font-size: 14px !important;
+        transition: all 0.2s ease !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+      }
+      
+      /* ULTRA HIGH SPECIFICITY BUTTONS */
+      html body .gradio-container button,
+      html body .gradio-container .gr-button,
+      html body button,
+      html body .gr-button,
+      button,
+      .gr-button {
+        background: var(--color-primary) !important;
+        background-color: var(--color-primary) !important;
+        color: var(--color-primary-content) !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 0.75rem 1.5rem !important;
+        font-weight: 500 !important;
+        font-size: 14px !important;
+        transition: all 0.2s ease !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+        cursor: pointer !important;
+      }
+      
+      html body .gradio-container button:hover,
+      html body .gradio-container .gr-button:hover,
+      html body button:hover,
+      html body .gr-button:hover,
+      button:hover,
+      .gr-button:hover {
+        background: var(--color-accent) !important;
+        background-color: var(--color-accent) !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+      }
+      
+      /* ULTRA HIGH SPECIFICITY HEADERS */
+      html body .gradio-container h1,
+      html body .gradio-container h2,
+      html body .gradio-container h3,
+      html body .gradio-container h4,
+      html body .gradio-container h5,
+      html body .gradio-container h6,
+      html body h1,
+      html body h2,
+      html body h3,
+      html body h4,
+      html body h5,
+      h6 {
+        color: var(--color-base-content) !important;
+        font-weight: 700 !important;
+        margin-bottom: 1rem !important;
+      }
+    `;
+
+    // Inject the CSS with maximum priority
+    const style = document.createElement("style");
+    style.id = "daisyui-custom-theme";
+    style.textContent = themeCSS;
+    document.head.appendChild(style);
+
+    // Apply theme attributes globally
+    const root = document.documentElement;
+    const body = document.body;
+    root.setAttribute("data-theme", currentTheme);
+    body.setAttribute("data-theme", currentTheme);
+
+    // FORCE INLINE STYLES - Maximum priority approach
+    setTimeout(() => {
+      log("Applying inline styles with maximum priority");
+
+      // Force background on everything
+      const allContainers = document.querySelectorAll(
+        "body, html, .gradio-container, .app, #root, .gradio-app, .gradio-interface, main"
+      );
+      allContainers.forEach((el) => {
+        if (el && el instanceof HTMLElement) {
+          el.style.setProperty(
+            "background",
+            themeConfig.background,
+            "important"
+          );
+          el.style.setProperty(
+            "background-color",
+            themeConfig.background,
+            "important"
+          );
+          el.style.setProperty(
+            "color",
+            "var(--color-base-content)",
+            "important"
+          );
+          el.style.setProperty(
+            "font-family",
+            "var(--theme-font-family, Poppins), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+            "important"
+          );
+        }
+      });
+
+      log("Inline styles applied with maximum priority");
+    }, 100);
+
+    // Apply to Gradio containers
+    const gradioContainers = document.querySelectorAll(
+      ".gradio-container, .app, #root, .gradio-app, .gradio-interface, main"
+    );
+    gradioContainers.forEach((container) => {
+      container.setAttribute("data-theme", currentTheme);
+    });
+
+    // Dispatch change event
+    const themeData = { currentTheme, type: "builtin", themeConfig };
+    if (gradio) {
+      gradio.dispatch("change", themeData);
+    }
+    dispatch("change", themeData);
+
+    log(
+      `Theme ${themeConfig.name} applied successfully with maximum specificity + inline styles`
+    );
+  }
+
+  function applyBasicTheme(theme: string) {
+    log(`Applying basic theme: ${theme}`);
+
+    // Apply theme to document root and body for global effect
+    const root = document.documentElement;
+    const body = document.body;
+    root.setAttribute("data-theme", theme);
+    body.setAttribute("data-theme", theme);
+
+    // Also apply to any Gradio containers and main elements
+    const gradioContainers = document.querySelectorAll(
+      ".gradio-container, .app, #root, .gradio-app, .gradio-interface, main"
+    );
+    gradioContainers.forEach((container) => {
+      container.setAttribute("data-theme", theme);
+    });
+
+    // Dispatch change event
+    const themeData = { currentTheme: theme, type: "builtin" };
+    if (gradio) {
+      gradio.dispatch("change", themeData);
+    }
+    dispatch("change", themeData);
+  }
+
+  function selectFont(font: string) {
+    log(`Switching to font: ${font}`);
+    selectedFont = font;
+    const fontFamily =
+      fontOptions.find((f) => f.name === font)?.family || "Inter, sans-serif";
+
+    // Apply font to document via CSS variable
+    const root = document.documentElement;
+    root.style.setProperty("--theme-font-family", fontFamily);
+
+    // Also set font-family directly on body for immediate effect
+    document.body.style.fontFamily = fontFamily;
+  }
+
+  function generateCustomCSS() {
+    log("Generating custom CSS", customTheme);
+
+    const css = `[data-theme="custom"] {
+  --color-base-100: ${customTheme.base};
+  --color-base-200: color-mix(in srgb, ${customTheme.base} 90%, black);
+  --color-base-300: color-mix(in srgb, ${customTheme.base} 80%, black);
+  --color-base-content: color-mix(in srgb, ${customTheme.base} 20%, black);
+  --color-primary: ${customTheme.primary};
+  --color-primary-content: #ffffff;
+  --color-secondary: ${customTheme.secondary};
+  --color-secondary-content: #ffffff;
+  --color-accent: ${customTheme.accent};
+  --color-accent-content: #ffffff;
+  --color-neutral: ${customTheme.neutral};
+  --color-neutral-content: #ffffff;
+  --color-info: ${customTheme.info};
+  --color-info-content: #ffffff;
+  --color-success: ${customTheme.success};
+  --color-success-content: #ffffff;
+  --color-warning: ${customTheme.warning};
+  --color-warning-content: #000000;
+  --color-error: ${customTheme.error};
+  --color-error-content: #ffffff;
+}`;
+
+    generatedCSS = css;
+    applyCustomTheme(css);
+  }
+
+  function applyCustomTheme(css: string) {
+    log("Applying custom theme CSS");
+
+    // Remove existing custom theme
+    const existing = document.getElementById("daisyui-custom-theme");
+    if (existing) {
+      existing.remove();
+    }
+
+    // Add new custom theme
+    const style = document.createElement("style");
+    style.id = "daisyui-custom-theme";
+    style.textContent = css;
+    document.head.appendChild(style);
+
+    // Switch to custom theme globally
+    currentTheme = "custom";
+    const root = document.documentElement;
+    const body = document.body;
+    root.setAttribute("data-theme", "custom");
+    body.setAttribute("data-theme", "custom");
+
+    // Also apply to any Gradio containers and main elements
+    const gradioContainers = document.querySelectorAll(
+      ".gradio-container, .app, #root, .gradio-app, .gradio-interface, main"
+    );
+    gradioContainers.forEach((container) => {
+      container.setAttribute("data-theme", "custom");
+    });
+
+    // Dispatch change event
+    const themeData = {
+      currentTheme: "custom",
+      type: "custom",
+      css: generatedCSS,
+      colors: customTheme,
+    };
+    if (gradio) {
+      gradio.dispatch("change", themeData);
+    }
+    dispatch("change", themeData);
+  }
+
+  function copyToClipboard() {
+    if (navigator.clipboard && generatedCSS) {
+      navigator.clipboard.writeText(generatedCSS).then(() => {
+        copySuccess = true;
+        log("CSS copied to clipboard");
+        setTimeout(() => (copySuccess = false), 2000);
+      });
+    }
+  }
+
+  function updateCustomColor(colorType: string, color: string) {
+    log(`Updating ${colorType} to ${color}`);
+    customTheme[colorType] = color;
+    generateCustomCSS();
+  }
+
+  function applyCustomThemeCSS() {
+    if (!customThemeCSS.trim()) return;
+
+    log("Applying custom theme CSS from input");
+
+    // Remove existing custom theme
+    const existing = document.getElementById("daisyui-custom-theme");
+    if (existing) {
+      existing.remove();
+    }
+
+    // Add new custom theme
+    const style = document.createElement("style");
+    style.id = "daisyui-custom-theme";
+    style.textContent = customThemeCSS;
+    document.head.appendChild(style);
+
+    // Try to extract theme name from CSS or use 'custom'
+    const themeNameMatch = customThemeCSS.match(/data-theme="([^"]+)"/);
+    const themeName = themeNameMatch ? themeNameMatch[1] : "custom";
+
+    // Switch to the custom theme globally
+    currentTheme = themeName;
+    const root = document.documentElement;
+    const body = document.body;
+    root.setAttribute("data-theme", themeName);
+    body.setAttribute("data-theme", themeName);
+
+    // Also apply to any Gradio containers and main elements
+    const gradioContainers = document.querySelectorAll(
+      ".gradio-container, .app, #root, .gradio-app, .gradio-interface, main"
+    );
+    gradioContainers.forEach((container) => {
+      container.setAttribute("data-theme", themeName);
+    });
+
+    // Dispatch change event
+    const themeData = {
+      currentTheme: themeName,
+      type: "custom",
+      css: customThemeCSS,
+    };
+    if (gradio) {
+      gradio.dispatch("change", themeData);
+    }
+    dispatch("change", themeData);
+  }
+
+  // Initialize component and inject global CSS
+  onMount(() => {
+    log("DaisyUI Themer component mounted");
+    log("onMount - Initial value object:", value);
+    log("onMount - Available themes:", value?.available_themes);
+
+    // Inject DaisyUI CSS globally into document head
+    injectGlobalCSS();
+
+    // Apply initial theme
+    log("Initial theme application", value);
+
+    // Apply font settings if provided
+    if (value?.font?.family) {
+      log("Applying font", value.font.family);
+      const fontName = value.font.family
+        .split(",")[0]
+        .replace(/['"]/g, "")
+        .trim();
+      selectFont(fontName);
+    } else {
+      // Set default font to Inter
+      selectFont("Inter");
+    }
+
+    // Apply initial theme - now with dynamic theme support
+    if (value?.currentTheme) {
+      log("Applying currentTheme", value.currentTheme);
+      selectTheme(value.currentTheme);
+    } else if (value?.themeInput) {
+      log("Applying themeInput", value.themeInput);
+      // Apply custom DaisyUI theme CSS directly
+      applyDaisyUIThemeCSS(value.themeInput);
+    } else {
+      log("No specific theme provided, will apply when themes load");
+      // Don't apply any theme yet - wait for dynamic themes to load
+      // The reactive statement will handle initial theme application
+    }
+  });
+
+  function injectGlobalCSS() {
+    // Check if DaisyUI CSS is already injected
+    if (document.getElementById("daisyui-global-css")) {
+      return;
+    }
+
+    // Inject DaisyUI CSS globally
+    const daisyuiCSS = document.createElement("link");
+    daisyuiCSS.id = "daisyui-global-css";
+    daisyuiCSS.rel = "stylesheet";
+    daisyuiCSS.href =
+      "https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.css";
+    document.head.appendChild(daisyuiCSS);
+
+    // Inject Tailwind base CSS
+    const tailwindCSS = document.createElement("link");
+    tailwindCSS.id = "tailwind-global-css";
+    tailwindCSS.rel = "stylesheet";
+    tailwindCSS.href =
+      "https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/base.min.css";
+    document.head.appendChild(tailwindCSS);
+
+    // Inject aggressive override CSS for Gradio
+    const overrideCSS = document.createElement("style");
+    overrideCSS.id = "gradio-daisyui-override";
+    overrideCSS.textContent = `
+      /* COMPREHENSIVE GRADIO THEMING WITH DAISYUI */
+      
+      /* BLACK BORDER ARTIFACT REMOVAL */
+      .gradio-container,
+      .app,
+      #root,
+      .gradio-app,
+      .gradio-interface,
+      main,
+      .gr-form,
+      .gr-box,
+      .gr-panel,
+      .gr-group,
+      .gr-column,
+      .gr-row,
+      .gr-tabs,
+      .gr-tab-nav,
+      .contain,
+      .container,
+      [data-testid*="column"],
+      [data-testid*="row"],
+      [data-testid*="group"],
+      [data-testid*="form"],
+      [data-testid*="panel"] {
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+      }
+      
+      /* Remove default Gradio black borders and artifacts */
+      * {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      
+      /* Add back necessary borders only for form elements */
+      input, textarea, select,
+      .gr-textbox textarea,
+      .gr-textbox input,
+      .gr-number input,
+      .gr-dropdown select,
+      [data-testid*="textbox"] textarea,
+      [data-testid*="textbox"] input,
+      [data-testid*="number"] input,
+      [data-testid*="dropdown"] select {
+        border: 1px solid hsl(var(--b3)) !important;
+      }
+      
+      /* Force smooth transitions and font on everything */
+      * {
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+        font-family: var(--theme-font-family, Inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+      }
+      
+      /* Font styling for headings and text */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--theme-font-family, Inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        color: hsl(var(--bc)) !important;
+        font-weight: 600 !important;
+      }
+      
+      body, html {
+        font-family: var(--theme-font-family, Inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+      }
+      
+      /* Main containers - apply base background */
+      .gradio-container,
+      .app,
+      #root,
+      .gradio-app,
+      .gradio-interface,
+      main,
+      body,
+      html {
+        background-color: hsl(var(--b1)) !important;
+        color: hsl(var(--bc)) !important;
+      }
+      
+      /* All input elements */
+      input[type="text"],
+      input[type="number"],
+      input[type="email"],
+      input[type="password"],
+      textarea,
+      select,
+      .gr-textbox textarea,
+      .gr-textbox input,
+      .gr-number input,
+      .gr-dropdown select,
+      [data-testid*="textbox"] textarea,
+      [data-testid*="textbox"] input,
+      [data-testid*="number"] input,
+      [data-testid*="dropdown"] select {
+        background-color: hsl(var(--b1)) !important;
+        color: hsl(var(--bc)) !important;
+        border: 1px solid hsl(var(--b3)) !important;
+        border-radius: 0.5rem !important;
+        padding: 0.75rem !important;
+      }
+      
+      /* Input focus states */
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: hsl(var(--p)) !important;
+        outline: 2px solid hsl(var(--p) / 0.2) !important;
+        outline-offset: -1px !important;
+      }
+      
+      /* All buttons */
+      button,
+      .gr-button,
+      [data-testid*="button"],
+      input[type="submit"] {
+        background-color: hsl(var(--p)) !important;
+        color: hsl(var(--pc)) !important;
+        border: none !important;
+        border-radius: 0.5rem !important;
+        padding: 0.75rem 1.5rem !important;
+        font-weight: 500 !important;
+        font-size: 0.875rem !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+      }
+      
+      button:hover,
+      .gr-button:hover {
+        background-color: hsl(var(--pf)) !important;
+        transform: translateY(-1px) !important;
+      }
+      
+      /* Secondary button variants */
+      button[variant="secondary"],
+      .gr-button.secondary {
+        background-color: hsl(var(--s)) !important;
+        color: hsl(var(--sc)) !important;
+      }
+      
+      /* Stop/danger buttons */
+      button[variant="stop"],
+      .gr-button.stop {
+        background-color: hsl(var(--er)) !important;
+        color: hsl(var(--erc)) !important;
+      }
+      
+      /* Disabled buttons */
+      button:disabled,
+      .gr-button:disabled {
+        background-color: hsl(var(--b3)) !important;
+        color: hsl(var(--bc) / 0.5) !important;
+        cursor: not-allowed !important;
+        transform: none !important;
+      }
+      
+      /* Component containers and panels */
+      .gr-form,
+      .gr-box,
+      .gr-panel,
+      .gr-group,
+      .gr-column,
+      .gr-row,
+      .gr-tab-nav,
+      .gr-tabs,
+      [data-testid*="column"],
+      [data-testid*="row"],
+      [data-testid*="group"] {
+        background-color: hsl(var(--b1)) !important;
+        color: hsl(var(--bc)) !important;
+      }
+      
+      /* Cards and elevated surfaces */
+      .gr-card,
+      .gr-interface,
+      [class*="border"],
+      [class*="shadow"] {
+        background-color: hsl(var(--b2)) !important;
+        border-color: hsl(var(--b3)) !important;
+      }
+      
+      /* Tab navigation - comprehensive targeting */
+      .gr-tab-nav,
+      .gr-tabs,
+      [data-testid*="tab"],
+      .tablist,
+      [role="tablist"] {
+        background-color: hsl(var(--b1)) !important;
+        border-bottom: 1px solid hsl(var(--b3)) !important;
+      }
+      
+      .gr-tab-nav button,
+      .gr-tabs button,
+      [data-testid*="tab"] button,
+      .tablist button,
+      [role="tab"] {
+        background-color: hsl(var(--b2)) !important;
+        color: hsl(var(--bc)) !important;
+        border: 1px solid hsl(var(--b3)) !important;
+        border-bottom: 2px solid transparent !important;
+        border-radius: 0.5rem 0.5rem 0 0 !important;
+        padding: 0.75rem 1.5rem !important;
+        font-weight: 500 !important;
+        transition: all 0.2s ease !important;
+        margin-right: 2px !important;
+      }
+      
+      .gr-tab-nav button:hover,
+      .gr-tabs button:hover,
+      [data-testid*="tab"] button:hover,
+      [role="tab"]:hover {
+        background-color: hsl(var(--b3)) !important;
+        color: hsl(var(--p)) !important;
+      }
+      
+      .gr-tab-nav button.selected,
+      .gr-tab-nav button[aria-selected="true"],
+      .gr-tabs button.selected,
+      [data-testid*="tab"] button.selected,
+      [role="tab"][aria-selected="true"] {
+        background-color: hsl(var(--b1)) !important;
+        border-bottom-color: hsl(var(--p)) !important;
+        border-bottom-width: 3px !important;
+        color: hsl(var(--p)) !important;
+        font-weight: 600 !important;
+      }
+      
+      /* Tab content areas */
+      .gr-tab-item,
+      .gr-tabitem,
+      [data-testid*="tabitem"],
+      [role="tabpanel"] {
+        background-color: hsl(var(--b1)) !important;
+        color: hsl(var(--bc)) !important;
+        padding: 1.5rem !important;
+        border: 1px solid hsl(var(--b3)) !important;
+        border-top: none !important;
+        border-radius: 0 0 0.5rem 0.5rem !important;
+      }
+      
+      /* Markdown content */
+      .markdown,
+      .gr-markdown,
+      [data-testid*="markdown"] {
+        color: hsl(var(--bc)) !important;
+        background-color: transparent !important;
+      }
+      
+      .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
+        color: hsl(var(--bc)) !important;
+      }
+      
+      .markdown code {
+        background-color: hsl(var(--b2)) !important;
+        color: hsl(var(--bc)) !important;
+        padding: 0.125rem 0.25rem !important;
+        border-radius: 0.25rem !important;
+      }
+      
+      .markdown pre {
+        background-color: hsl(var(--b2)) !important;
+        border: 1px solid hsl(var(--b3)) !important;
+        border-radius: 0.5rem !important;
+      }
+      
+      /* File upload areas */
+      .gr-file,
+      [data-testid*="file"] {
+        background-color: hsl(var(--b2)) !important;
+        border: 2px dashed hsl(var(--b3)) !important;
+        border-radius: 0.5rem !important;
+        color: hsl(var(--bc)) !important;
+      }
+      
+      /* Dropdowns and selects */
+      .gr-dropdown,
+      [data-testid*="dropdown"] {
+        background-color: hsl(var(--b1)) !important;
+      }
+      
+      /* Sliders */
+      .gr-slider input,
+      [data-testid*="slider"] input {
+        accent-color: hsl(var(--p)) !important;
+      }
+      
+      /* Checkboxes and radio buttons */
+      input[type="checkbox"],
+      input[type="radio"] {
+        accent-color: hsl(var(--p)) !important;
+      }
+      
+      /* Progress bars */
+      progress,
+      .progress {
+        accent-color: hsl(var(--p)) !important;
+        background-color: hsl(var(--b3)) !important;
+      }
+      
+      /* Scrollbars */
+      ::-webkit-scrollbar {
+        width: 8px !important;
+        height: 8px !important;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: hsl(var(--b2)) !important;
+        border-radius: 4px !important;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: hsl(var(--b3)) !important;
+        border-radius: 4px !important;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: hsl(var(--bc) / 0.3) !important;
+      }
+      
+      /* Labels and helper text */
+      label,
+      .gr-label,
+      [data-testid*="label"] {
+        color: hsl(var(--bc)) !important;
+        font-weight: 500 !important;
+      }
+      
+      /* Error and success states */
+      .error,
+      .gr-error {
+        color: hsl(var(--er)) !important;
+        background-color: hsl(var(--er) / 0.1) !important;
+      }
+      
+      .success,
+      .gr-success {
+        color: hsl(var(--su)) !important;
+        background-color: hsl(var(--su) / 0.1) !important;
+      }
+      
+      /* Force inheritance for nested elements */
+      .gradio-container * {
+        color: inherit !important;
+      }
+    `;
+    document.head.appendChild(overrideCSS);
+
+    log("Global DaisyUI CSS injected successfully");
+  }
+
+  function applyDaisyUIThemeCSS(cssInput: string) {
+    log("Applying DaisyUI theme CSS directly", cssInput);
+
+    // Remove existing custom theme
+    const existing = document.getElementById("daisyui-custom-theme");
+    if (existing) {
+      existing.remove();
+    }
+
+    // Parse and apply the DaisyUI theme CSS
+    const style = document.createElement("style");
+    style.id = "daisyui-custom-theme";
+
+    // Convert DaisyUI @plugin format to CSS variables
+    const cssContent = convertDaisyUIToCSSVars(cssInput);
+    style.textContent = cssContent;
+    document.head.appendChild(style);
+
+    // Extract theme name or use 'custom'
+    const themeNameMatch = cssInput.match(/name:\s*"([^"]+)"/);
+    const themeName = themeNameMatch ? themeNameMatch[1] : "custom";
+
+    // Apply theme globally
+    currentTheme = themeName;
+    const root = document.documentElement;
+    const body = document.body;
+    root.setAttribute("data-theme", themeName);
+    body.setAttribute("data-theme", themeName);
+
+    // Apply to Gradio containers
+    const gradioContainers = document.querySelectorAll(
+      ".gradio-container, .app, #root, .gradio-app, .gradio-interface, main"
+    );
+    gradioContainers.forEach((container) => {
+      container.setAttribute("data-theme", themeName);
+    });
+
+    // Dispatch change event
+    const themeData = {
+      currentTheme: themeName,
+      type: "daisyui-css",
+      css: cssContent,
+      original: cssInput,
+    };
+    if (gradio) {
+      gradio.dispatch("change", themeData);
+    }
+    dispatch("change", themeData);
+  }
+
+  function convertDaisyUIToCSSVars(daisyUICSS: string) {
+    log("Converting DaisyUI CSS", daisyUICSS);
+
+    // Extract theme name from input or use 'custom'
+    const themeName = "corporate"; // Default name
+
+    // Map DaisyUI color names to standard CSS variable names
+    const colorMap = {
+      "color-base-100": "b1",
+      "color-base-200": "b2",
+      "color-base-300": "b3",
+      "color-base-content": "bc",
+      "color-primary": "p",
+      "color-primary-content": "pc",
+      "color-secondary": "s",
+      "color-secondary-content": "sc",
+      "color-accent": "a",
+      "color-accent-content": "ac",
+      "color-neutral": "n",
+      "color-neutral-content": "nc",
+      "color-info": "in",
+      "color-info-content": "inc",
+      "color-success": "su",
+      "color-success-content": "suc",
+      "color-warning": "wa",
+      "color-warning-content": "wac",
+      "color-error": "er",
+      "color-error-content": "erc",
+    };
+
+    // Extract all CSS variables from the input
+    const cssVarRegex = /--([^:]+):\s*([^;]+);?/g;
+    let match;
+    let cssVars = "";
+
+    while ((match = cssVarRegex.exec(daisyUICSS)) !== null) {
+      const varName = match[1].trim();
+      const varValue = match[2].trim();
+
+      log(`Found CSS variable: --${varName}: ${varValue}`);
+
+      // Map to DaisyUI short names if it's a color
+      const shortName = colorMap[varName] || varName.replace("color-", "");
+
+      // Add the short name version for DaisyUI
+      if (colorMap[varName]) {
+        cssVars += `  --${shortName}: ${varValue};\n`;
+      }
+
+      // Always add the original variable
+      cssVars += `  --${varName}: ${varValue};\n`;
+    }
+
+    const finalCSS = `[data-theme="${themeName}"], :root[data-theme="${themeName}"] {\n${cssVars}}\n\n/* Force theme application */\n* {\n  color-scheme: light;\n}`;
+
+    log("Generated CSS", finalCSS);
+    return finalCSS;
+  }
+
+  // Phase 2: applyCorporateTheme function removed - now using dynamic theme loading
+</script>
+
+{#if visible}
+  <div
+    class="w-full bg-base-100 text-base-content font-inter border border-base-300 rounded-lg p-4"
+    data-theme={currentTheme}
+    style="font-family: {fontOptions.find((f) => f.name === selectedFont)
+      ?.family || 'Inter, sans-serif'}"
+  >
+    <!-- Header -->
+    <div
+      class="bg-gradient-to-r from-primary to-secondary p-8 text-primary-content sticky top-0 z-50 shadow-lg"
+    >
+      <div class="max-w-7xl mx-auto">
+        <div
+          class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4"
+        >
+          <div>
+            <h1 class="text-4xl lg:text-5xl font-bold mb-2">
+              🎨 DaisyUI Theme Studio
+            </h1>
+            <p class="text-xl lg:text-2xl opacity-90">
+              Professional theme generator for your Gradio applications
+            </p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 items-start lg:items-end">
+            <!-- Font Selector -->
+            <div class="form-control">
+              <label class="label" for="font-selector">
+                <span class="label-text text-primary-content opacity-90"
+                  >Font Family</span
+                >
+              </label>
+              <select
+                id="font-selector"
+                bind:value={selectedFont}
+                on:change={() => selectFont(selectedFont)}
+                class="select select-bordered bg-primary-content text-primary min-w-0 sm:min-w-[160px]"
+              >
+                {#each fontOptions as font}
+                  <option value={font.name}>{font.name}</option>
+                {/each}
+              </select>
+            </div>
+            <!-- Current Theme Display -->
+            <div class="bg-black/20 rounded-lg px-4 py-3">
+              <div class="text-sm opacity-75">Current theme:</div>
+              <div class="font-semibold text-lg">{currentTheme}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto p-6">
+      <!-- Navigation Tabs -->
+      <div class="tabs tabs-boxed mb-8 bg-base-200 p-2 shadow-lg">
+        <button
+          class="tab tab-lg font-semibold transition-all duration-200 {activeTab ===
+          'themes'
+            ? 'tab-active'
+            : ''}"
+          on:click={() => (activeTab = "themes")}
+        >
+          🎭 Themes
+        </button>
+        <button
+          class="tab tab-lg font-semibold transition-all duration-200 {activeTab ===
+          'description'
+            ? 'tab-active'
+            : ''}"
+          on:click={() => (activeTab = "description")}
+        >
+          📝 Description
+        </button>
+        <button
+          class="tab tab-lg font-semibold transition-all duration-200 {activeTab ===
+          'installation'
+            ? 'tab-active'
+            : ''}"
+          on:click={() => (activeTab = "installation")}
+        >
+          📦 Installation
+        </button>
+      </div>
+
+      {#if activeTab === "themes"}
+        <!-- Themes Tab Content -->
+        <div class="space-y-6">
+          <!-- Compact Theme Selector Section -->
+          <div class="card bg-base-200 shadow-lg">
+            <div class="card-body p-4">
+              <!-- Two Column Layout - Theme Buttons Left, Custom CSS Right -->
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <!-- Theme Selection Area - Takes 2/3 of space -->
+                <div class="lg:col-span-2">
+                  <h2
+                    class="text-lg font-semibold mb-3 flex items-center gap-2"
+                  >
+                    🎭 Theme Selector
+                    <span class="badge badge-primary badge-sm"
+                      >{currentTheme}</span
+                    >
+                  </h2>
+
+                  <!-- Dynamic Theme Buttons from Backend -->
+                  <div class="flex flex-wrap gap-1.5 theme-selector-buttons">
+                    {#if availableThemes.length > 0}
+                      {#each availableThemes as theme}
+                        <button
+                          class="btn btn-sm {currentTheme === theme
+                            ? 'btn-primary'
+                            : 'btn-outline'} capitalize font-normal min-w-0 px-2.5 py-1 h-7 text-xs transition-all duration-200 hover:scale-105 m-0.5"
+                          on:click={() => selectTheme(theme)}
+                          title="Switch to {themeColors[theme]?.name ||
+                            theme} theme"
+                        >
+                          {themeColors[theme]?.name || theme}
+                          {#if currentTheme === theme}
+                            <span class="ml-1 text-xs">✓</span>
+                          {/if}
+                        </button>
+                      {/each}
+                    {:else}
+                      <!-- Fallback while themes are loading -->
+                      <div class="text-sm opacity-70">Loading themes...</div>
+                    {/if}
+                  </div>
+                </div>
+
+                <!-- Custom CSS Input Area - Takes 1/3 of space -->
+                <div class="lg:col-span-1">
+                  <h3 class="text-lg font-semibold mb-3">Custom CSS</h3>
+                  <div class="space-y-2">
+                    <textarea
+                      bind:value={customThemeCSS}
+                      placeholder="Paste DaisyUI theme CSS..."
+                      class="textarea textarea-bordered w-full h-24 text-xs font-mono resize-none"
+                      on:input={() => applyCustomThemeCSS()}
+                    ></textarea>
+                    <div class="text-xs opacity-70 flex items-center gap-1">
+                      💡 <a
+                        href="https://daisyui.com/theme-generator/"
+                        target="_blank"
+                        class="link">Generate themes</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Compact Preview Section -->
+          <div class="card bg-base-200 shadow-lg">
+            <div class="card-body">
+              <h3 class="card-title text-xl mb-4">🔍 Live Preview</h3>
+
+              <!-- Compact Component Showcase -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Buttons Preview -->
+                <div class="space-y-3">
+                  <h4 class="font-semibold">Buttons</h4>
+                  <div class="flex gap-2 flex-wrap">
+                    <button class="btn btn-primary btn-sm">Primary</button>
+                    <button class="btn btn-secondary btn-sm">Secondary</button>
+                    <button class="btn btn-accent btn-sm">Accent</button>
+                  </div>
+                </div>
+
+                <!-- Form Elements Preview -->
+                <div class="space-y-3">
+                  <h4 class="font-semibold">Form Elements</h4>
+                  <div class="space-y-2">
+                    <input
+                      type="text"
+                      placeholder="Sample input"
+                      class="input input-bordered input-sm w-full"
+                    />
+                    <progress
+                      class="progress progress-primary w-full"
+                      value="70"
+                      max="100"
+                    ></progress>
+                  </div>
+                </div>
+
+                <!-- Alert Preview -->
+                <div class="space-y-3">
+                  <h4 class="font-semibold">Alert</h4>
+                  <div class="alert alert-info">
+                    <span>Sample alert message</span>
+                  </div>
+                </div>
+
+                <!-- Badge & Stats Preview -->
+                <div class="space-y-3">
+                  <h4 class="font-semibold">Components</h4>
+                  <div class="flex gap-2 items-center">
+                    <div class="badge badge-primary">Badge</div>
+                    <div class="badge badge-secondary">Secondary</div>
+                  </div>
+                  <div class="stat bg-base-100 rounded-lg p-3">
+                    <div class="stat-title text-xs">Downloads</div>
+                    <div class="stat-value text-primary text-lg">31K</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {:else if activeTab === "description"}
+        <!-- Description Tab Content -->
+        <div class="max-w-4xl mx-auto space-y-6">
+          <div class="text-center">
+            <h2 class="text-4xl font-bold mb-4">🎨 DaisyUI Theme Studio</h2>
+            <p class="text-xl opacity-80">
+              The ultimate theming solution for Gradio applications
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="card bg-base-200 shadow-lg">
+              <div class="card-body">
+                <h3 class="card-title text-2xl mb-4">✨ Features</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-start gap-2">
+                    <span class="text-primary">•</span>
+                    <span
+                      ><strong>Live DaisyUI Previews:</strong> See real DaisyUI components
+                      responding to theme changes</span
+                    >
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-primary">•</span>
+                    <span
+                      ><strong>Built-in Theme Switching:</strong> Light, Dark, Emerald,
+                      and Custom themes</span
+                    >
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-primary">•</span>
+                    <span
+                      ><strong>CSS Variable Parsing:</strong> Paste DaisyUI theme
+                      configs and see them applied instantly</span
+                    >
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-primary">•</span>
+                    <span
+                      ><strong>Interactive Component Gallery:</strong> Buttons, cards,
+                      badges, progress bars, stats, and more</span
+                    >
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-primary">•</span>
+                    <span
+                      ><strong>Copy-to-Clipboard:</strong> Export generated CSS for
+                      use in other projects</span
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card bg-base-200 shadow-lg">
+              <div class="card-body">
+                <h3 class="card-title text-2xl mb-4">
+                  🎯 Use Cases for AI Agents
+                </h3>
+                <ul class="space-y-2">
+                  <li class="flex items-start gap-2">
+                    <span class="text-secondary">•</span>
+                    <span
+                      ><strong>Dynamic UI Theming:</strong> Let agents modify app
+                      appearance based on user preferences</span
+                    >
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-secondary">•</span>
+                    <span
+                      ><strong>Accessibility Adaptation:</strong> Switch themes for
+                      better contrast/visibility</span
+                    >
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-secondary">•</span>
+                    <span
+                      ><strong>Brand Customization:</strong> Apply custom brand colors
+                      and styling</span
+                    >
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-secondary">•</span>
+                    <span
+                      ><strong>User Experience Optimization:</strong> A/B test different
+                      visual themes</span
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card bg-base-200 shadow-lg">
+              <div class="card-body">
+                <h3 class="card-title text-2xl">🛠 How it Works</h3>
+                <ol class="list-decimal list-inside space-y-2 text-lg">
+                  <li>Choose from 30+ built-in themes</li>
+                  <li>Or paste custom CSS from DaisyUI generator</li>
+                  <li>Preview changes in real-time</li>
+                  <li>Copy the generated CSS</li>
+                  <li>Apply to your Gradio app</li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="card bg-base-200 shadow-lg">
+              <div class="card-body">
+                <h3 class="card-title text-2xl">🚀 Perfect For</h3>
+                <ul class="list-disc list-inside space-y-2 text-lg">
+                  <li>Gradio app developers</li>
+                  <li>UI/UX designers</li>
+                  <li>Rapid prototyping</li>
+                  <li>Design system creation</li>
+                  <li>Theme customization</li>
+                  <li>Branding consistency</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card bg-gradient-to-r from-primary to-secondary text-primary-content shadow-2xl"
+          >
+            <div class="card-body text-center p-8">
+              <h3 class="text-3xl font-bold mb-4">🎨 Built with DaisyUI</h3>
+              <p class="text-xl mb-6">
+                This component leverages the power of DaisyUI, the most popular
+                component library for Tailwind CSS, bringing you semantic class
+                names and beautiful design tokens.
+              </p>
+              <div class="flex flex-wrap justify-center gap-4">
+                <div class="badge badge-lg bg-white/20 text-white">
+                  Tailwind CSS
+                </div>
+                <div class="badge badge-lg bg-white/20 text-white">DaisyUI</div>
+                <div class="badge badge-lg bg-white/20 text-white">Gradio</div>
+                <div class="badge badge-lg bg-white/20 text-white">Svelte</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card bg-base-200 shadow-lg">
+            <div class="card-body">
+              <h3 class="card-title text-2xl mb-4">🔗 Learn More</h3>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <a
+                  href="https://daisyui.com/"
+                  target="_blank"
+                  class="btn btn-outline"
+                >
+                  📚 DaisyUI Documentation
+                </a>
+                <a
+                  href="https://gradio.app/custom-components/"
+                  target="_blank"
+                  class="btn btn-outline"
+                >
+                  🧩 Gradio Custom Components Guide
+                </a>
+                <a
+                  href="https://gradio.app/custom-components-gallery/"
+                  target="_blank"
+                  class="btn btn-outline"
+                >
+                  🎨 Custom Components Gallery
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {:else if activeTab === "installation"}
+        <!-- Installation Tab Content -->
+        <div class="max-w-4xl mx-auto space-y-8">
+          <div class="text-center">
+            <h2 class="text-4xl font-bold mb-4">📦 Installation & Usage</h2>
+            <p class="text-xl opacity-80">
+              Get started with DaisyUI Theme Studio in your Gradio apps
+            </p>
+          </div>
+
+          <div class="steps steps-vertical lg:steps-horizontal w-full">
+            <div class="step step-primary">Install</div>
+            <div class="step step-primary">Import</div>
+            <div class="step step-primary">Use</div>
+            <div class="step">Customize</div>
+          </div>
+
+          <div class="space-y-6">
+            <!-- Step 1: Installation -->
+            <div class="card bg-base-200 shadow-lg">
+              <div class="card-body">
+                <h3 class="card-title text-2xl mb-4">
+                  <span class="badge badge-primary mr-3">1</span>
+                  Install the Component
+                </h3>
+                <p class="text-lg mb-4">
+                  Install the DaisyUI Themer component using pip:
+                </p>
+                <div class="mockup-code">
+                  <pre><code>pip install gradio_daisyuithemer</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Import -->
+            <div class="card bg-base-200 shadow-lg">
+              <div class="card-body">
+                <h3 class="card-title text-2xl mb-4">
+                  <span class="badge badge-primary mr-3">2</span>
+                  Import in Your App
+                </h3>
+                <p class="text-lg mb-4">
+                  Import the component in your Gradio application:
+                </p>
+                <div class="mockup-code">
+                  <pre><code
+                      >import gradio as gr
+from gradio_daisyuithemer import DaisyUIThemer</code
+                    ></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: How to Use This Component -->
+            <div class="card bg-base-200 shadow-lg">
+              <div class="card-body">
+                <h3 class="card-title text-2xl mb-4">
+                  <span class="badge badge-primary mr-3">3</span>
+                  📚 How to Use This Component in Your Apps
+                </h3>
+                <div class="mockup-code">
+                  <pre><code
+                      >import gradio as gr
+from gradio_daisyuithemer import DaisyUIThemer
+
+def handle_theme_change(data):
+    # Handle theme changes
+    return f"Applied theme: &#123;data['currentTheme']&#125;"
+
+with gr.Blocks() as demo:
+    themer = DaisyUIThemer(label="Theme Selector")
+    themer.change(fn=handle_theme_change, inputs=[themer])
+
+demo.launch()</code
+                    ></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Advanced Usage -->
+            <div class="card bg-base-200 shadow-lg">
+              <div class="card-body">
+                <h3 class="card-title text-2xl mb-4">
+                  <span class="badge badge-secondary mr-3">4</span>
+                  Advanced Usage
+                </h3>
+                <p class="text-lg mb-4">
+                  Handle custom themes and integrate with your app state:
+                </p>
+                <div class="mockup-code">
+                  <pre><code
+                      >def handle_theme_change(theme_data):
+    theme_name = theme_data['currentTheme']
+    theme_type = theme_data['type']  # 'builtin' or 'custom'
+    
+    if theme_type == 'custom':
+        css = theme_data['css']
+        colors = theme_data['colors']
+        # Save custom theme to your app state
+        
+    return f"Applied theme: &#123;theme_name&#125;"
+
+with gr.Blocks() as demo:
+    themer = DaisyUIThemer(value=&#123;"currentTheme": "dark"&#125;)
+    
+    themer.change(fn=handle_theme_change)
+
+demo.launch()</code
+                    ></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Requirements -->
+            <div class="card bg-base-200 shadow-lg">
+              <div class="card-body">
+                <h3 class="card-title text-2xl mb-4">📋 Requirements</h3>
+                <div class="overflow-x-auto">
+                  <table class="table table-zebra w-full">
+                    <thead>
+                      <tr>
+                        <th>Package</th>
+                        <th>Version</th>
+                        <th>Purpose</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>gradio</td>
+                        <td>≥ 4.0.0</td>
+                        <td>Core framework</td>
+                      </tr>
+                      <tr>
+                        <td>tailwindcss</td>
+                        <td>≥ 3.4.0</td>
+                        <td>CSS framework</td>
+                      </tr>
+                      <tr>
+                        <td>daisyui</td>
+                        <td>≥ 4.12.0</td>
+                        <td>Component library</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Links -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div
+                class="card bg-gradient-to-br from-primary to-primary-focus text-primary-content shadow-lg"
+              >
+                <div class="card-body text-center">
+                  <h4 class="card-title justify-center mb-4">
+                    📚 Documentation
+                  </h4>
+                  <p class="mb-4">Complete API reference and examples</p>
+                  <div class="card-actions justify-center">
+                    <button class="btn btn-primary-content" disabled
+                      >View Docs</button
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="card bg-gradient-to-br from-secondary to-secondary-focus text-secondary-content shadow-lg"
+              >
+                <div class="card-body text-center">
+                  <h4 class="card-title justify-center mb-4">🐙 GitHub</h4>
+                  <p class="mb-4">Source code and issue tracking</p>
+                  <div class="card-actions justify-center">
+                    <button class="btn btn-secondary-content" disabled
+                      >View Source</button
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="card bg-gradient-to-br from-accent to-accent-focus text-accent-content shadow-lg"
+              >
+                <div class="card-body text-center">
+                  <h4 class="card-title justify-center mb-4">
+                    🤗 Hugging Face
+                  </h4>
+                  <p class="mb-4">Try it online on Spaces</p>
+                  <div class="card-actions justify-center">
+                    <button class="btn btn-accent-content" disabled
+                      >Try Online</button
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {/if}
+    </div>
+  </div>
+{/if}

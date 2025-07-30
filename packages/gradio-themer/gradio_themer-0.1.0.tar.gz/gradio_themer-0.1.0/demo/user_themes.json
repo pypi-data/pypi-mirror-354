@@ -1,0 +1,321 @@
+{
+  "themes": {
+    "dark_emerald": {
+      "name": "Dark Emerald",
+      "colors": {
+        "base-100": "#064e3b",
+        "base-200": "#065f46",
+        "base-300": "#047857",
+        "base-content": "#d1fae5",
+        "primary": "#10b981",
+        "primary-content": "#ffffff",
+        "secondary": "#6b7280",
+        "secondary-content": "#ffffff",
+        "accent": "#34d399",
+        "accent-content": "#000000",
+        "neutral": "#374151",
+        "neutral-content": "#ffffff",
+        "error": "#ef4444",
+        "error-content": "#ffffff"
+      },
+      "background": "#022c22",
+      "font": {
+        "family": "Helvetica",
+        "type": "system_font",
+        "name": "Helvetica"
+      }
+    },
+    "ocean_breeze": {
+      "name": "Ocean Breeze",
+      "colors": {
+        "base-100": "#f0f9ff",
+        "base-200": "#e0f2fe",
+        "base-300": "#bae6fd",
+        "base-content": "#0c4a6e",
+        "primary": "#0ea5e9",
+        "primary-content": "#ffffff",
+        "secondary": "#64748b",
+        "secondary-content": "#ffffff",
+        "accent": "#06b6d4",
+        "accent-content": "#ffffff",
+        "neutral": "#374151",
+        "neutral-content": "#ffffff",
+        "error": "#ef4444",
+        "error-content": "#ffffff"
+      },
+      "background": "#bae6fd",
+      "font": {
+        "family": "Helvetica",
+        "type": "system_font",
+        "name": "Helvetica"
+      }
+    },
+    "sunset_orange": {
+      "name": "Sunset Orange",
+      "colors": {
+        "base-100": "#fff7ed",
+        "base-200": "#ffedd5",
+        "base-300": "#fed7aa",
+        "base-content": "#9a3412",
+        "primary": "#ea580c",
+        "primary-content": "#ffffff",
+        "secondary": "#64748b",
+        "secondary-content": "#ffffff",
+        "accent": "#f59e0b",
+        "accent-content": "#ffffff",
+        "neutral": "#374151",
+        "neutral-content": "#ffffff",
+        "error": "#ef4444",
+        "error-content": "#ffffff"
+      },
+      "background": "#fed7aa",
+      "font": {
+        "family": "Verdana",
+        "type": "system_font",
+        "name": "Verdana"
+      }
+    },
+    "forest_green": {
+      "name": "Forest Green",
+      "colors": {
+        "base-100": "#f0fdf4",
+        "base-200": "#dcfce7",
+        "base-300": "#bbf7d0",
+        "base-content": "#14532d",
+        "primary": "#16a34a",
+        "primary-content": "#ffffff",
+        "secondary": "#64748b",
+        "secondary-content": "#ffffff",
+        "accent": "#22c55e",
+        "accent-content": "#ffffff",
+        "neutral": "#374151",
+        "neutral-content": "#ffffff",
+        "error": "#ef4444",
+        "error-content": "#ffffff"
+      },
+      "background": "#bbf7d0",
+      "font": {
+        "family": "Times New Roman",
+        "type": "system_font",
+        "name": "Times New Roman"
+      }
+    },
+    "royal_purple": {
+      "name": "Royal Purple",
+      "colors": {
+        "base-100": "#faf5ff",
+        "base-200": "#f3e8ff",
+        "base-300": "#e9d5ff",
+        "base-content": "#581c87",
+        "primary": "#9333ea",
+        "primary-content": "#ffffff",
+        "secondary": "#64748b",
+        "secondary-content": "#ffffff",
+        "accent": "#a855f7",
+        "accent-content": "#ffffff",
+        "neutral": "#374151",
+        "neutral-content": "#ffffff",
+        "error": "#ef4444",
+        "error-content": "#ffffff"
+      },
+      "background": "#e9d5ff",
+      "font": {
+        "family": "Tahoma",
+        "type": "system_font",
+        "name": "Tahoma"
+      }
+    },
+    "midnight_blue": {
+      "name": "Midnight Blue",
+      "colors": {
+        "base-100": "#1e293b",
+        "base-200": "#334155",
+        "base-300": "#475569",
+        "base-content": "#f1f5f9",
+        "primary": "#3b82f6",
+        "primary-content": "#ffffff",
+        "secondary": "#64748b",
+        "secondary-content": "#ffffff",
+        "accent": "#06b6d4",
+        "accent-content": "#ffffff",
+        "neutral": "#374151",
+        "neutral-content": "#ffffff",
+        "error": "#ef4444",
+        "error-content": "#ffffff"
+      },
+      "background": "#0f172a",
+      "font": {
+        "family": "Courier New",
+        "type": "system_font",
+        "name": "Courier New"
+      }
+    },
+    "warm_beige": {
+      "name": "Warm Beige",
+      "colors": {
+        "base-100": "#fef7f0",
+        "base-200": "#fde8d7",
+        "base-300": "#fbd5ae",
+        "base-content": "#92400e",
+        "primary": "#d97706",
+        "primary-content": "#ffffff",
+        "secondary": "#64748b",
+        "secondary-content": "#ffffff",
+        "accent": "#f59e0b",
+        "accent-content": "#ffffff",
+        "neutral": "#374151",
+        "neutral-content": "#ffffff",
+        "error": "#ef4444",
+        "error-content": "#ffffff"
+      },
+      "background": "#f7e6d3",
+      "font": {
+        "family": "Georgia",
+        "type": "system_font",
+        "name": "Georgia"
+      }
+    },
+    "dark_obsidian": {
+      "name": "Dark Obsidian",
+      "colors": {
+        "base-100": "#0f0f23",
+        "base-200": "#1a1a2e",
+        "base-300": "#16213e",
+        "base-content": "#e2e8f0",
+        "primary": "#8b5cf6",
+        "primary-content": "#ffffff",
+        "secondary": "#64748b",
+        "secondary-content": "#ffffff",
+        "accent": "#06b6d4",
+        "accent-content": "#ffffff",
+        "neutral": "#374151",
+        "neutral-content": "#ffffff",
+        "error": "#ef4444",
+        "error-content": "#ffffff"
+      },
+      "background": "#0a0a1a",
+      "font": {
+        "family": "Arial",
+        "type": "system_font",
+        "name": "Arial"
+      }
+    },
+    "dark_crimson": {
+      "name": "Dark Crimson",
+      "colors": {
+        "base-100": "#450a0a",
+        "base-200": "#7f1d1d",
+        "base-300": "#991b1b",
+        "base-content": "#fecaca",
+        "primary": "#dc2626",
+        "primary-content": "#ffffff",
+        "secondary": "#6b7280",
+        "secondary-content": "#ffffff",
+        "accent": "#f87171",
+        "accent-content": "#000000",
+        "neutral": "#374151",
+        "neutral-content": "#ffffff",
+        "error": "#ef4444",
+        "error-content": "#ffffff"
+      },
+      "background": "#1f0404",
+      "font": {
+        "family": "Verdana",
+        "type": "system_font",
+        "name": "Verdana"
+      }
+    },
+    "dark_slate": {
+      "name": "Dark Slate",
+      "colors": {
+        "base-100": "#1e293b",
+        "base-200": "#334155",
+        "base-300": "#475569",
+        "base-content": "#f1f5f9",
+        "primary": "#3b82f6",
+        "primary-content": "#ffffff",
+        "secondary": "#64748b",
+        "secondary-content": "#ffffff",
+        "accent": "#06b6d4",
+        "accent-content": "#ffffff",
+        "neutral": "#374151",
+        "neutral-content": "#ffffff",
+        "error": "#ef4444",
+        "error-content": "#ffffff"
+      },
+      "background": "#0f172a",
+      "font": {
+        "family": "Tahoma",
+        "type": "system_font",
+        "name": "Tahoma"
+      }
+    },
+    "dark_carbon": {
+      "name": "Generated Theme",
+      "colors": {
+        "base-100": "#FFF5DC",
+        "base-200": "#FEF3C7",
+        "base-300": "#FDE68A",
+        "base-content": "#1F2937",
+        "primary": "#4F46E5",
+        "primary-content": "#FFFFFF",
+        "secondary": "#8B5CF6",
+        "secondary-content": "#FFFFFF",
+        "accent": "#EAB308",
+        "accent-content": "#000000",
+        "neutral": "#374151",
+        "neutral-content": "#FFFFFF",
+        "error": "#EF4444",
+        "error-content": "#FFFFFF"
+      },
+      "background": "#F3E8FF"
+    },
+    "dark_violet": {
+      "name": "Dark Violet",
+      "colors": {
+        "base-100": "#2e1065",
+        "base-200": "#3730a3",
+        "base-300": "#4338ca",
+        "base-content": "#e0e7ff",
+        "primary": "#8b5cf6",
+        "primary-content": "#ffffff",
+        "secondary": "#6b7280",
+        "secondary-content": "#ffffff",
+        "accent": "#a78bfa",
+        "accent-content": "#000000",
+        "neutral": "#374151",
+        "neutral-content": "#ffffff",
+        "error": "#ef4444",
+        "error-content": "#ffffff"
+      },
+      "background": "#1e1b4b",
+      "font": {
+        "family": "Georgia",
+        "type": "system_font",
+        "name": "Georgia"
+      }
+    },
+    "hacker_matrix": {
+      "name": "Dark Theme",
+      "colors": {
+        "base-100": "#2d3748",
+        "base-200": "#1a1d23",
+        "base-300": "#0f172a",
+        "base-content": "#ffffff",
+        "primary": "#6c5ce7",
+        "primary-content": "#ffffff",
+        "secondary": "#4d5d7e",
+        "secondary-content": "#ffffff",
+        "accent": "#f7dc6f",
+        "accent-content": "#000000",
+        "neutral": "#3b3f4e",
+        "neutral-content": "#ffffff",
+        "error": "#f87171",
+        "error-content": "#ffffff"
+      },
+      "background": "#2c3e50"
+    }
+  },
+  "default_theme": "ocean_breeze",
+  "default_font": "Helvetica"
+}
