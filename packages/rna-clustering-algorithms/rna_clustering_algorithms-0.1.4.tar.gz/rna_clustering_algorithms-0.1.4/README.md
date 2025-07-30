@@ -1,0 +1,98 @@
+
+# Enhanced Scanpy Clustering
+
+A collection of tools and workflows to improve clustering analysis in single-cell RNA-seq data using [Scanpy](https://scanpy.readthedocs.io/).
+
+## Features
+
+- Advanced clustering algorithms and parameter tuning
+- Visualization enhancements for cluster interpretation
+- Utilities for preprocessing and quality control
+- Integration with AnnData objects
+
+## Installation
+
+```bash
+pip install enhanced-scanpy-clustering
+```
+Or, for development:
+```bash
+git clone https://github.com/Terrell-byte/enhanced-scanpy-clustering.git
+cd enhanced-scanpy-clustering
+pip install -e .
+```
+
+## Usage
+
+Describe the main ways to use the package here.
+
+### Command-line usage
+
+```bash
+# Run the main workflow
+python -m enhanced_scanpy_clustering.main --input <input_file> --output <output_dir>
+
+# Additional options
+python -m enhanced_scanpy_clustering.main \
+    --input <input_file> \
+    --output <output_dir> \
+    --algorithm dbscan_base \
+    --neighbors 15 \
+    --resolution 0.5 \
+    --random-state 42
+```
+
+### Python usage
+
+```python
+import scanpy as sc
+import enhanced_scanpy_clustering.clustering as cl
+
+# Option 1: Use the cluster function
+cl.cluster(adata, algorithm="...", key_added='...')
+
+# Option 2: Use direct Scanpy integration
+cl.enable_scanpy_integration()
+```
+
+> **Note:** 
+> - The package requires AnnData objects as input
+> - Recommended to normalize and preprocess your data before clustering
+> - Set random seed for reproducible results
+
+### Examples
+
+```python
+import scanpy as sc
+import enhanced_scanpy_clustering.clustering as cl
+
+# Load adata with you data set
+adata = sc.read_h5ad('YourFile.h5ad')  
+
+# 1: Using only neccesary paremeters with algo "DBScan_Base"
+cl.cluster(adata, algorithm='DBScan_Base', key_added='dbscan_labels')
+
+# 2: Using Scanpy integration
+cl.enable_scanpy_integration()
+
+sc.tl.DBScan_Base(adata, key_added='dbscan_labels')
+
+# 3: Additional parameters for fine-tuning
+cl.cluster(
+    adata,
+    algorithm='DBScan_Base',
+    key_added='dbscan_labels',
+    n_neighbors=15,
+    resolution=0.5,
+    random_state=42
+)
+```
+
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
