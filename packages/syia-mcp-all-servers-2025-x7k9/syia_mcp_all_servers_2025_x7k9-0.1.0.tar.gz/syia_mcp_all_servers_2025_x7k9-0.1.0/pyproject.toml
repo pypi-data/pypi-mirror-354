@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "syia-mcp-all-servers-2025-x7k9"
+version = "0.1.0"
+description = "Meta package for all MCP servers"
+requires-python = ">=3.12"
+dependencies = [
+    "syia-mcp-navigation-equipment-manuals-2025-x7k9",
+    "syia-mcp-crew-2025-x7k9",
+    "syia-mcp-maker-circulars-2025-x7k9",
+]
+
+[dependency-groups]
+dev = [
+    "build>=1.2.2.post1",
+    "twine>=6.1.0",
+]
