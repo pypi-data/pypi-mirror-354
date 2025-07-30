@@ -1,0 +1,16 @@
+.gitignore
+LICENSE
+README.md
+setup.py
+ml_determination/__init__.py
+ml_determination/data.py
+ml_determination/get_monolingual_translations.py
+ml_determination/get_segment_scores.py
+ml_determination/model.py
+ml_determination/predict_matrix_language.py
+ml_determination.egg-info/PKG-INFO
+ml_determination.egg-info/SOURCES.txt
+ml_determination.egg-info/dependency_links.txt
+ml_determination.egg-info/requires.txt
+ml_determination.egg-info/top_level.txt
+tests/test_ml12.py
