@@ -1,0 +1,111 @@
+[tool.ruff]
+fix = true
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "migrations",
+]
+
+line-length = 80
+
+[tool.ruff.lint]
+select = ["E", "F", "B"]
+#select = ["E", "F", "I", "PL", "I", "B"]
+ignore = ["B008"]
+ignore-init-module-imports = true
+unfixable = []
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F403", "F405", "E501"]
+"consts.py" = ["E501"]
+
+[tool.black]
+line-length = 80
+target-version = ['py310', 'py311', 'py312']
+extend-exclude = '''
+/(
+  # The following are specific to Black, you probably don't want those.
+  | blib2to3
+  | tests/data
+  | profiling
+)/
+'''
+[tool.isort]
+profile = "black"
+line_length = 80
+#multi_line_output = 3
+#include_trailing_comma = true
+#force_grid_wrap = 0
+
+[project]
+name = "textspitter"
+# dynamic = ["version"]
+version = '0.4.0b1'
+authors = [
+  { name="Francis Secada", email="francis.secada@gmail.com" },
+]
+description = "A text-extraction application that facilitates string consumption."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "loguru>=0.7.3",
+    "pymupdf>=1.26.0",
+    "pypdf>=5.6.0",
+    "python-docx>=1.1.2",
+]
+
+
+[tool.setuptools]
+# py-modules = ["TextSpitter"]
+packages = ["TextSpitter"]
+#package-dir = {"" = "TextSpitter"}
+
+# [tool.setuptools.dynamic]
+# version = {attr = "TextSpitter.__version__"}
+# readme = {file = ['README.md']}
+
+[project.urls]
+Homepage = "https://github.com/fsecada01/TextSpitter"
+Issues = "https://github.com/fsecada01/TextSpitter/issues"
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "build>=1.2.2.post1",
+    "isort>=6.0.1",
+    "jupyterlab>=4.4.3",
+    "jupyterlab-code-formatter>=3.0.2",
+    "pytest>=8.4.0",
+    "pytest-lazy-fixtures>=1.1.4",
+    "pytest-mock>=3.14.1",
+    "ruff>=0.11.13",
+    "twine>=6.1.0",
+]
+
+
