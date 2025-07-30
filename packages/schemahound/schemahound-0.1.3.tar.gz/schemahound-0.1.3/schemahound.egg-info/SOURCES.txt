@@ -1,0 +1,17 @@
+.gitignore
+LICENSE
+Makefile
+README.md
+hello.py
+pyproject.toml
+uv.lock
+.github/workflows/check.yaml
+.github/workflows/release.yaml
+schemahound/__init__.py
+schemahound.egg-info/PKG-INFO
+schemahound.egg-info/SOURCES.txt
+schemahound.egg-info/dependency_links.txt
+schemahound.egg-info/requires.txt
+schemahound.egg-info/top_level.txt
+tests/__init__.py
+tests/test_a.py
