@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: kclpy-ext
+Version: 3.0.5
+Summary: A python interface for the Amazon Kinesis Client Library MultiLangDaemon - ext
+Home-page: https://github.com/localstack/amazon-kinesis-client-python
+License: Apache-2.0
+Keywords: amazon kinesis client library python
+License-File: LICENSE.txt
+License-File: NOTICE.txt
+Requires-Dist: boto3
+Requires-Dist: argparse
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
