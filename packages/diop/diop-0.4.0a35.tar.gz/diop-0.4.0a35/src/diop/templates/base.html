@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="en">
+
+    <head>
+        {% block title %}
+            <title>{{ request.site.name }} Web Interface</title>
+        {% endblock title %}
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {% load static %}
+
+        <link rel="shortcut icon"
+              href="{% static 'images/microscope-cell_32.png' %}"
+              type="image/x-icon">
+        <link rel="stylesheet"
+              href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+        <script defer src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <script defer src="{% static 'js/htmx.min.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+        <link rel="stylesheet"
+              href="{% static 'bootstrap/font/bootstrap-icons.min.css' %}" />
+    </head>
+
+    <body>
+
+        <!-- Sign-In Modal -->
+        <div class="modal fade"
+             id="signInModal"
+             tabindex="-1"
+             aria-labelledby="signInModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="signInModalLabel">Sign In</h1>
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form method="post" action="{% url 'login' %}" class="form-signin">
+                            {% csrf_token %}
+                            <!-- TODO: name and id fields are hardcoded here because we are
+                        too suptid to understand the proper form mechanisms, this should
+                        be improved as well as the "next" value -->
+                            <input name="username"
+                                   id="id_username"
+                                   class="form-control"
+                                   placeholder="Username"
+                                   required
+                                   autofocus=""
+                                   type="text">
+                            <input name="password"
+                                   id="id_username"
+                                   class="form-control"
+                                   placeholder="Password"
+                                   required
+                                   type="password">
+                            <input type="hidden" name="next" value="/">
+                            <button class="btn btn-secondary btn-block m-2 mb-4 p-1" type="submit">
+                                Sign
+                                in
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Sign-In Modal -->
+
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- Side Bar -->
+                <div class="col-sm-2">
+                    <div class="my-3">
+                        <a href="{% url 'index' %}">
+                            <img src="{% static 'images/microscope-cell.png' %}"
+                                 alt="Microscope Cell"
+                                 width="128px"
+                                 height="128px" />
+                        </a>
+                    </div>
+                    {% block sidebar-above %}
+                    {% endblock sidebar-above %}
+
+                    {% block sidebar %}
+                        <ul class="sidebar-nav">
+                            {% if user.is_authenticated %}
+                                <li>
+                                    <a href="{% url 'machines_basic' %}">Machines</a>
+                                </li>
+                            {% endif %}
+                            {% if user.is_staff %}
+                                <li>
+                                    <a href="{% url 'machine_list' %}">Machines (detailed)</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'session_list' %}">Sessions</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'operators_dash' %}">Ops-Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'admin:index' %}">Admin Backend</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    {% endblock sidebar %}
+
+                    {% comment %}
+                    {# sidebar cards #}
+                    <div class="position-relative">
+                        <div class="card text-bg-outline-secondary my-3 w-75 position-absolute start-50 translate-middle-x">
+                            <div class="card-header">Card Header</div>
+                            <div class="card-body">
+                                <p class="card-text">Card Text.</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endcomment %}
+
+
+                    {% block sidebar-below %}
+                    {% endblock sidebar-below %}
+
+                </div>
+                <!-- Side Bar -->
+
+                <!-- Main Content -->
+                <div class="col-sm-10 mt-2">
+                    {% block content %}
+                    {% endblock content %}
+                </div>
+                <!-- Main Content -->
+
+            </div>
+        </div>
+
+        <footer class="mt-3">
+            <nav class="navbar navbar-expand-lg bg-dark bg-opacity-25">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-muted">{{ request.site.name }}</a>
+
+                    {% if user.is_staff %}
+                        <div class="btn btn-sm btn-outline-secondary "
+                             style="--bs-btn-padding-y: .1rem;
+                                    --bs-btn-padding-x: .4rem;
+                                    --bs-btn-font-size: .65rem">0.4.0-a.35</div>
+
+                        <a class="nav-link mx-2 text-muted">Last Update</a>
+                        <div class="me-auto">
+
+                            <div class="btn-group btn-group-sm mx-1"
+                                 role="group"
+                                 hx-get="{% url 'last_update_item' 'sessions' %}"
+                                 hx-trigger="load"></div>
+                            <div class="btn-group btn-group-sm mx-1"
+                                 role="group"
+                                 hx-get="{% url 'last_update_item' 'machines' %}"
+                                 hx-trigger="load"></div>
+                        </div>
+
+                        <div class="d-flex"
+                             hx-get="{% url 'status_issues_unresolved' %}"
+                             hx-trigger="load"></div>
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                        <form method="post" action="{% url 'logout' %}" class="d-flex">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="/">
+                            <button class="btn btn-secondary btn-sm" type="submit">
+                                Sign
+                                Out
+                            </button>
+                        </form>
+                    {% else %}
+                        <div>
+                            <!-- trigger modal login dialog -->
+                            <button type="button"
+                                    class="btn btn-secondary btn-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#signInModal">Sign In</button>
+                        </div>
+                    {% endif %}
+
+
+                    <!-- dark / light theme toggler -->
+                    <div class="form-check form-switch ms-4 pt-1">
+                        <label class="form-check-label" for="dark-light-toggler">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 width="25"
+                                 height="25"
+                                 fill="currentColor"
+                                 class="bi bi-brightness-high"
+                                 viewBox="0 0 16 16">
+                                <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+                            </svg>
+                        </label>
+                        <input class="form-check-input" type="checkbox" id="dark-light-toggler" />
+                    </div>
+                    <!-- dark / light theme toggler -->
+
+                </div>
+
+            </nav>
+
+
+        </footer>
+    </body>
+
+    <script>
+    document.getElementById('dark-light-toggler').addEventListener('click',()=>{
+        if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+            document.documentElement.setAttribute('data-bs-theme','light')
+        }
+        else {
+            document.documentElement.setAttribute('data-bs-theme','dark')
+        }
+    })
+    </script>
+
+</html>
