@@ -1,0 +1,19 @@
+[package]
+name = "rtd-common"
+edition = "2021"
+version = "0.1.2"
+authors = ["Julius Walczynski", "Chee Hang Yong"]
+description = "RFA Hil Testbench"
+
+[dependencies]
+hal-common = { path = "../../hal/common", default-features = false }
+binrw = { version = "0.14.1", default-features = false }
+num-traits = { version = "0.2.19", default-features = false }
+libm = "0.2.11"
+
+pyo3 = { version = "0.24.0", features = ["extension-module"], optional = true}
+
+[features]
+default = []
+std = ["hal-common/std"]
+pyo3 = ["dep:pyo3", "std"]
