@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: git-summarise
+Version: 0.1.2
+Summary: Add your description here
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: torch>=2.7.1
+Requires-Dist: transformers>=4.52.4
+Requires-Dist: typer>=0.16.0
+
+# Running
+```bash
+uv venv
+source .venv/bin/activate
+uv run main.py
+```
