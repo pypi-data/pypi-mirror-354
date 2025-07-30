@@ -1,0 +1,5 @@
+from this directory run:
+python -m build
+python -m twine upload dist/*
+
+pip install --upgrade build twine
