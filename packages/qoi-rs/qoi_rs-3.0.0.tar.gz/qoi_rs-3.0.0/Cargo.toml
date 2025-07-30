@@ -1,0 +1,45 @@
+[package]
+name = "qoi-rs"
+version = "3.0.0"
+edition = "2024"
+repository = "https://codeberg.org/Joshix/qoi-rs-python"
+description = "Wrapper around https://lib.rs/crates/qoi"
+license-file = "LICENSE"
+
+[lib]
+name = "qoi_rs"
+crate-type = ["cdylib", "lib"]
+
+[dependencies.pyo3-arrow]
+version = "0.9.0"
+default-features = false
+
+[dependencies.arrow-array]
+version = "55.0.0"
+default-features = false
+
+[dependencies.arrow-schema]
+version = "55.0.0"
+default-features = false
+
+[dependencies.pyo3]
+version = "0.24.2"
+default-features = false
+features = [ "extension-module", "abi3", "abi3-py312" ]
+
+[dependencies.pyo3-bytes]
+version = "0.2.0"
+default-features = false
+
+[dependencies.qoi]
+git = "https://github.com/elmarco/qoi-rust"
+rev = "2c0bb0d17792e34918e4b63a19d6c6f48cdaa644"
+default-features = false
+features = ["std"]
+
+[profile.release]
+codegen-units = 1
+panic = "abort"
+strip = true
+lto = true
+opt-level = 3
