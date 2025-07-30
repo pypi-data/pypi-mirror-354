@@ -1,0 +1,5 @@
+recursive-include foc *.py
+recursive-include tests *.py
+include *.md
+include ChangeLog.md
+global-exclude *.py[cod] __pycache__
