@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "pycaprio"
+version = "0.3.1"
+readme = "README.md"
+repository = "https://github.com/inception-project/pycaprio"
+documentation = "https://pycaprio.readthedocs.io"
+description = "Python client for the INCEpTION annotation tool remote API"
+authors = ["The INCEpTION Project", "Javier Luna Molina", "Savanamed"]
+maintainers = [ "Richard Eckart de Castilho" ]
+license = "MIT"
+packages = [
+    { include = "pycaprio" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+requests = "^2.32.3"
+requests-toolbelt = "^1.0.0"
+
+[tool.poetry.group.dev.dependencies]
+Jinja2 = "^3.1.6"
+ruff = "^0.9.10"
+pytest = "^8.3.5"
+pytest-mock = "3.14.0"
+requests-mock = "1.12.1"
+coverage = "^7.6.12"
+mkdocs = "^1.6.1"
+pytest-cov = "^6.0.0"
+codecov = "^2.1.13"
+bump2version = "^0.5.11"
+testcontainers = "^4.9.2"
+bcrypt = "^4.3.0"
+
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+
+[build-system]
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
