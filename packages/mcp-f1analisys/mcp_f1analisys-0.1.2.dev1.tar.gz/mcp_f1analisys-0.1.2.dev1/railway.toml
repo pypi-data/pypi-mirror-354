@@ -1,0 +1,15 @@
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+
+[env]
+PORT = "8000"
+RAILWAY_ENVIRONMENT = "production"
+
+[[services]]
+name = "mcp-f1analisys"
+source = "."

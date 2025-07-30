@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "MCP Dev: Launch server.py",
+            "type": "debugpy",
+            "request": "launch",
+            // "program" debe ser el script ejecutable 'mcp'.
+            // Necesitamos la ruta completa si no está en el PATH del depurador,
+            // o si queremos ser explícitos con el del venv.
+            // Asumimos que 'mcp' es un script (o .exe en Windows) que se encuentra
+            // en el directorio Scripts de tu entorno virtual.
+            "program": "${workspaceFolder}/.venv/Scripts/mcp-script.py", // Ajusta si 'mcp.exe' o si tu venv se llama diferente
+            "args": [
+                "dev",
+                ".\\server.py" // Argumento para 'mcp dev'
+            ],
+            // Es crucial que el depurador use el intérprete de Python de tu entorno virtual.
+            // VS Code suele detectarlo, pero puedes ser explícito:
+            "python": "${workspaceFolder}/.venv/Scripts/python.exe", // Ajusta si tu venv se llama diferente
+            "console": "integratedTerminal", // Muestra la salida en la terminal integrada de VS Code
+            "cwd": "${workspaceFolder}" // Establece el directorio de trabajo actual a la raíz del proyecto
+        }
+    ]
+}
