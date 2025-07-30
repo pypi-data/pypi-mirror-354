@@ -1,0 +1,24 @@
+include README.rst
+include LICENSE.txt
+include CHANGELOG.rst
+include CITATION.cff
+include pyproject.toml
+include setup.py
+
+# Include the actual package
+recursive-include laserbeamsize *.py
+
+# and tests
+recursive-include tests *.py
+
+# stuff we don't want to include in package
+prune docs
+prune .github
+exclude requirements-dev.txt
+exclude setup.sh
+exclude .gitignore
+exclude .readthedocs.yaml
+exclude .yamllint
+exclude Makefile
+exclude release.txt
+
