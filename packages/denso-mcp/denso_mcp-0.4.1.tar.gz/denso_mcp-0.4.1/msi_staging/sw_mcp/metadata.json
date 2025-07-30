@@ -1,0 +1,9 @@
+{
+  "name": "sw-mcp",
+  "version": "0.1.0",
+  "python_version": "3.10",
+  "arch": "win_amd64",
+  "requires": [
+    "pywin32>=305"
+  ]
+}
