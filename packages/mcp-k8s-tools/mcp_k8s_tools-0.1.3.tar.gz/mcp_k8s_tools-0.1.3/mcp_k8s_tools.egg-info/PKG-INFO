@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: mcp-k8s-tools
+Version: 0.1.3
+Summary: MCP server for investigating Kubernetes clusters
+Author: Jonathan Kittell
+Requires-Dist: fastmcp
+Requires-Dist: pydantic
+Requires-Dist: python-dotenv
+Requires-Dist: kubernetes
+Dynamic: author
+Dynamic: requires-dist
+Dynamic: summary
