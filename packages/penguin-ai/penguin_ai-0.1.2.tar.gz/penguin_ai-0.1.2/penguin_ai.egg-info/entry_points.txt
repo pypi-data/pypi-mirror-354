@@ -1,0 +1,3 @@
+[console_scripts]
+penguin = penguin.chat.cli:app
+penguin-web = penguin.api.server:main
