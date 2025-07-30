@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "furigrego"
+version = "1.0.4"
+description = "Chez Grego"
+license = "MIT"
+authors = ["Grego"]
+readme = "README.md"
+homepage = "https://chezgrego.com/"
+repository = "https://chezgrego.com/"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fugashi = { version = "^1.2.1", extras = ["unidic-lite"] }
+unidic = "^1.1.0"
+beautifulsoup4 = "^4.12.2"
+lxml = "^4.9.2"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.3.1"
+pytest-watcher = "^0.2.6"
+pytest-testmon = "^2.0.6"
+
+[tool.poetry.scripts]
+furigrego = "furigrego.cli:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
