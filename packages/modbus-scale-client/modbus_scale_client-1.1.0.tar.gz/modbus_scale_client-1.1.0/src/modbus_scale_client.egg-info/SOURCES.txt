@@ -1,0 +1,15 @@
+.gitlab-ci.yml
+LICENSE.md
+README.md
+doxyfile
+pyproject.toml
+requirements.txt
+.gitlab/issue_templates/bug_report.md
+src/__init__.py
+src/modbus_scale_client.py
+src/modbus_scale_client.egg-info/PKG-INFO
+src/modbus_scale_client.egg-info/SOURCES.txt
+src/modbus_scale_client.egg-info/dependency_links.txt
+src/modbus_scale_client.egg-info/requires.txt
+src/modbus_scale_client.egg-info/top_level.txt
+tests/test_modbus_scale_client.py
