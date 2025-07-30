@@ -1,0 +1,21 @@
+[build-system]
+requires = ['setuptools']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'pyside_wrapper_yaboiteedoh'
+requires-python = '>=3.12'
+version = '0.0.5'
+classifiers = [
+    'Programming Language :: Python :: 3',
+    'Operating System :: OS Independent',
+]
+license = 'MIT'
+['project.urls']
+Homepage = 'https://github.com/yaboiteedoh/pyside-wrapper/'
+Issues = 'https://github.com/yaboiteedoh/pyside-wrapper/issues'
+install_requires=[
+    'PySide6 >= 6.9.1',
+    'PySide6_Addons >= 6.9.1',
+    'PySide6_Essentials >= 6.9.1'
+]
