@@ -1,0 +1,17 @@
+[project]
+name = "pogucam"
+version = "0.1.2"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "jaromrax", email = "jaromrax@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+pogucam = "pogucam:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
