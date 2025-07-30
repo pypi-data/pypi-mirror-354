@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}我的预警{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="header">
+        <h1>我的价格预警</h1>
+    </div>
+    {% if data.alerts %}
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>交易对</th>
+                <th>触发条件</th>
+                <th>ID (用于删除)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for alert in data.alerts %}
+            <tr>
+                <td style="font-family: 'Inter', sans-serif; font-weight: 600; color: #fff;">{{ alert.symbol.upper() }}
+                </td>
+                <td>价格 <span style="font-weight: 600;">{{ alert.condition }} {{ alert.value }}</span></td>
+                <td>{{ alert.id }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div style="font-size: 13px; color: #6c757d; text-align: center; margin-top: 24px;">
+        使用 `bn alert remove [ID]` 来删除预警
+    </div>
+    {% else %}
+    <div class="no-data">您当前没有设置任何价格预警</div>
+    {% endif %}
+</div>
+{% endblock %}
