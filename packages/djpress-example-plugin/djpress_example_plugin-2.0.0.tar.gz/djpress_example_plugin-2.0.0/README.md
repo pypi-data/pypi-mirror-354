@@ -1,0 +1,66 @@
+# Example Plugin for DJ Press
+
+[DJ Press](https://pypi.org/project/djpress/) is a blogging application for Django sites inspired by classic WordPress.
+
+As of version 0.12, plugin support has been added, and this repository serves as an example of a simple plugin that
+uses the following DJ Press hooks:
+
+- `DJ_FOOTER`: inserts text in your template, as long as your template includes the `{% dj_header %}` template tag.
+- `DJ_HEADER`: inserts text in your template, as long as your template includes the `{% dj_header %}` template tag.
+- `PRE_RENDER_CONTENT`: modify a blog post's markdown text before it is converted to HTML.
+- `POST_RENDER_CONTENT`: modify a blog post's HTML content after it is converted to HTML.
+- `POST_SAVE_POST`: perform an action on the post objcet after it's saved.
+
+## Plugin Development Steps
+
+These are the specific steps that were followed to create this plugin. These steps were performed on a "Unix-like"
+system but should work fine on Windows using WSL, macOS, or Linux. I use the `uv` tool
+[from Astral](https://docs.astral.sh/uv/), but if you have another preferred tool, you should be able to follow along
+and modify for your own use-case. You will also need a test Django site locally with DJ Press already installed and
+configured. Creating this Django site is out of scope for these instructions; the assumption is that if you are
+wanting to develop a DJ Press plugin, you will have already have access to a local Django site with DJ Press for
+testing.
+
+- Create a parent directory to store the plugin: `mkdir djpress-example-plugin`
+- Initialise the project with a `pyproject.toml` file with: `uv init --package`
+- Remove the contents of `__init__.py` and update the `pyproject.toml` file with the following changes:
+  - Remove the `project.scripts` section
+  - Change the `requires-python` section to: `requires-python = ">=3.9"`. This is because DJ Press supports Python
+    3.9 or newer, and so it is recommended that your plugin package does the same. If you are not planning to
+    distribute your package to the public, then you can set this to your preferred version of Python.
+  - Edit the rest of your file to suit your needs, e.g. `version`, `description`, `authors`, etc.
+- Add `djpress` as a dependency of your project: `uv add djpress`
+- Add any other dependencies that you require.
+- Create the plugin module: `touch src/djpress_example_plugin/plugin.py`, and open in your favourite editor. This
+  module does not *need* to be called `plugin.py`, but it makes the configuration and discovery of the plugin easier,
+  so is highly recommended. Refer to `src/djpress_example_plugin/plugin.py` to see the xample code.
+- That is the end of the plugin development. The next step is to install the plugin in a Django site to test that it
+  works. To do this, you will need access to a test Django site locally. Navigate to the directory that stores your
+  site and install your plugin package as an editable package. How to do this depends on your specific environment, but
+  if you are using `uv` and your test site is in an adjacent directory, you could do something like this:
+  `uv add --editable ../djpress-example-plugin`. The trick will be to get the path to your plugin correct.
+- Once the package is installed, open your Django settings file in your favourite editor and add the following settings
+  to the `DJPRESS_SETTINGS` configuration object:
+
+    ```python
+    # DJPress settings
+    DJPRESS_SETTINGS = {
+        # ... existing settings ...
+        "PLUGINS": [
+            "djpress_example_plugin",
+        ],
+        "PLUGIN_SETTINGS": {
+            "djpress_example_plugin": {
+                "greet_text": "Hello!",
+                "greet_text": "Goodbye!",
+            },
+        },
+    }
+    ```
+
+- You can now build your package and upload to PyPi so that others can use it in their projects. Before doing this, you
+  should create a good README.md file with instructions on how to install and configure it, and what the plugin does.
+  Publishing to PyPi is out of scope of these instructions but the
+  [Python Packaging Guide](https://packaging.python.org/en/latest/) has some good information on how to get started.
+  However, if you are already set up and ready to publish, `uv` has the ability to build your project: `uv build`, and
+  then publish to PyPi: `uv publish`.
