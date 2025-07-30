@@ -1,0 +1,108 @@
+# FluentC Python SDK
+
+A lightweight Python SDK for interacting with the FluentC Translation API — an AI-powered translation and language detection service designed for real-time, batch, and multilingual content workflows.
+
+## 🚀 Installation
+
+```bash
+pip install fluentc-sdk
+```
+
+## 🔐 Authentication
+
+All API requests require an API key (your Site UUID). You can obtain your API key from your FluentC dashboard.
+
+```python
+from fluentc_sdk import FluentCClient
+
+client = FluentCClient(api_key="your-site-uuid")
+```
+
+## ⚡ Quickstart
+
+### Translate Text
+
+```python
+result = client.translate(
+    input_text="Hello, how are you?",
+    input_format="text",
+    target_language="es",
+    source_language="en",
+    mode="real-time"
+)
+print(result["translation"])
+```
+
+### Detect Language
+
+```python
+lang = client.detect_language(input_text="Bonjour tout le monde", input_format="text")
+print(lang)
+```
+
+### Get Available Languages
+
+```python
+langs = client.get_languages()
+print(langs)
+```
+
+### Get Batch Translation Results
+
+```python
+result = client.get_results(job_id="abc123jobid456")
+print(result)
+```
+
+## 📘 API Methods
+
+| Method | Description |
+|--------|-------------|
+| `translate()` | Translate text or HTML content, in real-time or batch mode |
+| `detect_language()` | Auto-detect language of text or HTML |
+| `get_results()` | Retrieve batch translation results using job ID |
+| `get_languages()` | List available target and source languages |
+
+## ❗ Error Handling
+
+All API errors raise `FluentCAPIError`. Example:
+
+```python
+from fluentc_sdk.exceptions import FluentCAPIError
+
+try:
+    client.translate("Hello", "text", "xx")
+except FluentCAPIError as e:
+    print(f"Error: {e.message}")
+```
+
+## 🧪 Development
+
+### Install locally:
+
+```bash
+pip uninstall fluentc-sdk
+pip install .
+```
+
+### Build:
+
+```bash
+python setup.py sdist bdist_wheel
+```
+
+### Publish:
+
+```bash
+twine upload dist/*
+```
+
+## 📄 License
+
+MIT License
+
+## 🔗 Useful Links
+
+- [FluentC Dashboard](https://dashboard.fluentc.io)
+- [FluentC API Docs](https://docs.fluentc.io)
+- [Report Issues](https://github.com/fluentc/python-sdk/issues)
