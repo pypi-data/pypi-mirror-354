@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "professor-assistant2401138"
+version = "0.1.0"
+description = "A Python package to generate exams from question banks for professors."
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+  {name = "sabin", email = "sabin@dsu.ac.kr"}
+]
+requires-python = ">=3.6"
+dependencies = []
+
+
