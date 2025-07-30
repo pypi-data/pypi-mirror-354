@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: alumathprimes
+Version: 0.1.1
+Summary: A simple library to multiply matrices of different dimensions
+Author: Primes
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-python
+Dynamic: summary
+
+This is a brief step by step guide on how to install and use this library that multiplies two matrices of different dimensions.
+
+1. Installation
+    - run *pip install alumathprimes* from your terminal
+
+2. Usage
+    - Import the library using *from alumathprimes import multiplier*
+    Where *multiplier* is the name of a function called to do the multiplication.
+
+3. Error handling
+    - The ValueError is set to display the message *Number of columns of A must equal number of rows of B.* whenever the entered mutrices can not be multiplied.
+
+4. Uninstallation
+    - To uninstall the library, run *pip uninstall alumathprimes*
