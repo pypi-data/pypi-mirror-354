@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: qualitics
+Version: 1.0.0
+Summary: Data Quality Tool
+Author: shubham choubey
+Author-email: choubeys331@gmail.com
+Requires-Dist: sqlalchemy
+Requires-Dist: boto3
+Requires-Dist: python-dotenv
+Requires-Dist: pyyaml
+Requires-Dist: psycopg2
+Requires-Dist: redshift-connector
+Requires-Dist: sqlalchemy-redshift
+Requires-Dist: apscheduler
+Requires-Dist: croniter
+Requires-Dist: jinja2
+Requires-Dist: tabulate
+Requires-Dist: simpleeval
+Requires-Dist: spacy
+Dynamic: author
+Dynamic: author-email
+Dynamic: requires-dist
+Dynamic: summary
