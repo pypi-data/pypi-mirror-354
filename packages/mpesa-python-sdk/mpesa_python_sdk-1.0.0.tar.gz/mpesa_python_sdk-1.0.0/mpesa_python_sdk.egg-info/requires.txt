@@ -1,0 +1,11 @@
+pydantic<3.0.0,>=2.10.0
+requests<3.0.0,>=2.31.0
+python-dotenv<2.0.0,>=1.0.1
+requests-oauthlib<3.0.0,>=2.0.0
+requests-toolbelt<2.0.0,>=1.0.0
+
+[dev]
+build
+pycodestyle==2.11.1
+requests-unixsocket==0.2.0
+typing-extensions==4.12.2
