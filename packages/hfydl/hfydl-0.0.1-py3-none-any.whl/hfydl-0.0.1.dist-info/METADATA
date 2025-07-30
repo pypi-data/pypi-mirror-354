@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: hfydl
+Version: 0.0.1
+Summary: Download and compile Reddit HFY stories into EPUB ebooks.
+Author: Lizard Demon
+License: GPL3
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests
+Requires-Dist: beautifulsoup4
+Requires-Dist: pypandoc
+Dynamic: license-file
+
+# hfydl
+
+**hfydl** is a command-line tool which compiles reddit "next" link chains into epubs.
+
+---
+
+## Installation
+
+```bash
+pip install hfydl
+```
+
+---
+
+## Usage
+```bash
+hfydl <start-url> [-o OUTPUT] [-t TITLE] [-a AUTHOR] [-c COVER]
+```
