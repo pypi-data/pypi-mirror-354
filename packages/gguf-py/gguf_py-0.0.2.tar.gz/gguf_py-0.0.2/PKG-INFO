@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: gguf-py
+Version: 0.0.2
+Summary: gguf python package
+Author-email: gguf <info@gguf.us>
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: MIT License
+Project-URL: Repository, https://github.com/gguf-org/pig
+
+## python package for gguf
+
+install it via pip/pip3:
+```
+pip install gguf-py
+```
+
+update it (if previous version installed) by:
+```
+pip install gguf-py --upgrade
+```
+
+## todo list
+- assembler
+- decomposer
+- transfer
