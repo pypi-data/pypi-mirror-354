@@ -1,0 +1,27 @@
+theme: jekyll-theme-cayman
+title: MailScript
+description: A Python library for simplified email sending and receiving with support for templates, attachments, and more.
+show_downloads: true
+google_analytics:
+github:
+  is_project_page: true
+  repository_url: https://github.com/rakshithkalmadi/mailscript
+
+# Navigation
+header_pages:
+  - index.md
+  - examples.md
+  - api.md
+  - usage.md
+
+# Custom configuration
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+highlighter: rouge
+
+# Enable plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
