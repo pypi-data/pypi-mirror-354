@@ -1,0 +1,15 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "punigowd"
+version = "0.1.0"
+description = "Your package description"
+authors = [
+    { name="pui", email="puneethgowda047@email.com" }
+]
+dependencies = []
+
+[tool.hatch.build.targets.wheel]
+packages = ["punigowd"]
