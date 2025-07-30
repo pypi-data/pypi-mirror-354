@@ -1,0 +1,39 @@
+[project]
+name = "activecamp-mcp"
+version = "0.1.0"
+description = "ActiveCampaign MCP Server"
+readme = "README.md"
+authors = [{ name = "Kevin Hill", email = "kivo360@gmail.com" }]
+license = { text = "MIT" }
+requires-python = ">=3.12"
+dependencies = ["fastmcp>=2.7.0", "httpx>=0.28.1", "pydantic-settings>=2.9.1", "PyYAML>=6.0"]
+keywords = ["activecampaign", "mcp", "server", "api"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.urls]
+Homepage = "https://github.com/kivo360/activecampaign-mcp"
+Repository = "https://github.com/kivo360/activecampaign-mcp"
+Issues = "https://github.com/kivo360/activecampaign-mcp/issues"
+
+[project.scripts]
+activecamp-mcp = "activecamp_mcp:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.0",
+    "pytest-asyncio>=1.0.0",
+    "ruff>=0.1.0",
+    "build>=1.0.0",
+    "twine>=4.0.0",
+]

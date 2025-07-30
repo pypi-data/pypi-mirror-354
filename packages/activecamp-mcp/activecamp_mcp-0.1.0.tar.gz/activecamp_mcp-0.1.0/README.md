@@ -1,0 +1,91 @@
+# ActiveCampaign v3 MCP Server
+
+This project provides a robust, LLM-friendly MCP (Model Context Protocol) server for the ActiveCampaign v3 API. It is built using the **FastMCP** framework and is designed for easy integration with AI agents and clients like Claude Desktop.
+
+The server is automatically generated from the official ActiveCampaign v3 OpenAPI specification but includes significant customizations to create a more intuitive and efficient interface for language models.
+
+## Features
+
+* [cite_start]**FastMCP Powered**: Leverages the high-performance FastMCP library to handle all complex protocol details, allowing you to focus on functionality[cite: 317].
+* [cite_start]**Intelligent OpenAPI Conversion**: Automatically converts REST endpoints into MCP `Tools`, `Resources`, and `Resource Templates`[cite: 775, 782].
+* **Secure Authentication**: Handles API token authentication seamlessly. Your token is loaded from a secure `.env` file and is not exposed in the code.
+* **LLM-Friendly Customizations**:
+    * **Simplified Tools**: Complex API endpoints have been wrapped in simpler, more intuitive custom tools (see `USAGE.md` for details).
+    * **Endpoint Pruning**: Redundant or overly specific endpoints have been excluded to reduce complexity and improve agent performance.
+* [cite_start]**Modern Tooling**: Project setup and dependency management are handled by `uv`, the fast Python package manager[cite: 258].
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+* Python 3.8+
+* `uv` installed on your system.
+* An ActiveCampaign account with access to your **API URL** and **API Token**. You can find these in your account under `Settings > Developer`.
+
+## Setup and Installation
+
+Follow these steps to get the server up and running.
+
+1.  **Clone the Repository**
+    ```bash
+    git clone <repository-url>
+    cd <repository-directory>
+    ```
+
+2.  **Create and Activate Virtual Environment**
+    Use `uv` to create a virtual environment for the project.
+    ```bash
+    # Create the venv
+    uv venv
+
+    # Activate the venv (macOS/Linux)
+    source .venv/bin/activate
+
+    # Activate the venv (Windows)
+    .venv\Scripts\activate
+    ```
+
+3.  **Install Dependencies**
+    Install all required packages using `uv sync`, which will install dependencies from `pyproject.toml`.
+    ```bash
+    uv sync
+    ```
+
+## Configuration
+
+The server requires your ActiveCampaign API URL and Token to function.
+
+1.  **Create a `.env` file** by copying the example file:
+    ```bash
+    cp .env.example .env
+    ```
+
+2.  **Edit the `.env` file** and add your credentials:
+    ```
+    # The base URL for your ActiveCampaign API account (e.g., [https://your-account.api-us1.com](https://your-account.api-us1.com))
+    AC_API_URL="https://<your-account>.api-us1.com"
+
+    # Your ActiveCampaign API Token
+    AC_API_TOKEN="your_super_secret_api_token"
+    ```
+    The server will automatically load these variables when it starts.
+
+## Running the Server
+
+To run the MCP server, execute the `server.py` script from your terminal:
+
+    ```bash
+    python server.py
+    ```
+
+[cite_start]By default, the server runs using the **STDIO** transport[cite: 226]. [cite_start]This is the standard method for local clients like Claude Desktop, where the client application manages the server's lifecycle[cite: 230].
+
+### Running with HTTP Transport
+
+[cite_start]For development, testing with the MCP Inspector, or web-based deployments, you can easily run the server with an HTTP transport using the `fastmcp` CLI[cite: 208, 484].
+
+    ```bash
+    # Run with Streamable HTTP on port 8000
+    fastmcp run server.py --transport streamable-http --port 8000
+    ```
+[cite_start]This command overrides the transport specified in the code, which is useful for changing deployment methods without modifying the source file[cite: 211, 483].
