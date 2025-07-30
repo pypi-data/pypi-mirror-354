@@ -1,0 +1,115 @@
+[project]
+name = "slack_sdk_pydantic"
+version = "0.1.2"
+description = "Pydantic XML models for slack content to allow easily templating content"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "lxml>=5.4.0",
+    "pydantic>=2.11.4",
+    "pydantic-xml>=2.17.0",
+    "slack-sdk>=3.35.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipython>=9.2.0",
+    "lxml-stubs>=0.5.1",
+    "mypy>=1.16.0",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
+    "ruff>=0.11.10",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    "A",
+    "ANN",
+    "ASYNC",
+    "B",
+    "BLE",
+    "C4",
+    "C90",
+    "COM",
+    "DJ",
+    "DTZ",
+    "E",
+    "ERA",
+    "EXE",
+    "F",
+    "FA",
+    "FBT003",
+    "FLY",
+    "G",
+    "I",
+    "ICN",
+    "INT",
+    "N",
+    "PD",
+    "PERF",
+    "PGH",
+    "PL",
+    "Q",
+    "RET",
+    "RSE",
+    "RUF",
+    "S",
+    "SIM",
+    "SLF",
+    "SLOT",
+    "T10",
+    "T20",
+    "TCH",
+    "TID",
+    "UP",
+    "W",
+    "YTT",
+    'INP',
+    'ISC',
+    'PIE',
+    'PT',
+    'PYI',
+]
+
+ignore = [
+  # Don't enforce annotations for *args / **kwargs or special methods.
+  # Don't forbid Any as it's legitimately needed sometimes, e.g. pydantic validators
+  "ANN002",
+  "ANN003",
+  "ANN204",
+  "ANN401",
+  # Ruff recommends disabling these two
+  "COM812",
+  "ISC001",
+  "PLR2004",
+  "N818",  # "Exception" suffix is fine imo
+  "RUF021",  # Unnecessary brackets are not clearer than no brackets
+  "S320",  # lxml is considered safe now
+]
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.extend-per-file-ignores]
+"tests/**/*.py" = [
+  "ARG",
+  "DTZ001",
+  "DTZ005",
+  "FBT",
+  "PLR2004",
+  "RUF012",
+  "S101",
+  "S105",
+  "S106",
+  "S108",
+  "S311",
+]

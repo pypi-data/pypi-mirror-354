@@ -1,0 +1,13 @@
+<!DOCTYPE message [ <!ENTITY nbsp "&#160;"> ]>
+<message alt="ALT TEXT">
+  <header>Test</header>
+  <section id="section1">
+    <text>Test</text>
+    <text>
+        Test\n
+        test\n
+        test&nbsp;&nbsp;&nbsp;test
+    </text>
+  </section>
+  <divider/>
+</message>
