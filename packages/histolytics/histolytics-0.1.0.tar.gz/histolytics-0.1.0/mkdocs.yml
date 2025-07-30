@@ -1,0 +1,105 @@
+site_name: histolytics docs
+site_description: Documentation for Histolytics, a library for panoptic histopathology WSI analysis
+site_author: Oskari Lehtonen
+site_url: https://HautaniemiLab.github.io/histolytics/
+repo_url: https://github.com/HautaniemiLab/histolytics
+repo_name: histolytics
+
+theme:
+  name: "material"
+  logo: img/histolytics_thumbnail_logo.png
+  favicon: img/favicon.ico
+  palette:
+    primary: black
+    accent: cyan
+  font:
+    text: Raleway
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - content.code.copy
+    - content.tabs.link
+    - content.code.annotate
+    - navigation.indexes
+    - navigation.instant
+    - navigation.tracking
+
+plugins:
+  - search
+  - social
+  - autorefs
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          selection:
+            docstring_style: google
+            filters: ["!^_[^_]", "!^__init__$"]
+          rendering:
+            show_source: true
+  - mkdocs-jupyter:
+      include: ["*.ipynb"]
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.arithmatex:
+      generic: true
+  - codehilite
+  - markdown.extensions.def_list
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.emoji
+  - pymdownx.superfences
+  - pymdownx.magiclink
+  - pymdownx.keys
+  - pymdownx.details
+  - admonition
+  - attr_list
+  - tables
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - footnotes
+  - toc:
+        permalink: true
+
+extra_javascript:
+  - javascripts/katex.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Segmentation:
+    - Getting Started: user_guide/seg/getting_started_seg.md
+    - Model Backbones: user_guide/seg/backbones.ipynb
+    - Model Fine-tuning: user_guide/seg/finetuning.ipynb
+    - Tile Selection: user_guide/seg/selecting_tiles.ipynb
+    - WSI Segmentation: user_guide/seg/panoptic_segmentation.ipynb
+  - Spatial Analysis:
+    - Spatial Indexing and Partitioning: user_guide/spatial/indexing_partitioning.ipynb
+    - Nuclear Morphology: user_guide/spatial/morphology.ipynb
+    - Spatial Neighborhoods: user_guide/spatial/nhood_analysis.ipynb
+    - Spatial Clustering: user_guide/spatial/clustering.ipynb
+    - Chromatin Patterns: user_guide/spatial/chromatin_patterns.ipynb
+    - Collagen Fibers & Stromal Features: user_guide/spatial/collagen_fibers.ipynb
+    # - Stromal Morphology: user_guide/spatial/stromal_features.ipynb
+    # - WSI Level Intensity Feature Extraction: user_guide/spatial/collagen_fibers.ipynb
+  - API Reference:
+    - "api/index.md"
+    - WSIPanopticSegmenter: api/wsi_segmenter.md
+    - SlideReader: api/slide_reader.md
