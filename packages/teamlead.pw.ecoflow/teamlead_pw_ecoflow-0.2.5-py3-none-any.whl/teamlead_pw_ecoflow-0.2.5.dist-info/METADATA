@@ -1,0 +1,103 @@
+Metadata-Version: 2.4
+Name: teamlead.pw.ecoflow
+Version: 0.2.5
+Summary: Ecoflow API Library
+Project-URL: Homepage, https://github.com/antongorodezkiy/ecoflow-api
+Project-URL: Documentation, https://github.com/antongorodezkiy/ecoflow-api
+Project-URL: Repository, https://github.com/antongorodezkiy/ecoflow-api.git
+Project-URL: Bug Tracker, https://github.com/antongorodezkiy/ecoflow-api/issues
+Project-URL: Changelog, https://github.com/antongorodezkiy/ecoflow-api/blob/master/CHANGELOG.md
+Author-email: Eduard Kozachok <admin@teamlead.pw>
+Maintainer-email: Eduard Kozachok <admin@teamlead.pw>
+License: MIT License
+        
+        Copyright (c) 2024 Eduard Kozachok
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+License-File: LICENSE
+Keywords: api,ecoflow
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Home Automation
+Classifier: Topic :: Internet
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.10
+Requires-Dist: paho-mqtt>=2.1.0
+Requires-Dist: requests
+Description-Content-Type: text/markdown
+
+# teamlead.pw.ecoflow
+
+## Versions
+
+`teamlead.pw.ecoflow` uses a modified version of [Semantic Versioning](https://semver.org) for all changes.
+
+### Supported Python Versions
+
+This library supports the following Python implementations:
+
+- Python 3.10
+- Python 3.11
+
+## Installation
+
+Install from PyPi using [pip](https://pip.pypa.io/en/latest/), a
+package manager for Python.
+
+```shell
+pip3 install teamlead.pw.ecoflow
+# or
+poetry add git+https://github.com/antongorodezkiy/ecoflow-api
+```
+
+## Usage
+
+### API Credentials
+
+The `Ecoflow` client needs your Ecoflow API credentials. You can obtain `access_key` and `secret_key` on the page https://developer-eu.ecoflow.com/us/security and then pass these directly to the constructor.
+
+### Make a Call
+
+```python
+from teamlead.pw.ecoflow.api import EcoflowApi
+
+access_key = '123'
+secret_key  = '456'
+api = EcoflowApi(access_key = access_key, secret_key = secret_key)
+api.set_logger(log)
+response = api.get_mqtt_certification()
+print(response)
+```
+
+### Enable Debug Logging
+
+Log the API request and response data to the default or custom logger:
+
+```python
+api.debug_requests_on()
+```
