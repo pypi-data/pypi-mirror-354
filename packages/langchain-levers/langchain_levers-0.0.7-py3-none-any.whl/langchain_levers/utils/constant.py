@@ -1,0 +1,8 @@
+DEFAULT_DB_NAME = "default"
+DEFAULT_COLL_NAME = "LangChainCollection"
+
+VECTOR_FIELD = "vector"
+SPARSE_VECTOR_FIELD = "sparse"
+TEXT_FIELD = "text"
+PRIMARY_FIELD = "__PK__"
+NOSUPPORT = "NOSUPPORT"
