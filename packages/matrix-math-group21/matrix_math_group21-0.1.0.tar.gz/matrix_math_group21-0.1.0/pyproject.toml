@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "matrix-math-group21"
+version = "0.1.0"
+description = "A simple matrix addition and multiplication package by Group 21"
+authors = [{name = "Emmanuel Dania", email = "e.dania@alustudent.com"}, {name = "Carine umugabeka", email = "c.umugabeka@alustudent.com"}, {name = "Emmanuel Dania", email = "s.kabare1@alustudent.com"}]
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["matrix", "math", "addition", "multiplication"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License"
+]
+dependencies = []
+requires-python = ">=3.7"
