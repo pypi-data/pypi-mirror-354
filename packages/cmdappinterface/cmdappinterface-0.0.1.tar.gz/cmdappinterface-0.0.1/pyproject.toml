@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cmdappinterface"
+version = "0.0.1"
+description = "A small tool for building Python interfaces inside a terminal."
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "alejandro-vaz", email = "alejandro.vaz.myt@gmail.com" }]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = []
+requires-python = ">=3.7"
