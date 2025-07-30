@@ -1,0 +1,115 @@
+Metadata-Version: 2.4
+Name: thaiqr-gaming
+Version: 0.3.0
+Summary: Thai QR Payment Generator with Gaming Features and Anti-Fraud Security
+Home-page: https://github.com/kittinan/thai-qr-payment
+Author: Kittinan Srithaworn
+License: MIT
+Project-URL: Bug Reports, https://github.com/kittinan/thai-qr-payment/issues
+Project-URL: Source, https://github.com/kittinan/thai-qr-payment
+Keywords: Thai QR Payment Generator Gaming Anti-Fraud Security Watermark
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: qrcode
+Requires-Dist: pillow
+Requires-Dist: crc16
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# thai-qr-payment
+Generate QR Code image in the format of `Thai QR Payment`
+
+- [KBANK](https://apiportal.kasikornbank.com/product/public/LandingPage/QR%20Payment/Introduction/3)
+
+
+## Installation
+
+available on pip https://pypi.org/project/thaiqrpayment/
+
+```bash
+pip install thaiqrpayment
+```
+
+## Usage
+
+```python
+import thaiqrpayment
+
+# Your code from Bank
+code = "01" * 100
+
+# Save to image file
+thaiqrpayment.save(code, "/tmp/qr.png")
+
+# Save QR with custom text (text overlays ON QR code for security)
+thaiqrpayment.save(code, "/tmp/qr_with_text.png", insert_text="Online Gaming Only")
+
+# Save QR specifically for gaming (with "Online Gaming Only" text)
+thaiqrpayment.save_gaming_qr(code, "/tmp/gaming_qr.png")
+
+# SECURE ANTI-FRAUD QR CODES (text cannot be easily removed)
+
+# Level 2 Security: Text overlay on QR code area
+thaiqrpayment.save_secure_gaming_qr(code, "/tmp/secure_gaming.png")
+
+# Level 3 Security: Text embedded in QR pattern (maximum security)
+thaiqrpayment.save_embedded_gaming_qr(code, "/tmp/embedded_gaming.png")
+
+# Custom secure QR with warning text
+secure_img = thaiqrpayment.generate_secure_qr(code, "NOT FOR REAL PAYMENT")
+secure_img.save("/tmp/warning_qr.png")
+
+# Custom embedded QR (text integrated into QR pattern)
+embedded_img = thaiqrpayment.generate_embedded_watermark_qr(code, "DEMO ONLY")
+embedded_img.save("/tmp/demo_qr.png")
+
+# base64 format
+base64_str = thaiqrpayment.to_base64(code)
+
+# base64 format with security
+base64_secure = thaiqrpayment.secure_gaming_qr_to_base64(code)
+base64_embedded = thaiqrpayment.embedded_gaming_qr_to_base64(code)
+
+# PIL image
+pil_image = thaiqrpayment.generate(code)
+
+# PIL image with custom text overlay
+pil_image = thaiqrpayment.generate(code, insert_text="Online Gaming Only")
+
+# PIL image for gaming
+pil_image = thaiqrpayment.generate_gaming_qr(code)
+
+```
+
+## Security Features
+
+### Anti-Fraud Protection Levels
+
+1. **Level 1 - Standard Text**: Text appears below QR code (can be cropped)
+2. **Level 2 - Secure Overlay**: Text overlays on QR code area (harder to remove)  
+3. **Level 3 - Embedded Watermark**: Text integrated into QR pattern (cannot be removed)
+
+### Use Cases
+
+- **Gaming Payments**: Use `save_embedded_gaming_qr()` for maximum security
+- **Demo/Test QRs**: Use `generate_secure_qr()` to prevent misuse
+- **Invalid QRs**: Use embedded warnings that cannot be removed
+- **Custom Warnings**: Add specific text to prevent unauthorized use
+
+## Example Image
+
+![Thai QR Payment example](https://github.com/kittinan/thai-qr-payment/raw/main/assets/example.png?raw=true)
