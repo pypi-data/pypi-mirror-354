@@ -1,0 +1,21 @@
+# Minimum horizontal size of main window in pixels
+minimum_window_size_x: 1000    
+# Minimum vertical size of main window in pixels
+minimum_window_size_y: 1000  
+# padding in pixels for widget frames
+grid_padding:  5               
+# docker compose definitions must be in this additional file
+# follows same search rules as search for this file
+docker_compose_yaml_file: DesktopCluster.yaml
+# A short wait is required before running status checks
+# without this delay the launcher can throw an exception
+# Change only if you are on a slow machine that is aborting on startup
+engine_startup_delay_time:  5     
+# The status of each service container is checked at this interval in seconds
+status_monitor_time_interval:  10 
+# Name of web browser - auto launching only works if this name resolves
+# in the shell
+web_browser:  firefox
+# normal docker usage binds current directory to a fixed mount point (default /home) 
+# this needs to point to the alias in the container NOT the path in the parent file system
+container_run_directory:  /home
