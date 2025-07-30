@@ -1,0 +1,62 @@
+[project]
+name = "ntac"
+version = "0.1.1"
+description = "Add your description here"
+readme = "README.md"
+
+authors = [
+    { name = "Ben Jourdan", email = "ben@jourdan.me" },
+    { name = "Gregory Schwartzman", email = "gregory.schwartzman@gmail.com" },
+    { name = "David García Soriano", email = "elhipercubo@gmail.com" },
+    { name = "Arie Matsliah", email = "arie.matsliah@gmail.com" }
+]
+
+
+requires-python = ">=3.10"
+dependencies = [
+    "bottleneck>=1.5.0",
+    "matplotlib>=3.10.3",
+    "numba>=0.61.0",
+    "pandas>=2.2.3",
+    "scikit-learn>=1.6.1",
+    "scipy>=1.15.2",
+    "tqdm>=4.67.1",
+]
+
+[project.optional-dependencies]
+gpu = [
+    "cuda-python>=12.9.0",
+    "cupy-cuda12x>=13.4.1",
+    ]
+dev = [
+    "black",
+    "build",
+    "furo",
+    "pytest",
+    "ruff",
+    "sphinx",
+    "twine",
+]
+
+[project.scripts]
+ntac = "ntac:main"
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "D"]
+ignore = ["E501", "D203", "D213", "D210", "D401", "D202", "I001"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra"
+testpaths = ["tests"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
