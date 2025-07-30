@@ -1,0 +1,15 @@
+.env.example
+MANIFEST.in
+README.md
+setup.py
+posthook/__init__.py
+posthook/cli.py
+posthook/installer.py
+posthook.egg-info/PKG-INFO
+posthook.egg-info/SOURCES.txt
+posthook.egg-info/dependency_links.txt
+posthook.egg-info/entry_points.txt
+posthook.egg-info/requires.txt
+posthook.egg-info/top_level.txt
+posthook/hooks/post-commit
+posthook/hooks/prepare-commit-msg
