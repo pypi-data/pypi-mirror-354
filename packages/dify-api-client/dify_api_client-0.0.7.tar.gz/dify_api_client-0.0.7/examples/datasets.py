@@ -1,0 +1,86 @@
+# Add chunks to a document
+# pip install dify-api-client==0.0.5
+import os
+
+import dotenv
+
+from dify_client import DifyClient, models
+
+
+dotenv.load_dotenv()
+
+DIFY_API_BASE = os.getenv("DIFY_API_BASE")
+DIFY_API_KEY = os.getenv("DIFY_API_KEY")
+
+
+client = DifyClient(api_key=DIFY_API_KEY, api_base=DIFY_API_BASE)
+
+
+def add_chunk_to_document():
+    response = client.add_chunk_to_document(
+        dataset_id="894f6555-f3a6-43a0-9891-579cd64beaa8",
+        document_id="ef510e1a-41a7-4c15-99a2-34949412cba4",
+        req=models.AddChunkToDocumentRequest(
+            segments=[
+                models.Segment(
+                    content="Hello, world!",
+                    answer="Hello, world!",
+                    keywords=["hello", "world"],
+                )
+            ]
+        ),
+    )
+
+    print(response)
+
+
+def create_document_by_text():
+    rules = models.Rule(
+        pre_processing_rules=[
+            {
+                "id": "remove_extra_spaces",
+                "enabled": True,
+                "type": "remove_urls_emails",
+                "params": True,
+            }
+        ],
+        segmentation={
+            "separator": "\n",
+            "max_tokens": 10000,
+        },
+        parent_mode="full-doc",
+        subchunk_segmentation={
+            "separator": "sentence",
+            "max_tokens": 10000,
+            "chunk_overlap": 0,
+        },
+    )
+    request = models.CreateDocumentByTextRequest(
+        name="test_document",
+        text="This is a test document content for the knowledge base.",
+        indexing_technique=models.IndexModel.ECONOMY.value,
+        doc_form=models.DocForm.TEXT_MODEL.value,
+        process_rule=models.ProcessRule(
+            mode=models.SegmentationMode.AUTOMATIC.value,
+            rules=rules.model_dump(),
+        ),
+    )
+    print(request.model_dump())
+    response = client.create_document_by_text(
+        dataset_id="894f6555-f3a6-43a0-9891-579cd64beaa8",
+        req=request,
+    )
+    print(response)
+
+
+def get_documents():
+    response = client.get_documents(
+        dataset_id="894f6555-f3a6-43a0-9891-579cd64beaa8",
+    )
+    print(response)
+
+
+if __name__ == "__main__":
+    # add_chunk_to_document()
+    # create_document_by_text()
+    get_documents()
