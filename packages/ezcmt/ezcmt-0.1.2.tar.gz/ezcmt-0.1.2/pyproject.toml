@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools","gdown","ollama"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ezcmt"
+version = "0.1.2"
+description = "A simple and free CLI tool for Git"
+readme = "README.md"
+authors = [{name = "mmemoo"}]
+requires-python = ">=3.10.0"
