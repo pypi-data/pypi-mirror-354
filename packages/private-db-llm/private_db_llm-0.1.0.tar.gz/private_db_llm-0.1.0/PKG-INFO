@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: private_db_llm
+Version: 0.1.0
+Summary: Generate and execute SQL queries against MySQL using an LLM. Get prompt and MySQL connection, give the response with no data leakage!
+Author: Matin Khosravi
+Author-email: matinkhosravi97@gmail.com
+Requires-Python: >=3.12
+License-File: LICENSE
+Requires-Dist: mysql-connector-python>=8.0.0
+Requires-Dist: psycopg2-binary>=2.9.0
+Requires-Dist: openai>=0.27.0
+Requires-Dist: httpx>=0.23.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
