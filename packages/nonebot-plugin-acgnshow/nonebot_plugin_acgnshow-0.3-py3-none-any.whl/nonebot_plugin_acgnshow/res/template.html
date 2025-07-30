@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Show Information</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        body {
+            background-image: url("{{ bgimage }}");
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">展览列表</div>
+        {% for show in shows %}
+        <div class="content">
+            <div class="image">
+                <img src="{{ show.image_url }}" alt="Image" width="147px" height="199px" />
+            </div>
+            <div class="details">
+                <div class="title">{{ show.name }}</div>
+                <div class="venue_name">举办地点：{{ show.location }}</div>
+                {% if show.guests != "" %}
+                <div class="guests">嘉宾：{{ show.guests }}</div>
+                {% endif %}
+                <div class="placeholder"></div>
+                <div class="sale_flag">{{ show.sale_flag }}</div>
+                <div class="id">ID:{{ show.id }}</div>
+                <div class="price">￥{{ show.price_low }} - {{ show.price_high }}</div>
+                <div class="wish">{{ show.wish }}人想去</div>
+                <div class="start-time">开始时间：{{ show.start_time }}</div>
+                <div class="end-time">结束时间：{{ show.end_time }}</div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="footer">
+            <div class="designer">Designed by Asankilp?</div>
+            <div class="total_results">
+                共 {{ global_data.total_results }} 个结果
+            </div>
+            <div class="pages">
+                {{ global_data.page }} / {{ global_data.total_pages }} 页
+            </div>
+            <div class="project_name">nonebot-plugin-acgnshow</div>
+            <div class="notice_text">本页信息仅供参考，具体内容请访问哔哩哔哩会员购，并自行检索实际信息</div>
+        </div>
+    </div>
+</body>
+
+</html>
