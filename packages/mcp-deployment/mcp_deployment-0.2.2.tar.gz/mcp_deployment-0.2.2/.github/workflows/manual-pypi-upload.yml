@@ -1,0 +1,88 @@
+name: Manual PyPI Upload
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'testpypi'
+        type: choice
+        options:
+          - testpypi
+          - pypi
+      version_check:
+        description: 'Skip version check'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  upload:
+    name: Upload to PyPI
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: ${{ github.event.inputs.environment }}
+      url: ${{ github.event.inputs.environment == 'pypi' && 'https://pypi.org/project/mcp-deployment/' || 'https://test.pypi.org/project/mcp-deployment/' }}
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
+    - name: Install build dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build twine
+
+    - name: Build package
+      run: python -m build
+
+    - name: Check package
+      run: twine check dist/*
+
+    - name: Show package info
+      run: |
+        echo "📦 Package contents:"
+        ls -la dist/
+        echo ""
+        echo "📋 Package metadata:"
+        twine check dist/* --strict
+
+    - name: Upload to TestPyPI
+      if: github.event.inputs.environment == 'testpypi'
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        repository-url: https://test.pypi.org/legacy/
+        verbose: true
+
+    - name: Upload to PyPI
+      if: github.event.inputs.environment == 'pypi'
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        verbose: true
+
+    - name: Create summary
+      run: |
+        echo "## 🎉 Upload Complete!" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Environment:** ${{ github.event.inputs.environment }}" >> $GITHUB_STEP_SUMMARY
+        echo "**Package:** mcp-deployment" >> $GITHUB_STEP_SUMMARY
+        echo "**Version:** $(python -c "import tomllib; print(tomllib.load(open('pyproject.toml', 'rb'))['project']['version'])")" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        if [ "${{ github.event.inputs.environment }}" == "pypi" ]; then
+          echo "🔗 **PyPI Link:** https://pypi.org/project/mcp-deployment/" >> $GITHUB_STEP_SUMMARY
+          echo "📦 **Install Command:** \`pip install mcp-deployment\`" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "🔗 **TestPyPI Link:** https://test.pypi.org/project/mcp-deployment/" >> $GITHUB_STEP_SUMMARY
+          echo "📦 **Install Command:** \`pip install -i https://test.pypi.org/simple/ mcp-deployment\`" >> $GITHUB_STEP_SUMMARY
+        fi
