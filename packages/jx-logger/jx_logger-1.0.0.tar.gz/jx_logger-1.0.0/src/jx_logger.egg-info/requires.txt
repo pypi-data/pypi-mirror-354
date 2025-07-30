@@ -1,0 +1,22 @@
+rich>=13.0.0
+aiofiles>=23.0.0
+structlog>=23.0.0
+
+[dev]
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+black>=23.0.0
+ruff>=0.1.0
+mypy>=1.5.0
+
+[performance]
+orjson>=3.9.0
+
+[performance:sys_platform != "win32"]
+uvloop>=0.19.0
+
+[testing]
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
