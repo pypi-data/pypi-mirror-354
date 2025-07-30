@@ -1,0 +1,15 @@
+[project]
+name = "cleanlang"
+version = "1.0"
+description = "A module used to filter out profane and/or offensive language of your choosing!"
+authors = [{name="Annie", email="SocializingAnnie@gmail.com"}]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+dependencies = [
+	"fuzzywuzzy"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
