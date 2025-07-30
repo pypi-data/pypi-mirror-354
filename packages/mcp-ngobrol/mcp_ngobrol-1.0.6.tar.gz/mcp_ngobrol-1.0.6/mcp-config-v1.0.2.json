@@ -1,0 +1,192 @@
+{
+  "title": "MCP Ngobrol v1.0.2 Configuration Guide",
+  "description": "Complete configuration guide for MCP Ngobrol v1.0.2 - GUI-Only Version",
+  "version": "1.0.2",
+  "configurations": {
+    "production": {
+      "name": "Production Configuration",
+      "description": "Recommended for production use with PyPI package",
+      "config": {
+        "mcpServers": {
+          "mcp-ngobrol": {
+            "command": "uvx",
+            "args": ["mcp-ngobrol@1.0.2"],
+            "env": {
+              "MCP_DEBUG": "false",
+              "MCP_LANGUAGE": "id",
+              "PYTHONIOENCODING": "utf-8"
+            },
+            "timeout": 600,
+            "autoApprove": ["interactive_feedback"]
+          }
+        }
+      }
+    },
+    "development": {
+      "name": "Development Configuration",
+      "description": "For local development with source code",
+      "config": {
+        "mcpServers": {
+          "mcp-ngobrol-dev": {
+            "command": "python",
+            "args": ["c:/project/mcp-feedback-enhanced-2.3.0/run_mcp_simple.py"],
+            "env": {
+              "MCP_DEBUG": "true",
+              "MCP_LANGUAGE": "id",
+              "PYTHONIOENCODING": "utf-8"
+            },
+            "timeout": 600,
+            "autoApprove": ["interactive_feedback"]
+          }
+        }
+      }
+    },
+    "latest": {
+      "name": "Latest Version Configuration",
+      "description": "Always use the latest version from PyPI",
+      "config": {
+        "mcpServers": {
+          "mcp-ngobrol": {
+            "command": "uvx",
+            "args": ["mcp-ngobrol@latest"],
+            "env": {
+              "MCP_DEBUG": "false",
+              "MCP_LANGUAGE": "id",
+              "PYTHONIOENCODING": "utf-8"
+            },
+            "timeout": 600,
+            "autoApprove": ["interactive_feedback"]
+          }
+        }
+      }
+    }
+  },
+  "environment_variables": {
+    "MCP_DEBUG": {
+      "description": "Enable debug mode for troubleshooting",
+      "values": ["true", "false"],
+      "default": "false",
+      "note": "Set to 'true' for detailed logging"
+    },
+    "MCP_LANGUAGE": {
+      "description": "Set default language for interface",
+      "values": ["id", "en", "zh-CN", "zh-TW"],
+      "default": "id",
+      "note": "Indonesian is the default for MBPRCC enhanced version"
+    },
+    "PYTHONIOENCODING": {
+      "description": "Set Python encoding for Unicode support",
+      "default": "utf-8",
+      "note": "Prevents garbled text in Indonesian interface"
+    }
+  },
+  "tools_available": [
+    {
+      "name": "interactive_feedback",
+      "description": "Main tool for interactive feedback collection",
+      "parameters": [
+        "project_directory",
+        "summary",
+        "conversation_history",
+        "user_preferences",
+        "session_id",
+        "timeout"
+      ]
+    },
+    {
+      "name": "feedback_simple",
+      "description": "Simplified feedback tool",
+      "parameters": [
+        "summary",
+        "session_id",
+        "timeout"
+      ]
+    },
+    {
+      "name": "create_checkpoint",
+      "description": "Create manual checkpoint",
+      "parameters": [
+        "name",
+        "description",
+        "project_directory",
+        "tags"
+      ]
+    },
+    {
+      "name": "list_checkpoints",
+      "description": "List available checkpoints",
+      "parameters": [
+        "project_directory",
+        "checkpoint_type",
+        "limit"
+      ]
+    }
+  ],
+  "installation_steps": [
+    {
+      "step": 1,
+      "title": "Install UV Package Manager",
+      "command": "curl -LsSf https://astral.sh/uv/install.sh | sh",
+      "description": "Install UV if not already installed"
+    },
+    {
+      "step": 2,
+      "title": "Test MCP Ngobrol Installation",
+      "command": "uvx mcp-ngobrol@1.0.2 version",
+      "description": "Verify installation works"
+    },
+    {
+      "step": 3,
+      "title": "Add Configuration to Augment",
+      "description": "Copy one of the configurations above to your Augment MCP settings"
+    },
+    {
+      "step": 4,
+      "title": "Restart Augment",
+      "description": "Restart Augment Code to load the new MCP server"
+    },
+    {
+      "step": 5,
+      "title": "Test Integration",
+      "description": "Try using interactive_feedback tool in Augment"
+    }
+  ],
+  "troubleshooting": {
+    "server_not_found": {
+      "issue": "MCP server tidak ditemukan",
+      "solutions": [
+        "Install UV: curl -LsSf https://astral.sh/uv/install.sh | sh",
+        "Install mcp-ngobrol: uvx mcp-ngobrol@1.0.2",
+        "Check PATH environment variable",
+        "Restart terminal after UV installation"
+      ]
+    },
+    "gui_not_showing": {
+      "issue": "GUI tidak muncul",
+      "solutions": [
+        "Check display environment dan Qt dependencies",
+        "Install PySide6: pip install PySide6",
+        "Try manual run: uvx mcp-ngobrol@1.0.2",
+        "Check if running in headless environment"
+      ]
+    },
+    "encoding_issues": {
+      "issue": "Character encoding problems",
+      "solutions": [
+        "Set PYTHONIOENCODING=utf-8 in configuration",
+        "Check system locale settings",
+        "Restart Augment after config change",
+        "Ensure UTF-8 support in terminal"
+      ]
+    },
+    "tool_not_available": {
+      "issue": "interactive_feedback tool tidak tersedia",
+      "solutions": [
+        "Check MCP server is running",
+        "Verify configuration syntax",
+        "Check Augment MCP logs",
+        "Try restarting Augment Code"
+      ]
+    }
+  }
+}
