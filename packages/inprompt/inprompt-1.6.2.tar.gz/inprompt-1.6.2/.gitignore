@@ -1,0 +1,17 @@
+# Python bytecode
+__pycache__/
+*.py[cd]
+*$py.class
+
+# Build
+build/
+dist/
+
+# Virtual envs
+.venv/
+
+# Lock files
+uv.lock
+
+# VSCode
+.vscode/

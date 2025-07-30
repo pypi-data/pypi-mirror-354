@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "inprompt"
+version = "1.6.2"
+description = "A tiny CLI that outputs files as Markdown-formatted code blocks."
+authors = [{ name = "Dominik Roblek" }]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["absl-py", "loguru"]
+license = "MIT"
+keywords = ["code", "fence", "formatting", "markdown", "prompt"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Utilities",
+    "License :: OSI Approved :: MIT License",
+]
+
+[project.scripts]
+inprompt = "inprompt:run"
+
+[dependency-groups]
+dev = ["ruff"]
+
+[tool.hatch.build]
+include = ["inprompt.py"]
+
+[tool.ruff]
+lint.select = ["E", "F", "I"]
