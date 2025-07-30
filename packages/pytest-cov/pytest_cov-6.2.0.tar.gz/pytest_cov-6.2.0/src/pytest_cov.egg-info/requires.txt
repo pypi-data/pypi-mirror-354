@@ -1,0 +1,9 @@
+pytest>=4.6
+coverage[toml]>=7.5
+
+[testing]
+fields
+hunter
+process-tests
+pytest-xdist
+virtualenv
