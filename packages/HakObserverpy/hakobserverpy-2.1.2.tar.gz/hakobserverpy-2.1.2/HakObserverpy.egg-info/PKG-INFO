@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: HakObserverpy
+Version: 2.1.2
+Summary: A package connect endpoints to the Hakware Application
+Author: Jacob O'Brien
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: psutil
+Requires-Dist: lxml[html_clean]
+Requires-Dist: requests_html
+Requires-Dist: pywin32
+
+# Hakware-py
+
+Hakware-py is a Python package that allows endpoints to connect to the Hakware solution
+
+## Installation
+
+To install Hakware-py, ensure you have Python installed (version 3.6 or higher), then use pip to install the package:
+
+```bash
+pip install Hakware-py
