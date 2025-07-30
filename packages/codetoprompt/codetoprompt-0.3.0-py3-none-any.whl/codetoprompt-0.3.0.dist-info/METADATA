@@ -1,0 +1,123 @@
+Metadata-Version: 2.4
+Name: codetoprompt
+Version: 0.3.0
+Summary: Convert your codebase into a single LLM prompt
+Author-email: Yash Bhaskar <yash9439@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/yash9439/codetoprompt
+Project-URL: Documentation, https://github.com/yash9439/codetoprompt#readme
+Project-URL: Repository, https://github.com/yash9439/codetoprompt
+Project-URL: Issues, https://github.com/yash9439/codetoprompt/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Version Control :: Git
+Classifier: Topic :: Text Processing :: General
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pygit2>=1.12.0
+Requires-Dist: tiktoken>=0.5.0
+Requires-Dist: pyperclip>=1.8.2
+Requires-Dist: jinja2>=3.1.0
+Requires-Dist: pathspec>=0.11.0
+Requires-Dist: rich>=13.0.0
+Requires-Dist: typing-extensions>=4.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: isort>=5.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: flake8>=6.0.0; extra == "dev"
+Dynamic: license-file
+
+# CodeToPrompt
+
+Convert your codebase into a single LLM prompt!
+
+## Installation
+
+```bash
+# Install the Python package
+pip install --user codetoprompt
+
+# If you get "command not found" error after installation, add this to your shell config file:
+# For bash: ~/.bashrc
+# For zsh: ~/.zshrc
+# For fish: ~/.config/fish/config.fish
+
+# Add this line to your shell config:
+export PATH="$HOME/.local/bin:$PATH"
+
+# Then reload your shell config:
+source ~/.bashrc  # or source ~/.zshrc or source ~/.config/fish/config.fish
+
+# System Dependencies
+# For clipboard support on Linux:
+# - X11: Install xclip
+#   sudo apt-get install xclip  # Debian/Ubuntu
+#   sudo dnf install xclip      # Fedora
+#   sudo pacman -S xclip        # Arch Linux
+# - Wayland: Install wl-clipboard
+#   sudo apt-get install wl-clipboard  # Debian/Ubuntu
+#   sudo dnf install wl-clipboard      # Fedora
+#   sudo pacman -S wl-clipboard        # Arch Linux
+```
+
+## Quick Start
+
+```bash
+# Basic usage
+codetoprompt /path/to/your/codebase
+
+# Save to file
+codetoprompt /path/to/your/codebase --output prompt.txt
+
+# Include specific file patterns
+codetoprompt /path/to/your/codebase --include "*.py,*.js"
+
+# Exclude specific file patterns
+codetoprompt /path/to/your/codebase --exclude "*.pyc,__pycache__"
+```
+
+## Features
+
+- **Automatic Code Processing**: Convert codebases of any size into readable, formatted prompts
+- **Smart Filtering**: Include/exclude files using glob patterns and respect `.gitignore` rules
+- **Flexible Templating**: Customize prompts with Jinja2 templates for different use cases
+- **Token Tracking**: Track token usage to stay within LLM context limits
+- **Git Integration**: Include diffs, logs, and branch comparisons in your prompts
+- **Developer Experience**: Automatic clipboard copy, line numbers, and file organization options
+
+## Python API
+
+```python
+from codetoprompt import CodeToPrompt
+
+# Initialize the processor
+processor = CodeToPrompt(
+    root_dir="/path/to/your/codebase",
+    include_patterns=["*.py", "*.js"],
+    exclude_patterns=["*.pyc", "__pycache__"]
+)
+
+# Generate the prompt
+prompt = processor.generate_prompt()
+
+# Save to file
+processor.save_to_file("prompt.txt")
+
+# Get token count
+token_count = processor.get_token_count()
+```
+
+## License
+
+MIT License - see LICENSE file for details 
