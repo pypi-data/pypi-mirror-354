@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "action-lipo"
+version = "0.1.0"
+description = "A lightweight post-optimizer for action chunks"
+readme = "README.md"
+
+authors = [
+  { name="Suhan Park", email="park94@kw.ac.kr" },
+  { name="Dongwoo Son", email="ehddnths@kw.ac.kr" }
+]
+dependencies = [
+    'numpy>=1.18.0',
+    'cvxpy>=1.1.0']
+
+[tool.setuptools.packages.find]
+include = ["action_lipo"]
+
+[project.urls]
+Homepage = "https://github.com/lab-dream/lipo"
