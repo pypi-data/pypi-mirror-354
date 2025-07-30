@@ -1,0 +1,15 @@
+repositories:
+  - url: "ssh://git@mrm-git.e-technik.uni-ulm.de:7678/aduulm/source/aduulm_cmake_tools.git"
+    branch: develop
+  - url: "ssh://git@mrm-git.e-technik.uni-ulm.de:7678/aduulm/source/aduulm_interfaces.git"
+    branch: develop
+  - url: "ssh://git@mrm-git.e-technik.uni-ulm.de:7678/aduulm/source/aduulm_tools.git"
+    branch: develop
+  - url: "ssh://git@mrm-git.e-technik.uni-ulm.de:7678/aduulm/source/ros/aduulm_logger.git"
+    branch: develop
+  - url: "ssh://git@mrm-git.e-technik.uni-ulm.de:7678/aduulm/source/ros/aduulm_gpu_shared_mem.git"
+    branch: develop
+  - url: "ssh://git@mrm-git.e-technik.uni-ulm.de:7678/aduulm/source/ros/rviz_plugins.git"
+    branch: develop
+  - url: "ssh://git@mrm-git.e-technik.uni-ulm.de:7678/aduulm/source/ros/ros2_def.git"
+    branch: develop
