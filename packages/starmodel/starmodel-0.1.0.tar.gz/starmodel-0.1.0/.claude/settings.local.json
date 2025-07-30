@@ -1,0 +1,48 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:docs.fastht.ml)",
+      "WebFetch(domain:fastht.ml)",
+      "WebFetch(domain:fastht.ml)",
+      "WebFetch(domain:fastht.ml)",
+      "Bash(rm:*)",
+      "Bash(gh issue create:*)",
+      "Bash(gh issue list:*)",
+      "Bash(git checkout:*)",
+      "Bash(python test_registry.py:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(gh pr create:*)",
+      "Bash(python test_auth.py:*)",
+      "Bash(python test_fasthtml_integration.py)",
+      "Bash(python test_app_integration.py)",
+      "Bash(python:*)",
+      "Bash(pkill:*)",
+      "Bash(timeout:*)",
+      "Bash(cat:*)",
+      "Bash(gh issue view:*)",
+      "Bash(grep:*)",
+      "WebFetch(domain:data-star.dev)",
+      "WebFetch(domain:data-star.dev)",
+      "WebFetch(domain:data-star.dev)",
+      "Bash(uv run:*)",
+      "WebFetch(domain:docs.pydantic.dev)",
+      "Bash(rg:*)",
+      "Bash(mv:*)",
+      "Bash(find:*)",
+      "Bash(git branch:*)",
+      "Bash(gh repo view:*)",
+      "mcp__puppeteer__puppeteer_navigate",
+      "mcp__puppeteer__puppeteer_screenshot",
+      "mcp__puppeteer__puppeteer_click",
+      "mcp__puppeteer__puppeteer_evaluate"
+    ],
+    "deny": []
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "puppeteer"
+  ]
+}

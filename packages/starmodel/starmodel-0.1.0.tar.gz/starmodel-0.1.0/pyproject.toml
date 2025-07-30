@@ -1,0 +1,27 @@
+[project]
+name = "starmodel"
+version = "0.1.0"
+description = "StarModel - Reactive State Management for FastHTML"
+readme = "README.md"
+authors = [
+    { name = "ndendic", email = "ndendic@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "datastar-py==0.4.3",
+    "python-fasthtml>=0.12.19",
+    "sqlmodel>=0.0.24",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+    "monsterui>=1.0.21",
+]
+
+[tool.uv.sources]
+datastar-py = { git = "https://github.com/starfederation/datastar.git", subdirectory = "sdk/python", rev = "develop" }
