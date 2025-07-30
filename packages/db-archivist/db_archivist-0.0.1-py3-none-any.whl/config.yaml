@@ -1,0 +1,22 @@
+database_tracking:
+  enabled: true
+  table_name: script_execution_log
+  view_name: v_script_execution_status
+environments:
+- TST
+- HMG
+- PRD
+projects:
+  sbwb-basicdata-supplies:
+    script_path: app_supplies
+    source_path: database/dev
+    source_repo: ../sbwb-basicdata-supplies-backend
+    versions_path: sbwb-basicdata-supplies
+  sbwb-tool-workflow:
+    script_path: app_workflow
+    source_path: database/DEV
+    source_repo: ../sbwb-tool-workflow-backend
+    versions_path: sbwb-tool-workflow
+repositories:
+  scripts_repo: ../sbwb-db-scripts
+  versions_repo: ../sbwb-versions
