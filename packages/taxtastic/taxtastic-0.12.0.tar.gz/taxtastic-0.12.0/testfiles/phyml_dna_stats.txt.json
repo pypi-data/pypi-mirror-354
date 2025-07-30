@@ -1,0 +1,19 @@
+{
+  "empirical_frequencies": true,
+  "datatype": "DNA", 
+  "subs_model": "GTR", 
+  "program": "PhyML v3.0_360-500M", 
+  "ras_model": "gamma", 
+  "gamma": {
+    "alpha": 0.687, 
+    "n_cats": 4
+  }, 
+  "subs_rates": {
+    "ac": 1.19324, 
+    "gt": 1.0, 
+    "ag": 2.18622, 
+    "cg": 0.84982, 
+    "at": 1.67963, 
+    "ct": 2.63215
+  }
+}
