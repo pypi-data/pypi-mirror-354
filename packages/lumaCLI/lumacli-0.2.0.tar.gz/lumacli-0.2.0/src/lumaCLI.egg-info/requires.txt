@@ -1,0 +1,7 @@
+typer[all]<1.0,>=0.9
+psycopg2-binary<3.0,>=2.9
+requests<3.0,>=2.20
+pydantic[email]<3.0,>=2.0
+dbt-artifacts-parser<1.0,>=0.8.3
+pyyaml>=6.0.1
+rich<13.8,>=13.7
