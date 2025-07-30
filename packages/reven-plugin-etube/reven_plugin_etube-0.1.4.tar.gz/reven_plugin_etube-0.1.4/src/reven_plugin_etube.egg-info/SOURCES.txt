@@ -1,0 +1,15 @@
+.gitignore
+LICENSE
+README.md
+pyproject.toml
+setup.py
+.github/workflows/build-publish.yml
+src/reven_plugin_etube/__init__.py
+src/reven_plugin_etube/crypto.py
+src/reven_plugin_etube/fwinfo.py
+src/reven_plugin_etube/hexpat.py
+src/reven_plugin_etube.egg-info/PKG-INFO
+src/reven_plugin_etube.egg-info/SOURCES.txt
+src/reven_plugin_etube.egg-info/dependency_links.txt
+src/reven_plugin_etube.egg-info/requires.txt
+src/reven_plugin_etube.egg-info/top_level.txt

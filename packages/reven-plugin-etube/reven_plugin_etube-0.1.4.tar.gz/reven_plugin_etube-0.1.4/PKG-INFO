@@ -1,0 +1,48 @@
+Metadata-Version: 2.4
+Name: reven-plugin-etube
+Version: 0.1.4
+Summary: Reven plugin for reverse engineering Shimano E-Tube firmware.
+Author-email: Magnust Hektoen Steensland <mag.steensland@gmail.com>, Norbert Arkadiusz Görke <me@ngorke.dev>
+License-Expression: Apache-2.0
+Project-URL: Repository, https://github.com/reven-project/reven-plugin-etube.git
+Keywords: reverse engineering
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pycryptodome~=3.23
+Requires-Dist: attrs~=25.3
+Requires-Dist: typer~=0.16.0
+Dynamic: license-file
+
+# Reven Plugin Etube 🦊🔌🚴
+
+A plugin for [Reven](https://github.com/reven-project/reven) that facilitates reverse engineering Shmiano E-Tube firmware.
+
+## Installation 👷
+
+The plugin can be installed using `pip`.
+
+```console
+$ pip install reven-plugin-etube
+```
+
+## Usage
+
+Run `reven etube --help` to see the help and all available commands.
+
+```console
+$ reven etube --help
+                                                                                  
+ Usage: reven etube [OPTIONS] COMMAND [ARGS]...                                   
+                                                                                  
+ Operations for reverse engineering Shimano E-Tube firmware.                      
+                                                                                  
+╭─ Options ──────────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                    │
+╰────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ─────────────────────────────────────────────────────────────────────╮
+│ fwinfo    Read the headers of E-Tube firmware files.                           │
+│ decrypt   Decrypt E-Tube file using AES.                                       │
+│ encrypt   Encrypt an E-Tube file using AES.                                    │
+│ hexpat    Generates ImHex *.hexpat files                                       │
+╰────────────────────────────────────────────────────────────────────────────────╯
+```
