@@ -1,0 +1,148 @@
+import gradio as gr
+from gradio_workflowbuilder import WorkflowBuilder
+import json
+
+
+def export_workflow(workflow_data):
+    """Export workflow as formatted JSON"""
+    if not workflow_data:
+        return "No workflow to export"
+    return json.dumps(workflow_data, indent=2)
+
+
+# Create the main interface
+with gr.Blocks(
+    title="🎨 Visual Workflow Builder", 
+    theme=gr.themes.Soft(),
+    css="""
+    .main-container { max-width: 1600px; margin: 0 auto; }
+    .workflow-section { margin-bottom: 2rem; }
+    .button-row { display: flex; gap: 1rem; justify-content: center; margin: 1rem 0; }
+    
+    .component-description {
+        padding: 24px;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        border-radius: 12px;
+        border-left: 4px solid #3b82f6;
+        margin: 16px 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .component-description p {
+        margin: 10px 0;
+        line-height: 1.6;
+        color: #374151;
+    }
+
+    .base-description {
+        font-size: 17px;
+        font-weight: 600;
+        color: #1e293b;
+    }
+
+    .base-description strong {
+        color: #3b82f6;
+        font-weight: 700;
+    }
+
+    .feature-description {
+        font-size: 16px;
+        color: #1e293b;
+        font-weight: 500;
+    }
+
+    .customization-note {
+        font-size: 15px;
+        color: #64748b;
+        font-style: italic;
+    }
+
+    .sample-intro {
+        font-size: 15px;
+        color: #1e293b;
+        font-weight: 600;
+        margin-top: 16px;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 16px;
+    }
+    """
+) as demo:
+    
+    with gr.Column(elem_classes=["main-container"]):
+        gr.Markdown("""
+        # 🎨 Visual Workflow Builder
+        
+        **Create sophisticated workflows with drag and drop simplicity.**
+        """)
+        
+        # Simple description section with styling
+        gr.HTML("""
+        <div class="component-description">
+            <p class="base-description">Base custom component powered by <strong>svelteflow</strong>.</p>
+            <p class="feature-description">Create custom workflows.</p>
+            <p class="customization-note">You can customise the nodes as well as the design of the workflow.</p>
+            <p class="sample-intro">Here is a sample:</p>
+        </div>
+        """)
+        
+        # Main workflow builder section
+        with gr.Column(elem_classes=["workflow-section"]):
+            workflow_builder = WorkflowBuilder(
+                label="🎨 Visual Workflow Designer",
+                info="Drag components from the sidebar → Connect nodes by dragging from output (right) to input (left) → Click nodes to edit properties"
+            )
+        
+        # Export section below the workflow
+        gr.Markdown("## 💾 Export Workflow")
+        
+        with gr.Row():
+            with gr.Column():
+                export_output = gr.Code(
+                    language="json", 
+                    label="Workflow Configuration",
+                    lines=10
+                )
+        
+        # Action button
+        with gr.Row(elem_classes=["button-row"]):
+            export_btn = gr.Button("💾 Export JSON", variant="primary", size="lg")
+        
+        # Instructions
+        with gr.Accordion("📖 How to Use", open=False):
+            gr.Markdown("""
+            ### 🚀 Getting Started
+            
+            1. **Add Components**: Drag items from the left sidebar onto the canvas
+            2. **Connect Nodes**: Drag from the blue circle on the right of a node to the left circle of another
+            3. **Edit Properties**: Click any node to see its editable properties on the right panel
+            4. **Organize**: Drag nodes around to create a clean workflow layout
+            5. **Delete**: Use the ✕ button on nodes or click the red circle on connections
+            
+            ### 🎯 Component Types
+            
+            - **📥 Inputs**: Text fields, file uploads, number inputs
+            - **⚙️ Processing**: Language models, text processors, conditionals
+            - **📤 Outputs**: Text displays, file exports, charts
+            - **🔧 Tools**: API calls, data transformers, validators
+            
+            ### 💡 Pro Tips
+            
+            - **Collapsible Panels**: Use the arrow buttons to hide/show sidebars
+            - **Live Updates**: Properties update in real-time as you edit
+            - **Export Options**: Get JSON config for your workflow
+            """)
+    
+    # Event handlers
+    export_btn.click(
+        fn=export_workflow,
+        inputs=[workflow_builder],
+        outputs=[export_output]
+    )
+
+
+if __name__ == "__main__":
+    demo.launch(
+        server_name="0.0.0.0",
+        show_error=True
+    )
