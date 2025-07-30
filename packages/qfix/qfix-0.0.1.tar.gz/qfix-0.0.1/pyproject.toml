@@ -1,0 +1,18 @@
+[project]
+name = "qfix"
+version = "0.0.1"
+description = "Quantum Error Correction tools in Quantinuum ecosystem."
+readme = "README.md"
+authors = [
+    { name = "Seyon Sivarajah", email = "seyon.sivarajah@quantinuum.com" }
+]
+license = { file = "LICENCE" }
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+qfix = "qfix:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
