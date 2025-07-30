@@ -1,0 +1,34 @@
+Metadata-Version: 2.4
+Name: pefetch
+Version: 0.0.0
+Summary: Fetch Project Euler problems from the command line
+Project-URL: Repository, https://github.com/stanfromireland/pefetch.git
+Project-URL: Bug Tracker, https://github.com/stanfromireland/pefetchissues
+Project-URL: Changelog, https://github.com/stanfromireland/pefetch/blob/master/CHANGELOG.md
+Author: Stan Ulbrych
+Maintainer: Stan Ulbrych
+License-Expression: MIT
+License-File: LICENSE.md
+Keywords: cli,projecteuler,utility
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+Project Euler Fetch (*pefetch*)
+===============================
+
+A CLI utility for accessing [Project Euler](https://projecteuler.net) problems
+from your terminal.
+
+## Installation
+
+```
+pip install pefetch
+```
+
+## Usage
+
+```
+pefetch PROBLEM_NO
+```
