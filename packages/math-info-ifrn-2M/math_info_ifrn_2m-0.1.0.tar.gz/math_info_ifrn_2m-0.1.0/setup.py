@@ -1,0 +1,2 @@
+from setuptools import setup
+setup(name="math_info_ifrn_2M",version="0.1.0",description="Funções matemáticas para o curso de informática do IFRN-paas-2M",author="Arthur Marques",author_email="arthur.marques@ifrn.edu.br",py_modules=["math_info_ifrn_2M"],keywords="budega dificil do inferno")
