@@ -1,0 +1,44 @@
+udm-rest-api-client (0.1.2) unstable; urgency=low
+
+  * Add missing dependency for Debian packages
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 12 Jun 2025 11:33:03 +0200
+
+udm-rest-api-client (0.1.1) unstable; urgency=low
+
+  * Add tests for CLI
+
+ -- Daniel Troeder <troeder@univention.de>  Thu, 12 Jun 2025 09:13:04 +0200
+
+udm-rest-api-client (0.1.0) unstable; urgency=low
+
+  * Require Python 3.11, support PEP 585 type hints
+  * Standardize linter configuration
+  * update copyright to 2025
+  * Replace %-formatting with format() and f-strings
+  * Run mypy with strict=false.
+  * Connect to new SonarQube server
+  * Add tests for the example code in the README.
+  * No code changes in UCS repo between 12.0.7 (initial import) and 12.2.0.
+
+ -- Daniel Troeder <troeder@univention.de>  Wed, 11 Jun 2025 13:36:18 +0200
+
+udm-rest-api-client (0.0.4) unstable; urgency=low
+
+  * Update pre-commit hook repository URLs
+  * Add documentation for custom request ID generation
+
+ -- Carlos García-Mauriño <cgarcia@univention.de>  Thu, 06 Jun 2025 15:00:00 +0100
+
+udm-rest-api-client (0.0.3) unstable; urgency=low
+
+  * Fix example in README
+
+ -- Daniel Troeder <troeder@univention.de>  Mon, 28 Oct 2024 12:17:17 +0100
+
+udm-rest-api-client (0.0.2) unstable; urgency=medium
+
+  * Initial release. (Bug #57204)
+  * Split from univention-directory-manager-rest (10.0.8-5 / 12.0.7)
+
+ -- Daniel Troeder <troeder@univention.de>  Tue, 04 Jun 2024 10:28:31 +0200

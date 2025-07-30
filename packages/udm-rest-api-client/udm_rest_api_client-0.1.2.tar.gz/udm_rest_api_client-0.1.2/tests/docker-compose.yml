@@ -1,0 +1,69 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2025 Univention GmbH
+
+services:
+  test:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    depends_on:
+      udm-rest-api:
+        condition: service_started
+    cap_drop:
+      - ALL
+    volumes:
+      - ../pyproject.toml:/pyproject.toml:ro
+      - ../src:/src:ro
+      - ../tests:/tests:ro
+    environment:
+      UDM_URL: http://udm-rest-api:9979/udm/
+      UDM_USERNAME: cn=admin
+      UDM_PASSWORD: univention
+      LOG_LEVEL: DEBUG
+
+  udm-rest-api:
+    image: gitregistry.knut.univention.de/univention/customers/dataport/upx/container-udm-rest/udm-rest-api:latest
+    container_name: "udm-rest-api"
+    platform: "linux/amd64"
+    depends_on:
+      ldap-server:
+        condition: service_started
+    ports:
+      - 9979:9979
+    volumes:
+      - ./base.conf:/etc/univention/base.conf:ro
+    environment:
+      DOMAINNAME: univention-organization.intranet
+      HOSTNAME: udm-rest-api:9979
+      LDAP_HOST: ldap-server
+      LDAP_PORT: 389
+      LDAP_BASE_DN: dc=univention-organization,dc=intranet
+      LDAP_HOST_DN: cn=admin,dc=univention-organization,dc=intranet
+      TLS_MODE: "off"
+      MACHINE_SECRET: univention
+      LDAP_CN_ADMIN_PW: univention
+      DEBUG_LEVEL: 99
+
+  ldap-server:
+    platform: linux/amd64
+    image: gitregistry.knut.univention.de/univention/customers/dataport/upx/container-ldap/ldap-server:0.38.0
+    container_name: "ldap-server"
+    environment:
+      DOMAIN_NAME: univention-organization.intranet
+      LDAP_BASEDN: dc=univention-organization,dc=intranet
+      LDAP_CN_ADMIN_PW: "univention"
+      PYTHON_LOG_LEVEL: "INFO"
+      UPDATE_INDEX_ON_STARTUP: true
+      TLS_MODE: "off"
+    # FIXME: slapd won't work on linux kernel 6.6
+    ulimits:
+      nofile:
+        soft: 1024
+        hard: 1024
+    ports:
+      - 389:389
+    volumes:
+      - type: bind
+        source: ./base.conf
+        target: /etc/univention/base.conf
+        read_only: true

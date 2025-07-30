@@ -1,0 +1,249 @@
+include:
+  - project: "univention/infrastructure/docker-services"
+    ref: "master"
+    file:
+      - "dind.yml"
+      - "pre-commit.yml"
+
+stages:
+  - prepare
+  - lint
+  - test
+  - build
+  - publish
+
+prepare:
+  stage: prepare
+  script:
+    - sed -rne '1s/^udm-rest-api-client \(([^)]+)\) ([^;]+);.*/DEBVER=\1\nDEBDIST=\2/p;T;q' debian/changelog >.env
+  artifacts:
+    reports:
+      dotenv: .env
+
+run_pre_commit:
+  stage: lint
+  extends: .pre-commit
+
+test:
+  stage: test
+  extends: .dind
+  image: "${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/docker:24.0.7"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: "never"
+    - when: "on_success"
+  before_script:
+    - cd tests
+    # Allow that the Docker API version is negotiated between client and server
+    - unset DOCKER_API_VERSION
+    - export IMAGE_TAG=${RELEASE_VERSION}
+    - echo -e "\e[0Ksection_start:`date +%s`:docker_debug[collapsed=true]\r\e[0KDocker version details"
+    - echo $IMAGE_TAG
+    - docker version
+    - echo -e "\e[0Ksection_end:`date +%s`:docker_debug\r\e[0K"
+    - echo -e "\e[0Ksection_start:`date +%s`:docker_compose_config[collapsed=true]\r\e[0KDocker Compose configuration"
+    - docker compose config test
+    - echo -e "\e[0Ksection_end:`date +%s`:docker_compose_config\r\e[0K"
+  script:
+    - docker compose run --quiet-pull --name test-udm-client test
+  after_script:
+    - docker logs ldap-server >& ldap-server.log
+    - docker logs udm-rest-api >& udm-rest-api.log
+    - docker cp test-udm-client:/tmp/coverage.xml ./coverage.xml
+    - docker cp test-udm-client:/tmp/pytest-junit.xml ./pytest-junit.xml
+    - docker stop -t0 test-udm-client
+    - docker rm test-udm-client
+    - docker compose down --volumes
+  artifacts:
+    paths:
+      - ldap-server.log
+      - udm-rest-api.log
+      - coverage.xml
+      - pytest-junit.xml
+    expire_in: "1 day"
+    when: "always"
+    expose_as: "docker compose server logs"
+    reports:
+      junit: pytest-junit.xml
+
+
+sonarqube-check:
+  stage: test
+  needs:
+    - test
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+  image:
+      name: sonarsource/sonar-scanner-cli:11
+      entrypoint: [""]
+  cache:
+    policy: pull-push
+    key: "sonar-cache-$CI_COMMIT_REF_SLUG"
+    paths:
+      - "${SONAR_USER_HOME}/cache"
+      - sonar-scanner/
+  script:
+    - sonar-scanner -Dsonar.host.url="${SONAR_HOST_URL}"
+  allow_failure: true
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH == 'main'
+
+build_deb_package:
+  stage: build
+  dependencies:
+    - prepare
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: "always"
+    - changes:
+      - pyproject.toml
+      - debian/**/*
+      - src/**/*
+  parallel:
+    matrix:
+      - distribution:
+        - debian:buster-slim
+        - debian:bookworm-slim
+        - debian:bullseye-slim
+        - ubuntu:20.04
+        - ubuntu:22.04
+        - ubuntu:24.04
+  image: $distribution
+  variables:
+    DEBIAN_FRONTEND: noninteractive
+    LC_ALL: C.UTF-8
+  before_script:
+    - apt-get -qq update
+    - apt-get -q --assume-yes build-dep .
+  script:
+    - dpkg-buildpackage --no-sign -b
+    - apt-get -q --assume-yes install ../python3-udm-rest-api-client*.deb
+    - rm -rf "$CI_PROJECT_DIR/public"
+    - mkdir -p "$CI_PROJECT_DIR/public/${distribution%-slim}"
+    - mv -v -t "$CI_PROJECT_DIR/public/${distribution%-slim}/" ../*.deb
+    - cd "$CI_PROJECT_DIR/public/${distribution%-slim}"
+    - dpkg-scanpackages . >Packages
+  artifacts:
+    paths:
+      - public
+    expire_in: 1 day
+
+build_pip_package:
+# Will build from all branches.
+# Will always build the version from the changelog.
+# If in a non-'main' branch will additionally build a version with '.dev0+user.commit'.
+  stage: build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week
+  image: docker-registry.knut.univention.de/python:3.11-slim
+  script:
+    - pip install hatch
+#    build both versions: unchanged from changelog and with '.dev0+user.commit'
+    - hatch build
+    - hatch config set version.validate-bump false
+    - ORI_VERSION="$(hatch version)"
+    - |-
+      if [ "$CI_COMMIT_BRANCH" != "$CI_DEFAULT_BRANCH" ]; then
+        hatch config set version.validate-bump false
+        ORI_VERSION="$(hatch version)"
+        hatch version "${ORI_VERSION}.dev0+${CI_COMMIT_REF_SLUG//-/.}.$CI_COMMIT_SHORT_SHA"
+        hatch build
+      else
+        true
+      fi
+    - find dist/ -type f | sort
+
+publish_gitlab_pip:
+# Allows uploading from all branches.
+# Will upload the version from the changelog when in 'main', otherwise the version with '.dev0+user.commit'.
+  stage: publish
+  dependencies:
+    - build_pip_package
+  image: docker-registry.knut.univention.de/python:3.11-slim
+  script:
+    - pip install hatch
+    - ORI_VERSION="$(hatch version)"
+    - |-
+      if [ "$CI_COMMIT_BRANCH" != "$CI_DEFAULT_BRANCH" ]; then
+        hatch config set version.validate-bump false
+        hatch version "${ORI_VERSION}.dev0+${CI_COMMIT_REF_SLUG//-/.}.$CI_COMMIT_SHORT_SHA"
+        hatch publish --repo ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi --user gitlab-ci-token --auth ${CI_JOB_TOKEN} dist/*-${ORI_VERSION}.dev0+*
+      else
+        hatch publish --repo ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi --user gitlab-ci-token --auth ${CI_JOB_TOKEN} dist/*-${ORI_VERSION}-py3-*.whl  dist/*-${ORI_VERSION}.tar.gz
+      fi
+
+publish_test_pypi:
+# Allows uploading from all branches.
+# But will only upload the version from the changelog.
+# PyPI does not allow local versions (<main>+<local>).
+  stage: publish
+  when: manual
+  dependencies:
+    - build_pip_package
+  image: docker-registry.knut.univention.de/python:3.11-slim
+  script:
+    - pip install hatch
+    - ORI_VERSION="$(hatch version)"
+    - hatch publish -r test --user __token__ --auth ${TEST_PYPI_TOKEN} dist/*-${ORI_VERSION}-py3-*.whl  dist/*-${ORI_VERSION}.tar.gz
+
+publish_prod_pypi:
+# Allows uploading only from 'main' branch.
+# Will only upload the version from the changelog.
+  stage: publish
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: manual
+  dependencies:
+    - build_pip_package
+  image: docker-registry.knut.univention.de/python:3.11-slim
+  script:
+    - pip install hatch
+    - ORI_VERSION="$(hatch version)"
+    - hatch publish --user __token__ --auth ${PROD_PYPI_TOKEN} dist/*-${ORI_VERSION}-py3-*.whl  dist/*-${ORI_VERSION}.tar.gz
+
+publish_gitlab_deb:
+  stage: publish
+  dependencies:
+    - prepare
+    - build_deb_package
+  variables:
+    GIT_STRATEGY: none
+    PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/debian/${DEBVER}"
+  image: docker-registry.knut.univention.de/curlimages/curl:latest
+  rules:
+    - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
+      when: "never"
+    - changes:
+        - debian/changelog
+      when: manual
+  script:
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file public/debian:buster/python3-udm-rest-api-client_*_all.deb "${PACKAGE_REGISTRY_URL}/python3-udm-rest-api-client_debian10_buster_all.deb"
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file public/debian:buster/python3-udm-rest-api-client-async_*_all.deb "${PACKAGE_REGISTRY_URL}/python3-udm-rest-api-client-async_debian10_buster_all.deb"
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file public/debian:bullseye/python3-udm-rest-api-client_*_all.deb "${PACKAGE_REGISTRY_URL}/python3-udm-rest-api-client_debian11_bullseye_all.deb"
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file public/debian:bullseye/python3-udm-rest-api-client-async_*_all.deb "${PACKAGE_REGISTRY_URL}/python3-udm-rest-api-client-async_debian11_bullseye_all.deb"
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file public/debian:bookworm/python3-udm-rest-api-client_*_all.deb "${PACKAGE_REGISTRY_URL}/python3-udm-rest-api-client_debian12_bookworm_all.deb"
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file public/debian:bookworm/python3-udm-rest-api-client-async_*_all.deb "${PACKAGE_REGISTRY_URL}/python3-udm-rest-api-client-async_debian12_bookworm_all.deb"
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file public/ubuntu:20.04/python3-udm-rest-api-client_*_all.deb "${PACKAGE_REGISTRY_URL}/python3-udm-rest-api-client_ubuntu2004_all.deb"
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file public/ubuntu:20.04/python3-udm-rest-api-client-async_*_all.deb "${PACKAGE_REGISTRY_URL}/python3-udm-rest-api-client-async_ubuntu2004_all.deb"
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file public/ubuntu:22.04/python3-udm-rest-api-client_*_all.deb "${PACKAGE_REGISTRY_URL}/python3-udm-rest-api-client_ubuntu2204_all.deb"
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file public/ubuntu:22.04/python3-udm-rest-api-client-async_*_all.deb "${PACKAGE_REGISTRY_URL}/python3-udm-rest-api-client-async_ubuntu2204_all.deb"
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file public/ubuntu:24.04/python3-udm-rest-api-client_*_all.deb "${PACKAGE_REGISTRY_URL}/python3-udm-rest-api-client_ubuntu2404_all.deb"
+    - |
+      curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" --upload-file public/ubuntu:24.04/python3-udm-rest-api-client-async_*_all.deb "${PACKAGE_REGISTRY_URL}/python3-udm-rest-api-client-async_ubuntu2404_all.deb"
+    - |
+      echo "Gitlab Debian repository does not seem to work atm. You can find the .deb files in the  build jobs artifacts."
