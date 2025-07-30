@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: zerozen
+Version: 0.1.0
+Summary: LLMs in Zen mode
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastmcp>=2.7.1
+Requires-Dist: rich>=14.0.0
+Requires-Dist: textual[syntax]>=3.3.0
+Requires-Dist: typer>=0.16.0
+Dynamic: license-file
+
+# zerozen
+
+![zerozen.png](zerozen.png)
