@@ -1,0 +1,15 @@
+.venv
+*.py[co]
+*.mo
+
+/*.egg-info
+/build
+/dist
+
+.coverage
+.coverage.*
+coverage.*
+
+.cache
+.pytest_cache
+.mypy_cache
