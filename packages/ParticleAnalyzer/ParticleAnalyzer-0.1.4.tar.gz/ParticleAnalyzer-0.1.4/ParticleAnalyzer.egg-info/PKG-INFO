@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: ParticleAnalyzer
+Version: 0.1.4
+Summary: SEM Image Analysis Tool
+Home-page: https://github.com/rybakov-ks/ParticleAnalyzer
+Author: Kirill Rybakov
+Author-email: rybakov-ks@ya.ru
+License: UNKNOWN
+Project-URL: Bug Reports, https://github.com/rybakov-ks/ParticleAnalyzer/issues
+Project-URL: Source, https://github.com/rybakov-ks/ParticleAnalyzer
+Keywords: SEM microscopy image analysis
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# ParticleAnalyzer
+
+[![Try Online](https://img.shields.io/badge/TRY%20ONLINE-Available%20at%20sem.rybakov--k.ru-brightgreen)](https://sem.rybakov-k.ru/)
+
+**ParticleAnalyzer** is a computer vision tool for automatic particle segmentation and size analysis in Scanning Electron Microscope (SEM) images.
+
+---
+
+## 🎬 Demonstration
+
+<p align="center">
+  <strong>Video demonstrations:</strong><br>
+  <a href="https://github.com/rybakov-ks/ParticleAnalyzer/blob/main/Images/ParticleAnalyzer.mp4">▶️ Local video (MP4)</a> | 
+  <a href="https://youtu.be/xX3GJu-ea9E">▶️ YouTube demonstration</a>
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/rybakov-ks/ParticleAnalyzer/main/Images/example.gif" alt="Example" width="600">
+</p>
+
+---
+
+## 📦 Installation
+
+```python
+pip install ParticleAnalyzer
+```
+
+## 🚀 Launch
+
+```python
+ParticleAnalyzer run
+```
+Open in browser: http://127.0.0.1:8000
+
