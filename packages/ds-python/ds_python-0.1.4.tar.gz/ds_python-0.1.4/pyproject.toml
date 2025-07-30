@@ -1,0 +1,70 @@
+[project]
+name = "ds-python"
+version = "0.1.4"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Gpocas", email = "gpocas01@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "dashing>=0.1.0",
+    "rich>=13.9.4",
+]
+
+classifiers = [
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Natural Language :: Portuguese (Brazilian)",
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.urls]
+repository = "https://github.com/Gpocas/ds-python"
+"Bug Tracker" = "https://github.com/Gpocas/ds-python/issues"
+
+[project.scripts]
+ds-python = "ds_python.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "briefcase>=0.3.23",
+    "ruff>=0.9.5",
+]
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.format]
+quote-style = 'single'
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+ignore = ['E402', 'F811', 'PLR6301']
+
+
+[tool.briefcase]
+project_name = "ds"
+bundle = "com.ds"
+version = "0.0.1"
+url = "https://example.com/exemplo"
+license.file = "LICENSE"
+author = "Gpocas"
+author_email = "gpocas01@gmail.com"
+
+[tool.briefcase.app.ds-python]
+formal_name = "ds"
+description = ""
+long_description = """More details about the app should go here."""
+sources = ["ds_python"]
+
+[tool.briefcase.app.ds-python.linux.flatpak]
+flatpak_runtime_version = "24.08"
+flatpak_runtime = "org.freedesktop.Platform"
+flatpak_sdk = "org.freedesktop.Sdk"

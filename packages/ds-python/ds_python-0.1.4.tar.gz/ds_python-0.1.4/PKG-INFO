@@ -1,0 +1,77 @@
+Metadata-Version: 2.4
+Name: ds-python
+Version: 0.1.4
+Summary: Add your description here
+Project-URL: repository, https://github.com/Gpocas/ds-python
+Project-URL: Bug Tracker, https://github.com/Gpocas/ds-python/issues
+Author-email: Gpocas <gpocas01@gmail.com>
+License-File: LICENSE
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Natural Language :: Portuguese (Brazilian)
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.12
+Requires-Dist: dashing>=0.1.0
+Requires-Dist: rich>=13.9.4
+Description-Content-Type: text/markdown
+
+# 📊 `ds-python` - Estatísticas de containers em tempo real
+
+
+### 📺 __Demo:__
+![](assets/clip.gif)
+
+### 📝 __Objetivo:__
+Esse projeto é uma altenativa ao comando `docker stats` para o monitoramento de containers em execução, esse projeto foi inspirado na ferramenta [ds](https://github.com/rafaelrcamargo/ds)
+
+
+### 💻 __Stack:__
+- Python (3.12) - __runtime__
+- dashing - __charts__
+- rich - __loading__
+- briefcase - __package builder__
+
+### 🪛 __Instalação:__
+Existem duas maneiras de instalação, nativa ou virtual
+
+usando o __pipx__
+```bash
+pipx install ds-python
+```
+
+usando o __uv__
+```bash
+uv tool install ds-python
+```
+
+usando o __uvx__
+```bash
+uvx tool install ds-python
+```
+
+
+todos os exemplos acima envolvem a virtualização do projeto,
+caso queira se aventurar em uma instalação nativa siga os passos abaixo:
+#### 1. Clonando o projeto
+```bash
+git clone https://github.com/gpocas/ds-python
+```
+
+#### 2. Instalando as dependencias:
+```bash
+cd ds-python
+uv sync
+```
+
+#### 3. Gerando o pacote:
+```bash
+uv run briefcase build
+uv run briefcase package
+```
+
+#### 4. Instalando o pacote (Ubuntu):
+```bash
+sudo apt install pacote.deb
+```
+
