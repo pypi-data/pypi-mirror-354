@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv src/troop/commands/keys.py src/troop/commands/provider.py)",
+      "mcp__web-tools__fetch_url",
+      "mcp__web-tools__search_web"
+    ],
+    "deny": []
+  }
+}
