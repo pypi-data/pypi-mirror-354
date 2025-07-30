@@ -1,0 +1,59 @@
+Metadata-Version: 2.4
+Name: bsb-core
+Version: 6.0.0a18
+Summary: `bsb-core` is the backbone package contain the essential code of the BSB: A component
+Author-email: Robin De Schepper <robin@alexandria.sc>, Dimitri Rodarie <dimitri.rodarie@unipv.it>
+Requires-Python: >=3.10,<4
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+License-File: LICENSE
+Requires-Dist: numpy~=1.19
+Requires-Dist: scipy~=1.5
+Requires-Dist: scikit-learn~=1.0
+Requires-Dist: errr~=1.2
+Requires-Dist: rtree~=1.0
+Requires-Dist: psutil~=5.8
+Requires-Dist: pynrrd~=1.0
+Requires-Dist: morphio~=3.3
+Requires-Dist: toml~=0.10.0
+Requires-Dist: requests~=2.30
+Requires-Dist: urllib3~=2.0
+Requires-Dist: appdirs~=1.4
+Requires-Dist: neo[nixio]
+Requires-Dist: tqdm~=4.50
+Requires-Dist: dashing-next~=0.1
+Requires-Dist: shortuuid~=1.0
+Requires-Dist: quantities~=0.15.0
+Requires-Dist: exceptiongroup>=1.2.0
+Requires-Dist: bsb-core[test, docs] ; extra == "dev"
+Requires-Dist: pre-commit~=3.5 ; extra == "dev"
+Requires-Dist: ruff>=0.8.2 ; extra == "dev"
+Requires-Dist: snakeviz~=2.1 ; extra == "dev"
+Requires-Dist: furo~=2024.4 ; extra == "docs"
+Requires-Dist: sphinxemoji~=0.3 ; extra == "docs"
+Requires-Dist: sphinx-copybutton~=0.5 ; extra == "docs"
+Requires-Dist: bsb-json~=6.0 ; extra == "docs"
+Requires-Dist: bsb-yaml~=6.0 ; extra == "docs"
+Requires-Dist: sphinxext-bsb~=6.0 ; extra == "docs"
+Requires-Dist: mpi4py~=3.0 ; extra == "parallel"
+Requires-Dist: mpipool>=2.2.1,<3 ; extra == "parallel"
+Requires-Dist: mpilock~=1.1 ; extra == "parallel"
+Requires-Dist: bsb-core[parallel] ; extra == "test"
+Requires-Dist: bsb-arbor~=6.0 ; extra == "test" and ( sys_platform != 'win32')
+Requires-Dist: bsb-hdf5~=6.0 ; extra == "test"
+Requires-Dist: bsb-json~=6.0 ; extra == "test"
+Requires-Dist: bsb-test~=6.0 ; extra == "test"
+Requires-Dist: coverage>=7.3 ; extra == "test"
+Provides-Extra: dev
+Provides-Extra: docs
+Provides-Extra: parallel
+Provides-Extra: test
+
+[![Build Status](https://github.com/dbbs-lab/bsb-core/actions/workflows/main.yml/badge.svg)](https://github.com/dbbs-lab/bsb-core/actions/workflows/main.yml)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![Documentation Status](https://readthedocs.org/projects/bsb/badge/?version=latest)](https://bsb.readthedocs.io/en/latest/?badge=latest)
+[![codecov](https://codecov.io/gh/dbbs-lab/bsb-core/branch/main/graph/badge.svg)](https://codecov.io/gh/dbbs-lab/bsb-core)
+
+# bsb-core
+This project contains the main [BSB](https://github.com/dbbs-lab/bsb) framework and is needed by all the sub packages.
+
