@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: agentic-a2a
+Version: 0.1.0
+Summary: Python framework for implementing multi-agent systems
+Author: devturtleblog@gmail.com
+Requires-Dist: uvicorn
+Requires-Dist: fastapi
+Requires-Dist: a2a-sdk
+Requires-Dist: fastapi-mcp
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-runner; extra == "dev"
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+
