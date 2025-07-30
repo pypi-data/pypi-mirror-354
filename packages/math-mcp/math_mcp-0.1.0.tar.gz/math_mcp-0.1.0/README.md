@@ -1,0 +1,111 @@
+# Math MCP Server
+
+这是一个强大的数学计算MCP（Model Context Protocol）服务器，提供了完整的数学计算工具集，包括矩阵计算、统计分析、微积分、优化算法、回归分析和数据可视化等功能。
+
+## ✨ 功能特性
+
+- 🔢 **矩阵计算**: 基本运算、矩阵分解、特征值、SVD等
+- 📊 **统计分析**: 描述性统计、假设检验、分布分析等
+- 📈 **微积分**: 导数、积分、极限、泰勒级数等
+- 🎯 **优化算法**: 函数优化、线性规划、约束优化等
+- 📉 **回归分析**: 线性回归、多项式回归、正则化回归等
+- 📊 **数据可视化**: 统计图表、函数绘图等
+
+## 🚀 快速开始
+
+### 使用uvx一键安装启动（推荐）
+
+```bash
+# 直接运行MCP服务器
+uvx math-mcp
+
+# 或者安装后运行
+uvx --from math-mcp math-mcp
+```
+
+### 传统安装方式
+
+```bash
+# 使用pip安装
+pip install math-mcp
+
+# 运行MCP服务器
+math-mcp
+
+# 或者作为模块运行
+python -m math_mcp
+```
+
+### 开发模式安装
+
+```bash
+# 克隆项目
+git clone https://github.com/yourusername/math-mcp.git
+cd math-mcp
+
+# 使用uv安装依赖
+uv sync
+
+# 运行服务器
+uv run python -m math_mcp
+```
+
+## 📁 项目结构
+
+```
+math_mcp/
+├── __init__.py                    # 包初始化文件
+├── __main__.py                    # CLI入口点
+├── math_server.py                 # 主服务器文件（MCP工具注册）
+├── matrix_calculator.py           # 矩阵计算模块
+├── statistics_calculator.py       # 统计分析模块
+├── calculus_calculator.py         # 微积分计算模块
+├── optimization_calculator.py     # 优化算法模块
+├── regression_calculator.py       # 回归分析模块
+└── plotting_calculator.py         # 统计绘图模块
+```
+
+## 🔧 在Claude Desktop中配置
+
+将以下配置添加到您的Claude Desktop配置文件中：
+
+```json
+{
+  "mcpServers": {
+    "math-calculator": {
+      "command": "uvx",
+      "args": ["math-mcp"]
+    }
+  }
+}
+```
+
+或者如果您已经安装了包：
+
+```json
+{
+  "mcpServers": {
+    "math-calculator": {
+      "command": "math-mcp"
+    }
+  }
+}
+```
+
+## 📊 使用示例
+
+启动服务器后，您可以在Claude中使用各种数学计算功能：
+
+- 矩阵运算和线性代数计算
+- 统计数据分析和可视化
+- 微积分和数学分析
+- 优化问题求解
+- 回归建模和预测
+
+## 🤝 贡献
+
+欢迎提交issue和pull request来改进这个项目！
+
+## 📄 许可证
+
+MIT License - 详见 [LICENSE](LICENSE) 文件
