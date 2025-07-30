@@ -1,0 +1,50 @@
+# list of property mappings
+# for CeurwsSchema versus wikidata
+- topic: Volume
+  prop_list:
+  - pid: qid
+    smw_prop: wikidataid
+  - arg: desc
+    pid: description
+    pid_label: description
+    smw_prop: description
+  - arg: title
+    smw_prop: title
+    pid: P1476
+    pid_label: title
+  - arg: acronym
+    smw_prop: acronym
+    pid: P1813
+    pid_label: short name
+  - arg: url
+    smw_prop: url
+    pid: P953
+    pid_label: full work available at URL
+  - arg: date
+    smw_prop: date
+    pid: P577
+    pid_label: publication date
+  - arg: dblp
+    smw_prop: dlbp
+    pid: P8978
+    pid_label: DBLP publication ID
+  - arg: urn
+    smw_prop: urn
+    pid: P4109
+    pid_label: URN-NBN
+  - arg: k10plus
+    smw_prop: k10plus
+    pid: P6721
+    pid_label: K10plus PPN ID
+- topic: Paper
+  prop_list:
+  - pid: qid
+    smw_prop: wikidataid
+  - arg: desc
+    pid: description
+    pid_label: description
+    smw_prop: description
+  - arg: title
+    pid: P1476
+    smw_prop: title
+    pid_label: title

@@ -1,0 +1,111 @@
+# list of property mappings
+# for CrSchema Scholar versus wikidata
+# updated by WF 2023-04-20
+- topic: Scholar
+  prop_list:
+  - arg: desc
+    pid: description
+    pid_label: description
+    smw_prop: description
+  - pid: qid
+    smw_prop: wikiDataId
+  - arg: dblp
+    smw_prop: dblpId
+    pid: P2456
+    pid_label: DBLP author ID
+  - arg: gnd
+    smw_prop: gndId
+    pid: P227
+    pid_label: GND ID
+  - arg: google
+    smw_prop: googleScholarUser
+    pid: P1960
+    pid_label: Google Scholar author ID
+  - arg: home
+    smw_prop: homepage
+    pid: P856
+    pid_label: official website
+  - arg: linkedin
+    smw_prop: linkedInId
+    pid: P6634
+    pid_label: LinkedIn personal profile ID
+  - arg: orcid
+    smw_prop: orcid
+    pid: P496
+    pid_label: ORCID ID
+  - arg: research
+    smw_prop: researchGate
+    pid: P2038
+    pid_label: ResearchGate profile ID
+- topic: Event
+  prop_list:
+    - pid: qid
+      smw_prop: wikidataid
+    - arg: desc
+      pid: description
+      pid_label: description
+      smw_prop: description
+    - arg: acronym
+      smw_prop: acronym
+      pid: P1813
+      pid_label: short name
+    - arg: home
+      smw_prop: homepage
+      pid: P856
+      pid_label: official website
+    - arg: title
+      pid: P1476
+      smw_prop: title
+      pid_label: title
+    - arg: country
+      smw_prop: country
+      pid: P17
+      pid_label: country
+- topic: EventSeries
+  prop_list:
+  - pid: qid
+    smw_prop: wikidataid
+  - arg: desc
+    pid: description
+    pid_label: description
+    smw_prop: description
+  - arg: home
+    smw_prop: homepage
+    pid: P856
+    pid_label: official website
+  - arg: title
+    pid: P1476
+    smw_prop: title
+    pid_label: title
+- topic: Paper
+  prop_list:
+  - pid: qid
+    smw_prop: wikidataid
+  - arg: desc
+    pid: description
+    pid_label: description
+    smw_prop: description
+  - smw_prop: title
+    pid: P1476
+    arg: title
+    pid_label: title
+  - smw_prop: pdfUrl
+    pid: P953
+    arg: pdfUrl
+    pid_label: full work available at URL
+- topic: Institution
+  prop_list:
+  - pid: qid
+    smw_prop: wikidataid
+  - arg: desc
+    pid: description
+    pid_label: description
+    smw_prop: description
+  - arg: home
+    smw_prop: homepage
+    pid: P856
+    pid_label: official website
+  - arg: inception
+    smw_prop: inception
+    pid: P571
+    pid_label: inception
