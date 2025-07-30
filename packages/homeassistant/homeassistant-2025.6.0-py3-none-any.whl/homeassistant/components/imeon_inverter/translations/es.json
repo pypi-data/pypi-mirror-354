@@ -1,0 +1,126 @@
+{
+    "entity": {
+        "sensor": {
+            "grid_frequency": {
+                "name": "Frecuencia de red"
+            },
+            "grid_voltage_l1": {
+                "name": "Tensi\u00f3n de red L1"
+            },
+            "grid_voltage_l2": {
+                "name": "Tensi\u00f3n de red L2"
+            },
+            "grid_voltage_l3": {
+                "name": "Tensi\u00f3n de red L3"
+            },
+            "input_power_l1": {
+                "name": "Potencia de entrada L1"
+            },
+            "input_power_l2": {
+                "name": "Potencia de entrada L2"
+            },
+            "input_power_l3": {
+                "name": "Potencia de entrada L3"
+            },
+            "input_power_total": {
+                "name": "Potencia total de entrada"
+            },
+            "inverter_charging_current_limit": {
+                "name": "L\u00edmite de corriente de carga"
+            },
+            "inverter_injection_power_limit": {
+                "name": "L\u00edmite de potencia de inyecci\u00f3n"
+            },
+            "meter_power": {
+                "name": "Potencia del contador"
+            },
+            "meter_power_protocol": {
+                "name": "Protocolo de potencia del contador"
+            },
+            "monitoring_building_consumption": {
+                "name": "Monitorizaci\u00f3n del consumo del edificio"
+            },
+            "monitoring_economy_factor": {
+                "name": "Monitorizaci\u00f3n del factor econ\u00f3mico"
+            },
+            "monitoring_grid_consumption": {
+                "name": "Monitorizaci\u00f3n del consumo de la red"
+            },
+            "monitoring_grid_injection": {
+                "name": "Monitorizaci\u00f3n de la inyecci\u00f3n de red"
+            },
+            "monitoring_grid_power_flow": {
+                "name": "Monitorizaci\u00f3n del flujo de energ\u00eda de la red"
+            },
+            "monitoring_minute_building_consumption": {
+                "name": "Monitorizaci\u00f3n del consumo del edificio (minuto)"
+            },
+            "monitoring_minute_grid_consumption": {
+                "name": "Monitorizaci\u00f3n del consumo de la red (minuto)"
+            },
+            "monitoring_minute_grid_injection": {
+                "name": "Monitorizaci\u00f3n de la inyecci\u00f3n de la red (minuto)"
+            },
+            "monitoring_minute_grid_power_flow": {
+                "name": "Monitorizaci\u00f3n del flujo de energ\u00eda de la red (minuto)"
+            },
+            "monitoring_minute_solar_production": {
+                "name": "Monitorizaci\u00f3n de la producci\u00f3n solar (minuto)"
+            },
+            "monitoring_self_consumption": {
+                "name": "Monitorizaci\u00f3n del autoconsumo"
+            },
+            "monitoring_self_sufficiency": {
+                "name": "Monitorizaci\u00f3n de la autosuficiencia"
+            },
+            "monitoring_solar_production": {
+                "name": "Monitorizaci\u00f3n de la producci\u00f3n solar"
+            },
+            "output_current_l1": {
+                "name": "Corriente de salida L1"
+            },
+            "output_current_l2": {
+                "name": "Corriente de salida L2"
+            },
+            "output_current_l3": {
+                "name": "Corriente de salida L3"
+            },
+            "output_frequency": {
+                "name": "Frecuencia de salida"
+            },
+            "output_power_l1": {
+                "name": "Potencia de salida L1"
+            },
+            "output_power_l2": {
+                "name": "Potencia de salida L2"
+            },
+            "output_power_l3": {
+                "name": "Potencia de salida L3"
+            },
+            "output_voltage_l3": {
+                "name": "Tensi\u00f3n de salida L3"
+            },
+            "pv_consumed": {
+                "name": "FV consumida"
+            },
+            "pv_injected": {
+                "name": "FV inyectada"
+            },
+            "pv_power_1": {
+                "name": "Potencia FV 1"
+            },
+            "pv_power_2": {
+                "name": "Potencia FV 2"
+            },
+            "pv_power_total": {
+                "name": "Potencia FV total"
+            },
+            "temp_air_temperature": {
+                "name": "Temperatura del aire"
+            },
+            "temp_component_temperature": {
+                "name": "Temperatura del componente"
+            }
+        }
+    }
+}
