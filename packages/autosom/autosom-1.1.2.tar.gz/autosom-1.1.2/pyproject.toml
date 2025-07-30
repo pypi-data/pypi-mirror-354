@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling<=1.18.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "autosom"
+version = "1.1.2"
+description = "Annotates the Sites of Metabolism (SOMs) of substrate-metabolite pairs."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT License"}
+authors = [
+  {name = "Roxane Jacob", email = "roxane.axel.jacob@univie.ac.at"},
+]
+
+dependencies = [
+  "chembl-structure-pipeline>=1.2.2",
+  "networkx>=3.3",
+  "numpy>=2.0.0",
+  "pandas>=2.2.3",
+  "rdkit>=2024.3.1",
+  "tqdm>=4.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "black",
+  "flake8",
+  "isort",
+  "mypy",
+  "pydocstyle",
+  "pytest",
+]
+vis = [
+  "ipykernel", 
+  "ipywidgets"
+]
+
+[tool.isort]
+profile = "black"
