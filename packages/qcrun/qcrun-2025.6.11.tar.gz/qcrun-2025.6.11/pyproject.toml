@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qcrun"
+version = "2025.06.11"
+dependencies = [
+  "numpy",
+  "pydantic",
+  "ase",
+  "fchic",
+]
+
+requires-python = ">=3.10"
+authors = [
+  {name = "ShangChien", email = "hi@emm.sh"},
+]
+maintainers = [
+  {name = "ShangChien", email = "hi@emm.sh"},
+]
+description = "dft runner"
+readme = "README.md"
+license = "GPL-3.0"
+keywords = ["dft", "gaussian", "orca", "vasp", "pyscf", "cp2k"]
+classifiers = [
+  "Programming Language :: Python"
+]
+
+[project.urls]
+Homepage = "https://example.com"
+Documentation = "https://readthedocs.org"
+
+[project.scripts]
+run_g16 = "src.g16.g16_server:main"
+
