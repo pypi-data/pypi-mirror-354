@@ -1,0 +1,13 @@
+
+[dev]
+tox
+flake8
+wheel>=0.36
+twine
+build
+
+[test]
+pytest>=5
+pytest-mock
+pytest-cov
+coverage>=4.2
