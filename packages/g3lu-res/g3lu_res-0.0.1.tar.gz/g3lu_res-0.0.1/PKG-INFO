@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: g3lu_res
+Version: 0.0.1
+Summary: PYPI tutorial package creation written by G3LU
+Home-page: https://github.com/G3LU/Research
+Author: G3LU
+Author-email: leejyoung0325@gmail.com
+Keywords: python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.8
+Requires-Dist: tqdm
+Requires-Dist: scikit-learn
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
