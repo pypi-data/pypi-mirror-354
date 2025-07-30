@@ -1,0 +1,88 @@
+Metadata-Version: 2.1
+Name: pyharmx
+Version: 0.1.5
+Summary: Polyharmonic spline interpolation in PyTorch
+Author-email: Ivan Zanardi <ivan.zanardi.us@gmail.com>
+License: MIT License
+Project-URL: Homepage, https://github.com/ivanZanardi/pyharmx
+Project-URL: Bug Tracker, https://github.com/ivanZanardi/pyharmx/issues
+Project-URL: Changelog, https://github.com/ivanZanardi/pyharmx/releases
+Project-URL: Documentation, https://pyharmx.readthedocs.io
+Keywords: Python,PyTorch,Interpolation,Spline,Polyharmonic Spline,RBF,Radial Basis Function
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: typing
+Requires-Dist: torch
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+
+# PyHarmX
+
+**Polyharmonic spline interpolation in PyTorch**
+
+---
+[![Documentation Status](https://readthedocs.org/projects/pyharmx/badge/?version=latest)](https://pyharmx.readthedocs.io/en/latest/?badge=latest)
+[![PyPI Version](https://badge.fury.io/py/PyHarmX.svg)](https://badge.fury.io/py/PyHarmX)
+[![PyPI Downloads](https://static.pepy.tech/badge/pyharmx)](https://www.pepy.tech/projects/pyharmx)
+[![DOI](https://zenodo.org/badge/976745986.svg)](https://doi.org/10.5281/zenodo.15604053)
+
+PyHarmX is a PyTorch module designed for efficient [polyharmonic spline interpolation](https://en.wikipedia.org/wiki/Polyharmonic_spline). Leveraging GPU acceleration, this implementation excels in performance, making it well-suited for large-scale interpolation tasks.
+
+## Installation
+
+Install PyHarmX using the following command:
+
+```bash
+pip install pyharmx
+```
+
+PyHarmX has minimal dependencies, requiring only PyTorch and NumPy.
+
+If you're interested in contributing or want to use PyHarmX in developer/editable mode with test dependencies, install it as follows:
+
+```bash
+pip install -e pyharmx[test]
+```
+
+To run the tests, simply execute:
+
+```bash
+pytest <path-to-pyharmx>
+```
+
+## Explore
+
+Check out the [examples](https://github.com/ivanZanardi/pyharmx/tree/main/examples) provided in the repository to see PyHarmX in action. Please see the [documentation](https://pyharmx.readthedocs.io/en/latest/index.html) website for a detailed user guide.
+
+## Citation
+
+If you find this package useful, please cite:
+
+```bibtex
+@software{ivan_zanardi_2025_pyharmx,
+  author       = {Ivan Zanardi},
+  title        = {PyHarmX},
+  month        = {06},
+  year         = {2025},
+  publisher    = {Zenodo},
+  version      = {v0.1.5},
+  doi          = {10.5281/zenodo.15643936},
+  url          = {https://doi.org/10.5281/zenodo.15643936}
+}
+```
+
+## License
+
+PyHarmX is distributed under the [MIT License](https://github.com/ivanZanardi/pyharmx/blob/main/LICENSE). Feel free to use, modify, and contribute to this project within the terms of the license.
