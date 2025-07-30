@@ -1,0 +1,21 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "low_nutrients": {
+                "name": "Cothaithigh \u00edseal"
+            },
+            "low_water": {
+                "name": "Uisce \u00edseal"
+            },
+            "pump": {
+                "name": "Caid\u00e9al"
+            },
+            "pump_error": {
+                "name": "Earr\u00e1id caid\u00e9il"
+            },
+            "refill_error": {
+                "name": "Earr\u00e1id athl\u00edonta"
+            }
+        }
+    }
+}
