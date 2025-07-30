@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: nonebot-plugin-nobleduel
+Version: 0.2.0
+Summary: 一个基于NoneBot2的贵族决斗插件
+Home-page: https://github.com/yourusername/nonebot-plugin-nobleduel
+Author: ATRI
+Author-email: 2058550737@qq.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Requires-Dist: nonebot2>=2.0.0
+Requires-Dist: nonebot-adapter-onebot>=2.0.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
