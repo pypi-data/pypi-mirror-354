@@ -1,0 +1,132 @@
+<!-- sw_mcp.wxs -->
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  
+  <?define ProductName = "SW MCP" ?>
+  <?define ProductVersion = "0.1.0" ?>
+  <?define ProductManufacturer = "Your Company" ?>
+  <?define ProductUpgradeCode = "12345678-1234-1234-1234-123456789012" ?>
+  
+  <Product Id="*" 
+           Name="$(var.ProductName)" 
+           Language="1033" 
+           Version="$(var.ProductVersion)" 
+           Manufacturer="$(var.ProductManufacturer)"
+           UpgradeCode="$(var.ProductUpgradeCode)">
+    
+    <Package InstallerVersion="500" 
+             Compressed="yes" 
+             InstallScope="perMachine"
+             Platform="x64"
+             Description="SW MCP Python Package with COM Support" />
+    
+    <MajorUpgrade DowngradeErrorMessage="A newer version is already installed." />
+    
+    <MediaTemplate EmbedCab="yes" />
+    
+    <!-- Check for Python 3.10 -->
+    <Property Id="PYTHON310">
+      <RegistrySearch Id="Python310Install" 
+                      Root="HKLM" 
+                      Key="SOFTWARE\Python\PythonCore\3.10\InstallPath" 
+                      Type="raw" />
+    </Property>
+    
+    <Condition Message="Python 3.10 (64-bit) must be installed.">
+      <![CDATA[Installed OR PYTHON310]]>
+    </Condition>
+    
+    <!-- Define installation directory -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <!-- Install to Python's site-packages -->
+      <Directory Id="Python310" Name="Python310">
+        <Directory Id="Python310Lib" Name="Lib">
+          <Directory Id="SITEPACKAGES" Name="site-packages">
+            <Directory Id="SWMCPDIR" Name="sw_mcp" />
+          </Directory>
+        </Directory>
+        <Directory Id="Python310Scripts" Name="Scripts" />
+      </Directory>
+      
+      <!-- Also install to Program Files for standalone access -->
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="INSTALLFOLDER" Name="SW_MCP" />
+      </Directory>
+    </Directory>
+    
+    <!-- Components -->
+    <ComponentGroup Id="ProductComponents">
+      <!-- Python package files -->
+      <Component Id="MainModule" Directory="SWMCPDIR" Guid="*">
+        <File Id="sw_mcp_pyd" Source="msi_staging\sw_mcp\sw_mcp.pyd" />
+        <File Id="sw_mcp_pyi" Source="msi_staging\sw_mcp\sw_mcp.pyi" />
+        <File Id="init_py" Source="msi_staging\sw_mcp\__init__.py" />
+        <File Id="main_py" Source="msi_staging\sw_mcp\__main__.py" />
+        <File Id="metadata_json" Source="msi_staging\sw_mcp\metadata.json" />
+      </Component>
+      
+      <!-- Batch file wrapper -->
+      <Component Id="BatchWrapper" Directory="Python310Scripts" Guid="*">
+        <File Id="sw_mcp_bat" Source="msi_staging\sw_mcp.bat" />
+        <Environment Id="PATH" 
+                     Name="PATH" 
+                     Value="[Python310Scripts]" 
+                     Permanent="no" 
+                     Part="last" 
+                     Action="set" 
+                     System="yes" />
+      </Component>
+      
+      <!-- Standalone copy in Program Files -->
+      <Component Id="StandaloneFiles" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="sw_mcp_pyd_copy" 
+              Source="msi_staging\sw_mcp\sw_mcp.pyd" 
+              Name="sw_mcp.pyd" />
+        <File Id="readme_txt" 
+              Source="README.txt" 
+              KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+    
+    <!-- Custom Actions -->
+    <CustomAction Id="SetPythonPath" 
+                  Property="Python310" 
+                  Value="[PYTHON310]" />
+    
+    <CustomAction Id="InstallPyWin32" 
+                  Directory="TARGETDIR"
+                  Execute="deferred"
+                  Impersonate="no"
+                  ExeCommand="[PYTHON310]python.exe -m pip install pywin32&gt;=305"
+                  Return="ignore" />
+    
+    <CustomAction Id="RegisterCOM"
+                  Directory="TARGETDIR"
+                  Execute="deferred"
+                  Impersonate="no"
+                  ExeCommand="[PYTHON310]python.exe -c &quot;import win32com.server.register; win32com.server.register.UseCommandLine()&quot;"
+                  Return="ignore" />
+    
+    <!-- Installation Sequence -->
+    <InstallExecuteSequence>
+      <Custom Action="SetPythonPath" Before="CostFinalize">NOT Installed</Custom>
+      <Custom Action="InstallPyWin32" After="InstallFiles">NOT Installed</Custom>
+      <Custom Action="RegisterCOM" After="InstallPyWin32">NOT Installed</Custom>
+    </InstallExecuteSequence>
+    
+    <!-- Features -->
+    <Feature Id="Complete" Title="SW MCP" Level="1" Display="expand">
+      <Feature Id="PythonPackage" Title="Python Package" Level="1">
+        <ComponentGroupRef Id="ProductComponents" />
+      </Feature>
+    </Feature>
+    
+    <!-- UI -->
+    <UIRef Id="WixUI_FeatureTree" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+    
+    <!-- License -->
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+  </Product>
+</Wix>
