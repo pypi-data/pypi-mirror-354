@@ -1,0 +1,7 @@
+[project]
+name = "article-forestz"
+version = "0.1.2"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [ "black>=25.1.0", "graphviz>=0.20.3", "llmada>=0.1.11", "toml>=0.10.2",]
