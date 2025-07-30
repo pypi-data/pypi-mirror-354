@@ -1,0 +1,19 @@
+[build-system]
+requires = ['setuptools', 'setuptools-scm']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'pyside-wrapper-yaboiteedoh'
+requires-python = '>=3.12'
+version = '0.0.10'
+classifiers = [
+    'Programming Language :: Python :: 3',
+    'Operating System :: OS Independent',
+]
+license = 'MIT'
+['project.urls']
+Homepage = 'https://github.com/yaboiteedoh/pyside-wrapper/'
+Issues = 'https://github.com/yaboiteedoh/pyside-wrapper/issues'
+dependencies=[
+    'PySide6'
+]
