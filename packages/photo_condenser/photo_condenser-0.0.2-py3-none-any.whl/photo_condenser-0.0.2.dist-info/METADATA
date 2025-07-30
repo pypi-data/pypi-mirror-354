@@ -1,0 +1,90 @@
+Metadata-Version: 2.4
+Name: photo_condenser
+Version: 0.0.2
+Summary: Photo Deduplicator - A tool to find and remove duplicate or similar images.
+Author-email: mova <mova@users.noreply.github.com>
+Requires-Python: >=3.8
+Description-Content-Type: text/x-rst
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+License-File: LICENSE
+Requires-Dist: Pillow>=9.0.0
+Requires-Dist: numpy>=1.19.0
+Requires-Dist: onnxruntime
+Requires-Dist: pytest >=2.7.3 ; extra == "dev"
+Requires-Dist: pytest-cov ; extra == "dev"
+Requires-Dist: bump2version ; extra == "dev"
+Requires-Dist: black ; extra == "dev"
+Requires-Dist: pre-commit ; extra == "dev"
+Requires-Dist: ruff ; extra == "dev"
+Requires-Dist: mock ; extra == "dev"
+Requires-Dist: pylint>=2.12.0 ; extra == "dev"
+Requires-Dist: flit ; extra == "dev"
+Requires-Dist: sphinx ; extra == "doc"
+Requires-Dist: sphinx_rtd_theme ; extra == "doc"
+Requires-Dist: autodocsumm ; extra == "doc"
+Requires-Dist: readthedocs-sphinx-search ; extra == "doc"
+Project-URL: Bug Tracker, https://github.com/mova/photo_condenser/issues
+Project-URL: Homepage, https://github.com/mova/photo_condenser
+Provides-Extra: dev
+Provides-Extra: doc
+
+Photo Condenser
+===============
+
+A modern Python application for finding and managing similar or duplicate images in your photo collection.
+The tool uses Machine Learning to compare images and provides an intuitive interface for reviewing and organizing your photos.
+
+**Select the photo you want to keep with arrow keys**
+
+Features
+--------
+
+- 🖼️ Supports multiple image formats (JPG, PNG, WebP, etc.)
+- 🔍 Advanced image comparison using Machine Learning
+- 🎯 Smart caching for improved performance
+- 📊 Image metadata display
+- 🖱️ Intuitive navigation with address bar
+
+Screenshot
+----------
+
+.. image:: screemshot.png
+   :alt: Photo Condenser Screenshot
+   :align: center
+   :width: 80%
+   :target: screemshot.png
+
+Installation
+------------
+
+Using pipx
+~~~~~~~~~~
+
+.. code-block:: bash
+
+    pipx install photo_condenser
+
+Usage
+-----
+
+Command Line
+~~~~~~~~~~~~
+
+.. code-block:: bash
+
+    # Launch the application
+    photo_condenser
+
+    # Or run directly
+    python -m photo_condenser
+
+Basic Workflow
+~~~~~~~~~~~~~~
+
+1. Launch the application
+2. Use the address bar to navigate to your photo directory
+3. The application will present you with pairs of similar images
+4. Use the arrow keys to select the image you want to keep or Spac
+
