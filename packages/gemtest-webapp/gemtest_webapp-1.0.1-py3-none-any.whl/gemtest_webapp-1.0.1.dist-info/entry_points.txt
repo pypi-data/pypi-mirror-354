@@ -1,0 +1,7 @@
+[console_scripts]
+cov=scripts.cov:html_coverage
+gemtest-webapp=app.run:main
+install-hook=scripts.install_hook:install_hook
+lint=scripts.lint:lint
+test=scripts.run_tests:run_tests
+
