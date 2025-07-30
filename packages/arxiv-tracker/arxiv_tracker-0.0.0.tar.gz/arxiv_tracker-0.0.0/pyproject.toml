@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=42", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arxiv-tracker"
+dynamic = ["version"]
+description = "A tool for tracking new papers on arXiv"
+readme = "README.md"
+dependencies = [
+    "feedparser",
+    "pandas",
+]
