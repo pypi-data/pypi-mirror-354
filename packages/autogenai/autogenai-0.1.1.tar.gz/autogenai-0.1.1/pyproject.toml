@@ -1,0 +1,44 @@
+[project]
+name = "autogenai"
+version = "0.1.1"
+description = "Early-stage unified SDK for OpenAI, Gemini and more"
+authors = [
+    { name="Sanin K", email="dev.sanink@gmail.com"}
+]
+license = "MIT"
+license-files = ["LICENSE"]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "httpx>=0.26.0,<1.0.0", 
+    "python-dotenv>=1.0.0,<2.0.0",
+    "google-generativeai>=0.3.2,<1.0.0"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Libraries",
+]
+
+[project.urls]
+Homepage = "https://github.com/sanin7k/autogenai.git" 
+
+[project.scripts]
+autogenai = "autogenai.cli:main"
+
+[project.optional-dependencies]
+openai = ["openai>=1.0.0,<2.0.0"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
