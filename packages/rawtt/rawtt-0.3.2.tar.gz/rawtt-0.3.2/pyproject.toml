@@ -1,0 +1,32 @@
+[project]
+name = "rawtt"
+version = "0.3.2"
+description = "A CLI tool for tracking study and work time"
+
+authors = [
+    {name = "dvodnenko",email = "thekovalskii@gmail.com"}
+]
+
+packages = [
+    { include = "rawtt", from = "src" }
+]
+
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "click (>=8.2.1,<9.0.0)"
+]
+
+exclude = [
+    "notes.txt",
+    "poetry.lock",
+    "versions.txt"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+raw = "rawtt:raw"
