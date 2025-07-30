@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: rules.build
+Version: 0.0.1
+Summary: CLI & engine for AI-governed dev tooling
+Author-email: Jad Bitar <hello@jadb.io>
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: click
+Requires-Dist: pydantic
+Requires-Dist: pluggy
