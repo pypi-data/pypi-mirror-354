@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: trelasticext
+Version: 0.1.0
+Home-page: https://github.com/millerhadar/trelasticext
+Project-URL: Bug Tracker, https://github.com/millerhadar/trelasticext/issues
+Project-URL: Documentation, https://github.com/millerhadar/trelasticext
+Project-URL: Source Code, https://github.com/millerhadar/trelasticext
+Requires-Python: >=3.6
+License-File: LICENSE
+Requires-Dist: elasticsearch<9.0.0,>=8.0.0
+Requires-Dist: pandas
+Requires-Dist: numpy
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
