@@ -1,0 +1,34 @@
+Metadata-Version: 2.4
+Name: nael-utils
+Version: 0.1.11
+Summary: A collection of utilities for Python.
+Home-page: https://github.com/Nael-Nathanael/nael-utils
+Author: Nael
+Author-email: Nael <nael.nathanael71@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/Nael-Nathanael/nael-utils
+Project-URL: Bug Tracker, https://github.com/Nael-Nathanael/nael-utils/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Typing :: Typed
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: langchain-core
+Requires-Dist: langchain-openai
+Requires-Dist: langchain-anthropic
+Requires-Dist: openai
+Requires-Dist: pydantic
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
+# nael-utils
+
+A collection of utilities for Python.
+
+## Installation
+
+You can install `nael-utils` using `pip`:
+
+```bash
+pip install nael-utils
