@@ -1,0 +1,48 @@
+Metadata-Version: 2.4
+Name: mcp_bill_track
+Version: 0.1.9
+Summary: 个人记账 MCP 服务
+Keywords: bill,track,mcp
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: mcp
+
+## 记账 mcp 服务
+
+我们基于 MCP 开发了一个轻量级（玩具级）记账服务 `Bill Track MCP`，旨在帮助用户管理和跟踪财务数据。该服务利用 Python 和 `FastMCP` 框架，提供了三种核心功能类型（工具、资源和提示），为用户提供一个灵活、高效的解决方案来记录收入和支出、查询账户状态以及生成格式化的财务报告。
+
+项目虽小，但涉及环境变量的设置和读取，用户数据的存储等多个方面，对于开发更强大服务来说是一个不错的基础。完整代码的地址见文末。
+
+### 核心功能
+
+1. 工具 (​`@tool​`)：服务提供了一个名为 ​`​record_transaction​`​的工具，允许用户动态输入当天的收入和支出，如「今天赚了 500 元，花了 250 元」。工具会自动更新累积的总收入、总支出，并计算当前余额。这些数据持久化存储在用户指定的文件中，确保数据不会丢失。
+2. 资源 (​`​@resource​`​​)：通过​`​get_account_status​`​​资源，用户可以安全地检索当前账户的最新状态，包括总收入、总支出和余额。资源数据存储在 JSON 文件中，文件路径可以由用户通过环境变量或配置文件自定义，默认位于​`​./accounting_data/accounting_data.json​`​。
+3. 提示 (​`​@prompt​`​​)：​`​format_account_report​`​提示负责将账户状态格式化为易读的报告。
+
+### 使用场景
+
+`BillTrack MCP`适用于多种场景，包括但不限于：
+
+- **个人财务管理**：个人用户可以通过客户端记录日常收支，并随时查看余额。
+- **企业/团队记账**：小型企业或团队可以集成此服务到更大的财务系统中，快速统计现金流。
+- **教育与开发示例**：开发者可以作为 MCP 服务的学习示例，了解工具、资源和提示的协同工作。
+
+### 配置信息
+
+```bash
+{
+    "bill-track-mcp": {
+        "name": "bill-track-mcp",
+        "type": "stdio",
+        "isActive": true,
+        "registryUrl": "",
+        "command": "uvx",
+        "args": [
+            "mcp_bill_track"
+        ],
+        "env": {
+            "ACCOUNTING_WORKING_DIR": "/Users/xxx/Documents/bill-track-mcp"
+        }
+    }
+} 
+```
