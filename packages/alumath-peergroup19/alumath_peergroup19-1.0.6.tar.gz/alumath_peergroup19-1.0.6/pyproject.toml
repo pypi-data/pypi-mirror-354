@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alumath-peergroup19"
+version = "1.0.6"  # Fixed version
+authors = [
+  { name="Hirwa Armstrong Brian", email="h.brian@alustudent.com" },
+]
+description = "A simple matrix multiplication library made for a school project"
+readme = "README.md"
+license = {text = "MIT"}  # New license format
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+
+[project.urls]
+Homepage = "https://github.com/Pam-Pam29/ADVANCED-LINEAR-ALGEBRA-PCA-Group-19"
+
+[tool.setuptools]
+packages = ["alumath_peergroup19"]
+package-dir = {"" = "src"}
