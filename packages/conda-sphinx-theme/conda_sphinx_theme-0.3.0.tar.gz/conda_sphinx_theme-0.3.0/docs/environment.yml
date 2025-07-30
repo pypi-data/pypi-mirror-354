@@ -1,0 +1,8 @@
+name: conda-sphinx-theme
+channels:
+  - conda-forge
+dependencies:
+  - pydata-sphinx-theme >= 0.13.1
+  - sphinx-favicon
+  - python
+  - pip
