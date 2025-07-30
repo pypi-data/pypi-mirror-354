@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: shodan_downloader
+Version: 0.1.0
+Summary: A Python tool for searching Shodan and downloading filtered results.
+Author-email: Luppa <102318505+Luppa90@users.noreply.github.com>
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: shodan>=1.28.0
+Requires-Dist: requests>=2.0.0
+Requires-Dist: tqdm>=4.67.1
+Dynamic: requires-python
+
+# Shodan Downloader
+
+A Python tool for downloading and filtering large datasets from Shodan.
+
+## Installation
+
+```bash
+pip install shodan-downloader
+```
+
+## Usage
+
+1. **Set your Shodan API key**
+
+    ```bash
+    export SHODAN_API_KEY=your_key_here
+    ```
+
+2. **Search and download results**
+
+    ```bash
+    shodan-downloader search -q 'apache port:8080' -f ip_str/port -o results.txt
+    ```
+
+3. **Get IP location**
+
+    ```bash
+    shodan-downloader ip-location 8.8.8.8
+    ```
