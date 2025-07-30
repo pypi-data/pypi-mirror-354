@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: eng2urdu
+Version: 0.1.0
+Summary: English to Urdu Number Converter
+Home-page: https://github.com/wahaj67/ENG2Urdu-Convertor-Package.git
+Author: Wahaj Ali
+Author-email: wahaj0574@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-python
+Dynamic: summary
+
+# eng2urdu
+
+A simple Python package to convert numbers between English and Urdu digits.
+
+## Installation
+
+```bash
+pip install eng2urdu
+
+```
+
+## Usage
+```
+
+from eng2urdu import convert_english_to_urdu, convert_urdu_to_english
+
+print(convert_english_to_urdu("2025"))  # ۲۰۲۵
+print(convert_urdu_to_english("۱۲۳۴"))  # 1234
+
+```
