@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: lnhistoryclient
+Version: 0.1.0
+Summary: A reusable parser for Lightning Network gossip messages format.
+Author-email: Fabian Kraus <fabian.felix.kraus@gmail.com>
+License: Apache 2.0
+Project-URL: Homepage, https://ln-history.info
+Project-URL: Repository, https://github.com/ln-history/ln-history-python-client
+Keywords: lightning,network,bitcoin,parser,gossip,ln
+Requires-Python: <4.0,>=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# ln-history-python-client
+Provides python Interfaces for the [ln-history](https://github.com/ln-history) project
