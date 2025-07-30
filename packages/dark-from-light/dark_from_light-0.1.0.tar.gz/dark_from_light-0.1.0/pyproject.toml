@@ -1,0 +1,43 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[dependency-groups]
+dev = ["pre-commit", "pytest"]
+
+[project]
+authors = [
+    {email = "abluck@fiu.edu", name = "Asa Bluck"},
+  {email = "joannapk@caltech.edu", name = "Joanna Piotrowska"}
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: Apache Software License",
+  "Natural Language :: English",
+  "Programming Language :: Python :: 3"
+]
+dependencies = ["joblib>=1.5.0", "scikit-learn==1.5.1", "numpy>=1.26.4", "astropy>=7.0.1", "tqdm>=4.67.1", "jaxtyping>=0.3.2"]
+description = "A ML-based galaxy group finder and dark matter halo mass estimator for MOONRISE-type data large datasets."
+keywords = ["halo-mass", "group-finder", "galaxy-groups", "random-forest", "astro-ML"]
+license = {file = "LICENSE"}
+name = "dark-from-light"
+readme = "README.md"
+requires-python = ">=3.11"
+urls = {repository = "https://github.com/abluck/Dark-from-Light"}
+version = "0.1.0"
+
+[tool.hatch.build]
+include = ["dark_from_light/*"]
+
+[tool.ruff]
+src = []
+
+[tool.ruff.lint]
+fixable = ["I001", "F401", "UP"]
+ignore = ["E402", "E721", "E731", "E741", "F722", "F841", "E501", "F401", "F821"]
+select = ["E", "F", "I001", "UP"]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+lines-after-imports = 2
+order-by-type = true
