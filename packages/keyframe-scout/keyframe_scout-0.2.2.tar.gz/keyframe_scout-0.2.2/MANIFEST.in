@@ -1,0 +1,8 @@
+include README.md
+include LICENSE
+include requirements.txt
+recursive-include keyframe_scout *.py
+recursive-exclude tests *
+recursive-exclude examples *
+global-exclude *.pyc
+global-exclude __pycache__
