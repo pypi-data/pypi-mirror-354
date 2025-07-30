@@ -1,0 +1,52 @@
+Metadata-Version: 2.4
+Name: pySMWSync
+Version: 0.1.2
+Dynamic: Summary
+Project-URL: Home, https://github.com/WolfgangFahl/pySMWSync
+Project-URL: Documentation, https://wiki.bitplan.com/index.php/pySMWSync
+Project-URL: Source, https://github.com/WolfgangFahl/pySMWSync
+Author-email: Wolfgang Fahl <wf@bitplan.com>
+Maintainer-email: Wolfgang Fahl <wf@bitplan.com>
+License-Expression: Apache-2.0
+License-File: LICENSE
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.10
+Requires-Dist: colorama
+Requires-Dist: py-3rdparty-mediawiki>=0.15.4
+Requires-Dist: py-ez-wikidata>=0.3.0
+Requires-Dist: pylodstorage>=0.16.2
+Requires-Dist: pymetamodel>=0.5.3
+Requires-Dist: tqdm
+Provides-Extra: test
+Requires-Dist: green; extra == 'test'
+Description-Content-Type: text/markdown
+
+# pySMWsync
+synchronize Semantic MediaWiki content e.g. with wikidata
+
+[![Join the discussion at https://github.com/WolfgangFahl/pySMWSync/discussions](https://img.shields.io/github/discussions/WolfgangFahl/pySMWSync)](https://github.com/WolfgangFahl/pySMWSync/discussions)
+[![pypi](https://img.shields.io/pypi/pyversions/pySMWSync)](https://pypi.org/project/pySMWSync/)
+[![Github Actions Build](https://github.com/WolfgangFahl/pySMWsync/actions/workflows/build.yml/badge.svg)](https://github.com/WolfgangFahl/pySMWsync/actions/workflows/build.yml)
+[![PyPI Status](https://img.shields.io/pypi/v/pySMWSync.svg)](https://pypi.python.org/pypi/pySMWSync/)
+[![GitHub issues](https://img.shields.io/github/issues/WolfgangFahl/pySMWsync.svg)](https://github.com/WolfgangFahl/pySMWsync/issues)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/WolfgangFahl/pySMWsync.svg)](https://github.com/WolfgangFahl/pySMWsync/issues/?q=is%3Aissue+is%3Aclosed)
+[![API Docs](https://img.shields.io/badge/API-Documentation-blue)](https://WolfgangFahl.github.io/pySMWsync/)
+[![License](https://img.shields.io/github/license/WolfgangFahl/pySMWsync.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+
+## Introduction
+pySMWSync is a python library to synchronize property values of a semantic MediaWiki with e.g. wikidata or another Semantic MediaWiki
+
+## Docs and Tutorials
+[Wiki](https://wiki.bitplan.com/index.php/pySMWSync)
