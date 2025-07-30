@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: exceltool_2025
+Version: 0.1.0
+Summary: Excel file helper for creating, updating, and querying data using pandas.
+Author-email: Avinash S <avinash.s6055@gmail.com>
+License: MIT
+Keywords: excel,pandas,dataframe,utility
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+Requires-Dist: pandas>=1.3
+Requires-Dist: openpyxl>=3.0
+Dynamic: license-file
+
+# 📊 excel_utils
+
+A lightweight and intuitive Python utility library for working with Excel (`.xlsx`) files using `pandas` and `openpyxl`. Designed to simplify reading, writing, updating, and analyzing Excel files in just a few lines of code.
+
+---
+
+## ✅ Features
+
+- 📁 Create new Excel files with custom columns
+- ➕ Append rows to existing Excel files
+- 📖 Read and filter data from Excel
+- ✏️ Update or delete specific rows and cells
+- 📊 Compute basic summary statistics for numeric columns
+- 🧹 Clear data while optionally keeping headers
+- 🔤 Rename and sort columns
+- 🔍 Show all available utility functions with `show_functions()`
+
+---
