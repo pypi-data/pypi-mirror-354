@@ -1,0 +1,23 @@
+=======
+CHANGES
+=======
+
+1.0.0 (2025-06-10)
+------------------
+
+- python 2.7 migration
+
+- removed z3c.jsonrpc dependency
+
+
+0.6.0 (2018-02-25)
+------------------
+
+- bugfix: replace jquery live with on event handler because live is not
+  supported since jquery version 1.9
+
+
+0.5.0 (2012-11-17)
+------------------
+
+- initial release
