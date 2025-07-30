@@ -1,0 +1,164 @@
+# crdb-mcpctl
+
+![PyPI](https://img.shields.io/pypi/v/crdb-mcpctl)
+![Python](https://img.shields.io/pypi/pyversions/crdb-mcpctl)
+![License](https://img.shields.io/github/license/viragtripathi/crdb-mcpctl)
+![CI](https://github.com/viragtripathi/crdb-mcpctl/actions/workflows/python-ci.yml/badge.svg)
+
+A developer-friendly, model-provider-agnostic CLI tool for working with [Model Context Protocol](https://modelcontextprotocol.io) servers — built specifically for use with [CockroachDB](https://www.cockroachlabs.com/) backends.
+
+![crdb-mcpctl CLI screenshot](./crdb-mcpctl.png)
+
+---
+
+## 🧠 What This Is
+
+`crdb-mcpctl` is a spec-aligned, CLI-first interface for creating, managing, exporting, and running [Model Context Protocol](https://modelcontextprotocol.io) resources.
+
+It works with [`crdb-mcp-server`](https://github.com/viragtripathi/crdb-mcp-server), a FastAPI-based MCP implementation backed by CockroachDB. Together, they offer:
+
+- A reliable MCP context registry (server)
+- A CLI for simulation, LLM runs, and batch workflows (client)
+
+---
+
+## ✅ Feature Highlights
+
+- 🌱 MCP-spec-compliant context management (create, list, get, delete)
+- 📦 Export individual or all contexts to YAML or JSON
+- 🔁 Run contexts against real LLMs (OpenAI, Anthropic, etc.)
+- 💬 Supports streaming, retry, model override
+- 📚 Batch simulation of inputs
+- ⚙️ Reads config from `~/.config/crdb-mcpctl/config.yaml` or env vars
+- 🧱 Extensible provider system (Claude, GPT-4, Mistral, etc.)
+- 📈 Configurable logging per command (`--log-level`)
+
+---
+
+## 🚀 Quickstart
+
+### 📦 Install from PyPI
+
+```bash
+pip install crdb-mcpctl
+````
+
+### 🛠 Or install from source
+
+```bash
+git clone https://github.com/viragtripathi/crdb-mcpctl
+cd crdb-mcpctl
+pip install -e .
+```
+
+> You’ll also need a running instance of [`crdb-mcp-server`](https://github.com/viragtripathi/crdb-mcp-server)
+
+---
+
+## 🔐 Configuration Options
+
+### ✅ Environment Variables (preferred for CI and scripting)
+
+| Variable            | Description                          |
+|---------------------|--------------------------------------|
+| `MCP_SERVER_URL`    | Base URL for the MCP server          |
+| `MCP_API_TOKEN`     | Bearer token for protected endpoints |
+| `OPENAI_API_KEY`    | API key for OpenAI LLMs              |
+| `ANTHROPIC_API_KEY` | API key for Anthropic Claude LLMs    |
+
+```bash
+export MCP_SERVER_URL=http://localhost:8081
+export OPENAI_API_KEY=sk-...
+```
+
+---
+
+### 🗂 `~/.config/crdb-mcpctl/config.yaml` (alternative for local/dev)
+
+```yaml
+server: http://localhost:8081
+
+openai:
+  api_key: sk-...
+
+anthropic:
+  api_key: your-anthropic-key
+```
+
+✅ Env vars take precedence over config file.
+
+---
+
+## 🧪 CLI Commands
+
+```bash
+# Show version and top-level help
+crdb-mcpctl --version
+crdb-mcpctl --help
+
+# Create a context
+crdb-mcpctl create context --file summarizer.yaml
+
+# List all contexts
+crdb-mcpctl list contexts
+
+# Get or delete a context
+crdb-mcpctl get context <uuid>
+crdb-mcpctl delete context <uuid> -y
+
+# Export one or all
+crdb-mcpctl export context <uuid> --file out.yaml
+crdb-mcpctl export all --output-dir exported_contexts/
+
+# Run a single input
+crdb-mcpctl run context --provider openai --file context.yaml --input "Summarize this article"
+
+# Simulate a batch of inputs
+crdb-mcpctl simulate context \
+  --provider anthropic \
+  --file summarizer.yaml \
+  --inputs inputs.txt
+```
+
+---
+
+## 🧰 Logging
+
+Enable structured logging with:
+
+```bash
+crdb-mcpctl create context --file ctx.yaml --log-level DEBUG
+```
+
+---
+
+## ♻️ Retry Logic
+
+All network operations (GET, POST, DELETE) retry up to 3 times with 2s backoff using [`tenacity`](https://tenacity.readthedocs.io/).
+
+---
+
+## 💡 Error Feedback Example
+
+On connection failure:
+
+```text
+❌ Failed to connect to MCP server at http://localhost:8081
+
+🔧 Is the server running? Start it with:
+  crdb-mcp-server serve --init-schema
+
+🌍 To override the server URL:
+  --server http://localhost:8081
+  OR
+  export MCP_SERVER_URL=http://localhost:8081
+```
+
+---
+
+## 🙌 Contributions
+
+This project is open for internal and public usage.
+
+If you want to support additional providers, improve UX, or standardize context specs, contributions are welcome.
+
