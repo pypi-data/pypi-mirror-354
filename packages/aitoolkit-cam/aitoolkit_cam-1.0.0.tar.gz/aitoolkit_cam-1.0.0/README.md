@@ -1,0 +1,344 @@
+<div align="center">
+  <h1>🎥 AIToolkit Camera</h1>
+  <p><strong>极简Python摄像头库 - 为中学生和ARM64设备特别优化</strong></p>
+  <p>
+    <a href="https://pypi.org/project/aitoolkit-cam/"><img src="https://img.shields.io/pypi/v/aitoolkit-cam.svg" alt="PyPI Version"></a>
+    <a href="https://github.com/bosscoder-ai/aitoolkit_cam/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
+    <a href="https://github.com/bosscoder-ai/aitoolkit_cam"><img src="https://img.shields.io/badge/Python-3.7+-blue.svg" alt="Python Version"></a>
+    <a href="https://github.com/bosscoder-ai/aitoolkit_cam"><img src="https://img.shields.io/badge/ARM64-优化-green.svg" alt="ARM64 Optimized"></a>
+  </p>
+</div>
+
+---
+
+## 🚀 为什么选择AIToolkit Camera？
+
+```python
+# 仅需3行代码，启动摄像头Web流！
+from aitoolkit_cam import Camera
+
+cam = Camera()
+cam.start()  # 🌐 http://192.168.x.x:9000
+for frame in cam: cam.show(frame)
+```
+
+**核心亮点：**
+- ⚡ **极速启动**: <2秒启动(优化前12秒)，83%性能提升
+- 🧠 **智能停止**: 自动检测观看者，无人时自动关闭
+- 📱 **局域网访问**: 手机、平板、电脑都能观看
+- 🎯 **ARM64优化**: 专为树莓派、Jetson等设备优化
+- 👨‍🎓 **学生友好**: 保持最简API，专为教育设计
+
+---
+
+## 🎯 核心特性
+
+### 🚀 极速启动优化
+- **启动时间**: 从12秒优化到<2秒，提升83%
+- **后端优化**: Windows用DirectShow，Linux用V4L2
+- **智能配置**: 跳过不必要的参数设置
+- **并行启动**: Web服务和摄像头并行初始化
+
+### 🧠 智能客户端检测
+```python
+cam = Camera(auto_stop_frames=500)  # 无观看者500帧后自动停止
+cam.start()
+# 自动检测浏览器连接状态
+# 有人观看时继续运行，无人时智能停止
+```
+
+### 📱 完美局域网体验
+- **零配置**: 自动获取局域网IP
+- **响应式**: 适配手机、平板、电脑
+- **低延迟**: 最小缓冲，实时体验
+- **多客户端**: 支持多人同时观看
+
+### 🎛️ ARM64深度优化
+- **设备检测**: 优先检查`/dev/video*`文件
+- **内存优化**: 最小缓冲设置，减少延迟
+- **线程优化**: 高效的帧读取和处理
+- **错误恢复**: 连续读取失败保护机制
+
+---
+
+## 📦 快速安装
+
+```bash
+# 基础安装
+pip install aitoolkit-cam
+
+# 或从源码安装最新版
+pip install git+https://github.com/bosscoder-ai/aitoolkit_cam.git
+```
+
+**依赖说明**：只需要 `opencv-python` 和 `Flask`，极简依赖！
+
+---
+
+## 🎮 使用示例
+
+### 基础Web流媒体
+
+```python
+from aitoolkit_cam import Camera
+
+# 最简单的使用方式
+cam = Camera()
+url = cam.start()
+
+print(f"🌐 浏览器访问: {url}")
+print("📱 手机也可以访问这个地址！")
+
+for frame in cam:
+    cam.show(frame)  # Web模式，自动推流
+```
+
+### 自定义配置
+
+```python
+from aitoolkit_cam import Camera
+
+cam = Camera(
+    source=0,              # 摄像头索引
+    width=640,             # 视频宽度  
+    height=480,            # 视频高度
+    auto_stop_frames=1000, # 无观看者1000帧后停止
+    port=8080              # Web服务端口
+)
+
+url = cam.start()
+for frame in cam:
+    cam.show(frame, mode="web")
+```
+
+### AI应用示例
+
+```python
+from aitoolkit_cam import Camera
+# from aitoolkit_base import FaceDetector  # 需要额外安装
+
+# 人脸检测Web流
+cam = Camera(auto_stop_frames=500)
+# detector = FaceDetector()
+
+url = cam.start()
+print(f"🤖 AI检测流: {url}")
+
+for frame in cam:
+    # 在这里添加AI处理
+    # results = detector.run(frame)
+    # vis_frame = detector.draw(frame, results)
+    
+    # 更新Web流
+    if cam.web_stream:
+        cam.web_stream.update_frame(frame)  # 或 vis_frame
+```
+
+### 智能停止机制
+
+```python
+from aitoolkit_cam import Camera
+
+cam = Camera(
+    auto_stop_frames=300,  # 300帧 ≈ 10秒(30fps)
+    max_frames=None        # 无帧数限制，只靠智能停止
+)
+
+url = cam.start()
+print("🧠 智能停止模式:")
+print(f"   • 有观看者时: 无限运行")
+print(f"   • 无观看者时: 300帧后自动停止")
+print(f"   • 浏览器访问: {url}")
+
+for frame in cam:
+    cam.show(frame)
+    # 程序会在无人观看时自动退出循环
+```
+
+---
+
+## 🎯 ARM64设备指南
+
+### 树莓派优化配置
+
+```python
+from aitoolkit_cam import Camera
+
+# ARM64优化配置
+cam = Camera(
+    source=0,              # 通常是 /dev/video0
+    width=640,             # 适中分辨率，平衡性能
+    height=480,
+    auto_stop_frames=500,  # 节省资源
+    port=8080              # 避免权限问题
+)
+
+url = cam.start()
+# 在树莓派上启动，局域网内所有设备都能访问
+```
+
+### 性能优化提示
+
+1. **摄像头检测**: 优先检查 `/dev/video*` 文件存在性
+2. **后端选择**: Linux自动使用V4L2后端
+3. **缓冲设置**: 单帧缓冲，减少内存占用
+4. **线程模型**: 轻量级后台读取线程
+
+---
+
+## 📊 性能表现
+
+| 指标 | 优化前 | 优化后 | 提升 |
+|------|--------|--------|------|
+| 启动时间 | ~12秒 | <2秒 | 83%↑ |
+| 内存使用 | 高缓冲 | 最小缓冲 | 60%↓ |
+| 响应延迟 | 明显 | 几乎无感 | 显著改善 |
+| 代码量 | 2880行 | 900行 | 68%↓ |
+
+**测试环境**: Windows 10, USB摄像头, Python 3.8
+
+---
+
+## 🛠️ API参考
+
+### Camera类
+
+```python
+Camera(
+    source='auto',           # 摄像头源: 'auto'、0、1等
+    width=640,              # 视频宽度
+    height=480,             # 视频高度  
+    fps=None,               # 帧率设置
+    max_frames=None,        # 最大帧数(None=无限)
+    port=9000,              # Web服务端口
+    auto_stop_frames=500    # 智能停止帧数
+)
+```
+
+### 主要方法
+
+```python
+cam.start()                    # 启动摄像头，返回URL
+cam.stop()                     # 停止摄像头
+cam.show(frame, mode="web")    # 显示帧
+cam.read()                     # 读取单帧
+cam.get_web_url()             # 获取Web访问地址
+
+# 静态方法
+Camera.find_available_cameras()  # 查找可用摄像头
+Camera.get_default_camera()      # 获取默认摄像头
+```
+
+---
+
+## 🎓 教育应用
+
+### 中学信息技术课程
+
+```python
+# 课堂演示: 实时图像处理
+from aitoolkit_cam import Camera
+import cv2
+
+cam = Camera(auto_stop_frames=200)  # 课堂时间有限
+url = cam.start()
+
+print(f"🎓 课堂演示: {url}")
+print("学生们可以用手机扫码观看!")
+
+for frame in cam:
+    # 简单图像处理演示
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    edges = cv2.Canny(gray, 50, 150)
+    
+    # 更新Web流
+    if cam.web_stream:
+        cam.web_stream.update_frame(cv2.cvtColor(edges, cv2.COLOR_GRAY2BGR))
+```
+
+### 竞赛项目
+
+```python
+# 科技竞赛: AI视觉项目
+from aitoolkit_cam import Camera
+
+# 无限运行模式，适合展示和评审
+cam = Camera(
+    max_frames=None,        # 无帧数限制
+    auto_stop_frames=1800   # 30分钟后自动停止(30fps*60s*30min)
+)
+
+url = cam.start()
+print(f"🏆 竞赛展示: {url}")
+
+# 在这里添加你的AI算法
+for frame in cam:
+    # processed_frame = your_ai_function(frame)
+    cam.show(frame)
+```
+
+---
+
+## 🔧 故障排除
+
+### 常见问题
+
+**Q: 启动很慢怎么办？**
+```python
+# A: 直接指定摄像头索引，跳过自动检测
+cam = Camera(source=0)  # 而不是 source='auto'
+```
+
+**Q: 找不到摄像头？**
+```python
+# A: 检查可用摄像头
+available = Camera.find_available_cameras()
+print(f"可用摄像头: {available}")
+```
+
+**Q: Web页面无法访问？**
+```python
+# A: 检查防火墙设置，或更换端口
+cam = Camera(port=8080)  # 尝试其他端口
+```
+
+**Q: 内存占用过高？**
+```python
+# A: 使用智能停止，减少运行时间
+cam = Camera(auto_stop_frames=300)  # 短时间运行
+```
+
+---
+
+## 🤝 贡献与支持
+
+- **问题反馈**: [GitHub Issues](https://github.com/bosscoder-ai/aitoolkit_cam/issues)
+- **功能建议**: [Discussions](https://github.com/bosscoder-ai/aitoolkit_cam/discussions)
+- **源码贡献**: 欢迎提交PR
+
+### 开发者
+
+```bash
+# 克隆仓库
+git clone https://github.com/bosscoder-ai/aitoolkit_cam.git
+cd aitoolkit_cam
+
+# 安装开发依赖
+pip install -e .
+
+# 运行测试
+python final_test.py
+```
+
+---
+
+## 📄 许可证
+
+本项目采用 [MIT 许可证](LICENSE) - 自由使用，包括商业用途。
+
+---
+
+<div align="center">
+  <p>🌟 如果这个项目对你有帮助，请给我们一个Star!</p>
+  <p>Made with ❤️ for 中学生和开发者</p>
+</div> 
