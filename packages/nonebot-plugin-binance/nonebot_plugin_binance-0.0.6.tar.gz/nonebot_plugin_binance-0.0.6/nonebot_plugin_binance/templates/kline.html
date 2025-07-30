@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+
+{% block title %}K线图 - {{ data.symbol }} ({{ data.interval }}){% endblock %}
+
+{% block content %}
+<!-- 1. 引入 ECharts 库 -->
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+
+<!-- 2. 图表容器，其尺寸将由JS控制以适应父容器 -->
+<div id="chart" style="width: 752px; height: 500px; margin: -24px;"></div>
+
+<!-- 3. K线数据容器 -->
+<script id="kline-data" type="application/json">
+    {{ data.klines | tojson | safe }}
+</script>
+
+<!-- 4. ECharts 初始化脚本 -->
+<script type="text/javascript">
+    // 初始化 ECharts 实例为深色主题
+    var myChart = echarts.init(document.getElementById('chart'), 'dark');
+
+    // 从HTML中安全地获取数据并处理
+    const klineDataElement = document.getElementById('kline-data');
+    const rawData = JSON.parse(klineDataElement.textContent || '[]');
+
+    function processData(rawData) {
+        let dates = [];
+        let values = [];
+        let volumes = [];
+        let lastData = {};
+
+        for (let i = 0; i < rawData.length; i++) {
+            // 修正 ECharts 时间格式化字符串
+            dates.push(
+                echarts.format.formatTime('yyyy-MM-dd\nhh:mm', rawData[i][0])
+            );
+            const open = parseFloat(rawData[i][1]);
+            const close = parseFloat(rawData[i][4]);
+            const low = parseFloat(rawData[i][3]);
+            const high = parseFloat(rawData[i][2]);
+            values.push([open, close, low, high]);
+
+            const volume = parseFloat(rawData[i][5]);
+            volumes.push([i, volume, open > close ? -1 : 1]);
+
+            if (i === rawData.length - 1) {
+                lastData = { open, high, low, close };
+            }
+        }
+        return { dates, values, volumes, lastData };
+    }
+
+    var chartData = processData(rawData);
+
+    // 定义图表的核心配置项
+    var option = {
+        backgroundColor: '#1a1b1e',
+        animation: false,
+        title: {
+            text: '{{ data.symbol }} ({{ data.interval }})',
+            left: 'center',
+            top: 15,
+            textStyle: { color: '#efefef', fontSize: 22 },
+            subtext: `开: ${chartData.lastData.open.toFixed(2)}  高: ${chartData.lastData.high.toFixed(2)}  低: ${chartData.lastData.low.toFixed(2)}  收: ${chartData.lastData.close.toFixed(2)}`,
+            subtextStyle: {
+                color: '#848e9c',
+                fontSize: 14
+            },
+            itemGap: 12
+        },
+        legend: { show: false },
+        // [修复] 调整grid布局，为右侧标签提供空间
+        grid: [
+            { left: '80px', right: '90px', top: '20%', height: '55%' },
+            { left: '80px', right: '90px', top: '83%', height: '10%' },
+        ],
+        xAxis: [
+            {
+                type: 'category',
+                data: chartData.dates,
+                boundaryGap: false,
+                axisLine: { show: false },
+                axisLabel: { color: '#848e9c' },
+                min: 'dataMin',
+                max: 'dataMax',
+            },
+            {
+                type: 'category',
+                gridIndex: 1,
+                data: chartData.dates,
+                boundaryGap: false,
+                axisLine: { show: false },
+                axisTick: { show: false },
+                axisLabel: { show: false },
+                min: 'dataMin',
+                max: 'dataMax',
+            },
+        ],
+        yAxis: [
+            {
+                scale: true,
+                axisLabel: {
+                    color: '#848e9c',
+                    formatter: function (value) {
+                        return value.toLocaleString();
+                    }
+                },
+                splitLine: { lineStyle: { color: '#2a2e39' } },
+            },
+            {
+                scale: true,
+                gridIndex: 1,
+                axisLabel: { show: false },
+                axisLine: { show: false },
+                axisTick: { show: false },
+                splitLine: { show: false },
+            },
+        ],
+        dataZoom: [{ type: 'inside', xAxisIndex: [0, 1], start: 50, end: 100 }],
+        tooltip: { show: false },
+        series: [
+            {
+                name: 'K线',
+                type: 'candlestick',
+                data: chartData.values,
+                itemStyle: {
+                    color: '#26a69a',
+                    color0: '#ef5350',
+                    borderColor: '#26a69a',
+                    borderColor0: '#ef5350',
+                },
+                markPoint: {
+                    symbol: 'pin',
+                    symbolSize: 16,
+                    label: {
+                        fontSize: 12,
+                        color: '#fff',
+                        formatter: (params) => parseFloat(params.value).toFixed(2),
+                        offset: [0, -2]
+                    },
+                    data: [
+                        { type: 'high', name: '最高价', itemStyle: { color: '#26a69a' } },
+                        { type: 'low', name: '最低价', itemStyle: { color: '#ef5350' } },
+                    ],
+                },
+                markLine: {
+                    symbol: ['none', 'none'],
+                    label: {
+                        show: true,
+                        // [修复] 将标签移动到右侧
+                        position: 'end',
+                        // [修复] 恢复显示两位小数
+                        formatter: (params) => {
+                            return parseFloat(params.value).toFixed(2);
+                        },
+                        fontSize: 12,
+                        color: '#D1D4DC',
+                        backgroundColor: '#1a1b1e',
+                        padding: [3, 8, 3, 8],
+                        borderRadius: 4,
+                        borderWidth: 1,
+                        borderColor: '#555'
+                    },
+                    lineStyle: {
+                        type: 'dashed',
+                        color: '#848e9c'
+                    },
+                    data: [{ yAxis: chartData.lastData.close, name: '最新价' }],
+                },
+            },
+            {
+                name: '成交量',
+                type: 'bar',
+                xAxisIndex: 1,
+                yAxisIndex: 1,
+                data: chartData.volumes,
+                itemStyle: {
+                    color: (params) => (params.data[2] === 1 ? '#26a69a' : '#ef5350'),
+                },
+            },
+        ],
+    };
+
+    myChart.setOption(option);
+</script>
+{% endblock %}
