@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: nextkg-api
+Version: 0.2
+Summary: NextKG API
+Requires-Python: >=3.7
+Requires-Dist: requests>=2.25.1
+Requires-Dist: pydantic<3,>=2.11.5
+Dynamic: description
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+nextkg-api
+==========
+
+NextKG API

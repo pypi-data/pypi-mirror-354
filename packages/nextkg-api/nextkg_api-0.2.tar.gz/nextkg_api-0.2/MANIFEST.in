@@ -1,0 +1,6 @@
+include README.rst
+graft nextkg_api
+graft tests
+graft requirements
+global-exclude *.pyc
+global-exclude *.pyo
