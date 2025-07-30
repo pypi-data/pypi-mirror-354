@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<div class="row">
+    {% set tg_session_id = project.main_config.get_tg_session_id(instance) %}
+
+    <!-- Left column: Project management -->
+    {% if not tg_session_id %}
+    <div class="col-12 text-center">
+        <!-- Show note when no session ID is set -->
+        <div class="alert alert-warning fst-italic">
+            <h6 class="fw-bold">Attention</h6>
+            <p>
+                <b>You need to provide a "TgAuth Session ID" in order to publish your project to
+                    TextGrid-{{ instance|capitalize }} Instance!</b>
+            </p>
+            <ol class="mb-0">
+                <li>Please first go to <a href="{{ get_textgrid_login_url(instance) }}" target="_blank">this
+                        page</a>!
+                    (You may need to log in via DARIAH-AAI)</li>
+                <li>Then click on "More Details" and copy the "TgAuth Session ID" to your clipboard.</li>
+                <li>Finally, paste it into the input field below and save it.</li>
+            </ol>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="col-lg-7 mb-4 mb-lg-0">
+        <div class="bg-light rounded p-4 h-100">
+
+            <h4 class="mb-3">Set Session ID of TextGrid-{{ instance|capitalize }} Instance</h4>
+            <form class="row js-tab-submit" method="POST"
+                action="{{ url_for('publication.save_session_id', projectname=project.path, instance=instance) }}">
+                <input type="hidden" name="selected_instance" value="{{ instance }}">
+                <div class="col-9">
+                    <input type="text" class="form-control" name="tg_auth_session_id" placeholder="TgAuth Session ID"
+                        value="{{ tg_session_id if tg_session_id }}">
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-primary w-100" style="min-width: 48px;">
+                        <span class="bi bi-floppy2-fill"></span>
+                        <span class="spinner-border spinner-border-sm" style="display:none;" role="status"
+                            aria-hidden="true"></span>
+                    </button>
+                </div>
+            </form>
+
+            {% if tg_session_id %}
+            <h4 class="my-3 border-top pt-3">Select from existing projects</h4>
+            <div class="row pb-1">
+                {% set tg_project_id = project.main_config.get_tg_project_id(instance) %}
+                {% for tg_project in project.get_tgp(instance).get_tg_projects() %}
+                <div class="col-md-6 mb-3">
+                    <div
+                        class="card h-100 {{'border-primary' if tg_project_id == tg_project.id else 'border-secondary'}}">
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate">{{ tg_project.name }}</h5>
+                            <p class="card-text text-muted mb-1">({{ tg_project.contents }} Elements)</p>
+                            <p class="card-text text-muted small"><i>ID: {{ tg_project.id }}</i></p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <form method="POST" class="js-tab-submit"
+                                action="{{ url_for('publication.save_tg_project_id', projectname=project.path, instance=instance, tg_project_id=tg_project.id) }}">
+                                <button type="submit" class="btn btn-sm btn-outline-primary">
+                                    {% if tg_project_id == tg_project.id %}
+                                    <span class="bi bi-check-circle-fill text-primary"></span> Selected
+                                    {% else %}
+                                    <span class="bi bi-circle"></span> Select
+                                    {% endif %}
+                                </button>
+                            </form>
+                            <form method="POST" class="js-tab-submit"
+                                action="{{ url_for('publication.delete_tg_project_id', projectname=project.path, instance=instance, tg_project_id=tg_project.id) }}">
+                                <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete project">
+                                    <span class="bi bi-trash"></span> Delete
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <h5 class="border-top pt-3 pb-2">New project:</h5>
+            <form class="row tab-submit js-tab-submit" method="POST"
+                action="{{ url_for('publication.create_tg_project', projectname=project.path, instance=instance) }}">
+                <div class="col-9">
+                    <input type="text" class="form-control" name="tg_projectname" placeholder="TG Projectname" required>
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <span class="bi bi-pencil-square"></span>
+                        <span class="spinner-border spinner-border-sm" style="display:none;" role="status"
+                            aria-hidden="true"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Rechte Spalte: Upload -->
+    <div class="col-lg-5 border-start">
+        <div class="bg-light rounded p-4 h-100">
+            {% if tg_session_id %}
+            <div class="text-center mb-4">
+                <h4 class="mb-2"><i
+                        class="bi bi-cloud-upload {% if instance == 'test' %}text-primary{% else %}text-danger{% endif %} me-2"></i>Upload
+                    to {{ instance|capitalize }} Instance</h4>
+                {% if instance == 'test' %}
+                <span class="badge bg-warning text-dark mb-2">
+                    This upload is for <b>testing purposes</b>.
+                </span>
+                {% else %}
+                <span class="badge bg-danger text-light mb-2">
+                    This starts a <b>real publication</b>.
+                    <br />
+                    Please ensure all data is correct.
+                </span>
+                {% endif %}
+            </div>
+            <form method="POST"
+                action="{{ url_for('publication.upload_project', projectname=project.path, instance=instance) }}"
+                class="w-100 js-tab-submit">
+                <button type="submit"
+                    class="btn {% if instance == 'test' %}btn-success{% else %}btn-danger{% endif %} w-100 py-3"
+                    style="font-size:1.25rem;">
+                    <i class="bi bi-rocket-takeoff me-2"></i>Upload to {{ instance|capitalize }} Instance
+                </button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>

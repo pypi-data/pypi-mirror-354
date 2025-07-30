@@ -1,0 +1,90 @@
+<div class="container py-4">
+    <div class="row">
+        <!-- Form Title -->
+        <div class="col-12 text-center mb-4">
+            <h1 class="fs-3 fw-bold">Check Upload Results</h1>
+            <p class="text-muted">Manually check for Issues</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+            <a href="https://test.textgridrep.org/projects" target="_blank" class="btn btn-lg btn-primary px-5 py-3">
+                <i class="bi bi-eye"></i> Open Preview Webview
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Bootstrap Carousel -->
+        <div class="col-md-6 d-flex align-items-center">
+            <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://placehold.co/600x400" class="d-block w-100 rounded" alt="Slide 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://placehold.co/600x400" class="d-block w-100 rounded" alt="Slide 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://placehold.co/600x400" class="d-block w-100 rounded" alt="Slide 3">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <!-- Info-Bereich: Hinweise für die Prüfung -->
+        <div class="col-md-6 mb-4 mb-md-0">
+            <div class="bg-light rounded p-4 h-100">
+                <h2 class="fs-4 mb-3">What to check in the preview?</h2>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item">
+                        <i class="bi bi-spellcheck text-primary me-2"></i>
+                        Check for typos and spelling mistakes.
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-card-list text-secondary me-2"></i>
+                        Ensure all required metadata fields are present and correct.
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-calendar-check text-success me-2"></i>
+                        Verify date formats and values.
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-person-check text-info me-2"></i>
+                        Confirm author and contributor information.
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-eye text-warning me-2"></i>
+                        Review the overall layout and formatting.
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-exclamation-triangle text-danger me-2"></i>
+                        Look for missing or inconsistent data.
+                    </li>
+                </ul>
+                <div class="alert alert-info mt-3" role="alert">
+                    <b>Tip:</b> You can repeat this process as often as needed!
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

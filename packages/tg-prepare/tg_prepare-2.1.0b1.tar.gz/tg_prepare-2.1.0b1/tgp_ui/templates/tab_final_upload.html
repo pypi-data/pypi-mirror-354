@@ -1,0 +1,29 @@
+<div class="container bg-white my-4 p-4 rounded">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div
+                class="bg-light rounded p-5 h-100 d-flex flex-column align-items-center justify-content-center shadow-sm">
+                <!-- TextGrid Logo -->
+                <img src="{{ url_for('static', filename='img/textgrid-logo.svg') }}" alt="TextGrid Logo"
+                    style="max-width: 320px; height: auto;" class="mb-4">
+                <h2 class="fs-3 mb-4 text-center">
+                    <i class="bi bi-cloud-upload text-primary me-2"></i>
+                    Publish Project to <span class="text-primary">TextGrid Official Instance</span>
+                </h2>
+                <form method="POST"
+                    action="{{ url_for('publication.upload_project', projectname=project.name, instance='live') }}"
+                    class="w-100">
+                    <button type="submit" class="btn btn-success btn-lg w-100 py-3" style="font-size:1.5rem;">
+                        <i class="bi bi-rocket-takeoff me-2"></i>
+                        Publish to Official Instance
+                    </button>
+                </form>
+                <div class="alert alert-warning text-center mt-4 w-100" role="alert" style="font-size:1.1rem;">
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    <b>Attention:</b> This action will publish your project to the official TextGrid instance.<br>
+                    Please make sure you have checked your data carefully before proceeding!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
