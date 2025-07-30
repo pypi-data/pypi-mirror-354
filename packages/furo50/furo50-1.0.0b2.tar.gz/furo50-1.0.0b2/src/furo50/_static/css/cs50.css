@@ -1,0 +1,133 @@
+/* Background for code blocks from https://cs50.harvard.edu/x/2020/notes/6/ */
+pre {
+    border: 1px solid var(--color-background-border); /* light: #dee2e6  dark: #495057*/
+    background-color: #f8f9fa;
+}
+@media not print {
+    body[data-theme="dark"] pre {
+        background-color: inherit;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) pre {
+        background-color: inherit;
+    }
+}
+
+/* Override seeting for code-block caption */
+.code-block-caption {
+    color: var(--color-foreground-muted);
+    background-color: var(--color-background-border);
+}
+
+/* Override settings for links */
+.content a {
+    color: var(--color-brand-primary);
+    text-decoration: none;
+    &:hover {
+        color: var(--color-brand-primary);
+        text-decoration-line: underline;
+        text-underline-offset: 3px;
+        text-decoration-style: solid;
+        text-decoration-color: var(--color-brand-primary);
+    }
+}
+
+/* Sidebar links white and Underline on hover */
+.sidebar-drawer a {
+    text-decoration: none;
+    background-color: inherit;
+    border-color: #fff;     /*  $body-bg */
+    color: #fff !important;        /* $body-bg */
+    &:hover {
+        text-decoration-line: underline;
+        text-underline-offset: 3px;
+        text-decoration-style: solid;
+        text-decoration-color: #fff;
+    }
+}
+
+/* sidebar-search */
+.sidebar-search {
+    background-color: var(--color-sidebar-background);
+    border: none;
+
+    &::placeholder {
+        color: var(--color-sidebar-search-foreground);
+    }
+    &:focus {
+        border-bottom: 1px solid var(--color-sidebar-search-border);
+        border-top: 1px solid var(--color-sidebar-search-border);
+    }
+}
+
+.sidebar-search-container:before {
+    z-index: 100;
+    background-color: var(--color-sidebar-search-border);
+}
+
+/* icons */
+.mobile-header i, .sidebar-drawer i{
+   color: #fff !important; 
+}
+.mobile-header .theme-toggle svg {
+    color: #fff !important;
+}
+.bottom-of-page .icons a{
+    color: var(--color-foreground-secondary);
+}
+.content-icon-container .edit-this-page svg, .content-icon-container .view-this-page svg {
+    color: var(--color-foreground-primary);
+}
+
+/* fonts */
+body {
+    --font-stack: "PT Sans";
+    font-family: var(--font-stack);
+}
+.field-list dt, .option-list dt, dl.footnote dt, dl.glossary dt, dl.simple dt, dl:not([class]) dt {
+    font-weight: 700; /* originally 500 but doesn't look nice with PT Sans font */
+}
+
+/* spoilers */
+details {
+    margin-bottom: 1rem;
+}
+details > summary {
+    font-weight: bold;
+}
+
+/* marker */
+
+/* + and - */
+[data-marker="+"] > span, [data-marker="-"] > span {
+    cursor: pointer;
+}
+[data-marker="+"] > .fa-li, [data-marker="-"] > .fa-li {
+    user-select: none;
+}
+[data-marker="+"] > .fa-li > .fa-plus-square, [data-marker="-"] > .fa-li > .fa-minus-square {
+    font-size: 80%;
+}
+
+/* + */
+[data-marker="+"] > ol, [data-marker="+"] > ul {
+    display: none;
+}
+
+/* * */
+[data-marker="*"] > .fa-li > .fa-square {
+    font-size: 50%;
+    vertical-align: 25%;
+}
+
+/* heading underlines */
+/* 
+h1, h2, .h1, .h2 {
+    border-bottom-color: #e9ecef;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    padding-bottom: .5rem;
+    border-radius: 0; // override the _scaffold 
+}
+*/
