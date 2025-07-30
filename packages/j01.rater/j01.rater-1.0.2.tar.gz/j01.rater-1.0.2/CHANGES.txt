@@ -1,0 +1,40 @@
+=======
+Changes
+=======
+
+1.0.2 (2025-06-11)
+------------------
+
+- switch more z3c.jsonrpc to p01.jsonrpc
+
+
+1.0.1 (2025-06-05)
+------------------
+
+- removed unused functional testing import which is not supported in newer
+  zope.component packages
+
+
+1.0.0 (2025-06-04)
+------------------
+
+- switch from z3c.jsonrpc to p01.jsonrpc
+
+
+0.6.0 (2018-04-30)
+------------------
+
+- feature: make "Rate me" lable translatable added ratingLabel attr for simpler
+  customization. Cleanup and prepare for includ in j10.form widget library.
+
+
+0.5.1 (2013-06-28)
+------------------
+
+- bugfix: fix apply cancel click event handler
+
+
+0.5.0 (2012-11-17)
+------------------
+
+- initial release

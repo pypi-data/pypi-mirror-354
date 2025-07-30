@@ -1,0 +1,69 @@
+/* zrt-replace: "/@@/j01RaterImages" tal"string:${context/++resource++j01RaterImages}" */
+
+div.j01Rater {
+    width: 250px;
+	clear: both;
+	display: block;
+	&:after {
+		content: '.';
+		display: block;
+		height: 0;
+		width: 0;
+		clear: both;
+		visibility: hidden;
+	}
+	.cancel,
+	.star {
+		float: left;
+		width: 17px;
+		height: 16px;
+		overflow: hidden;
+		text-indent: -999em;
+		a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			background-position: 0px 0px;
+		}
+	}
+	.star-left,
+	.star-right {
+	    width: 8px
+	}
+	.cancel,
+	.cancel a {
+		background: url(/@@/j01RaterImages/ratingDelete.gif) no-repeat 0 -16px;
+	}
+	.star,
+	.star a {
+		background: url(/@@/j01RaterImages/ratingStar.gif) no-repeat 0 0px;
+	}
+	.star-left,
+	.star-left a {
+		background: url(/@@/j01RaterImages/ratingStarLeft.gif) no-repeat 0 0px;
+	}
+	.star-right,
+	.star-right a {
+		background: url(/@@/j01RaterImages/ratingStarRight.gif) no-repeat 0 0px;
+	}
+	.ratable div.on,
+	.ratable div.on a {
+		cursor: pointer;
+		background-position: 0 -16px;
+	}
+	.average div.on,
+	.average div.on a {
+		background-position: 0 -16px;
+	}
+	div.hover a,
+	div a:hover {
+		background-position: 0 -32px;
+	}
+	div.current {
+		float: left;
+		width: 50px;
+		padding: 2px 5px 0px 5px;
+	}
+}
+
+
