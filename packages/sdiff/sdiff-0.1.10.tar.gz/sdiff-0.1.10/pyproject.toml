@@ -1,0 +1,34 @@
+[project]
+name = 'sdiff'
+version = '0.1.10'
+authors = [
+    {name = "Artem Pulkin", email = "gpulkin@gmail.com"}
+]
+description = "Rich file comparison with a focus on structured and tabular data"
+readme = "README.md"
+license = {text = "BSD-2-Clause"}
+dependencies = [
+     "numpy",
+    "pandas",
+    "pyarrow",
+    "openpyxl",
+    "python-magic",
+]
+
+[build-system]
+requires = ["setuptools", "Cython", "numpy"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+sdiff = "sdiff.cli.processor:run"
+
+[project.urls]
+Homepage = "https://github.com/pulkin/sdiff"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-benchmark",
+    "sphinx",
+    "sphinx-rtd-theme",
+]
