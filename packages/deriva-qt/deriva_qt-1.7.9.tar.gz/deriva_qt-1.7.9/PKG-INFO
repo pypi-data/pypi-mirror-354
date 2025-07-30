@@ -1,0 +1,46 @@
+Metadata-Version: 2.4
+Name: deriva-qt
+Version: 1.7.9
+Summary: Graphical User Interface tools for DERIVA built on PyQt5
+Home-page: https://github.com/informatics-isi-edu/deriva-qt
+Author: USC Information Sciences Institute, Informatics Systems Research Division
+Author-email: isrd-support@isi.edu
+Maintainer: USC Information Sciences Institute, Informatics Systems Research Division
+Maintainer-email: isrd-support@isi.edu
+License: GNU GPL 3.0
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: deriva>=1.7.0
+Provides-Extra: pyqt5
+Requires-Dist: PyQt5==5.11.3; extra == "pyqt5"
+Provides-Extra: pyqtwebengine
+Requires-Dist: PyQtWebEngine>=5.15.4; extra == "pyqtwebengine"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: maintainer
+Dynamic: maintainer-email
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+For further information, visit the project [homepage](https://github.com/informatics-isi-edu/deriva-qt).
