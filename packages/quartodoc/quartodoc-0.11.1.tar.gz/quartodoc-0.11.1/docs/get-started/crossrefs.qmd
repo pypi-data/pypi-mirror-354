@@ -1,0 +1,76 @@
+---
+title: Linking to pages
+jupyter:
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+This page describes the different ways that quartodoc can link to other pages,
+where each style of link is used, and how to set them up.
+
+Here are the key details covered on this page:
+
+* Link to a page (.qmd file) using the path to the file.
+* Link to a function name by using the [interlinks filter's](./interlinks.qmd) special syntaxes.
+* Link type annotations in documented functions by enabling the [interlinks filter](./interlinks.qmd).
+
+:::{.callout-tip title="Guide pages on each linking style"}
+
+Here are some examples of different linking styles and their corresponding guide pages.
+
+| Link syntax | Example | Guide page |
+| --- | --- | --- |
+| Qmd path  | ``[get_object](/reference/get_object.qmd)`` | [Quarto - markdown basics](https://quarto.org/docs/authoring/markdown-basics.html#links-images) |
+| Interlink (full) | ``[](`quartodoc.get_object`)`` | [Interlinks filter](./interlinks.qmd) |
+| Interlink (autolink) | `` `quartodoc.get_object` `` | [Interlinks filter - autolink mode](./interlinks-autolink.qmd) |
+:::
+
+## Linking by path
+
+You can use [quarto's markdown linking syntax](https://quarto.org/docs/authoring/markdown-basics.html#links-images)
+to link to function docs, by using the path to the generated documentation file.
+
+Here are some examples:
+
+| code | result |
+| ---- | ------ |
+| ``[get_object](/reference/get_object.qmd)`` | [get_object](/reference/get_object.qmd) |
+| ``[link text](/reference/MdRenderer.qmd)`` | [link text](/reference/MdRenderer.qmd) |
+
+
+## Linking by function name
+
+Use quartodoc's [interlinking filter](./interlinks.qmd) to link to functions using only their names:
+
+| code | result |
+| ---- | ------ |
+| ``[](`quartodoc.get_object`)`` | [](`quartodoc.get_object`) |
+
+Notice that the link above puts the function name in backticks, rather than using
+the path to its documentation: `` `quartodoc.get_object` ``.
+
+You can also use this approach to link to other documentation sites.
+For example, including links to quartodoc, or https://docs.python.org/3 using function names.
+
+See the [interlinks documentation](./interlinks.qmd) for set up and usage.
+
+
+## The "See Also" section
+
+A major goal of quartodoc is to automatically turn text in the "See Also" section
+of docstrings into links.
+
+See [this issue](https://github.com/machow/quartodoc/issues/21) for more details
+on parsing See Also sections, and [this issue](https://github.com/machow/quartodoc/issues/22)
+on turning type annotations into links.
+
+## Type annotations in docstrings
+
+Creating links from type annotations for a function and their reference pages is supported via the interlinks filter. See the [Rendering Interlinks in API Docs](./interlinks.qmd#rendering-interlinks-in-api-docs) section on the interlinks page for more.
+
+Essentially, interlinking type annotations requires:
+
+* Setting the quartodoc `render_interlinks` config option to `true`.
+* Enabling the [interlinks filter](./interlinks.qmd).
