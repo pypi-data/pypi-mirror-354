@@ -1,0 +1,26 @@
+Metadata-Version: 2.4
+Name: ytwrap
+Version: 0.1.5
+Summary: YouTube Data API v3 ラッパーライブラリ
+Home-page: https://github.com/Himarry/ytwrap
+Author: Himarry
+Project-URL: Source, https://github.com/Himarry/ytwrap
+Project-URL: Tracker, https://github.com/Himarry/ytwrap/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.7
+License-File: LICENSE
+Requires-Dist: google-api-python-client
+Dynamic: author
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
