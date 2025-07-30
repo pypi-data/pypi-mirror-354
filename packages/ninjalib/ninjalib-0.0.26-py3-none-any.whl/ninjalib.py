@@ -1,0 +1,41 @@
+import itertools
+
+class ninjalib:
+    def __init__(self,data,a=-1,b=-1,c=-1):
+        self.data = data
+        self.a = a
+        self.b = b
+        self.c = c
+
+    def center(self):
+        if isinstance(self.data[0],float) or isinstance(self.data[0],int):
+            x = (min(self.data) + max(self.data)) / 2
+            return x
+        if len(self.data[0]) == 2:
+            x = (min([i[0] for i in self.data]) + max([i[0] for i in self.data])) / 2
+            y = (min([i[1] for i in self.data]) + max([i[1] for i in self.data])) / 2
+            return x,y
+        elif len(self.data[0]) == 3:
+            x = (min([i[0] for i in self.data]) + max([i[0] for i in self.data])) / 2
+            y = (min([i[1] for i in self.data]) + max([i[1] for i in self.data])) / 2
+            z = (min([i[2] for i in self.data]) + max([i[2] for i in self.data])) / 2
+            return x,y,z
+        else:
+            return None
+            
+    def flatten(self):
+        new_data = self.data
+        if self.a == -1:
+            while True:
+                if isinstance(new_data[0],list) or isinstance(new_data[0],tuple):
+                    new_data = list(itertools.chain(*new_data))
+                else:
+                    break
+        else:
+            for i in range(self.a):
+                if isinstance(new_data[0],list) or isinstance(new_data[0],tuple):
+                    new_data = list(itertools.chain(*new_data))
+        return new_data
+
+    def mean(self):
+        return sum(self.data) / len(self.data)
