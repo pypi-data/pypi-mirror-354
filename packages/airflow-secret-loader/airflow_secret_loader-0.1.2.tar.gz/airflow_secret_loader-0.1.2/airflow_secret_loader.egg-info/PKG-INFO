@@ -1,0 +1,28 @@
+Metadata-Version: 2.4
+Name: airflow-secret-loader
+Version: 0.1.2
+Summary: Auto-load AWS Secrets into Airflow Variables via env
+Home-page: https://github.com/rajeshkbathula/airflow-secret-loader
+Author: rajeshkbathula
+Author-email: rajb7723@gmail.com
+Project-URL: Source Code, https://github.com/rajeshkbathula/airflow-secret-loader
+Project-URL: Bug Tracker, https://github.com/rajeshkbathula/airflow-secret-loader/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: boto3
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# airflow-secret-loader
+
+Automatically load AWS Secrets Manager values into Airflow environment variables.
