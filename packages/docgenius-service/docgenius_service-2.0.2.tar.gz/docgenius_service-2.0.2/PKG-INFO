@@ -1,0 +1,160 @@
+Metadata-Version: 2.4
+Name: docgenius-service
+Version: 2.0.2
+Summary: 一个AI驱动的动态文档生成服务，可将文本转换为设计精美的图片。
+Author-email: DocGenius Team <contact@docgenius.com>
+License: MIT
+Project-URL: Homepage, https://github.com/your-org/docgenius-service
+Project-URL: Documentation, https://github.com/your-org/docgenius-service#readme
+Project-URL: Repository, https://github.com/your-org/docgenius-service.git
+Project-URL: Issues, https://github.com/your-org/docgenius-service/issues
+Keywords: ai,document,generation,mcp,service,html-to-image
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Multimedia :: Graphics
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: fastmcp
+Requires-Dist: playwright
+Requires-Dist: python-frontmatter
+Requires-Dist: aiofiles
+
+# DocGenius - AI驱动的动态文档生成服务
+
+DocGenius 是一个基于模型上下文协议（MCP）的智能服务，能够接收用户的自然语言指令和文本内容，自主选择合适的文档模板，将文本内容渲染成设计精美的HTML，并输出为图片。
+
+## 🚀 特性
+
+- **动态模板发现**: AI能够自动扫描并发现可用的文档模板
+- **智能模板选择**: 根据用户需求自动选择最合适的模板
+- **多种模板支持**: 支持简历、知识卡片等多种文档类型
+- **高质量渲染**: 使用Playwright进行精确的HTML到图片转换
+- **按模板分类存储**: 自动按模板类型组织输出文件
+- **基于FastMCP**: 使用现代化的MCP框架构建
+
+## 📁 项目结构
+
+```
+card-creator-mcp/
+├── templates/              # 模板文件目录
+│   ├── resume.md          # 简历模板
+│   └── knowledge_card.md  # 知识卡片模板
+├── pic/                   # 输出图片目录（自动创建）
+├── main_service.py        # 主服务文件
+├── requirements.txt       # 项目依赖
+└── README.md             # 项目文档
+```
+
+## 🛠️ 安装依赖
+
+首先确保你已安装Python 3.10+，然后安装项目依赖：
+
+```bash
+pip install -r requirements.txt
+```
+
+安装Playwright浏览器：
+
+```bash
+playwright install chromium
+```
+
+## 🏃‍♂️ 运行服务
+
+启动DocGenius MCP服务：
+
+```bash
+python main_service.py
+```
+
+或使用FastMCP CLI：
+
+```bash
+fastmcp run main_service.py
+```
+
+## 🎯 可用工具
+
+### 1. list_available_templates()
+列出所有可用的文档模板。
+
+**返回**: 包含模板名称和描述的列表
+
+### 2. get_template_details(template_name: str)
+获取指定模板的详细信息，包括元数据和提示词。
+
+**参数**:
+- `template_name`: 模板名称
+
+**返回**: 包含模板详细信息的字典
+
+### 3. create_image_from_html(html_content: str, template_name: str, file_name: str, width: int, height: int)
+将HTML内容渲染为图片并保存。
+
+**参数**:
+- `html_content`: HTML代码字符串
+- `template_name`: 使用的模板名称
+- `file_name`: 输出文件名（不含扩展名）
+- `width`: 图片宽度
+- `height`: 图片高度
+
+**返回**: 任务执行结果字符串
+
+## 📋 模板格式
+
+模板文件采用Markdown格式，包含YAML Frontmatter：
+
+```markdown
+---
+description: "模板描述"
+width: 800
+height: 600
+---
+这里是提示词内容，使用 {user_text} 作为用户输入的占位符。
+```
+
+## 🔧 技术栈
+
+- **FastMCP**: MCP服务框架
+- **Playwright**: 无头浏览器自动化
+- **python-frontmatter**: YAML frontmatter解析
+- **aiofiles**: 异步文件操作
+
+## 📝 使用示例
+
+1. 列出可用模板：
+   ```python
+   templates = await client.call_tool("list_available_templates")
+   ```
+
+2. 获取模板详情：
+   ```python
+   details = await client.call_tool("get_template_details", {"template_name": "resume"})
+   ```
+
+3. 生成图片：
+   ```python
+   result = await client.call_tool("create_image_from_html", {
+       "html_content": "<html>...</html>",
+       "template_name": "resume",
+       "file_name": "my_resume",
+       "width": 827,
+       "height": 1169
+   })
+   ```
+
+## 🚧 开发状态
+
+该项目目前处于1.1版本，包含核心功能实现。未来计划增加更多模板类型和自定义选项。
+
+## 📄 许可证
+
+本项目采用MIT许可证开源。 
