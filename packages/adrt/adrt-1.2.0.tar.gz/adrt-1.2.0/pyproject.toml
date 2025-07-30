@@ -1,0 +1,169 @@
+[build-system]
+requires = [
+    "setuptools>=77.0.0",
+    "numpy>=2,<3",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "adrt"
+description = "Fast approximate discrete Radon transform for NumPy arrays"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "BSD-3-Clause"
+license-files = ["LICENSE.txt"]
+authors = [
+  {name = "Karl Otness"},
+  {name = "Donsub Rim"}
+]
+dependencies = [
+  "numpy>=1.23,<3"
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Scientific/Engineering :: Image Processing",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Free Threading :: 2 - Beta",
+  "Programming Language :: C++",
+  "Operating System :: POSIX :: Linux",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: MacOS",
+  "Typing :: Typed",
+]
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/karlotness/adrt"
+Documentation = "https://adrt.readthedocs.io"
+"Source Code" = "https://github.com/karlotness/adrt"
+"Bug Tracker" = "https://github.com/karlotness/adrt/issues"
+
+[dependency-groups]
+test = [
+  "pytest>=6",
+  "more-itertools",
+]
+
+# Additional setuptools settings
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.package-data]
+adrt = [
+  "*.pyi",
+  "py.typed"
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "adrt.__version__"}
+
+[tool.tox]
+envlist = ["py3", "lint", "checkver", "type"]
+
+[tool.tox.env_run_base]
+description = "Run tests"
+dependency_groups = ["test"]
+commands = [["pytest", {replace = "posargs", extend = true}]]
+passenv = ["CPPFLAGS", "CFLAGS", "CXXFLAGS"]
+
+[tool.tox.env.lint]
+description = "Check code for style and formatting"
+skip_install = true
+ignore_errors = true
+dependency_groups = []
+deps = [
+  "ruff>=0.1.5",
+  "black>=25.1.0,<26",
+]
+commands = [
+  ["ruff", "check", "--", "src{/}adrt", "tests", "docs", "tools", "setup.py"],
+  ["black", "--check", "--diff", "src{/}adrt", "tests", "docs", "tools", "setup.py"],
+]
+
+[tool.tox.env.checkver]
+description = "Check consistency of version strings"
+skip_install = true
+dependency_groups = []
+deps = [
+  "tomli; python_version < '3.11'",
+  "packaging",
+]
+commands = [["{envpython}", "tools{/}version_consistency.py", {replace = "posargs", extend = true}]]
+
+[tool.tox.env.type]
+description = "Check types in library source"
+dependency_groups = []
+deps = [
+  "mypy",
+]
+commands = [["mypy", "--package", "adrt"]]
+
+[tool.tox.env.docs]
+description = "Build documentation site"
+dependency_groups = []
+deps = [
+  "-r docs{/}requirements.txt",
+]
+commands = [["sphinx-build", "-W", "-b", "html", "{tox_root}{/}docs", "{tox_root}{/}docs{/}_build{/}html"]]
+setenv = {PYDEVD_DISABLE_FILE_VALIDATION = "1"}
+
+# cibuildwheel settings
+[tool.cibuildwheel]
+build-frontend = "build"
+test-groups = ["test"]
+test-command = "pytest {package}/tests"
+enable = ["cpython-freethreading"]
+
+[tool.cibuildwheel.linux.environment]
+CPPFLAGS = "-DNDEBUG"
+CFLAGS = "-O3 -flto -fvisibility=hidden -fvisibility-inlines-hidden -fno-math-errno -Wall -Wextra -Wpedantic"
+CXXFLAGS = "-O3 -flto -fvisibility=hidden -fvisibility-inlines-hidden -fno-math-errno -Wall -Wextra -Wpedantic"
+LDFLAGS = "-Wl,--as-needed,-O1"
+
+[tool.cibuildwheel.macos.environment]
+CPPFLAGS = "-DNDEBUG"
+CFLAGS = "-O3 -flto -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wpedantic"
+CXXFLAGS = "-O3 -flto -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wpedantic"
+LDFLAGS = "-Wl,-dead_strip_dylibs"
+
+[tool.cibuildwheel.windows.environment]
+CL = "/permissive- /Zc:inline,preprocessor,__cplusplus /DNDEBUG"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = ["tests"]
+addopts = [
+  "--import-mode=importlib",
+  "--capture=no",
+]
+
+[tool.ruff]
+extend-exclude = ["docs/_build/"]
+src = ["src"]
+line-length = 88
+respect-gitignore = true
+fix = false
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "N", "RUF", "UP", "C4", "YTT", "T10", "T20", "ICN", "SIM", "NPY", "PT"]
+ignore = ["UP015", "SIM108", "RUF022"]
+
+[tool.ruff.lint.per-file-ignores]
+"setup.py" = ["ICN001"]
+"tools/version_consistency.py" = ["T20"]
+"tools/download_catch2.py" = ["T20"]
+
+[tool.ruff.lint.flake8-pytest-style]
+parametrize-names-type = "csv"
+
+[tool.mypy]
+strict = true
+warn_unused_ignores = false
