@@ -1,0 +1,17 @@
+[package]
+name = "hal-common"
+version = "0.1.0"
+edition = "2021"
+authors = ["Julius Walczynski", "Chee Hang Yong"]
+description = "RFA Hil Testbench"
+
+[dependencies]
+binrw = { version = "0.14.1", default-features = false }
+num-traits = { version = "0.2.19", default-features = false }
+
+pyo3 = { version = "0.24.0", features = ["extension-module"], optional = true}
+
+[features]
+default = []
+std = []
+pyo3 = ["dep:pyo3", "std"]
