@@ -1,0 +1,24 @@
+# python generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# .creds
+.creds
+
+# .env
+.env
+
+# uv
+uv.lock
+
+# venv
+.venv
+
+# build
+.mypy_cache/
+.ruff_cache/
+dist/
