@@ -1,0 +1,95 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tile-renderer"
+dynamic = ["version"]
+description = "Street map renderer built for the Minecart Rapid Transit City Map (https://mrt-map.github.io/map)"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+keywords = ['map', 'tiles', 'renderer', 'tile-renderer', 'mapping', 'mrt mapping services', 'minecart rapid transit']
+authors = [
+  { name = "7d", email = "61975820+iiiii7d@users.noreply.github.com" },
+  { name = "Minecart Rapid Transit Mapping Services", email = "mappingmrt@gmail.com" }
+]
+classifiers = [
+  'Development Status :: 5 - Production/Stable',
+  'Intended Audience :: Developers',
+  'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+  'Natural Language :: English',
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+]
+dependencies = [
+  "click~=8.1",
+  "msgspec~=0.19",
+  "shapely~=2.0",
+  "niquests~=3.14",
+  "svg.py~=1.6",
+  "rich~=14.0",
+]
+
+[project.urls]
+Documentation = "https://mrt-map.github.io/tile-renderer"
+Issues = "https://github.com/MRT-Map/tile-renderer/issues"
+Source = "https://github.com/MRT-Map/tile-renderer"
+Changelog = "https://github.com/MRT-Map/tile-renderer/blob/main/CHANGELOG.md"
+
+[project.scripts]
+tile-renderer = "tile_renderer.cli:cli"
+
+[tool.hatch.version]
+path = "src/tile_renderer/__about__.py"
+
+[tool.hatch.envs.docs]
+extra-dependencies = [
+  "sphinx",
+  "sphinxcontrib-programoutput",
+  "sphinx-codeautolink",
+  "sphinx_rtd_theme",
+  "sphinx-jsonschema"
+]
+[tool.hatch.envs.docs.scripts]
+build = """
+  cd docs &&
+  (mkdir _build || true) &&
+  tile-renderer schema pla2 > _build/pla2.json &&
+  tile-renderer schema skin > _build/skin.json &&
+  make html &&
+  cd ..
+"""
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/tile_renderer tests} --check-untyped-defs"
+
+[tool.coverage.run]
+source_pkgs = ["tile_renderer", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/tile_renderer/__about__.py",
+]
+
+[tool.coverage.paths]
+tile_renderer = ["src/tile_renderer", "*/tile-renderer/src/tile_renderer"]
+tests = ["tests", "*/tile_renderer/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
+[tool.ruff.lint]
+ignore = ["E741"]
+
+[tool.hatch.build]
+include = [".github/tre-light.png", "src/tile_renderer"]
+sources = ["src"]
