@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv run:*)",
+      "Bash(uv add:*)",
+      "Bash(uv pip install:*)",
+      "WebFetch(domain:playwright.dev)",
+      "Bash(python -m pytest tests/test_workflow.py -v)",
+      "Bash(uv sync:*)",
+      "Bash(python -m pytest tests/test_workflow.py::TestLoggerInjection::test_logger_injection -v)",
+      "Bash(python -m pytest tests/test_workflow.py::TestLoggerInjection::test_logger_injection_as_kwarg -v)",
+      "Bash(python -m pytest tests/test_workflow.py::TestIntegrationScenarios::test_full_managed_execution_workflow -v)",
+      "Bash(python -m ruff:*)",
+      "Bash(python -m pytest tests/test_workflow.py)"
+    ],
+    "deny": []
+  }
+}
