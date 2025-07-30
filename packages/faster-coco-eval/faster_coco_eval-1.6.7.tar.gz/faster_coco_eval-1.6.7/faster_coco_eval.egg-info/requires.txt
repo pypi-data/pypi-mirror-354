@@ -1,0 +1,23 @@
+numpy
+plotly
+pandas
+Pillow
+
+[extra]
+numpy
+plotly
+pandas
+Pillow
+opencv-python-headless
+
+[tests]
+numpy
+plotly
+pandas
+Pillow
+pytest
+pytest-cov
+parameterized
+
+[tests:python_version < "3.13"]
+pycocotools
