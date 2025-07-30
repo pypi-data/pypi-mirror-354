@@ -1,0 +1,98 @@
+{
+  "augment_templates": {
+    "production": {
+      "name": "Production Configuration",
+      "description": "Konfigurasi production untuk Augment Code",
+      "config": {
+        "mcpServers": {
+          "mcp-ngobrol": {
+            "command": "uvx",
+            "args": ["mcp-ngobrol@latest"],
+            "env": {
+              "FORCE_WEB": "false",
+              "MCP_DEBUG": "false",
+              "MCP_LANGUAGE": "id",
+              "PYTHONIOENCODING": "utf-8"
+            }
+          }
+        }
+      }
+    },
+    "development": {
+      "name": "Development Configuration",
+      "description": "Konfigurasi development dengan debug enabled",
+      "config": {
+        "mcpServers": {
+          "mcp-ngobrol-dev": {
+            "command": "python",
+            "args": ["C:/project/mcp-feedback-enhanced-2.3.0/run_mcp_simple.py"],
+            "env": {
+              "FORCE_WEB": "false",
+              "MCP_DEBUG": "true",
+              "MCP_LANGUAGE": "id",
+              "PYTHONIOENCODING": "utf-8"
+            }
+          }
+        }
+      }
+    },
+    "web_ui": {
+      "name": "Web UI Configuration",
+      "description": "Konfigurasi untuk Web UI mode",
+      "config": {
+        "mcpServers": {
+          "mcp-ngobrol-web": {
+            "command": "uvx",
+            "args": ["mcp-ngobrol@latest"],
+            "env": {
+              "FORCE_WEB": "true",
+              "MCP_DEBUG": "false",
+              "MCP_LANGUAGE": "id",
+              "WEB_HOST": "127.0.0.1",
+              "WEB_PORT": "8080",
+              "PYTHONIOENCODING": "utf-8"
+            }
+          }
+        }
+      }
+    },
+    "remote": {
+      "name": "Remote Development Configuration",
+      "description": "Konfigurasi untuk remote development",
+      "config": {
+        "mcpServers": {
+          "mcp-ngobrol-remote": {
+            "command": "uvx",
+            "args": ["mcp-ngobrol@latest"],
+            "env": {
+              "FORCE_WEB": "true",
+              "MCP_DEBUG": "true",
+              "MCP_LANGUAGE": "id",
+              "WEB_HOST": "0.0.0.0",
+              "WEB_PORT": "8080",
+              "PYTHONIOENCODING": "utf-8"
+            }
+          }
+        }
+      }
+    },
+    "local_path": {
+      "name": "Local Path Configuration",
+      "description": "Konfigurasi menggunakan path lokal",
+      "config": {
+        "mcpServers": {
+          "mcp-ngobrol-local": {
+            "command": "python",
+            "args": ["C:/project/mcp-feedback-enhanced-2.3.0/run_mcp_simple.py"],
+            "env": {
+              "FORCE_WEB": "false",
+              "MCP_DEBUG": "false",
+              "MCP_LANGUAGE": "id",
+              "PYTHONIOENCODING": "utf-8"
+            }
+          }
+        }
+      }
+    }
+  }
+}
