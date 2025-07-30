@@ -1,0 +1,1 @@
+from .pipeline.pipeline_factory import recherche_codefrom .client import LegifranceClient__all__ = ["recherche_code", "LegifranceClient"]
