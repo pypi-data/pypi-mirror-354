@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "pyqube"
+version = "0.3.2"
+description = "A Python SDK for interacting with the qube REST API and subscribing to real-time events"
+authors = ["q-better <dev@q-better.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+paho-mqtt = "^2.1.0"
+requests = "^2.32.3"
+
+
+[tool.poetry.group.dev.dependencies]
+yapf = "^0.40.2"
+isort = "^5.13.2"
+pytest = "^8.3.3"
+
+[tool.poetry.urls]
+"Repository" = "https://github.com/Q-Better/pyqube"
+"Documentation" = "https://docs.qube.q-better.com/docs/guides/getting-started"
+"Issue Tracker" = "https://github.com/Q-Better/pyqube/issues"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
