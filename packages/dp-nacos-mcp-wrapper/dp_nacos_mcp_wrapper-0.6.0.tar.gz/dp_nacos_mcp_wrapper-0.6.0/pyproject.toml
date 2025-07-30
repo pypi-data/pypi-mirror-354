@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "dp-nacos-mcp-wrapper"
+version = "0.6.0"
+description = "Python sdk support mcp server auto register to nacos"
+authors = ["xyq043170 <xyq043170@qq.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+classifiers = [
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10"
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+anyio = "4.9.0"
+mcp = "1.9.2"
+nacos-sdk-python = "2.0.4"
+pydantic = "2.11.3"
+pydantic-settings = "2.9.1"
+jsonref = "1.1.0"
+uvicorn = "0.34.2"
+
+[tool.setuptools]
+# 方案A：显式列出所有包
+packages = ["dp_nacos_mcp_wrapper", "dp_nacos_mcp_wrapper.server"]
