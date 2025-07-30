@@ -1,0 +1,34 @@
+Metadata-Version: 2.4
+Name: mobileclip
+Version: 0.0.1
+Summary: apple mobileclip inference
+Project-URL: Documentation, https://github.com/say4n/mobileclip#readme
+Project-URL: Issues, https://github.com/say4n/mobileclip/issues
+Project-URL: Source, https://github.com/say4n/mobileclip
+Author-email: Sayan Goswami <goswami.sayan47@gmail.com>
+License-Expression: MIT
+License-File: LICENSE.txt
+Requires-Python: <3.13,>=3.12
+Description-Content-Type: text/markdown
+
+# mobileclip
+
+[![PyPI - Version](https://img.shields.io/pypi/v/mobileclip.svg)](https://pypi.org/project/mobileclip)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mobileclip.svg)](https://pypi.org/project/mobileclip)
+
+-----
+
+## Table of Contents
+
+- [Installation](#installation)
+- [License](#license)
+
+## Installation
+
+```console
+pip install mobileclip
+```
+
+## License
+
+`mobileclip` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
