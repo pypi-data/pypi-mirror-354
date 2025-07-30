@@ -1,0 +1,15 @@
+[project]
+name = "django-auto-starter"
+version = "0.1.1"
+description = "CLI tool to auto-start Django projects with REST setup"
+authors = [{name = "Enoch Jason J", email = "enochjason06@gmail.com"}]
+readme = "README.md"
+license = { text = "Proprietary — All rights reserved by Enoch Jason J" } 
+dependencies = ["yaspin"]
+
+[project.scripts]
+django-auto = "django_auto_starter:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
