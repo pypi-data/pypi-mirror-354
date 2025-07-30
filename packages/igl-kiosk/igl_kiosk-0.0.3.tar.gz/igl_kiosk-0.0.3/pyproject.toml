@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "igl-kiosk"
+version = "0.0.3"
+description = "The kioks application for IGL-Informer based on pyqt6 for embedded."
+authors = ["Maximilian Erkens <max@max-erkens.de>"]
+license = "GPL-3.0"
+readme = "README.md"
+packages = [
+    { include = "igl_kiosk", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+pyqt6 = "^6.4.0"
+pyqt6-webengine = "^6.4.0"
+
+[tool.poetry.scripts]
+igl-kiosk = "igl_kiosk.main:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.0"
+black = "^24.0.0"
+flake8 = "^6.0.0"
+#mypy = "^1.0.0"
+isort = "^5.12.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
