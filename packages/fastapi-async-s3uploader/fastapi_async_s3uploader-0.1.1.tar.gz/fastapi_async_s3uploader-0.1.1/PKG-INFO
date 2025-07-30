@@ -1,0 +1,133 @@
+Metadata-Version: 2.4
+Name: fastapi-async-s3uploader
+Version: 0.1.1
+Summary: A reusable file uploader package for FastAPI and AWS S3
+Author: Md Anisur Rahman
+Description-Content-Type: text/markdown
+Requires-Dist: aioboto3>=10.4.0
+Requires-Dist: fastapi>=0.95
+Requires-Dist: pydantic>=1.10
+Dynamic: author
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
+Dynamic: summary
+
+# s3_uploader
+
+A reusable, configurable file uploader package for FastAPI that supports uploading single and multiple files to AWS S3 with validations, dynamic folder structure, and file deletion.
+
+---
+
+## Features
+
+- Upload single or multiple files in the same API
+- File extension and size validation (configurable)
+- Unique filename generation to avoid collisions
+- Dynamic folder structure support
+- Delete files from S3 by key
+- Async and optimized for FastAPI with aioboto3
+- Configuration via environment variables or `.env` file using Pydantic
+
+---
+
+## Installation
+
+Install via pip:
+
+```bash
+pip install s3_uploader
+```
+
+Or install from source:
+
+```bash
+pip install -e ./s3_uploader
+```
+
+---
+
+## Configuration
+
+The package uses a `config.py` with Pydantic `BaseSettings` to load AWS and upload settings from environment variables or a `.env` file.
+
+Create a `.env` file in your project root with the following variables:
+
+```env
+AWS_ACCESS_KEY_ID=your_aws_access_key
+AWS_SECRET_ACCESS_KEY=your_aws_secret_key
+AWS_REGION=us-east-1
+BUCKET_NAME=your_s3_bucket_name
+ALLOWED_EXTENSIONS=jpg,png,pdf,docx
+MAX_FILE_SIZE_MB=10
+```
+
+You can customize allowed file extensions and max file size as needed.
+
+---
+
+## Usage Example
+
+### Upload single or multiple files in one API endpoint
+
+```python
+from fastapi import FastAPI, UploadFile, File, Form
+from typing import List, Optional
+from s3_uploader import upload_dynamic, delete_file_from_s3
+
+app = FastAPI()
+
+@app.post("/upload/")
+async def upload_files(
+    file: Optional[UploadFile] = File(None),
+    files: Optional[List[UploadFile]] = File(None),
+    folder: str = Form("uploads")
+):
+    urls = await upload_dynamic(file=file, files=files, folder=folder)
+    return {"uploaded_urls": urls}
+```
+
+### Delete a file from S3 by key
+
+```python
+@app.delete("/delete/")
+async def delete_file(key: str):
+    await delete_file_from_s3(key)
+    return {"message": f"File {key} deleted successfully"}
+```
+
+---
+
+## Example `.env.example`
+
+```env
+AWS_ACCESS_KEY_ID=your_aws_access_key
+AWS_SECRET_ACCESS_KEY=your_aws_secret_key
+AWS_REGION=us-east-1
+BUCKET_NAME=your_s3_bucket_name
+ALLOWED_EXTENSIONS=jpg,png,pdf,docx
+MAX_FILE_SIZE_MB=10
+```
+
+Copy this file to `.env` and update the values.
+
+---
+
+## Requirements
+
+- Python 3.8+
+- FastAPI
+- aioboto3
+- pydantic
+
+---
+
+## License
+
+MIT License
+
+---
+
+## Contributing
+
+Feel free to open issues or submit pull requests to improve the package.
