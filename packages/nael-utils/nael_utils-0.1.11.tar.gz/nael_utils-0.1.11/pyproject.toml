@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nael-utils"
+version = "0.1.11"
+authors = [
+  { name="Nael", email="nael.nathanael71@gmail.com" },
+]
+description = "A collection of utilities for Python."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Typing :: Typed",
+]
+dependencies = [
+    "langchain-core",
+    "langchain-openai",
+    "langchain-anthropic",
+    "openai",
+    "pydantic",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Nael-Nathanael/nael-utils"
+"Bug Tracker" = "https://github.com/Nael-Nathanael/nael-utils/issues"
+
+[tool.setuptools]
+packages = ["nael_utils"]
+
+[tool.setuptools.package-data]
+"nael_utils" = ["py.typed"]
