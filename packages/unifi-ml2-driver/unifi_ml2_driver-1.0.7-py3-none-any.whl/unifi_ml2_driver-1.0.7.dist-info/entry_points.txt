@@ -1,0 +1,3 @@
+[neutron.ml2.mechanism_drivers]
+unifi=unifi_ml2_driver.unifi_mech:UnifiMechDriver
+
