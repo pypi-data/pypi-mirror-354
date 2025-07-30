@@ -1,0 +1,58 @@
+name: Nightly Test
+
+on:
+  schedule:
+    - cron: '30 7 * * *'
+  pull_request:
+    paths:
+      - '.github/workflows/nightly.yml'
+      - 'mosec/**'
+      - 'src/**'
+      - 'pyproject.toml'
+      - 'Cargo.lock'
+      - 'Cargo.toml'
+      - 'tests/bad_req.py'
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/nightly.yml'
+      - 'mosec/**'
+      - 'src/**'
+      - 'pyproject.toml'
+      - 'Cargo.lock'
+      - 'Cargo.toml'
+      - 'tests/bad_req.py'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+env:
+  SCCACHE_GHA_ENABLED: "true"
+  RUSTC_WRAPPER: "sccache"
+
+jobs:
+  test:
+    name: "stressful bad requests test"
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+      - name: Run sccache-cache
+        uses: mozilla-actions/sccache-action@v0.0.9
+      - name: Install dependencies
+        run: make install_py
+      - name: Test
+        run: make test_chaos
