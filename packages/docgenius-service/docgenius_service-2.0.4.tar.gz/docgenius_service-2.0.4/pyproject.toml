@@ -1,0 +1,91 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "docgenius-service"
+version = "2.0.4"
+description = "一个AI驱动的动态文档生成服务，可将文本转换为设计精美的图片。"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "DocGenius Team", email = "contact@docgenius.com" },
+]
+keywords = ["ai", "document", "generation", "mcp", "service", "html-to-image"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing",
+    "Topic :: Multimedia :: Graphics",
+]
+
+# 从 requirements.txt 迁移过来的依赖
+dependencies = [
+    "fastmcp",
+    "playwright",
+    "python-frontmatter",
+    "aiofiles"
+]
+
+# 可选依赖组，用于自动安装浏览器
+[project.optional-dependencies]
+browsers = ["playwright"]
+
+# 定义命令行入口点
+[project.scripts]
+# 主要命令入口，与包名相同，支持 uvx docgenius-service 直接运行
+docgenius-service = "docgenius_service.main_service:main"
+# 简化命令入口，向后兼容
+docgenius = "docgenius_service.main_service:main"
+
+[project.urls]
+Homepage = "https://github.com/your-org/docgenius-service"
+Documentation = "https://github.com/your-org/docgenius-service#readme"
+Repository = "https://github.com/your-org/docgenius-service.git"
+Issues = "https://github.com/your-org/docgenius-service/issues"
+
+# 可选依赖组
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.0.0",
+]
+
+# 工具配置
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+docgenius_service = ["py.typed", "templates/*.md"]
+
+# 包含额外文件
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true 

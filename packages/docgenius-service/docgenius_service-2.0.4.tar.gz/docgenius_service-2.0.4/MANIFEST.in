@@ -1,0 +1,7 @@
+include README.md
+include pyproject.toml
+recursive-include templates *.md
+recursive-include templates *.txt
+recursive-include templates *.json
+global-exclude *.pyc
+global-exclude __pycache__ 
