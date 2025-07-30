@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "ecgpy"
+version = "0.1.0"
+description = ""
+authors = ["YAJIE <yajiez.me@gmail.com>"]
+readme = "README.md"
+packages = [{include = "ecgpy", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+numpy = "^2.3.0"
+pandas = "^2.3.0"
+statsmodels = "^0.14.4"
+seaborn = "^0.13.2"
+scikit-learn = "^1.7.0"
+torch = "^2.7.1"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
