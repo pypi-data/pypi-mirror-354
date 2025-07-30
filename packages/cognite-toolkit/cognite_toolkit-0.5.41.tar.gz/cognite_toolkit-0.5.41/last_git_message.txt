@@ -1,0 +1,27 @@
+[CDF-24656] 🌍 Dump location filter (#1600)
+
+# Description
+
+Support dump of location filters
+
+
+![image](https://github.com/user-attachments/assets/20d79aea-189f-4bf8-af66-e956938731ad)
+
+
+## Changelog
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## cdf
+
+### Added
+
+- [alpha] Support for dumping location filters, `cdf dump
+location-filters`. (`cdf dump config location-filters` if the existing
+alpha flag `dump-data=true` is set.)
+
+## templates
+
+No changes.
