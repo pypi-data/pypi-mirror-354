@@ -1,0 +1,28 @@
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project]
+name = "appserver-sdk-hello-world-pkg"
+version = "0.1.0"
+description = "Pacote exemplo que retorna hello world"
+authors = [
+    { name = "Iran", email = "iranribeiro22@gmail.com" }
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/iranribeiro/hello_world_pkg"
+Repository = "https://github.com/iranribeiro/hello_world_pkg"
+Issues = "https://github.com/iranribeiro/hello_world_pkg/issues"
+
+[tool.poetry]
+packages = [
+    { include = "hello_world_pkg", from = "src" }
+]
+
+[tool.poetry.group.dev.dependencies]
+twine = "^6.1.0"
