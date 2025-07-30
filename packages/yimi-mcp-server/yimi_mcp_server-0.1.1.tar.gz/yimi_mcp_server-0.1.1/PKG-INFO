@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: yimi-mcp-server
+Version: 0.1.1
+Summary: Add your description here
+Author-email: shs <shang.n@163.com>
+Requires-Python: >=3.10
+Requires-Dist: mcp[cli]>=1.9.3
+Requires-Dist: requests
+Description-Content-Type: text/markdown
+
+# yimi-mcp-server
+
+一个基于 MCP 协议的演示服务器，支持自定义工具和资源。
+
+## 安装
+
+```bash
+pip install yimi-mcp-server
+```
+
+## 用法
+
+```python
+from yimi_mcp_server import main
+main()
+```
+
+或命令行：
+
+```bash
+yimi-mcp-server
+```
