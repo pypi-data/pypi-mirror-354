@@ -1,0 +1,222 @@
+{
+    "app": {
+        "title": "Sistem Umpan Balik Interaktif MCP",
+        "subtitle": "Platform Umpan Balik Interaktif Asisten AI",
+        "projectDirectory": "Direktori Proyek"
+    },
+    "tabs": {
+        "feedback": "💬 Umpan Balik",
+        "summary": "📋 Ringkasan AI",
+        "commands": "⚡ Perintah",
+        "command": "⚡ Perintah",
+        "settings": "⚙️ Pengaturan",
+        "combined": "📝 Ruang Kerja",
+        "about": "ℹ️ Tentang"
+    },
+    "feedback": {
+        "title": "💬 Berikan Umpan Balik",
+        "description": "Silakan berikan umpan balik Anda tentang pekerjaan asisten AI. Anda dapat memasukkan umpan balik teks dan mengunggah gambar terkait.",
+        "textLabel": "Umpan Balik Teks",
+        "placeholder": "Silakan masukkan umpan balik Anda di sini...",
+        "detailedPlaceholder": "Silakan masukkan umpan balik Anda di sini...\n\n💡 Tips:\n• Tekan Ctrl+Enter/Cmd+Enter (numpad didukung) untuk kirim cepat\n• Tekan Ctrl+V/Cmd+V untuk menempel gambar clipboard langsung",
+        "imageLabel": "Lampiran Gambar (Opsional)",
+        "imageUploadText": "📎 Klik untuk memilih gambar atau seret dan lepas gambar di sini\nMendukung format PNG, JPG, JPEG, GIF, BMP, WebP",
+        "submit": "✅ Kirim Umpan Balik",
+        "uploading": "Mengunggah...",
+        "dragdrop": "Seret dan lepas gambar di sini atau klik untuk mengunggah",
+        "selectfiles": "Pilih File",
+        "processing": "Memproses...",
+        "success": "Umpan balik berhasil dikirim!",
+        "error": "Kesalahan mengirim umpan balik",
+        "shortcuts": {
+            "submit": "Ctrl+Enter untuk kirim (Cmd+Enter di Mac, numpad didukung)",
+            "clear": "Ctrl+Delete untuk hapus (Cmd+Delete di Mac)",
+            "paste": "Ctrl+V untuk tempel gambar (Cmd+V di Mac)"
+        }
+    },
+    "summary": {
+        "title": "📋 Ringkasan Pekerjaan AI",
+        "description": "Berikut adalah ringkasan pekerjaan yang diselesaikan oleh asisten AI. Silakan tinjau dengan cermat dan berikan umpan balik Anda.",
+        "placeholder": "Ringkasan pekerjaan AI akan ditampilkan di sini...",
+        "empty": "Tidak ada konten ringkasan tersedia",
+        "lastupdate": "Terakhir diperbarui",
+        "refresh": "Segarkan"
+    },
+    "commands": {
+        "title": "⚡ Eksekusi Perintah",
+        "description": "Eksekusi perintah di sini untuk memverifikasi hasil atau mengumpulkan informasi lebih lanjut. Perintah akan dieksekusi di direktori proyek.",
+        "inputLabel": "Input Perintah",
+        "placeholder": "Masukkan perintah untuk dieksekusi...",
+        "execute": "▶️ Eksekusi",
+        "runButton": "▶️ Eksekusi",
+        "clear": "Hapus",
+        "output": "Output Perintah",
+        "outputLabel": "Output Perintah",
+        "running": "Berjalan...",
+        "completed": "Selesai",
+        "error": "Kesalahan Eksekusi",
+        "history": "Riwayat Perintah"
+    },
+    "command": {
+        "title": "⚡ Eksekusi Perintah",
+        "description": "Eksekusi perintah di sini untuk memverifikasi hasil atau mengumpulkan informasi lebih lanjut. Perintah akan dieksekusi di direktori proyek.",
+        "inputLabel": "Input Perintah",
+        "placeholder": "Masukkan perintah untuk dieksekusi...",
+        "execute": "▶️ Eksekusi",
+        "runButton": "▶️ Eksekusi",
+        "clear": "Hapus",
+        "output": "Output Perintah",
+        "outputLabel": "Output Perintah",
+        "running": "Berjalan...",
+        "completed": "Selesai",
+        "error": "Kesalahan Eksekusi",
+        "history": "Riwayat Perintah"
+    },
+    "combined": {
+        "description": "Ringkasan AI dan input umpan balik berada di halaman yang sama untuk perbandingan mudah.",
+        "summaryTitle": "📋 Ringkasan Pekerjaan AI",
+        "feedbackTitle": "💬 Berikan Umpan Balik"
+    },
+    "settings": {
+        "title": "⚙️ Pengaturan",
+        "description": "Sesuaikan pengaturan antarmuka dan opsi preferensi.",
+        "language": "Bahasa",
+        "currentLanguage": "Bahasa Saat Ini",
+        "languageDesc": "Pilih bahasa tampilan antarmuka",
+        "interface": "Pengaturan Antarmuka",
+        "layoutMode": "Mode Tata Letak Antarmuka",
+        "layoutModeDesc": "Pilih bagaimana ringkasan AI dan input umpan balik ditampilkan",
+        "combinedVertical": "Tata Letak Vertikal",
+        "combinedVerticalDesc": "Ringkasan AI di atas, input umpan balik di bawah, cocok untuk layar standar",
+        "combinedHorizontal": "Tata Letak Horizontal",
+        "combinedHorizontalDesc": "Ringkasan AI di kiri, input umpan balik di kanan, cocok untuk tampilan layar lebar",
+        "autoClose": "Tutup Halaman Otomatis",
+        "autoCloseDesc": "Otomatis tutup halaman setelah mengirim umpan balik",
+        "theme": "Tema",
+        "notifications": "Notifikasi",
+        "advanced": "Pengaturan Lanjutan",
+        "save": "Simpan Pengaturan",
+        "reset": "Reset Pengaturan",
+        "resetDesc": "Hapus semua pengaturan yang disimpan dan kembalikan ke keadaan default",
+        "resetConfirm": "Apakah Anda yakin ingin mereset semua pengaturan? Ini akan menghapus semua preferensi yang disimpan.",
+        "resetSuccess": "Pengaturan telah direset ke nilai default",
+        "resetError": "Terjadi kesalahan saat mereset pengaturan",
+        "timeout": "Timeout Koneksi (detik)",
+        "autorefresh": "Segarkan Otomatis",
+        "debug": "Mode Debug"
+    },
+    "languages": {
+        "zh-TW": "繁體中文",
+        "zh-CN": "简体中文",
+        "en": "English",
+        "id": "Bahasa Indonesia"
+    },
+    "themes": {
+        "dark": "Gelap",
+        "light": "Terang",
+        "auto": "Otomatis"
+    },
+    "status": {
+        "connected": "Terhubung",
+        "connecting": "Menghubungkan...",
+        "disconnected": "Terputus",
+        "reconnecting": "Menghubungkan kembali...",
+        "error": "Kesalahan Koneksi",
+        "waiting": {
+            "title": "Menunggu Umpan Balik",
+            "message": "Silakan berikan umpan balik Anda"
+        },
+        "processing": {
+            "title": "Memproses",
+            "message": "Mengirim umpan balik Anda..."
+        },
+        "submitted": {
+            "title": "Umpan Balik Dikirim",
+            "message": "Menunggu panggilan MCP berikutnya"
+        }
+    },
+    "notifications": {
+        "feedback_sent": "Umpan balik dikirim",
+        "command_executed": "Perintah dieksekusi",
+        "settings_saved": "Pengaturan disimpan",
+        "connection_lost": "Koneksi terputus",
+        "connection_restored": "Koneksi dipulihkan"
+    },
+    "connection": {
+        "waiting": "Terhubung - Menunggu umpan balik",
+        "submitted": "Terhubung - Umpan balik dikirim",
+        "processing": "Terhubung - Memproses"
+    },
+    "errors": {
+        "connection_failed": "Koneksi gagal",
+        "upload_failed": "Unggah gagal",
+        "command_failed": "Eksekusi perintah gagal",
+        "invalid_input": "Input tidak valid",
+        "timeout": "Timeout permintaan"
+    },
+    "buttons": {
+        "ok": "OK",
+        "cancel": "❌ Batal",
+        "submit": "✅ Kirim Umpan Balik",
+        "processing": "Memproses...",
+        "submitted": "Dikirim",
+        "retry": "Coba Lagi",
+        "close": "Tutup",
+        "upload": "Unggah",
+        "download": "Unduh"
+    },
+    "session": {
+        "timeout": "⏰ Sesi telah timeout, antarmuka akan tertutup otomatis",
+        "timeoutWarning": "Sesi akan segera timeout",
+        "timeoutDescription": "Karena tidak aktif dalam waktu lama, sesi telah timeout. Antarmuka akan otomatis tertutup dalam 3 detik.",
+        "closing": "Menutup..."
+    },
+    "autoRefresh": {
+        "enable": "Deteksi Otomatis",
+        "seconds": "detik",
+        "disabled": "Dinonaktifkan",
+        "enabled": "Mendeteksi",
+        "checking": "Memeriksa",
+        "detected": "Terdeteksi",
+        "error": "Gagal"
+    },
+
+    "dynamic": {
+        "aiSummary": "Tes Fungsionalitas Web UI\n\n🎯 **Item Tes:**\n- Startup dan operasi server Web UI\n- Komunikasi real-time WebSocket\n- Fungsionalitas pengiriman umpan balik\n- Unggah dan pratinjau gambar\n- Fungsionalitas eksekusi perintah\n- Tempel gambar Ctrl+V cerdas\n- Fungsionalitas antarmuka multi-bahasa\n\n📋 **Langkah Tes:**\n1. Tes unggah gambar (seret-lepas, pilih file, clipboard)\n2. Tekan Ctrl+V di kotak teks untuk menguji tempel cerdas\n3. Coba ganti bahasa (Tradisional Cina/Sederhana Cina/Inggris/Indonesia)\n4. Tes fungsionalitas eksekusi perintah\n5. Kirim umpan balik dan gambar\n\nSilakan uji fitur-fitur ini dan berikan umpan balik!",
+        "terminalWelcome": "Selamat datang di Terminal Umpan Balik Interaktif\n========================================\nDirektori Proyek: {sessionId}\nMasukkan perintah dan tekan Enter atau klik tombol Eksekusi\nPerintah yang didukung: ls, dir, pwd, cat, type, dll.\n\n$ "
+    },
+    "about": {
+        "title": "ℹ️ Tentang",
+        "description": "Server MCP yang kuat yang menyediakan fungsionalitas umpan balik interaktif human-in-the-loop untuk alat pengembangan berbantuan AI. Mendukung antarmuka Qt GUI dan Web UI, dengan fitur kaya termasuk unggah gambar, eksekusi perintah, dukungan multi-bahasa, dan lainnya.",
+        "appInfo": "Informasi Aplikasi",
+        "version": "Versi",
+        "projectLinks": "Tautan Proyek",
+        "githubProject": "Proyek GitHub",
+        "visitGithub": "Kunjungi GitHub",
+        "contact": "Kontak & Dukungan",
+        "discordSupport": "Dukungan Discord",
+        "joinDiscord": "Bergabung Discord",
+        "contactDescription": "Untuk dukungan teknis, laporan masalah, atau saran fitur, silakan hubungi kami melalui komunitas Discord atau GitHub Issues.",
+        "thanks": "Terima Kasih & Kontribusi",
+        "thanksText": "Terima kasih kepada penulis asli Fábio Ferreira (@fabiomlferreira) untuk menciptakan proyek interactive-feedback-mcp yang asli.\n\nVersi yang ditingkatkan ini dikembangkan dan dipelihara oleh Minidoracat, sangat memperluas fungsionalitas proyek dengan antarmuka GUI, dukungan gambar, kemampuan multi-bahasa, dan banyak perbaikan lainnya.\n\nTerima kasih khusus kepada proyek mcp-feedback-collector sanshao85 untuk inspirasi desain UI.\n\nKolaborasi open source membuat teknologi menjadi lebih baik!"
+    },
+    "images": {
+        "settings": {
+            "title": "Pengaturan Gambar",
+            "sizeLimit": "Batas Ukuran Gambar",
+            "sizeLimitOptions": {
+                "unlimited": "Tidak Terbatas",
+                "1mb": "1MB",
+                "3mb": "3MB",
+                "5mb": "5MB"
+            },
+            "base64Detail": "Mode Kompatibilitas Base64",
+            "base64DetailHelp": "Ketika diaktifkan, menyertakan data gambar Base64 lengkap dalam teks, meningkatkan kompatibilitas dengan model AI tertentu",
+            "base64Warning": "⚠️ Meningkatkan ukuran transmisi",
+            "compatibilityHint": "💡 Gambar tidak dikenali dengan benar?",
+            "enableBase64Hint": "Coba aktifkan mode kompatibilitas Base64"
+        },
+        "sizeLimitExceeded": "Gambar {filename} berukuran {size}, melebihi batas {limit}!",
+        "sizeLimitExceededAdvice": "Pertimbangkan untuk mengompres gambar dengan perangkat lunak pengedit sebelum mengunggah, atau sesuaikan pengaturan batas ukuran gambar."
+    }
+}

@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "mcp-ngobrol-web": {
+      "command": "uvx",
+      "args": [
+        "mcp-ngobrol@latest"
+      ],
+      "env": {
+        "FORCE_WEB": "true",
+        "MCP_DEBUG": "false",
+        "MCP_LANGUAGE": "id",
+        "WEB_HOST": "0.0.0.0",
+        "WEB_PORT": "8080",
+        "PYTHONIOENCODING": "utf-8"
+      }
+    }
+  }
+}
