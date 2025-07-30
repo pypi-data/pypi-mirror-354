@@ -1,0 +1,11 @@
+include LICENSE
+include README.md
+include version.txt
+recursive-include docs *
+recursive-include examples *
+include mailscript/config_template.py
+
+# Exclude any sensitive configuration files
+global-exclude *secret*.py
+global-exclude *config/mailscript_config.py
+global-exclude .env
