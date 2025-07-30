@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: spam_detector_cli
+Version: 1.0.0
+Summary: CLI sederhana untuk mendeteksi spam SMS/email.
+Author: Nama Kamu
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Requires-Dist: scikit-learn
+Requires-Dist: pandas
+Requires-Dist: joblib
+Requires-Dist: requests
+Dynamic: author
+Dynamic: classifier
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
