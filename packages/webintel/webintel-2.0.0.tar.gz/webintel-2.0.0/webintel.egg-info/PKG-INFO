@@ -1,0 +1,90 @@
+Metadata-Version: 2.4
+Name: webintel
+Version: 2.0.0
+Summary: 🤖 AI-Powered Web Intelligence System - Real-time research, comprehensive analysis, and intelligent insights using Google Gemini 2.0 Flash
+Home-page: https://github.com/JustM3Sunny/webintel
+Download-URL: https://github.com/JustM3Sunny/webintel/archive/v2.0.0.tar.gz
+Author: Sunny
+Author-email: justaskcoding76@gmail.com
+License: MIT
+Project-URL: Homepage, https://github.com/JustM3Sunny/webintel
+Project-URL: Documentation, https://github.com/JustM3Sunny/webintel#readme
+Project-URL: Repository, https://github.com/JustM3Sunny/webintel
+Project-URL: Bug Reports, https://github.com/JustM3Sunny/webintel/issues
+Project-URL: Feature Requests, https://github.com/JustM3Sunny/webintel/discussions
+Project-URL: Changelog, https://github.com/JustM3Sunny/webintel/releases
+Project-URL: PyPI, https://pypi.org/project/webintel/
+Keywords: ai,artificial intelligence,web intelligence,research,automation,gemini,google ai,web scraping,data analysis,nlp,search engine,real-time,comprehensive analysis,intelligent insights,web research,market research,competitive analysis,news monitoring,trend analysis,content creation,academic research,financial analysis,cryptocurrency,technology trends,cli tool,python api,async,fast,reliable
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Internet :: WWW/HTTP :: Indexing/Search
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing :: Linguistic
+Classifier: Topic :: Office/Business :: Financial :: Investment
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Environment :: Console
+Classifier: Natural Language :: English
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: aiohttp>=3.9.0
+Requires-Dist: asyncio-throttle>=1.0.2
+Requires-Dist: beautifulsoup4>=4.12.0
+Requires-Dist: click>=8.1.0
+Requires-Dist: google-generativeai>=0.8.0
+Requires-Dist: lxml>=4.9.0
+Requires-Dist: pydantic>=2.5.0
+Requires-Dist: PyYAML>=6.0
+Requires-Dist: rich>=13.7.0
+Requires-Dist: tenacity>=8.2.0
+Requires-Dist: urllib3>=2.1.0
+Requires-Dist: fake-useragent>=1.4.0
+Requires-Dist: aiofiles>=23.2.0
+Requires-Dist: python-dotenv>=1.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: flake8>=6.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx>=5.0.0; extra == "docs"
+Requires-Dist: sphinx-rtd-theme>=1.2.0; extra == "docs"
+Requires-Dist: myst-parser>=0.18.0; extra == "docs"
+Provides-Extra: test
+Requires-Dist: pytest>=7.0.0; extra == "test"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "test"
+Requires-Dist: pytest-cov>=4.0.0; extra == "test"
+Requires-Dist: responses>=0.22.0; extra == "test"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: download-url
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: platform
+Dynamic: project-url
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+WebIntel - Advanced Web Intelligence System
