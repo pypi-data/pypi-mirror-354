@@ -1,0 +1,16 @@
+<div class="text-center">
+    <h4 class="mb-3">Set Session ID of TextGrid-{{ instance|capitalize }} Instance</h4>
+    <form class="row justify-content-center pb-3 js-tab-submit" method="POST"
+        action="{{ url_for('publication.save_session_id', projectname=project.name, instance=instance) }}">
+        <input type="hidden" name="selected_instance" value="{{ instance }}">
+        <div class="col-md-6 mb-3">
+            <input type="text" class="form-control" name="tg_auth_session_id" placeholder="TgAuth Session ID"
+                value="{{ tg_session_id if tg_session_id }}">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100">
+                <span class="bi bi-floppy2-fill"></span> Save
+            </button>
+        </div>
+    </form>
+</div>
