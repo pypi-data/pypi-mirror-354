@@ -1,0 +1,48 @@
+[project]
+name = "perch-py"
+version = "0.1.3"
+description = "Perch is a developer-friendly CLI tool for scaffolding MCP HexLayer Architecture projects using clean structure and modular design."
+readme = "README.md"
+authors = [
+  { name="Daniel Remoquillo", email="danielremoquillo.se@gmail.com" },
+]
+license = {text = "MIT"}
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.11.5",
+    "pyyaml>=6.0.2",
+    "rich>=14.0.0",
+    "twine>=6.1.0",
+    "typer>=0.16.0",
+]
+
+[project.scripts]
+perch = "perch.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/perch"]
+
+[tool.uv.workspace]
+members = [
+    "tite-mcp-server",
+    "tited-mcp-server",
+    "titedd-mcp-server",
+    "titeddd-mcp-server",
+    "titeddddd-mcp-server",
+    "titeddddde-mcp-server",
+    "titeddddde3-mcp-server",
+    "titeddddde3w-mcp-server",
+    "titeddddde3wd-mcp-server",
+    "titeddddde3w2d-mcp-server",
+    "timely-mcp-server",
+    "itte-mcp-server",
+    "toolshit-mcp-server",
+]
+
+[project.urls]
+Homepage = "https://github.com/danielremoquillo/perch-py"
+Issues = "https://github.com/danielremoquillo/perch-py"
