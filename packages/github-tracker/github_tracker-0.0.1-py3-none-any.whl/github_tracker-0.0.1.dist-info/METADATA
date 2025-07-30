@@ -1,0 +1,48 @@
+Metadata-Version: 2.4
+Name: github-tracker
+Version: 0.0.1
+Summary: A tool for tracking github trends and repositories.
+Project-URL: Homepage, https://github.com/monkitect/github_tracker
+Project-URL: Repository, https://github.com/monkitect/github_tracker
+Project-URL: Issues, https://github.com/monkitect/github_tracker/issues
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: beautifulsoup4
+
+# Github Tracker
+
+A Python package for tracking Github trending.
+
+## Features
+
+- Track github trending repositories
+
+## Installation
+
+```bash
+pip install Github-tracker
+```
+
+## Usage
+
+```text
+
+```
+
+---
+
+## Development
+
+- install & test
+
+```text
+pip install -e .
+python -m unittest discover tests
+```
+
+- build & upload to TestPyPI
+
+```text
+python -m build
+twine upload --repository testpypi dist/*  -u__token__ -p <your_token>
+```
