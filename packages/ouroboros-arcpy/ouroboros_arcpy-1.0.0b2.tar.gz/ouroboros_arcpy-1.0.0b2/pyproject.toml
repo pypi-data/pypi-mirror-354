@@ -1,0 +1,26 @@
+[project]
+version = "1.0.0b2"
+name = "ouroboros-arcpy"
+authors = [{name = "Corbel", email = "dev@corbelspatial.com"}]
+dynamic = []
+requires-python = "==3.11.*"
+dependencies = [
+  "geojson",
+  "shapely",
+]
+description = "Wrapper class for pythonic use of arcpy Feature Classes"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: Microsoft :: Windows :: Windows 11"
+]
+
+[project.urls]
+homepage = "https://pypi.org/project/ouroboros-arcpy/"
+documentation = "https://app.readthedocs.org/projects/ouroboros-arcpy/"
+repository = "https://github.com/corbel-spatial/ouroboros"
+issues = "https://github.com/corbel-spatial/ouroboros/issues"
+changelog = "https://github.com/corbel-spatial/ouroboros/blob/main/CHANGELOG.md"
