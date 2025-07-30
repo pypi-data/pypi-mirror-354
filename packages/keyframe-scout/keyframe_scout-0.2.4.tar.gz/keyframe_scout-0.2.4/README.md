@@ -1,0 +1,757 @@
+# KeyFrame Scout
+
+[[Python Version](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
+[[License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[[Version](https://img.shields.io/badge/version-0.2.4-orange.svg)](https://github.com/yourusername/keyframe-scout)
+
+An intelligent video keyframe extraction tool optimized for Vision Language Models (VLMs) and video analysis. Extract meaningful frames from videos using adaptive algorithms, with direct support for Azure OpenAI GPT and other VLMs.
+
+## ✨ Key Features
+
+- **🎯 Intelligent Frame Selection**: Three extraction modes (adaptive, interval, fixed) to suit different use cases
+- **🤖 VLM-Ready**: Direct integration with Azure OpenAI GPT and other vision language models
+- **📦 Base64 Support**: Return frames as base64 strings for immediate API usage
+- **⚡ Batch Processing**: Process multiple videos efficiently with parallel execution
+- **🎨 Flexible Output**: Save as files, return as base64, or both
+- **📊 Smart Analysis**: Automatically identifies scene changes and important moments
+- **🔧 Easy Integration**: Simple Python API and command-line interface
+
+## 🚀 What's New in v0.2.4
+
+- **🧪 Full Test Coverage**: Comprehensive test suite with 15 test cases covering all major features
+- **🛡️ Enhanced Error Handling**: Robust error handling for edge cases and invalid inputs
+- **⚡ Optimized Performance**: Improved video processing speed and memory efficiency
+- **📖 Updated Documentation**: Complete API documentation with real-world examples
+- **🔧 Refined API**: Better parameter validation and more intuitive function signatures
+
+## 📦 Installation
+
+### Using pip (Recommended)
+
+```bash
+pip install keyframe-scout
+```
+
+### From source
+
+```bash
+git clone https://github.com/yourusername/keyframe-scout.git
+cd keyframe-scout
+pip install -e .
+```
+
+### Development installation
+
+```bash
+git clone https://github.com/yourusername/keyframe-scout.git
+cd keyframe-scout
+pip install -e ".[dev]"
+```
+
+### Dependencies
+
+**Core Requirements:**
+- Python 3.7+ (tested with Python 3.11)
+- OpenCV (opencv-python >= 4.5.0)
+- NumPy (>= 1.19.0)
+- Pillow (>= 8.0.0)
+- scikit-image (>= 0.18.0)
+- tqdm (>= 4.50.0)
+
+**System Dependencies:**
+- FFmpeg (for video processing)
+
+**Optional Dependencies:**
+- openai (>= 1.0.0) - for Azure OpenAI integration
+
+### Install FFmpeg
+
+```bash
+# Ubuntu/Debian
+sudo apt update && sudo apt install ffmpeg
+
+# macOS (with Homebrew)
+brew install ffmpeg
+
+# Windows
+# Download from https://ffmpeg.org/download.html
+# Or use: winget install FFmpeg
+```
+
+### Verify Installation
+
+```python
+import keyframe_scout as ks
+ks.print_info()  # Check dependencies and features
+```
+
+## 🚀 Performance
+
+KeyFrame Scout is optimized for speed and efficiency:
+
+- **Fast Processing**: 11.7-second video processed in < 4 seconds
+- **Memory Efficient**: Processes videos without loading entire video into memory
+- **Smart Sampling**: Analyzes every 30th frame by default for optimal speed/accuracy balance
+- **Parallel Processing**: Batch processing with configurable worker threads
+- **Adaptive Algorithms**: Automatically adjusts processing based on video characteristics
+
+**Benchmark Results** (MacBook Pro M1):
+- 1080p video, 12 seconds → 8 keyframes extracted in 3.66 seconds
+- Base64 encoding included, total memory usage < 100MB
+- Supports videos up to 4K resolution
+
+## 🎯 Quick Start
+
+### Basic Usage
+
+```python
+import keyframe_scout as ks
+
+# Extract keyframes from a video
+result = ks.extract_video_keyframes({
+    'video': 'path/to/video.mp4',
+    'output_dir': 'output/frames',
+    'nframes': 10
+})
+
+print(f"Extracted {result['extracted_frames']} frames in {result['processing_time']:.2f}s")
+```
+
+### VLM Integration (GPT-4V Ready!)
+
+```python
+import keyframe_scout as ks
+
+# Extract frames optimized for VLM
+frames = ks.extract_frames_for_vlm(
+    'video.mp4',
+    max_frames=8,
+    max_size=1024
+)
+
+# Create messages for Azure OpenAI GPT-4V
+messages = ks.create_video_messages(
+    'video.mp4',
+    prompt="Analyze this video and describe the key events",
+    max_frames=8,
+    system_prompt="You are a professional video analyst."
+)
+
+# Estimate API costs before calling
+token_estimate = ks.estimate_token_usage(frames, detail="auto")
+print(f"Estimated tokens: {token_estimate['total_image_tokens']}")
+print(f"Estimated cost: ${token_estimate['estimated_cost_usd']:.4f}")
+
+# Use with Azure OpenAI (example)
+# client = AzureOpenAI(...)
+# response = client.chat.completions.create(model="gpt-4-vision-preview", messages=messages)
+```
+
+### Base64 Output for APIs
+
+```python
+# Get frames as base64 (perfect for API calls)
+result = ks.extract_video_keyframes({
+    'video': 'video.mp4',
+    'nframes': 5,
+    'return_base64': True,
+    'max_size': 1024,
+    'include_files': False  # Don't save files, just return base64
+})
+
+# Access base64 data for your API
+for i, frame in enumerate(result['frames']):
+    print(f"Frame {i+1} at {frame['timestamp']:.1f}s")
+    # frame['base64'] contains the image data
+    # Ready to send to any VLM API!
+```
+
+## 📖 Detailed Usage
+
+### Extraction Modes
+
+#### 1. Adaptive Mode (Default)
+Intelligently selects the most representative frames based on content analysis.
+
+```python
+result = ks.extract_video_keyframes({
+    'video': 'video.mp4',
+    'output_dir': 'output',
+    'mode': 'adaptive',
+    'nframes': 10
+})
+```
+
+#### 2. Interval Mode
+Extracts frames at fixed time intervals.
+
+```python
+result = ks.extract_video_keyframes({
+    'video': 'video.mp4',
+    'output_dir': 'output',
+    'mode': 'interval',
+    'interval': 5.0,  # Every 5 seconds
+    'frames_per_interval': 1
+})
+```
+
+#### 3. Fixed Mode
+Extracts a fixed number of evenly distributed frames.
+
+```python
+result = ks.extract_video_keyframes({
+    'video': 'video.mp4',
+    'output_dir': 'output',
+    'mode': 'fixed',
+    'frames_per_interval': 20  # Total 20 frames
+})
+```
+
+### VLM Integration Examples
+
+#### Complete Azure OpenAI Workflow
+
+```python
+import keyframe_scout as ks
+from openai import AzureOpenAI
+
+# Initialize Azure OpenAI client
+client = AzureOpenAI(
+    azure_endpoint="your-endpoint",
+    api_key="your-key",
+    api_version="2024-02-15-preview"
+)
+
+# Extract and prepare video for analysis
+messages = ks.create_video_messages(
+    'video.mp4',
+    prompt="Analyze this video and provide a detailed summary of the main events",
+    max_frames=8,
+    system_prompt="You are a professional video analyst. Provide structured analysis.",
+    detail="high"  # Use high detail for better analysis
+)
+
+# Estimate costs before API call
+frames = ks.extract_frames_for_vlm('video.mp4', max_frames=8)
+cost_estimate = ks.estimate_token_usage(frames, detail="high")
+print(f"Estimated cost: ${cost_estimate['estimated_cost_usd']:.4f}")
+
+# Call Azure OpenAI
+response = client.chat.completions.create(
+    model="gpt-4-vision-preview",
+    messages=messages,
+    max_tokens=1000
+)
+
+print(response.choices[0].message.content)
+```
+
+#### Using the VideoAnalyzer Class (Simplified)
+
+```python
+# For users who prefer a simpler interface
+analyzer = ks.VideoAnalyzer(
+    azure_endpoint="your-endpoint",
+    api_key="your-key"
+)
+
+# One-line video analysis
+result = analyzer.analyze_video(
+    'video.mp4',
+    prompt="What are the main subjects and activities in this video?",
+    max_frames=10
+)
+
+print(result)
+```
+
+#### Batch Video Analysis
+
+```python
+# Analyze multiple videos efficiently
+videos = ['video1.mp4', 'video2.mp4', 'video3.mp4']
+prompts = [
+    'Describe the setting and atmosphere',
+    'Identify the main characters or subjects',
+    'Summarize the key actions or events'
+]
+
+results = analyzer.batch_analyze(videos, prompts, max_frames=6)
+for video, result in zip(videos, results):
+    print(f"{video}: {result}")
+```
+
+#### Custom VLM Integration (Any Provider)
+
+```python
+# Extract frames for any VLM service
+frames = ks.extract_frames_for_vlm('video.mp4', max_frames=6)
+
+# Prepare data for your preferred VLM API
+for i, frame in enumerate(frames):
+    image_data = {
+        'base64': frame['base64'],
+        'timestamp': frame['timestamp'],
+        'description': f'Frame {i+1} at {frame["timestamp"]:.1f}s'
+    }
+    # Send to OpenAI, Claude, Gemini, or any other VLM API
+    # your_vlm_api.analyze(image_data)
+```
+
+### Batch Processing
+
+```python
+# Process all videos in a directory
+results = ks.process_video_directory(
+    directory='videos/',
+    output_dir='output/',
+    extensions=['.mp4', '.avi'],
+    recursive=True,
+    config_template={
+        'mode': 'adaptive',
+        'nframes': 10,
+        'return_base64': True
+    }
+)
+
+# Or process a list of videos
+video_list = ['video1.mp4', 'video2.mp4', 'video3.mp4']
+results = ks.extract_keyframes_batch(
+    video_list,
+    output_base_dir='batch_output/',
+    max_workers=4
+)
+```
+
+### Advanced Configuration
+
+```python
+config = {
+    'video': 'video.mp4',
+    'output_dir': 'output',
+    'mode': 'adaptive',
+    'nframes': 10,
+    
+    # Resolution options
+    'resolution': '720p',  # '360p', '480p', '720p', '1080p', 'original'
+    
+    # Image options
+    'image_format': 'jpg',  # 'jpg' or 'png'
+    'image_quality': 95,    # 1-100 for JPEG
+    
+    # Base64 options (new)
+    'return_base64': True,
+    'include_files': False,  # Don't save files when using base64
+    'max_size': 1024,       # Max dimension for base64 images
+    
+    # Analysis parameters
+    'sample_rate': 30,      # Analyze every Nth frame
+    'min_frames': 5,        # Minimum frames to extract
+    'max_frames': 20        # Maximum frames to extract
+}
+
+result = ks.extract_video_keyframes(config)
+```
+
+## 🔧 Command Line Interface
+
+### Basic usage
+
+```bash
+# Extract 10 keyframes
+keyframe-scout video.mp4 -o output_frames --nframes 10
+
+# Use specific mode
+keyframe-scout video.mp4 -o output_frames --mode interval --interval 5
+
+# Set resolution and quality
+keyframe-scout video.mp4 -o output_frames --resolution 720p --quality 90
+```
+
+### Batch processing
+
+```bash
+# Process directory
+keyframe-scout-batch videos/ -o batch_output/ --recursive
+
+# With custom settings
+keyframe-scout-batch videos/ -o batch_output/ --nframes 8 --resolution 480p
+```
+
+## 📊 Complete API Reference
+
+### Core Functions
+
+#### `extract_video_keyframes(config: dict) -> dict`
+Main extraction function with comprehensive configuration options.
+
+**Parameters:**
+- `video` (str): Path to video file (required)
+- `output_dir` (str, optional): Output directory for saved frames
+- `mode` (str): Extraction mode - 'adaptive', 'interval', 'fixed' (default: 'adaptive')
+- `nframes` (int, optional): Number of frames to extract
+- `resolution` (str): Output resolution - 'original', '360p', '480p', '720p', '1080p'
+- `image_format` (str): Output format - 'jpg', 'png' (default: 'jpg')
+- `image_quality` (int): JPEG quality 1-100 (default: 95)
+- `return_base64` (bool): Return base64 encoded frames (default: False)
+- `max_size` (int): Max dimension for base64 images (default: 1024)
+- `include_files` (bool): Save files when using base64 (default: True)
+
+**Returns:** Dictionary with extraction results and metadata
+
+#### `extract_frames_for_vlm(video_path, max_frames=10, max_size=1024, mode="adaptive") -> List[dict]`
+Extract frames optimized for Vision Language Models.
+
+**Returns:** List of dictionaries with 'base64', 'timestamp', and 'index' keys
+
+#### `create_video_messages(video_path, prompt, max_frames=8, system_prompt=None, detail="auto") -> List[dict]`
+Create messages formatted for Azure OpenAI GPT-4V.
+
+**Parameters:**
+- `detail` (str): Image detail level - 'low', 'high', 'auto'
+
+#### `get_video_info(video_path: str) -> dict`
+Get comprehensive video metadata.
+
+**Returns:** Dictionary with duration, fps, width, height, total_frames
+
+### VLM Utilities
+
+#### `prepare_for_azure_openai(video_path, max_frames=8, detail="auto") -> List[dict]`
+Prepare frames in Azure OpenAI format with automatic image sizing.
+
+#### `estimate_token_usage(frames, detail="auto") -> dict`
+Estimate GPT-4V token usage and costs.
+
+**Returns:** 
+```python
+{
+    "num_images": int,
+    "tokens_per_image": int, 
+    "total_image_tokens": int,
+    "estimated_cost_usd": float
+}
+```
+
+#### `save_base64_frames(frames, output_dir, prefix="frame") -> List[str]`
+Save base64 encoded frames to files.
+
+#### `frames_to_base64_urls(frames, detail="auto") -> List[dict]`
+Convert frame data to Azure OpenAI image URL format.
+
+### Advanced Functions
+
+#### `extract_keyframes_batch(video_list, output_base_dir, max_workers=4, **kwargs)`
+Process multiple videos in parallel with configurable worker threads.
+
+#### `create_batch_messages(video_paths, prompts, max_frames_per_video=5, system_prompt=None)`
+Create messages for analyzing multiple videos in a single API call.
+
+### Utility Functions
+
+#### `check_dependencies() -> dict`
+Check availability of all required and optional dependencies.
+
+#### `ensure_output_dir(directory: str)`
+Create output directory if it doesn't exist.
+
+#### `smart_frame_count(duration, mode, min_frames=3, max_frames=30, **kwargs) -> int`
+Automatically determine optimal number of frames based on video duration and mode.
+
+## 🎨 Real-World Examples
+
+### Video Content Analysis for Social Media
+
+```python
+import keyframe_scout as ks
+
+# Analyze social media video content
+frames = ks.extract_frames_for_vlm('social_video.mp4', max_frames=8)
+
+messages = ks.create_video_messages(
+    'social_video.mp4',
+    prompt="""Analyze this video for:
+    1. Main subjects (people, objects, scenes)
+    2. Activities and actions
+    3. Emotional tone and atmosphere
+    4. Any text or captions visible
+    5. Potential engagement factors""",
+    max_frames=8,
+    system_prompt="You are a social media content analyst."
+)
+
+# Use with your preferred AI service
+```
+
+### Educational Video Summarization
+
+```python
+# Extract key learning moments from educational content
+result = ks.extract_video_keyframes({
+    'video': 'lecture.mp4',
+    'mode': 'adaptive',
+    'nframes': 12,
+    'return_base64': True
+})
+
+# Create chapter summaries
+for i, frame in enumerate(result['frames']):
+    timestamp = frame['timestamp']
+    # Analyze each key frame for educational content
+    messages = ks.create_video_messages(
+        'lecture.mp4',
+        prompt=f"What key concept is being taught at {timestamp:.1f} seconds?",
+        max_frames=1
+    )
+    # Send to AI for analysis
+```
+
+### Video Thumbnail Generation
+
+```python
+# Generate optimized thumbnails for video platforms
+result = ks.extract_video_keyframes({
+    'video': 'content_video.mp4',
+    'output_dir': 'thumbnails',
+    'mode': 'adaptive',
+    'nframes': 5,
+    'resolution': '1280x720',  # YouTube thumbnail size
+    'image_quality': 95
+})
+
+print(f"Generated {result['extracted_frames']} thumbnail candidates")
+# Frames are automatically selected for maximum visual interest
+```
+
+### Content Moderation Pipeline
+
+```python
+# Automated content screening
+frames = ks.extract_frames_for_vlm('user_upload.mp4', max_frames=10)
+
+moderation_prompt = """Review this video content for:
+1. Inappropriate content
+2. Violence or harmful activities  
+3. Copyright violations (branded content)
+4. Age-appropriate rating
+Provide a safety score (1-10) and explanation."""
+
+messages = ks.create_video_messages(
+    'user_upload.mp4',
+    prompt=moderation_prompt,
+    max_frames=10,
+    system_prompt="You are a content moderation specialist.",
+    detail="high"
+)
+
+# Integrate with moderation service
+```
+
+### Video Analytics Dashboard Data
+
+```python
+# Extract frames for analytics dashboard
+def analyze_video_metrics(video_path):
+    # Get basic info
+    info = ks.get_video_info(video_path)
+    
+    # Extract representative frames
+    frames = ks.extract_frames_for_vlm(video_path, max_frames=6)
+    
+    # Estimate AI analysis costs
+    cost = ks.estimate_token_usage(frames, detail="auto")
+    
+    return {
+        'duration': info['duration'],
+        'resolution': f"{info['width']}x{info['height']}",
+        'frames_extracted': len(frames),
+        'analysis_cost': cost['estimated_cost_usd'],
+        'ready_for_ai': True
+    }
+
+# Use in your video management system
+metrics = analyze_video_metrics('video.mp4')
+```
+
+## 🐛 Troubleshooting
+
+### Common Issues and Solutions
+
+#### FFmpeg not found
+```bash
+# Ubuntu/Debian
+sudo apt update && sudo apt install ffmpeg
+
+# macOS (with Homebrew)
+brew install ffmpeg
+
+# Windows (with winget)
+winget install FFmpeg
+
+# Or download from: https://ffmpeg.org/download.html
+```
+
+#### Import errors
+```bash
+# Install with all dependencies
+pip install keyframe-scout[all]
+
+# Or install core dependencies manually
+pip install opencv-python numpy pillow scikit-image tqdm
+```
+
+#### "No module named 'cv2'" error
+```bash
+# Reinstall OpenCV
+pip uninstall opencv-python opencv-contrib-python
+pip install opencv-python>=4.5.0
+```
+
+#### Memory issues with large videos
+```python
+# Use smaller sampling rate and image size
+config = {
+    'video': 'large_video.mp4',
+    'sample_rate': 60,  # Analyze every 60th frame (default: 30)
+    'max_size': 512,    # Smaller base64 images
+    'resolution': '720p'  # Lower output resolution
+}
+```
+
+#### Performance optimization
+```python
+# For faster processing
+config = {
+    'video': 'video.mp4',
+    'mode': 'fixed',      # Fastest mode
+    'sample_rate': 90,    # Less analysis
+    'return_base64': True,
+    'include_files': False  # Skip file I/O
+}
+```
+
+#### GPU acceleration
+```python
+# Check GPU availability
+import cv2
+print(f"CUDA devices: {cv2.cuda.getCudaEnabledDeviceCount()}")
+
+# KeyFrame Scout will automatically use GPU if available
+```
+
+#### Azure OpenAI API errors
+```python
+# Check your configuration
+try:
+    messages = ks.create_video_messages('video.mp4', 'test prompt')
+    print("Messages created successfully")
+except Exception as e:
+    print(f"Error: {e}")
+    
+# Verify token estimation
+frames = ks.extract_frames_for_vlm('video.mp4', max_frames=1)
+cost = ks.estimate_token_usage(frames)
+print(f"Estimated tokens: {cost['total_image_tokens']}")
+```
+
+### Debugging Tips
+
+```python
+# Enable detailed logging
+import logging
+logging.basicConfig(level=logging.INFO)
+
+# Check system status
+import keyframe_scout as ks
+ks.print_info()  # Shows all dependencies and features
+
+# Test with minimal config
+result = ks.extract_video_keyframes({
+    'video': 'test_video.mp4',
+    'nframes': 1,
+    'return_base64': True
+})
+print("Basic extraction works:", result['success'])
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how to get started:
+
+### Development Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/keyframe-scout.git
+cd keyframe-scout
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install in development mode
+pip install -e ".[dev]"
+
+# Run tests
+python test_keyframe_scout.py
+python test_vlm_features.py
+```
+
+### Running Tests
+
+```bash
+# Core functionality tests
+python test_keyframe_scout.py
+
+# VLM integration tests  
+python test_vlm_features.py
+
+# Unit tests with pytest
+pytest tests/
+```
+
+### Areas for Contribution
+
+- **Algorithm improvements**: Better frame selection algorithms
+- **Performance optimization**: Faster video processing
+- **New VLM integrations**: Support for more AI services
+- **Documentation**: Examples, tutorials, API docs
+- **Testing**: More comprehensive test coverage
+
+### Pull Request Guidelines
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Make your changes with tests
+4. Ensure all tests pass
+5. Submit a pull request with clear description
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **OpenCV Community** - Excellent computer vision library
+- **FFmpeg Project** - Powerful video processing capabilities  
+- **VLM Community** - Inspiration for vision-language model integration
+- **Contributors** - Thanks to all who help improve this project
+
+## 📮 Contact & Support
+
+- **GitHub Issues**: [Report bugs or request features](https://github.com/yourusername/keyframe-scout/issues)
+- **Discussions**: [Community discussions and Q&A](https://github.com/yourusername/keyframe-scout/discussions)
+- **Email**: cjj198909@gmail.com
+
+### Quick Links
+
+- 📖 [Full Documentation](https://github.com/yourusername/keyframe-scout/wiki)
+- 🎯 [Examples Repository](https://github.com/yourusername/keyframe-scout/tree/main/examples)
+- 🧪 [Test Coverage Report](https://github.com/yourusername/keyframe-scout/actions)
+- 📊 [Performance Benchmarks](https://github.com/yourusername/keyframe-scout/wiki/benchmarks)
+
+---
+
+**Made with ❤️ for the Vision Language Model community**
+
+*Empowering developers to build amazing video AI applications*
