@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "mcp-ngobrol-dev": {
+      "command": "python",
+      "args": [
+        "C:/project/mcp-feedback-enhanced-2.3.0/run_mcp_simple.py"
+      ],
+      "env": {
+        "FORCE_WEB": "false",
+        "MCP_DEBUG": "true",
+        "MCP_LANGUAGE": "id",
+        "PYTHONIOENCODING": "utf-8"
+      }
+    }
+  }
+}
