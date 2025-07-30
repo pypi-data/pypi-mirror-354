@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: airflow-secret-loader
+Version: 0.1.0
+Summary: Auto-load AWS Secrets into Airflow Variables via env
+Author: Your Name
+Author-email: your@email.com
+Requires-Dist: boto3
+Dynamic: author
+Dynamic: author-email
+Dynamic: requires-dist
+Dynamic: summary
