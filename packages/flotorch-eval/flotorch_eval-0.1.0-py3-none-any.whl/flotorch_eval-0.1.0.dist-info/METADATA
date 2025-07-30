@@ -1,0 +1,118 @@
+Metadata-Version: 2.4
+Name: flotorch-eval
+Version: 0.1.0
+Summary: A comprehensive evaluation framework for AI systems
+Author-email: Nanda Rajashekaruni <nanda@flotorch.ai>
+License-Expression: MIT
+License-File: LICENSE
+Keywords: agents,ai,evaluation,models,opentelemetry,ragas
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.8
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: typing-extensions>=4.7.0
+Provides-Extra: agent
+Requires-Dist: agentevals>=0.0.8; extra == 'agent'
+Requires-Dist: langchain>=0.1.0; extra == 'agent'
+Requires-Dist: opentelemetry-api>=1.0.0; extra == 'agent'
+Requires-Dist: opentelemetry-sdk>=1.0.0; extra == 'agent'
+Requires-Dist: ragas>=0.0.20; extra == 'agent'
+Provides-Extra: all
+Requires-Dist: agentevals>=0.0.8; extra == 'all'
+Requires-Dist: black>=22.0.0; extra == 'all'
+Requires-Dist: flake8>=4.0.0; extra == 'all'
+Requires-Dist: isort>=5.0.0; extra == 'all'
+Requires-Dist: langchain>=0.1.0; extra == 'all'
+Requires-Dist: mypy>=1.0.0; extra == 'all'
+Requires-Dist: opentelemetry-api>=1.0.0; extra == 'all'
+Requires-Dist: opentelemetry-sdk>=1.0.0; extra == 'all'
+Requires-Dist: pytest-asyncio>=0.14.0; extra == 'all'
+Requires-Dist: pytest-cov>=2.0.0; extra == 'all'
+Requires-Dist: pytest>=7.0.0; extra == 'all'
+Requires-Dist: ragas>=0.0.20; extra == 'all'
+Provides-Extra: dev
+Requires-Dist: black>=22.0.0; extra == 'dev'
+Requires-Dist: flake8>=4.0.0; extra == 'dev'
+Requires-Dist: isort>=5.0.0; extra == 'dev'
+Requires-Dist: mypy>=1.0.0; extra == 'dev'
+Requires-Dist: pytest-asyncio>=0.14.0; extra == 'dev'
+Requires-Dist: pytest-cov>=2.0.0; extra == 'dev'
+Requires-Dist: pytest>=7.0.0; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# FlotorchEval
+
+A comprehensive evaluation framework for AI systems.
+
+## Features
+
+- **Agent Evaluation**: Evaluate AI agents using OpenTelemetry traces
+  - Convert traces to structured trajectories
+  - Multiple evaluation metrics (LangChain, Ragas, custom)
+  - Tool usage analysis
+  - Extensible metric system
+
+## Installation
+
+Install the base package:
+```bash
+pip install flotorch-eval
+```
+
+Install with agent evaluation support:
+```bash
+pip install "flotorch-eval[agent]"
+```
+
+Install with development tools:
+```bash
+pip install "flotorch-eval[dev]"
+```
+
+Install everything:
+```bash
+pip install "flotorch-eval[all]"
+```
+
+## Quick Start
+
+### Agent Evaluation
+
+```python
+from flotorch_eval.agent_eval import TraceConverter, Evaluator
+from flotorch_eval.agent_eval.metrics import TrajectoryEvalWithLLMMetric
+
+# Convert OpenTelemetry traces to trajectories
+converter = TraceConverter()
+trajectory = converter.from_spans(spans)
+
+# Create evaluator with metrics
+evaluator = Evaluator([
+    TrajectoryEvalWithLLMMetric(
+        reference_trajectory=reference,
+        llm=llm
+    )
+])
+
+# Run evaluation
+results = evaluator.evaluate(trajectory)
+```
+
+## Documentation
+
+For detailed documentation, visit [docs.flotorch.ai](https://docs.flotorch.ai).
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
