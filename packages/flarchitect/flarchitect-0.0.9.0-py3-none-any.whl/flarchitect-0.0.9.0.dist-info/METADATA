@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: flarchitect
+Version: 0.0.9.0
+Summary: Automatic RESTful API generator with redoc
+Author-email: "arched.dev (Lewis Morris)" <hello@arched.dev>
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Requires-Python: >=3.10
+Requires-Dist: apispec>=6.3.1
+Requires-Dist: beautifulsoup4>=4.13.4
+Requires-Dist: colorama>=0.4.6
+Requires-Dist: dicttoxml>=1.7.16
+Requires-Dist: flask-jwt-extended>=4.6.0
+Requires-Dist: flask-limiter>=3.5.0
+Requires-Dist: flask-login>=0.6.3
+Requires-Dist: flask-sqlalchemy>=3.0.5
+Requires-Dist: flask>=2.2.5
+Requires-Dist: inflect>=7.5.0
+Requires-Dist: marshmallow-sqlalchemy>=0.29.0
+Requires-Dist: numpy>=1.21.6
+Requires-Dist: pymongo>=4.7.3
+Requires-Dist: pytz>=2025.2
+Requires-Dist: redis>=5.0.8
+Requires-Dist: requests>=2.31.0
+Requires-Dist: sqlalchemy-utils>=0.41.2
+Requires-Dist: validators>=0.20.0
+Provides-Extra: dev
+Requires-Dist: isort; extra == 'dev'
+Requires-Dist: ruff; extra == 'dev'
