@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: miscbox
+Version: 0.1.0
+Summary: Collection of handy utils written in Python 3
+Author-Email: ak1ra <git@ak1ra.xyz>
+License: MIT
+Classifier: Environment :: Console
+Project-URL: Repository, https://github.com/ak1ra-lab/miscbox
+Project-URL: Issues, https://github.com/ak1ra-lab/miscbox/issues
+Project-URL: Changelog, https://github.com/ak1ra-lab/miscbox/blob/master/CHANGELOG.md
+Requires-Python: >=3.11
+Requires-Dist: argcomplete>=3.6.2
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: mobi>=0.3.3
+Requires-Dist: netaddr>=1.3.0
+Requires-Dist: psutil>=7.0.0
+Requires-Dist: py7zr>=1.0.0
+Requires-Dist: opencv-python-headless>=4.11.0.86
+Requires-Dist: numpy>=2.3.0
+Requires-Dist: Pillow>=11.2.1
+Description-Content-Type: text/markdown
+
+# miscbox
