@@ -1,0 +1,17 @@
+numpy
+xarray
+scipy
+numba
+jdcal
+astropy
+sasktran2>=2025.5.2
+simpleeval
+
+[legacy]
+sasktran
+
+[plotting]
+matplotlib
+
+[test]
+pytest
