@@ -1,0 +1,108 @@
+[
+  {
+    "architecture": "X86_64",
+    "archiveSizeBytes": "10128999680",
+    "creationTimestamp": "2024-09-06T05:50:03.409-07:00",
+    "diskSizeGb": "23",
+    "enableConfidentialCompute": false,
+    "id": "5299306329946932373",
+    "kind": "compute#image",
+    "labelFingerprint": "jsEGLtIUX7Q=",
+    "labels": {
+      "bcm_api_hash": "970783ed50a7be700935f133631fc02350408525facfc1c8006cd3cd12f7363"
+    },
+    "name": "bcmh-ubuntu2204-trunk-724",
+    "rawDisk": {
+      "containerType": "TAR",
+      "source": ""
+    },
+    "selfLink": "https://www.googleapis.com/compute/v1/projects/nv-bcmcodgcp-20240216/global/images/bcmh-ubuntu2204-trunk-724",
+    "sourceType": "RAW",
+    "status": "READY",
+    "storageLocations": [
+      "eu"
+    ]
+  },
+   {
+    "architecture": "aarch64",
+    "archiveSizeBytes": "10128999680",
+    "creationTimestamp": "2024-09-06T05:50:03.409-07:00",
+    "diskSizeGb": "23",
+    "enableConfidentialCompute": false,
+    "id": "5299306329946933765",
+    "kind": "compute#image",
+    "labelFingerprint": "jsEGLtDeX7Q=",
+    "labels": {
+      "bcm_api_hash": "970783ed50a7be700935f133631fc02350408525facfc1c8006cd3cd12f7363"
+    },
+    "name": "bcmh-ubuntu2204-trunk-724-aarch64",
+    "rawDisk": {
+      "containerType": "TAR",
+      "source": ""
+    },
+    "selfLink": "https://www.googleapis.com/compute/v1/projects/nv-bcmcodgcp-20240216/global/images/bcmh-ubuntu2204-trunk-724-aarch64",
+    "sourceType": "RAW",
+    "status": "READY",
+    "storageLocations": [
+      "eu"
+    ]
+  },
+  {
+    "architecture": "X86_64",
+    "archiveSizeBytes": "1193347008",
+    "creationTimestamp": "2024-08-29T10:12:42.556-07:00",
+    "diskSizeGb": "100",
+    "enableConfidentialCompute": false,
+    "id": "6303516932687336168",
+    "kind": "compute#image",
+    "labelFingerprint": "42WmSpB8rSM=",
+    "licenseCodes": [
+      "5511465778777431107"
+    ],
+    "licenses": [
+      "https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/licenses/ubuntu-2204-lts"
+    ],
+    "name": "jp-test-image",
+    "selfLink": "https://www.googleapis.com/compute/v1/projects/nv-bcmcodgcp-20240216/global/images/jp-test-image",
+    "shieldedInstanceInitialState": {
+      "dbxs": [
+        {
+          "content": "abcdefg12345679",
+          "fileType": "BIN"
+        }
+      ]
+    },
+    "sourceDisk": "https://www.googleapis.com/compute/v1/projects/nv-bcmcodgcp-20240216/zones/us-west2-c/disks/jpvm",
+    "sourceDiskId": "2452717167114961908",
+    "sourceType": "RAW",
+    "status": "READY",
+    "storageLocations": [
+      "us-west2"
+    ]
+  },
+  {
+    "architecture": "X86_64",
+    "archiveSizeBytes": "679628288",
+    "creationTimestamp": "2024-08-07T10:24:03.443-07:00",
+    "diskSizeGb": "10",
+    "enableConfidentialCompute": false,
+    "id": "7193055344591770432",
+    "kind": "compute#image",
+    "labelFingerprint": "42WmSpB8rSM=",
+    "licenseCodes": [
+      "2147286739765738111"
+    ],
+    "licenses": [
+      "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/licenses/debian-12-bookworm"
+    ],
+    "name": "vs-test-image-1",
+    "selfLink": "https://www.googleapis.com/compute/v1/projects/nv-bcmcodgcp-20240216/global/images/vs-test-image-1",
+    "sourceDisk": "https://www.googleapis.com/compute/v1/projects/nv-bcmcodgcp-20240216/zones/europe-west4-c/disks/vs-test-instance3",
+    "sourceDiskId": "7758077198826615677",
+    "sourceType": "RAW",
+    "status": "READY",
+    "storageLocations": [
+      "europe-west4"
+    ]
+  }
+]
