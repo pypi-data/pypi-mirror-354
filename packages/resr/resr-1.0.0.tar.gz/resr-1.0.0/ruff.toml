@@ -1,0 +1,15 @@
+line-length = 150
+indent-width = 4
+target-version = "py312"
+
+[lint]
+fixable = ["ALL"]
+unfixable = []
+
+[lint.isort]
+order-by-type = true
+no-sections = false
+known-first-party = ["numpy", "torch"]
+
+[format]
+quote-style = "single"
