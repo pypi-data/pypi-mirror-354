@@ -1,0 +1,7 @@
+
+Now, let's create the main library files:
+
+```python:c%3A%5CUsers%5Cdevice%5CDesktop%5Cmmo%5Cmsp_bitdefender%5Cbitdefender_msp%5C__init__.py
+from .client import BitdefenderMSPClient
+
+__all__ = ["BitdefenderMSPClient"]
