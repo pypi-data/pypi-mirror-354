@@ -1,0 +1,47 @@
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "system-prompt-composer"
+description = "A modular system prompt composition framework for AI assistants"
+authors = [{name = "Ben Vierck"}]
+license = {text = "MIT"}
+keywords = ["ai", "llm", "prompt", "mcp", "tools"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Rust",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+requires-python = ">=3.8"
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/xcud/system-prompt-composer"
+Repository = "https://github.com/xcud/system-prompt-composer"
+Documentation = "https://github.com/xcud/system-prompt-composer#readme"
+Issues = "https://github.com/xcud/system-prompt-composer/issues"
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+python-source = "python"
+module-name = "system_prompt_composer._system_prompt_composer"
+include = ["python/system_prompt_composer/prompts/**/*"]
+
+[tool.maturin.target.x86_64-apple-darwin]
+features = ["python"]
+
+[tool.maturin.target.x86_64-pc-windows-msvc] 
+features = ["python"]
+
+[tool.maturin.target.x86_64-unknown-linux-gnu]
+features = ["python"]

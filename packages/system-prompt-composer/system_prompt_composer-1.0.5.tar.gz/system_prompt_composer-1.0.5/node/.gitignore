@@ -1,0 +1,13 @@
+# Node.js
+node_modules/
+package-lock.json
+
+# Native binaries (platform-specific)
+*.node
+
+# NPM packages
+*.tgz
+
+# Build artifacts
+dist/
+build/
