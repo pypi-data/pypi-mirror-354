@@ -1,0 +1,16 @@
+include README.md
+include README_CONFIG.md
+include requirements.txt
+include pyproject.toml
+include setup.py
+include LICENSE
+recursive-include asyncframe *.py
+recursive-include asyncframe *.md
+recursive-exclude asyncframe __pycache__
+recursive-exclude asyncframe *.pyc
+recursive-exclude asyncframe *.pyo
+exclude script/*
+exclude .env*
+exclude *.db
+exclude .idea/*
+exclude __pycache__/* 
