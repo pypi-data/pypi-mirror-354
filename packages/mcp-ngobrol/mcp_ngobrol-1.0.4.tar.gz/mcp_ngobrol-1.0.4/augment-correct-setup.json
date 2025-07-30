@@ -1,0 +1,121 @@
+{
+  "augment_setup": {
+    "title": "MCP Ngobrol v1.0.2 - Setup untuk Augment Code",
+    "description": "Setup MCP Ngobrol di Augment Code dengan format yang benar (GUI-Only Version)",
+    "version": "1.0.2",
+    "author": "MBPR",
+    "steps": [
+      {
+        "step": 1,
+        "title": "Install MCP Ngobrol",
+        "options": [
+          {
+            "method": "UV Package Manager (Recommended)",
+            "command": "uvx mcp-ngobrol@1.0.2",
+            "description": "Install menggunakan UV"
+          },
+          {
+            "method": "Local Development",
+            "command": "git clone https://github.com/MBPR-dev/mcp-ngobrol.git",
+            "description": "Clone repository untuk development"
+          }
+        ]
+      },
+      {
+        "step": 2,
+        "title": "Open Augment Settings",
+        "description": "Buka Augment Code → Settings → MCP Configuration"
+      },
+      {
+        "step": 3,
+        "title": "Add MCP Server Configuration",
+        "description": "Copy salah satu konfigurasi berikut ke Augment MCP settings",
+        "configurations": {
+          "production": {
+            "mcpServers": {
+              "mcp-ngobrol": {
+                "command": "uvx",
+                "args": ["mcp-ngobrol@1.0.2"],
+                "env": {
+                  "MCP_DEBUG": "false",
+                  "MCP_LANGUAGE": "id",
+                  "PYTHONIOENCODING": "utf-8"
+                },
+                "timeout": 600,
+                "autoApprove": ["interactive_feedback"]
+              }
+            }
+          },
+          "development": {
+            "mcpServers": {
+              "mcp-ngobrol-dev": {
+                "command": "python",
+                "args": ["C:/project/mcp-feedback-enhanced-2.3.0/run_mcp_simple.py"],
+                "env": {
+                  "MCP_DEBUG": "true",
+                  "MCP_LANGUAGE": "id",
+                  "PYTHONIOENCODING": "utf-8"
+                },
+                "timeout": 600,
+                "autoApprove": ["interactive_feedback"]
+              }
+            }
+          },
+
+        }
+      },
+      {
+        "step": 4,
+        "title": "Save and Restart",
+        "description": "Save konfigurasi dan restart Augment Code"
+      },
+      {
+        "step": 5,
+        "title": "Verify Installation",
+        "description": "Check apakah 'interactive_feedback_python' tool tersedia"
+      }
+    ],
+    "environment_variables": {
+      "MCP_DEBUG": {
+        "description": "Enable debug mode untuk troubleshooting",
+        "values": ["true", "false"],
+        "default": "false"
+      },
+      "MCP_LANGUAGE": {
+        "description": "Set default language untuk interface",
+        "values": ["id", "en", "zh-CN", "zh-TW"],
+        "default": "id"
+      },
+      "PYTHONIOENCODING": {
+        "description": "Set Python encoding untuk Unicode support",
+        "default": "utf-8"
+      }
+    },
+    "troubleshooting": {
+      "server_not_found": {
+        "issue": "MCP server tidak ditemukan",
+        "solutions": [
+          "Install UV: curl -LsSf https://astral.sh/uv/install.sh | sh",
+          "Install mcp-ngobrol: uvx mcp-ngobrol@latest",
+          "Check PATH environment variable"
+        ]
+      },
+      "gui_not_showing": {
+        "issue": "GUI tidak muncul",
+        "solutions": [
+          "Check display environment dan Qt dependencies",
+          "Try manual run: python run_mcp_simple.py",
+          "Install PySide6: pip install PySide6"
+        ]
+      },
+      "encoding_issues": {
+        "issue": "Character encoding problems",
+        "solutions": [
+          "Set PYTHONIOENCODING=utf-8",
+          "Check system locale settings",
+          "Restart Augment after config change"
+        ]
+      }
+    }
+  }
+}
