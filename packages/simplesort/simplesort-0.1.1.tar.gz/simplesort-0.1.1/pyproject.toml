@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "simplesort"
+version = "0.1.1"
+authors = [
+  { name="Brandon G", email="vntmln1@gmail.com" },
+]
+description = "A simple Python library containing a merge sort implementation."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["sort", "merge sort", "algorithm"]
+
+[project.urls]
+Homepage = "https://github.com/bebrowq/simplesort"
+Issues = "https://github.com/bebrowq/simplesort/issues"
