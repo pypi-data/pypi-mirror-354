@@ -1,0 +1,29 @@
+[project]
+name = "django-spinproject"
+version = "3.0.0-rc0"
+description = "Opinionated version of `startproject` with some popular third-party packages. Starter pack includes: whitenoise, django-environ, logging, GitHub Scripts to Rule Them All, basic Dockerfile and Makefile."
+readme = "README.md"
+authors = [
+    { name = "m1kc (Max Musatov)", email = "m1kc@yandex.ru" }
+]
+requires-python = ">=3.7"
+dependencies = [
+    "jinja2>=3.1.2",
+]
+license = "MIT"
+keywords = ["django", "django-admin", "startproject", "template", "whitenoise", "django-environ", "SRTA"]
+classifiers = [
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+homepage = "https://github.com/m1kc/django-spinproject"
+repository = "https://github.com/m1kc/django-spinproject.git"
+documentation = "https://github.com/m1kc/django-spinproject"
+
+[project.scripts]
+django-spinproject = "django_spinproject.bin.spinproject:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
