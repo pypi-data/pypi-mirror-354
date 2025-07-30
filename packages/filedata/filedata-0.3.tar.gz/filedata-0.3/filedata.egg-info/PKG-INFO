@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: filedata
+Version: 0.3
+Summary: Utils for extracting data from files
+Author: jadbin
+Author-email: jadbin.com@hotmail.com
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+Requires-Dist: lxml>=4.6.3
+Requires-Dist: cssselect>=1.1.0
+Requires-Dist: PyMuPDF>=1.21.1
+Requires-Dist: Pillow>=9.4.0
+Requires-Dist: requests-toolbelt>=0.9.1
+Requires-Dist: pydantic>=1.8.1
+Requires-Dist: opencv-python>=4.6.0.66
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+filedata
+========
+
+Utils for extracting data from files.
