@@ -1,0 +1,37 @@
+---
+name: Spell check
+
+on:
+  pull_request:
+    branches:
+      - 'develop'
+      - 'develop-1.9'
+    paths:
+      - 'docs/**'
+      - '*.md'
+      - '.github/workflows/spellcheck.yaml'
+
+
+  push:
+    branches:
+      - 'develop'
+      - 'develop-1.9'
+    paths:
+      - 'docs/**'
+      - '*.md'
+      - '.github/workflows/spellcheck.yaml'
+
+# When a PR is updated, cancel the jobs from the previous version. Merges
+# do not define head_ref, so use run_id to never cancel those jobs.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+
+  pyspellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: igsekor/pyspelling-any@v1.0.4
+        name: Spellcheck
