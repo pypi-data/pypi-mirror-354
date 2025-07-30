@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: truststore-autorun
+Version: 1.0.0
+Summary: Inject truststore at Python startup
+Project-URL: changelog, https://github.com/leodevian/truststore-autorun/blob/main/CHANGELOG.md
+Project-URL: homepage, https://github.com/leodevian/truststore-autorun
+Project-URL: issues, https://github.com/leodevian/truststore-autorun/issues
+Project-URL: repository, https://github.com/leodevian/truststore-autorun
+Author-email: Léo Bernard <leodevian.gh@gmail.com>
+Maintainer-email: Léo Bernard <leodevian.gh@gmail.com>
+License-Expression: MIT
+License-File: LICENSE
+Classifier: Development Status :: 4 - Beta
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Typing :: Typed
+Requires-Python: >=3.10
+Requires-Dist: truststore>=0.6
+Description-Content-Type: text/markdown
+
+# truststore-autorun
+
+Inject [truststore](https://pypi.org/project/truststore/) at Python startup.
+
+- GitHub repository: <https://github.com/leodevian/truststore-autorun>
+- License: MIT
+
+## Installation
+
+Install `truststore-autorun` using [pip](https://pip.pypa.io/en/stable/):
+
+```console
+$ pip install truststore-autorun
+```
