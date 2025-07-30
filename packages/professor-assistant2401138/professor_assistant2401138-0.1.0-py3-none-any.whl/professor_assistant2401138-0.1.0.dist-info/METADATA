@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: professor-assistant2401138
+Version: 0.1.0
+Summary: A Python package to generate exams from question banks for professors.
+Author: sabin
+Author-email: sabin <sabin@dsu.ac.kr>
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+
+# Professor Assistant
+
+Professor Assistant is a Python package that helps professors generate quizzes and exams from a simple question bank.
+
+## Features
+
+- Read a text-based question bank
+- Randomly generate exams of desired length
+- Save exam questions to a text file
+
+## Installation
+
+You can install it from PyPI after uploading:
+
+```bash
+pip install professor-assistant2401138
