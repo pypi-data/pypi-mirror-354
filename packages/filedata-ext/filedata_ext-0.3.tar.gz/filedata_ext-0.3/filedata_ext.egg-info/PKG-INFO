@@ -1,0 +1,28 @@
+Metadata-Version: 2.4
+Name: filedata-ext
+Version: 0.3
+Summary: Extensions of filedata for guniflask
+Author: jadbin
+Author-email: jadbin.com@hotmail.com
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+Requires-Dist: filedata
+Requires-Dist: guniflask
+Requires-Dist: kikyo
+Requires-Dist: gevent>=21.10.2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+filedata-ext
+============
+
+Extensions of filedata for guniflask.
