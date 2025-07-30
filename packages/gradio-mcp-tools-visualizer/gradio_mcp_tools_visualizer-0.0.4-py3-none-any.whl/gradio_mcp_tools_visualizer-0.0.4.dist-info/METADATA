@@ -1,0 +1,70 @@
+Metadata-Version: 2.4
+Name: gradio_mcp_tools_visualizer
+Version: 0.0.4
+Summary: Python library for easily interacting with trained machine learning models
+Author-email: Thaddeus Zambellis <thaddeus.zambellis@gmail.com>
+License-Expression: Apache-2.0
+Keywords: gradio-custom-component,gradio-template-Fallback,mcp
+Classifier: Development Status :: 3 - Alpha
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Requires-Python: >=3.8
+Requires-Dist: gradio<6.0,>=4.0
+Provides-Extra: dev
+Requires-Dist: build; extra == 'dev'
+Requires-Dist: twine; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# Gradio MCP Tool Visualizer
+
+**Gradio MCP Tool Visualizer** is a visualizer for MCP tools. It allows developers and researchers to explore the structure of a mcp server by rendering tools and example input in an interactive and searchable list.
+
+## Features
+
+- Visualize mcp stucture
+- Searchable list
+- Visualize example components
+
+## Usage
+
+### Installation
+
+```bash
+pip install -r gradio-mcp-tools-visualizer
+```
+
+### Confugiration
+
+```python
+import gradio as gr
+from gradio_mcp_tools_visualizer import mcp_tools_visualizer
+
+
+server_parameters = {"url": "https://abidlabs-mcp-tools2.hf.space/gradio_api/mcp/sse", "transport": "sse"}  # <--- Your MCP server parameters
+
+with gr.Tab("MCP Tool Visualizer"):
+        mcp_tools_visualizer(
+            value={
+                'server_parameters': server_parameters
+            },
+        )
+```
+
+---
+tags: [gradio-custom-component, ]
+title: gradio_mcp_tools_visualizer
+short_description: A gradio custom component
+colorFrom: blue
+colorTo: yellow
+sdk: gradio
+pinned: false
+app_file: space.py
+---
