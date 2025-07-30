@@ -1,0 +1,16 @@
+[project]
+name = "spam-detector-cli"
+version = "1.0.4"
+description = "A simple CLI tool to detect spam messages"
+authors = [
+    { name="Nama Kamu", email="email@example.com" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "scikit-learn",
+    "pandas"
+]
+
+[project.scripts]
+spam-detector-cli = "spam_detector_cli.main:main"
