@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: tesseral-fastapi
+Version: 0.0.3
+Summary: Tesseral SDK for FastAPI
+Author-email: Ulysse Carion <ulysse.carion@tesseral.com>
+Requires-Python: >=3.13
+Requires-Dist: fastapi[standard]>=0.115.12
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: pytest>=8.4.0
+Requires-Dist: starlette>=0.46.1
+Requires-Dist: tesseral-sdk>=0.0.10
+Description-Content-Type: text/markdown
+
+# Tesseral Flask SDK
+
+[![pypi](https://img.shields.io/pypi/v/tesseral-fastapi)](https://pypi.python.org/pypi/tesseral-fastapi)
+
+`tesseral_flask` is the official Tesseral SDK for FastAPI.
+
+Documentation for this package is available [here](https://tesseral.com/docs/sdks/serverside-sdks/tesseral-sdk-fastapi).
