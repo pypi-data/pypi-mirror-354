@@ -1,0 +1,145 @@
+Metadata-Version: 2.4
+Name: canonmap
+Version: 0.1.2
+Summary: CanonMap - A Python library for data mapping and canonicalization
+Home-page: https://github.com/vinceberry/canonmap
+Author: Vince Berry
+Author-email: vince.berry@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: spacy
+Requires-Dist: rapidfuzz
+Requires-Dist: Metaphone
+Requires-Dist: scikit-learn
+Requires-Dist: chardet
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# CanonMap
+
+A Python library for data mapping and canonicalization.
+
+## Installation
+
+```bash
+pip install canonmap
+```
+
+## Quick Start
+
+```python
+from canonmap import CanonMap
+
+# Initialize the library
+canon = CanonMap()
+
+# Generate artifacts from a CSV file
+artifacts = canon.generate_artifacts(
+    csv_path="path/to/your/data.csv",
+    entity_fields=["name", "email"],
+    use_other_fields_as_metadata=True
+)
+
+# Save artifacts to files
+zip_path = canon.save_artifacts(
+    artifacts=artifacts,
+    output_path="output",
+    name="my_data"
+)
+
+print(f"Artifacts saved to: {zip_path}")
+```
+
+## Detailed Example
+
+Here's a complete example showing how to use the library in a real-world scenario:
+
+```python
+from canonmap import CanonMap
+import pandas as pd
+from pathlib import Path
+
+def process_customer_data(input_csv: str, output_dir: str):
+    # Initialize CanonMap
+    canon = CanonMap()
+    
+    # Define the entity fields we want to extract
+    entity_fields = [
+        "customer_name",
+        "email",
+        "phone_number",
+        "company"
+    ]
+    
+    # Generate artifacts from the CSV
+    artifacts = canon.generate_artifacts(
+        csv_path=input_csv,
+        entity_fields=entity_fields,
+        use_other_fields_as_metadata=True,  # Include other columns as metadata
+        num_rows=None  # Process all rows
+    )
+    
+    # Create output directory if it doesn't exist
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+    
+    # Save the artifacts
+    zip_path = canon.save_artifacts(
+        artifacts=artifacts,
+        output_path=str(output_path),
+        name="customer_data",
+        save_metadata=True,
+        save_schema=True
+    )
+    
+    # You can also work with the artifacts directly
+    metadata = artifacts["metadata"]
+    schema = artifacts["schema"]
+    
+    # Example: Print some statistics
+    print(f"Processed {metadata.get('row_count', 0)} rows")
+    print(f"Found {len(schema.get('entities', []))} entities")
+    
+    return zip_path
+
+# Usage
+if __name__ == "__main__":
+    zip_file = process_customer_data(
+        input_csv="customers.csv",
+        output_dir="processed_data"
+    )
+    print(f"Processing complete. Results saved to: {zip_file}")
+```
+
+## Features
+
+- Process CSV files and generate metadata and schema
+- Extract and canonicalize entity fields
+- Map data to standardized formats
+- Save artifacts as JSON files or ZIP archives
+- Configurable processing options
+
+## Requirements
+
+- Python 3.8+
+- See setup.py for full list of dependencies
+
+## License
+
+MIT License 
