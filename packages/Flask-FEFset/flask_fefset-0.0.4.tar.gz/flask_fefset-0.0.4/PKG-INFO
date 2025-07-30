@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: Flask-FEFset
+Version: 0.0.4
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Flask==3.0.3
+Requires-Dist: Flask-Bootstrap
+Provides-Extra: login
+Requires-Dist: Flask-IAM; extra == "login"
+Provides-Extra: dev
+Requires-Dist: build; extra == "dev"
+Requires-Dist: twine; extra == "dev"
+Dynamic: license-file
+
+# Flask-FEFchoice
+Front end framework setup

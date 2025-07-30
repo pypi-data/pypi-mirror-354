@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools","setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["flask_fefset*"]
+exclude = ["docs*", "tests*"]
+
+[tool.setuptools]
+include-package-data = true
+
+[project]
+name = "Flask-FEFset"
+version = "0.0.4"
+readme = "README.md"
+dependencies = [
+  'Flask==3.0.3',
+  'Flask-Bootstrap'
+]
+
+[project.optional-dependencies]
+login = ['Flask-IAM']
+dev = [
+  'build',
+  'twine',
+]
+
