@@ -1,0 +1,37 @@
+node-workflow:
+  type: Workflow
+  desc: |
+    Node workflow for run the minimum data process like ETL/ELT/EL action.
+
+  params:
+    name:
+      desc: "A node name."
+      type: str
+    audit-date:
+      type: datetime
+
+  jobs:
+    start-node:
+      desc: "A start node job"
+      stages:
+        - name: "Get and Start Node Information"
+          id: start-node
+          uses: tasks/start-node@v2
+          with:
+            name: ${{ params.name }}
+
+        - name: "Switch Node Caller"
+          uses: tasks/${{ stages.start-node.outputs.operator }}@${{ stages.start-node.outputs.task }}
+          with:
+            node: ${{ stages.start-node.outputs.node }}
+            audit_date: ${{ params.audit-date }}
+
+        - name: "Making Data Quality"
+          echo: Start run data quality
+
+        - name: "Clear log"
+          echo: Clear logging and close node
+
+        - name: "End node"
+          echo: |
+            End run node: ${{ params.name }}
