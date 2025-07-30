@@ -1,0 +1,19 @@
+Metadata-Version: 2.3
+Name: magicwandmondub
+Version: 0.1.0
+Summary: Translation and live caption
+Author: Enkhdavaa Batlkhagva
+Author-email: batlkhagva.e@gmail.com
+Requires-Python: >=3.10
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: google-cloud-speech (>=2.32.0,<3.0.0)
+Requires-Dist: numpy (>=2.2.6,<3.0.0)
+Requires-Dist: sounddevice (>=0.5.2,<0.6.0)
+Requires-Dist: soundfile (>=0.13.1,<0.14.0)
+Description-Content-Type: text/markdown
+
+

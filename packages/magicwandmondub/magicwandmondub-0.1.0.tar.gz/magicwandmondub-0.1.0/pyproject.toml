@@ -1,0 +1,26 @@
+[project]
+name = "magicwandmondub"
+version = "0.1.0"
+description = "Translation and live caption"
+authors = [
+    {name = "Enkhdavaa Batlkhagva",email = "batlkhagva.e@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+    "numpy (>=2.2.6,<3.0.0)",
+    "sounddevice (>=0.5.2,<0.6.0)",
+    "google-cloud-speech (>=2.32.0,<3.0.0)",
+    "soundfile (>=0.13.1,<0.14.0)"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = [
+    {include = "magicwandmondub"},
+]
