@@ -1,0 +1,113 @@
+# yaml-language-server: $schema=./schemas/bundle_config_schema.json
+
+
+bundle:
+  name: retail-ai-bundle
+
+artifacts:
+  default:
+    type: whl
+    build: uv build
+    path: .
+
+variables:
+  config_path:
+    description: Path to the configuration file for the job.
+    default: ../config/model_config.yaml
+  node_type: 
+    description: The job compute node type
+    default: Standard_D4ads_v5
+    
+resources:
+  jobs:
+    deploy-retail-ai-job:
+      name: deploy-retail-ai-job
+      job_clusters:
+        - job_cluster_key: common-cluster
+          new_cluster:
+            node_type_id: ${var.node_type}
+            spark_version: 16.2.x-scala2.12
+            num_workers: 1
+      tasks:
+        - task_key: ingest-and-transform
+          job_cluster_key: common-cluster
+          notebook_task:
+            notebook_path: ./notebooks/01_ingest_and_transform.py
+            base_parameters:
+              config-path: ${var.config_path}
+          libraries:
+            - whl: ./dist/*.whl
+        - task_key: provision-vector-search
+          depends_on:
+            - task_key: ingest-and-transform
+          job_cluster_key: common-cluster
+          notebook_task:
+            notebook_path: ./notebooks/02_provision_vector_search.py
+            base_parameters:
+              config-path: ${var.config_path}
+          libraries:
+            - whl: ./dist/*.whl
+        - task_key: generate-evaluation-data
+          depends_on:
+            - task_key: provision-vector-search
+          job_cluster_key: common-cluster
+          notebook_task:
+            notebook_path: ./notebooks/03_generate_evaluation_data.py
+            base_parameters:
+              config-path: ${var.config_path}
+          libraries:
+            - whl: ./dist/*.whl
+        - task_key: unity-catalog-tools
+          depends_on:
+            - task_key: provision-vector-search
+          job_cluster_key: common-cluster
+          notebook_task:
+            notebook_path: ./notebooks/04_unity_catalog_tools.py
+            base_parameters:
+              config-path: ${var.config_path}
+          libraries:
+            - whl: ./dist/*.whl
+        - task_key: deploy-agents
+          depends_on:
+            - task_key: unity-catalog-tools
+          job_cluster_key: common-cluster
+          notebook_task:
+            notebook_path: ./notebooks/05_agent_as_code_driver.py
+            base_parameters:
+              config-path: ${var.config_path}
+          libraries:
+            - whl: ./dist/*.whl
+        - task_key: create-monitor
+          depends_on:
+            - task_key: deploy-agents
+          job_cluster_key: common-cluster
+          notebook_task:
+            notebook_path: ./notebooks/07_create_monitor.py
+            base_parameters:
+              config-path: ${var.config_path}
+          libraries:
+            - whl: ./dist/*.whl
+        - task_key: run-evaluation
+          depends_on:
+            - task_key: create-monitor
+            - task_key: deploy-agents
+            - task_key: generate-evaluation-data
+          job_cluster_key: common-cluster
+          notebook_task:
+            notebook_path: ./notebooks/06_run_evaluation.py
+            base_parameters:
+              config-path: ${var.config_path}
+          libraries:
+            - whl: ./dist/*.whl
+
+targets:
+  dev:
+    default: True
+    workspace:
+      host: https://adb-984752964297111.11.azuredatabricks.net
+  prd:
+    default: True
+    workspace:
+      host: https://e2-demo-field-eng.cloud.databricks.com
+    variables:
+      node_type: i3.xlarge
