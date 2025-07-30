@@ -1,0 +1,143 @@
+[project]
+name = "lusos"
+dynamic = ["version"]
+authors = [{name = "smknaake", email = "bas.knaake@deltares.nl"}]
+description = "Spatial calculation of GHG emissions from SOMERS modelling results"
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = [
+    "LULUCF",
+    "SOMERS",
+	"Greenhouse gas emission",
+	"Basis Registratie Grootschalige Topografie",
+    "BRO Bodemkaart",
+    "Lasso",
+	"Deltares", 
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Science/Research",
+	"Topic :: Scientific/Engineering",
+	"License :: OSI Approved :: MIT License",
+	"Operating System :: OS Independent",
+	"Programming Language :: Python",
+	"Programming Language :: Python :: 3.12",
+]
+requires-python = ">= 3.12"
+dependencies = [
+	"dask",
+	"fiona",
+	"geopandas",
+	"h5netcdf",
+	"mapbox-earcut",
+	"netcdf4",
+	"numba",
+	"numba_celltree",
+	"numpy",
+	"pandas",
+	"pyarrow",
+	"rioxarray",
+	"xarray",
+	"xugrid",
+	"pooch",
+]
+
+[project.urls]
+Homepage = "https://github.com/Deltares-research/lulucf-somers"
+Repository = "https://github.com/Deltares-research/lulucf-somers"
+Issues = "https://github.com/Deltares-research/lulucf-somers/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "lusos/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+only-include = ["lusos", "tests"]
+
+[tool.pixi.project]
+channels = ["conda-forge"]
+platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
+
+[tool.pixi.pypi-dependencies]
+lusos = { path = ".", editable = true }
+
+[tool.pixi.tasks]
+test = "NUMBA_DISABLE_JIT=1 python -m pytest --cov=lusos --cov-report xml --cov-report term"
+test-local = "NUMBA_DISABLE_JIT=1 python -m pytest -v --cov"
+format = "black ."
+lint = "ruff check --fix ./lusos"
+build-docs = "sphinx-build -b html docs ./docs/build"
+rm-jupyter = "rm -r ./docs/jupyter_execute"
+rm-build = "rm -r ./docs/build"
+rm-generated = "rm -r ./docs/api_reference/generated"
+rebuild-docs = { depends-on = ["rm-jupyter", "rm-build", "rm-generated", "build-docs"] }
+
+[tool.pixi.dependencies]
+python = ">=3.12"
+pip = "*"
+numpy = "*"
+pandas = "*"
+geopandas = "*"
+shapely = "*"
+xarray = "*"
+rioxarray = "*"
+fiona = "*"
+matplotlib = "*"
+pyarrow = "*"
+pytest = "*"
+dask = "*"
+xugrid = "*"
+mapbox_earcut = "*"
+numba = "*"
+numba_celltree = "*"
+netcdf4 = "*"
+h5netcdf = "*"
+more-itertools = "*"
+pytest-cov = "*"
+black = "*"
+ruff = "*"
+sphinx = "*"
+pydata-sphinx-theme = "*"
+sphinx-design = "*"
+myst-nb = "*"
+pooch = "*"
+
+[tool.pixi.feature.py313.dependencies]
+python = "3.13.*"
+
+[tool.pixi.feature.py312.dependencies]
+python = "3.12.*"
+
+[tool.pixi.environments]
+py312 = { features = ["py312"] }
+py313 = { features = ["py313"] }
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
+markers = [
+	"unittest: test of single component",
+	"integrationtest: test of multiple components",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+]
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "N", "I001"]
+ignore = ["F401", "E501", "F811"]
+unfixable = ["F401"]
+pydocstyle.convention = "numpy"

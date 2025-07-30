@@ -1,0 +1,96 @@
+Metadata-Version: 2.4
+Name: lusos
+Version: 0.2.4
+Summary: Spatial calculation of GHG emissions from SOMERS modelling results
+Project-URL: Homepage, https://github.com/Deltares-research/lulucf-somers
+Project-URL: Repository, https://github.com/Deltares-research/lulucf-somers
+Project-URL: Issues, https://github.com/Deltares-research/lulucf-somers/issues
+Author-email: smknaake <bas.knaake@deltares.nl>
+License: MIT License
+        
+        Copyright (c) Deltares
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+License-File: LICENSE
+Keywords: BRO Bodemkaart,Basis Registratie Grootschalige Topografie,Deltares,Greenhouse gas emission,LULUCF,Lasso,SOMERS
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.12
+Requires-Dist: dask
+Requires-Dist: fiona
+Requires-Dist: geopandas
+Requires-Dist: h5netcdf
+Requires-Dist: mapbox-earcut
+Requires-Dist: netcdf4
+Requires-Dist: numba
+Requires-Dist: numba-celltree
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: pooch
+Requires-Dist: pyarrow
+Requires-Dist: rioxarray
+Requires-Dist: xarray
+Requires-Dist: xugrid
+Description-Content-Type: text/markdown
+
+# LULUCF SOMERS Shell (LUSOS)
+[![PyPI version](https://img.shields.io/pypi/v/lusos.svg)](https://pypi.org/project/lusos)
+[![License: MIT](https://img.shields.io/pypi/l/imod)](https://choosealicense.com/licenses/mit)
+[![Lifecycle: experimental](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![Build: status](https://img.shields.io/github/actions/workflow/status/deltares-research/lulucf-somers/ci.yml)](https://github.com/Deltares-research/lulucf-somers/actions)
+[![codecov](https://codecov.io/gh/Deltares-research/lulucf-somers/graph/badge.svg?token=HCNGLWTQ2H)](https://codecov.io/gh/Deltares-research/lulucf-somers)
+[![Formatting: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/charliermarsh/ruff)
+
+Python package to calculate spatial greenhouse gas (GHG) emissions based on [PeatParcel2d-AAP](https://github.com/Deltares-research/PeatParcel2d-AAP) data, topographic data ([BGT](https://www.pdok.nl/introductie/-/article/basisregistratie-grootschalige-topografie-bgt-)) and the [BRO Bodemkaart](https://www.pdok.nl/-/de-services-voor-de-bro-datasets-bodemkaart-en-geomorfologische-kaart-zijn-vernieuwd).
+
+
+# How to install
+Currently, `lusos` needs be installed in a Python 3.12 environment, install the latest stable release using pip:
+
+```powershell
+pip install lusos
+```
+
+Or the latest (experimental) version of the main branch directly from GitHub using:
+
+```powershell
+pip install git+https://github.com/Deltares-research/lusos.git
+```
+
+
+## Installation (developer)
+We use [Pixi](https://github.com/prefix-dev/pixi) for package management and workflows.
+
+With pixi installed, navigate to the folder of the cloned repository and run the following 
+to install all GeoST dependencies:
+
+```powershell
+pixi install
+```
+
+This installs the package in editable mode, so you can make changes to the code and test them immediately.
+
+
+# How to use
+TODO: Add usage instructions
