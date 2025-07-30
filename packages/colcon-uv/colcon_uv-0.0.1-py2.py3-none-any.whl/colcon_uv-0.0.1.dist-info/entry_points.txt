@@ -1,0 +1,14 @@
+[colcon_core.package_augmentation]
+uv = colcon_uv.package_augmentation.uv:UvPackageAugmentation
+
+[colcon_core.package_identification]
+uv = colcon_uv.package_identification.uv:UvPackageIdentification
+
+[colcon_core.task.build]
+uv.python = colcon_uv.task.uv.build:UvBuildTask
+
+[colcon_core.task.test]
+uv.python = colcon_uv.task.uv.test:UvTestTask
+
+[colcon_core.verb]
+uv = colcon_uv.cli:UvVerb
