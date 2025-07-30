@@ -1,0 +1,109 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "asyncframe"
+version = "0.1.0"
+description = "现代异步Python Web框架，支持FBV和CBV两种编程风格，以及完整的异步ORM系统"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "AsyncFrame Team", email = "team@asyncframe.org"},
+]
+keywords = ["web", "framework", "async", "asyncio", "orm", "database"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Framework :: AsyncIO",
+]
+
+dependencies = [
+    "uvicorn>=0.18.0",
+    "python-multipart>=0.0.5",
+    "jinja2>=3.1.0",
+    "aiofiles>=0.8.0",
+    "asyncpg>=0.28.0",
+    "aiomysql>=0.1.1",
+    "aiosqlite>=0.19.0",
+    "databases>=0.7.0",
+    "python-dotenv>=0.19.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=22.0.0",
+    "flake8>=4.0.0",
+    "mypy>=0.991",
+]
+
+mysql = [
+    "aiomysql>=0.1.1",
+]
+
+postgresql = [
+    "asyncpg>=0.28.0",
+]
+
+all = [
+    "aiomysql>=0.1.1",
+    "asyncpg>=0.28.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/0716gzs/asyncframe"
+Documentation = "https://github.com/0716gzs/asyncframe/blob/main/README.md"
+Repository = "https://github.com/0716gzs/asyncframe.git"
+"Bug Tracker" = "https://github.com/0716gzs/asyncframe/issues"
+
+[project.scripts]
+acf = "asyncframe.management:execute_from_command_line"
+
+[tool.setuptools.packages.find]
+include = ["asyncframe*"]
+exclude = ["tests*", "script*"]
+
+[tool.setuptools.package-data]
+asyncframe = ["py.typed"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"] 
