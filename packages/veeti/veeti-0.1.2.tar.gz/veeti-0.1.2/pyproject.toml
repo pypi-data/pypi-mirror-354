@@ -1,0 +1,27 @@
+[project]
+name = "veeti"
+version = "0.1.2"
+description = ""
+authors = [
+    {name = "poksiala",email = "panu@oksiala.fi"}
+]
+readme = "README.md"
+requires-python = ">=3.11,<4.0.0"
+dependencies = [
+    "fastapi[standard] (>=0.115.12,<0.116.0)",
+    "requests (>=2.32.3,<3.0.0)",
+    "loguru (>=0.7.3,<0.8.0)"
+]
+
+[tool.poetry]
+packages = [{include = "veeti", from = "src"}]
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+uvicorn = "^0.34.0"
+types-requests = "^2.32.0.20250328"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
