@@ -1,0 +1,44 @@
+Metadata-Version: 2.4
+Name: data-gouv-fr-mcp-server
+Version: 0.1.0
+Summary: A simple MCP data gouv fr server
+Author-email: Albert-API <albert.api@numerique.gouv.fr>
+License: MIT
+Project-URL: Homepage, https://github.com/etalab-ia/data_gouv_fr_mcp_server
+Project-URL: Bug Reports, https://github.com/etalab-ia/data_gouv_fr_mcp_server/issues
+Project-URL: Source, https://github.com/etalab-ia/data_gouv_fr_mcp_server
+Keywords: mcp,data-gouv-fr,server
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: mcp[cli]>=1.2.0
+Provides-Extra: dev
+Requires-Dist: build; extra == "dev"
+Requires-Dist: twine; extra == "dev"
+Provides-Extra: test
+Requires-Dist: pytest>=8.3.4; extra == "test"
+Requires-Dist: pytest-asyncio>=0.24.0; extra == "test"
+
+# data.gouv.fr MCP Server
+
+Basic MCP server which returns datasets for a given query
+
+## installation
+
+1. Enable direnv:
+
+```commandline
+direnv allow .
+```
+
+2. Install dependencies:
+```commandline
+pip install .
+```
