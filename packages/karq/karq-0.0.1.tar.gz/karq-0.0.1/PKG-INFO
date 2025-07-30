@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: karq
+Version: 0.0.1
+Summary: karq
+Author-email: Alex Kalaverin <alex@kalaver.in>
+Project-URL: Homepage, https://kalaver.in
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Requires-Python: <3.12,>=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: aio-pika>=9.5.5
+Requires-Dist: aiormq>=6.8.1
+Requires-Dist: fair-async-rlock>=1.0.7
+Requires-Dist: kalib
+Requires-Dist: pamqp>=3.3.0
+Requires-Dist: uv>=0.6.17
