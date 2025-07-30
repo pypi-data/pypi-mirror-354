@@ -1,0 +1,14 @@
+moshi==0.2.4
+isort
+lightning
+torchaudio
+torchmetrics[audio]
+hydra-core
+rich
+tensorboard
+datasets[audio]
+huggingface_hub[cli]
+transformers
+pytest
+auraloss
+levenshtein
