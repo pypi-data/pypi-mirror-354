@@ -1,0 +1,8 @@
+Metadata-Version: 2.4
+Name: mm-eth
+Version: 0.7.0
+Requires-Python: >=3.13
+Requires-Dist: mm-cryptocurrency>=0.4.7
+Requires-Dist: mm-std>=0.5.3
+Requires-Dist: typer~=0.16.0
+Requires-Dist: web3~=7.12.0
