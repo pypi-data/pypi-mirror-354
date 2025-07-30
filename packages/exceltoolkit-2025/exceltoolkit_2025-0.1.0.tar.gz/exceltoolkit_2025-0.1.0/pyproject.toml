@@ -1,0 +1,25 @@
+[project]
+name = "exceltoolkit_2025"
+version = "0.1.0"
+description = "Excel file helper for creating, updating, and querying data using pandas."
+readme = "README.md"
+authors = [
+    { name = "Avinash S", email = "avinash.s6055@gmail.com" }
+]
+license = {text = "MIT"}
+keywords = ["excel", "pandas", "dataframe", "utility"]
+dependencies = [
+    "pandas>=1.3",
+    "openpyxl>=3.0"
+]
+requires-python = ">=3.7"
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["utilities"]
+
+[tool.setuptools.package-data]
+"*" = ["*.xlsx"]
