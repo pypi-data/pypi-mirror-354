@@ -1,0 +1,186 @@
+Metadata-Version: 2.4
+Name: caselessly
+Version: 1.0.0
+Summary: Caseless data type container implementations for Python.
+Author: Daniel Sissman
+License-Expression: MIT
+Project-URL: documentation, https://github.com/bluebinary/caselessly/blob/main/README.md
+Project-URL: changelog, https://github.com/bluebinary/caselessly/blob/main/CHANGELOG.md
+Project-URL: repository, https://github.com/bluebinary/caselessly
+Project-URL: issues, https://github.com/bluebinary/caselessly/issues
+Project-URL: homepage, https://github.com/bluebinary/caselessly
+Keywords: containers,data types,case insensitive,caseless
+Platform: any
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Provides-Extra: development
+Requires-Dist: black==24.10.*; extra == "development"
+Requires-Dist: pytest==8.3.*; extra == "development"
+Requires-Dist: pytest-codeblocks==0.17.0; extra == "development"
+Provides-Extra: distribution
+Requires-Dist: build; extra == "distribution"
+Requires-Dist: twine; extra == "distribution"
+Requires-Dist: wheel; extra == "distribution"
+
+# Caselessly
+
+The `caselessly` library provides several case-less container data type implementations:
+
+ * a `dict` subclass that allows for case-insensitive comparison of its string keys
+ * a `list` subclass that allows for case-insensitive comparison of its string items
+ * a `set` subclass that allows for case-insensitive comparison of its string items
+ * a `tuple` subclass that allows for case-insensitive comparison of its string items
+
+### Requirements
+
+The Caselessly library has been tested with Python 3.10, 3.11, 3.12 and 3.13. The library is
+not compatible with Python 3.9 or earlier.
+
+### Installation
+
+The Caselessly library is available from PyPI, so may be added to a project's dependencies
+via its `requirements.txt` file or similar by referencing the Caselessly library's name,
+`caselessly`, or the library may be installed directly into your local runtime environment
+using `pip` via the `pip install` command by entering the following into your shell:
+
+	$ pip install caselessly
+
+### Example Usage
+
+To use the Caselessly library, import the library and the data type or data types you
+need and use them just like their regular counterparts, with the knowledge that they
+support setting and getting values without regard to the casing of any string keys:
+
+#### Caseless Dictionary
+
+```python
+from caselessly import caselessdict
+
+data = caselessdict({"a": 1, "B": 2}, c=3)
+
+assert isinstance(data, caselessdict)
+assert isinstance(data, dict)
+
+assert len(data) == 3
+
+assert data == {"A": 1, "B": 2, "c": 3}
+assert data == {"a": 1, "b": 2, "c": 3}
+assert data == {"a": 1, "B": 2, "c": 3}
+assert data == {"A": 1, "b": 2, "C": 3}
+```
+
+#### Caseless List
+
+```python
+from caselessly import caselesslist
+
+data: list[str] = ["A", "B", "c", "D", "e", "f"]
+
+assert isinstance(data, list)
+assert len(data) == 6
+
+assert "A" in data
+assert "B" in data
+assert not "C" in data
+
+data = caselesslist(data)
+
+assert isinstance(data, list)
+assert isinstance(data, caselesslist)
+assert len(data) == 6
+
+assert "A" in data
+assert "B" in data
+assert "C" in data  # note that "C" does not exist in the list but "c" does
+assert "D" in data
+assert "E" in data  # note that "E" does not exist in the list but "e" does
+assert "f" in data  # note that "f" does not exist in the list but "f" does
+```
+
+#### Caseless Set
+
+```python
+from caselessly import caselessdict
+
+data = caselessdict({"a": 1, "B": 2}, c=3)
+
+assert isinstance(data, caselessdict)
+assert isinstance(data, dict)
+
+assert len(data) == 3
+
+assert data == {"A": 1, "B": 2, "c": 3}
+assert data == {"a": 1, "b": 2, "c": 3}
+assert data == {"a": 1, "B": 2, "c": 3}
+assert data == {"A": 1, "b": 2, "C": 3}
+```
+
+#### Caseless Tuple
+
+```python
+from caselessly import caselesstuple
+
+data = tuple(["A", "B", "c", "D", "E", "f"])
+
+assert "A" in data
+assert "B" in data
+assert not "C" in data
+
+data = caselesstuple(data)
+
+assert "A" in data
+assert "B" in data
+assert "C" in data  # note that "C" does not exist in the list but "c" does
+assert "D" in data
+assert "E" in data
+assert "F" in data  # note that "F" does not exist in the list but "f" does
+```
+
+### Classes & Methods
+
+The Caselessly library provides the following data type subclasses and each class offers
+a shorthand alias that prefixes the superclass' name with `ci` to denote that the class
+is its case-insensitive variant. The aliases can be used interchangeably with the fully
+qualified class names as they are direct aliases rather than further subclasses.
+
+| Subclass        | Superclass | Subclass Alias |
+|-----------------|------------|----------------|
+| `caselessdict`  | `dict`     | `cidict`       |
+| `caselesslist`  | `list`     | `cilist`       |
+| `caselessset`   | `set`      | `ciset`        |
+| `caselesstuple` | `tuple`    | `cituple`      |
+
+The Caselessly library classes can be used interchangeably with their superclasses where
+one needs the ability to place items into and retrieve items from the containers without
+regard to case sensitivity. The classes offer all the usual functionality that their
+superclasses offer, and all the usual methods and interactions are available.
+
+### Unit Tests
+
+The Caselessly library includes a suite of comprehensive unit tests which ensure that the
+library functionality operates as expected. The unit tests were developed with and are
+run via `pytest`.
+
+To ensure that the unit tests are run within a predictable runtime environment where all of the necessary dependencies are available, a [Docker](https://www.docker.com) image is created within which the tests are run. To run the unit tests, ensure Docker and Docker Compose is [installed](https://docs.docker.com/engine/install/), and perform the following commands, which will build the Docker image via `docker compose build` and then run the tests via `docker compose run` – the output of running the tests will be displayed:
+
+```shell
+$ docker compose build
+$ docker compose run tests
+```
+
+To run the unit tests with optional command line arguments being passed to `pytest`, append the relevant arguments to the `docker compose run tests` command, as follows, for example passing `-vv` to enable verbose output:
+
+```shell
+$ docker compose run tests -vv
+```
+
+See the documentation for [PyTest](https://docs.pytest.org/en/latest/) regarding available optional command line arguments.
+
+### Copyright & License Information
+
+Copyright © 2025 Daniel Sissman; licensed under the MIT License.
