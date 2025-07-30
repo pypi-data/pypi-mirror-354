@@ -1,0 +1,110 @@
+<div align="center">
+  <img src="https://raw.githubusercontent.com/bosscoder-ai/aitoolkit_cam/main/docs/assets/logo.png" alt="AIToolkit Camera Logo" width="150"/>
+  <h1>AIToolkit Camera</h1>
+  <p><strong>一个为中学生和初学者设计的超简单Python摄像头库</strong></p>
+  <p>
+    <a href="https://pypi.org/project/aitoolkit-cam/"><img src="https://img.shields.io/pypi/v/aitoolkit-cam.svg" alt="PyPI Version"></a>
+    <a href="https://github.com/bosscoder-ai/aitoolkit_cam/blob/main/LICENSE"><img src="https://img.shields.io/pypi/l/aitoolkit-cam.svg" alt="License"></a>
+    <a href="https://github.com/bosscoder-ai/aitoolkit_cam"><img src="https://img.shields.io/badge/Python-3.7+-blue.svg" alt="Python Version"></a>
+  </p>
+</div>
+
+---
+
+`aitoolkit-cam` 是一个强大的Python摄像头工具库，它将复杂的摄像头操作封装成极其简洁的接口。无论你是编程新手还是经验丰富的开发者，都可以用最少的代码快速实现本地窗口显示和网页流媒体功能。
+
+## ✨ 核心特性
+
+- **极简API**: 只需几行代码即可启动摄像头并显示视频。
+- **Jupyter 模式**: 默认开启安全模式，在Jupyter环境中自动处理资源释放，避免内核崩溃。
+- **双显示模式**: 同时支持本地`OpenCV`窗口和`Web`浏览器实时视频流。
+- **自动管理**: 使用`with`语句自动完成摄像头的启动和关闭，无需手动管理。
+- **智能健壮**: 自动假定使用默认摄像头(索引0)，避免硬件扫描和LED闪烁，处理各种异常。
+- **中文友好**: 完美支持在窗口标题中显示中文。
+
+## 🚀 快速上手
+
+首先，请确保你已经安装了 `aitoolkit-cam` 和 `opencv-python`。
+
+```bash
+pip install aitoolkit-cam opencv-python
+```
+
+### 本地窗口显示
+
+这是在本地窗口中显示摄像头的最简单方法。`for`循环会在达到帧数限制(默认为300帧)后自动结束。在窗口获得焦点时，你也可以随时按 'q' 键提前退出。
+
+```python
+from aitoolkit_cam import Camera
+
+# 使用 'with' 语句自动管理摄像头
+try:
+    with Camera() as cam: # 默认 max_frames=300
+        print(f"📹 摄像头已启动, 将在 {cam.max_frames} 帧后自动停止。")
+        print("   在弹出的窗口中按 'q' 键可提前退出。")
+        # 循环获取并显示每一帧
+        for frame in cam:
+            # show() 方法会处理显示和按键检测
+            if cam.show(frame, window_name="实时画面 (按q退出)"):
+                break
+    print("✅ 演示完成")
+except Exception as e:
+    print(f"❌ 启动失败: {e}")
+```
+
+### Jupyter Notebook / Lab
+
+在Jupyter环境中使用 `aitoolkit-cam` 同样简单。为了安全起见，在Jupyter中，默认的帧数限制会被覆盖为 **50** 帧，以防止无限运行和资源泄漏。
+
+```python
+from aitoolkit_cam import Camera
+
+# 在Jupyter中，这会自动显示50帧然后停止
+# with Camera() as cam:  # 等同于 with Camera(max_frames=50) as cam:
+#     for frame in cam:
+#         if cam.show(frame, window_name="Jupyter演示 (50帧后停止)"):
+#             break
+```
+
+### 网页流模式
+
+想在浏览器里看视频？只需一个参数即可。这个模式有**两种自动停止机制**：
+
+1.  **帧数限制**: `for`循环会在达到 `max_frames` (脚本中默认300，Jupyter中默认50)后结束，从而安全地停止服务。
+2.  **闲置关闭**: 如果所有人都关闭了浏览器页面，服务将在**30秒**后自动关闭，非常智能。
+
+```python
+from aitoolkit_cam import Camera
+
+# 启用web模式
+try:
+    with Camera(web_enabled=True) as cam:
+        url = cam.start() # start()会返回URL
+        print(f"🌍 Web服务已启动: {url}")
+        print(f"👉 请在浏览器中打开此URL。")
+        print(f"ℹ️  服务将在 {cam.max_frames} 帧后或关闭浏览器页签30秒后自动停止。")
+
+        # 这个循环驱动摄像头运行，直到达到帧数限制
+for frame in cam:
+            # 在web模式下，我们不需要在循环里做任何事
+            # 后台线程会自动将帧推送到网页
+            pass
+            
+    print("✅ Web演示结束。")
+except Exception as e:
+    print(f"❌ 启动失败: {e}")
+```
+
+## 📚 文档
+
+- **[快速入门](docs/quick_start.md)**: 最快速的上手指南。
+- **[API参考](docs/api_reference.md)**: `Camera`类的详细接口文档。
+- **[学生指南](docs/student_guide.md)**: 专为中学生设计的趣味教程。
+
+## 🤝 贡献
+
+我们欢迎任何形式的贡献！无论是提交bug报告、功能请求还是代码PR，请随时通过 [GitHub Issues](https://github.com/bosscoder-ai/aitoolkit_cam/issues) 与我们联系。
+
+## 📄 许可
+
+本项目采用 [MIT 许可](LICENSE)。 
