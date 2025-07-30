@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "excel_split_zim"
+version = "0.1.0"
+description = "一个简单的Excel工作表拆分工具"
+readme = "README.md"
+requires-python = ">=3.6"
+license = "MIT"
+authors = [
+    { name = "Zim Mu", email = "sufer76980@163.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "openpyxl>=3.0.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["excel_split_zim"]

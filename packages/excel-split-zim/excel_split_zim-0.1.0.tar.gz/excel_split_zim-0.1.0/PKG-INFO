@@ -1,0 +1,47 @@
+Metadata-Version: 2.4
+Name: excel_split_zim
+Version: 0.1.0
+Summary: 一个简单的Excel工作表拆分工具
+Author-email: Zim Mu <sufer76980@163.com>
+License-Expression: MIT
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Requires-Dist: openpyxl>=3.0.0
+Description-Content-Type: text/markdown
+
+# Excel Split Zim
+
+一个简单的Python工具，用于将Excel文件按工作表拆分成多个独立的Excel文件。
+
+## 安装
+
+```bash
+pip install excel_split_zim
+```
+
+## 使用方法
+
+```python
+from excel_split_zim import split_excel
+
+# 拆分Excel文件
+split_excel("path/to/your/excel/file.xlsx")
+```
+
+## 功能特点
+
+- 自动将Excel文件中的每个工作表保存为独立的Excel文件
+- 保持原始格式和样式
+- 输出文件保存在原文件所在目录
+- 简单易用的API
+
+## 要求
+
+- Python 3.6+
+- openpyxl 3.0.0+
+
+## 许可证
+
+MIT License 
