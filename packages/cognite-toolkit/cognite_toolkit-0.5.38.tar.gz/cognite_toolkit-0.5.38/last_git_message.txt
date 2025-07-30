@@ -1,0 +1,27 @@
+[CDF-24554]😅Support for dumping events (#1593)
+
+# Description
+
+Adds support for dumping events to csv/parquet.
+
+
+![image](https://github.com/user-attachments/assets/325a29aa-3512-4245-925e-5e3a8d3f7f80)
+
+
+
+## Changelog
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## cdf
+
+### Added
+
+- [alpha] Support for dumping events, `cdf dump data events`. To enable
+this set the flag `dump_data = true`.
+
+## templates
+
+No changes.
