@@ -1,0 +1,19 @@
+[project]
+name = "pyjssocket"
+version = "1.0.5"
+authors = [
+  { name="Dmytro Terekhov", email="terekhov160997@gmail.com" },
+]
+description = "A Python library that lets you communicate through JavaScript WebSocket client"
+readme = "README.MD"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/dododo25/pyjssocket"
+Issues = "https://github.com/dododo25/pyjssocket/issues"
