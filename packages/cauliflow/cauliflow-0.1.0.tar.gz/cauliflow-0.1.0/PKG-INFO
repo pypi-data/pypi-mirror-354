@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: cauliflow
+Version: 0.1.0
+Summary: A simple workflow tool designed to work with EPICS PVs
+Project-URL: Documentation, https://sasaki77.github.io/cauliflow/
+Project-URL: Source, https://github.com/sasaki77/cauliflow/
+Author-email: Shinya Sasaki <shinya.sasaki@kek.jp>
+License-Expression: MIT
+License-File: LICENSE
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.11
+Requires-Dist: aioca>=1.8.1
+Requires-Dist: aiofiles>=24.1.0
+Requires-Dist: click>=8.1.8
+Requires-Dist: janus>=2.0.0
+Requires-Dist: lark>=1.2.2
+Requires-Dist: pyyaml>=6.0.2
+Requires-Dist: zabbix-utils[async]>=2.0.2
+Description-Content-Type: text/markdown
+
+# CauliFlow
+
+CauliFlow allows you to construct and run workflows by connecting multiple nodes in a YAML-format file.
+CauliFlow enables the creation of flexible, reusable workflows by utilising three types of variable: Flowdata, Blackboard and Macros.
+Although CauliFlow is primarily designed to work with EPICS PVs, it can also be used for other purposes.
+For more details, please refer to [Documentation](https://sasaki77.github.io/cauliflow)
+
