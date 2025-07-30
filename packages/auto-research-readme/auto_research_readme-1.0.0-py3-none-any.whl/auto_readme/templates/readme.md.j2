@@ -1,0 +1,72 @@
+---
+license: mit
+language:
+{%- for lang in language %}
+- {{ lang }}
+{%- endfor %}
+tags:
+{%- for tag in tags %}
+- {{ tag }}
+{%- endfor %}
+pretty_name: {{ title.lower() }}
+size_categories:
+{%- for size in size_categories %}
+- {{ size }}
+{%- endfor %}
+---
+
+<div align="center">
+
+<img src="{{ logo_path }}" alt="{{ title }} Logo" height="150">
+
+<h1 align="center">
+    {{ title }}
+</h1>
+
+<h3 align="center">
+    {{ tagline }}
+</h3>
+
+[![License](https://img.shields.io/badge/license-MIT-blue)](./LICENSE.md)
+![Version](https://img.shields.io/badge/release-{{ version }}-green)
+[![DOI](https://img.shields.io/badge/DOI-{{ doi | replace("/", "%2F") }}-yellow)](https://doi.org/{{ doi }})
+[![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Datasets-orange)]({{ huggingface_link }})
+
+
+<img src="{{ banner_path }}" alt="{{ title }} Banner" width="100%" style="max-width: 800px;">
+
+</div>
+
+- **Version:** {{ version }}  
+- **Published:** {{ published }}  
+- **License:** MIT
+- **DOI:** [here]({{ doi }})
+- **Hugging Face link** [here]({{ huggingface_link }})
+- **Zenodo link** [here]({{ zenodo_link }})
+- **Github link** [here]({{ github_link }})
+
+## Description
+{{ description }}
+
+## Contributing
+Contributions are welcome! Feel free to:
+- Report issues.
+- Create pull requests.
+
+## Citation
+```bibtex
+@dataset{{ '{' }}{{ contributors[0].name.lower().split()[-1] }}{{ published.split('-')[0] }}{{ title.lower().replace('-', '').replace(' ', '') }}data,
+  author = {{ '{' }}{{ contributors[0].name }}{{ '}' }},
+  title  = {{ '{' }}{{ title }}: {{ tagline }}{{ '}' }},
+  year   = {{ '{' }}{{ published.split('-')[0] }}{{ '}' }},
+  url    = {{ '{' }}{{ huggingface_link }}{{ '}' }},
+  doi    = {{ '{' }}{{ dataset_zenodo_doi }}{{ '}' }},
+  note   = {{ '{' }}Version {{ version }}, {{ contributors[0].affiliation }}{{ '}' }}
+}
+```
+
+
+## Contact
+If you have any questions, please contact the maintainer at {{ maintainer }}.
+
+Contact Stratum Research at contact@stratumresearch.com
