@@ -1,0 +1,26 @@
+[CDF-24555] 📂 Support dump files (#1594)
+
+# Description
+
+Adds support for dumping file metadata to csv/parquet.
+
+
+![image](https://github.com/user-attachments/assets/792487db-988d-414e-878d-0edde9911490)
+
+
+## Changelog
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## cdf
+
+### Added
+
+- [alpha] Support for dumping files medata, `cdf dump data
+filesmetadata`. To enable this set the flag `dump_data = true`.
+
+## templates
+
+No changes.
