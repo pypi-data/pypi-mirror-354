@@ -1,0 +1,73 @@
+Metadata-Version: 2.3
+Name: PyTX16s
+Version: 0.4.0
+Summary: Python lib to interact with RadioMaster TX16s
+License: GPL
+Author: DAAMCS
+Requires-Python: >=3.11
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: hid (>=1.0.7,<2.0.0)
+Description-Content-Type: text/markdown
+
+Для успешного развертывания вашего проекта на PyPI с использованием Poetry, вам нужно убедиться, что в вашем файле `pyproject.toml` правильно указаны пакеты. Вот что вам нужно сделать:
+
+1. Откройте файл `pyproject.toml`.
+2. Найдите секцию `[tool.poetry]`.
+3. Добавьте секцию `packages`, если её нет, и укажите путь к вашему пакету.
+
+Пример секции `pyproject.toml`:
+
+```toml
+[tool.poetry]
+name = "pytx16s"
+version = "0.1.0"
+description = ""
+authors = ["Ваше Имя <ваш_email@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.packages]
+include = [{ include = "pytx16s", from = "." }]
+```
+
+После внесения изменений попробуйте снова выполнить команду `poetry install`.
+
+Теперь, что касается файла `README.md`, вот его содержимое:
+
+```markdown
+# PyTX16s
+
+## Установка
+
+Для установки проекта используйте следующую команду:
+
+```bash
+poetry install
+```
+
+## Развертывание на PyPI
+
+Чтобы задеплоить проект на PyPI, выполните следующие шаги:
+
+1. Убедитесь, что у вас есть учетная запись на [PyPI](https://pypi.org/).
+2. Выполните команду для сборки пакета:
+
+```bash
+poetry build
+```
+
+3. Затем выполните команду для публикации на PyPI:
+
+```bash
+poetry publish
+```
+
+Следуйте инструкциям в терминале для ввода ваших учетных данных.
+```
+
+Убедитесь, что все изменения сохранены, и попробуйте снова выполнить команды.
