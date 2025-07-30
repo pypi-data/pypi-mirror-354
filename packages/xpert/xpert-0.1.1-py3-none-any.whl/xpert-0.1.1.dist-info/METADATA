@@ -1,0 +1,26 @@
+Metadata-Version: 2.4
+Name: xpert
+Version: 0.1.1
+Summary: xpert is both a CLI tool and a package for AI interactions
+Project-URL: Source, https://github.com/assagman/xpert
+Author-email: Sercan Sagman <sercan@sagmans.com>
+License-File: LICENSE
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: <3.14,>=3.12
+Requires-Dist: click~=8.2.1
+Requires-Dist: pydantic-ai==0.2.9
+Provides-Extra: dev
+Requires-Dist: build>=1.2.2; extra == 'dev'
+Requires-Dist: twine>=5.1.1; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# xpert
+xpert is both a CLI tool and a package for AI interactions
