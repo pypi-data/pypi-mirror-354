@@ -1,0 +1,15 @@
+enumerific>=1.0.1
+maxml>=1.0.1
+
+[development]
+black
+pytest
+pytest-codeblocks
+
+[distribution]
+build
+twine
+setup
+
+[pyvips]
+pyvips
