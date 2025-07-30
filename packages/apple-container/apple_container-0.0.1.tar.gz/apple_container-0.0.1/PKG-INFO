@@ -1,0 +1,226 @@
+Metadata-Version: 2.4
+Name: apple-container
+Version: 0.0.1
+Summary: Python SDK for Apple Container with direct XPC
+Author-email: Duy Huynh <vndee.huynh@gmail.com>
+Keywords: python
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: <4.0,>=3.9
+Requires-Dist: pydantic>=2.11.5
+Requires-Dist: pyobjc-core>=10.1
+Requires-Dist: pyobjc-framework-cocoa>=10.1
+Requires-Dist: typing-extensions>=4.0.0
+Description-Content-Type: text/markdown
+
+# Apple Container Python SDK
+
+A Python SDK for interacting with Apple Container via XPC communication. Provides a Docker-like API for container management on macOS.
+
+## Features
+
+- **Async/Await Support**: Full async API using modern Python patterns
+- **XPC Communication**: Direct communication with Apple Container daemon via XPC
+- **Docker-like API**: Familiar interface for Docker users
+- **Type Safety**: Full type hints and Pydantic models
+- **macOS Native**: Built specifically for Apple Container on macOS
+
+## Installation
+
+```bash
+pip install apple-container
+```
+
+### Requirements
+
+- macOS 15.0+ (macOS Sequoia)
+- Apple Silicon (M1/M2/M3/M4)
+- Python 3.9+
+- Apple Container daemon running
+
+## Quick Start
+
+```python
+import asyncio
+from apple_container import AppleContainerClient, ContainerConfig
+
+async def main():
+    client = AppleContainerClient()
+
+    # Check if daemon is running
+    if await client.ping():
+        print("Apple Container daemon is running")
+
+        # List containers
+        containers = await client.list_containers()
+        print(f"Found {len(containers)} containers")
+
+        # Create and run a container
+        config = ContainerConfig(
+            id="",  # Auto-generated
+            image="alpine:latest",
+            command=["echo", "Hello World"]
+        )
+        container = await client.create_container(config)
+        await client.start_container(container.id)
+
+        # Get logs
+        logs = await client.get_container_logs(container.id)
+        print(f"Container output: {logs.stdout}")
+
+        # Clean up
+        await client.stop_container(container.id)
+        await client.remove_container(container.id)
+    else:
+        print("Apple Container daemon is not running")
+
+asyncio.run(main())
+```
+
+## API Reference
+
+### Client
+
+```python
+from apple_container import AppleContainerClient
+
+client = AppleContainerClient(timeout=30.0)
+```
+
+### Container Operations
+
+```python
+# List containers
+containers = await client.list_containers(all=False)
+
+# Get container by ID/name
+container = await client.get_container("container_id")
+
+# Create container
+config = ContainerConfig(id="", image="alpine:latest")
+container = await client.create_container(config)
+
+# Container lifecycle
+await client.start_container("container_id")
+await client.stop_container("container_id")
+await client.restart_container("container_id")
+await client.remove_container("container_id", force=False)
+
+# Container info
+logs = await client.get_container_logs("container_id", follow=False, tail=100)
+stats = await client.get_container_stats("container_id")
+```
+
+### Image Operations
+
+```python
+# List images
+images = await client.list_images()
+
+# Get image by ID/name
+image = await client.get_image("image_id")
+
+# Pull image
+image = await client.pull_image("alpine", tag="latest")
+
+# Remove image
+await client.remove_image("image_id", force=False)
+```
+
+### Network Operations
+
+```python
+# List networks
+networks = await client.list_networks()
+
+# Get network by ID/name
+network = await client.get_network("network_id")
+
+# Create network
+config = NetworkConfig(id="", name="my-network")
+network = await client.create_network(config)
+
+# Remove network
+await client.remove_network("network_id")
+```
+
+### System Operations
+
+```python
+# Check daemon status
+is_running = await client.ping()
+
+# Get version info
+version = await client.version()
+
+# Get system info
+info = await client.system_info()
+```
+
+### Convenience Functions
+
+```python
+from apple_container import ping, list_containers, run_container
+
+# Quick operations
+is_running = await ping()
+containers = await list_containers(all=True)
+container = await run_container("alpine:latest", command=["echo", "hello"])
+```
+
+## Error Handling
+
+```python
+from apple_container import AppleContainerError, AppleContainerNotFoundError
+
+try:
+    container = await client.get_container("nonexistent")
+except AppleContainerNotFoundError:
+    print("Container not found")
+except AppleContainerError as e:
+    print(f"Error: {e}")
+```
+
+## Models
+
+The SDK uses Pydantic models for type safety:
+
+- `Container`: Container information and state
+- `ContainerConfig`: Configuration for creating containers
+- `ContainerLogs`: Container log output
+- `ContainerStats`: Container resource usage statistics
+- `Image`: Image information
+- `Network`: Network information
+- `NetworkConfig`: Configuration for creating networks
+
+## Examples
+
+See the `examples/` directory for more comprehensive examples:
+
+- `examples/basic_usage.py`: Basic SDK usage demonstration
+
+## XPC Communication
+
+This SDK communicates directly with the Apple Container daemon via XPC (Cross-Process Communication), providing:
+
+- **Native Integration**: Direct communication with macOS services
+- **Security**: Leverages macOS security model
+- **Performance**: Efficient binary protocol
+- **Reliability**: Built-in error handling and reconnection
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
